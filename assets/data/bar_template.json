@@ -1,82 +1,82 @@
 {
   "ingredients": [
     {
-      "id": "vodka",
-      "name": "Водка",
+      "id": "seven_up",
+      "name": "Севен Ап",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "apricot_brandy",
+      "name": "Абрикосовый бренди",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "absinthe",
+      "name": "Абсент",
       "category": "Крепкий алкоголь",
-      "image": "https://images.unsplash.com/photo-1720293099417-bd8276ff6db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2RrYSUyMGJvdHRsZSUyMGJhcnxlbnwxfHx8fDE3NzIzNTg1OTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "rum",
-      "name": "Ром",
+      "id": "amaretto",
+      "name": "Амаретто",
       "category": "Крепкий алкоголь",
-      "image": "https://images.unsplash.com/photo-1584474891920-82ecfc9f8868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxydW0lMjBib3R0bGUlMjBhbGNvaG9sfGVufDF8fHx8MTc3MjM1ODYwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "whiskey",
-      "name": "Виски",
+      "id": "amaro_nonino",
+      "name": "Амаро Нонино",
       "category": "Крепкий алкоголь",
-      "image": "https://images.unsplash.com/photo-1606951174479-566e6469b929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGlza2V5JTIwYm90dGxlJTIwZ2xhc3N8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "gin",
-      "name": "Джин",
-      "category": "Крепкий алкоголь",
-      "image": "https://images.unsplash.com/photo-1620917301907-a0cfd46ae5c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnaW4lMjBib3R0bGUlMjBsaXF1b3J8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "id": "pineapple",
+      "name": "Ананас",
+      "category": "Фрукты и ягоды",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "tequila",
-      "name": "Текила",
-      "category": "Крепкий алкоголь",
-      "image": "https://images.unsplash.com/photo-1718881949298-b658a109bf0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZXF1aWxhJTIwYm90dGxlJTIwYWdhdmV8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "id": "anise_star",
+      "name": "Анис звёздочка",
+      "category": "Травы и специи",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "lime",
-      "name": "Лайм",
-      "category": "Фрукты",
-      "image": "https://images.unsplash.com/photo-1762710526463-2d8f7b2c3129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW1lJTIwY2l0cnVzJTIwZnJ1aXR8ZW58MXx8fHwxNzcyMzU4NjAxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "id": "orange_flower_water",
+      "name": "Апельсиновая цветочная вода",
+      "category": "Безалкогольные напитки",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "mint",
-      "name": "Мята",
-      "category": "Травы",
-      "image": "https://images.unsplash.com/photo-1648036933917-762235e009c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW50JTIwbGVhdmVzJTIwZnJlc2h8ZW58MXx8fHwxNzcyMzQ5MzMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "id": "orange_bitter",
+      "name": "Апельсиновый биттер",
+      "category": "Биттеры",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
     {
-      "id": "sugar",
-      "name": "Сахар",
-      "category": "Добавки",
-      "image": "https://images.unsplash.com/photo-1766187223904-dbf4c15a009d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMGN1YmVzJTIwc3dlZXR8ZW58MXx8fHwxNzcyMzU4NjAxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "isDecoration": false,
-      "isOptional": false
-    },
-    {
-      "id": "soda",
-      "name": "Содовая",
-      "category": "Напитки",
-      "image": "https://images.unsplash.com/photo-1527960669775-7cb4181a1783?w=900",
-      "isDecoration": false,
-      "isOptional": false
-    },
-    {
-      "id": "cranberry",
-      "name": "Клюквенный сок",
-      "category": "Напитки",
-      "image": "https://images.unsplash.com/photo-1629978818500-96b0acbeb0e0?w=900",
+      "id": "orange_curacao",
+      "name": "Апельсиновый кюрасао",
+      "category": "Ликёры",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     },
@@ -89,10 +89,1466 @@
       "isOptional": false
     },
     {
+      "id": "orange_marmalade",
+      "name": "Апельсиновый мармелад",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "aperol",
+      "name": "Апероль",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "basil",
+      "name": "Базилик",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "banana",
+      "name": "Банан",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "banana_liqueur",
+      "name": "Банан ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "wine_white",
+      "name": "Белое вино",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "benedictine",
+      "name": "Бенедиктин",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "angostura_bitter",
+      "name": "Биттер Ангостура",
+      "category": "Биттеры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "peychauds_bitter",
+      "name": "Биттер Пишо",
+      "category": "Биттеры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "brandy",
+      "name": "Бренди",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "elderflower_cordial",
+      "name": "Бузиновый кордиал",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "elderflower_liqueur",
+      "name": "Бузиновый ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "bourbon",
+      "name": "Бурбон",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vanilla_extract",
+      "name": "Ванильный экстракт",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
       "id": "vermouth",
       "name": "Вермут",
       "category": "Аперитивы",
       "image": "https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?w=900",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vermouth_white",
+      "name": "Вермут белый",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vermouth_red",
+      "name": "Вермут красный",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vermouth_dry",
+      "name": "Вермут сухой",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vermouth_rose",
+      "name": "Вермут розе",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "whipped_cream",
+      "name": "Взбитые сливки",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "whiskey",
+      "name": "Виски",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1606951174479-566e6469b929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGlza2V5JTIwYm90dGxlJTIwZ2xhc3N8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cherry_brandy",
+      "name": "Вишнёвый бренди",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cherry",
+      "name": "Вишня",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "water",
+      "name": "Вода",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vodka",
+      "name": "Водка",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1720293099417-bd8276ff6db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2RrYSUyMGJvdHRsZSUyMGJhcnxlbnwxfHx8fDE3NzIzNTg1OTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vodka_vanilla",
+      "name": "Водка Ваниль",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vodka_citron",
+      "name": "Водка Цитрон",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "worchestershire_sauce",
+      "name": "Вустерширский соус",
+      "category": "Добавки и миксы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "clove",
+      "name": "Гвоздика",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "beef_bouillon",
+      "name": "Говяжий бульон",
+      "category": "Добавки и миксы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "goldschlager",
+      "name": "Гольдшлэгер",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "grand_marinier",
+      "name": "Гран Марнье",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "grappa",
+      "name": "Граппа",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "grapefruit",
+      "name": "Грейпфрут",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "grenadine",
+      "name": "Гренадин",
+      "category": "Добавки и миксы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "gin",
+      "name": "Джин",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1620917301907-a0cfd46ae5c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnaW4lMjBib3R0bGUlMjBsaXF1b3J8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "gin_old_tom",
+      "name": "Джин Олд Том",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "drambuie",
+      "name": "Драмбуи",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "blackberry",
+      "name": "Ежевичный",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "blackberry_liqueur",
+      "name": "Ежевичный ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "sparkling_wine",
+      "name": "Игристое вино",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "ginger",
+      "name": "Имбирный",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "ginger_beer",
+      "name": "Имбирный пиво",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "ginger_ale",
+      "name": "Имбирный эль",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "butterscotch_liqueur",
+      "name": "Ирисковый ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "irish_stout",
+      "name": "Ирландский стаут",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cocoa_powder",
+      "name": "Какао-порошок",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "kahlua",
+      "name": "Калуа",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "strawberry",
+      "name": "Клубничный",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "strawberry_liqueur",
+      "name": "Клубничный ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cranberry",
+      "name": "Клюквенный сок",
+      "category": "Напитки",
+      "image": "https://images.unsplash.com/photo-1629978818500-96b0acbeb0e0?w=900",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "coconut_milk",
+      "name": "Кокосовый молоко",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "coconut_cream",
+      "name": "Кокосовый сливки",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cola",
+      "name": "Кола",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cognac",
+      "name": "Коньяк",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cinnamon",
+      "name": "Корица",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cinnamon_sticks",
+      "name": "Корица палочки",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "coffee",
+      "name": "Кофе",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "coffee_liqueur",
+      "name": "Кофе ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "coffee_beans",
+      "name": "Кофейные зёрна",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "wine_red",
+      "name": "Красное вино",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "red_port",
+      "name": "Красный портвейн",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "creme_de_violette",
+      "name": "Крем-де-Виолетт",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "creme_de_cacao_white",
+      "name": "Крем-де-какао белый",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "creme_de_cacao_brown",
+      "name": "Крем-де-какао коричневый",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "creme_de_cassis",
+      "name": "Крем-де-кассис",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "creme_de_menthe_white",
+      "name": "Крем-де-мент белый",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "creme_de_menthe_green",
+      "name": "Крем-де-мент зелёный",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cointreau",
+      "name": "Куантро",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "lime",
+      "name": "Лайм",
+      "category": "Фрукты",
+      "image": "https://images.unsplash.com/photo-1762710526463-2d8f7b2c3129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW1lJTIwY2l0cnVzJTIwZnJ1aXR8ZW58MXx8fHwxNzcyMzU4NjAxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "ice",
+      "name": "Лёд",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "passion_fruit_liqueur",
+      "name": "Ликёр маракуйи",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "maraschino_liqueur",
+      "name": "Ликёр мараскино",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "lillet_blonde",
+      "name": "Лилле Блан",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "lemon",
+      "name": "Лимон",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "lemonade",
+      "name": "Лимонад",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "limoncello",
+      "name": "Лимончелло",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "onion",
+      "name": "Лук",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "malibu",
+      "name": "Малибу",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "raspberry",
+      "name": "Малиновый",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "raspberry_liqueur",
+      "name": "Малиновый ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "passion_fruit",
+      "name": "Маракуйя фрукт",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "silverskin_onion",
+      "name": "Маринованный мелкий лук",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "honeydew_melon",
+      "name": "Медовая дыня",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "honey",
+      "name": "Медовый",
+      "category": "Добавки и миксы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "milk",
+      "name": "Молоко",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "ice_cream",
+      "name": "Мороженое",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "mint",
+      "name": "Мята",
+      "category": "Травы",
+      "image": "https://images.unsplash.com/photo-1648036933917-762235e009c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW50JTIwbGVhdmVzJTIwZnJlc2h8ZW58MXx8fHwxNzcyMzQ5MzMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "agave_nectar",
+      "name": "Нектар агавы",
+      "category": "Добавки и миксы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cucumber",
+      "name": "Огурец",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "olive",
+      "name": "Оливка",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "pedro_ximenez",
+      "name": "Педро Хименес",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "peach",
+      "name": "Персиковый",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "peach_bitter",
+      "name": "Персиковый биттер",
+      "category": "Биттеры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "peach_liqueur",
+      "name": "Персиковый ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "peach_puree",
+      "name": "Персиковый пюре",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "peach_schnapps",
+      "name": "Персиковый шнапс",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "beer",
+      "name": "Пиво",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "pisco",
+      "name": "Писко",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "chili_powder",
+      "name": "Порошок чили",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "rye_whiskey",
+      "name": "Ржаной виски",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "rosemary",
+      "name": "Розмарин",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "pink_grapefruit_soda",
+      "name": "Розовая грейпфрутовая сода",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "rum",
+      "name": "Ром",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1584474891920-82ecfc9f8868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxydW0lMjBib3R0bGUlMjBhbGNvaG9sfGVufDF8fHx8MTc3MjM1ODYwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "rum_gold",
+      "name": "Ром золотой",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "rum_light",
+      "name": "Ром светлый",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "chamomile_cordial",
+      "name": "Ромашковый кордиал",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "sambuca",
+      "name": "Самбука",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "sour_mix",
+      "name": "Сауэр микс",
+      "category": "Добавки и миксы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "sugar",
+      "name": "Сахар",
+      "category": "Добавки",
+      "image": "https://images.unsplash.com/photo-1766187223904-dbf4c15a009d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMGN1YmVzJTIwc3dlZXR8ZW58MXx8fHwxNzcyMzU4NjAxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "celery",
+      "name": "Сельдерей",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "blue_curacao",
+      "name": "Синий кюрасао",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_gingerbread",
+      "name": "Сироп имбирный пряник",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_maple",
+      "name": "Сироп кленовый",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_strawberry",
+      "name": "Сироп клубничный",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_coconut",
+      "name": "Сироп кокосовый",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_rock_candy",
+      "name": "Сироп леденцовый",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_raspberry",
+      "name": "Сироп малиновый",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_maraschino_cherry",
+      "name": "Сироп мараскиновой вишни",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_honey",
+      "name": "Сироп медовый",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_almond",
+      "name": "Сироп миндальный",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_mint",
+      "name": "Сироп мятный",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_rosemary",
+      "name": "Сироп розмарин",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_sugar",
+      "name": "Сироп сахар",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "syrup_chocolate",
+      "name": "Сироп шоколад",
+      "category": "Сиропы",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "scotch",
+      "name": "Скотч",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cream",
+      "name": "Сливки",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "butter",
+      "name": "Сливочное масло",
+      "category": "Молочные и сливочные",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "soda",
+      "name": "Содовая",
+      "category": "Напитки",
+      "image": "https://images.unsplash.com/photo-1527960669775-7cb4181a1783?w=900",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_pineapple",
+      "name": "Сок ананас",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_orange",
+      "name": "Сок апельсин",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_pomegranate",
+      "name": "Сок гранатовый",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_grapefruit",
+      "name": "Сок грейпфрут",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_blood_orange",
+      "name": "Сок кровавого апельсина",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_passion_fruit",
+      "name": "Сок маракуйи",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_olive",
+      "name": "Сок оливка",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_papaya",
+      "name": "Сок папайя",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_apple",
+      "name": "Сок яблочный",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_cranberry",
+      "name": "Клюквенный сок",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "juice_tomato",
+      "name": "Томатный сок",
+      "category": "Соки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "salt",
+      "name": "Соль",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "vanilla_pods",
+      "name": "Стручки ванили",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "suze",
+      "name": "Суз",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "dry_sherry",
+      "name": "Сухой херес",
+      "category": "Вино и пиво",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "tequila",
+      "name": "Текила",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1718881949298-b658a109bf0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZXF1aWxhJTIwYm90dGxlJTIwYWdhdmV8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "tequila_bianco",
+      "name": "Текила Бьянко",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "tequila_gold",
+      "name": "Текила золотой",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "rum_dark",
+      "name": "Тёмный ром",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "sloe_gin",
+      "name": "Терновый джин",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "grated_nutmeg",
+      "name": "Тёртый мускатный орех",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "thyme",
+      "name": "Тимьян",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "tonic",
+      "name": "Тоник",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "triple_sec",
+      "name": "Трипл сек",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "frangelico",
+      "name": "Франжелико",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "black_pepper",
+      "name": "Чёрный перец",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "black_tea",
+      "name": "Чёрный чай",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "chili",
+      "name": "Чили",
+      "category": "Травы и специи",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "chartreuse_yellow",
+      "name": "Шартрёз жёлтый",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "chartreuse_green",
+      "name": "Шартрёз зелёный",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "chocolate",
+      "name": "Шоколад",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "apple",
+      "name": "Яблочный",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "apple_liqueur",
+      "name": "Яблочный ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "apple_schnapps",
+      "name": "Яблочный шнапс",
+      "category": "Фрукты и ягоды",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "jagermeister",
+      "name": "Ягермейстер",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "egg_liqueur",
+      "name": "Яичный ликёр",
+      "category": "Ликёры",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "egg",
+      "name": "Яйцо",
+      "category": "Ингредиенты",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "baileys",
+      "name": "Бейлиз",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "cachasa",
+      "name": "Кашаса",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "calvados",
+      "name": "Кальвадос",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "campari",
+      "name": "Кампари",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "dubonnet",
+      "name": "Дюбонне",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "falernum",
+      "name": "Фалернум",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "fernet",
+      "name": "Фернет",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "galliano",
+      "name": "Гальяно",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "hennessy",
+      "name": "Хеннесси",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "hpnotiq",
+      "name": "Гипнотик",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "jack_daniels",
+      "name": "Джек Дэниелс",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "kirsch",
+      "name": "Кирш",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "midori",
+      "name": "Мидори",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "pimms",
+      "name": "Пиммс",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "red_bull",
+      "name": "Ред Булл",
+      "category": "Безалкогольные напитки",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "southern_comfort",
+      "name": "Саузерн Комфорт",
+      "category": "Крепкий алкоголь",
+      "image": "",
+      "isDecoration": false,
+      "isOptional": false
+    },
+    {
+      "id": "tabasco",
+      "name": "Табаско",
+      "category": "Добавки и миксы",
+      "image": "",
       "isDecoration": false,
       "isOptional": false
     }
@@ -102,7 +1558,13 @@
       "id": "mojito",
       "name": "Мохито",
       "image": "https://images.unsplash.com/photo-1724155331840-263a0454d8bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2ppdG8lMjBjb2NrdGFpbCUyMGRyaW5rfGVufDF8fHx8MTc3MjMwMTc1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "ingredients": ["rum", "lime", "mint", "sugar", "soda"],
+      "ingredients": [
+        "rum",
+        "lime",
+        "mint",
+        "sugar",
+        "soda"
+      ],
       "description": "Светлый ром, лайм, мята, сахар, содовая",
       "preparationSteps": [
         "Наполните бокал Хайболл кубиками льда.",
@@ -110,13 +1572,21 @@
         "Долейте содовую, аккуратно перемешайте и украсьте лаймом."
       ],
       "glassType": "Хайболл",
-      "tags": ["IBA", "Лонги", "Мягкие"]
+      "tags": [
+        "IBA",
+        "Лонги",
+        "Мягкие"
+      ]
     },
     {
       "id": "margarita",
       "name": "Маргарита",
       "image": "https://images.unsplash.com/photo-1763544161321-26b8ac2f8d69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJnYXJpdGElMjBjb2NrdGFpbCUyMGxpbWV8ZW58MXx8fHwxNzcyMjc1OTI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "ingredients": ["tequila", "orange", "lime"],
+      "ingredients": [
+        "tequila",
+        "orange",
+        "lime"
+      ],
       "description": "Текила, апельсиновый ликёр, сок лайма",
       "preparationSteps": [
         "Охладите бокал Маргарита, при желании оформите кромку солью.",
@@ -124,13 +1594,21 @@
         "Процедите в бокал и подавайте сразу."
       ],
       "glassType": "Маргарита",
-      "tags": ["IBA", "Средней крепости"]
+      "tags": [
+        "IBA",
+        "Средней крепости"
+      ]
     },
     {
       "id": "cosmopolitan",
       "name": "Космополитен",
       "image": "https://images.unsplash.com/photo-1589378938275-947b7adf8665?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Ntb3BvbGl0YW4lMjBjb2NrdGFpbCUyMHBpbmt8ZW58MXx8fHwxNzcyMzU4NjAyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "ingredients": ["vodka", "orange", "lime", "cranberry"],
+      "ingredients": [
+        "vodka",
+        "orange",
+        "lime",
+        "cranberry"
+      ],
       "description": "Водка, апельсиновый ликёр, лайм, клюквенный сок",
       "preparationSteps": [
         "Наполните шейкер льдом.",
@@ -138,13 +1616,19 @@
         "Взбейте и процедите в охлаждённый бокал Мартини."
       ],
       "glassType": "Мартини",
-      "tags": ["IBA", "Средней крепости"]
+      "tags": [
+        "IBA",
+        "Средней крепости"
+      ]
     },
     {
       "id": "martini",
       "name": "Мартини",
       "image": "https://images.unsplash.com/photo-1683640319758-c4c493da0fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJ0aW5pJTIwY29ja3RhaWwlMjBvbGl2ZXxlbnwxfHx8fDE3NzIzNTg2MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      "ingredients": ["gin", "vermouth"],
+      "ingredients": [
+        "gin",
+        "vermouth"
+      ],
       "description": "Джин, сухой вермут",
       "preparationSteps": [
         "Охладите бокал Мартини.",
@@ -152,13 +1636,19 @@
         "Процедите в бокал и украсьте оливкой."
       ],
       "glassType": "Мартини",
-      "tags": ["IBA", "Крепкие"]
+      "tags": [
+        "IBA",
+        "Крепкие"
+      ]
     },
     {
       "id": "vodka-martini",
       "name": "Водка Мартини",
       "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=900",
-      "ingredients": ["vodka", "vermouth"],
+      "ingredients": [
+        "vodka",
+        "vermouth"
+      ],
       "description": "Водка, сухой вермут",
       "preparationSteps": [
         "Охладите бокал Мартини.",
@@ -166,13 +1656,18 @@
         "Процедите в бокал и подавайте."
       ],
       "glassType": "Мартини",
-      "tags": ["Крепкие"]
+      "tags": [
+        "Крепкие"
+      ]
     },
     {
       "id": "gin-tonic",
       "name": "Джин-Тоник",
       "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900",
-      "ingredients": ["gin", "lime"],
+      "ingredients": [
+        "gin",
+        "lime"
+      ],
       "description": "Джин, тоник, лайм",
       "preparationSteps": [
         "Наполните бокал Хайболл кубиками льда.",
@@ -180,7 +1675,10 @@
         "Аккуратно перемешайте и украсьте ломтиком лайма."
       ],
       "glassType": "Хайболл",
-      "tags": ["Лонги", "Мягкие"]
+      "tags": [
+        "Лонги",
+        "Мягкие"
+      ]
     }
   ]
 }
