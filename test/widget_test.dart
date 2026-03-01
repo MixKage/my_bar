@@ -111,6 +111,7 @@ final _testCatalog = BarCatalog(
       image: '',
       ingredients: <String>['gin', 'vermouth'],
       description: 'Джин, сухой вермут',
+      tags: <String>['IBA', 'Крепкие'],
     ),
     Cocktail(
       id: 'vodka-martini',
@@ -118,6 +119,7 @@ final _testCatalog = BarCatalog(
       image: '',
       ingredients: <String>['vodka', 'vermouth'],
       description: 'Водка, сухой вермут',
+      tags: <String>['Крепкие'],
     ),
   ],
 );

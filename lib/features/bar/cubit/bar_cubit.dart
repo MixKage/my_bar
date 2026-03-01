@@ -4,6 +4,7 @@ import '../data/bar_catalog_storage.dart';
 import '../data/ingredient_selection_storage.dart';
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/cocktail.dart';
+import '../domain/models/cocktail_tags.dart';
 import '../domain/models/ingredient.dart';
 import 'bar_state.dart';
 
@@ -81,6 +82,7 @@ class BarCubit extends Cubit<BarState> {
     required String description,
     required String image,
     required Set<String> ingredientIds,
+    required Set<String> tags,
   }) async {
     final normalizedName = name.trim();
     if (normalizedName.isEmpty) {
@@ -93,6 +95,11 @@ class BarCubit extends Cubit<BarState> {
     }
     if (!ingredientIds.every(state.ingredientIds.contains)) {
       throw const FormatException('Коктейль содержит неизвестные ингредиенты.');
+    }
+
+    final normalizedTags = tags.where(kCocktailTags.contains).toSet();
+    if (normalizedTags.isEmpty) {
+      normalizedTags.add(kUserCocktailTag);
     }
 
     final normalizedDescription = description.trim().isEmpty
@@ -110,6 +117,7 @@ class BarCubit extends Cubit<BarState> {
       image: image.trim(),
       ingredients: ingredientIds.toList(growable: false),
       description: normalizedDescription,
+      tags: _sortTags(normalizedTags),
     );
 
     final nextState = state.copyWith(
@@ -223,5 +231,13 @@ class BarCubit extends Cubit<BarState> {
     };
 
     return map[char] ?? char;
+  }
+
+  List<String> _sortTags(Set<String> tags) {
+    final sorted = tags.toList(growable: false)
+      ..sort(
+        (a, b) => kCocktailTags.indexOf(a).compareTo(kCocktailTags.indexOf(b)),
+      );
+    return sorted;
   }
 }

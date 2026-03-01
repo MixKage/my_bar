@@ -159,6 +159,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
         description: input.description,
         image: input.image,
         ingredientIds: input.ingredientIds,
+        tags: input.tags,
       );
       _showSnackBar('Коктейль добавлен');
     } on FormatException catch (error) {

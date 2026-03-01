@@ -79,42 +79,48 @@
       "name": "Мохито",
       "image": "https://images.unsplash.com/photo-1724155331840-263a0454d8bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2ppdG8lMjBjb2NrdGFpbCUyMGRyaW5rfGVufDF8fHx8MTc3MjMwMTc1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       "ingredients": ["rum", "lime", "mint", "sugar", "soda"],
-      "description": "Светлый ром, лайм, мята, сахар, содовая"
+      "description": "Светлый ром, лайм, мята, сахар, содовая",
+      "tags": ["IBA", "Лонги", "Мягкие"]
     },
     {
       "id": "margarita",
       "name": "Маргарита",
       "image": "https://images.unsplash.com/photo-1763544161321-26b8ac2f8d69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJnYXJpdGElMjBjb2NrdGFpbCUyMGxpbWV8ZW58MXx8fHwxNzcyMjc1OTI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       "ingredients": ["tequila", "orange", "lime"],
-      "description": "Текила, апельсиновый ликёр, сок лайма"
+      "description": "Текила, апельсиновый ликёр, сок лайма",
+      "tags": ["IBA", "Средней крепости"]
     },
     {
       "id": "cosmopolitan",
       "name": "Космополитен",
       "image": "https://images.unsplash.com/photo-1589378938275-947b7adf8665?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Ntb3BvbGl0YW4lMjBjb2NrdGFpbCUyMHBpbmt8ZW58MXx8fHwxNzcyMzU4NjAyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       "ingredients": ["vodka", "orange", "lime", "cranberry"],
-      "description": "Водка, апельсиновый ликёр, лайм, клюквенный сок"
+      "description": "Водка, апельсиновый ликёр, лайм, клюквенный сок",
+      "tags": ["IBA", "Средней крепости"]
     },
     {
       "id": "martini",
       "name": "Мартини",
       "image": "https://images.unsplash.com/photo-1683640319758-c4c493da0fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJ0aW5pJTIwY29ja3RhaWwlMjBvbGl2ZXxlbnwxfHx8fDE3NzIzNTg2MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       "ingredients": ["gin", "vermouth"],
-      "description": "Джин, сухой вермут"
+      "description": "Джин, сухой вермут",
+      "tags": ["IBA", "Крепкие"]
     },
     {
       "id": "vodka-martini",
       "name": "Водка Мартини",
       "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=900",
       "ingredients": ["vodka", "vermouth"],
-      "description": "Водка, сухой вермут"
+      "description": "Водка, сухой вермут",
+      "tags": ["Крепкие"]
     },
     {
       "id": "gin-tonic",
       "name": "Джин-Тоник",
       "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900",
       "ingredients": ["gin", "lime"],
-      "description": "Джин, тоник, лайм"
+      "description": "Джин, тоник, лайм",
+      "tags": ["Лонги", "Мягкие"]
     }
   ]
 }

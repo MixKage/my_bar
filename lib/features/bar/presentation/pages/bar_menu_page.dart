@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../domain/models/cocktail.dart';
+import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
 
@@ -29,10 +30,12 @@ class BarMenuPage extends StatefulWidget {
 class _BarMenuPageState extends State<BarMenuPage> {
   MenuViewMode _viewMode = MenuViewMode.list;
   String? _expandedCocktailId;
+  final Set<String> _selectedTags = <String>{};
 
   @override
   Widget build(BuildContext context) {
-    final expandedId = _resolveExpandedId(widget.availableCocktails);
+    final filteredCocktails = _filterByTags(widget.availableCocktails);
+    final expandedId = _resolveExpandedId(filteredCocktails);
 
     return NeonBackground(
       topGlow: const Color(0xFFFF5BB0),
@@ -70,6 +73,17 @@ class _BarMenuPageState extends State<BarMenuPage> {
                             fontSize: 14,
                           ),
                         ),
+                        if (_selectedTags.isNotEmpty)
+                          Text(
+                            'Фильтр: ${_selectedTags.join(', ')}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Color(0xFFE8B9D7),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -86,13 +100,57 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 44,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                children: kCocktailTags
+                    .map((tag) {
+                      final selected = _selectedTags.contains(tag);
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: FilterChip(
+                          selected: selected,
+                          label: Text(tag),
+                          selectedColor: const Color(0x44FF6FAF),
+                          checkmarkColor: const Color(0xFFFFE5F3),
+                          side: BorderSide(
+                            color: selected
+                                ? const Color(0xFFEF73BD)
+                                : const Color(0x3AD8DDF6),
+                          ),
+                          backgroundColor: const Color(0x221A2142),
+                          labelStyle: TextStyle(
+                            color: selected
+                                ? const Color(0xFFFFD8EC)
+                                : const Color(0xFFC2CDEB),
+                            fontSize: 12,
+                          ),
+                          onSelected: (value) {
+                            setState(() {
+                              if (value) {
+                                _selectedTags.add(tag);
+                              } else {
+                                _selectedTags.remove(tag);
+                              }
+                            });
+                          },
+                        ),
+                      );
+                    })
+                    .toList(growable: false),
+              ),
+            ),
             Expanded(
               child: widget.availableCocktails.isEmpty
                   ? const NoCocktailsView()
+                  : filteredCocktails.isEmpty
+                  ? const _NoTagMatchesView()
                   : _viewMode == MenuViewMode.grid
-                  ? CocktailGrid(cocktails: widget.availableCocktails)
+                  ? CocktailGrid(cocktails: filteredCocktails)
                   : CocktailList(
-                      cocktails: widget.availableCocktails,
+                      cocktails: filteredCocktails,
                       ingredientsById: widget.ingredientsById,
                       expandedId: expandedId,
                       onToggleExpanded: (id) {
@@ -108,15 +166,25 @@ class _BarMenuPageState extends State<BarMenuPage> {
     );
   }
 
-  String? _resolveExpandedId(List<Cocktail> availableCocktails) {
-    if (availableCocktails.isEmpty) {
+  List<Cocktail> _filterByTags(List<Cocktail> source) {
+    if (_selectedTags.isEmpty) {
+      return source;
+    }
+
+    return source
+        .where((cocktail) => cocktail.tags.any(_selectedTags.contains))
+        .toList(growable: false);
+  }
+
+  String? _resolveExpandedId(List<Cocktail> cocktails) {
+    if (cocktails.isEmpty) {
       return null;
     }
 
-    final hasActive = availableCocktails.any(
+    final hasActive = cocktails.any(
       (cocktail) => cocktail.id == _expandedCocktailId,
     );
-    return hasActive ? _expandedCocktailId : availableCocktails.first.id;
+    return hasActive ? _expandedCocktailId : cocktails.first.id;
   }
 }
 
@@ -180,14 +248,28 @@ class CocktailGrid extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                    child: Text(
-                      cocktail.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          cocktail.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: cocktail.tags
+                              .take(2)
+                              .map((tag) => _TagPill(tag: tag))
+                              .toList(growable: false),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -293,6 +375,14 @@ class CocktailList extends StatelessWidget {
                                     color: Color(0xFFC5CCE5),
                                     fontSize: 13,
                                   ),
+                                ),
+                                const SizedBox(height: 6),
+                                Wrap(
+                                  spacing: 6,
+                                  runSpacing: 6,
+                                  children: cocktail.tags
+                                      .map((tag) => _TagPill(tag: tag))
+                                      .toList(growable: false),
                                 ),
                               ],
                             ),
@@ -435,6 +525,52 @@ class _SwitchButton extends StatelessWidget {
   }
 }
 
+class _TagPill extends StatelessWidget {
+  const _TagPill({required this.tag});
+
+  final String tag;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0x332B395E),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: const Color(0x507E8DCA)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        child: Text(
+          tag,
+          style: const TextStyle(
+            color: Color(0xFFC9D5F6),
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NoTagMatchesView extends StatelessWidget {
+  const _NoTagMatchesView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: Text(
+          'По выбранным тегам коктейли не найдены',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Color(0xFFC3CCE8), fontSize: 16),
+        ),
+      ),
+    );
+  }
+}
+
 class NoCocktailsView extends StatelessWidget {
   const NoCocktailsView({super.key});
 
@@ -475,7 +611,7 @@ class NoCocktailsView extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'Добавь позиции в "Ингридиенты", и здесь появятся доступные коктейли.',
+                  'Добавь позиции в "Сыром баре", и здесь появятся доступные коктейли.',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xFFCAD2EB), fontSize: 14),
                 ),

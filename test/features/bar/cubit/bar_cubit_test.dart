@@ -55,6 +55,7 @@ final _templateCatalog = BarCatalog(
       image: '',
       ingredients: <String>['gin', 'vermouth'],
       description: 'Джин, сухой вермут',
+      tags: <String>['IBA', 'Крепкие'],
     ),
   ],
 );

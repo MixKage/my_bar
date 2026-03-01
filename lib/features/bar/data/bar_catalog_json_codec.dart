@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/cocktail.dart';
+import '../domain/models/cocktail_tags.dart';
 import '../domain/models/ingredient.dart';
 
 class BarCatalogJsonCodec {
@@ -42,21 +43,22 @@ class BarCatalogJsonCodec {
     final ingredientIds = ingredients
         .map((ingredient) => ingredient.id)
         .toSet();
-    final invalidCocktail = cocktails.firstWhere(
-      (cocktail) =>
-          cocktail.ingredients.any((id) => !ingredientIds.contains(id)),
-      orElse: () => const Cocktail(
-        id: '',
-        name: '',
-        image: '',
-        ingredients: <String>[],
-        description: '',
-      ),
-    );
-    if (invalidCocktail.id.isNotEmpty) {
-      throw FormatException(
-        'Коктейль "${invalidCocktail.name}" содержит неизвестные ингредиенты.',
+    for (final cocktail in cocktails) {
+      if (cocktail.ingredients.any((id) => !ingredientIds.contains(id))) {
+        throw FormatException(
+          'Коктейль "${cocktail.name}" содержит неизвестные ингредиенты.',
+        );
+      }
+
+      final invalidTag = cocktail.tags.firstWhere(
+        (tag) => !kCocktailTags.contains(tag),
+        orElse: () => '',
       );
+      if (invalidTag.isNotEmpty) {
+        throw FormatException(
+          'Коктейль "${cocktail.name}" содержит неизвестный тег "$invalidTag".',
+        );
+      }
     }
 
     return BarCatalog(ingredients: ingredients, cocktails: cocktails);

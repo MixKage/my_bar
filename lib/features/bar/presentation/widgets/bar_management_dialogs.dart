@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
 
 @immutable
@@ -22,12 +23,14 @@ class AddCocktailInput {
     required this.description,
     required this.image,
     required this.ingredientIds,
+    required this.tags,
   });
 
   final String name;
   final String description;
   final String image;
   final Set<String> ingredientIds;
+  final Set<String> tags;
 }
 
 Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
@@ -96,6 +99,7 @@ Future<AddCocktailInput?> showAddCocktailDialog(
   final descriptionController = TextEditingController();
   final imageController = TextEditingController();
   final selectedIngredientIds = <String>{};
+  final selectedTags = <String>{kUserCocktailTag};
 
   return showDialog<AddCocktailInput>(
     context: context,
@@ -176,6 +180,36 @@ Future<AddCocktailInput?> showAddCocktailDialog(
                             .toList(growable: false),
                       ),
                     ),
+                    const SizedBox(height: 14),
+                    const Text(
+                      'Теги',
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: kCocktailTags
+                          .map((tag) {
+                            final selected = selectedTags.contains(tag);
+                            return FilterChip(
+                              selected: selected,
+                              label: Text(tag),
+                              selectedColor: const Color(0x336D78FF),
+                              checkmarkColor: const Color(0xFFC6CEFF),
+                              onSelected: (value) {
+                                setState(() {
+                                  if (value) {
+                                    selectedTags.add(tag);
+                                  } else {
+                                    selectedTags.remove(tag);
+                                  }
+                                });
+                              },
+                            );
+                          })
+                          .toList(growable: false),
+                    ),
                   ],
                 ),
               ),
@@ -193,6 +227,7 @@ Future<AddCocktailInput?> showAddCocktailDialog(
                       description: descriptionController.text,
                       image: imageController.text,
                       ingredientIds: selectedIngredientIds,
+                      tags: selectedTags,
                     ),
                   );
                 },
