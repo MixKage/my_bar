@@ -28,10 +28,28 @@ class BarState {
 
   List<Cocktail> get availableCocktails {
     return cocktails
-        .where(
-          (cocktail) =>
-              cocktail.ingredients.every(selectedIngredientIds.contains),
-        )
+        .where((cocktail) {
+          return cocktail.ingredients.every((ingredientId) {
+            if (selectedIngredientIds.contains(ingredientId)) {
+              return true;
+            }
+            final substitutions =
+                cocktail.ingredientSubstitutions[ingredientId] ??
+                const <String>[];
+            if (substitutions.any(selectedIngredientIds.contains)) {
+              return true;
+            }
+            if (cocktail.isIngredientOptional(ingredientId) ||
+                cocktail.isIngredientDecoration(ingredientId)) {
+              return true;
+            }
+            final ingredient = ingredientsById[ingredientId];
+            if (ingredient == null) {
+              return false;
+            }
+            return ingredient.isOptional || ingredient.isDecoration;
+          });
+        })
         .toList(growable: false);
   }
 

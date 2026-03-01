@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/cocktail.dart';
+import '../domain/models/cocktail_glass_types.dart';
 import '../domain/models/cocktail_tags.dart';
 import '../domain/models/ingredient.dart';
 
@@ -58,6 +59,63 @@ class BarCatalogJsonCodec {
         throw FormatException(
           'Коктейль "${cocktail.name}" содержит неизвестный тег "$invalidTag".',
         );
+      }
+
+      if (!kCocktailGlassTypes.contains(cocktail.glassType)) {
+        throw FormatException(
+          'Коктейль "${cocktail.name}" содержит неизвестный тип бокала "${cocktail.glassType}".',
+        );
+      }
+
+      for (final substitutionEntry
+          in cocktail.ingredientSubstitutions.entries) {
+        final sourceIngredientId = substitutionEntry.key;
+        if (!cocktail.ingredients.contains(sourceIngredientId)) {
+          throw FormatException(
+            'Коктейль "${cocktail.name}" содержит замену для невыбранного ингредиента "$sourceIngredientId".',
+          );
+        }
+        for (final substitutionId in substitutionEntry.value) {
+          if (!ingredientIds.contains(substitutionId)) {
+            throw FormatException(
+              'Коктейль "${cocktail.name}" содержит неизвестный ингредиент-замену "$substitutionId".',
+            );
+          }
+          if (substitutionId == sourceIngredientId) {
+            throw FormatException(
+              'Коктейль "${cocktail.name}" содержит замену ингредиента самого на себя.',
+            );
+          }
+        }
+      }
+
+      for (final optionalIngredientId in cocktail.optionalIngredients) {
+        if (!cocktail.ingredients.contains(optionalIngredientId)) {
+          throw FormatException(
+            'Коктейль "${cocktail.name}" содержит опциональный ингредиент "$optionalIngredientId", которого нет в составе.',
+          );
+        }
+      }
+      for (final decorationIngredientId in cocktail.decorationIngredients) {
+        if (!cocktail.ingredients.contains(decorationIngredientId)) {
+          throw FormatException(
+            'Коктейль "${cocktail.name}" содержит ингредиент-украшение "$decorationIngredientId", которого нет в составе.',
+          );
+        }
+      }
+      for (final ingredientId in cocktail.ingredientAmounts.keys) {
+        if (!cocktail.ingredients.contains(ingredientId)) {
+          throw FormatException(
+            'Коктейль "${cocktail.name}" содержит количество для неизвестного ингредиента "$ingredientId".',
+          );
+        }
+      }
+      for (final ingredientId in cocktail.ingredientUnits.keys) {
+        if (!cocktail.ingredients.contains(ingredientId)) {
+          throw FormatException(
+            'Коктейль "${cocktail.name}" содержит единицу измерения для неизвестного ингредиента "$ingredientId".',
+          );
+        }
       }
     }
 

@@ -53,7 +53,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     expect(find.text('Доступно 1 из 2'), findsOneWidget);
-    expect(find.text('Мартини'), findsOneWidget);
+    expect(find.text('Мартини'), findsWidgets);
   });
 
   testWidgets('saves selected ingredients to storage', (
@@ -111,6 +111,12 @@ final _testCatalog = BarCatalog(
       image: '',
       ingredients: <String>['gin', 'vermouth'],
       description: 'Джин, сухой вермут',
+      preparationSteps: <String>[
+        'Охладите бокал Мартини.',
+        'Смешайте джин и вермут со льдом.',
+        'Процедите в бокал.',
+      ],
+      glassType: 'Мартини',
       tags: <String>['IBA', 'Крепкие'],
     ),
     Cocktail(
@@ -119,6 +125,12 @@ final _testCatalog = BarCatalog(
       image: '',
       ingredients: <String>['vodka', 'vermouth'],
       description: 'Водка, сухой вермут',
+      preparationSteps: <String>[
+        'Охладите бокал Мартини.',
+        'Смешайте водку и вермут со льдом.',
+        'Процедите и подавайте.',
+      ],
+      glassType: 'Мартини',
       tags: <String>['Крепкие'],
     ),
   ],

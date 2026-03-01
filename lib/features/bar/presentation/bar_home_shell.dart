@@ -9,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
+import '../domain/models/cocktail.dart';
 import 'pages/bar_menu_page.dart';
 import 'pages/raw_bar_page.dart';
 import 'widgets/bar_management_dialogs.dart';
@@ -43,6 +44,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
         cocktailCount: state.cocktails.length,
         ingredientsById: state.ingredientsById,
         onManagePressed: () => _openBarManagement(),
+        onEditCocktailPressed: _handleEditCocktail,
+        onToggleFavoritePressed: _toggleFavorite,
       ),
     ];
 
@@ -57,6 +60,10 @@ class _BarHomeShellState extends State<BarHomeShell> {
 
   Future<void> _toggleIngredient(String id) {
     return context.read<BarCubit>().toggleIngredient(id);
+  }
+
+  Future<void> _toggleFavorite(String cocktailId) {
+    return context.read<BarCubit>().toggleCocktailFavorite(cocktailId);
   }
 
   Future<void> _openBarManagement() async {
@@ -133,6 +140,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
         name: input.name,
         category: input.category,
         image: input.image,
+        isDecoration: input.isDecoration,
+        isOptional: input.isOptional,
       );
       _showSnackBar('Ингредиент добавлен');
     } on FormatException catch (error) {
@@ -157,11 +166,51 @@ class _BarHomeShellState extends State<BarHomeShell> {
       await cubit.addCocktail(
         name: input.name,
         description: input.description,
+        preparationSteps: input.preparationSteps,
         image: input.image,
+        glassType: input.glassType,
         ingredientIds: input.ingredientIds,
+        ingredientSubstitutions: input.ingredientSubstitutions,
+        ingredientAmounts: input.ingredientAmounts,
+        ingredientUnits: input.ingredientUnits,
+        optionalIngredientIds: input.optionalIngredientIds,
+        decorationIngredientIds: input.decorationIngredientIds,
         tags: input.tags,
       );
       _showSnackBar('Коктейль добавлен');
+    } on FormatException catch (error) {
+      _showSnackBar(error.message);
+    }
+  }
+
+  Future<void> _handleEditCocktail(Cocktail cocktail) async {
+    final cubit = context.read<BarCubit>();
+    final input = await showEditCocktailDialog(
+      context,
+      cubit.state.ingredients,
+      cocktail: cocktail,
+    );
+    if (input == null || !mounted) {
+      return;
+    }
+
+    try {
+      await cubit.updateCocktail(
+        cocktailId: cocktail.id,
+        name: input.name,
+        description: input.description,
+        preparationSteps: input.preparationSteps,
+        image: input.image,
+        glassType: input.glassType,
+        ingredientIds: input.ingredientIds,
+        ingredientSubstitutions: input.ingredientSubstitutions,
+        ingredientAmounts: input.ingredientAmounts,
+        ingredientUnits: input.ingredientUnits,
+        optionalIngredientIds: input.optionalIngredientIds,
+        decorationIngredientIds: input.decorationIngredientIds,
+        tags: input.tags,
+      );
+      _showSnackBar('Коктейль обновлён');
     } on FormatException catch (error) {
       _showSnackBar(error.message);
     }

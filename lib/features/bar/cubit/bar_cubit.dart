@@ -4,6 +4,7 @@ import '../data/bar_catalog_storage.dart';
 import '../data/ingredient_selection_storage.dart';
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/cocktail.dart';
+import '../domain/models/cocktail_glass_types.dart';
 import '../domain/models/cocktail_tags.dart';
 import '../domain/models/ingredient.dart';
 import 'bar_state.dart';
@@ -53,6 +54,8 @@ class BarCubit extends Cubit<BarState> {
     required String name,
     required String category,
     required String image,
+    bool isDecoration = false,
+    bool isOptional = false,
   }) async {
     final normalizedName = name.trim();
     if (normalizedName.isEmpty) {
@@ -68,6 +71,8 @@ class BarCubit extends Cubit<BarState> {
       name: normalizedName,
       category: normalizedCategory,
       image: image.trim(),
+      isDecoration: isDecoration,
+      isOptional: isOptional,
     );
 
     final nextState = state.copyWith(
@@ -80,8 +85,16 @@ class BarCubit extends Cubit<BarState> {
   Future<void> addCocktail({
     required String name,
     required String description,
+    required List<String> preparationSteps,
     required String image,
+    required String glassType,
     required Set<String> ingredientIds,
+    Map<String, Set<String>> ingredientSubstitutions =
+        const <String, Set<String>>{},
+    Map<String, String> ingredientAmounts = const <String, String>{},
+    Map<String, String> ingredientUnits = const <String, String>{},
+    Set<String> optionalIngredientIds = const <String>{},
+    Set<String> decorationIngredientIds = const <String>{},
     required Set<String> tags,
   }) async {
     final normalizedName = name.trim();
@@ -96,6 +109,12 @@ class BarCubit extends Cubit<BarState> {
     if (!ingredientIds.every(state.ingredientIds.contains)) {
       throw const FormatException('Коктейль содержит неизвестные ингредиенты.');
     }
+    final normalizedGlassType = glassType.trim().isEmpty
+        ? kDefaultCocktailGlassType
+        : glassType.trim();
+    if (!kCocktailGlassTypes.contains(normalizedGlassType)) {
+      throw const FormatException('Неизвестный тип бокала.');
+    }
 
     final normalizedTags = tags.where(kCocktailTags.contains).toSet();
     if (normalizedTags.isEmpty) {
@@ -107,6 +126,38 @@ class BarCubit extends Cubit<BarState> {
               .map((id) => state.ingredientsById[id]?.name ?? id)
               .join(', ')
         : description.trim();
+    final normalizedPreparationSteps = _normalizePreparationSteps(
+      preparationSteps: preparationSteps,
+      fallbackDescription: normalizedDescription,
+    );
+    final normalizedIngredientIds = _sortIngredientIds(ingredientIds);
+    final normalizedSubstitutions = _normalizeIngredientSubstitutions(
+      ingredientIds: ingredientIds,
+      ingredientSubstitutions: ingredientSubstitutions,
+    );
+    final normalizedIngredientAmounts = _normalizeIngredientTextMap(
+      ingredientIds: ingredientIds,
+      sourceMap: ingredientAmounts,
+      errorMessage:
+          'Количество можно указать только для выбранных ингредиентов.',
+    );
+    final normalizedIngredientUnits = _normalizeIngredientTextMap(
+      ingredientIds: ingredientIds,
+      sourceMap: ingredientUnits,
+      errorMessage:
+          'Единицу измерения можно указать только для выбранных ингредиентов.',
+    );
+    final normalizedOptionalIngredientIds = _normalizeIngredientFlagIds(
+      ingredientIds: ingredientIds,
+      sourceIds: optionalIngredientIds,
+      errorMessage:
+          'Опциональными можно отметить только выбранные ингредиенты.',
+    );
+    final normalizedDecorationIngredientIds = _normalizeIngredientFlagIds(
+      ingredientIds: ingredientIds,
+      sourceIds: decorationIngredientIds,
+      errorMessage: 'Украшением можно отметить только выбранные ингредиенты.',
+    );
 
     final cocktail = Cocktail(
       id: _generateUniqueId(
@@ -115,14 +166,208 @@ class BarCubit extends Cubit<BarState> {
       ),
       name: normalizedName,
       image: image.trim(),
-      ingredients: ingredientIds.toList(growable: false),
+      ingredients: normalizedIngredientIds,
       description: normalizedDescription,
+      preparationSteps: normalizedPreparationSteps,
+      glassType: normalizedGlassType,
       tags: _sortTags(normalizedTags),
+      ingredientSubstitutions: normalizedSubstitutions,
+      ingredientAmounts: normalizedIngredientAmounts,
+      ingredientUnits: normalizedIngredientUnits,
+      optionalIngredients: normalizedOptionalIngredientIds,
+      decorationIngredients: normalizedDecorationIngredientIds,
     );
 
     final nextState = state.copyWith(
       cocktails: <Cocktail>[...state.cocktails, cocktail],
     );
+    emit(nextState);
+    await _persist(nextState);
+  }
+
+  Future<void> updateCocktail({
+    required String cocktailId,
+    required String name,
+    required String description,
+    required List<String> preparationSteps,
+    required String image,
+    required String glassType,
+    required Set<String> ingredientIds,
+    Map<String, Set<String>> ingredientSubstitutions =
+        const <String, Set<String>>{},
+    Map<String, String> ingredientAmounts = const <String, String>{},
+    Map<String, String> ingredientUnits = const <String, String>{},
+    Set<String> optionalIngredientIds = const <String>{},
+    Set<String> decorationIngredientIds = const <String>{},
+    required Set<String> tags,
+  }) async {
+    final cocktailIndex = state.cocktails.indexWhere(
+      (cocktail) => cocktail.id == cocktailId,
+    );
+    if (cocktailIndex < 0) {
+      throw const FormatException('Коктейль не найден.');
+    }
+
+    final currentCocktail = state.cocktails[cocktailIndex];
+    final normalizedName = name.trim();
+    if (normalizedName.isEmpty) {
+      throw const FormatException('Название коктейля не может быть пустым.');
+    }
+    if (ingredientIds.isEmpty) {
+      throw const FormatException(
+        'Выбери хотя бы один ингредиент для коктейля.',
+      );
+    }
+    if (!ingredientIds.every(state.ingredientIds.contains)) {
+      throw const FormatException('Коктейль содержит неизвестные ингредиенты.');
+    }
+    final normalizedGlassType = glassType.trim().isEmpty
+        ? kDefaultCocktailGlassType
+        : glassType.trim();
+    if (!kCocktailGlassTypes.contains(normalizedGlassType)) {
+      throw const FormatException('Неизвестный тип бокала.');
+    }
+
+    final normalizedTags = tags.where(kCocktailTags.contains).toSet();
+    if (normalizedTags.isEmpty) {
+      normalizedTags.add(kUserCocktailTag);
+    }
+
+    final normalizedDescription = description.trim().isEmpty
+        ? ingredientIds
+              .map((id) => state.ingredientsById[id]?.name ?? id)
+              .join(', ')
+        : description.trim();
+    final normalizedPreparationSteps = _normalizePreparationSteps(
+      preparationSteps: preparationSteps,
+      fallbackDescription: normalizedDescription,
+    );
+    final normalizedIngredientIds = _sortIngredientIds(ingredientIds);
+    final normalizedSubstitutions = _normalizeIngredientSubstitutions(
+      ingredientIds: ingredientIds,
+      ingredientSubstitutions: ingredientSubstitutions,
+    );
+    final normalizedIngredientAmounts = _normalizeIngredientTextMap(
+      ingredientIds: ingredientIds,
+      sourceMap: ingredientAmounts,
+      errorMessage:
+          'Количество можно указать только для выбранных ингредиентов.',
+    );
+    final normalizedIngredientUnits = _normalizeIngredientTextMap(
+      ingredientIds: ingredientIds,
+      sourceMap: ingredientUnits,
+      errorMessage:
+          'Единицу измерения можно указать только для выбранных ингредиентов.',
+    );
+    final normalizedOptionalIngredientIds = _normalizeIngredientFlagIds(
+      ingredientIds: ingredientIds,
+      sourceIds: optionalIngredientIds,
+      errorMessage:
+          'Опциональными можно отметить только выбранные ингредиенты.',
+    );
+    final normalizedDecorationIngredientIds = _normalizeIngredientFlagIds(
+      ingredientIds: ingredientIds,
+      sourceIds: decorationIngredientIds,
+      errorMessage: 'Украшением можно отметить только выбранные ингредиенты.',
+    );
+
+    final updatedCocktail = Cocktail(
+      id: currentCocktail.id,
+      name: normalizedName,
+      image: image.trim(),
+      ingredients: normalizedIngredientIds,
+      description: normalizedDescription,
+      preparationSteps: normalizedPreparationSteps,
+      glassType: normalizedGlassType,
+      tags: _sortTags(normalizedTags),
+      ingredientSubstitutions: normalizedSubstitutions,
+      ingredientAmounts: normalizedIngredientAmounts,
+      ingredientUnits: normalizedIngredientUnits,
+      optionalIngredients: normalizedOptionalIngredientIds,
+      decorationIngredients: normalizedDecorationIngredientIds,
+      isFavorite: currentCocktail.isFavorite,
+    );
+
+    final nextCocktails = <Cocktail>[...state.cocktails];
+    nextCocktails[cocktailIndex] = updatedCocktail;
+    final nextState = state.copyWith(cocktails: nextCocktails);
+
+    emit(nextState);
+    await _persist(nextState);
+  }
+
+  Future<void> updateCocktailPreparation({
+    required String cocktailId,
+    required List<String> preparationSteps,
+  }) async {
+    final cocktailIndex = state.cocktails.indexWhere(
+      (cocktail) => cocktail.id == cocktailId,
+    );
+    if (cocktailIndex < 0) {
+      throw const FormatException('Коктейль не найден.');
+    }
+
+    final currentCocktail = state.cocktails[cocktailIndex];
+    final normalizedPreparationSteps = _normalizePreparationSteps(
+      preparationSteps: preparationSteps,
+      fallbackDescription: currentCocktail.description,
+    );
+
+    final updatedCocktail = Cocktail(
+      id: currentCocktail.id,
+      name: currentCocktail.name,
+      image: currentCocktail.image,
+      ingredients: currentCocktail.ingredients,
+      description: currentCocktail.description,
+      preparationSteps: normalizedPreparationSteps,
+      glassType: currentCocktail.glassType,
+      tags: currentCocktail.tags,
+      ingredientSubstitutions: currentCocktail.ingredientSubstitutions,
+      ingredientAmounts: currentCocktail.ingredientAmounts,
+      ingredientUnits: currentCocktail.ingredientUnits,
+      optionalIngredients: currentCocktail.optionalIngredients,
+      decorationIngredients: currentCocktail.decorationIngredients,
+      isFavorite: currentCocktail.isFavorite,
+    );
+
+    final nextCocktails = <Cocktail>[...state.cocktails];
+    nextCocktails[cocktailIndex] = updatedCocktail;
+    final nextState = state.copyWith(cocktails: nextCocktails);
+
+    emit(nextState);
+    await _persist(nextState);
+  }
+
+  Future<void> toggleCocktailFavorite(String cocktailId) async {
+    final cocktailIndex = state.cocktails.indexWhere(
+      (cocktail) => cocktail.id == cocktailId,
+    );
+    if (cocktailIndex < 0) {
+      return;
+    }
+
+    final current = state.cocktails[cocktailIndex];
+    final updated = Cocktail(
+      id: current.id,
+      name: current.name,
+      image: current.image,
+      ingredients: current.ingredients,
+      description: current.description,
+      preparationSteps: current.preparationSteps,
+      glassType: current.glassType,
+      tags: current.tags,
+      ingredientSubstitutions: current.ingredientSubstitutions,
+      ingredientAmounts: current.ingredientAmounts,
+      ingredientUnits: current.ingredientUnits,
+      optionalIngredients: current.optionalIngredients,
+      decorationIngredients: current.decorationIngredients,
+      isFavorite: !current.isFavorite,
+    );
+
+    final nextCocktails = <Cocktail>[...state.cocktails];
+    nextCocktails[cocktailIndex] = updated;
+    final nextState = state.copyWith(cocktails: nextCocktails);
+
     emit(nextState);
     await _persist(nextState);
   }
@@ -237,6 +482,127 @@ class BarCubit extends Cubit<BarState> {
     final sorted = tags.toList(growable: false)
       ..sort(
         (a, b) => kCocktailTags.indexOf(a).compareTo(kCocktailTags.indexOf(b)),
+      );
+    return sorted;
+  }
+
+  List<String> _normalizePreparationSteps({
+    required List<String> preparationSteps,
+    required String fallbackDescription,
+  }) {
+    final normalizedSteps = preparationSteps
+        .map((step) => step.trim())
+        .where((step) => step.isNotEmpty)
+        .toList(growable: false);
+    if (normalizedSteps.isNotEmpty) {
+      return normalizedSteps;
+    }
+    if (fallbackDescription.trim().isNotEmpty) {
+      return <String>['Смешайте ингредиенты: ${fallbackDescription.trim()}'];
+    }
+    return <String>['Смешайте ингредиенты и подавайте.'];
+  }
+
+  Map<String, List<String>> _normalizeIngredientSubstitutions({
+    required Set<String> ingredientIds,
+    required Map<String, Set<String>> ingredientSubstitutions,
+  }) {
+    final normalized = <String, List<String>>{};
+    final allIngredientIds = state.ingredientIds;
+
+    for (final entry in ingredientSubstitutions.entries) {
+      final sourceIngredientId = entry.key.trim();
+      if (sourceIngredientId.isEmpty) {
+        continue;
+      }
+      if (!ingredientIds.contains(sourceIngredientId)) {
+        throw const FormatException(
+          'Замены можно добавлять только для выбранных ингредиентов.',
+        );
+      }
+
+      final cleanedSubstitutions = <String>{};
+      for (final candidate in entry.value) {
+        final candidateId = candidate.trim();
+        if (candidateId.isEmpty) {
+          continue;
+        }
+        if (candidateId == sourceIngredientId) {
+          throw const FormatException(
+            'Ингредиент не может быть заменой самому себе.',
+          );
+        }
+        if (!allIngredientIds.contains(candidateId)) {
+          throw const FormatException(
+            'Список замен содержит неизвестный ингредиент.',
+          );
+        }
+        cleanedSubstitutions.add(candidateId);
+      }
+
+      if (cleanedSubstitutions.isEmpty) {
+        continue;
+      }
+
+      final sortedSubstitutions = cleanedSubstitutions.toList(growable: false)
+        ..sort(
+          (left, right) => (state.ingredientsById[left]?.name ?? left)
+              .compareTo(state.ingredientsById[right]?.name ?? right),
+        );
+      normalized[sourceIngredientId] = sortedSubstitutions;
+    }
+
+    return normalized;
+  }
+
+  Map<String, String> _normalizeIngredientTextMap({
+    required Set<String> ingredientIds,
+    required Map<String, String> sourceMap,
+    required String errorMessage,
+  }) {
+    final normalized = <String, String>{};
+    for (final entry in sourceMap.entries) {
+      final ingredientId = entry.key.trim();
+      if (ingredientId.isEmpty) {
+        continue;
+      }
+      if (!ingredientIds.contains(ingredientId)) {
+        throw FormatException(errorMessage);
+      }
+      final value = entry.value.trim();
+      if (value.isEmpty) {
+        continue;
+      }
+      normalized[ingredientId] = value;
+    }
+    return normalized;
+  }
+
+  List<String> _normalizeIngredientFlagIds({
+    required Set<String> ingredientIds,
+    required Set<String> sourceIds,
+    required String errorMessage,
+  }) {
+    final normalized = <String>{};
+    for (final id in sourceIds) {
+      final ingredientId = id.trim();
+      if (ingredientId.isEmpty) {
+        continue;
+      }
+      if (!ingredientIds.contains(ingredientId)) {
+        throw FormatException(errorMessage);
+      }
+      normalized.add(ingredientId);
+    }
+    return _sortIngredientIds(normalized);
+  }
+
+  List<String> _sortIngredientIds(Set<String> ingredientIds) {
+    final sorted = ingredientIds.toList(growable: false)
+      ..sort(
+        (left, right) => (state.ingredientsById[left]?.name ?? left).compareTo(
+          state.ingredientsById[right]?.name ?? right,
+        ),
       );
     return sorted;
   }

@@ -191,7 +191,7 @@ class IngredientCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(22),
           onTap: onTap,
           child: SizedBox(
-            height: 106,
+            height: 116,
             child: Row(
               children: <Widget>[
                 Padding(
@@ -219,7 +219,7 @@ class IngredientCard extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 16,
+                      vertical: 12,
                       horizontal: 8,
                     ),
                     child: Column(
@@ -241,6 +241,26 @@ class IngredientCard extends StatelessWidget {
                             fontSize: 13,
                           ),
                         ),
+                        if (ingredient.isDecoration || ingredient.isOptional)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Wrap(
+                              spacing: 6,
+                              runSpacing: 4,
+                              children: <Widget>[
+                                if (ingredient.isDecoration)
+                                  const _IngredientAttributePill(
+                                    label: 'Украшение',
+                                    color: Color(0xFF7CCBFF),
+                                  ),
+                                if (ingredient.isOptional)
+                                  const _IngredientAttributePill(
+                                    label: 'Опционально',
+                                    color: Color(0xFFB58BFF),
+                                  ),
+                              ],
+                            ),
+                          ),
                         const SizedBox(height: 4),
                         Text(
                           _cocktailHintText(cocktails),
@@ -316,5 +336,34 @@ class IngredientCard extends StatelessWidget {
       default:
         return 'коктейлей';
     }
+  }
+}
+
+class _IngredientAttributePill extends StatelessWidget {
+  const _IngredientAttributePill({required this.label, required this.color});
+
+  final String label;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.6)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: color.withValues(alpha: 0.96),
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+    );
   }
 }
