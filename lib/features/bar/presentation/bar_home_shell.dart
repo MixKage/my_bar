@@ -10,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
 import '../domain/models/cocktail.dart';
+import 'pages/cocktail_editor_page.dart';
 import 'pages/bar_menu_page.dart';
 import 'pages/raw_bar_page.dart';
 import 'widgets/bar_management_dialogs.dart';
@@ -157,7 +158,11 @@ class _BarHomeShellState extends State<BarHomeShell> {
       return;
     }
 
-    final input = await showAddCocktailDialog(context, ingredients);
+    final input = await Navigator.of(context).push<AddCocktailInput>(
+      MaterialPageRoute<AddCocktailInput>(
+        builder: (_) => CocktailEditorPage.create(ingredients: ingredients),
+      ),
+    );
     if (input == null || !mounted) {
       return;
     }
@@ -185,10 +190,13 @@ class _BarHomeShellState extends State<BarHomeShell> {
 
   Future<void> _handleEditCocktail(Cocktail cocktail) async {
     final cubit = context.read<BarCubit>();
-    final input = await showEditCocktailDialog(
-      context,
-      cubit.state.ingredients,
-      cocktail: cocktail,
+    final input = await Navigator.of(context).push<AddCocktailInput>(
+      MaterialPageRoute<AddCocktailInput>(
+        builder: (_) => CocktailEditorPage.edit(
+          ingredients: cubit.state.ingredients,
+          initialCocktail: cocktail,
+        ),
+      ),
     );
     if (input == null || !mounted) {
       return;
