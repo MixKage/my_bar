@@ -33,6 +33,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final pages = <Widget>[
       RawBarPage(
         ingredients: state.ingredients,
+        cocktails: state.cocktails,
         selectedIngredientIds: state.selectedIngredientIds,
         onToggleIngredient: (id) => _toggleIngredient(id),
         onManagePressed: () => _openBarManagement(),

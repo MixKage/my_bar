@@ -2,12 +2,14 @@ import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/bar_network_image.dart';
+import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
 
 class RawBarPage extends StatefulWidget {
   const RawBarPage({
     required this.ingredients,
+    required this.cocktails,
     required this.selectedIngredientIds,
     required this.onToggleIngredient,
     required this.onManagePressed,
@@ -15,6 +17,7 @@ class RawBarPage extends StatefulWidget {
   });
 
   final List<Ingredient> ingredients;
+  final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
   final ValueChanged<String> onToggleIngredient;
   final VoidCallback onManagePressed;
@@ -41,6 +44,7 @@ class _RawBarPageState extends State<RawBarPage> {
               ingredient.name.toLowerCase().contains(_query.toLowerCase()),
         )
         .toList(growable: false);
+    final cocktailsByIngredient = _buildCocktailUsageMap(widget.cocktails);
 
     return NeonBackground(
       topGlow: const Color(0xFF7D4BFF),
@@ -115,6 +119,9 @@ class _RawBarPageState extends State<RawBarPage> {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: IngredientCard(
                   ingredient: ingredient,
+                  cocktails:
+                      cocktailsByIngredient[ingredient.id] ??
+                      const <Cocktail>[],
                   selected: selected,
                   onTap: () => widget.onToggleIngredient(ingredient.id),
                 ),
@@ -135,17 +142,29 @@ class _RawBarPageState extends State<RawBarPage> {
       ),
     );
   }
+
+  Map<String, List<Cocktail>> _buildCocktailUsageMap(List<Cocktail> cocktails) {
+    final usage = <String, List<Cocktail>>{};
+    for (final cocktail in cocktails) {
+      for (final ingredientId in cocktail.ingredients) {
+        usage.putIfAbsent(ingredientId, () => <Cocktail>[]).add(cocktail);
+      }
+    }
+    return usage;
+  }
 }
 
 class IngredientCard extends StatelessWidget {
   const IngredientCard({
     required this.ingredient,
+    required this.cocktails,
     required this.selected,
     required this.onTap,
     super.key,
   });
 
   final Ingredient ingredient;
+  final List<Cocktail> cocktails;
   final bool selected;
   final VoidCallback onTap;
 
@@ -222,6 +241,17 @@ class IngredientCard extends StatelessWidget {
                             fontSize: 13,
                           ),
                         ),
+                        const SizedBox(height: 4),
+                        Text(
+                          _cocktailHintText(cocktails),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Color(0xFFC7CEF0),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -259,5 +289,32 @@ class IngredientCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _cocktailHintText(List<Cocktail> cocktails) {
+    if (cocktails.isEmpty) {
+      return 'Пока нет коктейлей с этим ингредиентом';
+    }
+    if (cocktails.length == 1) {
+      return 'Приготовьте "${cocktails.first.name}"';
+    }
+    return 'Приготовьте ${cocktails.length} ${_cocktailWord(cocktails.length)}';
+  }
+
+  String _cocktailWord(int count) {
+    final mod100 = count % 100;
+    if (mod100 >= 11 && mod100 <= 14) {
+      return 'коктейлей';
+    }
+    switch (count % 10) {
+      case 1:
+        return 'коктейль';
+      case 2:
+      case 3:
+      case 4:
+        return 'коктейля';
+      default:
+        return 'коктейлей';
+    }
   }
 }
