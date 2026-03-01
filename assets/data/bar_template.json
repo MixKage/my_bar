@@ -1,0 +1,120 @@
+{
+  "ingredients": [
+    {
+      "id": "vodka",
+      "name": "Водка",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1720293099417-bd8276ff6db6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2RrYSUyMGJvdHRsZSUyMGJhcnxlbnwxfHx8fDE3NzIzNTg1OTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "rum",
+      "name": "Ром",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1584474891920-82ecfc9f8868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxydW0lMjBib3R0bGUlMjBhbGNvaG9sfGVufDF8fHx8MTc3MjM1ODYwMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "whiskey",
+      "name": "Виски",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1606951174479-566e6469b929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGlza2V5JTIwYm90dGxlJTIwZ2xhc3N8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "gin",
+      "name": "Джин",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1620917301907-a0cfd46ae5c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnaW4lMjBib3R0bGUlMjBsaXF1b3J8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "tequila",
+      "name": "Текила",
+      "category": "Крепкий алкоголь",
+      "image": "https://images.unsplash.com/photo-1718881949298-b658a109bf0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZXF1aWxhJTIwYm90dGxlJTIwYWdhdmV8ZW58MXx8fHwxNzcyMzU4NjAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "lime",
+      "name": "Лайм",
+      "category": "Фрукты",
+      "image": "https://images.unsplash.com/photo-1762710526463-2d8f7b2c3129?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW1lJTIwY2l0cnVzJTIwZnJ1aXR8ZW58MXx8fHwxNzcyMzU4NjAxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "mint",
+      "name": "Мята",
+      "category": "Травы",
+      "image": "https://images.unsplash.com/photo-1648036933917-762235e009c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW50JTIwbGVhdmVzJTIwZnJlc2h8ZW58MXx8fHwxNzcyMzQ5MzMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "sugar",
+      "name": "Сахар",
+      "category": "Добавки",
+      "image": "https://images.unsplash.com/photo-1766187223904-dbf4c15a009d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWdhciUyMGN1YmVzJTIwc3dlZXR8ZW58MXx8fHwxNzcyMzU4NjAxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    },
+    {
+      "id": "soda",
+      "name": "Содовая",
+      "category": "Напитки",
+      "image": "https://images.unsplash.com/photo-1527960669775-7cb4181a1783?w=900"
+    },
+    {
+      "id": "cranberry",
+      "name": "Клюквенный сок",
+      "category": "Напитки",
+      "image": "https://images.unsplash.com/photo-1629978818500-96b0acbeb0e0?w=900"
+    },
+    {
+      "id": "orange",
+      "name": "Апельсиновый ликёр",
+      "category": "Ликёры",
+      "image": "https://images.unsplash.com/photo-1615478503562-ec2d8aa0e24e?w=900"
+    },
+    {
+      "id": "vermouth",
+      "name": "Вермут",
+      "category": "Аперитивы",
+      "image": "https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?w=900"
+    }
+  ],
+  "cocktails": [
+    {
+      "id": "mojito",
+      "name": "Мохито",
+      "image": "https://images.unsplash.com/photo-1724155331840-263a0454d8bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2ppdG8lMjBjb2NrdGFpbCUyMGRyaW5rfGVufDF8fHx8MTc3MjMwMTc1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "ingredients": ["rum", "lime", "mint", "sugar", "soda"],
+      "description": "Светлый ром, лайм, мята, сахар, содовая"
+    },
+    {
+      "id": "margarita",
+      "name": "Маргарита",
+      "image": "https://images.unsplash.com/photo-1763544161321-26b8ac2f8d69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJnYXJpdGElMjBjb2NrdGFpbCUyMGxpbWV8ZW58MXx8fHwxNzcyMjc1OTI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "ingredients": ["tequila", "orange", "lime"],
+      "description": "Текила, апельсиновый ликёр, сок лайма"
+    },
+    {
+      "id": "cosmopolitan",
+      "name": "Космополитен",
+      "image": "https://images.unsplash.com/photo-1589378938275-947b7adf8665?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Ntb3BvbGl0YW4lMjBjb2NrdGFpbCUyMHBpbmt8ZW58MXx8fHwxNzcyMzU4NjAyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "ingredients": ["vodka", "orange", "lime", "cranberry"],
+      "description": "Водка, апельсиновый ликёр, лайм, клюквенный сок"
+    },
+    {
+      "id": "martini",
+      "name": "Мартини",
+      "image": "https://images.unsplash.com/photo-1683640319758-c4c493da0fdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJ0aW5pJTIwY29ja3RhaWwlMjBvbGl2ZXxlbnwxfHx8fDE3NzIzNTg2MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      "ingredients": ["gin", "vermouth"],
+      "description": "Джин, сухой вермут"
+    },
+    {
+      "id": "vodka-martini",
+      "name": "Водка Мартини",
+      "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=900",
+      "ingredients": ["vodka", "vermouth"],
+      "description": "Водка, сухой вермут"
+    },
+    {
+      "id": "gin-tonic",
+      "name": "Джин-Тоник",
+      "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=900",
+      "ingredients": ["gin", "lime"],
+      "description": "Джин, тоник, лайм"
+    }
+  ]
+}
