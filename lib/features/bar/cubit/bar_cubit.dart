@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../data/bar_catalog_storage.dart';
+import '../data/bar_ui_settings_storage.dart';
 import '../data/ingredient_selection_storage.dart';
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/cocktail.dart';
@@ -13,27 +14,38 @@ class BarCubit extends Cubit<BarState> {
   BarCubit({
     required IngredientSelectionStorage selectionStorage,
     required BarCatalogStorage catalogStorage,
+    required BarUiSettingsStorage settingsStorage,
     required BarCatalog initialCatalog,
     required BarCatalog templateCatalog,
   }) : _selectionStorage = selectionStorage,
        _catalogStorage = catalogStorage,
+       _settingsStorage = settingsStorage,
        _templateCatalog = templateCatalog,
        super(
-         BarState(
-           ingredients: initialCatalog.ingredients,
-           cocktails: initialCatalog.cocktails,
-           selectedIngredientIds: selectionStorage
-               .readSelectedIngredientIds()
-               .where(initialCatalog.ingredientIds.contains)
-               .toSet(),
-         ),
+         (() {
+           final settings = settingsStorage.readSettings();
+           return BarState(
+             ingredients: initialCatalog.ingredients,
+             cocktails: initialCatalog.cocktails,
+             selectedIngredientIds: selectionStorage
+                 .readSelectedIngredientIds()
+                 .where(initialCatalog.ingredientIds.contains)
+                 .toSet(),
+             visitorMode: settings.visitorMode,
+             barMenuOnlyMode: settings.barMenuOnlyMode,
+           );
+         })(),
        );
 
   final IngredientSelectionStorage _selectionStorage;
   final BarCatalogStorage _catalogStorage;
+  final BarUiSettingsStorage _settingsStorage;
   final BarCatalog _templateCatalog;
 
   Future<void> toggleIngredient(String ingredientId) async {
+    if (state.visitorMode) {
+      return;
+    }
     if (!state.ingredientIds.contains(ingredientId)) {
       return;
     }
@@ -372,6 +384,18 @@ class BarCubit extends Cubit<BarState> {
     await _persist(nextState);
   }
 
+  Future<void> setVisitorMode(bool enabled) async {
+    final nextState = state.copyWith(visitorMode: enabled);
+    emit(nextState);
+    await _persist(nextState);
+  }
+
+  Future<void> setBarMenuOnlyMode(bool enabled) async {
+    final nextState = state.copyWith(barMenuOnlyMode: enabled);
+    emit(nextState);
+    await _persist(nextState);
+  }
+
   Future<void> importCatalog(BarCatalog catalog) async {
     final validSelection = state.selectedIngredientIds
         .where(catalog.ingredientIds.contains)
@@ -381,6 +405,8 @@ class BarCubit extends Cubit<BarState> {
       ingredients: catalog.ingredients,
       cocktails: catalog.cocktails,
       selectedIngredientIds: validSelection,
+      visitorMode: state.visitorMode,
+      barMenuOnlyMode: state.barMenuOnlyMode,
     );
 
     emit(nextState);
@@ -400,6 +426,12 @@ class BarCubit extends Cubit<BarState> {
         currentState.selectedIngredientIds,
       ),
       _catalogStorage.writeCatalog(currentState.catalog),
+      _settingsStorage.writeSettings(
+        BarUiSettings(
+          visitorMode: currentState.visitorMode,
+          barMenuOnlyMode: currentState.barMenuOnlyMode,
+        ),
+      ),
     ]);
   }
 

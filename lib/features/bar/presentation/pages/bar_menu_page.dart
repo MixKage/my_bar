@@ -15,6 +15,7 @@ class BarMenuPage extends StatefulWidget {
     required this.availableCocktails,
     required this.cocktailCount,
     required this.ingredientsById,
+    required this.visitorMode,
     required this.onManagePressed,
     required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
@@ -24,6 +25,7 @@ class BarMenuPage extends StatefulWidget {
   final List<Cocktail> availableCocktails;
   final int cocktailCount;
   final Map<String, Ingredient> ingredientsById;
+  final bool visitorMode;
   final VoidCallback onManagePressed;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
@@ -164,6 +166,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 : CocktailList(
                     cocktails: filteredCocktails,
                     ingredientsById: widget.ingredientsById,
+                    visitorMode: widget.visitorMode,
                     bottomPadding: bottomContentPadding,
                     expandedId: expandedId,
                     onEditCocktailPressed: widget.onEditCocktailPressed,
@@ -353,6 +356,7 @@ class CocktailList extends StatelessWidget {
   const CocktailList({
     required this.cocktails,
     required this.ingredientsById,
+    required this.visitorMode,
     required this.bottomPadding,
     required this.expandedId,
     required this.onToggleExpanded,
@@ -363,6 +367,7 @@ class CocktailList extends StatelessWidget {
 
   final List<Cocktail> cocktails;
   final Map<String, Ingredient> ingredientsById;
+  final bool visitorMode;
   final double bottomPadding;
   final String? expandedId;
   final ValueChanged<String> onToggleExpanded;
@@ -638,18 +643,19 @@ class CocktailList extends StatelessWidget {
                                   ),
                                 ),
                                 const Spacer(),
-                                TextButton.icon(
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: const Color(0xFFFFB9DD),
+                                if (!visitorMode)
+                                  TextButton.icon(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: const Color(0xFFFFB9DD),
+                                    ),
+                                    onPressed: () =>
+                                        onEditCocktailPressed(cocktail),
+                                    icon: const Icon(
+                                      Icons.edit_rounded,
+                                      size: 16,
+                                    ),
+                                    label: const Text('Редактировать'),
                                   ),
-                                  onPressed: () =>
-                                      onEditCocktailPressed(cocktail),
-                                  icon: const Icon(
-                                    Icons.edit_rounded,
-                                    size: 16,
-                                  ),
-                                  label: const Text('Редактировать'),
-                                ),
                               ],
                             ),
                             const SizedBox(height: 4),

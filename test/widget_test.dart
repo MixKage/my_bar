@@ -1,10 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_bar/main.dart';
 import 'package:my_bar/features/bar/data/bar_catalog_storage.dart';
+import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
+import 'package:my_bar/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -18,6 +19,7 @@ void main() {
           preferences,
         ),
         catalogStorage: SharedPreferencesBarCatalogStorage(preferences),
+        settingsStorage: SharedPreferencesBarUiSettingsStorage(preferences),
         initialCatalog: _testCatalog,
         templateCatalog: _testCatalog,
       ),
@@ -43,6 +45,7 @@ void main() {
           preferences,
         ),
         catalogStorage: SharedPreferencesBarCatalogStorage(preferences),
+        settingsStorage: SharedPreferencesBarUiSettingsStorage(preferences),
         initialCatalog: _testCatalog,
         templateCatalog: _testCatalog,
       ),
@@ -68,6 +71,7 @@ void main() {
           preferences,
         ),
         catalogStorage: SharedPreferencesBarCatalogStorage(preferences),
+        settingsStorage: SharedPreferencesBarUiSettingsStorage(preferences),
         initialCatalog: _testCatalog,
         templateCatalog: _testCatalog,
       ),

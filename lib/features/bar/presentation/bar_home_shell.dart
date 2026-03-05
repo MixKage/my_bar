@@ -33,24 +33,41 @@ class _BarHomeShellState extends State<BarHomeShell> {
   Widget build(BuildContext context) {
     final state = context.watch<BarCubit>().state;
     final topInset = MediaQuery.paddingOf(context).top;
+    final showOnlyBarMenu = state.barMenuOnlyMode;
 
-    final pages = <Widget>[
-      RawBarPage(
-        ingredients: state.ingredients,
-        cocktails: state.cocktails,
-        selectedIngredientIds: state.selectedIngredientIds,
-        onToggleIngredient: (id) => _toggleIngredient(id),
-        onManagePressed: () => _openBarManagement(),
-      ),
-      BarMenuPage(
-        availableCocktails: state.availableCocktails,
-        cocktailCount: state.cocktails.length,
-        ingredientsById: state.ingredientsById,
-        onManagePressed: () => _openBarManagement(),
-        onEditCocktailPressed: _handleEditCocktail,
-        onToggleFavoritePressed: _toggleFavorite,
-      ),
-    ];
+    final pages = showOnlyBarMenu
+        ? <Widget>[
+            BarMenuPage(
+              availableCocktails: state.availableCocktails,
+              cocktailCount: state.cocktails.length,
+              ingredientsById: state.ingredientsById,
+              visitorMode: state.visitorMode,
+              onManagePressed: () => _openBarManagement(),
+              onEditCocktailPressed: _handleEditCocktail,
+              onToggleFavoritePressed: _toggleFavorite,
+            ),
+          ]
+        : <Widget>[
+            RawBarPage(
+              ingredients: state.ingredients,
+              cocktails: state.cocktails,
+              selectedIngredientIds: state.selectedIngredientIds,
+              allowSelection: !state.visitorMode,
+              onToggleIngredient: (id) => _toggleIngredient(id),
+              onManagePressed: () => _openBarManagement(),
+            ),
+            BarMenuPage(
+              availableCocktails: state.availableCocktails,
+              cocktailCount: state.cocktails.length,
+              ingredientsById: state.ingredientsById,
+              visitorMode: state.visitorMode,
+              onManagePressed: () => _openBarManagement(),
+              onEditCocktailPressed: _handleEditCocktail,
+              onToggleFavoritePressed: _toggleFavorite,
+            ),
+          ];
+
+    final currentIndex = showOnlyBarMenu ? 0 : _currentTab;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
@@ -66,7 +83,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            IndexedStack(index: _currentTab, children: pages),
+            IndexedStack(index: currentIndex, children: pages),
             Positioned(
               top: 0,
               left: 0,
@@ -87,13 +104,14 @@ class _BarHomeShellState extends State<BarHomeShell> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: NeonBottomNavigation(
-                currentIndex: _currentTab,
-                onChanged: (index) => setState(() => _currentTab = index),
+            if (!showOnlyBarMenu)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: NeonBottomNavigation(
+                  currentIndex: currentIndex,
+                  onChanged: (index) => setState(() => _currentTab = index),
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -114,27 +132,32 @@ class _BarHomeShellState extends State<BarHomeShell> {
       backgroundColor: const Color(0xFF161B2E),
       showDragHandle: true,
       builder: (context) {
+        final isVisitorMode = context.read<BarCubit>().state.visitorMode;
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 18),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                ListTile(
-                  leading: const Icon(Icons.add_box_rounded),
-                  title: const Text('Добавить ингредиент'),
-                  onTap: () => Navigator.pop(
-                    context,
-                    _BarManagementAction.addIngredient,
+                if (!isVisitorMode) ...<Widget>[
+                  ListTile(
+                    leading: const Icon(Icons.add_box_rounded),
+                    title: const Text('Добавить ингредиент'),
+                    onTap: () => Navigator.pop(
+                      context,
+                      _BarManagementAction.addIngredient,
+                    ),
                   ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.local_bar_rounded),
-                  title: const Text('Добавить коктейль'),
-                  onTap: () =>
-                      Navigator.pop(context, _BarManagementAction.addCocktail),
-                ),
-                const Divider(height: 22),
+                  ListTile(
+                    leading: const Icon(Icons.local_bar_rounded),
+                    title: const Text('Добавить коктейль'),
+                    onTap: () => Navigator.pop(
+                      context,
+                      _BarManagementAction.addCocktail,
+                    ),
+                  ),
+                  const Divider(height: 22),
+                ],
                 ListTile(
                   leading: const Icon(Icons.settings_rounded),
                   title: const Text('Настройки'),
@@ -171,37 +194,70 @@ class _BarHomeShellState extends State<BarHomeShell> {
   }
 
   Future<void> _openSettings() async {
+    final cubit = context.read<BarCubit>();
+    var visitorMode = cubit.state.visitorMode;
+    var barMenuOnlyMode = cubit.state.barMenuOnlyMode;
+
     final action = await showModalBottomSheet<_BarSettingsAction>(
       context: context,
       backgroundColor: const Color(0xFF161B2E),
       showDragHandle: true,
       builder: (context) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 18),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.settings_suggest_rounded),
-                  title: Text('Настройки барной карты'),
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 18),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      leading: Icon(Icons.settings_suggest_rounded),
+                      title: Text('Настройки барной карты'),
+                    ),
+                    SwitchListTile.adaptive(
+                      value: visitorMode,
+                      activeThumbColor: const Color(0xFF8FA3FF),
+                      title: const Text('Режим посетителя'),
+                      subtitle: const Text('Скрывает кнопки с редактированием'),
+                      onChanged: (value) async {
+                        setModalState(() => visitorMode = value);
+                        await cubit.setVisitorMode(value);
+                      },
+                    ),
+                    SwitchListTile.adaptive(
+                      value: barMenuOnlyMode,
+                      activeThumbColor: const Color(0xFF8FA3FF),
+                      title: const Text('Режим барной карты'),
+                      subtitle: const Text(
+                        'Показывает только страницу "Барная карта"',
+                      ),
+                      onChanged: (value) async {
+                        setModalState(() => barMenuOnlyMode = value);
+                        await cubit.setBarMenuOnlyMode(value);
+                        if (value && mounted) {
+                          setState(() => _currentTab = 1);
+                        }
+                      },
+                    ),
+                    const Divider(height: 16),
+                    ListTile(
+                      leading: const Icon(Icons.upload_file_rounded),
+                      title: const Text('Импортировать барную карту'),
+                      onTap: () =>
+                          Navigator.pop(context, _BarSettingsAction.import),
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.download_rounded),
+                      title: const Text('Экспортировать барную карту'),
+                      onTap: () =>
+                          Navigator.pop(context, _BarSettingsAction.export),
+                    ),
+                  ],
                 ),
-                const Divider(height: 16),
-                ListTile(
-                  leading: const Icon(Icons.upload_file_rounded),
-                  title: const Text('Импортировать барную карту'),
-                  onTap: () =>
-                      Navigator.pop(context, _BarSettingsAction.import),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.download_rounded),
-                  title: const Text('Экспортировать барную карту'),
-                  onTap: () =>
-                      Navigator.pop(context, _BarSettingsAction.export),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );

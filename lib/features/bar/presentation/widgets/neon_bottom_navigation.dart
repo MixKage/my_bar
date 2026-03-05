@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 const double kNeonBottomNavigationHeight = 74;
 const double kNeonBottomNavigationHorizontalPadding = 16;
-const double kNeonBottomNavigationBottomMargin = 12;
+const double kNeonBottomNavigationBottomMargin = 22;
 
 class NeonBottomNavigation extends StatelessWidget {
   const NeonBottomNavigation({
@@ -19,14 +19,12 @@ class NeonBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
-
     return Padding(
       padding: EdgeInsets.fromLTRB(
         kNeonBottomNavigationHorizontalPadding,
         0,
         kNeonBottomNavigationHorizontalPadding,
-        kNeonBottomNavigationBottomMargin + bottomInset,
+        kNeonBottomNavigationBottomMargin,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),

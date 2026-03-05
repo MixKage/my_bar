@@ -10,6 +10,8 @@ class BarState {
     required List<Ingredient> ingredients,
     required List<Cocktail> cocktails,
     Set<String> selectedIngredientIds = const <String>{},
+    this.visitorMode = false,
+    this.barMenuOnlyMode = false,
   }) : ingredients = List<Ingredient>.unmodifiable(ingredients),
        cocktails = List<Cocktail>.unmodifiable(cocktails),
        selectedIngredientIds = Set<String>.unmodifiable(selectedIngredientIds);
@@ -17,6 +19,8 @@ class BarState {
   final List<Ingredient> ingredients;
   final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
+  final bool visitorMode;
+  final bool barMenuOnlyMode;
 
   Map<String, Ingredient> get ingredientsById {
     return <String, Ingredient>{
@@ -61,12 +65,16 @@ class BarState {
     List<Ingredient>? ingredients,
     List<Cocktail>? cocktails,
     Set<String>? selectedIngredientIds,
+    bool? visitorMode,
+    bool? barMenuOnlyMode,
   }) {
     return BarState(
       ingredients: ingredients ?? this.ingredients,
       cocktails: cocktails ?? this.cocktails,
       selectedIngredientIds:
           selectedIngredientIds ?? this.selectedIngredientIds,
+      visitorMode: visitorMode ?? this.visitorMode,
+      barMenuOnlyMode: barMenuOnlyMode ?? this.barMenuOnlyMode,
     );
   }
 
@@ -76,7 +84,9 @@ class BarState {
         other is BarState &&
             listEquals(other.ingredients, ingredients) &&
             listEquals(other.cocktails, cocktails) &&
-            setEquals(other.selectedIngredientIds, selectedIngredientIds);
+            setEquals(other.selectedIngredientIds, selectedIngredientIds) &&
+            other.visitorMode == visitorMode &&
+            other.barMenuOnlyMode == barMenuOnlyMode;
   }
 
   @override
@@ -86,6 +96,8 @@ class BarState {
       Object.hashAll(ingredients),
       Object.hashAll(cocktails),
       Object.hashAll(selectedIds),
+      visitorMode,
+      barMenuOnlyMode,
     );
   }
 }

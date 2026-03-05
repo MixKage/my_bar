@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app/my_bar_app.dart';
 import 'features/bar/data/bar_catalog_json_codec.dart';
 import 'features/bar/data/bar_catalog_storage.dart';
+import 'features/bar/data/bar_ui_settings_storage.dart';
 import 'features/bar/data/ingredient_selection_storage.dart';
 import 'features/bar/domain/models/bar_catalog.dart';
 import 'features/bar/domain/models/cocktail.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
     MyBarApp(
       selectionStorage: bootstrap.selectionStorage,
       catalogStorage: bootstrap.catalogStorage,
+      settingsStorage: bootstrap.settingsStorage,
       initialCatalog: bootstrap.initialCatalog,
       templateCatalog: bootstrap.templateCatalog,
     ),
@@ -35,6 +37,7 @@ Future<_BootstrapData> _bootstrapApp() async {
       preferences,
     );
     final catalogStorage = SharedPreferencesBarCatalogStorage(preferences);
+    final settingsStorage = SharedPreferencesBarUiSettingsStorage(preferences);
 
     final template = await _loadTemplateCatalog(codec);
     final storedCatalog = catalogStorage.readCatalog();
@@ -42,6 +45,7 @@ Future<_BootstrapData> _bootstrapApp() async {
     return _BootstrapData(
       selectionStorage: selectionStorage,
       catalogStorage: catalogStorage,
+      settingsStorage: settingsStorage,
       initialCatalog: storedCatalog ?? template,
       templateCatalog: template,
     );
@@ -59,6 +63,7 @@ Future<_BootstrapData> _bootstrapApp() async {
     return _BootstrapData(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       catalogStorage: InMemoryBarCatalogStorage(initial: fallbackCatalog),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
       initialCatalog: fallbackCatalog,
       templateCatalog: fallbackCatalog,
     );
@@ -82,12 +87,14 @@ class _BootstrapData {
   const _BootstrapData({
     required this.selectionStorage,
     required this.catalogStorage,
+    required this.settingsStorage,
     required this.initialCatalog,
     required this.templateCatalog,
   });
 
   final IngredientSelectionStorage selectionStorage;
   final BarCatalogStorage catalogStorage;
+  final BarUiSettingsStorage settingsStorage;
   final BarCatalog initialCatalog;
   final BarCatalog templateCatalog;
 }

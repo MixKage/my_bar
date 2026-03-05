@@ -12,6 +12,7 @@ class RawBarPage extends StatefulWidget {
     required this.ingredients,
     required this.cocktails,
     required this.selectedIngredientIds,
+    required this.allowSelection,
     required this.onToggleIngredient,
     required this.onManagePressed,
     super.key,
@@ -20,6 +21,7 @@ class RawBarPage extends StatefulWidget {
   final List<Ingredient> ingredients;
   final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
+  final bool allowSelection;
   final ValueChanged<String> onToggleIngredient;
   final VoidCallback onManagePressed;
 
@@ -106,6 +108,18 @@ class _RawBarPageState extends State<RawBarPage> {
                           fontSize: 15,
                         ),
                       ),
+                      if (!widget.allowSelection)
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(
+                            'Режим посетителя: отметка ингредиентов отключена',
+                            style: TextStyle(
+                              color: Color(0xFF94A3CD),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -156,8 +170,11 @@ class _RawBarPageState extends State<RawBarPage> {
                                   cocktailsByIngredient[ingredient.id] ??
                                   const <Cocktail>[],
                               selected: selected,
-                              onTap: () =>
-                                  widget.onToggleIngredient(ingredient.id),
+                              allowSelection: widget.allowSelection,
+                              onTap: widget.allowSelection
+                                  ? () =>
+                                        widget.onToggleIngredient(ingredient.id)
+                                  : null,
                             ),
                           );
                         },
@@ -313,6 +330,7 @@ class IngredientCard extends StatelessWidget {
     required this.ingredient,
     required this.cocktails,
     required this.selected,
+    required this.allowSelection,
     required this.onTap,
     super.key,
   });
@@ -320,7 +338,8 @@ class IngredientCard extends StatelessWidget {
   final Ingredient ingredient;
   final List<Cocktail> cocktails;
   final bool selected;
-  final VoidCallback onTap;
+  final bool allowSelection;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -438,10 +457,12 @@ class IngredientCard extends StatelessWidget {
                     height: 30,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: selected
+                      color: !allowSelection
+                          ? const Color(0xFF2F3857)
+                          : selected
                           ? const Color(0xFFB24EFF)
                           : const Color(0xFF242B46),
-                      boxShadow: selected
+                      boxShadow: allowSelection && selected
                           ? const <BoxShadow>[
                               BoxShadow(
                                 color: Color(0x88B24EFF),
@@ -451,9 +472,15 @@ class IngredientCard extends StatelessWidget {
                           : null,
                     ),
                     child: Icon(
-                      selected ? Icons.check_rounded : Icons.add_rounded,
+                      !allowSelection
+                          ? Icons.lock_outline_rounded
+                          : selected
+                          ? Icons.check_rounded
+                          : Icons.add_rounded,
                       size: 20,
-                      color: Colors.white,
+                      color: !allowSelection
+                          ? const Color(0xFFB8C4EB)
+                          : Colors.white,
                     ),
                   ),
                 ),

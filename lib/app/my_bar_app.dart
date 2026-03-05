@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/theme/app_theme.dart';
 import '../features/bar/cubit/bar_cubit.dart';
 import '../features/bar/data/bar_catalog_storage.dart';
+import '../features/bar/data/bar_ui_settings_storage.dart';
 import '../features/bar/data/ingredient_selection_storage.dart';
 import '../features/bar/domain/models/bar_catalog.dart';
 import '../features/bar/presentation/bar_home_shell.dart';
@@ -12,6 +13,7 @@ class MyBarApp extends StatelessWidget {
   const MyBarApp({
     required this.selectionStorage,
     required this.catalogStorage,
+    required this.settingsStorage,
     required this.initialCatalog,
     required this.templateCatalog,
     super.key,
@@ -19,6 +21,7 @@ class MyBarApp extends StatelessWidget {
 
   final IngredientSelectionStorage selectionStorage;
   final BarCatalogStorage catalogStorage;
+  final BarUiSettingsStorage settingsStorage;
   final BarCatalog initialCatalog;
   final BarCatalog templateCatalog;
 
@@ -28,6 +31,7 @@ class MyBarApp extends StatelessWidget {
       create: (_) => BarCubit(
         selectionStorage: selectionStorage,
         catalogStorage: catalogStorage,
+        settingsStorage: settingsStorage,
         initialCatalog: initialCatalog,
         templateCatalog: templateCatalog,
       ),

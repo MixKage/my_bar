@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:my_bar/features/bar/cubit/bar_cubit.dart';
 import 'package:my_bar/features/bar/data/bar_catalog_storage.dart';
+import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
@@ -11,6 +12,7 @@ void main() {
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
       initialCatalog: _templateCatalog,
       templateCatalog: _templateCatalog,
     );
@@ -22,6 +24,7 @@ void main() {
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
       initialCatalog: _templateCatalog,
       templateCatalog: _templateCatalog,
     );
@@ -36,6 +39,7 @@ void main() {
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
       initialCatalog: _templateCatalog,
       templateCatalog: _templateCatalog,
     );
@@ -99,6 +103,7 @@ void main() {
       final cubit = BarCubit(
         selectionStorage: InMemoryIngredientSelectionStorage(),
         catalogStorage: InMemoryBarCatalogStorage(),
+        settingsStorage: InMemoryBarUiSettingsStorage(),
         initialCatalog: catalog,
         templateCatalog: catalog,
       );
@@ -155,6 +160,7 @@ void main() {
       final cubit = BarCubit(
         selectionStorage: InMemoryIngredientSelectionStorage(),
         catalogStorage: InMemoryBarCatalogStorage(),
+        settingsStorage: InMemoryBarUiSettingsStorage(),
         initialCatalog: catalog,
         templateCatalog: catalog,
       );
@@ -171,6 +177,7 @@ void main() {
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
       initialCatalog: _templateCatalog,
       templateCatalog: _templateCatalog,
     );
@@ -207,6 +214,7 @@ void main() {
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
       initialCatalog: _templateCatalog,
       templateCatalog: _templateCatalog,
     );
@@ -216,6 +224,40 @@ void main() {
     expect(cubit.state.cocktails.first.isFavorite, isTrue);
     await cubit.toggleCocktailFavorite('martini');
     expect(cubit.state.cocktails.first.isFavorite, isFalse);
+  });
+
+  test('does not toggle ingredient when visitor mode is enabled', () async {
+    final cubit = BarCubit(
+      selectionStorage: InMemoryIngredientSelectionStorage(),
+      catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(
+        initial: const BarUiSettings(visitorMode: true),
+      ),
+      initialCatalog: _templateCatalog,
+      templateCatalog: _templateCatalog,
+    );
+
+    await cubit.toggleIngredient('gin');
+
+    expect(cubit.state.selectedIngredientIds, isEmpty);
+  });
+
+  test('persists visitor and bar menu only modes', () async {
+    final settingsStorage = InMemoryBarUiSettingsStorage();
+    final cubit = BarCubit(
+      selectionStorage: InMemoryIngredientSelectionStorage(),
+      catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: settingsStorage,
+      initialCatalog: _templateCatalog,
+      templateCatalog: _templateCatalog,
+    );
+
+    await cubit.setVisitorMode(true);
+    await cubit.setBarMenuOnlyMode(true);
+
+    final persisted = settingsStorage.readSettings();
+    expect(persisted.visitorMode, isTrue);
+    expect(persisted.barMenuOnlyMode, isTrue);
   });
 }
 
