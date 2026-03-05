@@ -30,6 +30,7 @@ class RawBarPage extends StatefulWidget {
 class _RawBarPageState extends State<RawBarPage> {
   final TextEditingController _searchController = TextEditingController();
   String _query = '';
+  bool _isSearchPinned = false;
 
   @override
   void dispose() {
@@ -58,105 +59,148 @@ class _RawBarPageState extends State<RawBarPage> {
     return NeonBackground(
       topGlow: const Color(0xFF7D4BFF),
       bottomGlow: const Color(0xFF2AA6FF),
-      child: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(16, topInset + 20, 16, 0),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16, topInset + 14, 16, 0),
+                  child: Column(
                     children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'Мой Бар',
-                          style: Theme.of(context).textTheme.displaySmall
-                              ?.copyWith(
-                                foreground: Paint()
-                                  ..shader =
-                                      const LinearGradient(
-                                        colors: <Color>[
-                                          Color(0xFFCC9CFF),
-                                          Color(0xFF67D5FF),
-                                        ],
-                                      ).createShader(
-                                        const Rect.fromLTWH(0, 0, 200, 80),
-                                      ),
-                              ),
-                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              'Мой Бар',
+                              style: Theme.of(context).textTheme.displaySmall
+                                  ?.copyWith(
+                                    foreground: Paint()
+                                      ..shader =
+                                          const LinearGradient(
+                                            colors: <Color>[
+                                              Color(0xFFCC9CFF),
+                                              Color(0xFF67D5FF),
+                                            ],
+                                          ).createShader(
+                                            const Rect.fromLTWH(0, 0, 200, 80),
+                                          ),
+                                  ),
+                            ),
+                          ),
+                          IconButton.filledTonal(
+                            tooltip: 'Управление баром',
+                            onPressed: widget.onManagePressed,
+                            icon: const Icon(Icons.tune_rounded),
+                          ),
+                        ],
                       ),
-                      IconButton.filledTonal(
-                        tooltip: 'Управление баром',
-                        onPressed: widget.onManagePressed,
-                        icon: const Icon(Icons.tune_rounded),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'Выбери бутылки и ингредиенты, которые уже есть дома',
+                        style: TextStyle(
+                          color: Color(0xFFB8C1D9),
+                          fontSize: 15,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
-                  const Text(
-                    'Выбери бутылки и ингредиенты, которые уже есть дома',
-                    style: TextStyle(color: Color(0xFFB8C1D9), fontSize: 15),
-                  ),
-                ],
+                ),
               ),
-            ),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: _RawSearchHeaderDelegate(
+                  topInset: topInset,
+                  onPinnedChanged: _handleSearchPinnedChanged,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: _IngredientSearchField(
+                      controller: _searchController,
+                      onChanged: (value) =>
+                          setState(() => _query = value.trim()),
+                    ),
+                  ),
+                ),
+              ),
+              SliverPadding(
+                padding: EdgeInsets.fromLTRB(16, 14, 16, bottomContentPadding),
+                sliver: filteredIngredients.isEmpty
+                    ? const SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 46),
+                          child: Center(
+                            child: Text(
+                              'Ничего не найдено',
+                              style: TextStyle(
+                                color: Color(0xFFA8B0C8),
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : SliverList.builder(
+                        itemCount: filteredIngredients.length,
+                        itemBuilder: (context, index) {
+                          final ingredient = filteredIngredients[index];
+                          final selected = widget.selectedIngredientIds
+                              .contains(ingredient.id);
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: IngredientCard(
+                              ingredient: ingredient,
+                              cocktails:
+                                  cocktailsByIngredient[ingredient.id] ??
+                                  const <Cocktail>[],
+                              selected: selected,
+                              onTap: () =>
+                                  widget.onToggleIngredient(ingredient.id),
+                            ),
+                          );
+                        },
+                      ),
+              ),
+            ],
           ),
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: _RawSearchHeaderDelegate(
-              topInset: topInset,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _IngredientSearchField(
-                  controller: _searchController,
-                  onChanged: (value) => setState(() => _query = value.trim()),
+          IgnorePointer(
+            child: AnimatedOpacity(
+              opacity: _isSearchPinned ? 1 : 0,
+              duration: const Duration(milliseconds: 180),
+              curve: Curves.easeOut,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  height: topInset + 88,
+                  width: double.infinity,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: <Color>[
+                          const Color(0xFF7D4BFF).withValues(alpha: 0.8),
+                          const Color(0xFF7D4BFF).withValues(alpha: 0),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-          SliverPadding(
-            padding: EdgeInsets.fromLTRB(16, 14, 16, bottomContentPadding),
-            sliver: filteredIngredients.isEmpty
-                ? const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 46),
-                      child: Center(
-                        child: Text(
-                          'Ничего не найдено',
-                          style: TextStyle(
-                            color: Color(0xFFA8B0C8),
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                : SliverList.builder(
-                    itemCount: filteredIngredients.length,
-                    itemBuilder: (context, index) {
-                      final ingredient = filteredIngredients[index];
-                      final selected = widget.selectedIngredientIds.contains(
-                        ingredient.id,
-                      );
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: IngredientCard(
-                          ingredient: ingredient,
-                          cocktails:
-                              cocktailsByIngredient[ingredient.id] ??
-                              const <Cocktail>[],
-                          selected: selected,
-                          onTap: () => widget.onToggleIngredient(ingredient.id),
-                        ),
-                      );
-                    },
-                  ),
-          ),
         ],
       ),
     );
+  }
+
+  void _handleSearchPinnedChanged(bool isPinned) {
+    if (_isSearchPinned == isPinned || !mounted) {
+      return;
+    }
+    setState(() => _isSearchPinned = isPinned);
   }
 
   Map<String, List<Cocktail>> _buildCocktailUsageMap(List<Cocktail> cocktails) {
@@ -220,21 +264,24 @@ class _IngredientSearchField extends StatelessWidget {
 }
 
 class _RawSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
-  const _RawSearchHeaderDelegate({required this.topInset, required this.child});
+  const _RawSearchHeaderDelegate({
+    required this.topInset,
+    required this.child,
+    required this.onPinnedChanged,
+  });
 
   final double topInset;
   final Widget child;
+  final ValueChanged<bool> onPinnedChanged;
 
   static const double searchFieldHeight = 56;
   static const double _bottomSpacing = 8;
-  static const double _fadeScrollDistance = 22;
 
   @override
   double get minExtent => topInset + searchFieldHeight + _bottomSpacing;
 
   @override
-  double get maxExtent =>
-      topInset + searchFieldHeight + _bottomSpacing + _fadeScrollDistance;
+  double get maxExtent => topInset + searchFieldHeight + _bottomSpacing;
 
   @override
   Widget build(
@@ -242,35 +289,22 @@ class _RawSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    final progress = (shrinkOffset / _fadeScrollDistance).clamp(0.0, 1.0);
-    final opacity = Curves.easeOut.transform(progress);
-    final topPadding =
-        (topInset * progress) +
-        (_fadeScrollDistance - shrinkOffset).clamp(0.0, _fadeScrollDistance);
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      onPinnedChanged(overlapsContent);
+    });
     return SizedBox.expand(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[
-              const Color(0xFF7D4BFF).withValues(alpha: 0.8 * opacity),
-              const Color(0xFF7D4BFF).withValues(alpha: 0),
-            ],
-          ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(0, topPadding, 0, _bottomSpacing),
-          child: child,
-        ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, topInset, 0, _bottomSpacing),
+        child: child,
       ),
     );
   }
 
   @override
   bool shouldRebuild(covariant _RawSearchHeaderDelegate oldDelegate) {
-    return oldDelegate.topInset != topInset || oldDelegate.child != child;
+    return oldDelegate.topInset != topInset ||
+        oldDelegate.child != child ||
+        oldDelegate.onPinnedChanged != onPinnedChanged;
   }
 }
 
