@@ -273,17 +273,18 @@ class CocktailGrid extends StatelessWidget {
                         Positioned(
                           right: 4,
                           top: 4,
-                          child: IconButton.filledTonal(
+                          child: _PressableFavoriteButton(
                             tooltip: cocktail.isFavorite
                                 ? 'Убрать из избранного'
                                 : 'В избранное',
+                            isFavorite: cocktail.isFavorite,
+                            size: 36,
+                            inactiveBackgroundColor: const Color(0x44353C62),
+                            activeBackgroundColor: const Color(0x664A3E2E),
+                            inactiveIconColor: const Color(0xFFC8D3F8),
+                            activeIconColor: const Color(0xFFFFD37B),
                             onPressed: () =>
                                 onToggleFavoritePressed(cocktail.id),
-                            icon: Icon(
-                              cocktail.isFavorite
-                                  ? Icons.star_rounded
-                                  : Icons.star_border_rounded,
-                            ),
                           ),
                         ),
                       ],
@@ -482,18 +483,18 @@ class CocktailList extends StatelessWidget {
                               ],
                             ),
                           ),
-                          IconButton(
+                          _PressableFavoriteButton(
                             tooltip: cocktail.isFavorite
                                 ? 'Убрать из избранного'
                                 : 'В избранное',
+                            isFavorite: cocktail.isFavorite,
+                            size: 34,
+                            inactiveBackgroundColor: const Color(0x22323B60),
+                            activeBackgroundColor: const Color(0x663F3628),
+                            inactiveIconColor: const Color(0xFFB8C4EE),
+                            activeIconColor: const Color(0xFFFFC88A),
                             onPressed: () =>
                                 onToggleFavoritePressed(cocktail.id),
-                            icon: Icon(
-                              cocktail.isFavorite
-                                  ? Icons.star_rounded
-                                  : Icons.star_border_rounded,
-                              color: const Color(0xFFFFC88A),
-                            ),
                           ),
                           Icon(
                             isExpanded
@@ -677,6 +678,100 @@ class CocktailList extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _PressableFavoriteButton extends StatefulWidget {
+  const _PressableFavoriteButton({
+    required this.tooltip,
+    required this.isFavorite,
+    required this.onPressed,
+    required this.size,
+    required this.inactiveBackgroundColor,
+    required this.activeBackgroundColor,
+    required this.inactiveIconColor,
+    required this.activeIconColor,
+  });
+
+  final String tooltip;
+  final bool isFavorite;
+  final VoidCallback onPressed;
+  final double size;
+  final Color inactiveBackgroundColor;
+  final Color activeBackgroundColor;
+  final Color inactiveIconColor;
+  final Color activeIconColor;
+
+  @override
+  State<_PressableFavoriteButton> createState() =>
+      _PressableFavoriteButtonState();
+}
+
+class _PressableFavoriteButtonState extends State<_PressableFavoriteButton> {
+  bool _pressed = false;
+
+  void _setPressed(bool value) {
+    if (_pressed == value || !mounted) {
+      return;
+    }
+    setState(() => _pressed = value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: widget.tooltip,
+      child: Semantics(
+        button: true,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.onPressed,
+          onTapDown: (_) => _setPressed(true),
+          onTapUp: (_) => _setPressed(false),
+          onTapCancel: () => _setPressed(false),
+          child: AnimatedScale(
+            duration: const Duration(milliseconds: 110),
+            curve: Curves.easeOut,
+            scale: _pressed ? 0.9 : 1,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 160),
+              curve: Curves.easeOut,
+              width: widget.size,
+              height: widget.size,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: widget.isFavorite
+                    ? widget.activeBackgroundColor
+                    : widget.inactiveBackgroundColor,
+                boxShadow: widget.isFavorite
+                    ? const <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0x55FFCC7C),
+                          blurRadius: 12,
+                          spreadRadius: 0.8,
+                        ),
+                      ]
+                    : null,
+              ),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 140),
+                child: Icon(
+                  widget.isFavorite
+                      ? Icons.star_rounded
+                      : Icons.star_border_rounded,
+                  key: ValueKey<bool>(widget.isFavorite),
+                  color: widget.isFavorite
+                      ? widget.activeIconColor
+                      : widget.inactiveIconColor,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
