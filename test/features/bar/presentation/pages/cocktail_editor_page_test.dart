@@ -27,7 +27,7 @@ void main() {
     await tester.enterText(find.byType(TextField).first, 'Новый коктейль');
     await tester.pump();
 
-    await tester.tap(find.byIcon(Icons.arrow_back_rounded));
+    await tester.binding.handlePopRoute();
     await tester.pumpAndSettle();
 
     expect(find.text('Выйти без сохранения?'), findsOneWidget);
@@ -37,7 +37,7 @@ void main() {
 
     expect(find.text('Создание коктейля'), findsOneWidget);
 
-    await tester.tap(find.byIcon(Icons.arrow_back_rounded));
+    await tester.binding.handlePopRoute();
     await tester.pumpAndSettle();
     await tester.tap(find.text('Выйти'));
     await tester.pumpAndSettle();
@@ -55,7 +55,7 @@ void main() {
     await tester.tap(find.text('open-editor'));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byIcon(Icons.arrow_back_rounded));
+    await tester.binding.handlePopRoute();
     await tester.pumpAndSettle();
 
     expect(find.text('Выйти без сохранения?'), findsNothing);
