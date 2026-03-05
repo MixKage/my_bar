@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -31,6 +32,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<BarCubit>().state;
+    final topInset = MediaQuery.paddingOf(context).top;
 
     final pages = <Widget>[
       RawBarPage(
@@ -50,20 +52,50 @@ class _BarHomeShellState extends State<BarHomeShell> {
       ),
     ];
 
-    return Scaffold(
-      extendBody: true,
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          IndexedStack(index: _currentTab, children: pages),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: NeonBottomNavigation(
-              currentIndex: _currentTab,
-              onChanged: (index) => setState(() => _currentTab = index),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        extendBody: true,
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            IndexedStack(index: _currentTab, children: pages),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: topInset + 88,
+              child: IgnorePointer(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: <Color>[
+                        const Color(0xFF7D4BFF).withValues(alpha: 0.65),
+                        const Color(0xFF7D4BFF).withValues(alpha: 0),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: NeonBottomNavigation(
+                currentIndex: _currentTab,
+                onChanged: (index) => setState(() => _currentTab = index),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
