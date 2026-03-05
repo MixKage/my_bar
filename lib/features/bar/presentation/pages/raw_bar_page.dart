@@ -7,6 +7,23 @@ import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
 import '../widgets/neon_bottom_navigation.dart';
 
+enum IngredientSortMode { alphabet, availability, category, demand }
+
+extension on IngredientSortMode {
+  String get label {
+    switch (this) {
+      case IngredientSortMode.alphabet:
+        return 'По алфавиту';
+      case IngredientSortMode.availability:
+        return 'По наличию';
+      case IngredientSortMode.category:
+        return 'По типу напитка';
+      case IngredientSortMode.demand:
+        return 'По востребованности';
+    }
+  }
+}
+
 class RawBarPage extends StatefulWidget {
   const RawBarPage({
     required this.ingredients,
@@ -33,6 +50,7 @@ class _RawBarPageState extends State<RawBarPage> {
   final TextEditingController _searchController = TextEditingController();
   String _query = '';
   bool _isSearchPinned = false;
+  IngredientSortMode _sortMode = IngredientSortMode.alphabet;
 
   @override
   void dispose() {
@@ -57,6 +75,10 @@ class _RawBarPageState extends State<RawBarPage> {
         )
         .toList(growable: false);
     final cocktailsByIngredient = _buildCocktailUsageMap(widget.cocktails);
+    final sortedIngredients = _sortIngredients(
+      filteredIngredients,
+      cocktailsByIngredient,
+    );
 
     return NeonBackground(
       topGlow: const Color(0xFF7D4BFF),
@@ -94,9 +116,15 @@ class _RawBarPageState extends State<RawBarPage> {
                             ),
                           ),
                           IconButton.filledTonal(
+                            tooltip: 'Фильтры',
+                            onPressed: _openSortModeSheet,
+                            icon: const Icon(Icons.tune_rounded),
+                          ),
+                          const SizedBox(width: 8),
+                          IconButton.filledTonal(
                             tooltip: 'Управление баром',
                             onPressed: widget.onManagePressed,
-                            icon: const Icon(Icons.tune_rounded),
+                            icon: const Icon(Icons.settings_suggest_rounded),
                           ),
                         ],
                       ),
@@ -106,6 +134,15 @@ class _RawBarPageState extends State<RawBarPage> {
                         style: TextStyle(
                           color: Color(0xFFB8C1D9),
                           fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Сортировка: ${_sortMode.label}',
+                        style: const TextStyle(
+                          color: Color(0xFF8FA0CC),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       if (!widget.allowSelection)
@@ -157,9 +194,9 @@ class _RawBarPageState extends State<RawBarPage> {
                         ),
                       )
                     : SliverList.builder(
-                        itemCount: filteredIngredients.length,
+                        itemCount: sortedIngredients.length,
                         itemBuilder: (context, index) {
-                          final ingredient = filteredIngredients[index];
+                          final ingredient = sortedIngredients[index];
                           final selected = widget.selectedIngredientIds
                               .contains(ingredient.id);
                           return Padding(
@@ -218,6 +255,89 @@ class _RawBarPageState extends State<RawBarPage> {
       return;
     }
     setState(() => _isSearchPinned = isPinned);
+  }
+
+  Future<void> _openSortModeSheet() async {
+    final result = await showModalBottomSheet<IngredientSortMode>(
+      context: context,
+      backgroundColor: const Color(0xFF161B2E),
+      showDragHandle: true,
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.filter_list_rounded),
+                  title: Text('Сортировка ингредиентов'),
+                ),
+                ...IngredientSortMode.values.map(
+                  (mode) => ListTile(
+                    title: Text(mode.label),
+                    trailing: mode == _sortMode
+                        ? const Icon(
+                            Icons.check_circle_rounded,
+                            color: Color(0xFF8FA3FF),
+                          )
+                        : const Icon(
+                            Icons.radio_button_unchecked_rounded,
+                            color: Color(0xFF7C87AC),
+                          ),
+                    onTap: () => Navigator.of(context).pop(mode),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    if (!mounted || result == null || result == _sortMode) {
+      return;
+    }
+    setState(() => _sortMode = result);
+  }
+
+  List<Ingredient> _sortIngredients(
+    List<Ingredient> ingredients,
+    Map<String, List<Cocktail>> cocktailsByIngredient,
+  ) {
+    final sorted = List<Ingredient>.from(ingredients);
+    sorted.sort((left, right) {
+      int compareByName() =>
+          left.name.toLowerCase().compareTo(right.name.toLowerCase());
+
+      switch (_sortMode) {
+        case IngredientSortMode.alphabet:
+          return compareByName();
+        case IngredientSortMode.availability:
+          final leftSelected = widget.selectedIngredientIds.contains(left.id);
+          final rightSelected = widget.selectedIngredientIds.contains(right.id);
+          if (leftSelected != rightSelected) {
+            return leftSelected ? -1 : 1;
+          }
+          return compareByName();
+        case IngredientSortMode.category:
+          final categoryCompare = left.category.toLowerCase().compareTo(
+            right.category.toLowerCase(),
+          );
+          if (categoryCompare != 0) {
+            return categoryCompare;
+          }
+          return compareByName();
+        case IngredientSortMode.demand:
+          final leftUsage = cocktailsByIngredient[left.id]?.length ?? 0;
+          final rightUsage = cocktailsByIngredient[right.id]?.length ?? 0;
+          if (leftUsage != rightUsage) {
+            return rightUsage.compareTo(leftUsage);
+          }
+          return compareByName();
+      }
+    });
+    return sorted;
   }
 
   Map<String, List<Cocktail>> _buildCocktailUsageMap(List<Cocktail> cocktails) {
