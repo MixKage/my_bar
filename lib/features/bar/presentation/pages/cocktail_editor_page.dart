@@ -191,36 +191,92 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
           surfaceTintColor: Colors.transparent,
           shadowColor: Colors.transparent,
           scrolledUnderElevation: 0,
-          titleSpacing: 10,
-          title: Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: Colors.white,
-              shadows: const <Shadow>[
-                Shadow(color: Color(0x88FF55B0), blurRadius: 18),
-              ],
-            ),
-          ),
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 12),
-            child: IconButton.filledTonal(
-              tooltip: 'Назад',
-              onPressed: _requestExit,
-              icon: const Icon(Icons.arrow_back_rounded),
-            ),
-          ),
-          flexibleSpace: IgnorePointer(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    const Color(0xFF7D4BFF).withValues(alpha: 0.45),
-                    const Color(0xFF7D4BFF).withValues(alpha: 0),
-                  ],
+          toolbarHeight: 76,
+          titleSpacing: 8,
+          leadingWidth: 64,
+          automaticallyImplyLeading: false,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ShaderMask(
+                shaderCallback: (bounds) {
+                  return const LinearGradient(
+                    colors: <Color>[Color(0xFFFFA6D8), Color(0xFF95D6FF)],
+                  ).createShader(bounds);
+                },
+                blendMode: BlendMode.srcIn,
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.2,
+                    color: Colors.white,
+                  ),
                 ),
               ),
+              const SizedBox(height: 2),
+              Text(
+                'Настрой рецепт и состав',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: const Color(0xFFC8D2F6),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          flexibleSpace: IgnorePointer(
+            child: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: <Color>[
+                        const Color(0xFF7D4BFF).withValues(alpha: 0.52),
+                        const Color(0xFF3D4D9C).withValues(alpha: 0.22),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: -20,
+                  top: -18,
+                  child: _AppBarGlowOrb(
+                    size: 120,
+                    color: const Color(0xFFB36BFF).withValues(alpha: 0.35),
+                  ),
+                ),
+                Positioned(
+                  right: -14,
+                  top: -12,
+                  child: _AppBarGlowOrb(
+                    size: 100,
+                    color: const Color(0xFF53C9FF).withValues(alpha: 0.3),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 1.2,
+                    margin: const EdgeInsets.symmetric(horizontal: 14),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(999),
+                      gradient: const LinearGradient(
+                        colors: <Color>[
+                          Color(0x00FFFFFF),
+                          Color(0x66D4B3FF),
+                          Color(0x66A7DDFF),
+                          Color(0x00FFFFFF),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -810,6 +866,33 @@ class _SectionTitle extends StatelessWidget {
       style: const TextStyle(
         color: Color(0xFFE4EAFF),
         fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+}
+
+class _AppBarGlowOrb extends StatelessWidget {
+  const _AppBarGlowOrb({required this.size, required this.color});
+
+  final double size;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: color,
+              blurRadius: size * 0.45,
+              spreadRadius: size * 0.02,
+            ),
+          ],
+        ),
       ),
     );
   }
