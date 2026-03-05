@@ -136,16 +136,16 @@ class _BarHomeShellState extends State<BarHomeShell> {
                 ),
                 const Divider(height: 22),
                 ListTile(
-                  leading: const Icon(Icons.upload_file_rounded),
-                  title: const Text('Импортировать барную карту'),
+                  leading: const Icon(Icons.settings_rounded),
+                  title: const Text('Настройки'),
                   onTap: () =>
-                      Navigator.pop(context, _BarManagementAction.import),
+                      Navigator.pop(context, _BarManagementAction.settings),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.download_rounded),
-                  title: const Text('Экспортировать барную карту'),
+                  leading: const Icon(Icons.info_outline_rounded),
+                  title: const Text('О приложении'),
                   onTap: () =>
-                      Navigator.pop(context, _BarManagementAction.export),
+                      Navigator.pop(context, _BarManagementAction.about),
                 ),
               ],
             ),
@@ -163,11 +163,71 @@ class _BarHomeShellState extends State<BarHomeShell> {
         await _handleAddIngredient();
       case _BarManagementAction.addCocktail:
         await _handleAddCocktail();
-      case _BarManagementAction.import:
+      case _BarManagementAction.settings:
+        await _openSettings();
+      case _BarManagementAction.about:
+        _showAbout();
+    }
+  }
+
+  Future<void> _openSettings() async {
+    final action = await showModalBottomSheet<_BarSettingsAction>(
+      context: context,
+      backgroundColor: const Color(0xFF161B2E),
+      showDragHandle: true,
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.settings_suggest_rounded),
+                  title: Text('Настройки барной карты'),
+                ),
+                const Divider(height: 16),
+                ListTile(
+                  leading: const Icon(Icons.upload_file_rounded),
+                  title: const Text('Импортировать барную карту'),
+                  onTap: () =>
+                      Navigator.pop(context, _BarSettingsAction.import),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.download_rounded),
+                  title: const Text('Экспортировать барную карту'),
+                  onTap: () =>
+                      Navigator.pop(context, _BarSettingsAction.export),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    if (!mounted || action == null) {
+      return;
+    }
+
+    switch (action) {
+      case _BarSettingsAction.import:
         await _handleImport();
-      case _BarManagementAction.export:
+      case _BarSettingsAction.export:
         await _handleExport();
     }
+  }
+
+  void _showAbout() {
+    showAboutDialog(
+      context: context,
+      applicationName: 'Мой Бар',
+      applicationVersion: '1.0.0',
+      applicationIcon: const Icon(Icons.local_bar_rounded),
+      children: const <Widget>[
+        Text('Приложение для управления домашним баром и подбором коктейлей.'),
+      ],
+    );
   }
 
   Future<void> _handleAddIngredient() async {
@@ -341,4 +401,6 @@ class _BarHomeShellState extends State<BarHomeShell> {
   }
 }
 
-enum _BarManagementAction { addIngredient, addCocktail, import, export }
+enum _BarManagementAction { addIngredient, addCocktail, settings, about }
+
+enum _BarSettingsAction { import, export }
