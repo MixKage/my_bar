@@ -94,6 +94,52 @@ class BarCubit extends Cubit<BarState> {
     await _persist(nextState);
   }
 
+  Future<void> updateIngredient({
+    required String ingredientId,
+    required String name,
+    required String category,
+    required String image,
+    bool isDecoration = false,
+    bool isOptional = false,
+  }) async {
+    if (state.visitorMode) {
+      return;
+    }
+
+    final ingredientIndex = state.ingredients.indexWhere(
+      (ingredient) => ingredient.id == ingredientId,
+    );
+    if (ingredientIndex < 0) {
+      throw const FormatException('Ингредиент не найден.');
+    }
+
+    final normalizedName = name.trim();
+    if (normalizedName.isEmpty) {
+      throw const FormatException('Название ингредиента не может быть пустым.');
+    }
+
+    final normalizedCategory = category.trim().isEmpty
+        ? 'Пользовательские'
+        : category.trim();
+
+    final currentIngredient = state.ingredients[ingredientIndex];
+    final updatedIngredient = Ingredient(
+      id: currentIngredient.id,
+      name: normalizedName,
+      category: normalizedCategory,
+      image: image.trim(),
+      isDecoration: isDecoration,
+      isOptional: isOptional,
+    );
+
+    final nextIngredients = <Ingredient>[...state.ingredients];
+    nextIngredients[ingredientIndex] = updatedIngredient;
+
+    final nextState = state.copyWith(ingredients: nextIngredients);
+    emit(nextState);
+    await _persist(nextState);
+  }
+
   Future<void> addCocktail({
     required String name,
     required String description,

@@ -11,6 +11,7 @@ import 'package:share_plus/share_plus.dart';
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
 import '../domain/models/cocktail.dart';
+import '../domain/models/ingredient.dart';
 import 'pages/cocktail_editor_page.dart';
 import 'pages/bar_menu_page.dart';
 import 'pages/raw_bar_page.dart';
@@ -54,6 +55,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               selectedIngredientIds: state.selectedIngredientIds,
               allowSelection: !state.visitorMode,
               onToggleIngredient: (id) => _toggleIngredient(id),
+              onEditIngredient: _handleEditIngredient,
               onManagePressed: () => _openBarManagement(),
             ),
             BarMenuPage(
@@ -281,7 +283,9 @@ class _BarHomeShellState extends State<BarHomeShell> {
       applicationVersion: '1.0.0',
       applicationIcon: const Icon(Icons.local_bar_rounded),
       children: const <Widget>[
-        Text('Приложение для управления домашним баром и подбором коктейлей.'),
+        Text(
+          'Приложение для управления домашним баром и подбором коктейлей. Логион.',
+        ),
       ],
     );
   }
@@ -302,6 +306,31 @@ class _BarHomeShellState extends State<BarHomeShell> {
         isOptional: input.isOptional,
       );
       _showSnackBar('Ингредиент добавлен');
+    } on FormatException catch (error) {
+      _showSnackBar(error.message);
+    }
+  }
+
+  Future<void> _handleEditIngredient(Ingredient ingredient) async {
+    final cubit = context.read<BarCubit>();
+    final input = await showEditIngredientDialog(
+      context,
+      ingredient: ingredient,
+    );
+    if (input == null || !mounted) {
+      return;
+    }
+
+    try {
+      await cubit.updateIngredient(
+        ingredientId: ingredient.id,
+        name: input.name,
+        category: input.category,
+        image: input.image,
+        isDecoration: input.isDecoration,
+        isOptional: input.isOptional,
+      );
+      _showSnackBar('Ингредиент обновлён');
     } on FormatException catch (error) {
       _showSnackBar(error.message);
     }

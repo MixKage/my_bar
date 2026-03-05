@@ -31,6 +31,7 @@ class RawBarPage extends StatefulWidget {
     required this.selectedIngredientIds,
     required this.allowSelection,
     required this.onToggleIngredient,
+    required this.onEditIngredient,
     required this.onManagePressed,
     super.key,
   });
@@ -40,6 +41,7 @@ class RawBarPage extends StatefulWidget {
   final Set<String> selectedIngredientIds;
   final bool allowSelection;
   final ValueChanged<String> onToggleIngredient;
+  final Future<void> Function(Ingredient ingredient) onEditIngredient;
   final VoidCallback onManagePressed;
 
   @override
@@ -118,13 +120,13 @@ class _RawBarPageState extends State<RawBarPage> {
                           IconButton.filledTonal(
                             tooltip: 'Фильтры',
                             onPressed: _openSortModeSheet,
-                            icon: const Icon(Icons.tune_rounded),
+                            icon: const Icon(Icons.filter_list_rounded),
                           ),
                           const SizedBox(width: 8),
                           IconButton.filledTonal(
                             tooltip: 'Управление баром',
                             onPressed: widget.onManagePressed,
-                            icon: const Icon(Icons.settings_suggest_rounded),
+                            icon: const Icon(Icons.tune_rounded),
                           ),
                         ],
                       ),
@@ -211,6 +213,9 @@ class _RawBarPageState extends State<RawBarPage> {
                               onTap: widget.allowSelection
                                   ? () =>
                                         widget.onToggleIngredient(ingredient.id)
+                                  : null,
+                              onLongPress: widget.allowSelection
+                                  ? () => widget.onEditIngredient(ingredient)
                                   : null,
                             ),
                           );
@@ -452,6 +457,7 @@ class IngredientCard extends StatelessWidget {
     required this.selected,
     required this.allowSelection,
     required this.onTap,
+    required this.onLongPress,
     super.key,
   });
 
@@ -460,6 +466,7 @@ class IngredientCard extends StatelessWidget {
   final bool selected;
   final bool allowSelection;
   final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -483,6 +490,7 @@ class IngredientCard extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(22),
           onTap: onTap,
+          onLongPress: onLongPress,
           child: SizedBox(
             height: 116,
             child: Row(

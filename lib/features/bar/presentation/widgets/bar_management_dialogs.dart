@@ -69,20 +69,51 @@ const List<String> kIngredientUnits = <String>[
 ];
 
 Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
-  final nameController = TextEditingController();
-  final categoryController = TextEditingController();
-  final imageController = TextEditingController();
-  var isDecoration = false;
-  var isOptional = false;
+  return _showIngredientDialog(
+    context,
+    title: 'Новый ингредиент',
+    actionLabel: 'Добавить',
+  );
+}
 
-  return showDialog<AddIngredientInput>(
+Future<AddIngredientInput?> showEditIngredientDialog(
+  BuildContext context, {
+  required Ingredient ingredient,
+}) {
+  return _showIngredientDialog(
+    context,
+    title: 'Редактировать ингредиент',
+    actionLabel: 'Сохранить',
+    initialIngredient: ingredient,
+  );
+}
+
+Future<AddIngredientInput?> _showIngredientDialog(
+  BuildContext context, {
+  required String title,
+  required String actionLabel,
+  Ingredient? initialIngredient,
+}) async {
+  final nameController = TextEditingController(
+    text: initialIngredient?.name ?? '',
+  );
+  final categoryController = TextEditingController(
+    text: initialIngredient?.category ?? '',
+  );
+  final imageController = TextEditingController(
+    text: initialIngredient?.image ?? '',
+  );
+  var isDecoration = initialIngredient?.isDecoration ?? false;
+  var isOptional = initialIngredient?.isOptional ?? false;
+
+  final result = await showDialog<AddIngredientInput>(
     context: context,
     builder: (context) {
       return StatefulBuilder(
         builder: (context, setState) {
           return AlertDialog(
             backgroundColor: const Color(0xFF14182B),
-            title: const Text('Новый ингредиент'),
+            title: Text(title),
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -101,8 +132,27 @@ Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
                   const SizedBox(height: 12),
                   _DialogTextField(
                     controller: imageController,
-                    label: 'URL изображения',
-                    hint: 'https://...',
+                    label: 'Фото (URL или путь файла)',
+                    hint: 'https://... или /storage/.../photo.jpg',
+                  ),
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      final picked = await FilePicker.platform.pickFiles(
+                        type: FileType.image,
+                        allowMultiple: false,
+                      );
+                      if (picked == null || picked.files.isEmpty) {
+                        return;
+                      }
+                      final path = picked.files.single.path;
+                      if (path == null || path.trim().isEmpty) {
+                        return;
+                      }
+                      setState(() => imageController.text = path.trim());
+                    },
+                    icon: const Icon(Icons.photo_library_rounded),
+                    label: const Text('Выбрать с устройства'),
                   ),
                   const SizedBox(height: 8),
                   CheckboxListTile(
@@ -149,7 +199,7 @@ Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
                     ),
                   );
                 },
-                child: const Text('Добавить'),
+                child: Text(actionLabel),
               ),
             ],
           );
@@ -157,6 +207,11 @@ Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
       );
     },
   );
+
+  nameController.dispose();
+  categoryController.dispose();
+  imageController.dispose();
+  return result;
 }
 
 Future<AddCocktailInput?> showAddCocktailDialog(

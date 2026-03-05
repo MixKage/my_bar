@@ -259,6 +259,57 @@ void main() {
     expect(persisted.visitorMode, isTrue);
     expect(persisted.barMenuOnlyMode, isTrue);
   });
+
+  test('updates ingredient fields', () async {
+    final cubit = BarCubit(
+      selectionStorage: InMemoryIngredientSelectionStorage(),
+      catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(),
+      initialCatalog: _templateCatalog,
+      templateCatalog: _templateCatalog,
+    );
+
+    await cubit.updateIngredient(
+      ingredientId: 'gin',
+      name: 'Лондон Драй Джин',
+      category: 'Крепкий алкоголь',
+      image: '/tmp/gin.jpg',
+      isDecoration: true,
+      isOptional: true,
+    );
+
+    final ingredient = cubit.state.ingredients.singleWhere(
+      (item) => item.id == 'gin',
+    );
+    expect(ingredient.name, 'Лондон Драй Джин');
+    expect(ingredient.image, '/tmp/gin.jpg');
+    expect(ingredient.isDecoration, isTrue);
+    expect(ingredient.isOptional, isTrue);
+  });
+
+  test('does not update ingredient in visitor mode', () async {
+    final cubit = BarCubit(
+      selectionStorage: InMemoryIngredientSelectionStorage(),
+      catalogStorage: InMemoryBarCatalogStorage(),
+      settingsStorage: InMemoryBarUiSettingsStorage(
+        initial: const BarUiSettings(visitorMode: true),
+      ),
+      initialCatalog: _templateCatalog,
+      templateCatalog: _templateCatalog,
+    );
+
+    await cubit.updateIngredient(
+      ingredientId: 'gin',
+      name: 'Новый Джин',
+      category: 'Крепкий алкоголь',
+      image: '',
+    );
+
+    final ingredient = cubit.state.ingredients.singleWhere(
+      (item) => item.id == 'gin',
+    );
+    expect(ingredient.name, 'Джин');
+  });
 }
 
 final _templateCatalog = BarCatalog(
