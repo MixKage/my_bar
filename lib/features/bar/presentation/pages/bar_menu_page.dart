@@ -6,6 +6,7 @@ import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
+import '../widgets/neon_bottom_navigation.dart';
 
 enum MenuViewMode { list, grid }
 
@@ -38,139 +39,143 @@ class _BarMenuPageState extends State<BarMenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    final topInset = MediaQuery.paddingOf(context).top;
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+    final bottomContentPadding =
+        kNeonBottomNavigationHeight +
+        kNeonBottomNavigationBottomMargin +
+        bottomInset +
+        24;
+
     final filteredCocktails = _filterByTags(widget.availableCocktails);
     final expandedId = _resolveExpandedId(filteredCocktails);
 
     return NeonBackground(
       topGlow: const Color(0xFFFF5BB0),
       bottomGlow: const Color(0xFF6A70FF),
-      child: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 6),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Барная карта',
-                          style: Theme.of(context).textTheme.titleLarge
-                              ?.copyWith(
-                                color: Colors.white,
-                                shadows: const <Shadow>[
-                                  Shadow(
-                                    color: Color(0x88FF55B0),
-                                    blurRadius: 18,
-                                  ),
-                                ],
-                              ),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(16, topInset + 20, 16, 6),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Барная карта',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: Colors.white,
+                          shadows: const <Shadow>[
+                            Shadow(color: Color(0x88FF55B0), blurRadius: 18),
+                          ],
                         ),
-                        const SizedBox(height: 4),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Доступно ${widget.availableCocktails.length} из ${widget.cocktailCount}',
+                        style: const TextStyle(
+                          color: Color(0xFFCCD3E8),
+                          fontSize: 14,
+                        ),
+                      ),
+                      if (_selectedTags.isNotEmpty)
                         Text(
-                          'Доступно ${widget.availableCocktails.length} из ${widget.cocktailCount}',
+                          'Фильтр: ${_selectedTags.join(', ')}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            color: Color(0xFFCCD3E8),
-                            fontSize: 14,
-                          ),
-                        ),
-                        if (_selectedTags.isNotEmpty)
-                          Text(
-                            'Фильтр: ${_selectedTags.join(', ')}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: Color(0xFFE8B9D7),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                  ViewModeSwitch(
-                    mode: _viewMode,
-                    onModeChanged: (mode) => setState(() => _viewMode = mode),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton.filledTonal(
-                    tooltip: 'Управление баром',
-                    onPressed: widget.onManagePressed,
-                    icon: const Icon(Icons.tune_rounded),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 44,
-              child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                children: kCocktailTags
-                    .map((tag) {
-                      final selected = _selectedTags.contains(tag);
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: FilterChip(
-                          selected: selected,
-                          label: Text(tag),
-                          selectedColor: const Color(0x44FF6FAF),
-                          checkmarkColor: const Color(0xFFFFE5F3),
-                          side: BorderSide(
-                            color: selected
-                                ? const Color(0xFFEF73BD)
-                                : const Color(0x3AD8DDF6),
-                          ),
-                          backgroundColor: const Color(0x221A2142),
-                          labelStyle: TextStyle(
-                            color: selected
-                                ? const Color(0xFFFFD8EC)
-                                : const Color(0xFFC2CDEB),
+                            color: Color(0xFFE8B9D7),
                             fontSize: 12,
+                            fontWeight: FontWeight.w600,
                           ),
-                          onSelected: (value) {
-                            setState(() {
-                              if (value) {
-                                _selectedTags.add(tag);
-                              } else {
-                                _selectedTags.remove(tag);
-                              }
-                            });
-                          },
                         ),
-                      );
-                    })
-                    .toList(growable: false),
-              ),
+                    ],
+                  ),
+                ),
+                ViewModeSwitch(
+                  mode: _viewMode,
+                  onModeChanged: (mode) => setState(() => _viewMode = mode),
+                ),
+                const SizedBox(width: 8),
+                IconButton.filledTonal(
+                  tooltip: 'Управление баром',
+                  onPressed: widget.onManagePressed,
+                  icon: const Icon(Icons.tune_rounded),
+                ),
+              ],
             ),
-            Expanded(
-              child: widget.availableCocktails.isEmpty
-                  ? const NoCocktailsView()
-                  : filteredCocktails.isEmpty
-                  ? const _NoTagMatchesView()
-                  : _viewMode == MenuViewMode.grid
-                  ? CocktailGrid(
-                      cocktails: filteredCocktails,
-                      onToggleFavoritePressed: widget.onToggleFavoritePressed,
-                    )
-                  : CocktailList(
-                      cocktails: filteredCocktails,
-                      ingredientsById: widget.ingredientsById,
-                      expandedId: expandedId,
-                      onEditCocktailPressed: widget.onEditCocktailPressed,
-                      onToggleFavoritePressed: widget.onToggleFavoritePressed,
-                      onToggleExpanded: (id) {
-                        setState(() {
-                          _expandedCocktailId = expandedId == id ? null : id;
-                        });
-                      },
-                    ),
+          ),
+          SizedBox(
+            height: 44,
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              children: kCocktailTags
+                  .map((tag) {
+                    final selected = _selectedTags.contains(tag);
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: FilterChip(
+                        selected: selected,
+                        label: Text(tag),
+                        selectedColor: const Color(0x44FF6FAF),
+                        checkmarkColor: const Color(0xFFFFE5F3),
+                        side: BorderSide(
+                          color: selected
+                              ? const Color(0xFFEF73BD)
+                              : const Color(0x3AD8DDF6),
+                        ),
+                        backgroundColor: const Color(0x221A2142),
+                        labelStyle: TextStyle(
+                          color: selected
+                              ? const Color(0xFFFFD8EC)
+                              : const Color(0xFFC2CDEB),
+                          fontSize: 12,
+                        ),
+                        onSelected: (value) {
+                          setState(() {
+                            if (value) {
+                              _selectedTags.add(tag);
+                            } else {
+                              _selectedTags.remove(tag);
+                            }
+                          });
+                        },
+                      ),
+                    );
+                  })
+                  .toList(growable: false),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: widget.availableCocktails.isEmpty
+                ? const NoCocktailsView()
+                : filteredCocktails.isEmpty
+                ? const _NoTagMatchesView()
+                : _viewMode == MenuViewMode.grid
+                ? CocktailGrid(
+                    cocktails: filteredCocktails,
+                    bottomPadding: bottomContentPadding,
+                    onToggleFavoritePressed: widget.onToggleFavoritePressed,
+                  )
+                : CocktailList(
+                    cocktails: filteredCocktails,
+                    ingredientsById: widget.ingredientsById,
+                    bottomPadding: bottomContentPadding,
+                    expandedId: expandedId,
+                    onEditCocktailPressed: widget.onEditCocktailPressed,
+                    onToggleFavoritePressed: widget.onToggleFavoritePressed,
+                    onToggleExpanded: (id) {
+                      setState(() {
+                        _expandedCocktailId = expandedId == id ? null : id;
+                      });
+                    },
+                  ),
+          ),
+        ],
       ),
     );
   }
@@ -200,11 +205,13 @@ class _BarMenuPageState extends State<BarMenuPage> {
 class CocktailGrid extends StatelessWidget {
   const CocktailGrid({
     required this.cocktails,
+    required this.bottomPadding,
     required this.onToggleFavoritePressed,
     super.key,
   });
 
   final List<Cocktail> cocktails;
+  final double bottomPadding;
   final ValueChanged<String> onToggleFavoritePressed;
 
   @override
@@ -213,7 +220,7 @@ class CocktailGrid extends StatelessWidget {
       builder: (context, constraints) {
         final columns = constraints.maxWidth > 720 ? 3 : 2;
         return GridView.builder(
-          padding: const EdgeInsets.fromLTRB(16, 6, 16, 110),
+          padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: columns,
             crossAxisSpacing: 12,
@@ -345,6 +352,7 @@ class CocktailList extends StatelessWidget {
   const CocktailList({
     required this.cocktails,
     required this.ingredientsById,
+    required this.bottomPadding,
     required this.expandedId,
     required this.onToggleExpanded,
     required this.onEditCocktailPressed,
@@ -354,6 +362,7 @@ class CocktailList extends StatelessWidget {
 
   final List<Cocktail> cocktails;
   final Map<String, Ingredient> ingredientsById;
+  final double bottomPadding;
   final String? expandedId;
   final ValueChanged<String> onToggleExpanded;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
@@ -362,7 +371,7 @@ class CocktailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(16, 6, 16, 110),
+      padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
       itemCount: cocktails.length,
       itemBuilder: (context, index) {
         final cocktail = cocktails[index];

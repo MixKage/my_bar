@@ -51,10 +51,19 @@ class _BarHomeShellState extends State<BarHomeShell> {
     ];
 
     return Scaffold(
-      body: IndexedStack(index: _currentTab, children: pages),
-      bottomNavigationBar: NeonBottomNavigation(
-        currentIndex: _currentTab,
-        onChanged: (index) => setState(() => _currentTab = index),
+      extendBody: true,
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          IndexedStack(index: _currentTab, children: pages),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: NeonBottomNavigation(
+              currentIndex: _currentTab,
+              onChanged: (index) => setState(() => _currentTab = index),
+            ),
+          ),
+        ],
       ),
     );
   }

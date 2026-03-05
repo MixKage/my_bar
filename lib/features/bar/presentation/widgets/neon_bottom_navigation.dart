@@ -3,6 +3,10 @@ import 'dart:ui';
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
+const double kNeonBottomNavigationHeight = 74;
+const double kNeonBottomNavigationHorizontalPadding = 16;
+const double kNeonBottomNavigationBottomMargin = 12;
+
 class NeonBottomNavigation extends StatelessWidget {
   const NeonBottomNavigation({
     required this.currentIndex,
@@ -15,8 +19,15 @@ class NeonBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      padding: EdgeInsets.fromLTRB(
+        kNeonBottomNavigationHorizontalPadding,
+        0,
+        kNeonBottomNavigationHorizontalPadding,
+        kNeonBottomNavigationBottomMargin + bottomInset,
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
         child: BackdropFilter(
@@ -33,7 +44,7 @@ class NeonBottomNavigation extends StatelessWidget {
             glowEffect: true,
             glow: const AnimatedGradientBorderGlow(opacity: 0.45),
             child: SizedBox(
-              height: 74,
+              height: kNeonBottomNavigationHeight,
               child: Row(
                 children: <Widget>[
                   _NavItem(

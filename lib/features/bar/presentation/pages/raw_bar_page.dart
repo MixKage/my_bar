@@ -5,6 +5,7 @@ import '../../../../core/widgets/bar_network_image.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
+import '../widgets/neon_bottom_navigation.dart';
 
 class RawBarPage extends StatefulWidget {
   const RawBarPage({
@@ -38,6 +39,14 @@ class _RawBarPageState extends State<RawBarPage> {
 
   @override
   Widget build(BuildContext context) {
+    final topInset = MediaQuery.paddingOf(context).top;
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+    final bottomContentPadding =
+        kNeonBottomNavigationHeight +
+        kNeonBottomNavigationBottomMargin +
+        bottomInset +
+        24;
+
     final filteredIngredients = widget.ingredients
         .where(
           (ingredient) =>
@@ -49,96 +58,98 @@ class _RawBarPageState extends State<RawBarPage> {
     return NeonBackground(
       topGlow: const Color(0xFF7D4BFF),
       bottomGlow: const Color(0xFF2AA6FF),
-      child: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 110),
-          children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    'Мой Бар',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      foreground: Paint()
-                        ..shader = const LinearGradient(
-                          colors: <Color>[Color(0xFFCC9CFF), Color(0xFF67D5FF)],
-                        ).createShader(const Rect.fromLTWH(0, 0, 200, 80)),
-                    ),
-                  ),
-                ),
-                IconButton.filledTonal(
-                  tooltip: 'Управление баром',
-                  onPressed: widget.onManagePressed,
-                  icon: const Icon(Icons.tune_rounded),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            const Text(
-              'Выбери бутылки и ингредиенты, которые уже есть дома',
-              style: TextStyle(color: Color(0xFFB8C1D9), fontSize: 15),
-            ),
-            const SizedBox(height: 18),
-            AnimatedGradientBorder(
-              colors: const <Color>[
-                Color(0xFF6D5CFF),
-                Color(0xFF52C7FF),
-                Color(0xFF6D5CFF),
-              ],
-              borderRadius: BorderRadius.circular(18),
-              borderWidth: 1.5,
-              innerColor: const Color(0xFF111321),
-              glowEffect: true,
-              glow: const AnimatedGradientBorderGlow(opacity: 0.42),
-              child: TextField(
-                controller: _searchController,
-                onChanged: (value) => setState(() => _query = value.trim()),
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 14,
-                  ),
-                  hintText: 'Поиск ингредиентов...',
-                  hintStyle: TextStyle(color: Color(0xFF7180A7)),
-                  prefixIcon: Icon(
-                    Icons.search_rounded,
-                    color: Color(0xFFA4B2DD),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 14),
-            ...filteredIngredients.map((ingredient) {
-              final selected = widget.selectedIngredientIds.contains(
-                ingredient.id,
-              );
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: IngredientCard(
-                  ingredient: ingredient,
-                  cocktails:
-                      cocktailsByIngredient[ingredient.id] ??
-                      const <Cocktail>[],
-                  selected: selected,
-                  onTap: () => widget.onToggleIngredient(ingredient.id),
-                ),
-              );
-            }),
-            if (filteredIngredients.isEmpty)
-              const Padding(
-                padding: EdgeInsets.only(top: 46),
-                child: Center(
-                  child: Text(
-                    'Ничего не найдено',
-                    style: TextStyle(color: Color(0xFFA8B0C8), fontSize: 16),
-                  ),
-                ),
-              ),
-          ],
+      child: ListView(
+        padding: EdgeInsets.fromLTRB(
+          16,
+          topInset + 20,
+          16,
+          bottomContentPadding,
         ),
+        children: <Widget>[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  'Мой Бар',
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    foreground: Paint()
+                      ..shader = const LinearGradient(
+                        colors: <Color>[Color(0xFFCC9CFF), Color(0xFF67D5FF)],
+                      ).createShader(const Rect.fromLTWH(0, 0, 200, 80)),
+                  ),
+                ),
+              ),
+              IconButton.filledTonal(
+                tooltip: 'Управление баром',
+                onPressed: widget.onManagePressed,
+                icon: const Icon(Icons.tune_rounded),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            'Выбери бутылки и ингредиенты, которые уже есть дома',
+            style: TextStyle(color: Color(0xFFB8C1D9), fontSize: 15),
+          ),
+          const SizedBox(height: 18),
+          AnimatedGradientBorder(
+            colors: const <Color>[
+              Color(0xFF6D5CFF),
+              Color(0xFF52C7FF),
+              Color(0xFF6D5CFF),
+            ],
+            borderRadius: BorderRadius.circular(18),
+            borderWidth: 1.5,
+            innerColor: const Color(0xFF111321),
+            glowEffect: true,
+            glow: const AnimatedGradientBorderGlow(opacity: 0.42),
+            child: TextField(
+              controller: _searchController,
+              onChanged: (value) => setState(() => _query = value.trim()),
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 14,
+                ),
+                hintText: 'Поиск ингредиентов...',
+                hintStyle: TextStyle(color: Color(0xFF7180A7)),
+                prefixIcon: Icon(
+                  Icons.search_rounded,
+                  color: Color(0xFFA4B2DD),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 14),
+          ...filteredIngredients.map((ingredient) {
+            final selected = widget.selectedIngredientIds.contains(
+              ingredient.id,
+            );
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: IngredientCard(
+                ingredient: ingredient,
+                cocktails:
+                    cocktailsByIngredient[ingredient.id] ?? const <Cocktail>[],
+                selected: selected,
+                onTap: () => widget.onToggleIngredient(ingredient.id),
+              ),
+            );
+          }),
+          if (filteredIngredients.isEmpty)
+            const Padding(
+              padding: EdgeInsets.only(top: 46),
+              child: Center(
+                child: Text(
+                  'Ничего не найдено',
+                  style: TextStyle(color: Color(0xFFA8B0C8), fontSize: 16),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
