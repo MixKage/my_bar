@@ -51,11 +51,11 @@ class _BarMenuPageState extends State<BarMenuPage> {
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final bottomContentPadding =
+    final bottomOverlayPadding =
         kNeonBottomNavigationHeight +
         kNeonBottomNavigationBottomMargin +
-        bottomInset +
-        24;
+        bottomInset;
+    final bottomContentPadding = bottomOverlayPadding + 24;
 
     final filteredCocktails = _filterByTags(widget.availableCocktails);
     final expandedId = _resolveExpandedId(filteredCocktails);
@@ -162,7 +162,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
           ),
           Expanded(
             child: widget.availableCocktails.isEmpty
-                ? const NoCocktailsView()
+                ? NoCocktailsView(bottomInsetCompensation: bottomOverlayPadding)
                 : filteredCocktails.isEmpty
                 ? const _NoTagMatchesView()
                 : _viewMode == MenuViewMode.grid
@@ -932,50 +932,55 @@ class _NoTagMatchesView extends StatelessWidget {
 }
 
 class NoCocktailsView extends StatelessWidget {
-  const NoCocktailsView({super.key});
+  const NoCocktailsView({required this.bottomInsetCompensation, super.key});
+
+  final double bottomInsetCompensation;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: AnimatedGradientBorder(
-          borderRadius: BorderRadius.circular(24),
-          borderWidth: 1.4,
-          innerColor: const Color(0xFF191C2F),
-          colors: const <Color>[
-            Color(0xFFFD7DB8),
-            Color(0xFF748BFF),
-            Color(0xFFFD7DB8),
-          ],
-          glowEffect: true,
-          glow: const AnimatedGradientBorderGlow(opacity: 0.4),
-          child: const Padding(
-            padding: EdgeInsets.all(22),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  Icons.auto_awesome_rounded,
-                  color: Color(0xFFFFA8D8),
-                  size: 38,
-                ),
-                SizedBox(height: 12),
-                Text(
-                  'Пока не хватает ингредиентов',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
+    return Padding(
+      padding: EdgeInsets.only(bottom: bottomInsetCompensation),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: AnimatedGradientBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderWidth: 1.4,
+            innerColor: const Color(0xFF191C2F),
+            colors: const <Color>[
+              Color(0xFFFD7DB8),
+              Color(0xFF748BFF),
+              Color(0xFFFD7DB8),
+            ],
+            glowEffect: true,
+            glow: const AnimatedGradientBorderGlow(opacity: 0.4),
+            child: const Padding(
+              padding: EdgeInsets.all(22),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(
+                    Icons.auto_awesome_rounded,
+                    color: Color(0xFFFFA8D8),
+                    size: 38,
                   ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Добавь позиции в "Ингридиентах", и здесь появятся доступные коктейли.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xFFCAD2EB), fontSize: 14),
-                ),
-              ],
+                  SizedBox(height: 12),
+                  Text(
+                    'Пока не хватает ингредиентов',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Добавь позиции в "Ингридиентах", и здесь появятся доступные коктейли.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Color(0xFFCAD2EB), fontSize: 14),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
