@@ -182,6 +182,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final keyboardInset = MediaQuery.viewInsetsOf(context).bottom;
+    final bottomActionBarPadding = keyboardInset > 0
+        ? keyboardInset + 10
+        : 14.0;
     final title = widget.isEditing
         ? 'Редактирование коктейля'
         : 'Создание коктейля';
@@ -305,280 +309,292 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
             ),
           ),
         ),
-        body: NeonBackground(
-          topGlow: const Color(0xFFFF5BB0),
-          bottomGlow: const Color(0xFF6A70FF),
-          child: SafeArea(
-            top: false,
-            child: SingleChildScrollView(
-              controller: _formScrollController,
-              padding: const EdgeInsets.fromLTRB(16, 14, 16, 120),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  KeyedSubtree(
-                    key: _nameFieldKey,
-                    child: _EditorTextField(
-                      controller: _nameController,
-                      focusNode: _nameFocusNode,
-                      isInvalid: _invalidFields.contains(_RequiredField.name),
-                      label: 'Название*',
-                      hint: 'Например, Негрони',
-                      onChanged: (_) {
-                        setState(() {
-                          if (_nameController.text.trim().isNotEmpty) {
-                            _invalidFields.remove(_RequiredField.name);
-                          }
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _EditorTextField(
-                    controller: _descriptionController,
-                    focusNode: _descriptionFocusNode,
-                    isInvalid: false,
-                    label: 'Описание',
-                    hint: 'Кампари, Джин, Вермут',
-                    maxLines: 3,
-                    onChanged: (_) => setState(() {}),
-                  ),
-                  const SizedBox(height: 12),
-                  KeyedSubtree(
-                    key: _preparationFieldKey,
-                    child: _EditorTextField(
-                      controller: _preparationController,
-                      focusNode: _preparationFocusNode,
-                      isInvalid: _invalidFields.contains(
-                        _RequiredField.preparation,
-                      ),
-                      label: 'Шаги приготовления*',
-                      hint:
-                          '1. Наполните бокал льдом\n2. Добавьте ингредиенты\n3. Украсьте и подавайте',
-                      maxLines: 5,
-                      onChanged: (_) {
-                        setState(() {
-                          if (parsePreparationStepsText(
-                            _preparationController.text,
-                          ).isNotEmpty) {
-                            _invalidFields.remove(_RequiredField.preparation);
-                          }
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _EditorTextField(
-                    controller: _imageController,
-                    focusNode: _imageFocusNode,
-                    isInvalid: false,
-                    label: 'Фото (URL или путь файла)',
-                    hint: 'https://... или /storage/.../photo.jpg',
-                    onChanged: (_) => setState(() {}),
-                  ),
-                  const SizedBox(height: 8),
-                  OutlinedButton.icon(
-                    onPressed: _pickImageFromDevice,
-                    icon: const Icon(Icons.photo_library_rounded),
-                    label: const Text('Выбрать с устройства'),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: const Color(0x55111425),
-                      side: const BorderSide(color: Color(0x557A89BC)),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  const _SectionTitle(text: 'Тип бокала*'),
-                  const SizedBox(height: 6),
-                  KeyedSubtree(
-                    key: _glassFieldKey,
-                    child: _FrostedPanel(
-                      borderColor: _invalidFields.contains(_RequiredField.glass)
-                          ? const Color(0xFFFF6B9A)
-                          : null,
-                      child: DropdownButtonFormField<String>(
-                        initialValue: _selectedGlassType,
-                        isExpanded: true,
-                        dropdownColor: const Color(0xFF1D2240),
-                        decoration: _frostedInputDecoration(),
-                        items: kCocktailGlassTypes
-                            .map(
-                              (item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(item),
-                              ),
-                            )
-                            .toList(growable: false),
-                        onChanged: (value) {
-                          if (value == null) {
-                            return;
-                          }
+        body: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: _dismissKeyboard,
+          child: NeonBackground(
+            topGlow: const Color(0xFFFF5BB0),
+            bottomGlow: const Color(0xFF6A70FF),
+            child: SafeArea(
+              top: false,
+              child: SingleChildScrollView(
+                controller: _formScrollController,
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 120),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    KeyedSubtree(
+                      key: _nameFieldKey,
+                      child: _EditorTextField(
+                        controller: _nameController,
+                        focusNode: _nameFocusNode,
+                        isInvalid: _invalidFields.contains(_RequiredField.name),
+                        label: 'Название*',
+                        hint: 'Например, Негрони',
+                        onChanged: (_) {
                           setState(() {
-                            _selectedGlassType = value;
-                            _invalidFields.remove(_RequiredField.glass);
+                            if (_nameController.text.trim().isNotEmpty) {
+                              _invalidFields.remove(_RequiredField.name);
+                            }
                           });
                         },
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 14),
-                  const _SectionTitle(text: 'Ингредиенты*'),
-                  const SizedBox(height: 8),
-                  KeyedSubtree(
-                    key: _ingredientsFieldKey,
-                    child: _FrostedPanel(
-                      borderColor:
-                          _invalidFields.contains(_RequiredField.ingredients)
-                          ? const Color(0xFFFF6B9A)
-                          : null,
-                      child: SizedBox(
-                        height: 320,
-                        child: Column(
-                          children: <Widget>[
-                            _FrostedPanel(
-                              borderRadius: BorderRadius.circular(12),
-                              padding: EdgeInsets.zero,
-                              child: TextField(
-                                controller: _ingredientSearchController,
-                                focusNode: _ingredientSearchFocusNode,
-                                onChanged: (value) {
-                                  setState(
-                                    () => _ingredientSearchQuery = value,
-                                  );
-                                },
-                                decoration:
-                                    _frostedInputDecoration(
-                                      hintText: 'Поиск ингредиентов...',
-                                    ).copyWith(
-                                      prefixIcon: const Icon(
-                                        Icons.search_rounded,
-                                        color: Color(0xFFA4B2DD),
-                                      ),
-                                      prefixIconConstraints:
-                                          const BoxConstraints(
-                                            minWidth: 42,
-                                            minHeight: 42,
-                                          ),
-                                    ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Expanded(
-                              child: Scrollbar(
-                                controller: _ingredientsScrollController,
-                                thumbVisibility: true,
-                                interactive: true,
-                                radius: const Radius.circular(999),
-                                thickness: 5,
-                                child: ListView(
-                                  controller: _ingredientsScrollController,
-                                  children: filteredIngredients.isEmpty
-                                      ? const <Widget>[
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: 24,
-                                              horizontal: 8,
-                                            ),
-                                            child: Text(
-                                              'Ничего не найдено',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color(0xFF9FAAD1),
-                                                fontSize: 13,
-                                              ),
-                                            ),
-                                          ),
-                                        ]
-                                      : filteredIngredients
-                                            .map((ingredient) {
-                                              final selected =
-                                                  _selectedIngredientIds
-                                                      .contains(ingredient.id);
-                                              return CheckboxListTile(
-                                                dense: true,
-                                                controlAffinity:
-                                                    ListTileControlAffinity
-                                                        .leading,
-                                                value: selected,
-                                                activeColor: const Color(
-                                                  0xFF7F89FF,
-                                                ),
-                                                title: Text(ingredient.name),
-                                                subtitle: Text(
-                                                  ingredient.category,
-                                                  style: const TextStyle(
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                                onChanged: (value) {
-                                                  _toggleIngredientSelection(
-                                                    ingredientId: ingredient.id,
-                                                    selected: value ?? false,
-                                                  );
-                                                },
-                                              );
-                                            })
-                                            .toList(growable: false),
+                    const SizedBox(height: 12),
+                    _EditorTextField(
+                      controller: _descriptionController,
+                      focusNode: _descriptionFocusNode,
+                      isInvalid: false,
+                      label: 'Описание',
+                      hint: 'Кампари, Джин, Вермут',
+                      maxLines: 3,
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: 12),
+                    KeyedSubtree(
+                      key: _preparationFieldKey,
+                      child: _EditorTextField(
+                        controller: _preparationController,
+                        focusNode: _preparationFocusNode,
+                        isInvalid: _invalidFields.contains(
+                          _RequiredField.preparation,
+                        ),
+                        label: 'Шаги приготовления*',
+                        hint:
+                            '1. Наполните бокал льдом\n2. Добавьте ингредиенты\n3. Украсьте и подавайте',
+                        maxLines: 5,
+                        onChanged: (_) {
+                          setState(() {
+                            if (parsePreparationStepsText(
+                              _preparationController.text,
+                            ).isNotEmpty) {
+                              _invalidFields.remove(_RequiredField.preparation);
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _EditorTextField(
+                      controller: _imageController,
+                      focusNode: _imageFocusNode,
+                      isInvalid: false,
+                      label: 'Фото (URL или путь файла)',
+                      hint: 'https://... или /storage/.../photo.jpg',
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: 8),
+                    OutlinedButton.icon(
+                      onPressed: _pickImageFromDevice,
+                      icon: const Icon(Icons.photo_library_rounded),
+                      label: const Text('Выбрать с устройства'),
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: const Color(0x55111425),
+                        side: const BorderSide(color: Color(0x557A89BC)),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    const _SectionTitle(text: 'Тип бокала*'),
+                    const SizedBox(height: 6),
+                    KeyedSubtree(
+                      key: _glassFieldKey,
+                      child: _FrostedPanel(
+                        borderColor:
+                            _invalidFields.contains(_RequiredField.glass)
+                            ? const Color(0xFFFF6B9A)
+                            : null,
+                        child: DropdownButtonFormField<String>(
+                          initialValue: _selectedGlassType,
+                          isExpanded: true,
+                          dropdownColor: const Color(0xFF1D2240),
+                          decoration: _frostedInputDecoration(),
+                          items: kCocktailGlassTypes
+                              .map(
+                                (item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(item),
                                 ),
-                              ),
-                            ),
-                          ],
+                              )
+                              .toList(growable: false),
+                          onChanged: (value) {
+                            if (value == null) {
+                              return;
+                            }
+                            setState(() {
+                              _selectedGlassType = value;
+                              _invalidFields.remove(_RequiredField.glass);
+                            });
+                          },
                         ),
                       ),
                     ),
-                  ),
-                  if (_selectedIngredientIds.isNotEmpty) ...<Widget>[
                     const SizedBox(height: 14),
-                    const _SectionTitle(text: 'Параметры ингредиентов'),
+                    const _SectionTitle(text: 'Ингредиенты*'),
                     const SizedBox(height: 8),
-                    ..._ingredients
-                        .where(
-                          (item) => _selectedIngredientIds.contains(item.id),
-                        )
-                        .map(_buildIngredientOptionsCard),
-                  ],
-                  const SizedBox(height: 14),
-                  const _SectionTitle(text: 'Теги'),
-                  const SizedBox(height: 8),
-                  _FrostedPanel(
-                    padding: const EdgeInsets.all(10),
-                    child: Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: kCocktailTags
-                          .map((tag) {
-                            final selected = _selectedTags.contains(tag);
-                            return FilterChip(
-                              selected: selected,
-                              label: Text(tag),
-                              selectedColor: const Color(0x446D78FF),
-                              backgroundColor: const Color(0x2218213C),
-                              side: BorderSide(
-                                color: selected
-                                    ? const Color(0xAA7A89FF)
-                                    : const Color(0x55758ABF),
+                    KeyedSubtree(
+                      key: _ingredientsFieldKey,
+                      child: _FrostedPanel(
+                        borderColor:
+                            _invalidFields.contains(_RequiredField.ingredients)
+                            ? const Color(0xFFFF6B9A)
+                            : null,
+                        child: SizedBox(
+                          height: 320,
+                          child: Column(
+                            children: <Widget>[
+                              _FrostedPanel(
+                                borderRadius: BorderRadius.circular(12),
+                                padding: EdgeInsets.zero,
+                                child: TextField(
+                                  controller: _ingredientSearchController,
+                                  focusNode: _ingredientSearchFocusNode,
+                                  onChanged: (value) {
+                                    setState(
+                                      () => _ingredientSearchQuery = value,
+                                    );
+                                  },
+                                  decoration:
+                                      _frostedInputDecoration(
+                                        hintText: 'Поиск ингредиентов...',
+                                      ).copyWith(
+                                        prefixIcon: const Icon(
+                                          Icons.search_rounded,
+                                          color: Color(0xFFA4B2DD),
+                                        ),
+                                        prefixIconConstraints:
+                                            const BoxConstraints(
+                                              minWidth: 42,
+                                              minHeight: 42,
+                                            ),
+                                      ),
+                                ),
                               ),
-                              checkmarkColor: const Color(0xFFC6CEFF),
-                              onSelected: (value) {
-                                setState(() {
-                                  if (value) {
-                                    _selectedTags.add(tag);
-                                  } else {
-                                    _selectedTags.remove(tag);
-                                  }
-                                });
-                              },
-                            );
-                          })
-                          .toList(growable: false),
+                              const SizedBox(height: 8),
+                              Expanded(
+                                child: Scrollbar(
+                                  controller: _ingredientsScrollController,
+                                  thumbVisibility: true,
+                                  interactive: true,
+                                  radius: const Radius.circular(999),
+                                  thickness: 5,
+                                  child: ListView(
+                                    controller: _ingredientsScrollController,
+                                    children: filteredIngredients.isEmpty
+                                        ? const <Widget>[
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                vertical: 24,
+                                                horizontal: 8,
+                                              ),
+                                              child: Text(
+                                                'Ничего не найдено',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Color(0xFF9FAAD1),
+                                                  fontSize: 13,
+                                                ),
+                                              ),
+                                            ),
+                                          ]
+                                        : filteredIngredients
+                                              .map((ingredient) {
+                                                final selected =
+                                                    _selectedIngredientIds
+                                                        .contains(
+                                                          ingredient.id,
+                                                        );
+                                                return CheckboxListTile(
+                                                  dense: true,
+                                                  controlAffinity:
+                                                      ListTileControlAffinity
+                                                          .leading,
+                                                  value: selected,
+                                                  activeColor: const Color(
+                                                    0xFF7F89FF,
+                                                  ),
+                                                  title: Text(ingredient.name),
+                                                  subtitle: Text(
+                                                    ingredient.category,
+                                                    style: const TextStyle(
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                  onChanged: (value) {
+                                                    _toggleIngredientSelection(
+                                                      ingredientId:
+                                                          ingredient.id,
+                                                      selected: value ?? false,
+                                                    );
+                                                  },
+                                                );
+                                              })
+                                              .toList(growable: false),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    if (_selectedIngredientIds.isNotEmpty) ...<Widget>[
+                      const SizedBox(height: 14),
+                      const _SectionTitle(text: 'Параметры ингредиентов'),
+                      const SizedBox(height: 8),
+                      ..._ingredients
+                          .where(
+                            (item) => _selectedIngredientIds.contains(item.id),
+                          )
+                          .map(_buildIngredientOptionsCard),
+                    ],
+                    const SizedBox(height: 14),
+                    const _SectionTitle(text: 'Теги'),
+                    const SizedBox(height: 8),
+                    _FrostedPanel(
+                      padding: const EdgeInsets.all(10),
+                      child: Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: kCocktailTags
+                            .map((tag) {
+                              final selected = _selectedTags.contains(tag);
+                              return FilterChip(
+                                selected: selected,
+                                label: Text(tag),
+                                selectedColor: const Color(0x446D78FF),
+                                backgroundColor: const Color(0x2218213C),
+                                side: BorderSide(
+                                  color: selected
+                                      ? const Color(0xAA7A89FF)
+                                      : const Color(0x55758ABF),
+                                ),
+                                checkmarkColor: const Color(0xFFC6CEFF),
+                                onSelected: (value) {
+                                  setState(() {
+                                    if (value) {
+                                      _selectedTags.add(tag);
+                                    } else {
+                                      _selectedTags.remove(tag);
+                                    }
+                                  });
+                                },
+                              );
+                            })
+                            .toList(growable: false),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 14),
+        bottomNavigationBar: AnimatedPadding(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOutCubic,
+          padding: EdgeInsets.fromLTRB(16, 8, 16, bottomActionBarPadding),
           child: _FrostedPanel(
             borderRadius: BorderRadius.circular(20),
             padding: const EdgeInsets.all(10),
@@ -586,7 +602,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
               children: <Widget>[
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: _requestExit,
+                    onPressed: () {
+                      _dismissKeyboard();
+                      _requestExit();
+                    },
                     icon: const Icon(Icons.close_rounded),
                     label: const Text('Отмена'),
                     style: OutlinedButton.styleFrom(
@@ -598,7 +617,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: FilledButton.icon(
-                    onPressed: _submit,
+                    onPressed: () {
+                      _dismissKeyboard();
+                      _submit();
+                    },
                     icon: const Icon(Icons.check_rounded),
                     label: const Text('Сохранить'),
                   ),
@@ -609,6 +631,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
         ),
       ),
     );
+  }
+
+  void _dismissKeyboard() {
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 
   Widget _buildIngredientOptionsCard(Ingredient ingredient) {
