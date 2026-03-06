@@ -2,6 +2,7 @@ import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/bar_network_image.dart';
+import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
@@ -50,13 +51,42 @@ class RawBarPage extends StatefulWidget {
 
 class _RawBarPageState extends State<RawBarPage> {
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey _introSectionKey = GlobalKey();
   String _query = '';
   bool _isSearchPinned = false;
+  double _searchPinProgress = 0;
   IngredientSortMode _sortMode = IngredientSortMode.alphabet;
+  double _searchPinOffset = 0;
+  bool _pinOffsetUpdateScheduled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_handleScrollChanged);
+    _schedulePinOffsetUpdate();
+  }
+
+  @override
+  void didUpdateWidget(covariant RawBarPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.allowSelection != widget.allowSelection ||
+        oldWidget.ingredients.length != widget.ingredients.length) {
+      _schedulePinOffsetUpdate();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _schedulePinOffsetUpdate();
+  }
 
   @override
   void dispose() {
+    _scrollController.removeListener(_handleScrollChanged);
     _searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -88,141 +118,165 @@ class _RawBarPageState extends State<RawBarPage> {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          CustomScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(16, topInset + 14, 16, 0),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Expanded(
-                            child: Text(
-                              'Мой Бар',
-                              style: Theme.of(context).textTheme.displaySmall
-                                  ?.copyWith(
-                                    foreground: Paint()
-                                      ..shader =
-                                          const LinearGradient(
-                                            colors: <Color>[
-                                              Color(0xFFCC9CFF),
-                                              Color(0xFF67D5FF),
-                                            ],
-                                          ).createShader(
-                                            const Rect.fromLTWH(0, 0, 200, 80),
-                                          ),
-                                  ),
-                            ),
-                          ),
-                          IconButton.filledTonal(
-                            tooltip: 'Фильтры',
-                            onPressed: _openSortModeSheet,
-                            icon: const Icon(Icons.filter_list_rounded),
-                          ),
-                          const SizedBox(width: 8),
-                          IconButton.filledTonal(
-                            tooltip: 'Управление баром',
-                            onPressed: widget.onManagePressed,
-                            icon: const Icon(Icons.tune_rounded),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 6),
-                      const Text(
-                        'Выбери бутылки и ингредиенты, которые уже есть дома',
-                        style: TextStyle(
-                          color: Color(0xFFB8C1D9),
-                          fontSize: 15,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Сортировка: ${_sortMode.label}',
-                        style: const TextStyle(
-                          color: Color(0xFF8FA0CC),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      if (!widget.allowSelection)
-                        const Padding(
-                          padding: EdgeInsets.only(top: 8),
-                          child: Text(
-                            'Режим посетителя: отметка ингредиентов отключена',
-                            style: TextStyle(
-                              color: Color(0xFF94A3CD),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: _RawSearchHeaderDelegate(
-                  topInset: topInset,
-                  onPinnedChanged: _handleSearchPinnedChanged,
+          TweenAnimationBuilder<double>(
+            tween: Tween<double>(end: _searchPinProgress),
+            duration: const Duration(milliseconds: 180),
+            curve: Curves.easeOut,
+            builder: (context, visibility, child) {
+              return NeonScrollbar(
+                controller: _scrollController,
+                visibility: visibility,
+                child: child!,
+              );
+            },
+            child: CustomScrollView(
+              controller: _scrollController,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              slivers: <Widget>[
+                SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: _IngredientSearchField(
-                      controller: _searchController,
-                      onChanged: (value) =>
-                          setState(() => _query = value.trim()),
-                    ),
-                  ),
-                ),
-              ),
-              SliverPadding(
-                padding: EdgeInsets.fromLTRB(16, 14, 16, bottomContentPadding),
-                sliver: filteredIngredients.isEmpty
-                    ? const SliverToBoxAdapter(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 46),
-                          child: Center(
+                    key: _introSectionKey,
+                    padding: EdgeInsets.fromLTRB(16, topInset + 14, 16, 0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                'Мой Бар',
+                                style: Theme.of(context).textTheme.displaySmall
+                                    ?.copyWith(
+                                      foreground: Paint()
+                                        ..shader =
+                                            const LinearGradient(
+                                              colors: <Color>[
+                                                Color(0xFFCC9CFF),
+                                                Color(0xFF67D5FF),
+                                              ],
+                                            ).createShader(
+                                              const Rect.fromLTWH(
+                                                0,
+                                                0,
+                                                200,
+                                                80,
+                                              ),
+                                            ),
+                                    ),
+                              ),
+                            ),
+                            IconButton.filledTonal(
+                              tooltip: 'Фильтры',
+                              onPressed: _openSortModeSheet,
+                              icon: const Icon(Icons.filter_list_rounded),
+                            ),
+                            const SizedBox(width: 8),
+                            IconButton.filledTonal(
+                              tooltip: 'Управление баром',
+                              onPressed: widget.onManagePressed,
+                              icon: const Icon(Icons.tune_rounded),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Выбери бутылки и ингредиенты, которые уже есть дома',
+                          style: TextStyle(
+                            color: Color(0xFFB8C1D9),
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Сортировка: ${_sortMode.label}',
+                          style: const TextStyle(
+                            color: Color(0xFF8FA0CC),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        if (!widget.allowSelection)
+                          const Padding(
+                            padding: EdgeInsets.only(top: 8),
                             child: Text(
-                              'Ничего не найдено',
+                              'Режим посетителя: отметка ингредиентов отключена',
                               style: TextStyle(
-                                color: Color(0xFFA8B0C8),
-                                fontSize: 16,
+                                color: Color(0xFF94A3CD),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    : SliverList.builder(
-                        itemCount: sortedIngredients.length,
-                        itemBuilder: (context, index) {
-                          final ingredient = sortedIngredients[index];
-                          final selected = widget.selectedIngredientIds
-                              .contains(ingredient.id);
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: IngredientCard(
-                              ingredient: ingredient,
-                              cocktails:
-                                  cocktailsByIngredient[ingredient.id] ??
-                                  const <Cocktail>[],
-                              selected: selected,
-                              allowSelection: widget.allowSelection,
-                              onTap: widget.allowSelection
-                                  ? () =>
-                                        widget.onToggleIngredient(ingredient.id)
-                                  : null,
-                              onLongPress: widget.allowSelection
-                                  ? () => widget.onEditIngredient(ingredient)
-                                  : null,
-                            ),
-                          );
-                        },
+                      ],
+                    ),
+                  ),
+                ),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _RawSearchHeaderDelegate(
+                    topInset: topInset,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: _IngredientSearchField(
+                        controller: _searchController,
+                        onChanged: (value) =>
+                            setState(() => _query = value.trim()),
                       ),
-              ),
-            ],
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.fromLTRB(
+                    16,
+                    14,
+                    16,
+                    bottomContentPadding,
+                  ),
+                  sliver: filteredIngredients.isEmpty
+                      ? const SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 46),
+                            child: Center(
+                              child: Text(
+                                'Ничего не найдено',
+                                style: TextStyle(
+                                  color: Color(0xFFA8B0C8),
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      : SliverList.builder(
+                          itemCount: sortedIngredients.length,
+                          itemBuilder: (context, index) {
+                            final ingredient = sortedIngredients[index];
+                            final selected = widget.selectedIngredientIds
+                                .contains(ingredient.id);
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: IngredientCard(
+                                ingredient: ingredient,
+                                cocktails:
+                                    cocktailsByIngredient[ingredient.id] ??
+                                    const <Cocktail>[],
+                                selected: selected,
+                                allowSelection: widget.allowSelection,
+                                onTap: widget.allowSelection
+                                    ? () => widget.onToggleIngredient(
+                                        ingredient.id,
+                                      )
+                                    : null,
+                                onLongPress: widget.allowSelection
+                                    ? () => widget.onEditIngredient(ingredient)
+                                    : null,
+                              ),
+                            );
+                          },
+                        ),
+                ),
+              ],
+            ),
           ),
           IgnorePointer(
             child: AnimatedOpacity(
@@ -255,11 +309,58 @@ class _RawBarPageState extends State<RawBarPage> {
     );
   }
 
-  void _handleSearchPinnedChanged(bool isPinned) {
-    if (_isSearchPinned == isPinned || !mounted) {
+  void _updateSearchPinOffset() {
+    final context = _introSectionKey.currentContext;
+    if (context == null) {
       return;
     }
-    setState(() => _isSearchPinned = isPinned);
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null || !box.hasSize) {
+      return;
+    }
+    _searchPinOffset = box.size.height;
+  }
+
+  void _handleScrollChanged() {
+    if (!_scrollController.hasClients) {
+      return;
+    }
+    final offset = _scrollController.offset.clamp(0, double.infinity);
+    final pinOffset = _searchPinOffset;
+    final progress = pinOffset <= 0
+        ? (offset > 0 ? 1.0 : 0.0)
+        : (offset / pinOffset).clamp(0.0, 1.0);
+    final pinned = progress >= 0.995;
+
+    if (!mounted) {
+      return;
+    }
+
+    final progressChanged = (_searchPinProgress - progress).abs() > 0.001;
+    final pinnedChanged = _isSearchPinned != pinned;
+    if (!progressChanged && !pinnedChanged) {
+      return;
+    }
+
+    setState(() {
+      _searchPinProgress = progress;
+      _isSearchPinned = pinned;
+    });
+  }
+
+  void _schedulePinOffsetUpdate() {
+    if (_pinOffsetUpdateScheduled) {
+      return;
+    }
+    _pinOffsetUpdateScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _pinOffsetUpdateScheduled = false;
+      if (!mounted) {
+        return;
+      }
+      _updateSearchPinOffset();
+      _handleScrollChanged();
+    });
   }
 
   Future<void> _openSortModeSheet() async {
@@ -406,15 +507,10 @@ class _IngredientSearchField extends StatelessWidget {
 }
 
 class _RawSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
-  const _RawSearchHeaderDelegate({
-    required this.topInset,
-    required this.child,
-    required this.onPinnedChanged,
-  });
+  const _RawSearchHeaderDelegate({required this.topInset, required this.child});
 
   final double topInset;
   final Widget child;
-  final ValueChanged<bool> onPinnedChanged;
 
   static const double searchFieldHeight = 56;
   static const double _bottomSpacing = 8;
@@ -431,9 +527,6 @@ class _RawSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      onPinnedChanged(overlapsContent);
-    });
     return SizedBox.expand(
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, topInset, 0, _bottomSpacing),
@@ -444,9 +537,7 @@ class _RawSearchHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant _RawSearchHeaderDelegate oldDelegate) {
-    return oldDelegate.topInset != topInset ||
-        oldDelegate.child != child ||
-        oldDelegate.onPinnedChanged != onPinnedChanged;
+    return oldDelegate.topInset != topInset || oldDelegate.child != child;
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/bar_network_image.dart';
+import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
@@ -35,9 +36,16 @@ class BarMenuPage extends StatefulWidget {
 }
 
 class _BarMenuPageState extends State<BarMenuPage> {
+  final ScrollController _scrollController = ScrollController();
   MenuViewMode _viewMode = MenuViewMode.list;
   String? _expandedCocktailId;
   final Set<String> _selectedTags = <String>{};
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,6 +169,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 ? CocktailGrid(
                     cocktails: filteredCocktails,
                     bottomPadding: bottomContentPadding,
+                    scrollController: _scrollController,
                     onToggleFavoritePressed: widget.onToggleFavoritePressed,
                   )
                 : CocktailList(
@@ -168,6 +177,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     ingredientsById: widget.ingredientsById,
                     visitorMode: widget.visitorMode,
                     bottomPadding: bottomContentPadding,
+                    scrollController: _scrollController,
                     expandedId: expandedId,
                     onEditCocktailPressed: widget.onEditCocktailPressed,
                     onToggleFavoritePressed: widget.onToggleFavoritePressed,
@@ -209,12 +219,14 @@ class CocktailGrid extends StatelessWidget {
   const CocktailGrid({
     required this.cocktails,
     required this.bottomPadding,
+    required this.scrollController,
     required this.onToggleFavoritePressed,
     super.key,
   });
 
   final List<Cocktail> cocktails;
   final double bottomPadding;
+  final ScrollController scrollController;
   final ValueChanged<String> onToggleFavoritePressed;
 
   @override
@@ -222,130 +234,134 @@ class CocktailGrid extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final columns = constraints.maxWidth > 720 ? 3 : 2;
-        return GridView.builder(
-          padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: columns,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 2 / 3,
-          ),
-          itemCount: cocktails.length,
-          itemBuilder: (context, index) {
-            final cocktail = cocktails[index];
-            return AnimatedGradientBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderWidth: 1.5,
-              innerColor: const Color(0xFF191B2E),
-              colors: const <Color>[
-                Color(0xFFFF7EC8),
-                Color(0xFF7F8FFF),
-                Color(0xFFFF7EC8),
-              ],
-              glowEffect: true,
-              glow: const AnimatedGradientBorderGlow(
-                opacity: 0.35,
-                outerBlurSigma: 14,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Expanded(
-                    child: Stack(
-                      children: <Widget>[
-                        Positioned.fill(
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(18),
-                            ),
-                            child: BarNetworkImage(
-                              imageUrl: cocktail.image,
-                              loadingColor: const Color(0xFFF5A3D8),
-                              loadingBackgroundColor: const Color(0xFF242A45),
-                              errorWidget: const ColoredBox(
-                                color: Color(0xFF242A45),
-                                child: Icon(
-                                  Icons.local_bar_rounded,
-                                  color: Color(0xFF8FA3D8),
-                                  size: 38,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 4,
-                          top: 4,
-                          child: _PressableFavoriteButton(
-                            tooltip: cocktail.isFavorite
-                                ? 'Убрать из избранного'
-                                : 'В избранное',
-                            isFavorite: cocktail.isFavorite,
-                            size: 36,
-                            inactiveBackgroundColor: const Color(0x44353C62),
-                            activeBackgroundColor: const Color(0x664A3E2E),
-                            inactiveIconColor: const Color(0xFFC8D3F8),
-                            activeIconColor: const Color(0xFFFFD37B),
-                            onPressed: () =>
-                                onToggleFavoritePressed(cocktail.id),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          cocktail.name,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: <Widget>[
-                            const Icon(
-                              Icons.wine_bar_rounded,
-                              size: 13,
-                              color: Color(0xFFACB8E6),
-                            ),
-                            const SizedBox(width: 6),
-                            Expanded(
-                              child: Text(
-                                cocktail.glassType,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  color: Color(0xFFACB8E6),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        Wrap(
-                          spacing: 6,
-                          runSpacing: 6,
-                          children: cocktail.tags
-                              .take(2)
-                              .map((tag) => _TagPill(tag: tag))
-                              .toList(growable: false),
-                        ),
-                      ],
-                    ),
-                  ),
+        return NeonScrollbar(
+          controller: scrollController,
+          child: GridView.builder(
+            controller: scrollController,
+            padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: columns,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 2 / 3,
+            ),
+            itemCount: cocktails.length,
+            itemBuilder: (context, index) {
+              final cocktail = cocktails[index];
+              return AnimatedGradientBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderWidth: 1.5,
+                innerColor: const Color(0xFF191B2E),
+                colors: const <Color>[
+                  Color(0xFFFF7EC8),
+                  Color(0xFF7F8FFF),
+                  Color(0xFFFF7EC8),
                 ],
-              ),
-            );
-          },
+                glowEffect: true,
+                glow: const AnimatedGradientBorderGlow(
+                  opacity: 0.35,
+                  outerBlurSigma: 14,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(18),
+                              ),
+                              child: BarNetworkImage(
+                                imageUrl: cocktail.image,
+                                loadingColor: const Color(0xFFF5A3D8),
+                                loadingBackgroundColor: const Color(0xFF242A45),
+                                errorWidget: const ColoredBox(
+                                  color: Color(0xFF242A45),
+                                  child: Icon(
+                                    Icons.local_bar_rounded,
+                                    color: Color(0xFF8FA3D8),
+                                    size: 38,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 4,
+                            top: 4,
+                            child: _PressableFavoriteButton(
+                              tooltip: cocktail.isFavorite
+                                  ? 'Убрать из избранного'
+                                  : 'В избранное',
+                              isFavorite: cocktail.isFavorite,
+                              size: 36,
+                              inactiveBackgroundColor: const Color(0x44353C62),
+                              activeBackgroundColor: const Color(0x664A3E2E),
+                              inactiveIconColor: const Color(0xFFC8D3F8),
+                              activeIconColor: const Color(0xFFFFD37B),
+                              onPressed: () =>
+                                  onToggleFavoritePressed(cocktail.id),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            cocktail.name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: <Widget>[
+                              const Icon(
+                                Icons.wine_bar_rounded,
+                                size: 13,
+                                color: Color(0xFFACB8E6),
+                              ),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: Text(
+                                  cocktail.glassType,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: Color(0xFFACB8E6),
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Wrap(
+                            spacing: 6,
+                            runSpacing: 6,
+                            children: cocktail.tags
+                                .take(2)
+                                .map((tag) => _TagPill(tag: tag))
+                                .toList(growable: false),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         );
       },
     );
@@ -358,6 +374,7 @@ class CocktailList extends StatelessWidget {
     required this.ingredientsById,
     required this.visitorMode,
     required this.bottomPadding,
+    required this.scrollController,
     required this.expandedId,
     required this.onToggleExpanded,
     required this.onEditCocktailPressed,
@@ -369,6 +386,7 @@ class CocktailList extends StatelessWidget {
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
   final double bottomPadding;
+  final ScrollController scrollController;
   final String? expandedId;
   final ValueChanged<String> onToggleExpanded;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
@@ -376,314 +394,325 @@ class CocktailList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
-      itemCount: cocktails.length,
-      itemBuilder: (context, index) {
-        final cocktail = cocktails[index];
-        final isExpanded = cocktail.id == expandedId;
+    return NeonScrollbar(
+      controller: scrollController,
+      child: ListView.builder(
+        controller: scrollController,
+        padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
+        itemCount: cocktails.length,
+        itemBuilder: (context, index) {
+          final cocktail = cocktails[index];
+          final isExpanded = cocktail.id == expandedId;
 
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 12),
-          child: AnimatedGradientBorder(
-            enabled: isExpanded,
-            showBorderWhenDisabled: true,
-            disabledBorderColor: const Color(0xFF444B72),
-            disabledBorderWidth: 1.1,
-            borderRadius: BorderRadius.circular(24),
-            borderWidth: 1.8,
-            innerColor: const Color(0xFF1A1D32),
-            colors: const <Color>[
-              Color(0xFFFF6FAF),
-              Color(0xFF7E8BFF),
-              Color(0xFFFF6FAF),
-            ],
-            glowEffect: isExpanded,
-            glow: const AnimatedGradientBorderGlow(opacity: 0.58),
-            child: InkWell(
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: AnimatedGradientBorder(
+              enabled: isExpanded,
+              showBorderWhenDisabled: true,
+              disabledBorderColor: const Color(0xFF444B72),
+              disabledBorderWidth: 1.1,
               borderRadius: BorderRadius.circular(24),
-              onTap: () => onToggleExpanded(cocktail.id),
-              child: AnimatedSize(
-                duration: const Duration(milliseconds: 260),
-                curve: Curves.easeOutCubic,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 12, 10),
-                      child: Row(
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(14),
-                            child: SizedBox(
-                              width: 76,
-                              height: 76,
-                              child: BarNetworkImage(
-                                imageUrl: cocktail.image,
-                                loadingColor: const Color(0xFFE6A8E3),
-                                loadingBackgroundColor: const Color(0xFF2C2F4F),
-                                errorWidget: const ColoredBox(
-                                  color: Color(0xFF2C2F4F),
-                                  child: Icon(
-                                    Icons.local_drink_rounded,
-                                    color: Color(0xFFB4BEEF),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  cocktail.name,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  cocktail.description,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: Color(0xFFC5CCE5),
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: <Widget>[
-                                    const Icon(
-                                      Icons.wine_bar_rounded,
-                                      size: 14,
-                                      color: Color(0xFFAEB9E8),
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Expanded(
-                                      child: Text(
-                                        cocktail.glassType,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          color: Color(0xFFAEB9E8),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 6),
-                                Wrap(
-                                  spacing: 6,
-                                  runSpacing: 6,
-                                  children: cocktail.tags
-                                      .map((tag) => _TagPill(tag: tag))
-                                      .toList(growable: false),
-                                ),
-                              ],
-                            ),
-                          ),
-                          _PressableFavoriteButton(
-                            tooltip: cocktail.isFavorite
-                                ? 'Убрать из избранного'
-                                : 'В избранное',
-                            isFavorite: cocktail.isFavorite,
-                            size: 34,
-                            inactiveBackgroundColor: const Color(0x22323B60),
-                            activeBackgroundColor: const Color(0x663F3628),
-                            inactiveIconColor: const Color(0xFFB8C4EE),
-                            activeIconColor: const Color(0xFFFFC88A),
-                            onPressed: () =>
-                                onToggleFavoritePressed(cocktail.id),
-                          ),
-                          Icon(
-                            isExpanded
-                                ? Icons.keyboard_arrow_up_rounded
-                                : Icons.keyboard_arrow_down_rounded,
-                            color: const Color(0xFFFF7EC8),
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ),
-                    if (isExpanded)
+              borderWidth: 1.8,
+              innerColor: const Color(0xFF1A1D32),
+              colors: const <Color>[
+                Color(0xFFFF6FAF),
+                Color(0xFF7E8BFF),
+                Color(0xFFFF6FAF),
+              ],
+              glowEffect: isExpanded,
+              glow: const AnimatedGradientBorderGlow(opacity: 0.58),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(24),
+                onTap: () => onToggleExpanded(cocktail.id),
+                child: AnimatedSize(
+                  duration: const Duration(milliseconds: 260),
+                  curve: Curves.easeOutCubic,
+                  child: Column(
+                    children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(10, 10, 12, 10),
+                        child: Row(
                           children: <Widget>[
-                            const Divider(color: Color(0x33FF7EC8)),
-                            const SizedBox(height: 2),
-                            Row(
-                              children: <Widget>[
-                                const Icon(
-                                  Icons.wine_bar_rounded,
-                                  color: Color(0xFFFFB9DD),
-                                  size: 17,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  'Бокал: ${cocktail.glassType}',
-                                  style: const TextStyle(
-                                    color: Color(0xFFFFB9DD),
-                                    fontWeight: FontWeight.w700,
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(14),
+                              child: SizedBox(
+                                width: 76,
+                                height: 76,
+                                child: BarNetworkImage(
+                                  imageUrl: cocktail.image,
+                                  loadingColor: const Color(0xFFE6A8E3),
+                                  loadingBackgroundColor: const Color(
+                                    0xFF2C2F4F,
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Состав',
-                              style: TextStyle(
-                                color: Color(0xFFFF93CC),
-                                fontWeight: FontWeight.w800,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            ...cocktail.ingredients.map((ingredientId) {
-                              final ingredient = ingredientsById[ingredientId];
-                              final amount = cocktail.ingredientAmountLabel(
-                                ingredientId,
-                              );
-                              final isOptional = cocktail.isIngredientOptional(
-                                ingredientId,
-                              );
-                              final isDecoration = cocktail
-                                  .isIngredientDecoration(ingredientId);
-                              final substitutions =
-                                  cocktail
-                                      .ingredientSubstitutions[ingredientId] ??
-                                  const <String>[];
-                              final substitutionsText = substitutions
-                                  .map((id) => ingredientsById[id]?.name ?? id)
-                                  .join(', ');
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 6),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        const Icon(
-                                          Icons.blur_circular_rounded,
-                                          color: Color(0xFF7FA9FF),
-                                          size: 16,
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          ingredient?.name ?? ingredientId,
-                                          style: const TextStyle(
-                                            color: Color(0xFFE2E7F9),
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        if (amount.isNotEmpty) ...<Widget>[
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            amount,
-                                            style: const TextStyle(
-                                              color: Color(0xFFAEC1EE),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ],
-                                      ],
+                                  errorWidget: const ColoredBox(
+                                    color: Color(0xFF2C2F4F),
+                                    child: Icon(
+                                      Icons.local_drink_rounded,
+                                      color: Color(0xFFB4BEEF),
                                     ),
-                                    if (isOptional || isDecoration)
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 24,
-                                          top: 2,
-                                        ),
-                                        child: Text(
-                                          [
-                                            if (isOptional) 'Опционально',
-                                            if (isDecoration) 'Украшение',
-                                          ].join(' • '),
-                                          style: const TextStyle(
-                                            color: Color(0xFFAFC3F2),
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ),
-                                    if (substitutions.isNotEmpty)
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 24,
-                                          top: 2,
-                                        ),
-                                        child: Text(
-                                          'Замена: $substitutionsText',
-                                          style: const TextStyle(
-                                            color: Color(0xFFAFC3F2),
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              );
-                            }),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: <Widget>[
-                                const Text(
-                                  'Приготовление',
-                                  style: TextStyle(
-                                    color: Color(0xFFFF93CC),
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                const Spacer(),
-                                if (!visitorMode)
-                                  TextButton.icon(
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: const Color(0xFFFFB9DD),
-                                    ),
-                                    onPressed: () =>
-                                        onEditCocktailPressed(cocktail),
-                                    icon: const Icon(
-                                      Icons.edit_rounded,
-                                      size: 16,
-                                    ),
-                                    label: const Text('Редактировать'),
-                                  ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            ...List<Widget>.generate(
-                              cocktail.preparationSteps.length,
-                              (index) => Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  '${index + 1}. ${cocktail.preparationSteps[index]}',
-                                  style: const TextStyle(
-                                    color: Color(0xFFE8ECFF),
-                                    fontSize: 14,
-                                    height: 1.35,
                                   ),
                                 ),
                               ),
-                              growable: false,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    cocktail.name,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    cocktail.description,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: Color(0xFFC5CCE5),
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Row(
+                                    children: <Widget>[
+                                      const Icon(
+                                        Icons.wine_bar_rounded,
+                                        size: 14,
+                                        color: Color(0xFFAEB9E8),
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Expanded(
+                                        child: Text(
+                                          cocktail.glassType,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            color: Color(0xFFAEB9E8),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Wrap(
+                                    spacing: 6,
+                                    runSpacing: 6,
+                                    children: cocktail.tags
+                                        .map((tag) => _TagPill(tag: tag))
+                                        .toList(growable: false),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            _PressableFavoriteButton(
+                              tooltip: cocktail.isFavorite
+                                  ? 'Убрать из избранного'
+                                  : 'В избранное',
+                              isFavorite: cocktail.isFavorite,
+                              size: 34,
+                              inactiveBackgroundColor: const Color(0x22323B60),
+                              activeBackgroundColor: const Color(0x663F3628),
+                              inactiveIconColor: const Color(0xFFB8C4EE),
+                              activeIconColor: const Color(0xFFFFC88A),
+                              onPressed: () =>
+                                  onToggleFavoritePressed(cocktail.id),
+                            ),
+                            Icon(
+                              isExpanded
+                                  ? Icons.keyboard_arrow_up_rounded
+                                  : Icons.keyboard_arrow_down_rounded,
+                              color: const Color(0xFFFF7EC8),
+                              size: 30,
                             ),
                           ],
                         ),
                       ),
-                  ],
+                      if (isExpanded)
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Divider(color: Color(0x33FF7EC8)),
+                              const SizedBox(height: 2),
+                              Row(
+                                children: <Widget>[
+                                  const Icon(
+                                    Icons.wine_bar_rounded,
+                                    color: Color(0xFFFFB9DD),
+                                    size: 17,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    'Бокал: ${cocktail.glassType}',
+                                    style: const TextStyle(
+                                      color: Color(0xFFFFB9DD),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              const Text(
+                                'Состав',
+                                style: TextStyle(
+                                  color: Color(0xFFFF93CC),
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              ...cocktail.ingredients.map((ingredientId) {
+                                final ingredient =
+                                    ingredientsById[ingredientId];
+                                final amount = cocktail.ingredientAmountLabel(
+                                  ingredientId,
+                                );
+                                final isOptional = cocktail
+                                    .isIngredientOptional(ingredientId);
+                                final isDecoration = cocktail
+                                    .isIngredientDecoration(ingredientId);
+                                final substitutions =
+                                    cocktail
+                                        .ingredientSubstitutions[ingredientId] ??
+                                    const <String>[];
+                                final substitutionsText = substitutions
+                                    .map(
+                                      (id) => ingredientsById[id]?.name ?? id,
+                                    )
+                                    .join(', ');
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 6),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          const Icon(
+                                            Icons.blur_circular_rounded,
+                                            color: Color(0xFF7FA9FF),
+                                            size: 16,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            ingredient?.name ?? ingredientId,
+                                            style: const TextStyle(
+                                              color: Color(0xFFE2E7F9),
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          if (amount.isNotEmpty) ...<Widget>[
+                                            const SizedBox(width: 8),
+                                            Text(
+                                              amount,
+                                              style: const TextStyle(
+                                                color: Color(0xFFAEC1EE),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                      if (isOptional || isDecoration)
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 24,
+                                            top: 2,
+                                          ),
+                                          child: Text(
+                                            [
+                                              if (isOptional) 'Опционально',
+                                              if (isDecoration) 'Украшение',
+                                            ].join(' • '),
+                                            style: const TextStyle(
+                                              color: Color(0xFFAFC3F2),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      if (substitutions.isNotEmpty)
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 24,
+                                            top: 2,
+                                          ),
+                                          child: Text(
+                                            'Замена: $substitutionsText',
+                                            style: const TextStyle(
+                                              color: Color(0xFFAFC3F2),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                );
+                              }),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: <Widget>[
+                                  const Text(
+                                    'Приготовление',
+                                    style: TextStyle(
+                                      color: Color(0xFFFF93CC),
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  if (!visitorMode)
+                                    TextButton.icon(
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: const Color(
+                                          0xFFFFB9DD,
+                                        ),
+                                      ),
+                                      onPressed: () =>
+                                          onEditCocktailPressed(cocktail),
+                                      icon: const Icon(
+                                        Icons.edit_rounded,
+                                        size: 16,
+                                      ),
+                                      label: const Text('Редактировать'),
+                                    ),
+                                ],
+                              ),
+                              const SizedBox(height: 4),
+                              ...List<Widget>.generate(
+                                cocktail.preparationSteps.length,
+                                (index) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: Text(
+                                    '${index + 1}. ${cocktail.preparationSteps[index]}',
+                                    style: const TextStyle(
+                                      color: Color(0xFFE8ECFF),
+                                      fontSize: 14,
+                                      height: 1.35,
+                                    ),
+                                  ),
+                                ),
+                                growable: false,
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
