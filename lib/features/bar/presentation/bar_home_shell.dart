@@ -39,8 +39,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final pages = showOnlyBarMenu
         ? <Widget>[
             BarMenuPage(
-              availableCocktails: state.availableCocktails,
-              cocktailCount: state.cocktails.length,
+              cocktails: state.cocktails,
+              selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
               onManagePressed: () => _openBarManagement(),
@@ -59,8 +59,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
               onManagePressed: () => _openBarManagement(),
             ),
             BarMenuPage(
-              availableCocktails: state.availableCocktails,
-              cocktailCount: state.cocktails.length,
+              cocktails: state.cocktails,
+              selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
               onManagePressed: () => _openBarManagement(),

@@ -13,8 +13,8 @@ enum MenuViewMode { list, grid }
 
 class BarMenuPage extends StatefulWidget {
   const BarMenuPage({
-    required this.availableCocktails,
-    required this.cocktailCount,
+    required this.cocktails,
+    required this.selectedIngredientIds,
     required this.ingredientsById,
     required this.visitorMode,
     required this.onManagePressed,
@@ -23,8 +23,8 @@ class BarMenuPage extends StatefulWidget {
     super.key,
   });
 
-  final List<Cocktail> availableCocktails;
-  final int cocktailCount;
+  final List<Cocktail> cocktails;
+  final Set<String> selectedIngredientIds;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
   final VoidCallback onManagePressed;
@@ -57,7 +57,18 @@ class _BarMenuPageState extends State<BarMenuPage> {
         bottomInset;
     final bottomContentPadding = bottomOverlayPadding + 24;
 
-    final filteredCocktails = _filterByTags(widget.availableCocktails);
+    final missingIngredientsByCocktailId = _buildMissingIngredientsMap(
+      widget.cocktails,
+    );
+    final availableCocktailCount = missingIngredientsByCocktailId.values
+        .where((missingIngredients) => missingIngredients.isEmpty)
+        .length;
+    final hasSelectedIngredients = widget.selectedIngredientIds.isNotEmpty;
+    final sortedCocktails = _sortCocktailsByAvailability(
+      widget.cocktails,
+      missingIngredientsByCocktailId,
+    );
+    final filteredCocktails = _filterByTags(sortedCocktails);
     final expandedId = _resolveExpandedId(filteredCocktails);
 
     return NeonBackground(
@@ -85,7 +96,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Доступно ${widget.availableCocktails.length} из ${widget.cocktailCount}',
+                        'Доступно $availableCocktailCount из ${widget.cocktails.length}',
                         style: const TextStyle(
                           color: Color(0xFFCCD3E8),
                           fontSize: 14,
@@ -161,19 +172,23 @@ class _BarMenuPageState extends State<BarMenuPage> {
             ),
           ),
           Expanded(
-            child: widget.availableCocktails.isEmpty
+            child: widget.cocktails.isEmpty || !hasSelectedIngredients
                 ? NoCocktailsView(bottomInsetCompensation: bottomOverlayPadding)
                 : filteredCocktails.isEmpty
                 ? const _NoTagMatchesView()
                 : _viewMode == MenuViewMode.grid
                 ? CocktailGrid(
                     cocktails: filteredCocktails,
+                    missingIngredientsByCocktailId:
+                        missingIngredientsByCocktailId,
                     bottomPadding: bottomContentPadding,
                     scrollController: _scrollController,
                     onToggleFavoritePressed: widget.onToggleFavoritePressed,
                   )
                 : CocktailList(
                     cocktails: filteredCocktails,
+                    missingIngredientsByCocktailId:
+                        missingIngredientsByCocktailId,
                     ingredientsById: widget.ingredientsById,
                     visitorMode: widget.visitorMode,
                     bottomPadding: bottomContentPadding,
@@ -203,6 +218,25 @@ class _BarMenuPageState extends State<BarMenuPage> {
         .toList(growable: false);
   }
 
+  List<Cocktail> _sortCocktailsByAvailability(
+    List<Cocktail> source,
+    Map<String, List<String>> missingIngredientsByCocktailId,
+  ) {
+    final available = <Cocktail>[];
+    final unavailable = <Cocktail>[];
+
+    for (final cocktail in source) {
+      final missing = missingIngredientsByCocktailId[cocktail.id];
+      if (missing == null || missing.isEmpty) {
+        available.add(cocktail);
+      } else {
+        unavailable.add(cocktail);
+      }
+    }
+
+    return <Cocktail>[...available, ...unavailable];
+  }
+
   String? _resolveExpandedId(List<Cocktail> cocktails) {
     if (cocktails.isEmpty) {
       return null;
@@ -213,11 +247,54 @@ class _BarMenuPageState extends State<BarMenuPage> {
     );
     return hasActive ? _expandedCocktailId : cocktails.first.id;
   }
+
+  Map<String, List<String>> _buildMissingIngredientsMap(
+    List<Cocktail> cocktails,
+  ) {
+    return <String, List<String>>{
+      for (final cocktail in cocktails)
+        cocktail.id: _missingIngredientNamesForCocktail(cocktail),
+    };
+  }
+
+  List<String> _missingIngredientNamesForCocktail(Cocktail cocktail) {
+    final missing = <String>[];
+
+    for (final ingredientId in cocktail.ingredients) {
+      if (widget.selectedIngredientIds.contains(ingredientId)) {
+        continue;
+      }
+
+      final substitutions =
+          cocktail.ingredientSubstitutions[ingredientId] ?? const <String>[];
+      if (substitutions.any(widget.selectedIngredientIds.contains)) {
+        continue;
+      }
+
+      if (cocktail.isIngredientOptional(ingredientId) ||
+          cocktail.isIngredientDecoration(ingredientId)) {
+        continue;
+      }
+
+      final ingredient = widget.ingredientsById[ingredientId];
+      if (ingredient == null) {
+        missing.add(ingredientId);
+        continue;
+      }
+      if (ingredient.isOptional || ingredient.isDecoration) {
+        continue;
+      }
+      missing.add(ingredient.name);
+    }
+
+    return missing;
+  }
 }
 
 class CocktailGrid extends StatelessWidget {
   const CocktailGrid({
     required this.cocktails,
+    required this.missingIngredientsByCocktailId,
     required this.bottomPadding,
     required this.scrollController,
     required this.onToggleFavoritePressed,
@@ -225,6 +302,7 @@ class CocktailGrid extends StatelessWidget {
   });
 
   final List<Cocktail> cocktails;
+  final Map<String, List<String>> missingIngredientsByCocktailId;
   final double bottomPadding;
   final ScrollController scrollController;
   final ValueChanged<String> onToggleFavoritePressed;
@@ -248,6 +326,9 @@ class CocktailGrid extends StatelessWidget {
             itemCount: cocktails.length,
             itemBuilder: (context, index) {
               final cocktail = cocktails[index];
+              final missingIngredients =
+                  missingIngredientsByCocktailId[cocktail.id] ??
+                  const <String>[];
               return AnimatedGradientBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderWidth: 1.5,
@@ -354,6 +435,11 @@ class CocktailGrid extends StatelessWidget {
                                 .map((tag) => _TagPill(tag: tag))
                                 .toList(growable: false),
                           ),
+                          const SizedBox(height: 6),
+                          _AvailabilityHint(
+                            missingIngredientNames: missingIngredients,
+                            maxLines: 2,
+                          ),
                         ],
                       ),
                     ),
@@ -371,6 +457,7 @@ class CocktailGrid extends StatelessWidget {
 class CocktailList extends StatelessWidget {
   const CocktailList({
     required this.cocktails,
+    required this.missingIngredientsByCocktailId,
     required this.ingredientsById,
     required this.visitorMode,
     required this.bottomPadding,
@@ -383,6 +470,7 @@ class CocktailList extends StatelessWidget {
   });
 
   final List<Cocktail> cocktails;
+  final Map<String, List<String>> missingIngredientsByCocktailId;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
   final double bottomPadding;
@@ -403,6 +491,8 @@ class CocktailList extends StatelessWidget {
         itemBuilder: (context, index) {
           final cocktail = cocktails[index];
           final isExpanded = cocktail.id == expandedId;
+          final missingIngredients =
+              missingIngredientsByCocktailId[cocktail.id] ?? const <String>[];
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
@@ -507,6 +597,10 @@ class CocktailList extends StatelessWidget {
                                     children: cocktail.tags
                                         .map((tag) => _TagPill(tag: tag))
                                         .toList(growable: false),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  _AvailabilityHint(
+                                    missingIngredientNames: missingIngredients,
                                   ),
                                 ],
                               ),
@@ -712,6 +806,49 @@ class CocktailList extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _AvailabilityHint extends StatelessWidget {
+  const _AvailabilityHint({
+    required this.missingIngredientNames,
+    this.maxLines = 1,
+  });
+
+  final List<String> missingIngredientNames;
+  final int maxLines;
+
+  @override
+  Widget build(BuildContext context) {
+    if (missingIngredientNames.isEmpty) {
+      return const Text(
+        'Можно приготовить сейчас',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: Color(0xFF8FFFD4),
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+        ),
+      );
+    }
+
+    final preview = missingIngredientNames.take(3).join(', ');
+    final hiddenCount = missingIngredientNames.length - 3;
+    final text = hiddenCount > 0
+        ? 'Не хватает: $preview и ещё $hiddenCount'
+        : 'Не хватает: $preview';
+
+    return Text(
+      text,
+      maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        color: Color(0xFFFFC0D9),
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
       ),
     );
   }
