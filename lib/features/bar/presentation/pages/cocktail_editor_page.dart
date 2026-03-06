@@ -217,8 +217,8 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
           shadowColor: Colors.transparent,
           scrolledUnderElevation: 0,
           toolbarHeight: 76,
-          titleSpacing: 8,
-          leadingWidth: 64,
+          centerTitle: true,
+          titleSpacing: 0,
           automaticallyImplyLeading: false,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
