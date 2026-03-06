@@ -942,7 +942,7 @@ class NoCocktailsView extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'Добавь позиции в "Сыром баре", и здесь появятся доступные коктейли.',
+                  'Добавь позиции в "Ингридиентах", и здесь появятся доступные коктейли.',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Color(0xFFCAD2EB), fontSize: 14),
                 ),
