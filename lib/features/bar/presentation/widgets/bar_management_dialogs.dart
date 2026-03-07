@@ -5,6 +5,7 @@ import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
+import 'cocktail_glass_icon.dart';
 
 @immutable
 class AddIngredientInput {
@@ -420,7 +421,22 @@ Future<AddCocktailInput?> _showCocktailDialog(
                           .map(
                             (item) => DropdownMenuItem<String>(
                               value: item,
-                              child: Text(item),
+                              child: Row(
+                                children: <Widget>[
+                                  CocktailGlassIcon(
+                                    glassType: item,
+                                    size: 18,
+                                    color: const Color(0xFFAFC0EF),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      item,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           )
                           .toList(growable: false),

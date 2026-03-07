@@ -1,0 +1,12 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M70 46C108.667 40.6667 147.333 40.6667 186 46L174 196C143.333 205.333 112.667 205.333 82 196L70 46Z" stroke="#6F6DB0" stroke-width="8" stroke-linejoin="round"/>
+<path d="M128 56C160.033 56 186 51.5228 186 46C186 40.4772 160.033 36 128 36C95.9675 36 70 40.4772 70 46C70 51.5228 95.9675 56 128 56Z" stroke="#6F6DB0" stroke-width="6"/>
+<path opacity="0.5" d="M86 58C114 54 142 54 170 58L162 176C139.333 182.667 116.667 182.667 94 176L86 58Z" stroke="#6F6DB0" stroke-width="4" stroke-linejoin="round"/>
+<path opacity="0.9" d="M92 82L88 182" stroke="#6F6DB0" stroke-width="5" stroke-linecap="round"/>
+<path opacity="0.9" d="M108 76L106 184" stroke="#6F6DB0" stroke-width="4.5" stroke-linecap="round"/>
+<path opacity="0.9" d="M128 74V186" stroke="#6F6DB0" stroke-width="4.5" stroke-linecap="round"/>
+<path opacity="0.9" d="M148 76L150 184" stroke="#6F6DB0" stroke-width="4.5" stroke-linecap="round"/>
+<path opacity="0.9" d="M164 82L168 182" stroke="#6F6DB0" stroke-width="5" stroke-linecap="round"/>
+<path d="M88 182L98 196L112 184L128 198L144 184L158 196L168 182" stroke="#6F6DB0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M96 198C117.333 203.333 138.667 203.333 160 198" stroke="#6F6DB0" stroke-width="6" stroke-linecap="round"/>
+</svg>

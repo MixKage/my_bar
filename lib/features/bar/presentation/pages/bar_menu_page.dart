@@ -6,6 +6,7 @@ import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
+import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
 import '../widgets/neon_bottom_navigation.dart';
 
@@ -406,10 +407,10 @@ class CocktailGrid extends StatelessWidget {
                           const SizedBox(height: 4),
                           Row(
                             children: <Widget>[
-                              const Icon(
-                                Icons.wine_bar_rounded,
+                              CocktailGlassIcon(
+                                glassType: cocktail.glassType,
                                 size: 13,
-                                color: Color(0xFFACB8E6),
+                                color: const Color(0xFFACB8E6),
                               ),
                               const SizedBox(width: 6),
                               Expanded(
@@ -570,10 +571,10 @@ class CocktailList extends StatelessWidget {
                                   const SizedBox(height: 4),
                                   Row(
                                     children: <Widget>[
-                                      const Icon(
-                                        Icons.wine_bar_rounded,
+                                      CocktailGlassIcon(
+                                        glassType: cocktail.glassType,
                                         size: 14,
-                                        color: Color(0xFFAEB9E8),
+                                        color: const Color(0xFFAEB9E8),
                                       ),
                                       const SizedBox(width: 6),
                                       Expanded(
@@ -638,10 +639,10 @@ class CocktailList extends StatelessWidget {
                               const SizedBox(height: 2),
                               Row(
                                 children: <Widget>[
-                                  const Icon(
-                                    Icons.wine_bar_rounded,
-                                    color: Color(0xFFFFB9DD),
+                                  CocktailGlassIcon(
+                                    glassType: cocktail.glassType,
                                     size: 17,
+                                    color: const Color(0xFFFFB9DD),
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
