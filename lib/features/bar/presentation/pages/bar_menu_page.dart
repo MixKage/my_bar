@@ -42,6 +42,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
   MenuViewMode _viewMode = MenuViewMode.list;
   String? _expandedCocktailId;
   final Set<String> _selectedTags = <String>{};
+  bool _favoritesOnly = false;
 
   @override
   void dispose() {
@@ -62,16 +63,22 @@ class _BarMenuPageState extends State<BarMenuPage> {
     final missingIngredientsByCocktailId = _buildMissingIngredientsMap(
       widget.cocktails,
     );
-    final availableCocktailCount = missingIngredientsByCocktailId.values
-        .where((missingIngredients) => missingIngredients.isEmpty)
-        .length;
     final hasSelectedIngredients = widget.selectedIngredientIds.isNotEmpty;
     final sortedCocktails = _sortCocktailsByAvailability(
       widget.cocktails,
       missingIngredientsByCocktailId,
     );
-    final filteredCocktails = _filterByTags(sortedCocktails);
+    final filteredCocktails = _applyFilters(sortedCocktails);
+    final availableCocktailCount = filteredCocktails.where((cocktail) {
+      final missingIngredients = missingIngredientsByCocktailId[cocktail.id];
+      return missingIngredients == null || missingIngredients.isEmpty;
+    }).length;
+    final totalCocktailCount = filteredCocktails.length;
     final expandedId = _resolveExpandedId(filteredCocktails);
+    final activeFilters = <String>[
+      if (_favoritesOnly) context.tr('Избранные', 'Favorites'),
+      ..._selectedTags.map(context.cocktailTagLabel),
+    ];
 
     return NeonBackground(
       topGlow: const Color(0xFFFF5BB0),
@@ -99,19 +106,19 @@ class _BarMenuPageState extends State<BarMenuPage> {
                       const SizedBox(height: 4),
                       Text(
                         context.tr(
-                          'Доступно $availableCocktailCount из ${widget.cocktails.length}',
-                          'Available $availableCocktailCount of ${widget.cocktails.length}',
+                          'Доступно $availableCocktailCount из $totalCocktailCount',
+                          'Available $availableCocktailCount of $totalCocktailCount',
                         ),
                         style: const TextStyle(
                           color: Color(0xFFCCD3E8),
                           fontSize: 14,
                         ),
                       ),
-                      if (_selectedTags.isNotEmpty)
+                      if (activeFilters.isNotEmpty)
                         Text(
                           context.tr(
-                            'Фильтр: ${_selectedTags.map(context.cocktailTagLabel).join(', ')}',
-                            'Filter: ${_selectedTags.map(context.cocktailTagLabel).join(', ')}',
+                            'Фильтр: ${activeFilters.join(', ')}',
+                            'Filter: ${activeFilters.join(', ')}',
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -142,41 +149,76 @@ class _BarMenuPageState extends State<BarMenuPage> {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               scrollDirection: Axis.horizontal,
-              children: kCocktailTags
-                  .map((tag) {
-                    final selected = _selectedTags.contains(tag);
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: FilterChip(
-                        selected: selected,
-                        label: Text(context.cocktailTagLabel(tag)),
-                        selectedColor: const Color(0x44FF6FAF),
-                        checkmarkColor: const Color(0xFFFFE5F3),
-                        side: BorderSide(
-                          color: selected
-                              ? const Color(0xFFEF73BD)
-                              : const Color(0x3AD8DDF6),
-                        ),
-                        backgroundColor: const Color(0x221A2142),
-                        labelStyle: TextStyle(
-                          color: selected
-                              ? const Color(0xFFFFD8EC)
-                              : const Color(0xFFC2CDEB),
-                          fontSize: 12,
-                        ),
-                        onSelected: (value) {
-                          setState(() {
-                            if (value) {
-                              _selectedTags.add(tag);
-                            } else {
-                              _selectedTags.remove(tag);
-                            }
-                          });
-                        },
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: FilterChip(
+                    selected: _favoritesOnly,
+                    avatar: Icon(
+                      _favoritesOnly
+                          ? Icons.star_rounded
+                          : Icons.star_border_rounded,
+                      size: 16,
+                      color: _favoritesOnly
+                          ? const Color(0xFFFFD8EC)
+                          : const Color(0xFFC2CDEB),
+                    ),
+                    label: Text(context.tr('Избранные', 'Favorites')),
+                    selectedColor: const Color(0x44FF6FAF),
+                    checkmarkColor: const Color(0xFFFFE5F3),
+                    side: BorderSide(
+                      color: _favoritesOnly
+                          ? const Color(0xFFEF73BD)
+                          : const Color(0x3AD8DDF6),
+                    ),
+                    backgroundColor: const Color(0x221A2142),
+                    labelStyle: TextStyle(
+                      color: _favoritesOnly
+                          ? const Color(0xFFFFD8EC)
+                          : const Color(0xFFC2CDEB),
+                      fontSize: 12,
+                    ),
+                    onSelected: (value) {
+                      setState(() {
+                        _favoritesOnly = value;
+                      });
+                    },
+                  ),
+                ),
+                ...kCocktailTags.map((tag) {
+                  final selected = _selectedTags.contains(tag);
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: FilterChip(
+                      selected: selected,
+                      label: Text(context.cocktailTagLabel(tag)),
+                      selectedColor: const Color(0x44FF6FAF),
+                      checkmarkColor: const Color(0xFFFFE5F3),
+                      side: BorderSide(
+                        color: selected
+                            ? const Color(0xFFEF73BD)
+                            : const Color(0x3AD8DDF6),
                       ),
-                    );
-                  })
-                  .toList(growable: false),
+                      backgroundColor: const Color(0x221A2142),
+                      labelStyle: TextStyle(
+                        color: selected
+                            ? const Color(0xFFFFD8EC)
+                            : const Color(0xFFC2CDEB),
+                        fontSize: 12,
+                      ),
+                      onSelected: (value) {
+                        setState(() {
+                          if (value) {
+                            _selectedTags.add(tag);
+                          } else {
+                            _selectedTags.remove(tag);
+                          }
+                        });
+                      },
+                    ),
+                  );
+                }),
+              ],
             ),
           ),
           Expanded(
@@ -216,12 +258,20 @@ class _BarMenuPageState extends State<BarMenuPage> {
     );
   }
 
-  List<Cocktail> _filterByTags(List<Cocktail> source) {
-    if (_selectedTags.isEmpty) {
-      return source;
+  List<Cocktail> _applyFilters(List<Cocktail> source) {
+    var filtered = source;
+
+    if (_favoritesOnly) {
+      filtered = filtered
+          .where((cocktail) => cocktail.isFavorite)
+          .toList(growable: false);
     }
 
-    return source
+    if (_selectedTags.isEmpty) {
+      return filtered;
+    }
+
+    return filtered
         .where((cocktail) => cocktail.tags.any(_selectedTags.contains))
         .toList(growable: false);
   }
@@ -1104,8 +1154,8 @@ class _NoTagMatchesView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Text(
           context.tr(
-            'По выбранным тегам коктейли не найдены',
-            'No cocktails found for selected tags',
+            'По выбранным фильтрам коктейли не найдены',
+            'No cocktails found for selected filters',
           ),
           textAlign: TextAlign.center,
           style: const TextStyle(color: Color(0xFFC3CCE8), fontSize: 16),
