@@ -1,8 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_bar/features/bar/data/bar_catalog_storage.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
+import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
+import 'package:my_bar/features/bar/data/external_catalog_cache_storage.dart';
 import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
+import 'package:my_bar/features/bar/data/local_catalog_storage.dart';
+import 'package:my_bar/features/bar/data/providers/external_bar_data_provider.dart';
+import 'package:my_bar/features/bar/data/repositories/bar_catalog_repository.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
+import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
 import 'package:my_bar/main.dart';
@@ -14,15 +19,7 @@ void main() {
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
-      MyBarApp(
-        selectionStorage: SharedPreferencesIngredientSelectionStorage(
-          preferences,
-        ),
-        catalogStorage: SharedPreferencesBarCatalogStorage(preferences),
-        settingsStorage: SharedPreferencesBarUiSettingsStorage(preferences),
-        initialCatalog: _testCatalog,
-        templateCatalog: _testCatalog,
-      ),
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
     );
     await tester.pump();
 
@@ -40,15 +37,7 @@ void main() {
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
-      MyBarApp(
-        selectionStorage: SharedPreferencesIngredientSelectionStorage(
-          preferences,
-        ),
-        catalogStorage: SharedPreferencesBarCatalogStorage(preferences),
-        settingsStorage: SharedPreferencesBarUiSettingsStorage(preferences),
-        initialCatalog: _testCatalog,
-        templateCatalog: _testCatalog,
-      ),
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
     );
     await tester.pump();
 
@@ -66,15 +55,7 @@ void main() {
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
-      MyBarApp(
-        selectionStorage: SharedPreferencesIngredientSelectionStorage(
-          preferences,
-        ),
-        catalogStorage: SharedPreferencesBarCatalogStorage(preferences),
-        settingsStorage: SharedPreferencesBarUiSettingsStorage(preferences),
-        initialCatalog: _testCatalog,
-        templateCatalog: _testCatalog,
-      ),
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
     );
     await tester.pump();
 
@@ -85,6 +66,68 @@ void main() {
     final stored = persisted.getStringList('selected_ingredients') ?? [];
     expect(stored, contains('vodka'));
   });
+}
+
+Future<MyBarApp> _buildApp({
+  required SharedPreferences preferences,
+  required BarCatalog catalog,
+}) async {
+  final selectionStorage = SharedPreferencesIngredientSelectionStorage(
+    preferences,
+  );
+  final settingsStorage = SharedPreferencesBarUiSettingsStorage(preferences);
+  final seedProvider = _StaticExternalProvider(catalog: catalog);
+  final selector = SelectableExternalBarDataProvider(
+    seedProvider: seedProvider,
+    bootstrapDefaultProvider: seedProvider,
+    bootstrapDefaultDataSource: CatalogDataSource.seed,
+  );
+
+  final repository = BarCatalogRepository(
+    externalProvider: selector,
+    externalCacheStorage: SharedPreferencesExternalCatalogCacheStorage(
+      preferences,
+    ),
+    localStorage: SharedPreferencesLocalCatalogStorage(preferences),
+    overridesStorage: SharedPreferencesCatalogOverridesStorage(preferences),
+    templateCatalog: catalog,
+  );
+
+  final snapshot = await repository.initialize();
+
+  return MyBarApp(
+    selectionStorage: selectionStorage,
+    settingsStorage: settingsStorage,
+    catalogRepository: repository,
+    externalProviderSelector: selector,
+    initialSnapshot: snapshot,
+  );
+}
+
+class _StaticExternalProvider implements ExternalBarDataProvider {
+  const _StaticExternalProvider({required this.catalog});
+
+  final BarCatalog catalog;
+
+  @override
+  String get sourceId => 'test_static';
+
+  @override
+  ExternalProviderFormat get format => ExternalProviderFormat.generic;
+
+  @override
+  Future<List<Map<String, dynamic>>> fetchIngredients() async {
+    return catalog.ingredients
+        .map((ingredient) => ingredient.toJson())
+        .toList(growable: false);
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> fetchCocktails() async {
+    return catalog.cocktails
+        .map((cocktail) => cocktail.toJson())
+        .toList(growable: false);
+  }
 }
 
 final _testCatalog = BarCatalog(

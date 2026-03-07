@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
+import '../domain/models/catalog_data_source.dart';
 import '../domain/models/cocktail.dart';
 import '../domain/models/ingredient.dart';
 import 'pages/cocktail_editor_page.dart';
@@ -210,63 +211,133 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final cubit = context.read<BarCubit>();
     var visitorMode = cubit.state.visitorMode;
     var barMenuOnlyMode = cubit.state.barMenuOnlyMode;
+    var catalogDataSource = cubit.state.catalogDataSource;
+    final isTheCocktailDbAvailable = cubit.state.isTheCocktailDbAvailable;
 
     final action = await showModalBottomSheet<_BarSettingsAction>(
       context: context,
       backgroundColor: const Color(0xFF161B2E),
       showDragHandle: true,
       builder: (context) {
+        final maxSheetHeight = MediaQuery.sizeOf(context).height * 0.82;
         return StatefulBuilder(
           builder: (context, setModalState) {
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 18),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.settings_suggest_rounded),
-                      title: Text('Настройки барной карты'),
-                    ),
-                    SwitchListTile.adaptive(
-                      value: visitorMode,
-                      activeThumbColor: const Color(0xFF8FA3FF),
-                      title: const Text('Режим посетителя'),
-                      subtitle: const Text('Скрывает кнопки с редактированием'),
-                      onChanged: (value) async {
-                        setModalState(() => visitorMode = value);
-                        await cubit.setVisitorMode(value);
-                      },
-                    ),
-                    SwitchListTile.adaptive(
-                      value: barMenuOnlyMode,
-                      activeThumbColor: const Color(0xFF8FA3FF),
-                      title: const Text('Режим барной карты'),
-                      subtitle: const Text(
-                        'Показывает только страницу "Барная карта"',
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: maxSheetHeight),
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const ListTile(
+                            leading: Icon(Icons.settings_suggest_rounded),
+                            title: Text('Настройки барной карты'),
+                          ),
+                          SwitchListTile.adaptive(
+                            value: visitorMode,
+                            activeThumbColor: const Color(0xFF8FA3FF),
+                            title: const Text('Режим посетителя'),
+                            subtitle: const Text(
+                              'Скрывает кнопки с редактированием',
+                            ),
+                            onChanged: (value) async {
+                              setModalState(() => visitorMode = value);
+                              await cubit.setVisitorMode(value);
+                            },
+                          ),
+                          SwitchListTile.adaptive(
+                            value: barMenuOnlyMode,
+                            activeThumbColor: const Color(0xFF8FA3FF),
+                            title: const Text('Режим барной карты'),
+                            subtitle: const Text(
+                              'Показывает только страницу "Барная карта"',
+                            ),
+                            onChanged: (value) async {
+                              setModalState(() => barMenuOnlyMode = value);
+                              await cubit.setBarMenuOnlyMode(value);
+                              if (value && mounted) {
+                                setState(() => _currentTab = 1);
+                              }
+                            },
+                          ),
+                          const Divider(height: 16),
+                          const ListTile(
+                            leading: Icon(Icons.storage_rounded),
+                            title: Text('Источник каталога коктейлей'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                            child: SegmentedButton<CatalogDataSource>(
+                              showSelectedIcon: false,
+                              selected: <CatalogDataSource>{catalogDataSource},
+                              segments: <ButtonSegment<CatalogDataSource>>[
+                                ButtonSegment<CatalogDataSource>(
+                                  value: CatalogDataSource.seed,
+                                  label: Text(CatalogDataSource.seed.title),
+                                ),
+                                ButtonSegment<CatalogDataSource>(
+                                  value: CatalogDataSource.theCocktailDb,
+                                  label: Text(
+                                    CatalogDataSource.theCocktailDb.title,
+                                  ),
+                                  enabled: isTheCocktailDbAvailable,
+                                ),
+                              ],
+                              onSelectionChanged: (selection) async {
+                                if (selection.isEmpty) {
+                                  return;
+                                }
+                                final nextSource = selection.first;
+                                setModalState(
+                                  () => catalogDataSource = nextSource,
+                                );
+                                await cubit.setCatalogDataSource(nextSource);
+                                if (!mounted) {
+                                  return;
+                                }
+                                setModalState(
+                                  () => catalogDataSource =
+                                      cubit.state.catalogDataSource,
+                                );
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            dense: true,
+                            title: Text(catalogDataSource.title),
+                            subtitle: Text(
+                              catalogDataSource ==
+                                          CatalogDataSource.theCocktailDb &&
+                                      !isTheCocktailDbAvailable
+                                  ? 'Недоступно: проверьте MY_BAR_THECOCKTAILDB_* конфигурацию'
+                                  : catalogDataSource.description,
+                            ),
+                          ),
+                          const Divider(height: 16),
+                          ListTile(
+                            leading: const Icon(Icons.upload_file_rounded),
+                            title: const Text('Импортировать барную карту'),
+                            onTap: () => Navigator.pop(
+                              context,
+                              _BarSettingsAction.import,
+                            ),
+                          ),
+                          ListTile(
+                            leading: const Icon(Icons.download_rounded),
+                            title: const Text('Экспортировать барную карту'),
+                            onTap: () => Navigator.pop(
+                              context,
+                              _BarSettingsAction.export,
+                            ),
+                          ),
+                        ],
                       ),
-                      onChanged: (value) async {
-                        setModalState(() => barMenuOnlyMode = value);
-                        await cubit.setBarMenuOnlyMode(value);
-                        if (value && mounted) {
-                          setState(() => _currentTab = 1);
-                        }
-                      },
                     ),
-                    const Divider(height: 16),
-                    ListTile(
-                      leading: const Icon(Icons.upload_file_rounded),
-                      title: const Text('Импортировать барную карту'),
-                      onTap: () =>
-                          Navigator.pop(context, _BarSettingsAction.import),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.download_rounded),
-                      title: const Text('Экспортировать барную карту'),
-                      onTap: () =>
-                          Navigator.pop(context, _BarSettingsAction.export),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             );

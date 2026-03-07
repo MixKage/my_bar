@@ -3,37 +3,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/theme/app_theme.dart';
 import '../features/bar/cubit/bar_cubit.dart';
-import '../features/bar/data/bar_catalog_storage.dart';
 import '../features/bar/data/bar_ui_settings_storage.dart';
 import '../features/bar/data/ingredient_selection_storage.dart';
-import '../features/bar/domain/models/bar_catalog.dart';
+import '../features/bar/data/models/catalog_layer_models.dart';
+import '../features/bar/data/providers/external_bar_data_provider.dart';
+import '../features/bar/data/repositories/bar_catalog_repository.dart';
 import '../features/bar/presentation/bar_home_shell.dart';
 
 class MyBarApp extends StatelessWidget {
   const MyBarApp({
     required this.selectionStorage,
-    required this.catalogStorage,
     required this.settingsStorage,
-    required this.initialCatalog,
-    required this.templateCatalog,
+    required this.catalogRepository,
+    required this.externalProviderSelector,
+    required this.initialSnapshot,
     super.key,
   });
 
   final IngredientSelectionStorage selectionStorage;
-  final BarCatalogStorage catalogStorage;
   final BarUiSettingsStorage settingsStorage;
-  final BarCatalog initialCatalog;
-  final BarCatalog templateCatalog;
+  final BarCatalogRepository catalogRepository;
+  final SelectableExternalBarDataProvider externalProviderSelector;
+  final UnifiedCatalogSnapshot initialSnapshot;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<BarCubit>(
       create: (_) => BarCubit(
         selectionStorage: selectionStorage,
-        catalogStorage: catalogStorage,
         settingsStorage: settingsStorage,
-        initialCatalog: initialCatalog,
-        templateCatalog: templateCatalog,
+        catalogRepository: catalogRepository,
+        externalProviderSelector: externalProviderSelector,
+        initialSnapshot: initialSnapshot,
       ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

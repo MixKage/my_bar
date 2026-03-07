@@ -1,33 +1,26 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:my_bar/features/bar/cubit/bar_cubit.dart';
-import 'package:my_bar/features/bar/data/bar_catalog_storage.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
+import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
+import 'package:my_bar/features/bar/data/external_catalog_cache_storage.dart';
 import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
+import 'package:my_bar/features/bar/data/local_catalog_storage.dart';
+import 'package:my_bar/features/bar/data/providers/external_bar_data_provider.dart';
+import 'package:my_bar/features/bar/data/repositories/bar_catalog_repository.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
+import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
 
 void main() {
-  test('throws export error when bar catalog is unchanged', () {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: InMemoryBarUiSettingsStorage(),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
-    );
+  test('throws export error when bar catalog is unchanged', () async {
+    final cubit = await _createCubit(templateCatalog: _templateCatalog);
 
     expect(() => cubit.exportCatalog(), throwsFormatException);
   });
 
   test('exports successfully when bar catalog was changed', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: InMemoryBarUiSettingsStorage(),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
-    );
+    final cubit = await _createCubit(templateCatalog: _templateCatalog);
 
     await cubit.addIngredient(name: 'Кампари', category: 'Ликёры', image: '');
 
@@ -36,13 +29,7 @@ void main() {
   });
 
   test('updates cocktail preparation steps', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: InMemoryBarUiSettingsStorage(),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
-    );
+    final cubit = await _createCubit(templateCatalog: _templateCatalog);
 
     await cubit.updateCocktailPreparation(
       cocktailId: 'martini',
@@ -100,13 +87,7 @@ void main() {
         ],
       );
 
-      final cubit = BarCubit(
-        selectionStorage: InMemoryIngredientSelectionStorage(),
-        catalogStorage: InMemoryBarCatalogStorage(),
-        settingsStorage: InMemoryBarUiSettingsStorage(),
-        initialCatalog: catalog,
-        templateCatalog: catalog,
-      );
+      final cubit = await _createCubit(templateCatalog: catalog);
 
       expect(cubit.state.availableCocktails, isEmpty);
 
@@ -157,13 +138,7 @@ void main() {
         ],
       );
 
-      final cubit = BarCubit(
-        selectionStorage: InMemoryIngredientSelectionStorage(),
-        catalogStorage: InMemoryBarCatalogStorage(),
-        settingsStorage: InMemoryBarUiSettingsStorage(),
-        initialCatalog: catalog,
-        templateCatalog: catalog,
-      );
+      final cubit = await _createCubit(templateCatalog: catalog);
 
       await cubit.toggleIngredient('vodka');
       await cubit.toggleIngredient('vermouth');
@@ -174,13 +149,7 @@ void main() {
   );
 
   test('updates cocktail core fields with full editor payload', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: InMemoryBarUiSettingsStorage(),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
-    );
+    final cubit = await _createCubit(templateCatalog: _templateCatalog);
 
     await cubit.updateCocktail(
       cocktailId: 'martini',
@@ -211,13 +180,7 @@ void main() {
   });
 
   test('toggles favorite flag for cocktail', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: InMemoryBarUiSettingsStorage(),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
-    );
+    final cubit = await _createCubit(templateCatalog: _templateCatalog);
 
     expect(cubit.state.cocktails.first.isFavorite, isFalse);
     await cubit.toggleCocktailFavorite('martini');
@@ -227,14 +190,11 @@ void main() {
   });
 
   test('does not toggle ingredient when visitor mode is enabled', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
+    final cubit = await _createCubit(
+      templateCatalog: _templateCatalog,
       settingsStorage: InMemoryBarUiSettingsStorage(
         initial: const BarUiSettings(visitorMode: true),
       ),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
     );
 
     await cubit.toggleIngredient('gin');
@@ -244,12 +204,9 @@ void main() {
 
   test('persists visitor and bar menu only modes', () async {
     final settingsStorage = InMemoryBarUiSettingsStorage();
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: settingsStorage,
-      initialCatalog: _templateCatalog,
+    final cubit = await _createCubit(
       templateCatalog: _templateCatalog,
+      settingsStorage: settingsStorage,
     );
 
     await cubit.setVisitorMode(true);
@@ -261,13 +218,7 @@ void main() {
   });
 
   test('updates ingredient fields', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
-      settingsStorage: InMemoryBarUiSettingsStorage(),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
-    );
+    final cubit = await _createCubit(templateCatalog: _templateCatalog);
 
     await cubit.updateIngredient(
       ingredientId: 'gin',
@@ -288,14 +239,11 @@ void main() {
   });
 
   test('does not update ingredient in visitor mode', () async {
-    final cubit = BarCubit(
-      selectionStorage: InMemoryIngredientSelectionStorage(),
-      catalogStorage: InMemoryBarCatalogStorage(),
+    final cubit = await _createCubit(
+      templateCatalog: _templateCatalog,
       settingsStorage: InMemoryBarUiSettingsStorage(
         initial: const BarUiSettings(visitorMode: true),
       ),
-      initialCatalog: _templateCatalog,
-      templateCatalog: _templateCatalog,
     );
 
     await cubit.updateIngredient(
@@ -310,6 +258,61 @@ void main() {
     );
     expect(ingredient.name, 'Джин');
   });
+}
+
+Future<BarCubit> _createCubit({
+  required BarCatalog templateCatalog,
+  InMemoryIngredientSelectionStorage? selectionStorage,
+  InMemoryBarUiSettingsStorage? settingsStorage,
+}) async {
+  final seedProvider = _StaticExternalProvider(catalog: templateCatalog);
+  final selector = SelectableExternalBarDataProvider(
+    seedProvider: seedProvider,
+    bootstrapDefaultProvider: seedProvider,
+    bootstrapDefaultDataSource: CatalogDataSource.seed,
+  );
+  final repository = BarCatalogRepository(
+    externalProvider: selector,
+    externalCacheStorage: InMemoryExternalCatalogCacheStorage(),
+    localStorage: InMemoryLocalCatalogStorage(),
+    overridesStorage: InMemoryCatalogOverridesStorage(),
+    templateCatalog: templateCatalog,
+  );
+  final snapshot = await repository.initialize();
+
+  return BarCubit(
+    selectionStorage: selectionStorage ?? InMemoryIngredientSelectionStorage(),
+    settingsStorage: settingsStorage ?? InMemoryBarUiSettingsStorage(),
+    catalogRepository: repository,
+    externalProviderSelector: selector,
+    initialSnapshot: snapshot,
+  );
+}
+
+class _StaticExternalProvider implements ExternalBarDataProvider {
+  const _StaticExternalProvider({required this.catalog});
+
+  final BarCatalog catalog;
+
+  @override
+  String get sourceId => 'test_static';
+
+  @override
+  ExternalProviderFormat get format => ExternalProviderFormat.generic;
+
+  @override
+  Future<List<Map<String, dynamic>>> fetchIngredients() async {
+    return catalog.ingredients
+        .map((ingredient) => ingredient.toJson())
+        .toList(growable: false);
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> fetchCocktails() async {
+    return catalog.cocktails
+        .map((cocktail) => cocktail.toJson())
+        .toList(growable: false);
+  }
 }
 
 final _templateCatalog = BarCatalog(

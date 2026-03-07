@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 import '../domain/models/bar_catalog.dart';
+import '../domain/models/catalog_data_source.dart';
+import '../domain/models/catalog_entity_origin.dart';
 import '../domain/models/cocktail.dart';
 import '../domain/models/ingredient.dart';
 
@@ -10,15 +12,33 @@ class BarState {
     required List<Ingredient> ingredients,
     required List<Cocktail> cocktails,
     Set<String> selectedIngredientIds = const <String>{},
+    Map<String, CatalogEntityOrigin> ingredientOrigins =
+        const <String, CatalogEntityOrigin>{},
+    Map<String, CatalogEntityOrigin> cocktailOrigins =
+        const <String, CatalogEntityOrigin>{},
+    this.catalogDataSource = CatalogDataSource.seed,
+    this.isTheCocktailDbAvailable = false,
+    this.externalSourceAvailable = false,
     this.visitorMode = false,
     this.barMenuOnlyMode = false,
   }) : ingredients = List<Ingredient>.unmodifiable(ingredients),
        cocktails = List<Cocktail>.unmodifiable(cocktails),
-       selectedIngredientIds = Set<String>.unmodifiable(selectedIngredientIds);
+       selectedIngredientIds = Set<String>.unmodifiable(selectedIngredientIds),
+       ingredientOrigins = Map<String, CatalogEntityOrigin>.unmodifiable(
+         ingredientOrigins,
+       ),
+       cocktailOrigins = Map<String, CatalogEntityOrigin>.unmodifiable(
+         cocktailOrigins,
+       );
 
   final List<Ingredient> ingredients;
   final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
+  final Map<String, CatalogEntityOrigin> ingredientOrigins;
+  final Map<String, CatalogEntityOrigin> cocktailOrigins;
+  final CatalogDataSource catalogDataSource;
+  final bool isTheCocktailDbAvailable;
+  final bool externalSourceAvailable;
   final bool visitorMode;
   final bool barMenuOnlyMode;
 
@@ -65,6 +85,11 @@ class BarState {
     List<Ingredient>? ingredients,
     List<Cocktail>? cocktails,
     Set<String>? selectedIngredientIds,
+    Map<String, CatalogEntityOrigin>? ingredientOrigins,
+    Map<String, CatalogEntityOrigin>? cocktailOrigins,
+    CatalogDataSource? catalogDataSource,
+    bool? isTheCocktailDbAvailable,
+    bool? externalSourceAvailable,
     bool? visitorMode,
     bool? barMenuOnlyMode,
   }) {
@@ -73,6 +98,13 @@ class BarState {
       cocktails: cocktails ?? this.cocktails,
       selectedIngredientIds:
           selectedIngredientIds ?? this.selectedIngredientIds,
+      ingredientOrigins: ingredientOrigins ?? this.ingredientOrigins,
+      cocktailOrigins: cocktailOrigins ?? this.cocktailOrigins,
+      catalogDataSource: catalogDataSource ?? this.catalogDataSource,
+      isTheCocktailDbAvailable:
+          isTheCocktailDbAvailable ?? this.isTheCocktailDbAvailable,
+      externalSourceAvailable:
+          externalSourceAvailable ?? this.externalSourceAvailable,
       visitorMode: visitorMode ?? this.visitorMode,
       barMenuOnlyMode: barMenuOnlyMode ?? this.barMenuOnlyMode,
     );
@@ -85,6 +117,11 @@ class BarState {
             listEquals(other.ingredients, ingredients) &&
             listEquals(other.cocktails, cocktails) &&
             setEquals(other.selectedIngredientIds, selectedIngredientIds) &&
+            mapEquals(other.ingredientOrigins, ingredientOrigins) &&
+            mapEquals(other.cocktailOrigins, cocktailOrigins) &&
+            other.catalogDataSource == catalogDataSource &&
+            other.isTheCocktailDbAvailable == isTheCocktailDbAvailable &&
+            other.externalSourceAvailable == externalSourceAvailable &&
             other.visitorMode == visitorMode &&
             other.barMenuOnlyMode == barMenuOnlyMode;
   }
@@ -96,6 +133,11 @@ class BarState {
       Object.hashAll(ingredients),
       Object.hashAll(cocktails),
       Object.hashAll(selectedIds),
+      Object.hashAll(ingredientOrigins.entries),
+      Object.hashAll(cocktailOrigins.entries),
+      catalogDataSource,
+      isTheCocktailDbAvailable,
+      externalSourceAvailable,
       visitorMode,
       barMenuOnlyMode,
     );

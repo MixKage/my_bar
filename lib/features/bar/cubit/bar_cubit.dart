@@ -1,9 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../data/bar_catalog_storage.dart';
 import '../data/bar_ui_settings_storage.dart';
 import '../data/ingredient_selection_storage.dart';
+import '../data/models/catalog_layer_models.dart';
+import '../data/providers/external_bar_data_provider.dart';
+import '../data/repositories/bar_catalog_repository.dart';
 import '../domain/models/bar_catalog.dart';
+import '../domain/models/catalog_data_source.dart';
 import '../domain/models/cocktail.dart';
 import '../domain/models/cocktail_glass_types.dart';
 import '../domain/models/cocktail_tags.dart';
@@ -13,34 +16,48 @@ import 'bar_state.dart';
 class BarCubit extends Cubit<BarState> {
   BarCubit({
     required IngredientSelectionStorage selectionStorage,
-    required BarCatalogStorage catalogStorage,
     required BarUiSettingsStorage settingsStorage,
-    required BarCatalog initialCatalog,
-    required BarCatalog templateCatalog,
+    required BarCatalogRepository catalogRepository,
+    required SelectableExternalBarDataProvider externalProviderSelector,
+    required UnifiedCatalogSnapshot initialSnapshot,
   }) : _selectionStorage = selectionStorage,
-       _catalogStorage = catalogStorage,
        _settingsStorage = settingsStorage,
-       _templateCatalog = templateCatalog,
+       _catalogRepository = catalogRepository,
+       _externalProviderSelector = externalProviderSelector,
        super(
          (() {
            final settings = settingsStorage.readSettings();
+           final ingredientIds = initialSnapshot.ingredientItems
+               .map((item) => item.id)
+               .toSet();
            return BarState(
-             ingredients: initialCatalog.ingredients,
-             cocktails: initialCatalog.cocktails,
+             ingredients: initialSnapshot.ingredientItems,
+             cocktails: initialSnapshot.cocktailItems,
              selectedIngredientIds: selectionStorage
                  .readSelectedIngredientIds()
-                 .where(initialCatalog.ingredientIds.contains)
+                 .where(ingredientIds.contains)
                  .toSet(),
+             ingredientOrigins: initialSnapshot.ingredientOrigins,
+             cocktailOrigins: initialSnapshot.cocktailOrigins,
+             catalogDataSource: externalProviderSelector.activeDataSource,
+             isTheCocktailDbAvailable:
+                 externalProviderSelector.isTheCocktailDbAvailable,
+             externalSourceAvailable: initialSnapshot.externalSourceAvailable,
              visitorMode: settings.visitorMode,
              barMenuOnlyMode: settings.barMenuOnlyMode,
            );
          })(),
-       );
+       ) {
+    _selectedCatalogDataSource = settingsStorage
+        .readSettings()
+        .catalogDataSource;
+  }
 
   final IngredientSelectionStorage _selectionStorage;
-  final BarCatalogStorage _catalogStorage;
   final BarUiSettingsStorage _settingsStorage;
-  final BarCatalog _templateCatalog;
+  final BarCatalogRepository _catalogRepository;
+  final SelectableExternalBarDataProvider _externalProviderSelector;
+  CatalogDataSource? _selectedCatalogDataSource;
 
   Future<void> toggleIngredient(String ingredientId) async {
     if (state.visitorMode) {
@@ -59,7 +76,7 @@ class BarCubit extends Cubit<BarState> {
 
     final nextState = state.copyWith(selectedIngredientIds: nextSelection);
     emit(nextState);
-    await _persist(nextState);
+    await _persistUiState(nextState);
   }
 
   Future<void> addIngredient({
@@ -87,11 +104,8 @@ class BarCubit extends Cubit<BarState> {
       isOptional: isOptional,
     );
 
-    final nextState = state.copyWith(
-      ingredients: <Ingredient>[...state.ingredients, ingredient],
-    );
-    emit(nextState);
-    await _persist(nextState);
+    final snapshot = await _catalogRepository.addIngredient(ingredient);
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> updateIngredient({
@@ -132,12 +146,10 @@ class BarCubit extends Cubit<BarState> {
       isOptional: isOptional,
     );
 
-    final nextIngredients = <Ingredient>[...state.ingredients];
-    nextIngredients[ingredientIndex] = updatedIngredient;
-
-    final nextState = state.copyWith(ingredients: nextIngredients);
-    emit(nextState);
-    await _persist(nextState);
+    final snapshot = await _catalogRepository.updateIngredient(
+      updatedIngredient,
+    );
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> addCocktail({
@@ -236,11 +248,8 @@ class BarCubit extends Cubit<BarState> {
       decorationIngredients: normalizedDecorationIngredientIds,
     );
 
-    final nextState = state.copyWith(
-      cocktails: <Cocktail>[...state.cocktails, cocktail],
-    );
-    emit(nextState);
-    await _persist(nextState);
+    final snapshot = await _catalogRepository.addCocktail(cocktail);
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> updateCocktail({
@@ -346,12 +355,8 @@ class BarCubit extends Cubit<BarState> {
       isFavorite: currentCocktail.isFavorite,
     );
 
-    final nextCocktails = <Cocktail>[...state.cocktails];
-    nextCocktails[cocktailIndex] = updatedCocktail;
-    final nextState = state.copyWith(cocktails: nextCocktails);
-
-    emit(nextState);
-    await _persist(nextState);
+    final snapshot = await _catalogRepository.updateCocktail(updatedCocktail);
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> updateCocktailPreparation({
@@ -388,12 +393,16 @@ class BarCubit extends Cubit<BarState> {
       isFavorite: currentCocktail.isFavorite,
     );
 
-    final nextCocktails = <Cocktail>[...state.cocktails];
-    nextCocktails[cocktailIndex] = updatedCocktail;
-    final nextState = state.copyWith(cocktails: nextCocktails);
+    final snapshot = await _catalogRepository.updateCocktail(updatedCocktail);
+    await _applyCatalogSnapshot(snapshot);
+  }
 
-    emit(nextState);
-    await _persist(nextState);
+  Future<void> removeCocktail(String cocktailId) async {
+    if (state.visitorMode) {
+      return;
+    }
+    final snapshot = await _catalogRepository.removeCocktail(cocktailId);
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> toggleCocktailFavorite(String cocktailId) async {
@@ -422,60 +431,78 @@ class BarCubit extends Cubit<BarState> {
       isFavorite: !current.isFavorite,
     );
 
-    final nextCocktails = <Cocktail>[...state.cocktails];
-    nextCocktails[cocktailIndex] = updated;
-    final nextState = state.copyWith(cocktails: nextCocktails);
-
-    emit(nextState);
-    await _persist(nextState);
+    final snapshot = await _catalogRepository.updateCocktail(updated);
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> setVisitorMode(bool enabled) async {
     final nextState = state.copyWith(visitorMode: enabled);
     emit(nextState);
-    await _persist(nextState);
+    await _persistUiState(nextState);
   }
 
   Future<void> setBarMenuOnlyMode(bool enabled) async {
     final nextState = state.copyWith(barMenuOnlyMode: enabled);
     emit(nextState);
-    await _persist(nextState);
+    await _persistUiState(nextState);
+  }
+
+  Future<void> setCatalogDataSource(CatalogDataSource source) async {
+    if (source == CatalogDataSource.theCocktailDb &&
+        !_externalProviderSelector.isTheCocktailDbAvailable) {
+      return;
+    }
+
+    _selectedCatalogDataSource = source;
+    _externalProviderSelector.selectDataSource(source);
+
+    final snapshot = await _catalogRepository.refreshExternalCatalog();
+    await _applyCatalogSnapshot(snapshot);
   }
 
   Future<void> importCatalog(BarCatalog catalog) async {
-    final validSelection = state.selectedIngredientIds
-        .where(catalog.ingredientIds.contains)
-        .toSet();
-
-    final nextState = BarState(
-      ingredients: catalog.ingredients,
-      cocktails: catalog.cocktails,
-      selectedIngredientIds: validSelection,
-      visitorMode: state.visitorMode,
-      barMenuOnlyMode: state.barMenuOnlyMode,
-    );
-
-    emit(nextState);
-    await _persist(nextState);
+    final snapshot = await _catalogRepository.importCatalog(catalog);
+    await _applyCatalogSnapshot(snapshot);
   }
 
   BarCatalog exportCatalog() {
-    if (state.catalog == _templateCatalog) {
+    if (!_catalogRepository.hasUserChanges) {
       throw const FormatException('Барная карта не изменена');
     }
-    return state.catalog;
+    return _catalogRepository.exportCatalog();
   }
 
-  Future<void> _persist(BarState currentState) async {
+  Future<void> _applyCatalogSnapshot(UnifiedCatalogSnapshot snapshot) async {
+    final validSelection = state.selectedIngredientIds
+        .where(snapshot.ingredientItems.map((item) => item.id).toSet().contains)
+        .toSet();
+
+    final nextState = state.copyWith(
+      ingredients: snapshot.ingredientItems,
+      cocktails: snapshot.cocktailItems,
+      ingredientOrigins: snapshot.ingredientOrigins,
+      cocktailOrigins: snapshot.cocktailOrigins,
+      catalogDataSource: _externalProviderSelector.activeDataSource,
+      isTheCocktailDbAvailable:
+          _externalProviderSelector.isTheCocktailDbAvailable,
+      externalSourceAvailable: snapshot.externalSourceAvailable,
+      selectedIngredientIds: validSelection,
+    );
+
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
+  Future<void> _persistUiState(BarState currentState) async {
     await Future.wait<void>(<Future<void>>[
       _selectionStorage.writeSelectedIngredientIds(
         currentState.selectedIngredientIds,
       ),
-      _catalogStorage.writeCatalog(currentState.catalog),
       _settingsStorage.writeSettings(
         BarUiSettings(
           visitorMode: currentState.visitorMode,
           barMenuOnlyMode: currentState.barMenuOnlyMode,
+          catalogDataSource: _selectedCatalogDataSource,
         ),
       ),
     ]);
