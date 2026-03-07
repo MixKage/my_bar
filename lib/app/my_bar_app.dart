@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import '../core/localization/app_language.dart';
+import '../core/localization/app_localization.dart';
 import '../core/theme/app_theme.dart';
 import '../features/bar/cubit/bar_cubit.dart';
+import '../features/bar/cubit/bar_state.dart';
 import '../features/bar/data/bar_ui_settings_storage.dart';
 import '../features/bar/data/ingredient_selection_storage.dart';
 import '../features/bar/data/models/catalog_layer_models.dart';
@@ -36,11 +40,20 @@ class MyBarApp extends StatelessWidget {
         externalProviderSelector: externalProviderSelector,
         initialSnapshot: initialSnapshot,
       ),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Мой Бар',
-        theme: AppTheme.dark,
-        home: const BarHomeShell(),
+      child: BlocBuilder<BarCubit, BarState>(
+        buildWhen: (previous, current) =>
+            previous.appLanguage != current.appLanguage,
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            locale: state.appLanguage.locale,
+            supportedLocales: AppLanguageX.supportedLocales,
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
+            onGenerateTitle: (context) => context.tr('Мой Бар', 'My Bar'),
+            theme: AppTheme.dark,
+            home: const BarHomeShell(),
+          );
+        },
       ),
     );
   }

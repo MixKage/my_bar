@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import 'cocktail_glass_types.dart';
 import 'cocktail_tags.dart';
@@ -148,19 +148,19 @@ class Cocktail {
             other.id == id &&
             other.name == name &&
             other.image == image &&
-            listEquals(other.ingredients, ingredients) &&
+            _listEquals(other.ingredients, ingredients) &&
             other.description == description &&
-            listEquals(other.preparationSteps, preparationSteps) &&
+            _listEquals(other.preparationSteps, preparationSteps) &&
             other.glassType == glassType &&
-            listEquals(other.tags, tags) &&
+            _listEquals(other.tags, tags) &&
             _substitutionsEquals(
               other.ingredientSubstitutions,
               ingredientSubstitutions,
             ) &&
-            mapEquals(other.ingredientAmounts, ingredientAmounts) &&
-            mapEquals(other.ingredientUnits, ingredientUnits) &&
-            listEquals(other.optionalIngredients, optionalIngredients) &&
-            listEquals(other.decorationIngredients, decorationIngredients) &&
+            _mapEquals(other.ingredientAmounts, ingredientAmounts) &&
+            _mapEquals(other.ingredientUnits, ingredientUnits) &&
+            _listEquals(other.optionalIngredients, optionalIngredients) &&
+            _listEquals(other.decorationIngredients, decorationIngredients) &&
             other.isFavorite == isFavorite;
   }
 
@@ -288,7 +288,7 @@ class Cocktail {
     }
     for (final entry in left.entries) {
       final rightValue = right[entry.key];
-      if (rightValue == null || !listEquals(entry.value, rightValue)) {
+      if (rightValue == null || !_listEquals(entry.value, rightValue)) {
         return false;
       }
     }
@@ -313,4 +313,34 @@ class Cocktail {
       yield Object.hash(key, value[key]);
     }
   }
+}
+
+bool _listEquals<T>(List<T>? left, List<T>? right) {
+  if (identical(left, right)) {
+    return true;
+  }
+  if (left == null || right == null || left.length != right.length) {
+    return false;
+  }
+  for (var index = 0; index < left.length; index++) {
+    if (left[index] != right[index]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool _mapEquals<K, V>(Map<K, V>? left, Map<K, V>? right) {
+  if (identical(left, right)) {
+    return true;
+  }
+  if (left == null || right == null || left.length != right.length) {
+    return false;
+  }
+  for (final entry in left.entries) {
+    if (right[entry.key] != entry.value) {
+      return false;
+    }
+  }
+  return true;
 }

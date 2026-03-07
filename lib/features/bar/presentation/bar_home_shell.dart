@@ -11,6 +11,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/localization/app_language.dart';
+import '../../../core/localization/app_localization.dart';
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
 import '../domain/models/catalog_data_source.dart';
@@ -156,7 +158,9 @@ class _BarHomeShellState extends State<BarHomeShell> {
                 if (!isVisitorMode) ...<Widget>[
                   ListTile(
                     leading: const Icon(Icons.add_box_rounded),
-                    title: const Text('Добавить ингредиент'),
+                    title: Text(
+                      context.tr('Добавить ингредиент', 'Add ingredient'),
+                    ),
                     onTap: () => Navigator.pop(
                       context,
                       _BarManagementAction.addIngredient,
@@ -164,7 +168,9 @@ class _BarHomeShellState extends State<BarHomeShell> {
                   ),
                   ListTile(
                     leading: const Icon(Icons.local_bar_rounded),
-                    title: const Text('Добавить коктейль'),
+                    title: Text(
+                      context.tr('Добавить коктейль', 'Add cocktail'),
+                    ),
                     onTap: () => Navigator.pop(
                       context,
                       _BarManagementAction.addCocktail,
@@ -174,13 +180,13 @@ class _BarHomeShellState extends State<BarHomeShell> {
                 ],
                 ListTile(
                   leading: const Icon(Icons.settings_rounded),
-                  title: const Text('Настройки'),
+                  title: Text(context.tr('Настройки', 'Settings')),
                   onTap: () =>
                       Navigator.pop(context, _BarManagementAction.settings),
                 ),
                 ListTile(
                   leading: const Icon(Icons.info_outline_rounded),
-                  title: const Text('О приложении'),
+                  title: Text(context.tr('О приложении', 'About app')),
                   onTap: () =>
                       Navigator.pop(context, _BarManagementAction.about),
                 ),
@@ -212,6 +218,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
     var visitorMode = cubit.state.visitorMode;
     var barMenuOnlyMode = cubit.state.barMenuOnlyMode;
     var catalogDataSource = cubit.state.catalogDataSource;
+    var appLanguage = cubit.state.appLanguage;
     final isTheCocktailDbAvailable = cubit.state.isTheCocktailDbAvailable;
 
     final action = await showModalBottomSheet<_BarSettingsAction>(
@@ -233,16 +240,26 @@ class _BarHomeShellState extends State<BarHomeShell> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          const ListTile(
-                            leading: Icon(Icons.settings_suggest_rounded),
-                            title: Text('Настройки барной карты'),
+                          ListTile(
+                            leading: const Icon(Icons.settings_suggest_rounded),
+                            title: Text(
+                              context.tr(
+                                'Настройки барной карты',
+                                'Bar card settings',
+                              ),
+                            ),
                           ),
                           SwitchListTile.adaptive(
                             value: visitorMode,
                             activeThumbColor: const Color(0xFF8FA3FF),
-                            title: const Text('Режим посетителя'),
-                            subtitle: const Text(
-                              'Скрывает кнопки с редактированием',
+                            title: Text(
+                              context.tr('Режим посетителя', 'Visitor mode'),
+                            ),
+                            subtitle: Text(
+                              context.tr(
+                                'Скрывает кнопки с редактированием',
+                                'Hides editing controls',
+                              ),
                             ),
                             onChanged: (value) async {
                               setModalState(() => visitorMode = value);
@@ -252,9 +269,17 @@ class _BarHomeShellState extends State<BarHomeShell> {
                           SwitchListTile.adaptive(
                             value: barMenuOnlyMode,
                             activeThumbColor: const Color(0xFF8FA3FF),
-                            title: const Text('Режим барной карты'),
-                            subtitle: const Text(
-                              'Показывает только страницу "Барная карта"',
+                            title: Text(
+                              context.tr(
+                                'Режим барной карты',
+                                'Bar card only mode',
+                              ),
+                            ),
+                            subtitle: Text(
+                              context.tr(
+                                'Показывает только страницу "Барная карта"',
+                                'Shows only the "Bar Menu" page',
+                              ),
                             ),
                             onChanged: (value) async {
                               setModalState(() => barMenuOnlyMode = value);
@@ -265,9 +290,81 @@ class _BarHomeShellState extends State<BarHomeShell> {
                             },
                           ),
                           const Divider(height: 16),
-                          const ListTile(
-                            leading: Icon(Icons.storage_rounded),
-                            title: Text('Источник каталога коктейлей'),
+                          ListTile(
+                            leading: const Icon(Icons.language_rounded),
+                            title: Text(context.tr('Язык', 'Language')),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                            child: SegmentedButton<AppLanguage>(
+                              showSelectedIcon: false,
+                              selected: <AppLanguage>{appLanguage},
+                              segments: <ButtonSegment<AppLanguage>>[
+                                ButtonSegment<AppLanguage>(
+                                  value: AppLanguage.system,
+                                  label: Text(
+                                    context.appLanguageLabel(
+                                      AppLanguage.system,
+                                    ),
+                                  ),
+                                ),
+                                ButtonSegment<AppLanguage>(
+                                  value: AppLanguage.russian,
+                                  label: Text(
+                                    context.appLanguageLabel(
+                                      AppLanguage.russian,
+                                    ),
+                                  ),
+                                ),
+                                ButtonSegment<AppLanguage>(
+                                  value: AppLanguage.english,
+                                  label: Text(
+                                    context.appLanguageLabel(
+                                      AppLanguage.english,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              onSelectionChanged: (selection) async {
+                                if (selection.isEmpty) {
+                                  return;
+                                }
+                                final nextLanguage = selection.first;
+                                setModalState(() => appLanguage = nextLanguage);
+                                await cubit.setAppLanguage(nextLanguage);
+                                if (!mounted) {
+                                  return;
+                                }
+                                setModalState(
+                                  () => appLanguage = cubit.state.appLanguage,
+                                );
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            dense: true,
+                            title: Text(context.appLanguageLabel(appLanguage)),
+                            subtitle: Text(
+                              appLanguage == AppLanguage.system
+                                  ? context.tr(
+                                      'По умолчанию определяется системным языком устройства.',
+                                      'By default uses the device system language.',
+                                    )
+                                  : context.tr(
+                                      'Выбор сохраняется между запусками приложения.',
+                                      'Selection is preserved between app launches.',
+                                    ),
+                            ),
+                          ),
+                          const Divider(height: 16),
+                          ListTile(
+                            leading: const Icon(Icons.storage_rounded),
+                            title: Text(
+                              context.tr(
+                                'Источник каталога коктейлей',
+                                'Cocktail catalog source',
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -277,12 +374,18 @@ class _BarHomeShellState extends State<BarHomeShell> {
                               segments: <ButtonSegment<CatalogDataSource>>[
                                 ButtonSegment<CatalogDataSource>(
                                   value: CatalogDataSource.seed,
-                                  label: Text(CatalogDataSource.seed.title),
+                                  label: Text(
+                                    context.catalogDataSourceTitle(
+                                      CatalogDataSource.seed,
+                                    ),
+                                  ),
                                 ),
                                 ButtonSegment<CatalogDataSource>(
                                   value: CatalogDataSource.theCocktailDb,
                                   label: Text(
-                                    CatalogDataSource.theCocktailDb.title,
+                                    context.catalogDataSourceTitle(
+                                      CatalogDataSource.theCocktailDb,
+                                    ),
                                   ),
                                   enabled: isTheCocktailDbAvailable,
                                 ),
@@ -308,19 +411,31 @@ class _BarHomeShellState extends State<BarHomeShell> {
                           ),
                           ListTile(
                             dense: true,
-                            title: Text(catalogDataSource.title),
+                            title: Text(
+                              context.catalogDataSourceTitle(catalogDataSource),
+                            ),
                             subtitle: Text(
                               catalogDataSource ==
                                           CatalogDataSource.theCocktailDb &&
                                       !isTheCocktailDbAvailable
-                                  ? 'Недоступно: проверьте MY_BAR_THECOCKTAILDB_* конфигурацию'
-                                  : catalogDataSource.description,
+                                  ? context.tr(
+                                      'Недоступно: проверьте MY_BAR_THECOCKTAILDB_* конфигурацию',
+                                      'Unavailable: check MY_BAR_THECOCKTAILDB_* config',
+                                    )
+                                  : context.catalogDataSourceDescription(
+                                      catalogDataSource,
+                                    ),
                             ),
                           ),
                           const Divider(height: 16),
                           ListTile(
                             leading: const Icon(Icons.upload_file_rounded),
-                            title: const Text('Импортировать барную карту'),
+                            title: Text(
+                              context.tr(
+                                'Импортировать барную карту',
+                                'Import bar catalog',
+                              ),
+                            ),
                             onTap: () => Navigator.pop(
                               context,
                               _BarSettingsAction.import,
@@ -328,7 +443,12 @@ class _BarHomeShellState extends State<BarHomeShell> {
                           ),
                           ListTile(
                             leading: const Icon(Icons.download_rounded),
-                            title: const Text('Экспортировать барную карту'),
+                            title: Text(
+                              context.tr(
+                                'Экспортировать барную карту',
+                                'Export bar catalog',
+                              ),
+                            ),
                             onTap: () => Navigator.pop(
                               context,
                               _BarSettingsAction.export,
@@ -439,7 +559,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
                     },
                     blendMode: BlendMode.srcIn,
                     child: Text(
-                      'Мой Бар',
+                      context.tr('Мой Бар', 'My Bar'),
                       style: Theme.of(dialogContext).textTheme.titleLarge
                           ?.copyWith(
                             color: Colors.white,
@@ -450,7 +570,10 @@ class _BarHomeShellState extends State<BarHomeShell> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Версия $_appVersionLabel',
+                    context.tr(
+                      'Версия ${_appVersionLabel.isEmpty ? 'неизвестно' : _appVersionLabel}',
+                      'Version ${_appVersionLabel.isEmpty ? 'unknown' : _appVersionLabel}',
+                    ),
                     style: TextStyle(
                       color: Color(0xFFAEC0F0),
                       fontSize: 12,
@@ -458,10 +581,13 @@ class _BarHomeShellState extends State<BarHomeShell> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const Text(
-                    'Неоновый помощник для домашнего бара: отмечайте ингредиенты, находите доступные коктейли и настраивайте собственную барную карту.',
+                  Text(
+                    context.tr(
+                      'Неоновый помощник для домашнего бара: отмечайте ингредиенты, находите доступные коктейли и настраивайте собственную барную карту.',
+                      'Neon helper for your home bar: track ingredients, find available cocktails, and customize your bar catalog.',
+                    ),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xFFD7DEF5),
                       fontSize: 14,
                       height: 1.35,
@@ -471,7 +597,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
                   _PressableAboutButton(
                     onPressed: _openDeveloperSite,
                     icon: Icons.open_in_new_rounded,
-                    label: 'Сайт разработчика',
+                    label: context.tr('Сайт разработчика', 'Developer website'),
                     foregroundColor: const Color(0xFFCFE3FF),
                     backgroundColor: const Color(0x33121A38),
                     pressedBackgroundColor: const Color(0x551B2954),
@@ -481,7 +607,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
                   _PressableAboutButton(
                     onPressed: () => Navigator.of(dialogContext).pop(),
                     icon: Icons.check_rounded,
-                    label: 'Понятно',
+                    label: context.tr('Понятно', 'OK'),
                     foregroundColor: Colors.white,
                     backgroundColor: const Color(0xFF5C63FF),
                     pressedBackgroundColor: const Color(0xFF4D53D8),
@@ -511,9 +637,15 @@ class _BarHomeShellState extends State<BarHomeShell> {
         isDecoration: input.isDecoration,
         isOptional: input.isOptional,
       );
-      _showSnackBar('Ингредиент добавлен');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.tr('Ингредиент добавлен', 'Ingredient added'));
     } on FormatException catch (error) {
-      _showSnackBar(error.message);
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.localizeErrorMessage(error.message));
     }
   }
 
@@ -532,7 +664,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
       if (!mounted) {
         return;
       }
-      setState(() => _appVersionLabel = 'неизвестно');
+      setState(() => _appVersionLabel = '');
     }
   }
 
@@ -542,14 +674,27 @@ class _BarHomeShellState extends State<BarHomeShell> {
         _developerSiteUri,
         mode: LaunchMode.externalApplication,
       );
-      if (!launched && mounted) {
-        _showSnackBar('Не удалось открыть сайт разработчика');
+      if (!mounted) {
+        return;
+      }
+      if (!launched) {
+        _showSnackBar(
+          context.tr(
+            'Не удалось открыть сайт разработчика',
+            'Failed to open developer website',
+          ),
+        );
       }
     } catch (_) {
       if (!mounted) {
         return;
       }
-      _showSnackBar('Не удалось открыть сайт разработчика');
+      _showSnackBar(
+        context.tr(
+          'Не удалось открыть сайт разработчика',
+          'Failed to open developer website',
+        ),
+      );
     }
   }
 
@@ -572,9 +717,15 @@ class _BarHomeShellState extends State<BarHomeShell> {
         isDecoration: input.isDecoration,
         isOptional: input.isOptional,
       );
-      _showSnackBar('Ингредиент обновлён');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.tr('Ингредиент обновлён', 'Ingredient updated'));
     } on FormatException catch (error) {
-      _showSnackBar(error.message);
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.localizeErrorMessage(error.message));
     }
   }
 
@@ -582,7 +733,12 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final cubit = context.read<BarCubit>();
     final ingredients = cubit.state.ingredients;
     if (ingredients.isEmpty) {
-      _showSnackBar('Сначала добавь хотя бы один ингредиент');
+      _showSnackBar(
+        context.tr(
+          'Сначала добавь хотя бы один ингредиент',
+          'Add at least one ingredient first',
+        ),
+      );
       return;
     }
 
@@ -610,9 +766,15 @@ class _BarHomeShellState extends State<BarHomeShell> {
         decorationIngredientIds: input.decorationIngredientIds,
         tags: input.tags,
       );
-      _showSnackBar('Коктейль добавлен');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.tr('Коктейль добавлен', 'Cocktail added'));
     } on FormatException catch (error) {
-      _showSnackBar(error.message);
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.localizeErrorMessage(error.message));
     }
   }
 
@@ -646,9 +808,15 @@ class _BarHomeShellState extends State<BarHomeShell> {
         decorationIngredientIds: input.decorationIngredientIds,
         tags: input.tags,
       );
-      _showSnackBar('Коктейль обновлён');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.tr('Коктейль обновлён', 'Cocktail updated'));
     } on FormatException catch (error) {
-      _showSnackBar(error.message);
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.localizeErrorMessage(error.message));
     }
   }
 
@@ -669,11 +837,32 @@ class _BarHomeShellState extends State<BarHomeShell> {
       final catalog = _jsonCodec.decode(content);
 
       await cubit.importCatalog(catalog);
-      _showSnackBar('Барная карта импортирована');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(
+        context.tr('Барная карта импортирована', 'Bar catalog imported'),
+      );
     } on FormatException catch (error) {
-      _showSnackBar('Ошибка JSON: ${error.message}');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(
+        context.tr(
+          'Ошибка JSON: ${context.localizeErrorMessage(error.message)}',
+          'JSON error: ${context.localizeErrorMessage(error.message)}',
+        ),
+      );
     } catch (error) {
-      _showSnackBar('Не удалось импортировать файл: $error');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(
+        context.tr(
+          'Не удалось импортировать файл: $error',
+          'Failed to import file: $error',
+        ),
+      );
     }
   }
 
@@ -683,19 +872,44 @@ class _BarHomeShellState extends State<BarHomeShell> {
       final catalog = cubit.exportCatalog();
       final payload = _jsonCodec.encode(catalog);
       final file = await _writeExportFile(payload);
+      if (!mounted) {
+        return;
+      }
 
       await SharePlus.instance.share(
         ShareParams(
           files: <XFile>[XFile(file.path)],
-          text: 'Экспорт барной карты "Мой Бар"',
+          text: context.tr(
+            'Экспорт барной карты "Мой Бар"',
+            'Export of "My Bar" catalog',
+          ),
         ),
       );
 
-      _showSnackBar('Барная карта подготовлена к экспорту');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(
+        context.tr(
+          'Барная карта подготовлена к экспорту',
+          'Bar catalog is ready to export',
+        ),
+      );
     } on FormatException catch (error) {
-      _showSnackBar(error.message);
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(context.localizeErrorMessage(error.message));
     } catch (error) {
-      _showSnackBar('Не удалось экспортировать файл: $error');
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar(
+        context.tr(
+          'Не удалось экспортировать файл: $error',
+          'Failed to export file: $error',
+        ),
+      );
     }
   }
 

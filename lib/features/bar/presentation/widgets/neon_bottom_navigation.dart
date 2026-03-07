@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/localization/app_localization.dart';
+
 const double kNeonBottomNavigationHeight = 74;
 const double kNeonBottomNavigationHorizontalPadding = 16;
 const double kNeonBottomNavigationBottomMargin = 22;
@@ -48,13 +50,13 @@ class NeonBottomNavigation extends StatelessWidget {
                   _NavItem(
                     selected: currentIndex == 0,
                     icon: Icons.liquor_rounded,
-                    title: 'Ингридиенты',
+                    title: context.tr('Ингридиенты', 'Ingredients'),
                     onTap: () => onChanged(0),
                   ),
                   _NavItem(
                     selected: currentIndex == 1,
                     icon: Icons.local_bar_rounded,
-                    title: 'Барная карта',
+                    title: context.tr('Барная карта', 'Bar Menu'),
                     onTap: () => onChanged(1),
                   ),
                 ],
@@ -67,7 +69,7 @@ class NeonBottomNavigation extends StatelessWidget {
   }
 }
 
-class _NavItem extends StatelessWidget {
+class _NavItem extends StatefulWidget {
   const _NavItem({
     required this.selected,
     required this.icon,
@@ -81,50 +83,104 @@ class _NavItem extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<_NavItem> createState() => _NavItemState();
+}
+
+class _NavItemState extends State<_NavItem> {
+  bool _pressed = false;
+
+  void _setPressed(bool value) {
+    if (_pressed == value || !mounted) {
+      return;
+    }
+    setState(() => _pressed = value);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final targetForegroundColor = widget.selected
+        ? Colors.white
+        : const Color(0xFF98A6D2);
+    final pressedOverlayBase = widget.selected
+        ? const Color(0x3A95A6FF)
+        : const Color(0x1F95A6FF);
+    final selectedBackgroundColor = widget.selected
+        ? const Color(0x2D95A6FF)
+        : Colors.transparent;
+    final selectedShadowColor = widget.selected
+        ? const Color(0x55598DFF)
+        : Colors.transparent;
+
     return Expanded(
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          color: selected ? const Color(0x2D95A6FF) : Colors.transparent,
-          boxShadow: selected
-              ? const <BoxShadow>[
+      child: Semantics(
+        button: true,
+        selected: widget.selected,
+        label: widget.title,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.onTap,
+          onTapDown: (_) => _setPressed(true),
+          onTapUp: (_) => _setPressed(false),
+          onTapCancel: () => _setPressed(false),
+          child: AnimatedScale(
+            duration: const Duration(milliseconds: 110),
+            curve: Curves.easeOut,
+            scale: _pressed ? 0.97 : 1,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 280),
+              curve: Curves.easeInOutCubic,
+              margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: selectedBackgroundColor,
+                boxShadow: <BoxShadow>[
                   BoxShadow(
-                    color: Color(0x55598DFF),
-                    blurRadius: 16,
-                    spreadRadius: 1,
+                    color: selectedShadowColor,
+                    blurRadius: widget.selected ? 16 : 12,
+                    spreadRadius: widget.selected ? 1 : 0,
                   ),
-                ]
-              : null,
-        ),
-        child: Material(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(18),
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(18),
-            splashColor: const Color(0x3395A6FF),
-            highlightColor: const Color(0x1F95A6FF),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(
-                  icon,
-                  color: selected ? Colors.white : const Color(0xFF98A6D2),
+                ],
+              ),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                curve: Curves.easeOut,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  color: _pressed ? pressedOverlayBase : Colors.transparent,
                 ),
-                const SizedBox(height: 3),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: selected ? Colors.white : const Color(0xFF98A6D2),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TweenAnimationBuilder<Color?>(
+                      duration: const Duration(milliseconds: 260),
+                      curve: Curves.easeInOutCubic,
+                      tween: ColorTween(end: targetForegroundColor),
+                      builder: (context, color, _) {
+                        return Icon(
+                          widget.icon,
+                          color: color ?? targetForegroundColor,
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 3),
+                    TweenAnimationBuilder<Color?>(
+                      duration: const Duration(milliseconds: 260),
+                      curve: Curves.easeInOutCubic,
+                      tween: ColorTween(end: targetForegroundColor),
+                      builder: (context, color, _) {
+                        return Text(
+                          widget.title,
+                          style: TextStyle(
+                            color: color ?? targetForegroundColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

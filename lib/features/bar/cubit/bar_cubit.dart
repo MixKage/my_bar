@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/localization/app_language.dart';
 import '../data/bar_ui_settings_storage.dart';
 import '../data/ingredient_selection_storage.dart';
 import '../data/models/catalog_layer_models.dart';
@@ -45,6 +46,7 @@ class BarCubit extends Cubit<BarState> {
              externalSourceAvailable: initialSnapshot.externalSourceAvailable,
              visitorMode: settings.visitorMode,
              barMenuOnlyMode: settings.barMenuOnlyMode,
+             appLanguage: settings.appLanguage,
            );
          })(),
        ) {
@@ -460,6 +462,15 @@ class BarCubit extends Cubit<BarState> {
     await _applyCatalogSnapshot(snapshot);
   }
 
+  Future<void> setAppLanguage(AppLanguage appLanguage) async {
+    if (state.appLanguage == appLanguage) {
+      return;
+    }
+    final nextState = state.copyWith(appLanguage: appLanguage);
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
   Future<void> importCatalog(BarCatalog catalog) async {
     final snapshot = await _catalogRepository.importCatalog(catalog);
     await _applyCatalogSnapshot(snapshot);
@@ -503,6 +514,7 @@ class BarCubit extends Cubit<BarState> {
           visitorMode: currentState.visitorMode,
           barMenuOnlyMode: currentState.barMenuOnlyMode,
           catalogDataSource: _selectedCatalogDataSource,
+          appLanguage: currentState.appLanguage,
         ),
       ),
     ]);

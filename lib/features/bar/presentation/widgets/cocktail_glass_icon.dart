@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/localization/app_localization.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 
 const Map<String, String> _glassTypeAssetPath = <String, String>{
@@ -52,7 +53,8 @@ class CocktailGlassIcon extends StatelessWidget {
       height: size,
       fit: BoxFit.contain,
       colorFilter: colorFilter,
-      semanticsLabel: semanticLabel ?? glassType,
+      semanticsLabel:
+          semanticLabel ?? context.cocktailGlassTypeLabel(glassType),
       placeholderBuilder: (context) => SizedBox(
         width: size,
         height: size,

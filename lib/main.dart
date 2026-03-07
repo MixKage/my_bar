@@ -152,18 +152,8 @@ _ExternalProviderBundle _buildExternalProviderBundle() {
     apiKey: theCocktailDbApiKey,
   );
 
-  // Explicit seed mode keeps previous behavior and skips TheCocktailDB as default.
-  if (providerMode == 'seed') {
-    return _ExternalProviderBundle(
-      seedProvider: assetProvider,
-      bootstrapDefaultProvider: seedDefaultProvider,
-      bootstrapDefaultDataSource: CatalogDataSource.seed,
-      theCocktailDbProvider: theCocktailDbProvider,
-    );
-  }
-
-  // Default mode (including empty MY_BAR_EXTERNAL_PROVIDER) prefers TheCocktailDB.
-  if (theCocktailDbProvider != null) {
+  // Explicit TheCocktailDB mode enables network source as bootstrap default.
+  if (providerMode == 'thecocktaildb' && theCocktailDbProvider != null) {
     return _ExternalProviderBundle(
       seedProvider: assetProvider,
       bootstrapDefaultProvider: theCocktailDbProvider,
@@ -172,6 +162,7 @@ _ExternalProviderBundle _buildExternalProviderBundle() {
     );
   }
 
+  // Default runtime mode is offline-first seed snapshot.
   return _ExternalProviderBundle(
     seedProvider: assetProvider,
     bootstrapDefaultProvider: seedDefaultProvider,

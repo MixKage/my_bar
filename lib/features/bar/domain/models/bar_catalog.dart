@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import 'cocktail.dart';
 import 'ingredient.dart';
@@ -36,10 +36,25 @@ class BarCatalog {
   bool operator ==(Object other) {
     return identical(this, other) ||
         other is BarCatalog &&
-            listEquals(other.ingredients, ingredients) &&
-            listEquals(other.cocktails, cocktails);
+            _listEquals(other.ingredients, ingredients) &&
+            _listEquals(other.cocktails, cocktails);
   }
 
   @override
   int get hashCode => Object.hashAll(<Object>[...ingredients, ...cocktails]);
+}
+
+bool _listEquals<T>(List<T>? left, List<T>? right) {
+  if (identical(left, right)) {
+    return true;
+  }
+  if (left == null || right == null || left.length != right.length) {
+    return false;
+  }
+  for (var index = 0; index < left.length; index++) {
+    if (left[index] != right[index]) {
+      return false;
+    }
+  }
+  return true;
 }

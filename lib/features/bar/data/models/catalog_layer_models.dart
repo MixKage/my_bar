@@ -1,10 +1,40 @@
-import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 import '../../domain/models/bar_catalog.dart';
 import '../../domain/models/catalog_entity_origin.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
 import '../utils/catalog_id_utils.dart';
+
+bool listEquals<T>(List<T>? left, List<T>? right) {
+  if (identical(left, right)) {
+    return true;
+  }
+  if (left == null || right == null || left.length != right.length) {
+    return false;
+  }
+  for (var index = 0; index < left.length; index++) {
+    if (left[index] != right[index]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool mapEquals<K, V>(Map<K, V>? left, Map<K, V>? right) {
+  if (identical(left, right)) {
+    return true;
+  }
+  if (left == null || right == null || left.length != right.length) {
+    return false;
+  }
+  for (final entry in left.entries) {
+    if (right[entry.key] != entry.value) {
+      return false;
+    }
+  }
+  return true;
+}
 
 @immutable
 class CatalogIdentity {

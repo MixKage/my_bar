@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/localization/app_language.dart';
 import '../domain/models/catalog_data_source.dart';
 
 class BarUiSettings {
@@ -7,16 +8,19 @@ class BarUiSettings {
     this.visitorMode = false,
     this.barMenuOnlyMode = false,
     this.catalogDataSource,
+    this.appLanguage = AppLanguage.system,
   });
 
   final bool visitorMode;
   final bool barMenuOnlyMode;
   final CatalogDataSource? catalogDataSource;
+  final AppLanguage appLanguage;
 
   BarUiSettings copyWith({
     bool? visitorMode,
     bool? barMenuOnlyMode,
     CatalogDataSource? catalogDataSource,
+    AppLanguage? appLanguage,
     bool clearCatalogDataSource = false,
   }) {
     return BarUiSettings(
@@ -25,6 +29,7 @@ class BarUiSettings {
       catalogDataSource: clearCatalogDataSource
           ? null
           : (catalogDataSource ?? this.catalogDataSource),
+      appLanguage: appLanguage ?? this.appLanguage,
     );
   }
 }
@@ -40,6 +45,7 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
   static const String visitorModeKey = 'bar_ui_visitor_mode';
   static const String barMenuOnlyModeKey = 'bar_ui_bar_menu_only_mode';
   static const String catalogDataSourceKey = 'bar_ui_catalog_data_source';
+  static const String appLanguageKey = 'bar_ui_app_language';
 
   final SharedPreferences _preferences;
 
@@ -50,6 +56,9 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
       visitorMode: _preferences.getBool(visitorModeKey) ?? false,
       barMenuOnlyMode: _preferences.getBool(barMenuOnlyModeKey) ?? false,
       catalogDataSource: CatalogDataSourceX.tryParse(sourceRaw),
+      appLanguage: AppLanguageX.fromStorage(
+        _preferences.getString(appLanguageKey),
+      ),
     );
   }
 
@@ -58,6 +67,7 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
     final futures = <Future<void>>[
       _preferences.setBool(visitorModeKey, settings.visitorMode),
       _preferences.setBool(barMenuOnlyModeKey, settings.barMenuOnlyMode),
+      _preferences.setString(appLanguageKey, settings.appLanguage.storageValue),
     ];
 
     final catalogSource = settings.catalogDataSource;

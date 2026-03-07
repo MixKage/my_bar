@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../core/localization/app_language.dart';
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/catalog_data_source.dart';
 import '../domain/models/catalog_entity_origin.dart';
@@ -21,6 +22,7 @@ class BarState {
     this.externalSourceAvailable = false,
     this.visitorMode = false,
     this.barMenuOnlyMode = false,
+    this.appLanguage = AppLanguage.system,
   }) : ingredients = List<Ingredient>.unmodifiable(ingredients),
        cocktails = List<Cocktail>.unmodifiable(cocktails),
        selectedIngredientIds = Set<String>.unmodifiable(selectedIngredientIds),
@@ -41,6 +43,7 @@ class BarState {
   final bool externalSourceAvailable;
   final bool visitorMode;
   final bool barMenuOnlyMode;
+  final AppLanguage appLanguage;
 
   Map<String, Ingredient> get ingredientsById {
     return <String, Ingredient>{
@@ -92,6 +95,7 @@ class BarState {
     bool? externalSourceAvailable,
     bool? visitorMode,
     bool? barMenuOnlyMode,
+    AppLanguage? appLanguage,
   }) {
     return BarState(
       ingredients: ingredients ?? this.ingredients,
@@ -107,6 +111,7 @@ class BarState {
           externalSourceAvailable ?? this.externalSourceAvailable,
       visitorMode: visitorMode ?? this.visitorMode,
       barMenuOnlyMode: barMenuOnlyMode ?? this.barMenuOnlyMode,
+      appLanguage: appLanguage ?? this.appLanguage,
     );
   }
 
@@ -123,7 +128,8 @@ class BarState {
             other.isTheCocktailDbAvailable == isTheCocktailDbAvailable &&
             other.externalSourceAvailable == externalSourceAvailable &&
             other.visitorMode == visitorMode &&
-            other.barMenuOnlyMode == barMenuOnlyMode;
+            other.barMenuOnlyMode == barMenuOnlyMode &&
+            other.appLanguage == appLanguage;
   }
 
   @override
@@ -140,6 +146,7 @@ class BarState {
       externalSourceAvailable,
       visitorMode,
       barMenuOnlyMode,
+      appLanguage,
     );
   }
 }

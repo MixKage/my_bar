@@ -1,6 +1,7 @@
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/localization/app_localization.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
@@ -11,16 +12,16 @@ import '../widgets/neon_bottom_navigation.dart';
 enum IngredientSortMode { alphabet, availability, category, demand }
 
 extension on IngredientSortMode {
-  String get label {
+  String label(BuildContext context) {
     switch (this) {
       case IngredientSortMode.alphabet:
-        return 'По алфавиту';
+        return context.tr('По алфавиту', 'Alphabetical');
       case IngredientSortMode.availability:
-        return 'По наличию';
+        return context.tr('По наличию', 'By availability');
       case IngredientSortMode.category:
-        return 'По типу напитка';
+        return context.tr('По типу напитка', 'By drink type');
       case IngredientSortMode.demand:
-        return 'По востребованности';
+        return context.tr('По востребованности', 'By demand');
     }
   }
 }
@@ -144,7 +145,7 @@ class _RawBarPageState extends State<RawBarPage> {
                           children: <Widget>[
                             Expanded(
                               child: Text(
-                                'Мой Бар',
+                                context.tr('Мой Бар', 'My Bar'),
                                 style: Theme.of(context).textTheme.displaySmall
                                     ?.copyWith(
                                       foreground: Paint()
@@ -166,29 +167,38 @@ class _RawBarPageState extends State<RawBarPage> {
                               ),
                             ),
                             IconButton.filledTonal(
-                              tooltip: 'Фильтры',
+                              tooltip: context.tr('Фильтры', 'Filters'),
                               onPressed: _openSortModeSheet,
                               icon: const Icon(Icons.filter_list_rounded),
                             ),
                             const SizedBox(width: 8),
                             IconButton.filledTonal(
-                              tooltip: 'Управление баром',
+                              tooltip: context.tr(
+                                'Управление баром',
+                                'Bar management',
+                              ),
                               onPressed: widget.onManagePressed,
                               icon: const Icon(Icons.tune_rounded),
                             ),
                           ],
                         ),
                         const SizedBox(height: 6),
-                        const Text(
-                          'Выбери бутылки и ингредиенты, которые уже есть дома',
-                          style: TextStyle(
+                        Text(
+                          context.tr(
+                            'Выбери бутылки и ингредиенты, которые уже есть дома',
+                            'Select bottles and ingredients you already have at home',
+                          ),
+                          style: const TextStyle(
                             color: Color(0xFFB8C1D9),
                             fontSize: 15,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Сортировка: ${_sortMode.label}',
+                          context.tr(
+                            'Сортировка: ${_sortMode.label(context)}',
+                            'Sorting: ${_sortMode.label(context)}',
+                          ),
                           style: const TextStyle(
                             color: Color(0xFF8FA0CC),
                             fontSize: 12,
@@ -196,11 +206,14 @@ class _RawBarPageState extends State<RawBarPage> {
                           ),
                         ),
                         if (!widget.allowSelection)
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
-                              'Режим посетителя: отметка ингредиентов отключена',
-                              style: TextStyle(
+                              context.tr(
+                                'Режим посетителя: отметка ингредиентов отключена',
+                                'Visitor mode: ingredient selection is disabled',
+                              ),
+                              style: const TextStyle(
                                 color: Color(0xFF94A3CD),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -233,13 +246,16 @@ class _RawBarPageState extends State<RawBarPage> {
                     bottomContentPadding,
                   ),
                   sliver: filteredIngredients.isEmpty
-                      ? const SliverToBoxAdapter(
+                      ? SliverToBoxAdapter(
                           child: Padding(
                             padding: EdgeInsets.only(top: 46),
                             child: Center(
                               child: Text(
-                                'Ничего не найдено',
-                                style: TextStyle(
+                                context.tr(
+                                  'Ничего не найдено',
+                                  'Nothing found',
+                                ),
+                                style: const TextStyle(
                                   color: Color(0xFFA8B0C8),
                                   fontSize: 16,
                                 ),
@@ -375,13 +391,15 @@ class _RawBarPageState extends State<RawBarPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.filter_list_rounded),
-                  title: Text('Сортировка ингредиентов'),
+                ListTile(
+                  leading: const Icon(Icons.filter_list_rounded),
+                  title: Text(
+                    context.tr('Сортировка ингредиентов', 'Ingredient sorting'),
+                  ),
                 ),
                 ...IngredientSortMode.values.map(
                   (mode) => ListTile(
-                    title: Text(mode.label),
+                    title: Text(mode.label(context)),
                     trailing: mode == _sortMode
                         ? const Icon(
                             Icons.check_circle_rounded,
@@ -487,11 +505,14 @@ class _IngredientSearchField extends StatelessWidget {
             onChanged: onChanged,
             textAlignVertical: TextAlignVertical.center,
             style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
               isDense: true,
               contentPadding: EdgeInsets.symmetric(horizontal: 14),
-              hintText: 'Поиск ингредиентов...',
+              hintText: context.tr(
+                'Поиск ингредиентов...',
+                'Search ingredients...',
+              ),
               hintStyle: TextStyle(color: Color(0xFF7180A7)),
               prefixIcon: Icon(Icons.search_rounded, color: Color(0xFFA4B2DD)),
               prefixIconConstraints: BoxConstraints(
@@ -641,13 +662,19 @@ class IngredientCard extends StatelessWidget {
                               runSpacing: 4,
                               children: <Widget>[
                                 if (ingredient.isDecoration)
-                                  const _IngredientAttributePill(
-                                    label: 'Украшение',
+                                  _IngredientAttributePill(
+                                    label: context.tr(
+                                      'Украшение',
+                                      'Decoration',
+                                    ),
                                     color: Color(0xFF7CCBFF),
                                   ),
                                 if (ingredient.isOptional)
-                                  const _IngredientAttributePill(
-                                    label: 'Опционально',
+                                  _IngredientAttributePill(
+                                    label: context.tr(
+                                      'Опционально',
+                                      'Optional',
+                                    ),
                                     color: Color(0xFFB58BFF),
                                   ),
                               ],
@@ -655,7 +682,7 @@ class IngredientCard extends StatelessWidget {
                           ),
                         const SizedBox(height: 4),
                         Text(
-                          _cocktailHintText(cocktails),
+                          _cocktailHintText(context, cocktails),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -711,12 +738,21 @@ class IngredientCard extends StatelessWidget {
     );
   }
 
-  String _cocktailHintText(List<Cocktail> cocktails) {
+  String _cocktailHintText(BuildContext context, List<Cocktail> cocktails) {
     if (cocktails.isEmpty) {
-      return 'Пока нет коктейлей с этим ингредиентом';
+      return context.tr(
+        'Пока нет коктейлей с этим ингредиентом',
+        'No cocktails with this ingredient yet',
+      );
     }
     if (cocktails.length == 1) {
-      return 'Приготовьте "${cocktails.first.name}"';
+      return context.tr(
+        'Приготовьте "${cocktails.first.name}"',
+        'Make "${cocktails.first.name}"',
+      );
+    }
+    if (context.isEnglish) {
+      return 'Make ${cocktails.length} cocktails';
     }
     return 'Приготовьте ${cocktails.length} ${_cocktailWord(cocktails.length)}';
   }

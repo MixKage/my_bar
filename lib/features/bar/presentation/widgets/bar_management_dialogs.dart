@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/localization/app_localization.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 import '../../domain/models/cocktail_tags.dart';
@@ -72,8 +73,8 @@ const List<String> kIngredientUnits = <String>[
 Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
   return _showIngredientDialog(
     context,
-    title: 'Новый ингредиент',
-    actionLabel: 'Добавить',
+    title: context.tr('Новый ингредиент', 'New ingredient'),
+    actionLabel: context.tr('Добавить', 'Add'),
   );
 }
 
@@ -83,8 +84,8 @@ Future<AddIngredientInput?> showEditIngredientDialog(
 }) {
   return _showIngredientDialog(
     context,
-    title: 'Редактировать ингредиент',
-    actionLabel: 'Сохранить',
+    title: context.tr('Редактировать ингредиент', 'Edit ingredient'),
+    actionLabel: context.tr('Сохранить', 'Save'),
     initialIngredient: ingredient,
   );
 }
@@ -957,34 +958,47 @@ class _IngredientDialogState extends State<_IngredientDialog> {
           children: <Widget>[
             _DialogTextField(
               controller: _nameController,
-              label: 'Название*',
-              hint: 'Например, Кампари',
+              label: context.tr('Название*', 'Name*'),
+              hint: context.tr('Например, Кампари', 'For example, Campari'),
             ),
             const SizedBox(height: 12),
             _DialogTextField(
               controller: _categoryController,
-              label: 'Категория',
-              hint: 'Ликёры',
+              label: context.tr('Категория', 'Category'),
+              hint: context.tr('Ликёры', 'Liqueurs'),
             ),
             const SizedBox(height: 12),
             _DialogTextField(
               controller: _imageController,
-              label: 'Фото (URL или путь файла)',
-              hint: 'https://... или /storage/.../photo.jpg',
+              label: context.tr(
+                'Фото (URL или путь файла)',
+                'Photo (URL or file path)',
+              ),
+              hint: context.tr(
+                'https://... или /storage/.../photo.jpg',
+                'https://... or /storage/.../photo.jpg',
+              ),
             ),
             const SizedBox(height: 8),
             OutlinedButton.icon(
               onPressed: _pickImageFromDevice,
               icon: const Icon(Icons.photo_library_rounded),
-              label: const Text('Выбрать с устройства'),
+              label: Text(
+                context.tr('Выбрать с устройства', 'Pick from device'),
+              ),
             ),
             const SizedBox(height: 8),
             CheckboxListTile(
               dense: true,
               value: _isDecoration,
               activeColor: const Color(0xFF7F89FF),
-              title: const Text('Украшение'),
-              subtitle: const Text('Не обязателен для доступности коктейля'),
+              title: Text(context.tr('Украшение', 'Decoration')),
+              subtitle: Text(
+                context.tr(
+                  'Не обязателен для доступности коктейля',
+                  'Not required for cocktail availability',
+                ),
+              ),
               onChanged: (value) =>
                   setState(() => _isDecoration = value ?? false),
             ),
@@ -992,9 +1006,12 @@ class _IngredientDialogState extends State<_IngredientDialog> {
               dense: true,
               value: _isOptional,
               activeColor: const Color(0xFF7F89FF),
-              title: const Text('Опционально'),
-              subtitle: const Text(
-                'Можно пропустить при проверке ингредиентов',
+              title: Text(context.tr('Опционально', 'Optional')),
+              subtitle: Text(
+                context.tr(
+                  'Можно пропустить при проверке ингредиентов',
+                  'Can be skipped in ingredient checks',
+                ),
               ),
               onChanged: (value) =>
                   setState(() => _isOptional = value ?? false),
@@ -1005,7 +1022,7 @@ class _IngredientDialogState extends State<_IngredientDialog> {
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Отмена'),
+          child: Text(context.tr('Отмена', 'Cancel')),
         ),
         FilledButton(
           onPressed: () {

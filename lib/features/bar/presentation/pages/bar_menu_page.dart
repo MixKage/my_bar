@@ -1,6 +1,7 @@
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/localization/app_localization.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
@@ -87,7 +88,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Барная карта',
+                        context.tr('Барная карта', 'Bar Menu'),
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: Colors.white,
                           shadows: const <Shadow>[
@@ -97,7 +98,10 @@ class _BarMenuPageState extends State<BarMenuPage> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Доступно $availableCocktailCount из ${widget.cocktails.length}',
+                        context.tr(
+                          'Доступно $availableCocktailCount из ${widget.cocktails.length}',
+                          'Available $availableCocktailCount of ${widget.cocktails.length}',
+                        ),
                         style: const TextStyle(
                           color: Color(0xFFCCD3E8),
                           fontSize: 14,
@@ -105,7 +109,10 @@ class _BarMenuPageState extends State<BarMenuPage> {
                       ),
                       if (_selectedTags.isNotEmpty)
                         Text(
-                          'Фильтр: ${_selectedTags.join(', ')}',
+                          context.tr(
+                            'Фильтр: ${_selectedTags.map(context.cocktailTagLabel).join(', ')}',
+                            'Filter: ${_selectedTags.map(context.cocktailTagLabel).join(', ')}',
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -123,7 +130,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 ),
                 const SizedBox(width: 8),
                 IconButton.filledTonal(
-                  tooltip: 'Управление баром',
+                  tooltip: context.tr('Управление баром', 'Bar management'),
                   onPressed: widget.onManagePressed,
                   icon: const Icon(Icons.tune_rounded),
                 ),
@@ -142,7 +149,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                       padding: const EdgeInsets.only(right: 8),
                       child: FilterChip(
                         selected: selected,
-                        label: Text(tag),
+                        label: Text(context.cocktailTagLabel(tag)),
                         selectedColor: const Color(0x44FF6FAF),
                         checkmarkColor: const Color(0xFFFFE5F3),
                         side: BorderSide(
@@ -176,7 +183,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
             child: widget.cocktails.isEmpty || !hasSelectedIngredients
                 ? NoCocktailsView(bottomInsetCompensation: bottomOverlayPadding)
                 : filteredCocktails.isEmpty
-                ? const _NoTagMatchesView()
+                ? _NoTagMatchesView()
                 : _viewMode == MenuViewMode.grid
                 ? CocktailGrid(
                     cocktails: filteredCocktails,
@@ -375,8 +382,14 @@ class CocktailGrid extends StatelessWidget {
                             top: 4,
                             child: _PressableFavoriteButton(
                               tooltip: cocktail.isFavorite
-                                  ? 'Убрать из избранного'
-                                  : 'В избранное',
+                                  ? context.tr(
+                                      'Убрать из избранного',
+                                      'Remove from favorites',
+                                    )
+                                  : context.tr(
+                                      'В избранное',
+                                      'Add to favorites',
+                                    ),
                               isFavorite: cocktail.isFavorite,
                               size: 36,
                               inactiveBackgroundColor: const Color(0x44353C62),
@@ -415,7 +428,9 @@ class CocktailGrid extends StatelessWidget {
                               const SizedBox(width: 6),
                               Expanded(
                                 child: Text(
-                                  cocktail.glassType,
+                                  context.cocktailGlassTypeLabel(
+                                    cocktail.glassType,
+                                  ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -579,7 +594,9 @@ class CocktailList extends StatelessWidget {
                                       const SizedBox(width: 6),
                                       Expanded(
                                         child: Text(
-                                          cocktail.glassType,
+                                          context.cocktailGlassTypeLabel(
+                                            cocktail.glassType,
+                                          ),
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(
@@ -608,8 +625,14 @@ class CocktailList extends StatelessWidget {
                             ),
                             _PressableFavoriteButton(
                               tooltip: cocktail.isFavorite
-                                  ? 'Убрать из избранного'
-                                  : 'В избранное',
+                                  ? context.tr(
+                                      'Убрать из избранного',
+                                      'Remove from favorites',
+                                    )
+                                  : context.tr(
+                                      'В избранное',
+                                      'Add to favorites',
+                                    ),
                               isFavorite: cocktail.isFavorite,
                               size: 34,
                               inactiveBackgroundColor: const Color(0x22323B60),
@@ -646,7 +669,10 @@ class CocktailList extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    'Бокал: ${cocktail.glassType}',
+                                    context.tr(
+                                      'Бокал: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
+                                      'Glass: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
+                                    ),
                                     style: const TextStyle(
                                       color: Color(0xFFFFB9DD),
                                       fontWeight: FontWeight.w700,
@@ -655,9 +681,9 @@ class CocktailList extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 8),
-                              const Text(
-                                'Состав',
-                                style: TextStyle(
+                              Text(
+                                context.tr('Состав', 'Ingredients'),
+                                style: const TextStyle(
                                   color: Color(0xFFFF93CC),
                                   fontWeight: FontWeight.w800,
                                   fontSize: 16,
@@ -725,8 +751,16 @@ class CocktailList extends StatelessWidget {
                                           ),
                                           child: Text(
                                             [
-                                              if (isOptional) 'Опционально',
-                                              if (isDecoration) 'Украшение',
+                                              if (isOptional)
+                                                context.tr(
+                                                  'Опционально',
+                                                  'Optional',
+                                                ),
+                                              if (isDecoration)
+                                                context.tr(
+                                                  'Украшение',
+                                                  'Decoration',
+                                                ),
                                             ].join(' • '),
                                             style: const TextStyle(
                                               color: Color(0xFFAFC3F2),
@@ -741,7 +775,10 @@ class CocktailList extends StatelessWidget {
                                             top: 2,
                                           ),
                                           child: Text(
-                                            'Замена: $substitutionsText',
+                                            context.tr(
+                                              'Замена: $substitutionsText',
+                                              'Substitute: $substitutionsText',
+                                            ),
                                             style: const TextStyle(
                                               color: Color(0xFFAFC3F2),
                                               fontSize: 12,
@@ -755,9 +792,9 @@ class CocktailList extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 children: <Widget>[
-                                  const Text(
-                                    'Приготовление',
-                                    style: TextStyle(
+                                  Text(
+                                    context.tr('Приготовление', 'Preparation'),
+                                    style: const TextStyle(
                                       color: Color(0xFFFF93CC),
                                       fontWeight: FontWeight.w800,
                                       fontSize: 16,
@@ -777,7 +814,9 @@ class CocktailList extends StatelessWidget {
                                         Icons.edit_rounded,
                                         size: 16,
                                       ),
-                                      label: const Text('Редактировать'),
+                                      label: Text(
+                                        context.tr('Редактировать', 'Edit'),
+                                      ),
                                     ),
                                 ],
                               ),
@@ -824,11 +863,11 @@ class _AvailabilityHint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (missingIngredientNames.isEmpty) {
-      return const Text(
-        'Можно приготовить сейчас',
+      return Text(
+        context.tr('Можно приготовить сейчас', 'Can make right now'),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(
+        style: const TextStyle(
           color: Color(0xFF8FFFD4),
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -838,7 +877,11 @@ class _AvailabilityHint extends StatelessWidget {
 
     final preview = missingIngredientNames.take(3).join(', ');
     final hiddenCount = missingIngredientNames.length - 3;
-    final text = hiddenCount > 0
+    final text = context.isEnglish
+        ? hiddenCount > 0
+              ? 'Missing: $preview and $hiddenCount more'
+              : 'Missing: $preview'
+        : hiddenCount > 0
         ? 'Не хватает: $preview и ещё $hiddenCount'
         : 'Не хватает: $preview';
 
@@ -1039,7 +1082,7 @@ class _TagPill extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         child: Text(
-          tag,
+          context.cocktailTagLabel(tag),
           style: const TextStyle(
             color: Color(0xFFC9D5F6),
             fontSize: 10,
@@ -1056,13 +1099,16 @@ class _NoTagMatchesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Text(
-          'По выбранным тегам коктейли не найдены',
+          context.tr(
+            'По выбранным тегам коктейли не найдены',
+            'No cocktails found for selected tags',
+          ),
           textAlign: TextAlign.center,
-          style: TextStyle(color: Color(0xFFC3CCE8), fontSize: 16),
+          style: const TextStyle(color: Color(0xFFC3CCE8), fontSize: 16),
         ),
       ),
     );
@@ -1092,30 +1138,39 @@ class NoCocktailsView extends StatelessWidget {
             ],
             glowEffect: true,
             glow: const AnimatedGradientBorderGlow(opacity: 0.4),
-            child: const Padding(
-              padding: EdgeInsets.all(22),
+            child: Padding(
+              padding: const EdgeInsets.all(22),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(
+                  const Icon(
                     Icons.auto_awesome_rounded,
                     color: Color(0xFFFFA8D8),
                     size: 38,
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text(
-                    'Пока не хватает ингредиентов',
-                    style: TextStyle(
+                    context.tr(
+                      'Пока не хватает ингредиентов',
+                      'Not enough ingredients yet',
+                    ),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
-                    'Добавь позиции в "Ингридиентах", и здесь появятся доступные коктейли.',
+                    context.tr(
+                      'Добавь позиции в "Ингридиентах", и здесь появятся доступные коктейли.',
+                      'Add items in "Ingredients", and available cocktails will appear here.',
+                    ),
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Color(0xFFCAD2EB), fontSize: 14),
+                    style: const TextStyle(
+                      color: Color(0xFFCAD2EB),
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),

@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/localization/app_localization.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 import '../../domain/models/cocktail_tags.dart';
@@ -188,8 +189,8 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
         ? keyboardInset + 10
         : 14.0;
     final title = widget.isEditing
-        ? 'Редактирование коктейля'
-        : 'Создание коктейля';
+        ? context.tr('Редактирование коктейля', 'Edit cocktail')
+        : context.tr('Создание коктейля', 'Create cocktail');
     final normalizedIngredientSearch = _ingredientSearchQuery
         .trim()
         .toLowerCase();
@@ -247,7 +248,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
               ),
               const SizedBox(height: 2),
               Text(
-                'Настрой рецепт и состав',
+                context.tr(
+                  'Настрой рецепт и состав',
+                  'Customize recipe and mix',
+                ),
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: const Color(0xFFC8D2F6),
                   fontWeight: FontWeight.w600,
@@ -332,8 +336,11 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                         controller: _nameController,
                         focusNode: _nameFocusNode,
                         isInvalid: _invalidFields.contains(_RequiredField.name),
-                        label: 'Название*',
-                        hint: 'Например, Негрони',
+                        label: context.tr('Название*', 'Name*'),
+                        hint: context.tr(
+                          'Например, Негрони',
+                          'For example, Negroni',
+                        ),
                         onChanged: (_) {
                           setState(() {
                             if (_nameController.text.trim().isNotEmpty) {
@@ -348,8 +355,11 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                       controller: _descriptionController,
                       focusNode: _descriptionFocusNode,
                       isInvalid: false,
-                      label: 'Описание',
-                      hint: 'Кампари, Джин, Вермут',
+                      label: context.tr('Описание', 'Description'),
+                      hint: context.tr(
+                        'Campari, Gin, Vermouth',
+                        'Campari, Gin, Vermouth',
+                      ),
                       maxLines: 3,
                       onChanged: (_) => setState(() {}),
                     ),
@@ -362,9 +372,14 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                         isInvalid: _invalidFields.contains(
                           _RequiredField.preparation,
                         ),
-                        label: 'Шаги приготовления*',
-                        hint:
-                            '1. Наполните бокал льдом\n2. Добавьте ингредиенты\n3. Украсьте и подавайте',
+                        label: context.tr(
+                          'Шаги приготовления*',
+                          'Preparation steps*',
+                        ),
+                        hint: context.tr(
+                          '1. Наполните бокал льдом\n2. Добавьте ингредиенты\n3. Украсьте и подавайте',
+                          '1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve',
+                        ),
                         maxLines: 5,
                         onChanged: (_) {
                           setState(() {
@@ -382,22 +397,32 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                       controller: _imageController,
                       focusNode: _imageFocusNode,
                       isInvalid: false,
-                      label: 'Фото (URL или путь файла)',
-                      hint: 'https://... или /storage/.../photo.jpg',
+                      label: context.tr(
+                        'Фото (URL или путь файла)',
+                        'Photo (URL or file path)',
+                      ),
+                      hint: context.tr(
+                        'https://... или /storage/.../photo.jpg',
+                        'https://... or /storage/.../photo.jpg',
+                      ),
                       onChanged: (_) => setState(() {}),
                     ),
                     const SizedBox(height: 8),
                     OutlinedButton.icon(
                       onPressed: _pickImageFromDevice,
                       icon: const Icon(Icons.photo_library_rounded),
-                      label: const Text('Выбрать с устройства'),
+                      label: Text(
+                        context.tr('Выбрать с устройства', 'Pick from device'),
+                      ),
                       style: OutlinedButton.styleFrom(
                         backgroundColor: const Color(0x55111425),
                         side: const BorderSide(color: Color(0x557A89BC)),
                       ),
                     ),
                     const SizedBox(height: 12),
-                    const _SectionTitle(text: 'Тип бокала*'),
+                    _SectionTitle(
+                      text: context.tr('Тип бокала*', 'Glass type*'),
+                    ),
                     const SizedBox(height: 6),
                     KeyedSubtree(
                       key: _glassFieldKey,
@@ -425,7 +450,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                                       const SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
-                                          item,
+                                          context.cocktailGlassTypeLabel(item),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
@@ -447,7 +472,9 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                       ),
                     ),
                     const SizedBox(height: 14),
-                    const _SectionTitle(text: 'Ингредиенты*'),
+                    _SectionTitle(
+                      text: context.tr('Ингредиенты*', 'Ingredients*'),
+                    ),
                     const SizedBox(height: 8),
                     KeyedSubtree(
                       key: _ingredientsFieldKey,
@@ -473,7 +500,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                                   },
                                   decoration:
                                       _frostedInputDecoration(
-                                        hintText: 'Поиск ингредиентов...',
+                                        hintText: context.tr(
+                                          'Поиск ингредиентов...',
+                                          'Search ingredients...',
+                                        ),
                                       ).copyWith(
                                         prefixIcon: const Icon(
                                           Icons.search_rounded,
@@ -498,16 +528,20 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                                   child: ListView(
                                     controller: _ingredientsScrollController,
                                     children: filteredIngredients.isEmpty
-                                        ? const <Widget>[
+                                        ? <Widget>[
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                vertical: 24,
-                                                horizontal: 8,
-                                              ),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 24,
+                                                    horizontal: 8,
+                                                  ),
                                               child: Text(
-                                                'Ничего не найдено',
+                                                context.tr(
+                                                  'Ничего не найдено',
+                                                  'Nothing found',
+                                                ),
                                                 textAlign: TextAlign.center,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Color(0xFF9FAAD1),
                                                   fontSize: 13,
                                                 ),
@@ -557,7 +591,12 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                     ),
                     if (_selectedIngredientIds.isNotEmpty) ...<Widget>[
                       const SizedBox(height: 14),
-                      const _SectionTitle(text: 'Параметры ингредиентов'),
+                      _SectionTitle(
+                        text: context.tr(
+                          'Параметры ингредиентов',
+                          'Ingredient options',
+                        ),
+                      ),
                       const SizedBox(height: 8),
                       ..._ingredients
                           .where(
@@ -566,7 +605,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                           .map(_buildIngredientOptionsCard),
                     ],
                     const SizedBox(height: 14),
-                    const _SectionTitle(text: 'Теги'),
+                    _SectionTitle(text: context.tr('Теги', 'Tags')),
                     const SizedBox(height: 8),
                     _FrostedPanel(
                       padding: const EdgeInsets.all(10),
@@ -578,7 +617,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                               final selected = _selectedTags.contains(tag);
                               return FilterChip(
                                 selected: selected,
-                                label: Text(tag),
+                                label: Text(context.cocktailTagLabel(tag)),
                                 selectedColor: const Color(0x446D78FF),
                                 backgroundColor: const Color(0x2218213C),
                                 side: BorderSide(
@@ -623,7 +662,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                       _requestExit();
                     },
                     icon: const Icon(Icons.close_rounded),
-                    label: const Text('Отмена'),
+                    label: Text(context.tr('Отмена', 'Cancel')),
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Color(0x557A89BC)),
                       backgroundColor: const Color(0x4412182F),
@@ -638,7 +677,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                       _submit();
                     },
                     icon: const Icon(Icons.check_rounded),
-                    label: const Text('Сохранить'),
+                    label: Text(context.tr('Сохранить', 'Save')),
                   ),
                 ),
               ],
@@ -657,7 +696,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
     final substitutions =
         _selectedSubstitutionsByIngredient[ingredient.id] ?? const <String>{};
     final substitutionsText = substitutions.isEmpty
-        ? 'Без замен'
+        ? context.tr('Без замен', 'No substitutions')
         : substitutions.map((id) => _ingredientNamesById[id] ?? id).join(', ');
 
     final amountController =
@@ -682,7 +721,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                 ),
               ),
               IconButton(
-                tooltip: 'Удалить из рецепта',
+                tooltip: context.tr('Удалить из рецепта', 'Remove from recipe'),
                 onPressed: () => _toggleIngredientSelection(
                   ingredientId: ingredient.id,
                   selected: false,
@@ -701,7 +740,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                     controller: amountController,
                     onChanged: (_) => setState(() {}),
                     decoration: _frostedInputDecoration(
-                      labelText: 'Количество',
+                      labelText: context.tr('Количество', 'Amount'),
                       hintText: '50',
                     ),
                   ),
@@ -716,12 +755,14 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                     initialValue: safeUnit,
                     isExpanded: true,
                     dropdownColor: const Color(0xFF1D2240),
-                    decoration: _frostedInputDecoration(labelText: 'Единица'),
+                    decoration: _frostedInputDecoration(
+                      labelText: context.tr('Единица', 'Unit'),
+                    ),
                     items: kIngredientUnits
                         .map(
                           (unit) => DropdownMenuItem<String>(
                             value: unit,
-                            child: Text(unit.isEmpty ? 'Без единицы' : unit),
+                            child: Text(context.ingredientUnitLabel(unit)),
                           ),
                         )
                         .toList(growable: false),
@@ -746,7 +787,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
             children: <Widget>[
               FilterChip(
                 selected: _optionalIngredientIds.contains(ingredient.id),
-                label: const Text('Опционально'),
+                label: Text(context.tr('Опционально', 'Optional')),
                 selectedColor: const Color(0x445E83FF),
                 backgroundColor: const Color(0x2218213C),
                 side: BorderSide(
@@ -766,7 +807,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
               ),
               FilterChip(
                 selected: _decorationIngredientIds.contains(ingredient.id),
-                label: const Text('Украшение'),
+                label: Text(context.tr('Украшение', 'Decoration')),
                 selectedColor: const Color(0x443FC1E5),
                 backgroundColor: const Color(0x2218213C),
                 side: BorderSide(
@@ -790,7 +831,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
           ListTile(
             dense: true,
             contentPadding: EdgeInsets.zero,
-            title: const Text('Замены'),
+            title: Text(context.tr('Замены', 'Substitutions')),
             subtitle: Text(
               substitutionsText,
               maxLines: 2,
@@ -800,7 +841,9 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
             trailing: TextButton(
               onPressed: () => _editIngredientSubstitutions(ingredient),
               child: Text(
-                substitutions.isEmpty ? 'Добавить замену' : 'Изменить',
+                substitutions.isEmpty
+                    ? context.tr('Добавить замену', 'Add substitution')
+                    : context.tr('Изменить', 'Edit'),
               ),
             ),
           ),
@@ -884,18 +927,23 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: const Color(0xFF14182B),
-          title: const Text('Выйти без сохранения?'),
-          content: const Text(
-            'У вас есть несохранённые изменения. Они будут потеряны.',
+          title: Text(
+            context.tr('Выйти без сохранения?', 'Exit without saving?'),
+          ),
+          content: Text(
+            context.tr(
+              'У вас есть несохранённые изменения. Они будут потеряны.',
+              'You have unsaved changes. They will be lost.',
+            ),
           ),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Остаться'),
+              child: Text(context.tr('Остаться', 'Stay')),
             ),
             FilledButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Выйти'),
+              child: Text(context.tr('Выйти', 'Exit')),
             ),
           ],
         );
@@ -994,10 +1042,22 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
 
   void _showValidationError(_RequiredField field) {
     final message = switch (field) {
-      _RequiredField.name => 'Укажите название коктейля',
-      _RequiredField.preparation => 'Добавьте шаги приготовления',
-      _RequiredField.glass => 'Выберите тип бокала',
-      _RequiredField.ingredients => 'Выберите хотя бы один ингредиент',
+      _RequiredField.name => context.tr(
+        'Укажите название коктейля',
+        'Enter cocktail name',
+      ),
+      _RequiredField.preparation => context.tr(
+        'Добавьте шаги приготовления',
+        'Add preparation steps',
+      ),
+      _RequiredField.glass => context.tr(
+        'Выберите тип бокала',
+        'Select glass type',
+      ),
+      _RequiredField.ingredients => context.tr(
+        'Выберите хотя бы один ингредиент',
+        'Select at least one ingredient',
+      ),
     };
 
     ScaffoldMessenger.of(context)
@@ -1247,7 +1307,12 @@ class _IngredientSubstitutionsDialogState
 
     return AlertDialog(
       backgroundColor: const Color(0xFF14182B),
-      title: Text('Замены для "${widget.sourceIngredient.name}"'),
+      title: Text(
+        context.tr(
+          'Замены для "${widget.sourceIngredient.name}"',
+          'Substitutions for "${widget.sourceIngredient.name}"',
+        ),
+      ),
       content: SizedBox(
         width: 520,
         child: _FrostedPanel(
@@ -1285,11 +1350,11 @@ class _IngredientSubstitutionsDialogState
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Отмена'),
+          child: Text(context.tr('Отмена', 'Cancel')),
         ),
         FilledButton(
           onPressed: () => Navigator.of(context).pop(_selected),
-          child: const Text('Готово'),
+          child: Text(context.tr('Готово', 'Done')),
         ),
       ],
     );
