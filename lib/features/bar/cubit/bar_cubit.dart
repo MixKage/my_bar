@@ -475,6 +475,11 @@ class BarCubit extends Cubit<BarState> {
     final nextState = state.copyWith(appLanguage: appLanguage);
     emit(nextState);
     await _persistUiState(nextState);
+
+    if (_externalProviderSelector.activeDataSource == CatalogDataSource.seed) {
+      final snapshot = await _catalogRepository.refreshExternalCatalog();
+      await _applyCatalogSnapshot(snapshot);
+    }
   }
 
   Future<void> importCatalog(BarCatalog catalog) async {

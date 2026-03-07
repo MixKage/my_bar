@@ -58,6 +58,51 @@ class JsonAssetExternalBarDataProvider implements ExternalBarDataProvider {
   }
 }
 
+class LocalizedJsonAssetExternalBarDataProvider
+    implements ExternalBarDataProvider {
+  LocalizedJsonAssetExternalBarDataProvider({
+    required this.defaultAssetPath,
+    required this.russianAssetPath,
+    required this.useRussianCatalogResolver,
+    this.sourceIdValue = 'asset_template',
+  });
+
+  final String defaultAssetPath;
+  final String russianAssetPath;
+  final bool Function() useRussianCatalogResolver;
+  final String sourceIdValue;
+
+  String get _activeAssetPath =>
+      useRussianCatalogResolver() ? russianAssetPath : defaultAssetPath;
+
+  @override
+  String get sourceId => sourceIdValue;
+
+  @override
+  ExternalProviderFormat get format => ExternalProviderFormat.generic;
+
+  @override
+  Future<List<Map<String, dynamic>>> fetchIngredients() async {
+    final map = await _readCatalogMap();
+    return _parseObjectList(map['ingredients'], 'ingredients');
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> fetchCocktails() async {
+    final map = await _readCatalogMap();
+    return _parseObjectList(map['cocktails'], 'cocktails');
+  }
+
+  Future<Map<String, dynamic>> _readCatalogMap() async {
+    final jsonString = await rootBundle.loadString(_activeAssetPath);
+    final decoded = jsonDecode(jsonString);
+    if (decoded is Map<String, dynamic>) {
+      return decoded;
+    }
+    throw const FormatException('JSON root must be object');
+  }
+}
+
 class HttpJsonExternalBarDataProvider implements ExternalBarDataProvider {
   HttpJsonExternalBarDataProvider({
     required this.url,

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/my_bar_app.dart';
+import 'core/localization/app_language.dart';
 import 'features/bar/data/bar_catalog_json_codec.dart';
 import 'features/bar/data/bar_catalog_storage.dart';
 import 'features/bar/data/bar_ui_settings_storage.dart';
@@ -57,7 +58,9 @@ Future<_BootstrapData> _bootstrapApp() async {
     final legacyCatalog = legacyStorage.readCatalog();
     final templateCatalog = await _loadTemplateCatalog(codec);
 
-    final externalProviders = _buildExternalProviderBundle();
+    final externalProviders = _buildExternalProviderBundle(
+      settingsStorage: settingsStorage,
+    );
     final externalProviderSelector = SelectableExternalBarDataProvider(
       seedProvider: externalProviders.seedProvider,
       bootstrapDefaultProvider: externalProviders.bootstrapDefaultProvider,
@@ -122,9 +125,14 @@ Future<_BootstrapData> _bootstrapApp() async {
   }
 }
 
-_ExternalProviderBundle _buildExternalProviderBundle() {
-  final assetProvider = JsonAssetExternalBarDataProvider(
-    assetPath: 'assets/data/bar_template.json',
+_ExternalProviderBundle _buildExternalProviderBundle({
+  required BarUiSettingsStorage settingsStorage,
+}) {
+  final assetProvider = LocalizedJsonAssetExternalBarDataProvider(
+    defaultAssetPath: 'assets/data/bar_template.json',
+    russianAssetPath: 'assets/data/bar_template_ru.json',
+    useRussianCatalogResolver: () =>
+        _shouldUseRussianCatalog(settingsStorage.readSettings().appLanguage),
     sourceIdValue: 'asset_template',
   );
   return _ExternalProviderBundle(
@@ -133,6 +141,23 @@ _ExternalProviderBundle _buildExternalProviderBundle() {
     bootstrapDefaultDataSource: CatalogDataSource.seed,
     theCocktailDbProvider: null,
   );
+}
+
+bool _shouldUseRussianCatalog(AppLanguage appLanguage) {
+  switch (appLanguage) {
+    case AppLanguage.russian:
+      return true;
+    case AppLanguage.english:
+      return false;
+    case AppLanguage.system:
+      final localeLanguageCode = WidgetsBinding
+          .instance
+          .platformDispatcher
+          .locale
+          .languageCode
+          .toLowerCase();
+      return localeLanguageCode == 'ru';
+  }
 }
 
 Future<BarCatalog> _loadTemplateCatalog(BarCatalogJsonCodec codec) async {
