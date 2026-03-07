@@ -6,6 +6,7 @@ import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
+import '../../domain/models/ingredient_units.dart';
 import 'cocktail_glass_icon.dart';
 
 @immutable
@@ -56,28 +57,7 @@ class AddCocktailInput {
   final Set<String> tags;
 }
 
-const List<String> kIngredientUnits = <String>[
-  '',
-  'мл',
-  'л',
-  'oz',
-  'cl',
-  'tsp',
-  'tbsp',
-  'shot',
-  'part',
-  'cup',
-  'dash',
-  'pinch',
-  'ч.ложка',
-  'ч.ложки',
-  'ст.ложка',
-  'ст.ложки',
-  'долька',
-  'шт',
-  'капля',
-  'по вкусу',
-];
+const List<String> kIngredientUnits = kSupportedIngredientUnits;
 
 Future<AddIngredientInput?> showAddIngredientDialog(BuildContext context) {
   return _showIngredientDialog(

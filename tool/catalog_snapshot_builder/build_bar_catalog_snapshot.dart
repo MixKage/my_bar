@@ -22,7 +22,7 @@ Future<void> main(List<String> args) async {
     final payload = await source.fetch();
 
     final builder = CatalogSnapshotBuilder();
-    final result = builder.build(
+    final result = await builder.build(
       payload: payload,
       mappingTemplateCatalog: templateCatalog,
       options: CatalogSnapshotBuilderOptions(

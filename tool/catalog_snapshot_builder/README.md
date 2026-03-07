@@ -85,6 +85,7 @@ Top-level structure:
 Compatibility notes:
 - app runtime loader uses `ingredients` and `cocktails`,
 - extra fields (`metadata`, `source`, `sourceId`, `canonicalSlug`, `aliases`, etc.) are preserved for tooling/debugging,
+- ingredient visual fields are generated automatically: `glowColor`, `glowSecondaryColor`, `glowOffsetX`, `glowOffsetY`, `glowScale`, `glowOpacity`,
 - unknown extra fields do not break runtime parsing.
 
 ## Validation and Dedupe
@@ -92,6 +93,8 @@ Compatibility notes:
 During build:
 - source-level dedupe by `sourceId`,
 - deterministic IDs/canonical keys via existing app utilities,
+- cocktail `glassType` is normalized to app-supported glass types,
+- unsupported `ingredientUnits` are normalized to supported units or folded back into `ingredientAmounts`,
 - reference validation (`cocktail.ingredients` must exist in ingredient set),
 - invalid cocktail drop accounting,
 - unresolved mapping accounting.

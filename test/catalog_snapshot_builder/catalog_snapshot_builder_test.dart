@@ -2,10 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:my_bar/features/bar/data/bar_catalog_json_codec.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
+import 'package:my_bar/features/bar/domain/models/cocktail_glass_types.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
 
 import '../../tool/catalog_snapshot_builder/src/catalog_import_source.dart';
 import '../../tool/catalog_snapshot_builder/src/catalog_snapshot_builder.dart';
+import '../../tool/catalog_snapshot_builder/src/ingredient_glow_style_generator.dart';
 
 void main() {
   final templateCatalog = BarCatalog(
@@ -37,9 +39,17 @@ void main() {
     ],
   );
 
+  CatalogSnapshotBuilder createBuilder() {
+    return CatalogSnapshotBuilder(
+      glowStyleGenerator: IngredientGlowStyleGenerator(
+        enableImageSampling: false,
+      ),
+    );
+  }
+
   test(
     'normalizes cocktail ingredients and measures from TheCocktailDB raw',
-    () {
+    () async {
       final payload = CatalogImportPayload(
         sourceName: 'thecocktaildb',
         sourceId: 'thecocktaildb_v1',
@@ -68,8 +78,8 @@ void main() {
         ],
       );
 
-      final builder = CatalogSnapshotBuilder();
-      final result = builder.build(
+      final builder = createBuilder();
+      final result = await builder.build(
         payload: payload,
         mappingTemplateCatalog: templateCatalog,
         options: const CatalogSnapshotBuilderOptions(),
@@ -82,6 +92,8 @@ void main() {
           cocktail['ingredientAmounts'] as Map<String, dynamic>;
       final ingredientUnits =
           cocktail['ingredientUnits'] as Map<String, dynamic>;
+      final ingredients = result.snapshotMap['ingredients'] as List<dynamic>;
+      final ingredient = ingredients.first as Map<String, dynamic>;
 
       expect(
         cocktail['ingredients'],
@@ -90,6 +102,11 @@ void main() {
       expect(ingredientAmounts['gin'], '50');
       expect(ingredientUnits['gin'], 'мл');
       expect(cocktail['sourceId'], '11000');
+      expect((ingredient['glowColor'] as String?)?.isNotEmpty, isTrue);
+      expect(ingredient.containsKey('glowOffsetX'), isTrue);
+      expect(ingredient.containsKey('glowOffsetY'), isTrue);
+      expect(ingredient.containsKey('glowScale'), isTrue);
+      expect(ingredient.containsKey('glowOpacity'), isTrue);
 
       final decoded = const BarCatalogJsonCodec().decode(result.snapshotJson);
       expect(decoded.cocktails, hasLength(1));
@@ -97,7 +114,7 @@ void main() {
     },
   );
 
-  test('dedupes by sourceId and keeps deterministic entities', () {
+  test('dedupes by sourceId and keeps deterministic entities', () async {
     final payload = CatalogImportPayload(
       sourceName: 'thecocktaildb',
       sourceId: 'thecocktaildb_v1',
@@ -122,7 +139,7 @@ void main() {
       ],
     );
 
-    final result = CatalogSnapshotBuilder().build(
+    final result = await createBuilder().build(
       payload: payload,
       mappingTemplateCatalog: templateCatalog,
       options: const CatalogSnapshotBuilderOptions(),
@@ -136,7 +153,7 @@ void main() {
 
   test(
     'drops invalid cocktails in strict mode when ingredient references unresolved',
-    () {
+    () async {
       final payload = CatalogImportPayload(
         sourceName: 'thecocktaildb',
         sourceId: 'thecocktaildb_v1',
@@ -155,7 +172,7 @@ void main() {
         ],
       );
 
-      final result = CatalogSnapshotBuilder().build(
+      final result = await createBuilder().build(
         payload: payload,
         mappingTemplateCatalog: templateCatalog,
         options: const CatalogSnapshotBuilderOptions(strict: true),
@@ -167,30 +184,76 @@ void main() {
     },
   );
 
-  test('fails when unresolved ingredient mappings are configured as fatal', () {
-    final payload = CatalogImportPayload(
-      sourceName: 'thecocktaildb',
-      sourceId: 'thecocktaildb_v1',
-      format: CatalogImportFormat.theCocktailDb,
-      ingredients: <Map<String, dynamic>>[
-        <String, dynamic>{
-          'idIngredient': '90',
-          'strIngredient1': 'Mystery Liqueur',
-        },
-      ],
-      cocktails: const <Map<String, dynamic>>[],
-    );
+  test(
+    'normalizes unsupported units and glasses to app-supported values',
+    () async {
+      final payload = CatalogImportPayload(
+        sourceName: 'generic',
+        sourceId: 'generic_v1',
+        format: CatalogImportFormat.generic,
+        ingredients: <Map<String, dynamic>>[
+          <String, dynamic>{'id': 'gin', 'name': 'Gin', 'category': 'Spirit'},
+        ],
+        cocktails: <Map<String, dynamic>>[
+          <String, dynamic>{
+            'id': 'custom_gin',
+            'name': 'Custom Gin',
+            'ingredients': <String>['gin'],
+            'ingredientAmounts': <String, String>{'gin': '2'},
+            'ingredientUnits': <String, String>{'gin': 'ladles'},
+            'glassType': 'Custom glass',
+            'description': 'Mix',
+            'preparationSteps': <String>['Mix'],
+            'tags': <String>['Пользовательские'],
+          },
+        ],
+      );
 
-    expect(
-      () => CatalogSnapshotBuilder().build(
+      final result = await createBuilder().build(
         payload: payload,
         mappingTemplateCatalog: templateCatalog,
-        options: const CatalogSnapshotBuilderOptions(
-          failOnUnresolvedMapping: true,
-        ),
+        options: const CatalogSnapshotBuilderOptions(),
         generatedAtUtc: DateTime.utc(2026, 1, 1),
-      ),
-      throwsStateError,
-    );
-  });
+      );
+
+      final cocktails = result.snapshotMap['cocktails'] as List<dynamic>;
+      final cocktail = cocktails.single as Map<String, dynamic>;
+      final amounts = cocktail['ingredientAmounts'] as Map<String, dynamic>;
+      final units = cocktail['ingredientUnits'] as Map<String, dynamic>;
+
+      expect(cocktail['glassType'], kDefaultCocktailGlassType);
+      expect(amounts['gin'], '2 ladles');
+      expect(units.containsKey('gin'), isFalse);
+    },
+  );
+
+  test(
+    'fails when unresolved ingredient mappings are configured as fatal',
+    () async {
+      final payload = CatalogImportPayload(
+        sourceName: 'thecocktaildb',
+        sourceId: 'thecocktaildb_v1',
+        format: CatalogImportFormat.theCocktailDb,
+        ingredients: <Map<String, dynamic>>[
+          <String, dynamic>{
+            'idIngredient': '90',
+            'strIngredient1': 'Mystery Liqueur',
+          },
+        ],
+        cocktails: const <Map<String, dynamic>>[],
+      );
+
+      expect(
+        () async => createBuilder().build(
+          payload: payload,
+          mappingTemplateCatalog: templateCatalog,
+          options: const CatalogSnapshotBuilderOptions(
+            failOnUnresolvedMapping: true,
+          ),
+          generatedAtUtc: DateTime.utc(2026, 1, 1),
+        ),
+        throwsA(isA<StateError>()),
+      );
+    },
+  );
 }

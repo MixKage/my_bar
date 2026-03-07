@@ -114,6 +114,14 @@ ExternalIngredient normalizeTheCocktailDbIngredientRaw(
       name: name,
       category: category,
       image: image,
+      glowColor: _firstNonEmptyString(<Object?>[raw['glowColor']]),
+      glowSecondaryColor: _firstNonEmptyString(<Object?>[
+        raw['glowSecondaryColor'],
+      ]),
+      glowOffsetX: _parseDouble(raw['glowOffsetX']),
+      glowOffsetY: _parseDouble(raw['glowOffsetY']),
+      glowScale: _parseDouble(raw['glowScale'], fallback: 1),
+      glowOpacity: _parseDouble(raw['glowOpacity'], fallback: 0.34),
     ),
     aliases: <String>[
       if (name.isNotEmpty) name,
@@ -429,6 +437,20 @@ String _firstNonEmptyString(Iterable<Object?> values) {
     }
   }
   return '';
+}
+
+double _parseDouble(Object? value, {double fallback = 0}) {
+  if (value is num) {
+    return value.toDouble();
+  }
+  if (value is String) {
+    final normalized = value.trim().replaceAll(',', '.');
+    final parsed = double.tryParse(normalized);
+    if (parsed != null) {
+      return parsed;
+    }
+  }
+  return fallback;
 }
 
 class _ParsedMeasure {

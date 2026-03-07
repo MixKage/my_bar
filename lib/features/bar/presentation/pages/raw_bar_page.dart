@@ -599,138 +599,123 @@ class IngredientCard extends StatelessWidget {
           Color(0xFF49D1FF),
           Color(0xFFBB7DFF),
         ],
-        child: InkWell(
+        child: ClipRRect(
           borderRadius: BorderRadius.circular(22),
-          onTap: onTap,
-          onLongPress: onLongPress,
-          child: SizedBox(
-            height: 116,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: SizedBox(
-                      width: 90,
-                      height: double.infinity,
-                      child: BarNetworkImage(
-                        imageUrl: ingredient.image,
-                        loadingColor: const Color(0xFF8CA8FF),
-                        loadingBackgroundColor: const Color(0xFF22263D),
-                        errorWidget: const ColoredBox(
-                          color: Color(0xFF22263D),
-                          child: Icon(
-                            Icons.local_bar_rounded,
-                            color: Color(0xFF8FA3D8),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(22),
+            onTap: onTap,
+            onLongPress: onLongPress,
+            child: SizedBox(
+              height: 116,
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: _IngredientImageThumb(ingredient: ingredient),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 8,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            ingredient.name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 17,
+                            ),
                           ),
-                        ),
+                          const SizedBox(height: 4),
+                          Text(
+                            ingredient.category,
+                            style: const TextStyle(
+                              color: Color(0xFFA4AFD3),
+                              fontSize: 13,
+                            ),
+                          ),
+                          if (ingredient.isDecoration || ingredient.isOptional)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Wrap(
+                                spacing: 6,
+                                runSpacing: 4,
+                                children: <Widget>[
+                                  if (ingredient.isDecoration)
+                                    _IngredientAttributePill(
+                                      label: context.tr(
+                                        'Украшение',
+                                        'Decoration',
+                                      ),
+                                      color: Color(0xFF7CCBFF),
+                                    ),
+                                  if (ingredient.isOptional)
+                                    _IngredientAttributePill(
+                                      label: context.tr(
+                                        'Опционально',
+                                        'Optional',
+                                      ),
+                                      color: Color(0xFFB58BFF),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          const SizedBox(height: 4),
+                          Text(
+                            _cocktailHintText(context, cocktails),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Color(0xFFC7CEF0),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12,
-                      horizontal: 8,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          ingredient.name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          ingredient.category,
-                          style: const TextStyle(
-                            color: Color(0xFFA4AFD3),
-                            fontSize: 13,
-                          ),
-                        ),
-                        if (ingredient.isDecoration || ingredient.isOptional)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4),
-                            child: Wrap(
-                              spacing: 6,
-                              runSpacing: 4,
-                              children: <Widget>[
-                                if (ingredient.isDecoration)
-                                  _IngredientAttributePill(
-                                    label: context.tr(
-                                      'Украшение',
-                                      'Decoration',
-                                    ),
-                                    color: Color(0xFF7CCBFF),
-                                  ),
-                                if (ingredient.isOptional)
-                                  _IngredientAttributePill(
-                                    label: context.tr(
-                                      'Опционально',
-                                      'Optional',
-                                    ),
-                                    color: Color(0xFFB58BFF),
-                                  ),
-                              ],
-                            ),
-                          ),
-                        const SizedBox(height: 4),
-                        Text(
-                          _cocktailHintText(context, cocktails),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Color(0xFFC7CEF0),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 220),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: !allowSelection
+                            ? const Color(0xFF2F3857)
+                            : selected
+                            ? const Color(0xFFB24EFF)
+                            : const Color(0xFF242B46),
+                        boxShadow: allowSelection && selected
+                            ? const <BoxShadow>[
+                                BoxShadow(
+                                  color: Color(0x88B24EFF),
+                                  blurRadius: 16,
+                                ),
+                              ]
+                            : null,
+                      ),
+                      child: Icon(
+                        !allowSelection
+                            ? Icons.lock_outline_rounded
+                            : selected
+                            ? Icons.check_rounded
+                            : Icons.add_rounded,
+                        size: 20,
+                        color: !allowSelection
+                            ? const Color(0xFFB8C4EB)
+                            : Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 220),
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: !allowSelection
-                          ? const Color(0xFF2F3857)
-                          : selected
-                          ? const Color(0xFFB24EFF)
-                          : const Color(0xFF242B46),
-                      boxShadow: allowSelection && selected
-                          ? const <BoxShadow>[
-                              BoxShadow(
-                                color: Color(0x88B24EFF),
-                                blurRadius: 16,
-                              ),
-                            ]
-                          : null,
-                    ),
-                    child: Icon(
-                      !allowSelection
-                          ? Icons.lock_outline_rounded
-                          : selected
-                          ? Icons.check_rounded
-                          : Icons.add_rounded,
-                      size: 20,
-                      color: !allowSelection
-                          ? const Color(0xFFB8C4EB)
-                          : Colors.white,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -773,6 +758,247 @@ class IngredientCard extends StatelessWidget {
         return 'коктейлей';
     }
   }
+}
+
+class _IngredientImageThumb extends StatelessWidget {
+  const _IngredientImageThumb({required this.ingredient});
+
+  final Ingredient ingredient;
+
+  @override
+  Widget build(BuildContext context) {
+    final glow = _IngredientGlowVisual.fromIngredient(ingredient);
+    final layout = _kGlowOrbLayouts[glow.layoutIndex % _kGlowOrbLayouts.length];
+    return SizedBox(
+      width: 90,
+      height: double.infinity,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          Align(
+            alignment: layout.primaryAnchor,
+            child: Transform.translate(
+              offset: Offset(
+                glow.offsetX * 12 + layout.primaryBias.dx * 8,
+                glow.offsetY * 10 + layout.primaryBias.dy * 6,
+              ),
+              child: SizedBox(
+                width: 68 * glow.scale,
+                height: 68 * glow.scale,
+                child: _GlowOrb(color: glow.primary, opacity: glow.opacity),
+              ),
+            ),
+          ),
+          Align(
+            alignment: layout.secondaryAnchor,
+            child: Transform.translate(
+              offset: Offset(
+                -glow.offsetX * 10 + layout.secondaryBias.dx * 7,
+                -glow.offsetY * 8 + layout.secondaryBias.dy * 6,
+              ),
+              child: SizedBox(
+                width: 54 * (glow.scale * 0.94),
+                height: 54 * (glow.scale * 0.94),
+                child: _GlowOrb(
+                  color: glow.secondary,
+                  opacity: (glow.opacity * 0.78).clamp(0.16, 0.5),
+                ),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BarNetworkImage(
+                  imageUrl: ingredient.image,
+                  loadingColor: const Color(0xFF8CA8FF),
+                  loadingBackgroundColor: Colors.transparent,
+                  errorWidget: const Icon(
+                    Icons.local_bar_rounded,
+                    color: Color(0xFF8FA3D8),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _GlowOrb extends StatelessWidget {
+  const _GlowOrb({required this.color, required this.opacity});
+
+  final Color color;
+  final double opacity;
+
+  @override
+  Widget build(BuildContext context) {
+    final clampedOpacity = opacity.clamp(0.0, 1.0);
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: RadialGradient(
+          colors: <Color>[
+            color.withValues(alpha: clampedOpacity),
+            color.withValues(alpha: clampedOpacity * 0.45),
+            color.withValues(alpha: 0),
+          ],
+          stops: const <double>[0, 0.58, 1],
+        ),
+      ),
+    );
+  }
+}
+
+class _IngredientGlowVisual {
+  const _IngredientGlowVisual({
+    required this.primary,
+    required this.secondary,
+    required this.offsetX,
+    required this.offsetY,
+    required this.scale,
+    required this.opacity,
+    required this.layoutIndex,
+  });
+
+  factory _IngredientGlowVisual.fromIngredient(Ingredient ingredient) {
+    final hash = _fnv1a32(ingredient.id);
+    final fallbackHue = (hash % 360).toDouble();
+    final fallbackPrimary = HSVColor.fromAHSV(
+      1,
+      fallbackHue,
+      0.62,
+      0.95,
+    ).toColor();
+    final fallbackSecondary = HSVColor.fromAHSV(
+      1,
+      (fallbackHue + 24) % 360,
+      0.5,
+      0.93,
+    ).toColor();
+
+    final primary = _parseHexColor(ingredient.glowColor) ?? fallbackPrimary;
+    final secondary =
+        _parseHexColor(ingredient.glowSecondaryColor ?? '') ??
+        fallbackSecondary;
+
+    return _IngredientGlowVisual(
+      primary: primary,
+      secondary: secondary,
+      offsetX: ingredient.glowOffsetX.clamp(-0.6, 0.6),
+      offsetY: ingredient.glowOffsetY.clamp(-0.6, 0.6),
+      scale: ingredient.glowScale.clamp(0.7, 1.45),
+      opacity: ingredient.glowOpacity.clamp(0.12, 0.56),
+      layoutIndex: (hash >> 10) & 0x7FFFFFFF,
+    );
+  }
+
+  final Color primary;
+  final Color secondary;
+  final double offsetX;
+  final double offsetY;
+  final double scale;
+  final double opacity;
+  final int layoutIndex;
+}
+
+class _GlowOrbLayout {
+  const _GlowOrbLayout({
+    required this.primaryAnchor,
+    required this.secondaryAnchor,
+    required this.primaryBias,
+    required this.secondaryBias,
+  });
+
+  final Alignment primaryAnchor;
+  final Alignment secondaryAnchor;
+  final Offset primaryBias;
+  final Offset secondaryBias;
+}
+
+const List<_GlowOrbLayout> _kGlowOrbLayouts = <_GlowOrbLayout>[
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.topLeft,
+    secondaryAnchor: Alignment.bottomRight,
+    primaryBias: Offset(-0.5, -0.45),
+    secondaryBias: Offset(0.45, 0.4),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.topRight,
+    secondaryAnchor: Alignment.bottomLeft,
+    primaryBias: Offset(0.48, -0.42),
+    secondaryBias: Offset(-0.42, 0.38),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.bottomLeft,
+    secondaryAnchor: Alignment.topRight,
+    primaryBias: Offset(-0.46, 0.44),
+    secondaryBias: Offset(0.42, -0.4),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.bottomRight,
+    secondaryAnchor: Alignment.topLeft,
+    primaryBias: Offset(0.44, 0.4),
+    secondaryBias: Offset(-0.44, -0.4),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.centerLeft,
+    secondaryAnchor: Alignment.topRight,
+    primaryBias: Offset(-0.52, 0.0),
+    secondaryBias: Offset(0.4, -0.35),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.centerRight,
+    secondaryAnchor: Alignment.bottomLeft,
+    primaryBias: Offset(0.52, 0.0),
+    secondaryBias: Offset(-0.38, 0.34),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.topCenter,
+    secondaryAnchor: Alignment.bottomCenter,
+    primaryBias: Offset(0.0, -0.5),
+    secondaryBias: Offset(0.0, 0.42),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.bottomCenter,
+    secondaryAnchor: Alignment.centerLeft,
+    primaryBias: Offset(0.0, 0.46),
+    secondaryBias: Offset(-0.4, -0.05),
+  ),
+  _GlowOrbLayout(
+    primaryAnchor: Alignment.center,
+    secondaryAnchor: Alignment.topLeft,
+    primaryBias: Offset(0.0, 0.0),
+    secondaryBias: Offset(-0.36, -0.36),
+  ),
+];
+
+Color? _parseHexColor(String value) {
+  final normalized = value.trim().replaceAll('#', '');
+  if (normalized.length != 6 && normalized.length != 8) {
+    return null;
+  }
+  final parsed = int.tryParse(normalized, radix: 16);
+  if (parsed == null) {
+    return null;
+  }
+  if (normalized.length == 6) {
+    return Color(0xFF000000 | parsed);
+  }
+  return Color(parsed);
+}
+
+int _fnv1a32(String source) {
+  var hash = 0x811C9DC5;
+  for (final codeUnit in source.codeUnits) {
+    hash ^= codeUnit;
+    hash = (hash * 0x01000193) & 0xFFFFFFFF;
+  }
+  return hash;
 }
 
 class _IngredientAttributePill extends StatelessWidget {

@@ -146,6 +146,12 @@ class BarCubit extends Cubit<BarState> {
       image: image.trim(),
       isDecoration: isDecoration,
       isOptional: isOptional,
+      glowColor: currentIngredient.glowColor,
+      glowSecondaryColor: currentIngredient.glowSecondaryColor,
+      glowOffsetX: currentIngredient.glowOffsetX,
+      glowOffsetY: currentIngredient.glowOffsetY,
+      glowScale: currentIngredient.glowScale,
+      glowOpacity: currentIngredient.glowOpacity,
     );
 
     final snapshot = await _catalogRepository.updateIngredient(

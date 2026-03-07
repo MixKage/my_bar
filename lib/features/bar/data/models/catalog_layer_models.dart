@@ -328,6 +328,12 @@ class IngredientPatch {
       image: image ?? baseline.image,
       isDecoration: isDecoration ?? baseline.isDecoration,
       isOptional: isOptional ?? baseline.isOptional,
+      glowColor: baseline.glowColor,
+      glowSecondaryColor: baseline.glowSecondaryColor,
+      glowOffsetX: baseline.glowOffsetX,
+      glowOffsetY: baseline.glowOffsetY,
+      glowScale: baseline.glowScale,
+      glowOpacity: baseline.glowOpacity,
     );
   }
 

@@ -7,8 +7,11 @@ import 'package:my_bar/features/bar/data/models/catalog_layer_models.dart';
 import 'package:my_bar/features/bar/data/utils/catalog_id_utils.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
+import 'package:my_bar/features/bar/domain/models/cocktail_glass_types.dart';
+import 'package:my_bar/features/bar/domain/models/ingredient_units.dart';
 
 import 'catalog_import_source.dart';
+import 'ingredient_glow_style_generator.dart';
 
 class CatalogSnapshotBuilderOptions {
   const CatalogSnapshotBuilderOptions({
@@ -74,17 +77,19 @@ class CatalogSnapshotBuilder {
   CatalogSnapshotBuilder({
     this.codec = const BarCatalogJsonCodec(),
     this.generatorVersion = '1',
+    this.glowStyleGenerator = const IngredientGlowStyleGenerator(),
   });
 
   final BarCatalogJsonCodec codec;
   final String generatorVersion;
+  final IngredientGlowStyleGenerator glowStyleGenerator;
 
-  CatalogSnapshotBuildResult build({
+  Future<CatalogSnapshotBuildResult> build({
     required CatalogImportPayload payload,
     required BarCatalog mappingTemplateCatalog,
     required CatalogSnapshotBuilderOptions options,
     DateTime? generatedAtUtc,
-  }) {
+  }) async {
     final ingredientMapper = IngredientCanonicalMapper.fromKnownIngredients(
       mappingTemplateCatalog.ingredients,
     );
@@ -197,12 +202,17 @@ class CatalogSnapshotBuilder {
         'unresolvedMappings': unresolvedMappings,
     };
 
+    final ingredientGlowStyles = await glowStyleGenerator.generate(
+      ingredientById.values.map((item) => item.ingredient),
+    );
+
     final ingredientMaps =
         ingredientById.values
             .map(
               (item) => _serializeIngredient(
                 item,
                 rawSource: rawIngredientsBySourceId[item.identity.sourceId],
+                glowStyle: ingredientGlowStyles[item.ingredient.id],
               ),
             )
             .toList(growable: false)
@@ -358,7 +368,7 @@ class CatalogSnapshotBuilder {
       }
 
       if (unknownIngredients.isEmpty) {
-        normalized.add(item);
+        normalized.add(_normalizeCocktailForSnapshot(item));
         continue;
       }
 
@@ -420,7 +430,12 @@ class CatalogSnapshotBuilder {
       );
 
       normalized.add(
-        ExternalCocktail(identity: item.identity, cocktail: sanitizedCocktail),
+        _normalizeCocktailForSnapshot(
+          ExternalCocktail(
+            identity: item.identity,
+            cocktail: sanitizedCocktail,
+          ),
+        ),
       );
     }
 
@@ -433,7 +448,24 @@ class CatalogSnapshotBuilder {
   Map<String, dynamic> _serializeIngredient(
     ExternalIngredient ingredient, {
     Map<String, dynamic>? rawSource,
+    IngredientGlowStyle? glowStyle,
   }) {
+    final resolvedGlowColor = glowStyle?.glowColor.trim().isNotEmpty ?? false
+        ? glowStyle!.glowColor.trim()
+        : ingredient.ingredient.glowColor.trim();
+    final resolvedGlowSecondaryColor =
+        glowStyle?.glowSecondaryColor?.trim().isNotEmpty ?? false
+        ? glowStyle!.glowSecondaryColor!.trim()
+        : ingredient.ingredient.glowSecondaryColor?.trim();
+    final resolvedGlowOffsetX =
+        glowStyle?.glowOffsetX ?? ingredient.ingredient.glowOffsetX;
+    final resolvedGlowOffsetY =
+        glowStyle?.glowOffsetY ?? ingredient.ingredient.glowOffsetY;
+    final resolvedGlowScale =
+        glowStyle?.glowScale ?? ingredient.ingredient.glowScale;
+    final resolvedGlowOpacity =
+        glowStyle?.glowOpacity ?? ingredient.ingredient.glowOpacity;
+
     final map = <String, dynamic>{
       ...ingredient.ingredient.toJson(),
       'source': ingredient.identity.source,
@@ -441,6 +473,13 @@ class CatalogSnapshotBuilder {
       'canonicalSlug': ingredient.identity.canonicalSlug,
       'displayName': ingredient.ingredient.name,
       'imageUrl': ingredient.ingredient.image,
+      if (resolvedGlowColor.isNotEmpty) 'glowColor': resolvedGlowColor,
+      if (resolvedGlowSecondaryColor?.isNotEmpty ?? false)
+        'glowSecondaryColor': resolvedGlowSecondaryColor,
+      'glowOffsetX': resolvedGlowOffsetX,
+      'glowOffsetY': resolvedGlowOffsetY,
+      'glowScale': resolvedGlowScale,
+      'glowOpacity': resolvedGlowOpacity,
       if (ingredient.aliases.isNotEmpty) 'aliases': ingredient.aliases,
     };
 
@@ -557,6 +596,69 @@ class CatalogSnapshotBuilder {
     }
     return null;
   }
+
+  ExternalCocktail _normalizeCocktailForSnapshot(ExternalCocktail source) {
+    final cocktail = source.cocktail;
+    final normalizedAmounts = <String, String>{...cocktail.ingredientAmounts};
+    final normalizedUnits = <String, String>{};
+
+    for (final entry in cocktail.ingredientUnits.entries) {
+      if (!cocktail.ingredients.contains(entry.key)) {
+        continue;
+      }
+      final normalizedUnit = _normalizeSupportedUnit(entry.value);
+      if (normalizedUnit.isNotEmpty) {
+        normalizedUnits[entry.key] = normalizedUnit;
+        continue;
+      }
+
+      final amount = (normalizedAmounts[entry.key] ?? '').trim();
+      final rawUnit = entry.value.trim();
+      if (rawUnit.isEmpty) {
+        continue;
+      }
+      normalizedAmounts[entry.key] = amount.isEmpty
+          ? rawUnit
+          : '$amount $rawUnit';
+    }
+
+    final normalizedGlassType = kCocktailGlassTypes.contains(cocktail.glassType)
+        ? cocktail.glassType
+        : kDefaultCocktailGlassType;
+
+    return ExternalCocktail(
+      identity: source.identity,
+      cocktail: Cocktail(
+        id: cocktail.id,
+        name: cocktail.name,
+        image: cocktail.image,
+        ingredients: cocktail.ingredients,
+        description: cocktail.description,
+        preparationSteps: cocktail.preparationSteps,
+        glassType: normalizedGlassType,
+        tags: cocktail.tags,
+        ingredientSubstitutions: cocktail.ingredientSubstitutions,
+        ingredientAmounts: normalizedAmounts,
+        ingredientUnits: normalizedUnits,
+        optionalIngredients: cocktail.optionalIngredients,
+        decorationIngredients: cocktail.decorationIngredients,
+        isFavorite: cocktail.isFavorite,
+      ),
+    );
+  }
+
+  String _normalizeSupportedUnit(String source) {
+    final unit = source.trim();
+    if (unit.isEmpty) {
+      return '';
+    }
+    if (kSupportedIngredientUnitsSet.contains(unit)) {
+      return unit;
+    }
+
+    final normalized = normalizeKey(unit);
+    return _unitAliasesByKey[normalized] ?? '';
+  }
 }
 
 class _SanitizedCocktailsResult {
@@ -578,3 +680,32 @@ String _firstNonEmptyString(Iterable<Object?> values) {
   }
   return '';
 }
+
+const Map<String, String> _unitAliasesByKey = <String, String>{
+  'ml': 'мл',
+  'milliliter': 'мл',
+  'milliliters': 'мл',
+  'millilitre': 'мл',
+  'millilitres': 'мл',
+  'l': 'л',
+  'liter': 'л',
+  'liters': 'л',
+  'litre': 'л',
+  'litres': 'л',
+  'teaspoon': 'tsp',
+  'teaspoons': 'tsp',
+  'tablespoon': 'tbsp',
+  'tablespoons': 'tbsp',
+  'tblsp': 'tbsp',
+  'cups': 'cup',
+  'shots': 'shot',
+  'parts': 'part',
+  'dashes': 'dash',
+  'drops': 'капля',
+  'slice': 'долька',
+  'slices': 'долька',
+  'wedge': 'долька',
+  'wedges': 'долька',
+  'pieces': 'шт',
+  'piece': 'шт',
+};

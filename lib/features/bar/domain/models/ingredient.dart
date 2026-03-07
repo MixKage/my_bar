@@ -9,6 +9,12 @@ class Ingredient {
     required this.image,
     this.isDecoration = false,
     this.isOptional = false,
+    this.glowColor = '',
+    this.glowSecondaryColor,
+    this.glowOffsetX = 0,
+    this.glowOffsetY = 0,
+    this.glowScale = 1,
+    this.glowOpacity = 0.34,
   });
 
   factory Ingredient.fromJson(Map<String, dynamic> json) {
@@ -19,6 +25,12 @@ class Ingredient {
       image: (json['image'] as String? ?? '').trim(),
       isDecoration: _parseBool(json['isDecoration'] ?? json['decoration']),
       isOptional: _parseBool(json['isOptional'] ?? json['optional']),
+      glowColor: (json['glowColor'] as String? ?? '').trim(),
+      glowSecondaryColor: (json['glowSecondaryColor'] as String?)?.trim(),
+      glowOffsetX: _parseDouble(json['glowOffsetX']),
+      glowOffsetY: _parseDouble(json['glowOffsetY']),
+      glowScale: _parseDouble(json['glowScale'], fallback: 1),
+      glowOpacity: _parseDouble(json['glowOpacity'], fallback: 0.34),
     );
   }
 
@@ -28,6 +40,12 @@ class Ingredient {
   final String image;
   final bool isDecoration;
   final bool isOptional;
+  final String glowColor;
+  final String? glowSecondaryColor;
+  final double glowOffsetX;
+  final double glowOffsetY;
+  final double glowScale;
+  final double glowOpacity;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -37,6 +55,13 @@ class Ingredient {
       'image': image,
       'isDecoration': isDecoration,
       'isOptional': isOptional,
+      if (glowColor.trim().isNotEmpty) 'glowColor': glowColor.trim(),
+      if (glowSecondaryColor?.trim().isNotEmpty ?? false)
+        'glowSecondaryColor': glowSecondaryColor!.trim(),
+      'glowOffsetX': glowOffsetX,
+      'glowOffsetY': glowOffsetY,
+      'glowScale': glowScale,
+      'glowOpacity': glowOpacity,
     };
   }
 
@@ -49,12 +74,30 @@ class Ingredient {
             other.category == category &&
             other.image == image &&
             other.isDecoration == isDecoration &&
-            other.isOptional == isOptional;
+            other.isOptional == isOptional &&
+            other.glowColor == glowColor &&
+            other.glowSecondaryColor == glowSecondaryColor &&
+            other.glowOffsetX == glowOffsetX &&
+            other.glowOffsetY == glowOffsetY &&
+            other.glowScale == glowScale &&
+            other.glowOpacity == glowOpacity;
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, name, category, image, isDecoration, isOptional);
+  int get hashCode => Object.hash(
+    id,
+    name,
+    category,
+    image,
+    isDecoration,
+    isOptional,
+    glowColor,
+    glowSecondaryColor,
+    glowOffsetX,
+    glowOffsetY,
+    glowScale,
+    glowOpacity,
+  );
 
   static bool _parseBool(Object? value) {
     if (value is bool) {
@@ -71,5 +114,19 @@ class Ingredient {
           normalized == 'да';
     }
     return false;
+  }
+
+  static double _parseDouble(Object? value, {double fallback = 0}) {
+    if (value is num) {
+      return value.toDouble();
+    }
+    if (value is String) {
+      final normalized = value.trim().replaceAll(',', '.');
+      final parsed = double.tryParse(normalized);
+      if (parsed != null) {
+        return parsed;
+      }
+    }
+    return fallback;
   }
 }

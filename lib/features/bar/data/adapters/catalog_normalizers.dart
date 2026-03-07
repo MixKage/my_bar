@@ -56,6 +56,14 @@ ExternalIngredient normalizeExternalIngredient(
       image: image,
       isDecoration: _parseBool(raw['isDecoration'] ?? raw['decoration']),
       isOptional: _parseBool(raw['isOptional'] ?? raw['optional']),
+      glowColor: _firstNonEmptyString(<Object?>[raw['glowColor']]),
+      glowSecondaryColor: _firstNonEmptyString(<Object?>[
+        raw['glowSecondaryColor'],
+      ]),
+      glowOffsetX: _parseDouble(raw['glowOffsetX']),
+      glowOffsetY: _parseDouble(raw['glowOffsetY']),
+      glowScale: _parseDouble(raw['glowScale'], fallback: 1),
+      glowOpacity: _parseDouble(raw['glowOpacity'], fallback: 0.34),
     ),
     aliases: aliases,
   );
@@ -201,6 +209,12 @@ LocalIngredient normalizeLocalIngredient(Map<String, dynamic> raw) {
     image: ingredient.image,
     isDecoration: ingredient.isDecoration,
     isOptional: ingredient.isOptional,
+    glowColor: ingredient.glowColor,
+    glowSecondaryColor: ingredient.glowSecondaryColor,
+    glowOffsetX: ingredient.glowOffsetX,
+    glowOffsetY: ingredient.glowOffsetY,
+    glowScale: ingredient.glowScale,
+    glowOpacity: ingredient.glowOpacity,
   );
 
   return LocalIngredient(
@@ -608,6 +622,20 @@ bool _parseBool(Object? value) {
         normalized == 'да';
   }
   return false;
+}
+
+double _parseDouble(Object? value, {double fallback = 0}) {
+  if (value is num) {
+    return value.toDouble();
+  }
+  if (value is String) {
+    final normalized = value.trim().replaceAll(',', '.');
+    final parsed = double.tryParse(normalized);
+    if (parsed != null) {
+      return parsed;
+    }
+  }
+  return fallback;
 }
 
 Map<String, dynamic> _castMap(Object? value) {
