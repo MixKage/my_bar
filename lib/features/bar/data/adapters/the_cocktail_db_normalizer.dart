@@ -359,24 +359,57 @@ List<String> _normalizeInstructions(String instructions) {
 }
 
 _ParsedMeasure _parseMeasure(String source) {
-  final value = source.trim();
+  final value = source.trim().replaceAll(RegExp(r'\s+'), ' ');
   if (value.isEmpty) {
     return const _ParsedMeasure(amount: '', unit: '');
   }
 
-  final match = RegExp(r'^([\d\s/.,¼½¾⅓⅔-]+)\s*(.*)$').firstMatch(value);
-  if (match == null) {
-    return _ParsedMeasure(amount: '', unit: value);
+  final normalizedValueKey = normalizeKey(value);
+  if (normalizedValueKey.contains('to_taste') ||
+      normalizedValueKey.contains('po_vkusu')) {
+    return const _ParsedMeasure(amount: '', unit: 'по вкусу');
   }
 
-  final amount = (match.group(1) ?? '').trim();
-  final unit = (match.group(2) ?? '').trim();
+  final match = RegExp(r'^([\d\s/.,¼½¾⅓⅔-]+)\s*(.*)$').firstMatch(value);
+  if (match == null) {
+    // Keep qualitative directives as amount text so we do not lose source data.
+    return _ParsedMeasure(amount: value, unit: '');
+  }
+
+  final amount = (match.group(1) ?? '').trim().replaceAll(RegExp(r'\s+'), ' ');
+  final unitRaw = (match.group(2) ?? '').trim();
 
   if (amount.isEmpty) {
-    return _ParsedMeasure(amount: '', unit: value);
+    return _ParsedMeasure(amount: value, unit: '');
+  }
+
+  final unit = _normalizeMeasureUnit(unitRaw);
+  if (unit.isEmpty && unitRaw.isNotEmpty) {
+    // Unknown unit token: keep full string in amount to preserve semantics.
+    return _ParsedMeasure(amount: value, unit: '');
   }
 
   return _ParsedMeasure(amount: amount, unit: unit);
+}
+
+String _normalizeMeasureUnit(String source) {
+  final normalized = normalizeKey(source);
+  if (normalized.isEmpty) {
+    return '';
+  }
+
+  final direct = _measureUnitAliases[normalized];
+  if (direct != null && direct.isNotEmpty) {
+    return direct;
+  }
+
+  for (final entry in _measureUnitPrefixAliases.entries) {
+    if (normalized.startsWith(entry.key)) {
+      return entry.value;
+    }
+  }
+
+  return '';
 }
 
 String _buildTheCocktailDbIngredientImage(String ingredientName) {
@@ -404,6 +437,97 @@ class _ParsedMeasure {
   final String amount;
   final String unit;
 }
+
+const Map<String, String> _measureUnitAliases = <String, String>{
+  'ml': 'мл',
+  'milliliter': 'мл',
+  'milliliters': 'мл',
+  'millilitre': 'мл',
+  'millilitres': 'мл',
+  'мл': 'мл',
+  'l': 'л',
+  'liter': 'л',
+  'liters': 'л',
+  'litre': 'л',
+  'litres': 'л',
+  'л': 'л',
+  'cl': 'cl',
+  'oz': 'oz',
+  'ounce': 'oz',
+  'ounces': 'oz',
+  'fl_oz': 'oz',
+  'tsp': 'tsp',
+  'teaspoon': 'tsp',
+  'teaspoons': 'tsp',
+  'tbsp': 'tbsp',
+  'tblsp': 'tbsp',
+  'tablespoon': 'tbsp',
+  'tablespoons': 'tbsp',
+  'shot': 'shot',
+  'shots': 'shot',
+  'part': 'part',
+  'parts': 'part',
+  'cup': 'cup',
+  'cups': 'cup',
+  'dash': 'dash',
+  'dashes': 'dash',
+  'drop': 'капля',
+  'drops': 'капля',
+  'pinch': 'pinch',
+  'pinches': 'pinch',
+  'slice': 'долька',
+  'slices': 'долька',
+  'wedge': 'долька',
+  'wedges': 'долька',
+  'piece': 'шт',
+  'pieces': 'шт',
+  'cube': 'шт',
+  'cubes': 'шт',
+  'chunk': 'шт',
+  'chunks': 'шт',
+  'sprig': 'шт',
+  'sprigs': 'шт',
+  'stick': 'шт',
+  'sticks': 'шт',
+  'bottle': 'шт',
+  'can': 'шт',
+  'glass': 'шт',
+  'jigger': 'шт',
+  'jiggers': 'шт',
+};
+
+const Map<String, String> _measureUnitPrefixAliases = <String, String>{
+  'ml_': 'мл',
+  'milliliter_': 'мл',
+  'l_': 'л',
+  'liter_': 'л',
+  'cl_': 'cl',
+  'oz_': 'oz',
+  'ounce_': 'oz',
+  'fl_oz_': 'oz',
+  'tsp_': 'tsp',
+  'teaspoon_': 'tsp',
+  'tbsp_': 'tbsp',
+  'tblsp_': 'tbsp',
+  'tablespoon_': 'tbsp',
+  'shot_': 'shot',
+  'part_': 'part',
+  'cup_': 'cup',
+  'dash_': 'dash',
+  'drop_': 'капля',
+  'pinch_': 'pinch',
+  'slice_': 'долька',
+  'wedge_': 'долька',
+  'piece_': 'шт',
+  'cube_': 'шт',
+  'chunk_': 'шт',
+  'sprig_': 'шт',
+  'stick_': 'шт',
+  'bottle_': 'шт',
+  'can_': 'шт',
+  'glass_': 'шт',
+  'jigger_': 'шт',
+};
 
 const Map<String, String> _theCocktailDbGlassMap = <String, String>{
   'cocktail_glass': 'Мартини',

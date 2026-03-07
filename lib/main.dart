@@ -12,7 +12,6 @@ import 'features/bar/data/ingredient_selection_storage.dart';
 import 'features/bar/data/local_catalog_storage.dart';
 import 'features/bar/data/models/catalog_layer_models.dart';
 import 'features/bar/data/providers/external_bar_data_provider.dart';
-import 'features/bar/data/providers/the_cocktail_db_provider.dart';
 import 'features/bar/data/repositories/bar_catalog_repository.dart';
 import 'features/bar/domain/models/bar_catalog.dart';
 import 'features/bar/domain/models/catalog_data_source.dart';
@@ -45,7 +44,6 @@ Future<_BootstrapData> _bootstrapApp() async {
       preferences,
     );
     final settingsStorage = SharedPreferencesBarUiSettingsStorage(preferences);
-    final settings = settingsStorage.readSettings();
 
     final localStorage = SharedPreferencesLocalCatalogStorage(preferences);
     final overridesStorage = SharedPreferencesCatalogOverridesStorage(
@@ -65,7 +63,6 @@ Future<_BootstrapData> _bootstrapApp() async {
       bootstrapDefaultProvider: externalProviders.bootstrapDefaultProvider,
       bootstrapDefaultDataSource: externalProviders.bootstrapDefaultDataSource,
       theCocktailDbProvider: externalProviders.theCocktailDbProvider,
-      userSelectedDataSource: settings.catalogDataSource,
     );
     final repository = BarCatalogRepository(
       externalProvider: externalProviderSelector,
@@ -126,84 +123,16 @@ Future<_BootstrapData> _bootstrapApp() async {
 }
 
 _ExternalProviderBundle _buildExternalProviderBundle() {
-  final providerMode = const String.fromEnvironment(
-    'MY_BAR_EXTERNAL_PROVIDER',
-  ).trim().toLowerCase();
-  final externalCatalogUrl = const String.fromEnvironment(
-    'MY_BAR_EXTERNAL_CATALOG_URL',
-  ).trim();
-  final theCocktailDbBaseUrl = const String.fromEnvironment(
-    'MY_BAR_THECOCKTAILDB_BASE_URL',
-  ).trim();
-  final theCocktailDbApiKey = const String.fromEnvironment(
-    'MY_BAR_THECOCKTAILDB_API_KEY',
-  ).trim();
-
   final assetProvider = JsonAssetExternalBarDataProvider(
     assetPath: 'assets/data/bar_template.json',
     sourceIdValue: 'asset_template',
   );
-  final seedDefaultProvider = _buildSeedDefaultProvider(
-    externalCatalogUrl: externalCatalogUrl,
-    assetProvider: assetProvider,
-  );
-  final theCocktailDbProvider = _buildTheCocktailDbProvider(
-    baseUrl: theCocktailDbBaseUrl,
-    apiKey: theCocktailDbApiKey,
-  );
-
-  // Explicit TheCocktailDB mode enables network source as bootstrap default.
-  if (providerMode == 'thecocktaildb' && theCocktailDbProvider != null) {
-    return _ExternalProviderBundle(
-      seedProvider: assetProvider,
-      bootstrapDefaultProvider: theCocktailDbProvider,
-      bootstrapDefaultDataSource: CatalogDataSource.theCocktailDb,
-      theCocktailDbProvider: theCocktailDbProvider,
-    );
-  }
-
-  // Default runtime mode is offline-first seed snapshot.
   return _ExternalProviderBundle(
     seedProvider: assetProvider,
-    bootstrapDefaultProvider: seedDefaultProvider,
+    bootstrapDefaultProvider: assetProvider,
     bootstrapDefaultDataSource: CatalogDataSource.seed,
-    theCocktailDbProvider: theCocktailDbProvider,
+    theCocktailDbProvider: null,
   );
-}
-
-ExternalBarDataProvider? _buildTheCocktailDbProvider({
-  required String baseUrl,
-  required String apiKey,
-}) {
-  final normalizedApiKey = apiKey.trim().isEmpty ? '1' : apiKey.trim();
-  final resolvedBaseUrl = baseUrl.trim().isEmpty
-      ? 'https://www.thecocktaildb.com/api/json/v1/$normalizedApiKey/'
-      : baseUrl.trim();
-  final uri = Uri.tryParse(resolvedBaseUrl);
-  if (uri == null || (!uri.hasScheme || !uri.hasAuthority)) {
-    return null;
-  }
-
-  return TheCocktailDbExternalBarDataProvider(baseUrl: uri);
-}
-
-ExternalBarDataProvider _buildSeedDefaultProvider({
-  required String externalCatalogUrl,
-  required ExternalBarDataProvider assetProvider,
-}) {
-  if (externalCatalogUrl.isEmpty) {
-    return assetProvider;
-  }
-
-  final uri = Uri.tryParse(externalCatalogUrl);
-  if (uri == null || (!uri.hasScheme || !uri.hasAuthority)) {
-    return assetProvider;
-  }
-
-  return FallbackExternalBarDataProvider(<ExternalBarDataProvider>[
-    HttpJsonExternalBarDataProvider(url: uri, sourceIdValue: uri.host),
-    assetProvider,
-  ]);
 }
 
 Future<BarCatalog> _loadTemplateCatalog(BarCatalogJsonCodec codec) async {

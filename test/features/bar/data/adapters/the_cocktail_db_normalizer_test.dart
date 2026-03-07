@@ -78,6 +78,30 @@ void main() {
     expect(cocktail.cocktail.preparationSteps, hasLength(2));
   });
 
+  test('keeps qualitative measure text in amount without unsupported unit', () {
+    final mapper = IngredientCanonicalMapper.fromKnownIngredients(<Ingredient>[
+      const Ingredient(id: 'orange', name: 'Апельсин', category: '', image: ''),
+    ]);
+
+    final cocktail = normalizeTheCocktailDbCocktailRaw(
+      <String, dynamic>{
+        'idDrink': '22000',
+        'strDrink': 'Orange Twist',
+        'strInstructions': 'Build.',
+        'strGlass': 'Cocktail glass',
+        'strIngredient1': 'Orange',
+        'strMeasure1': 'Juice of 1/2',
+      },
+      source: 'thecocktaildb_v1',
+      ingredientMapper: mapper,
+      knownCocktailIdsByName: const <String, String>{},
+      usedCocktailIds: <String>{},
+    );
+
+    expect(cocktail.cocktail.ingredientAmounts['orange'], 'Juice of 1/2');
+    expect(cocktail.cocktail.ingredientUnits.containsKey('orange'), isFalse);
+  });
+
   test('dedupes TheCocktailDB cocktails by sourceId', () {
     final mapper = IngredientCanonicalMapper.fromKnownIngredients(
       const <Ingredient>[],

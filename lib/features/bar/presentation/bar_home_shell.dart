@@ -15,7 +15,6 @@ import '../../../core/localization/app_language.dart';
 import '../../../core/localization/app_localization.dart';
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
-import '../domain/models/catalog_data_source.dart';
 import '../domain/models/cocktail.dart';
 import '../domain/models/ingredient.dart';
 import 'pages/cocktail_editor_page.dart';
@@ -217,9 +216,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final cubit = context.read<BarCubit>();
     var visitorMode = cubit.state.visitorMode;
     var barMenuOnlyMode = cubit.state.barMenuOnlyMode;
-    var catalogDataSource = cubit.state.catalogDataSource;
     var appLanguage = cubit.state.appLanguage;
-    final isTheCocktailDbAvailable = cubit.state.isTheCocktailDbAvailable;
 
     final action = await showModalBottomSheet<_BarSettingsAction>(
       context: context,
@@ -353,77 +350,6 @@ class _BarHomeShellState extends State<BarHomeShell> {
                                   : context.tr(
                                       'Выбор сохраняется между запусками приложения.',
                                       'Selection is preserved between app launches.',
-                                    ),
-                            ),
-                          ),
-                          const Divider(height: 16),
-                          ListTile(
-                            leading: const Icon(Icons.storage_rounded),
-                            title: Text(
-                              context.tr(
-                                'Источник каталога коктейлей',
-                                'Cocktail catalog source',
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                            child: SegmentedButton<CatalogDataSource>(
-                              showSelectedIcon: false,
-                              selected: <CatalogDataSource>{catalogDataSource},
-                              segments: <ButtonSegment<CatalogDataSource>>[
-                                ButtonSegment<CatalogDataSource>(
-                                  value: CatalogDataSource.seed,
-                                  label: Text(
-                                    context.catalogDataSourceTitle(
-                                      CatalogDataSource.seed,
-                                    ),
-                                  ),
-                                ),
-                                ButtonSegment<CatalogDataSource>(
-                                  value: CatalogDataSource.theCocktailDb,
-                                  label: Text(
-                                    context.catalogDataSourceTitle(
-                                      CatalogDataSource.theCocktailDb,
-                                    ),
-                                  ),
-                                  enabled: isTheCocktailDbAvailable,
-                                ),
-                              ],
-                              onSelectionChanged: (selection) async {
-                                if (selection.isEmpty) {
-                                  return;
-                                }
-                                final nextSource = selection.first;
-                                setModalState(
-                                  () => catalogDataSource = nextSource,
-                                );
-                                await cubit.setCatalogDataSource(nextSource);
-                                if (!mounted) {
-                                  return;
-                                }
-                                setModalState(
-                                  () => catalogDataSource =
-                                      cubit.state.catalogDataSource,
-                                );
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            dense: true,
-                            title: Text(
-                              context.catalogDataSourceTitle(catalogDataSource),
-                            ),
-                            subtitle: Text(
-                              catalogDataSource ==
-                                          CatalogDataSource.theCocktailDb &&
-                                      !isTheCocktailDbAvailable
-                                  ? context.tr(
-                                      'Недоступно: проверьте MY_BAR_THECOCKTAILDB_* конфигурацию',
-                                      'Unavailable: check MY_BAR_THECOCKTAILDB_* config',
-                                    )
-                                  : context.catalogDataSourceDescription(
-                                      catalogDataSource,
                                     ),
                             ),
                           ),

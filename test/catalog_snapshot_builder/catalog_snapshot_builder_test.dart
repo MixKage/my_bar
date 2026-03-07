@@ -88,7 +88,7 @@ void main() {
         containsAll(<String>['gin', 'juice_orange']),
       );
       expect(ingredientAmounts['gin'], '50');
-      expect(ingredientUnits['gin'], 'ml');
+      expect(ingredientUnits['gin'], 'мл');
       expect(cocktail['sourceId'], '11000');
 
       final decoded = const BarCatalogJsonCodec().decode(result.snapshotJson);
