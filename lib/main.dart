@@ -143,46 +143,38 @@ _ExternalProviderBundle _buildExternalProviderBundle() {
     assetPath: 'assets/data/bar_template.json',
     sourceIdValue: 'asset_template',
   );
+  final seedDefaultProvider = _buildSeedDefaultProvider(
+    externalCatalogUrl: externalCatalogUrl,
+    assetProvider: assetProvider,
+  );
+  final theCocktailDbProvider = _buildTheCocktailDbProvider(
+    baseUrl: theCocktailDbBaseUrl,
+    apiKey: theCocktailDbApiKey,
+  );
 
-  ExternalBarDataProvider? theCocktailDbProvider;
-  if (providerMode == 'thecocktaildb') {
-    theCocktailDbProvider = _buildTheCocktailDbProvider(
-      baseUrl: theCocktailDbBaseUrl,
-      apiKey: theCocktailDbApiKey,
+  // Explicit seed mode keeps previous behavior and skips TheCocktailDB as default.
+  if (providerMode == 'seed') {
+    return _ExternalProviderBundle(
+      seedProvider: assetProvider,
+      bootstrapDefaultProvider: seedDefaultProvider,
+      bootstrapDefaultDataSource: CatalogDataSource.seed,
+      theCocktailDbProvider: theCocktailDbProvider,
     );
-    if (theCocktailDbProvider != null) {
-      return _ExternalProviderBundle(
-        seedProvider: assetProvider,
-        bootstrapDefaultProvider: theCocktailDbProvider,
-        bootstrapDefaultDataSource: CatalogDataSource.theCocktailDb,
-        theCocktailDbProvider: theCocktailDbProvider,
-      );
-    }
-  } else {
-    final theCocktailDbProvider = _buildTheCocktailDbProvider(
-      baseUrl: theCocktailDbBaseUrl,
-      apiKey: theCocktailDbApiKey,
+  }
+
+  // Default mode (including empty MY_BAR_EXTERNAL_PROVIDER) prefers TheCocktailDB.
+  if (theCocktailDbProvider != null) {
+    return _ExternalProviderBundle(
+      seedProvider: assetProvider,
+      bootstrapDefaultProvider: theCocktailDbProvider,
+      bootstrapDefaultDataSource: CatalogDataSource.theCocktailDb,
+      theCocktailDbProvider: theCocktailDbProvider,
     );
-    if (theCocktailDbProvider != null) {
-      // Keep provider available for user selection even if bootstrap default is not TheCocktailDB.
-      return _ExternalProviderBundle(
-        seedProvider: assetProvider,
-        bootstrapDefaultProvider: _buildSeedDefaultProvider(
-          externalCatalogUrl: externalCatalogUrl,
-          assetProvider: assetProvider,
-        ),
-        bootstrapDefaultDataSource: CatalogDataSource.seed,
-        theCocktailDbProvider: theCocktailDbProvider,
-      );
-    }
   }
 
   return _ExternalProviderBundle(
     seedProvider: assetProvider,
-    bootstrapDefaultProvider: _buildSeedDefaultProvider(
-      externalCatalogUrl: externalCatalogUrl,
-      assetProvider: assetProvider,
-    ),
+    bootstrapDefaultProvider: seedDefaultProvider,
     bootstrapDefaultDataSource: CatalogDataSource.seed,
     theCocktailDbProvider: theCocktailDbProvider,
   );
