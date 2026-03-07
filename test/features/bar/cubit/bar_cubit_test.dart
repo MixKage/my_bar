@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_bar/core/localization/app_language.dart';
 import 'package:my_bar/features/bar/cubit/bar_cubit.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
@@ -215,6 +216,19 @@ void main() {
     final persisted = settingsStorage.readSettings();
     expect(persisted.visitorMode, isTrue);
     expect(persisted.barMenuOnlyMode, isTrue);
+  });
+
+  test('persists selected app language', () async {
+    final settingsStorage = InMemoryBarUiSettingsStorage();
+    final cubit = await _createCubit(
+      templateCatalog: _templateCatalog,
+      settingsStorage: settingsStorage,
+    );
+
+    await cubit.setAppLanguage(AppLanguage.english);
+
+    expect(cubit.state.appLanguage, AppLanguage.english);
+    expect(settingsStorage.readSettings().appLanguage, AppLanguage.english);
   });
 
   test('updates ingredient fields', () async {

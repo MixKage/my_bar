@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
@@ -18,7 +19,12 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-      MaterialApp(home: _TestHost(ingredients: ingredients)),
+      const MaterialApp(
+        locale: Locale('ru'),
+        supportedLocales: <Locale>[Locale('ru'), Locale('en')],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        home: _TestHost(ingredients: ingredients),
+      ),
     );
 
     await tester.tap(find.text('open-editor'));
@@ -49,7 +55,12 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-      MaterialApp(home: _TestHost(ingredients: ingredients)),
+      const MaterialApp(
+        locale: Locale('ru'),
+        supportedLocales: <Locale>[Locale('ru'), Locale('en')],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        home: _TestHost(ingredients: ingredients),
+      ),
     );
 
     await tester.tap(find.text('open-editor'));

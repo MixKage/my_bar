@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   testWidgets('shows app shell with both tabs', (WidgetTester tester) async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({'bar_ui_app_language': 'ru'});
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
@@ -33,6 +33,7 @@ void main() {
   ) async {
     SharedPreferences.setMockInitialValues({
       'selected_ingredients': ['gin', 'vermouth'],
+      'bar_ui_app_language': 'ru',
     });
     final preferences = await SharedPreferences.getInstance();
 
@@ -51,7 +52,7 @@ void main() {
   testWidgets('saves selected ingredients to storage', (
     WidgetTester tester,
   ) async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({'bar_ui_app_language': 'ru'});
     final preferences = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
