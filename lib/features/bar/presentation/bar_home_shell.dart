@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
@@ -27,8 +30,16 @@ class BarHomeShell extends StatefulWidget {
 
 class _BarHomeShellState extends State<BarHomeShell> {
   static const _jsonCodec = BarCatalogJsonCodec();
+  static final Uri _developerSiteUri = Uri.parse('https://logion-web.ru/');
 
   int _currentTab = 0;
+  String _appVersionLabel = '...';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAppVersion();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -277,16 +288,140 @@ class _BarHomeShellState extends State<BarHomeShell> {
   }
 
   void _showAbout() {
-    showAboutDialog(
+    showDialog<void>(
       context: context,
-      applicationName: 'Мой Бар',
-      applicationVersion: '1.0.0',
-      applicationIcon: const Icon(Icons.local_bar_rounded),
-      children: const <Widget>[
-        Text(
-          'Приложение для управления домашним баром и подбором коктейлей. Логион.',
-        ),
-      ],
+      barrierColor: const Color(0xAA050711),
+      builder: (dialogContext) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 24,
+          ),
+          child: AnimatedGradientBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderWidth: 1.7,
+            innerColor: const Color(0xFF101429),
+            colors: const <Color>[
+              Color(0xFFB679FF),
+              Color(0xFF5BD4FF),
+              Color(0xFFFF8AC7),
+              Color(0xFFB679FF),
+            ],
+            glowEffect: true,
+            glow: const AnimatedGradientBorderGlow(
+              opacity: 0.42,
+              outerBlurSigma: 16,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[Color(0x55B87BFF), Color(0x5535C5FF)],
+                      ),
+                      border: Border.all(color: const Color(0x66C9A7FF)),
+                      boxShadow: const <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0x66745AFF),
+                          blurRadius: 18,
+                          spreadRadius: 0.8,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Image.asset(
+                          'assets/icon.png',
+                          width: 72,
+                          height: 72,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const SizedBox(
+                              width: 72,
+                              height: 72,
+                              child: Icon(
+                                Icons.local_bar_rounded,
+                                size: 34,
+                                color: Color(0xFFD7DFFF),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  ShaderMask(
+                    shaderCallback: (bounds) {
+                      return const LinearGradient(
+                        colors: <Color>[Color(0xFFFFA6D8), Color(0xFF95D6FF)],
+                      ).createShader(bounds);
+                    },
+                    blendMode: BlendMode.srcIn,
+                    child: Text(
+                      'Мой Бар',
+                      style: Theme.of(dialogContext).textTheme.titleLarge
+                          ?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.25,
+                          ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Версия $_appVersionLabel',
+                    style: TextStyle(
+                      color: Color(0xFFAEC0F0),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    'Неоновый помощник для домашнего бара: отмечайте ингредиенты, находите доступные коктейли и настраивайте собственную барную карту.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFFD7DEF5),
+                      fontSize: 14,
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  _PressableAboutButton(
+                    onPressed: _openDeveloperSite,
+                    icon: Icons.open_in_new_rounded,
+                    label: 'Сайт разработчика',
+                    foregroundColor: const Color(0xFFCFE3FF),
+                    backgroundColor: const Color(0x33121A38),
+                    pressedBackgroundColor: const Color(0x551B2954),
+                    borderColor: const Color(0x667C8DFF),
+                  ),
+                  const SizedBox(height: 10),
+                  _PressableAboutButton(
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                    icon: Icons.check_rounded,
+                    label: 'Понятно',
+                    foregroundColor: Colors.white,
+                    backgroundColor: const Color(0xFF5C63FF),
+                    pressedBackgroundColor: const Color(0xFF4D53D8),
+                    glowColor: const Color(0x665C63FF),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -308,6 +443,42 @@ class _BarHomeShellState extends State<BarHomeShell> {
       _showSnackBar('Ингредиент добавлен');
     } on FormatException catch (error) {
       _showSnackBar(error.message);
+    }
+  }
+
+  Future<void> _loadAppVersion() async {
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      final buildNumber = packageInfo.buildNumber.trim();
+      final versionLabel = buildNumber.isEmpty
+          ? packageInfo.version
+          : '${packageInfo.version} (b: $buildNumber)';
+      if (!mounted) {
+        return;
+      }
+      setState(() => _appVersionLabel = versionLabel);
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() => _appVersionLabel = 'неизвестно');
+    }
+  }
+
+  Future<void> _openDeveloperSite() async {
+    try {
+      final launched = await launchUrl(
+        _developerSiteUri,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched && mounted) {
+        _showSnackBar('Не удалось открыть сайт разработчика');
+      }
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      _showSnackBar('Не удалось открыть сайт разработчика');
     }
   }
 
@@ -483,6 +654,100 @@ class _BarHomeShellState extends State<BarHomeShell> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
+  }
+}
+
+class _PressableAboutButton extends StatefulWidget {
+  const _PressableAboutButton({
+    required this.onPressed,
+    required this.icon,
+    required this.label,
+    required this.foregroundColor,
+    required this.backgroundColor,
+    required this.pressedBackgroundColor,
+    this.borderColor,
+    this.glowColor,
+  });
+
+  final VoidCallback onPressed;
+  final IconData icon;
+  final String label;
+  final Color foregroundColor;
+  final Color backgroundColor;
+  final Color pressedBackgroundColor;
+  final Color? borderColor;
+  final Color? glowColor;
+
+  @override
+  State<_PressableAboutButton> createState() => _PressableAboutButtonState();
+}
+
+class _PressableAboutButtonState extends State<_PressableAboutButton> {
+  bool _pressed = false;
+
+  void _setPressed(bool value) {
+    if (_pressed == value || !mounted) {
+      return;
+    }
+    setState(() => _pressed = value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: widget.onPressed,
+        onTapDown: (_) => _setPressed(true),
+        onTapUp: (_) => _setPressed(false),
+        onTapCancel: () => _setPressed(false),
+        child: AnimatedScale(
+          duration: const Duration(milliseconds: 110),
+          curve: Curves.easeOut,
+          scale: _pressed ? 0.97 : 1,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            curve: Curves.easeOut,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: _pressed
+                  ? widget.pressedBackgroundColor
+                  : widget.backgroundColor,
+              borderRadius: BorderRadius.circular(14),
+              border: widget.borderColor == null
+                  ? null
+                  : Border.all(color: widget.borderColor!),
+              boxShadow: widget.glowColor == null
+                  ? null
+                  : <BoxShadow>[
+                      BoxShadow(
+                        color: widget.glowColor!,
+                        blurRadius: 12,
+                        spreadRadius: 0.6,
+                      ),
+                    ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(widget.icon, size: 18, color: widget.foregroundColor),
+                const SizedBox(width: 8),
+                Text(
+                  widget.label,
+                  style: TextStyle(
+                    color: widget.foregroundColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
