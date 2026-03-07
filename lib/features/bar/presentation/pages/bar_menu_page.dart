@@ -7,6 +7,7 @@ import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
+import 'cocktail_details_page.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
 import '../widgets/neon_bottom_navigation.dart';
@@ -231,8 +232,11 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     cocktails: filteredCocktails,
                     missingIngredientsByCocktailId:
                         missingIngredientsByCocktailId,
+                    ingredientsById: widget.ingredientsById,
+                    visitorMode: widget.visitorMode,
                     bottomPadding: bottomContentPadding,
                     scrollController: _scrollController,
+                    onEditCocktailPressed: widget.onEditCocktailPressed,
                     onToggleFavoritePressed: widget.onToggleFavoritePressed,
                   )
                 : CocktailList(
@@ -353,16 +357,22 @@ class CocktailGrid extends StatelessWidget {
   const CocktailGrid({
     required this.cocktails,
     required this.missingIngredientsByCocktailId,
+    required this.ingredientsById,
+    required this.visitorMode,
     required this.bottomPadding,
     required this.scrollController,
+    required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
     super.key,
   });
 
   final List<Cocktail> cocktails;
   final Map<String, List<String>> missingIngredientsByCocktailId;
+  final Map<String, Ingredient> ingredientsById;
+  final bool visitorMode;
   final double bottomPadding;
   final ScrollController scrollController;
+  final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
 
   @override
@@ -401,115 +411,139 @@ class CocktailGrid extends StatelessWidget {
                   opacity: 0.35,
                   outerBlurSigma: 14,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Expanded(
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned.fill(
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(18),
-                              ),
-                              child: BarNetworkImage(
-                                imageUrl: cocktail.image,
-                                loadingColor: const Color(0xFFF5A3D8),
-                                loadingBackgroundColor: const Color(0xFF242A45),
-                                errorWidget: const ColoredBox(
-                                  color: Color(0xFF242A45),
-                                  child: Icon(
-                                    Icons.local_bar_rounded,
-                                    color: Color(0xFF8FA3D8),
-                                    size: 38,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    Navigator.of(context).push<void>(
+                      MaterialPageRoute<void>(
+                        builder: (_) => CocktailDetailsPage(
+                          cocktail: cocktail,
+                          missingIngredientNames: missingIngredients,
+                          ingredientsById: ingredientsById,
+                          visitorMode: visitorMode,
+                          onEditCocktailPressed: onEditCocktailPressed,
+                          onToggleFavoritePressed: onToggleFavoritePressed,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Expanded(
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned.fill(
+                              child: Hero(
+                                tag: cocktailHeroTag(cocktail.id),
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(18),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            right: 4,
-                            top: 4,
-                            child: _PressableFavoriteButton(
-                              tooltip: cocktail.isFavorite
-                                  ? context.tr(
-                                      'Убрать из избранного',
-                                      'Remove from favorites',
-                                    )
-                                  : context.tr(
-                                      'В избранное',
-                                      'Add to favorites',
+                                  child: BarNetworkImage(
+                                    imageUrl: cocktail.image,
+                                    loadingColor: const Color(0xFFF5A3D8),
+                                    loadingBackgroundColor: const Color(
+                                      0xFF242A45,
                                     ),
-                              isFavorite: cocktail.isFavorite,
-                              size: 36,
-                              inactiveBackgroundColor: const Color(0x44353C62),
-                              activeBackgroundColor: const Color(0x664A3E2E),
-                              inactiveIconColor: const Color(0xFFC8D3F8),
-                              activeIconColor: const Color(0xFFFFD37B),
-                              onPressed: () =>
-                                  onToggleFavoritePressed(cocktail.id),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            cocktail.name,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: <Widget>[
-                              CocktailGlassIcon(
-                                glassType: cocktail.glassType,
-                                size: 13,
-                                color: const Color(0xFFACB8E6),
-                              ),
-                              const SizedBox(width: 6),
-                              Expanded(
-                                child: Text(
-                                  context.cocktailGlassTypeLabel(
-                                    cocktail.glassType,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: Color(0xFFACB8E6),
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
+                                    errorWidget: const ColoredBox(
+                                      color: Color(0xFF242A45),
+                                      child: Icon(
+                                        Icons.local_bar_rounded,
+                                        color: Color(0xFF8FA3D8),
+                                        size: 38,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          Wrap(
-                            spacing: 6,
-                            runSpacing: 6,
-                            children: cocktail.tags
-                                .take(2)
-                                .map((tag) => _TagPill(tag: tag))
-                                .toList(growable: false),
-                          ),
-                          const SizedBox(height: 6),
-                          _AvailabilityHint(
-                            missingIngredientNames: missingIngredients,
-                            maxLines: 2,
-                          ),
-                        ],
+                            ),
+                            Positioned(
+                              right: 4,
+                              top: 4,
+                              child: _PressableFavoriteButton(
+                                tooltip: cocktail.isFavorite
+                                    ? context.tr(
+                                        'Убрать из избранного',
+                                        'Remove from favorites',
+                                      )
+                                    : context.tr(
+                                        'В избранное',
+                                        'Add to favorites',
+                                      ),
+                                isFavorite: cocktail.isFavorite,
+                                size: 36,
+                                inactiveBackgroundColor: const Color(
+                                  0x44353C62,
+                                ),
+                                activeBackgroundColor: const Color(0x664A3E2E),
+                                inactiveIconColor: const Color(0xFFC8D3F8),
+                                activeIconColor: const Color(0xFFFFD37B),
+                                onPressed: () =>
+                                    onToggleFavoritePressed(cocktail.id),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              cocktail.name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: <Widget>[
+                                CocktailGlassIcon(
+                                  glassType: cocktail.glassType,
+                                  size: 13,
+                                  color: const Color(0xFFACB8E6),
+                                ),
+                                const SizedBox(width: 6),
+                                Expanded(
+                                  child: Text(
+                                    context.cocktailGlassTypeLabel(
+                                      cocktail.glassType,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: Color(0xFFACB8E6),
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            Wrap(
+                              spacing: 6,
+                              runSpacing: 6,
+                              children: cocktail.tags
+                                  .take(2)
+                                  .map((tag) => _TagPill(tag: tag))
+                                  .toList(growable: false),
+                            ),
+                            const SizedBox(height: 6),
+                            _AvailabilityHint(
+                              missingIngredientNames: missingIngredients,
+                              maxLines: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
