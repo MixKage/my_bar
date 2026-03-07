@@ -5,7 +5,8 @@ Standalone utility for generating an **app-compatible local catalog snapshot** (
 The utility is designed for an offline-first runtime model:
 - external API is used **only at build/import time**,
 - runtime app works from a prebuilt local JSON,
-- images are stored as **URL only** (no binary image download/bundling).
+- by default images are stored as **URL only**,
+- optional mode can download images and rewrite JSON to local asset paths.
 
 ## What It Does
 
@@ -31,8 +32,12 @@ dart run tool/catalog_snapshot_builder/build_bar_catalog_snapshot.dart --print-s
 - `--seed-input=<path>`: input for `--source=seed` (default `assets/data/bar_template.json`)
 - `--base-url=<url>`: base URL for source (`thecocktaildb` override or `http-json`)
 - `--api-key=<key>`: TheCocktailDB API key (default `1`)
+- `--images-output-dir=<path>`: directory for downloaded images (default `assets/data/catalog_images`)
+- `--images-public-prefix=<path>`: path written into JSON for downloaded files (default `assets/data/catalog_images`)
 - `--pretty`: pretty-print output JSON
 - `--dry-run`: run without writing output file
+- `--download-images`: download remote images and rewrite `image` / `imageUrl` to local asset paths
+- `--overwrite-images`: overwrite already downloaded files
 - `--strict`: drop cocktails with unresolved ingredient references
 - `--fail-on-unresolved-mapping`: fail build if unresolved ingredient mappings exist
 - `--print-summary`: print import and validation summary
@@ -46,6 +51,20 @@ Build from TheCocktailDB into main app seed file:
 dart run tool/catalog_snapshot_builder/build_bar_catalog_snapshot.dart \
   --source=thecocktaildb \
   --api-key=1 \
+  --output=assets/data/bar_template.json \
+  --pretty \
+  --print-summary
+```
+
+Build snapshot and download images for offline assets:
+
+```bash
+dart run tool/catalog_snapshot_builder/build_bar_catalog_snapshot.dart \
+  --source=thecocktaildb \
+  --api-key=1 \
+  --download-images \
+  --images-output-dir=assets/data/catalog_images \
+  --images-public-prefix=assets/data/catalog_images \
   --output=assets/data/bar_template.json \
   --pretty \
   --print-summary
@@ -86,6 +105,7 @@ Compatibility notes:
 - app runtime loader uses `ingredients` and `cocktails`,
 - extra fields (`metadata`, `source`, `sourceId`, `canonicalSlug`, `aliases`, etc.) are preserved for tooling/debugging,
 - ingredient visual fields are generated automatically: `glowColor`, `glowSecondaryColor`, `glowOffsetX`, `glowOffsetY`, `glowScale`, `glowOpacity`,
+- when `--download-images` is enabled, `image` and `imageUrl` are rewritten to local asset paths and original URL is preserved in `remoteImageUrl`,
 - unknown extra fields do not break runtime parsing.
 
 ## Validation and Dedupe
