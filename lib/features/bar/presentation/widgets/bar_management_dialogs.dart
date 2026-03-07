@@ -95,124 +95,14 @@ Future<AddIngredientInput?> _showIngredientDialog(
   required String actionLabel,
   Ingredient? initialIngredient,
 }) async {
-  final nameController = TextEditingController(
-    text: initialIngredient?.name ?? '',
-  );
-  final categoryController = TextEditingController(
-    text: initialIngredient?.category ?? '',
-  );
-  final imageController = TextEditingController(
-    text: initialIngredient?.image ?? '',
-  );
-  var isDecoration = initialIngredient?.isDecoration ?? false;
-  var isOptional = initialIngredient?.isOptional ?? false;
-
-  final result = await showDialog<AddIngredientInput>(
+  return showDialog<AddIngredientInput>(
     context: context,
-    builder: (context) {
-      return StatefulBuilder(
-        builder: (context, setState) {
-          return AlertDialog(
-            backgroundColor: const Color(0xFF14182B),
-            title: Text(title),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  _DialogTextField(
-                    controller: nameController,
-                    label: 'Название*',
-                    hint: 'Например, Кампари',
-                  ),
-                  const SizedBox(height: 12),
-                  _DialogTextField(
-                    controller: categoryController,
-                    label: 'Категория',
-                    hint: 'Ликёры',
-                  ),
-                  const SizedBox(height: 12),
-                  _DialogTextField(
-                    controller: imageController,
-                    label: 'Фото (URL или путь файла)',
-                    hint: 'https://... или /storage/.../photo.jpg',
-                  ),
-                  const SizedBox(height: 8),
-                  OutlinedButton.icon(
-                    onPressed: () async {
-                      final picked = await FilePicker.platform.pickFiles(
-                        type: FileType.image,
-                        allowMultiple: false,
-                      );
-                      if (picked == null || picked.files.isEmpty) {
-                        return;
-                      }
-                      final path = picked.files.single.path;
-                      if (path == null || path.trim().isEmpty) {
-                        return;
-                      }
-                      setState(() => imageController.text = path.trim());
-                    },
-                    icon: const Icon(Icons.photo_library_rounded),
-                    label: const Text('Выбрать с устройства'),
-                  ),
-                  const SizedBox(height: 8),
-                  CheckboxListTile(
-                    dense: true,
-                    value: isDecoration,
-                    activeColor: const Color(0xFF7F89FF),
-                    title: const Text('Украшение'),
-                    subtitle: const Text(
-                      'Не обязателен для доступности коктейля',
-                    ),
-                    onChanged: (value) {
-                      setState(() => isDecoration = value ?? false);
-                    },
-                  ),
-                  CheckboxListTile(
-                    dense: true,
-                    value: isOptional,
-                    activeColor: const Color(0xFF7F89FF),
-                    title: const Text('Опционально'),
-                    subtitle: const Text(
-                      'Можно пропустить при проверке ингредиентов',
-                    ),
-                    onChanged: (value) {
-                      setState(() => isOptional = value ?? false);
-                    },
-                  ),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Отмена'),
-              ),
-              FilledButton(
-                onPressed: () {
-                  Navigator.of(context).pop(
-                    AddIngredientInput(
-                      name: nameController.text,
-                      category: categoryController.text,
-                      image: imageController.text,
-                      isDecoration: isDecoration,
-                      isOptional: isOptional,
-                    ),
-                  );
-                },
-                child: Text(actionLabel),
-              ),
-            ],
-          );
-        },
-      );
-    },
+    builder: (_) => _IngredientDialog(
+      title: title,
+      actionLabel: actionLabel,
+      initialIngredient: initialIngredient,
+    ),
   );
-
-  nameController.dispose();
-  categoryController.dispose();
-  imageController.dispose();
-  return result;
 }
 
 Future<AddCocktailInput?> showAddCocktailDialog(
@@ -1006,5 +896,147 @@ class _DialogTextField extends StatelessWidget {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
+  }
+}
+
+class _IngredientDialog extends StatefulWidget {
+  const _IngredientDialog({
+    required this.title,
+    required this.actionLabel,
+    this.initialIngredient,
+  });
+
+  final String title;
+  final String actionLabel;
+  final Ingredient? initialIngredient;
+
+  @override
+  State<_IngredientDialog> createState() => _IngredientDialogState();
+}
+
+class _IngredientDialogState extends State<_IngredientDialog> {
+  late final TextEditingController _nameController;
+  late final TextEditingController _categoryController;
+  late final TextEditingController _imageController;
+  late bool _isDecoration;
+  late bool _isOptional;
+
+  @override
+  void initState() {
+    super.initState();
+    final initialIngredient = widget.initialIngredient;
+    _nameController = TextEditingController(
+      text: initialIngredient?.name ?? '',
+    );
+    _categoryController = TextEditingController(
+      text: initialIngredient?.category ?? '',
+    );
+    _imageController = TextEditingController(
+      text: initialIngredient?.image ?? '',
+    );
+    _isDecoration = initialIngredient?.isDecoration ?? false;
+    _isOptional = initialIngredient?.isOptional ?? false;
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _categoryController.dispose();
+    _imageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: const Color(0xFF14182B),
+      title: Text(widget.title),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _DialogTextField(
+              controller: _nameController,
+              label: 'Название*',
+              hint: 'Например, Кампари',
+            ),
+            const SizedBox(height: 12),
+            _DialogTextField(
+              controller: _categoryController,
+              label: 'Категория',
+              hint: 'Ликёры',
+            ),
+            const SizedBox(height: 12),
+            _DialogTextField(
+              controller: _imageController,
+              label: 'Фото (URL или путь файла)',
+              hint: 'https://... или /storage/.../photo.jpg',
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              onPressed: _pickImageFromDevice,
+              icon: const Icon(Icons.photo_library_rounded),
+              label: const Text('Выбрать с устройства'),
+            ),
+            const SizedBox(height: 8),
+            CheckboxListTile(
+              dense: true,
+              value: _isDecoration,
+              activeColor: const Color(0xFF7F89FF),
+              title: const Text('Украшение'),
+              subtitle: const Text('Не обязателен для доступности коктейля'),
+              onChanged: (value) =>
+                  setState(() => _isDecoration = value ?? false),
+            ),
+            CheckboxListTile(
+              dense: true,
+              value: _isOptional,
+              activeColor: const Color(0xFF7F89FF),
+              title: const Text('Опционально'),
+              subtitle: const Text(
+                'Можно пропустить при проверке ингредиентов',
+              ),
+              onChanged: (value) =>
+                  setState(() => _isOptional = value ?? false),
+            ),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Отмена'),
+        ),
+        FilledButton(
+          onPressed: () {
+            Navigator.of(context).pop(
+              AddIngredientInput(
+                name: _nameController.text,
+                category: _categoryController.text,
+                image: _imageController.text,
+                isDecoration: _isDecoration,
+                isOptional: _isOptional,
+              ),
+            );
+          },
+          child: Text(widget.actionLabel),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _pickImageFromDevice() async {
+    final picked = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+    if (picked == null || picked.files.isEmpty || !mounted) {
+      return;
+    }
+    final path = picked.files.single.path;
+    if (path == null || path.trim().isEmpty) {
+      return;
+    }
+    setState(() => _imageController.text = path.trim());
   }
 }
