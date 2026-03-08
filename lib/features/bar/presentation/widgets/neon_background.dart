@@ -15,9 +15,10 @@ class NeonBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
       children: <Widget>[
-        Container(
-          decoration: const BoxDecoration(
+        const DecoratedBox(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
