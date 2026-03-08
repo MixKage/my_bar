@@ -1,6 +1,7 @@
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
@@ -10,7 +11,6 @@ import '../../domain/models/ingredient.dart';
 import 'cocktail_details_page.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
-import '../widgets/neon_bottom_navigation.dart';
 
 enum MenuViewMode { list, grid }
 
@@ -20,6 +20,7 @@ class BarMenuPage extends StatefulWidget {
     required this.selectedIngredientIds,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.bottomOverlayPadding,
     required this.onManagePressed,
     required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
@@ -30,6 +31,7 @@ class BarMenuPage extends StatefulWidget {
   final Set<String> selectedIngredientIds;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final double bottomOverlayPadding;
   final VoidCallback onManagePressed;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
@@ -40,26 +42,38 @@ class BarMenuPage extends StatefulWidget {
 
 class _BarMenuPageState extends State<BarMenuPage> {
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _detailsScrollController = ScrollController();
   MenuViewMode _viewMode = MenuViewMode.list;
+  bool _isViewModeOverriddenByUser = false;
   String? _expandedCocktailId;
+  String? _selectedGridCocktailId;
   final Set<String> _selectedTags = <String>{};
   bool _favoritesOnly = false;
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isViewModeOverriddenByUser) {
+      return;
+    }
+    _viewMode = isTabletLayout(context) ? MenuViewMode.grid : MenuViewMode.list;
+  }
+
+  @override
   void dispose() {
     _scrollController.dispose();
+    _detailsScrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top;
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final bottomOverlayPadding =
-        kNeonBottomNavigationHeight +
-        kNeonBottomNavigationBottomMargin +
-        bottomInset;
-    final bottomContentPadding = bottomOverlayPadding + 24;
+    final horizontalPadding = resolveAdaptiveHorizontalPadding(
+      context,
+      maxContentWidth: 1320,
+    );
+    final bottomContentPadding = widget.bottomOverlayPadding + 24;
 
     final missingIngredientsByCocktailId = _buildMissingIngredientsMap(
       widget.cocktails,
@@ -87,7 +101,12 @@ class _BarMenuPageState extends State<BarMenuPage> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(16, topInset + 20, 16, 6),
+            padding: EdgeInsets.fromLTRB(
+              horizontalPadding,
+              topInset + 20,
+              horizontalPadding,
+              6,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -134,7 +153,12 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 ),
                 ViewModeSwitch(
                   mode: _viewMode,
-                  onModeChanged: (mode) => setState(() => _viewMode = mode),
+                  onModeChanged: (mode) {
+                    setState(() {
+                      _isViewModeOverriddenByUser = true;
+                      _viewMode = mode;
+                    });
+                  },
                 ),
                 const SizedBox(width: 8),
                 IconButton.filledTonal(
@@ -148,7 +172,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
           SizedBox(
             height: 44,
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 Padding(
@@ -224,20 +248,85 @@ class _BarMenuPageState extends State<BarMenuPage> {
           ),
           Expanded(
             child: widget.cocktails.isEmpty || !hasSelectedIngredients
-                ? NoCocktailsView(bottomInsetCompensation: bottomOverlayPadding)
+                ? NoCocktailsView(
+                    bottomInsetCompensation: widget.bottomOverlayPadding,
+                    horizontalPadding: horizontalPadding,
+                  )
                 : filteredCocktails.isEmpty
-                ? _NoTagMatchesView()
+                ? _NoTagMatchesView(horizontalPadding: horizontalPadding)
                 : _viewMode == MenuViewMode.grid
-                ? CocktailGrid(
-                    cocktails: filteredCocktails,
-                    missingIngredientsByCocktailId:
-                        missingIngredientsByCocktailId,
-                    ingredientsById: widget.ingredientsById,
-                    visitorMode: widget.visitorMode,
-                    bottomPadding: bottomContentPadding,
-                    scrollController: _scrollController,
-                    onEditCocktailPressed: widget.onEditCocktailPressed,
-                    onToggleFavoritePressed: widget.onToggleFavoritePressed,
+                ? LayoutBuilder(
+                    builder: (context, constraints) {
+                      final isTabletSplitLayout = constraints.maxWidth >= 980;
+                      if (!isTabletSplitLayout) {
+                        return CocktailGrid(
+                          cocktails: filteredCocktails,
+                          missingIngredientsByCocktailId:
+                              missingIngredientsByCocktailId,
+                          horizontalPadding: horizontalPadding,
+                          bottomPadding: bottomContentPadding,
+                          scrollController: _scrollController,
+                          selectedCocktailId: _selectedGridCocktailId,
+                          onOpenCocktailDetails: (cocktail) =>
+                              _openCocktailDetailsPage(
+                                cocktail: cocktail,
+                                missingIngredientsByCocktailId:
+                                    missingIngredientsByCocktailId,
+                              ),
+                          onToggleFavoritePressed:
+                              widget.onToggleFavoritePressed,
+                        );
+                      }
+
+                      final selectedCocktailId = _resolveGridSelectedId(
+                        filteredCocktails,
+                      );
+                      Cocktail? selectedCocktail;
+                      if (selectedCocktailId != null) {
+                        for (final cocktail in filteredCocktails) {
+                          if (cocktail.id == selectedCocktailId) {
+                            selectedCocktail = cocktail;
+                            break;
+                          }
+                        }
+                      }
+                      final selectedMissingIngredients =
+                          selectedCocktail == null
+                          ? const <String>[]
+                          : (missingIngredientsByCocktailId[selectedCocktail
+                                    .id] ??
+                                const <String>[]);
+
+                      return _TabletGridLayout(
+                        grid: CocktailGrid(
+                          cocktails: filteredCocktails,
+                          missingIngredientsByCocktailId:
+                              missingIngredientsByCocktailId,
+                          horizontalPadding: horizontalPadding,
+                          bottomPadding: bottomContentPadding,
+                          scrollController: _scrollController,
+                          selectedCocktailId: selectedCocktailId,
+                          onOpenCocktailDetails: (cocktail) {
+                            setState(
+                              () => _selectedGridCocktailId = cocktail.id,
+                            );
+                          },
+                          onToggleFavoritePressed:
+                              widget.onToggleFavoritePressed,
+                        ),
+                        detailsPanel: _TabletCocktailInstructionPanel(
+                          cocktail: selectedCocktail,
+                          missingIngredientNames: selectedMissingIngredients,
+                          ingredientsById: widget.ingredientsById,
+                          visitorMode: widget.visitorMode,
+                          bottomPadding: bottomContentPadding,
+                          scrollController: _detailsScrollController,
+                          onEditCocktailPressed: widget.onEditCocktailPressed,
+                          onToggleFavoritePressed:
+                              widget.onToggleFavoritePressed,
+                        ),
+                      );
+                    },
                   )
                 : CocktailList(
                     cocktails: filteredCocktails,
@@ -245,6 +334,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                         missingIngredientsByCocktailId,
                     ingredientsById: widget.ingredientsById,
                     visitorMode: widget.visitorMode,
+                    horizontalPadding: horizontalPadding,
                     bottomPadding: bottomContentPadding,
                     scrollController: _scrollController,
                     expandedId: expandedId,
@@ -296,6 +386,16 @@ class _BarMenuPageState extends State<BarMenuPage> {
       }
     }
 
+    unavailable.sort((a, b) {
+      final missingA = missingIngredientsByCocktailId[a.id]?.length ?? 0;
+      final missingB = missingIngredientsByCocktailId[b.id]?.length ?? 0;
+      final missingCompare = missingA.compareTo(missingB);
+      if (missingCompare != 0) {
+        return missingCompare;
+      }
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+    });
+
     return <Cocktail>[...available, ...unavailable];
   }
 
@@ -308,6 +408,17 @@ class _BarMenuPageState extends State<BarMenuPage> {
       (cocktail) => cocktail.id == _expandedCocktailId,
     );
     return hasActive ? _expandedCocktailId : cocktails.first.id;
+  }
+
+  String? _resolveGridSelectedId(List<Cocktail> cocktails) {
+    if (cocktails.isEmpty) {
+      return null;
+    }
+
+    final hasActive = cocktails.any(
+      (cocktail) => cocktail.id == _selectedGridCocktailId,
+    );
+    return hasActive ? _selectedGridCocktailId : cocktails.first.id;
   }
 
   Map<String, List<String>> _buildMissingIngredientsMap(
@@ -351,29 +462,49 @@ class _BarMenuPageState extends State<BarMenuPage> {
 
     return missing;
   }
+
+  Future<void> _openCocktailDetailsPage({
+    required Cocktail cocktail,
+    required Map<String, List<String>> missingIngredientsByCocktailId,
+  }) async {
+    final missingIngredients =
+        missingIngredientsByCocktailId[cocktail.id] ?? const <String>[];
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => CocktailDetailsPage(
+          cocktail: cocktail,
+          missingIngredientNames: missingIngredients,
+          ingredientsById: widget.ingredientsById,
+          visitorMode: widget.visitorMode,
+          onEditCocktailPressed: widget.onEditCocktailPressed,
+          onToggleFavoritePressed: widget.onToggleFavoritePressed,
+        ),
+      ),
+    );
+  }
 }
 
 class CocktailGrid extends StatelessWidget {
   const CocktailGrid({
     required this.cocktails,
     required this.missingIngredientsByCocktailId,
-    required this.ingredientsById,
-    required this.visitorMode,
+    required this.horizontalPadding,
     required this.bottomPadding,
     required this.scrollController,
-    required this.onEditCocktailPressed,
+    required this.onOpenCocktailDetails,
     required this.onToggleFavoritePressed,
+    this.selectedCocktailId,
     super.key,
   });
 
   final List<Cocktail> cocktails;
   final Map<String, List<String>> missingIngredientsByCocktailId;
-  final Map<String, Ingredient> ingredientsById;
-  final bool visitorMode;
+  final double horizontalPadding;
   final double bottomPadding;
   final ScrollController scrollController;
-  final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
+  final ValueChanged<Cocktail> onOpenCocktailDetails;
   final ValueChanged<String> onToggleFavoritePressed;
+  final String? selectedCocktailId;
 
   @override
   Widget build(BuildContext context) {
@@ -384,7 +515,12 @@ class CocktailGrid extends StatelessWidget {
           controller: scrollController,
           child: GridView.builder(
             controller: scrollController,
-            padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
+            padding: EdgeInsets.fromLTRB(
+              horizontalPadding,
+              6,
+              horizontalPadding,
+              bottomPadding,
+            ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: columns,
               crossAxisSpacing: 12,
@@ -394,12 +530,13 @@ class CocktailGrid extends StatelessWidget {
             itemCount: cocktails.length,
             itemBuilder: (context, index) {
               final cocktail = cocktails[index];
+              final isSelected = selectedCocktailId == cocktail.id;
               final missingIngredients =
                   missingIngredientsByCocktailId[cocktail.id] ??
                   const <String>[];
               return AnimatedGradientBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderWidth: 1.5,
+                borderWidth: isSelected ? 2.0 : 1.5,
                 innerColor: const Color(0xFF191B2E),
                 colors: const <Color>[
                   Color(0xFFFF7EC8),
@@ -407,26 +544,13 @@ class CocktailGrid extends StatelessWidget {
                   Color(0xFFFF7EC8),
                 ],
                 glowEffect: true,
-                glow: const AnimatedGradientBorderGlow(
-                  opacity: 0.35,
+                glow: AnimatedGradientBorderGlow(
+                  opacity: isSelected ? 0.58 : 0.35,
                   outerBlurSigma: 14,
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(20),
-                  onTap: () {
-                    Navigator.of(context).push<void>(
-                      MaterialPageRoute<void>(
-                        builder: (_) => CocktailDetailsPage(
-                          cocktail: cocktail,
-                          missingIngredientNames: missingIngredients,
-                          ingredientsById: ingredientsById,
-                          visitorMode: visitorMode,
-                          onEditCocktailPressed: onEditCocktailPressed,
-                          onToggleFavoritePressed: onToggleFavoritePressed,
-                        ),
-                      ),
-                    );
-                  },
+                  onTap: () => onOpenCocktailDetails(cocktail),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
@@ -554,12 +678,385 @@ class CocktailGrid extends StatelessWidget {
   }
 }
 
+class _TabletGridLayout extends StatelessWidget {
+  const _TabletGridLayout({required this.grid, required this.detailsPanel});
+
+  final Widget grid;
+  final Widget detailsPanel;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final detailsWidth = (constraints.maxWidth * 0.42).clamp(360.0, 520.0);
+        return Row(
+          children: <Widget>[
+            Expanded(child: grid),
+            const SizedBox(width: 12),
+            SizedBox(width: detailsWidth, child: detailsPanel),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _TabletCocktailInstructionPanel extends StatelessWidget {
+  const _TabletCocktailInstructionPanel({
+    required this.cocktail,
+    required this.missingIngredientNames,
+    required this.ingredientsById,
+    required this.visitorMode,
+    required this.bottomPadding,
+    required this.scrollController,
+    required this.onEditCocktailPressed,
+    required this.onToggleFavoritePressed,
+  });
+
+  final Cocktail? cocktail;
+  final List<String> missingIngredientNames;
+  final Map<String, Ingredient> ingredientsById;
+  final bool visitorMode;
+  final double bottomPadding;
+  final ScrollController scrollController;
+  final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
+  final ValueChanged<String> onToggleFavoritePressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final selectedCocktail = cocktail;
+    if (selectedCocktail == null) {
+      return _TabletEmptyInstructionPanel(bottomPadding: bottomPadding);
+    }
+
+    return NeonScrollbar(
+      controller: scrollController,
+      child: SingleChildScrollView(
+        controller: scrollController,
+        padding: EdgeInsets.fromLTRB(0, 6, 0, bottomPadding),
+        child: AnimatedGradientBorder(
+          borderRadius: BorderRadius.circular(24),
+          borderWidth: 1.8,
+          innerColor: const Color(0xFF1A1D32),
+          colors: const <Color>[
+            Color(0xFFFF6FAF),
+            Color(0xFF7E8BFF),
+            Color(0xFFFF6FAF),
+          ],
+          glowEffect: true,
+          glow: const AnimatedGradientBorderGlow(opacity: 0.56),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(22),
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 190,
+                  child: BarNetworkImage(
+                    imageUrl: selectedCocktail.image,
+                    loadingColor: const Color(0xFFE6A8E3),
+                    loadingBackgroundColor: const Color(0xFF2C2F4F),
+                    errorWidget: const ColoredBox(
+                      color: Color(0xFF2C2F4F),
+                      child: Icon(
+                        Icons.local_drink_rounded,
+                        color: Color(0xFFB4BEEF),
+                        size: 44,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            selectedCocktail.name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 21,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        _PressableFavoriteButton(
+                          tooltip: selectedCocktail.isFavorite
+                              ? context.tr(
+                                  'Убрать из избранного',
+                                  'Remove from favorites',
+                                )
+                              : context.tr('В избранное', 'Add to favorites'),
+                          isFavorite: selectedCocktail.isFavorite,
+                          size: 36,
+                          inactiveBackgroundColor: const Color(0x22323B60),
+                          activeBackgroundColor: const Color(0x663F3628),
+                          inactiveIconColor: const Color(0xFFB8C4EE),
+                          activeIconColor: const Color(0xFFFFC88A),
+                          onPressed: () =>
+                              onToggleFavoritePressed(selectedCocktail.id),
+                        ),
+                      ],
+                    ),
+                    if (selectedCocktail.description.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Text(
+                          selectedCocktail.description,
+                          style: const TextStyle(
+                            color: Color(0xFFC5CCE5),
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: <Widget>[
+                        CocktailGlassIcon(
+                          glassType: selectedCocktail.glassType,
+                          size: 15,
+                          color: const Color(0xFFAEB9E8),
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            context.cocktailGlassTypeLabel(
+                              selectedCocktail.glassType,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Color(0xFFAEB9E8),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: selectedCocktail.tags
+                          .map((tag) => _TagPill(tag: tag))
+                          .toList(growable: false),
+                    ),
+                    const SizedBox(height: 8),
+                    _AvailabilityHint(
+                      missingIngredientNames: missingIngredientNames,
+                      maxLines: 3,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      context.tr('Состав', 'Ingredients'),
+                      style: const TextStyle(
+                        color: Color(0xFFFF93CC),
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    ...selectedCocktail.ingredients.map((ingredientId) {
+                      final ingredient = ingredientsById[ingredientId];
+                      final amount = selectedCocktail.ingredientAmountLabel(
+                        ingredientId,
+                      );
+                      final isOptional = selectedCocktail.isIngredientOptional(
+                        ingredientId,
+                      );
+                      final isDecoration = selectedCocktail
+                          .isIngredientDecoration(ingredientId);
+                      final substitutions =
+                          selectedCocktail
+                              .ingredientSubstitutions[ingredientId] ??
+                          const <String>[];
+                      final substitutionsText = substitutions
+                          .map((id) => ingredientsById[id]?.name ?? id)
+                          .join(', ');
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                const Icon(
+                                  Icons.blur_circular_rounded,
+                                  color: Color(0xFF7FA9FF),
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    ingredient?.name ?? ingredientId,
+                                    style: const TextStyle(
+                                      color: Color(0xFFE2E7F9),
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                if (amount.isNotEmpty)
+                                  Text(
+                                    amount,
+                                    style: const TextStyle(
+                                      color: Color(0xFFAEC1EE),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            if (isOptional || isDecoration)
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 24,
+                                  top: 2,
+                                ),
+                                child: Text(
+                                  <String>[
+                                    if (isOptional)
+                                      context.tr('Опционально', 'Optional'),
+                                    if (isDecoration)
+                                      context.tr('Украшение', 'Decoration'),
+                                  ].join(' • '),
+                                  style: const TextStyle(
+                                    color: Color(0xFFAFC3F2),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            if (substitutions.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 24,
+                                  top: 2,
+                                ),
+                                child: Text(
+                                  context.tr(
+                                    'Замена: $substitutionsText',
+                                    'Substitute: $substitutionsText',
+                                  ),
+                                  style: const TextStyle(
+                                    color: Color(0xFFAFC3F2),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          context.tr('Приготовление', 'Preparation'),
+                          style: const TextStyle(
+                            color: Color(0xFFFF93CC),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const Spacer(),
+                        if (!visitorMode)
+                          TextButton.icon(
+                            style: TextButton.styleFrom(
+                              foregroundColor: const Color(0xFFFFB9DD),
+                            ),
+                            onPressed: () =>
+                                onEditCocktailPressed(selectedCocktail),
+                            icon: const Icon(Icons.edit_rounded, size: 16),
+                            label: Text(context.tr('Редактировать', 'Edit')),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    ...List<Widget>.generate(
+                      selectedCocktail.preparationSteps.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '${index + 1}. ${selectedCocktail.preparationSteps[index]}',
+                          style: const TextStyle(
+                            color: Color(0xFFE8ECFF),
+                            fontSize: 14,
+                            height: 1.35,
+                          ),
+                        ),
+                      ),
+                      growable: false,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TabletEmptyInstructionPanel extends StatelessWidget {
+  const _TabletEmptyInstructionPanel({required this.bottomPadding});
+
+  final double bottomPadding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 6, 0, bottomPadding),
+      child: AnimatedGradientBorder(
+        borderRadius: BorderRadius.circular(24),
+        borderWidth: 1.2,
+        innerColor: const Color(0xFF1A1D32),
+        colors: const <Color>[
+          Color(0x667E8BFF),
+          Color(0x66FF6FAF),
+          Color(0x667E8BFF),
+        ],
+        showBorderWhenDisabled: true,
+        disabledBorderColor: const Color(0x553E4A78),
+        disabledBorderWidth: 1.2,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Text(
+              context.tr(
+                'Выбери коктейль в сетке слева, чтобы открыть инструкцию приготовления.',
+                'Select a cocktail in the left grid to open preparation instructions.',
+              ),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xFFC8D3EF),
+                fontSize: 15,
+                height: 1.35,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class CocktailList extends StatelessWidget {
   const CocktailList({
     required this.cocktails,
     required this.missingIngredientsByCocktailId,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.horizontalPadding,
     required this.bottomPadding,
     required this.scrollController,
     required this.expandedId,
@@ -573,6 +1070,7 @@ class CocktailList extends StatelessWidget {
   final Map<String, List<String>> missingIngredientsByCocktailId;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final double horizontalPadding;
   final double bottomPadding;
   final ScrollController scrollController;
   final String? expandedId;
@@ -586,7 +1084,12 @@ class CocktailList extends StatelessWidget {
       controller: scrollController,
       child: ListView.builder(
         controller: scrollController,
-        padding: EdgeInsets.fromLTRB(16, 6, 16, bottomPadding),
+        padding: EdgeInsets.fromLTRB(
+          horizontalPadding,
+          6,
+          horizontalPadding,
+          bottomPadding,
+        ),
         itemCount: cocktails.length,
         itemBuilder: (context, index) {
           final cocktail = cocktails[index];
@@ -1179,13 +1682,15 @@ class _TagPill extends StatelessWidget {
 }
 
 class _NoTagMatchesView extends StatelessWidget {
-  const _NoTagMatchesView();
+  const _NoTagMatchesView({required this.horizontalPadding});
+
+  final double horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding + 8),
         child: Text(
           context.tr(
             'По выбранным фильтрам коктейли не найдены',
@@ -1200,9 +1705,14 @@ class _NoTagMatchesView extends StatelessWidget {
 }
 
 class NoCocktailsView extends StatelessWidget {
-  const NoCocktailsView({required this.bottomInsetCompensation, super.key});
+  const NoCocktailsView({
+    required this.bottomInsetCompensation,
+    required this.horizontalPadding,
+    super.key,
+  });
 
   final double bottomInsetCompensation;
+  final double horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -1210,7 +1720,7 @@ class NoCocktailsView extends StatelessWidget {
       padding: EdgeInsets.only(bottom: bottomInsetCompensation),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding + 8),
           child: AnimatedGradientBorder(
             borderRadius: BorderRadius.circular(24),
             borderWidth: 1.4,

@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/layout/app_breakpoints.dart';
 import '../../../core/localization/app_language.dart';
 import '../../../core/localization/app_localization.dart';
 import '../cubit/bar_cubit.dart';
@@ -36,6 +37,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
 
   int _currentTab = 0;
   String _appVersionLabel = '...';
+  bool _isSideNavigationVisible = true;
 
   @override
   void initState() {
@@ -47,7 +49,17 @@ class _BarHomeShellState extends State<BarHomeShell> {
   Widget build(BuildContext context) {
     final state = context.watch<BarCubit>().state;
     final topInset = MediaQuery.paddingOf(context).top;
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
     final showOnlyBarMenu = state.barMenuOnlyMode;
+    final useSideNavigation =
+        !showOnlyBarMenu && useLandscapeSideNavigation(context);
+    final showSideNavigation = useSideNavigation && _isSideNavigationVisible;
+    final showBottomNavigation = !showOnlyBarMenu && !useSideNavigation;
+    final bottomOverlayPadding = showBottomNavigation
+        ? kNeonBottomNavigationHeight +
+              kNeonBottomNavigationBottomMargin +
+              bottomInset
+        : bottomInset;
 
     final pages = showOnlyBarMenu
         ? <Widget>[
@@ -56,6 +68,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
+              bottomOverlayPadding: bottomOverlayPadding,
               onManagePressed: () => _openBarManagement(),
               onEditCocktailPressed: _handleEditCocktail,
               onToggleFavoritePressed: _toggleFavorite,
@@ -67,6 +80,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               cocktails: state.cocktails,
               selectedIngredientIds: state.selectedIngredientIds,
               allowSelection: !state.visitorMode,
+              bottomOverlayPadding: bottomOverlayPadding,
               onToggleIngredient: (id) => _toggleIngredient(id),
               onEditIngredient: _handleEditIngredient,
               onManagePressed: () => _openBarManagement(),
@@ -76,6 +90,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
+              bottomOverlayPadding: bottomOverlayPadding,
               onManagePressed: () => _openBarManagement(),
               onEditCocktailPressed: _handleEditCocktail,
               onToggleFavoritePressed: _toggleFavorite,
@@ -83,6 +98,70 @@ class _BarHomeShellState extends State<BarHomeShell> {
           ];
 
     final currentIndex = showOnlyBarMenu ? 0 : _currentTab;
+    final pageStack = IndexedStack(index: currentIndex, children: pages);
+    final bodyContent = useSideNavigation
+        ? Row(
+            children: <Widget>[
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 260),
+                curve: Curves.easeOutCubic,
+                width: showSideNavigation ? kNeonSideNavigationWidth + 30 : 0,
+                child: showSideNavigation
+                    ? GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onHorizontalDragUpdate: (details) {
+                          if (details.delta.dx < -10) {
+                            _setSideNavigationVisibility(false);
+                          }
+                        },
+                        onHorizontalDragEnd: (details) {
+                          final velocity = details.primaryVelocity ?? 0;
+                          if (velocity < -260) {
+                            _setSideNavigationVisibility(false);
+                          }
+                        },
+                        child: SafeArea(
+                          right: false,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(14, 14, 8, 14),
+                            child: Column(
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: _SideNavigationToggleHandle(
+                                    tooltip: context.tr(
+                                      'Скрыть меню',
+                                      'Hide menu',
+                                    ),
+                                    icon: Icons
+                                        .keyboard_double_arrow_left_rounded,
+                                    onPressed: () {
+                                      _setSideNavigationVisibility(false);
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Expanded(
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: NeonSideNavigation(
+                                      currentIndex: currentIndex,
+                                      onChanged: (index) =>
+                                          setState(() => _currentTab = index),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : null,
+              ),
+              Expanded(child: pageStack),
+            ],
+          )
+        : pageStack;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
@@ -98,7 +177,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            IndexedStack(index: currentIndex, children: pages),
+            bodyContent,
             Positioned(
               top: 0,
               left: 0,
@@ -119,7 +198,40 @@ class _BarHomeShellState extends State<BarHomeShell> {
                 ),
               ),
             ),
-            if (!showOnlyBarMenu)
+            if (useSideNavigation && !showSideNavigation)
+              Positioned(
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: 30,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onHorizontalDragUpdate: (details) {
+                    if (details.delta.dx > 10) {
+                      _setSideNavigationVisibility(true);
+                    }
+                  },
+                  onHorizontalDragEnd: (details) {
+                    final velocity = details.primaryVelocity ?? 0;
+                    if (velocity > 260) {
+                      _setSideNavigationVisibility(true);
+                    }
+                  },
+                ),
+              ),
+            if (useSideNavigation && !showSideNavigation)
+              Positioned(
+                left: 8,
+                top: topInset + 88,
+                child: _SideNavigationToggleHandle(
+                  tooltip: context.tr('Показать меню', 'Show menu'),
+                  icon: Icons.keyboard_double_arrow_right_rounded,
+                  onPressed: () {
+                    _setSideNavigationVisibility(true);
+                  },
+                ),
+              ),
+            if (showBottomNavigation)
               Align(
                 alignment: Alignment.bottomCenter,
                 child: NeonBottomNavigation(
@@ -133,6 +245,13 @@ class _BarHomeShellState extends State<BarHomeShell> {
     );
   }
 
+  void _setSideNavigationVisibility(bool visible) {
+    if (!mounted || _isSideNavigationVisible == visible) {
+      return;
+    }
+    setState(() => _isSideNavigationVisible = visible);
+  }
+
   Future<void> _toggleIngredient(String id) {
     return context.read<BarCubit>().toggleIngredient(id);
   }
@@ -142,10 +261,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
   }
 
   Future<void> _openBarManagement() async {
-    final action = await showModalBottomSheet<_BarManagementAction>(
-      context: context,
-      backgroundColor: const Color(0xFF161B2E),
-      showDragHandle: true,
+    final action = await _showAdaptiveActionSheet<_BarManagementAction>(
+      maxDialogWidth: 420,
       builder: (context) {
         final isVisitorMode = context.read<BarCubit>().state.visitorMode;
         return SafeArea(
@@ -218,10 +335,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
     var barMenuOnlyMode = cubit.state.barMenuOnlyMode;
     var appLanguage = cubit.state.appLanguage;
 
-    final action = await showModalBottomSheet<_BarSettingsAction>(
-      context: context,
-      backgroundColor: const Color(0xFF161B2E),
-      showDragHandle: true,
+    final action = await _showAdaptiveActionSheet<_BarSettingsAction>(
+      maxDialogWidth: 640,
       builder: (context) {
         final maxSheetHeight = MediaQuery.sizeOf(context).height * 0.82;
         return StatefulBuilder(
@@ -404,142 +519,199 @@ class _BarHomeShellState extends State<BarHomeShell> {
     }
   }
 
+  Future<T?> _showAdaptiveActionSheet<T>({
+    required WidgetBuilder builder,
+    required double maxDialogWidth,
+  }) {
+    if (isTabletLayout(context)) {
+      return showDialog<T>(
+        context: context,
+        barrierColor: const Color(0xAA050711),
+        builder: (dialogContext) {
+          final maxDialogHeight =
+              MediaQuery.sizeOf(dialogContext).height * 0.88;
+          return Dialog(
+            backgroundColor: const Color(0xFF161B2E),
+            insetPadding: const EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 24,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: maxDialogWidth,
+                maxHeight: maxDialogHeight,
+              ),
+              child: builder(dialogContext),
+            ),
+          );
+        },
+      );
+    }
+    return showModalBottomSheet<T>(
+      context: context,
+      backgroundColor: const Color(0xFF161B2E),
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: builder,
+    );
+  }
+
   void _showAbout() {
     showDialog<void>(
       context: context,
       barrierColor: const Color(0xAA050711),
       builder: (dialogContext) {
+        final mediaSize = MediaQuery.sizeOf(dialogContext);
+        final horizontalInset = isTabletLayout(dialogContext) ? 32.0 : 20.0;
+        final availableWidth = mediaSize.width - (horizontalInset * 2);
+        final targetWidth = availableWidth.clamp(320.0, 520.0).toDouble();
+        final maxDialogHeight = mediaSize.height * 0.9;
         return Dialog(
           backgroundColor: Colors.transparent,
-          insetPadding: const EdgeInsets.symmetric(
-            horizontal: 20,
+          insetPadding: EdgeInsets.symmetric(
+            horizontal: horizontalInset,
             vertical: 24,
           ),
-          child: AnimatedGradientBorder(
-            borderRadius: BorderRadius.circular(28),
-            borderWidth: 1.7,
-            innerColor: const Color(0xFF101429),
-            colors: const <Color>[
-              Color(0xFFB679FF),
-              Color(0xFF5BD4FF),
-              Color(0xFFFF8AC7),
-              Color(0xFFB679FF),
-            ],
-            glowEffect: true,
-            glow: const AnimatedGradientBorderGlow(
-              opacity: 0.42,
-              outerBlurSigma: 16,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: <Color>[Color(0x55B87BFF), Color(0x5535C5FF)],
-                      ),
-                      border: Border.all(color: const Color(0x66C9A7FF)),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Color(0x66745AFF),
-                          blurRadius: 18,
-                          spreadRadius: 0.8,
+          child: SizedBox(
+            width: targetWidth,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: maxDialogHeight),
+              child: AnimatedGradientBorder(
+                borderRadius: BorderRadius.circular(28),
+                borderWidth: 1.7,
+                innerColor: const Color(0xFF101429),
+                colors: const <Color>[
+                  Color(0xFFB679FF),
+                  Color(0xFF5BD4FF),
+                  Color(0xFFFF8AC7),
+                  Color(0xFFB679FF),
+                ],
+                glowEffect: true,
+                glow: const AnimatedGradientBorderGlow(
+                  opacity: 0.42,
+                  outerBlurSigma: 16,
+                ),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: <Color>[
+                              Color(0x55B87BFF),
+                              Color(0x5535C5FF),
+                            ],
+                          ),
+                          border: Border.all(color: const Color(0x66C9A7FF)),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Color(0x66745AFF),
+                              blurRadius: 18,
+                              spreadRadius: 0.8,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(14),
-                        child: Image.asset(
-                          'assets/icon.png',
-                          width: 72,
-                          height: 72,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: Image.asset(
+                              'assets/icon.png',
                               width: 72,
                               height: 72,
-                              child: Icon(
-                                Icons.local_bar_rounded,
-                                size: 34,
-                                color: Color(0xFFD7DFFF),
-                              ),
-                            );
-                          },
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const SizedBox(
+                                  width: 72,
+                                  height: 72,
+                                  child: Icon(
+                                    Icons.local_bar_rounded,
+                                    size: 34,
+                                    color: Color(0xFFD7DFFF),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      const SizedBox(height: 14),
+                      ShaderMask(
+                        shaderCallback: (bounds) {
+                          return const LinearGradient(
+                            colors: <Color>[
+                              Color(0xFFFFA6D8),
+                              Color(0xFF95D6FF),
+                            ],
+                          ).createShader(bounds);
+                        },
+                        blendMode: BlendMode.srcIn,
+                        child: Text(
+                          context.tr('Мой Бар', 'My Bar'),
+                          style: Theme.of(dialogContext).textTheme.titleLarge
+                              ?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 0.25,
+                              ),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        context.tr(
+                          'Версия ${_appVersionLabel.isEmpty ? 'неизвестно' : _appVersionLabel}',
+                          'Version ${_appVersionLabel.isEmpty ? 'unknown' : _appVersionLabel}',
+                        ),
+                        style: const TextStyle(
+                          color: Color(0xFFAEC0F0),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        context.tr(
+                          'Неоновый помощник для домашнего бара: отмечайте ингредиенты, находите доступные коктейли и настраивайте собственную барную карту.',
+                          'Neon helper for your home bar: track ingredients, find available cocktails, and customize your bar catalog.',
+                        ),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color(0xFFD7DEF5),
+                          fontSize: 14,
+                          height: 1.35,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      _PressableAboutButton(
+                        onPressed: _openDeveloperSite,
+                        icon: Icons.open_in_new_rounded,
+                        label: context.tr(
+                          'Сайт разработчика',
+                          'Developer website',
+                        ),
+                        foregroundColor: const Color(0xFFCFE3FF),
+                        backgroundColor: const Color(0x33121A38),
+                        pressedBackgroundColor: const Color(0x551B2954),
+                        borderColor: const Color(0x667C8DFF),
+                      ),
+                      const SizedBox(height: 10),
+                      _PressableAboutButton(
+                        onPressed: () => Navigator.of(dialogContext).pop(),
+                        icon: Icons.check_rounded,
+                        label: context.tr('Понятно', 'OK'),
+                        foregroundColor: Colors.white,
+                        backgroundColor: const Color(0xFF5C63FF),
+                        pressedBackgroundColor: const Color(0xFF4D53D8),
+                        glowColor: const Color(0x665C63FF),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 14),
-                  ShaderMask(
-                    shaderCallback: (bounds) {
-                      return const LinearGradient(
-                        colors: <Color>[Color(0xFFFFA6D8), Color(0xFF95D6FF)],
-                      ).createShader(bounds);
-                    },
-                    blendMode: BlendMode.srcIn,
-                    child: Text(
-                      context.tr('Мой Бар', 'My Bar'),
-                      style: Theme.of(dialogContext).textTheme.titleLarge
-                          ?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 0.25,
-                          ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    context.tr(
-                      'Версия ${_appVersionLabel.isEmpty ? 'неизвестно' : _appVersionLabel}',
-                      'Version ${_appVersionLabel.isEmpty ? 'unknown' : _appVersionLabel}',
-                    ),
-                    style: TextStyle(
-                      color: Color(0xFFAEC0F0),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    context.tr(
-                      'Неоновый помощник для домашнего бара: отмечайте ингредиенты, находите доступные коктейли и настраивайте собственную барную карту.',
-                      'Neon helper for your home bar: track ingredients, find available cocktails, and customize your bar catalog.',
-                    ),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFFD7DEF5),
-                      fontSize: 14,
-                      height: 1.35,
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  _PressableAboutButton(
-                    onPressed: _openDeveloperSite,
-                    icon: Icons.open_in_new_rounded,
-                    label: context.tr('Сайт разработчика', 'Developer website'),
-                    foregroundColor: const Color(0xFFCFE3FF),
-                    backgroundColor: const Color(0x33121A38),
-                    pressedBackgroundColor: const Color(0x551B2954),
-                    borderColor: const Color(0x667C8DFF),
-                  ),
-                  const SizedBox(height: 10),
-                  _PressableAboutButton(
-                    onPressed: () => Navigator.of(dialogContext).pop(),
-                    icon: Icons.check_rounded,
-                    label: context.tr('Понятно', 'OK'),
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color(0xFF5C63FF),
-                    pressedBackgroundColor: const Color(0xFF4D53D8),
-                    glowColor: const Color(0x665C63FF),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
@@ -865,6 +1037,76 @@ class _BarHomeShellState extends State<BarHomeShell> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
+  }
+}
+
+class _SideNavigationToggleHandle extends StatefulWidget {
+  const _SideNavigationToggleHandle({
+    required this.tooltip,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final String tooltip;
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  State<_SideNavigationToggleHandle> createState() =>
+      _SideNavigationToggleHandleState();
+}
+
+class _SideNavigationToggleHandleState
+    extends State<_SideNavigationToggleHandle> {
+  bool _pressed = false;
+
+  void _setPressed(bool value) {
+    if (_pressed == value || !mounted) {
+      return;
+    }
+    setState(() => _pressed = value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: widget.tooltip,
+      child: Semantics(
+        button: true,
+        label: widget.tooltip,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.onPressed,
+          onTapDown: (_) => _setPressed(true),
+          onTapUp: (_) => _setPressed(false),
+          onTapCancel: () => _setPressed(false),
+          child: AnimatedScale(
+            duration: const Duration(milliseconds: 110),
+            curve: Curves.easeOut,
+            scale: _pressed ? 0.95 : 1,
+            child: AnimatedGradientBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderWidth: 1.2,
+              innerColor: _pressed
+                  ? const Color(0xCC202748)
+                  : const Color(0xCC161B33),
+              colors: const <Color>[
+                Color(0xFFAA84FF),
+                Color(0xFF76C4FF),
+                Color(0xFFAA84FF),
+              ],
+              glowEffect: true,
+              glow: const AnimatedGradientBorderGlow(opacity: 0.34),
+              child: SizedBox(
+                width: 44,
+                height: 44,
+                child: Icon(widget.icon, color: const Color(0xFFD2DEFF)),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

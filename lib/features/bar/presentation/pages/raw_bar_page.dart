@@ -1,13 +1,13 @@
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
 import '../widgets/neon_background.dart';
-import '../widgets/neon_bottom_navigation.dart';
 
 enum IngredientSortMode { alphabet, availability, category, demand }
 
@@ -32,6 +32,7 @@ class RawBarPage extends StatefulWidget {
     required this.cocktails,
     required this.selectedIngredientIds,
     required this.allowSelection,
+    required this.bottomOverlayPadding,
     required this.onToggleIngredient,
     required this.onEditIngredient,
     required this.onManagePressed,
@@ -42,6 +43,7 @@ class RawBarPage extends StatefulWidget {
   final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
   final bool allowSelection;
+  final double bottomOverlayPadding;
   final ValueChanged<String> onToggleIngredient;
   final Future<void> Function(Ingredient ingredient) onEditIngredient;
   final VoidCallback onManagePressed;
@@ -94,12 +96,11 @@ class _RawBarPageState extends State<RawBarPage> {
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top;
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final bottomContentPadding =
-        kNeonBottomNavigationHeight +
-        kNeonBottomNavigationBottomMargin +
-        bottomInset +
-        24;
+    final horizontalPadding = resolveAdaptiveHorizontalPadding(
+      context,
+      maxContentWidth: 980,
+    );
+    final bottomContentPadding = widget.bottomOverlayPadding + 24;
 
     final filteredIngredients = widget.ingredients
         .where(
@@ -137,7 +138,12 @@ class _RawBarPageState extends State<RawBarPage> {
                 SliverToBoxAdapter(
                   child: Padding(
                     key: _introSectionKey,
-                    padding: EdgeInsets.fromLTRB(16, topInset + 14, 16, 0),
+                    padding: EdgeInsets.fromLTRB(
+                      horizontalPadding,
+                      topInset + 14,
+                      horizontalPadding,
+                      0,
+                    ),
                     child: Column(
                       children: <Widget>[
                         Row(
@@ -229,7 +235,9 @@ class _RawBarPageState extends State<RawBarPage> {
                   delegate: _RawSearchHeaderDelegate(
                     topInset: topInset,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: horizontalPadding,
+                      ),
                       child: _IngredientSearchField(
                         controller: _searchController,
                         onChanged: (value) =>
@@ -240,9 +248,9 @@ class _RawBarPageState extends State<RawBarPage> {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.fromLTRB(
-                    16,
+                    horizontalPadding,
                     14,
-                    16,
+                    horizontalPadding,
                     bottomContentPadding,
                   ),
                   sliver: filteredIngredients.isEmpty
