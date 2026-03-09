@@ -25,11 +25,16 @@ class NeonBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final panelColor = powerSavingMode
+        ? const Color(0xEE111425)
+        : const Color(0xCC111425);
     final borderChild = AnimatedGradientBorder(
       enabled: !powerSavingMode,
       borderRadius: BorderRadius.circular(24),
       borderWidth: 1.5,
-      innerColor: const Color(0xCC111425),
+      innerColor: panelColor,
+      showBorderWhenDisabled: true,
+      disabledBorderColor: const Color(0xFF57689E),
       colors: const <Color>[
         Color(0xFFAE7BFF),
         Color(0xFF63CBFF),
@@ -45,12 +50,14 @@ class NeonBottomNavigation extends StatelessWidget {
               selected: currentIndex == 0,
               icon: Icons.liquor_rounded,
               title: context.tr('Ингридиенты', 'Ingredients'),
+              powerSavingMode: powerSavingMode,
               onTap: () => onChanged(0),
             ),
             _NavItem(
               selected: currentIndex == 1,
               icon: Icons.local_bar_rounded,
               title: context.tr('Барная карта', 'Bar Menu'),
+              powerSavingMode: powerSavingMode,
               onTap: () => onChanged(1),
             ),
           ],
@@ -92,11 +99,16 @@ class NeonSideNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final panelColor = powerSavingMode
+        ? const Color(0xEE111425)
+        : const Color(0xCC111425);
     final borderChild = AnimatedGradientBorder(
       enabled: !powerSavingMode,
       borderRadius: BorderRadius.circular(24),
       borderWidth: 1.5,
-      innerColor: const Color(0xCC111425),
+      innerColor: panelColor,
+      showBorderWhenDisabled: true,
+      disabledBorderColor: const Color(0xFF57689E),
       colors: const <Color>[
         Color(0xFFAE7BFF),
         Color(0xFF63CBFF),
@@ -114,6 +126,7 @@ class NeonSideNavigation extends StatelessWidget {
                 selected: currentIndex == 0,
                 icon: Icons.liquor_rounded,
                 title: context.tr('Ингридиенты', 'Ingredients'),
+                powerSavingMode: powerSavingMode,
                 onTap: () => onChanged(0),
                 axis: Axis.vertical,
               ),
@@ -123,6 +136,7 @@ class NeonSideNavigation extends StatelessWidget {
                 selected: currentIndex == 1,
                 icon: Icons.local_bar_rounded,
                 title: context.tr('Барная карта', 'Bar Menu'),
+                powerSavingMode: powerSavingMode,
                 onTap: () => onChanged(1),
                 axis: Axis.vertical,
               ),
@@ -150,6 +164,7 @@ class _NavItem extends StatefulWidget {
     required this.icon,
     required this.title,
     required this.onTap,
+    required this.powerSavingMode,
     this.axis = Axis.horizontal,
   });
 
@@ -157,6 +172,7 @@ class _NavItem extends StatefulWidget {
   final IconData icon;
   final String title;
   final VoidCallback onTap;
+  final bool powerSavingMode;
   final Axis axis;
 
   @override
@@ -175,6 +191,18 @@ class _NavItemState extends State<_NavItem> {
 
   @override
   Widget build(BuildContext context) {
+    final fastDuration = widget.powerSavingMode
+        ? Duration.zero
+        : const Duration(milliseconds: 110);
+    final mediumDuration = widget.powerSavingMode
+        ? Duration.zero
+        : const Duration(milliseconds: 180);
+    final slowDuration = widget.powerSavingMode
+        ? Duration.zero
+        : const Duration(milliseconds: 260);
+    final panelDuration = widget.powerSavingMode
+        ? Duration.zero
+        : const Duration(milliseconds: 280);
     final targetForegroundColor = widget.selected
         ? Colors.white
         : const Color(0xFF98A6D2);
@@ -200,11 +228,11 @@ class _NavItemState extends State<_NavItem> {
         onTapUp: (_) => _setPressed(false),
         onTapCancel: () => _setPressed(false),
         child: AnimatedScale(
-          duration: const Duration(milliseconds: 110),
+          duration: fastDuration,
           curve: Curves.easeOut,
           scale: _pressed ? 0.97 : 1,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 280),
+            duration: panelDuration,
             curve: Curves.easeInOutCubic,
             margin: isVertical
                 ? const EdgeInsets.symmetric(horizontal: 8, vertical: 8)
@@ -221,7 +249,7 @@ class _NavItemState extends State<_NavItem> {
               ],
             ),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 180),
+              duration: mediumDuration,
               curve: Curves.easeOut,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
@@ -231,7 +259,7 @@ class _NavItemState extends State<_NavItem> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TweenAnimationBuilder<Color?>(
-                    duration: const Duration(milliseconds: 260),
+                    duration: slowDuration,
                     curve: Curves.easeInOutCubic,
                     tween: ColorTween(end: targetForegroundColor),
                     builder: (context, color, _) {
@@ -243,7 +271,7 @@ class _NavItemState extends State<_NavItem> {
                   ),
                   const SizedBox(height: 3),
                   TweenAnimationBuilder<Color?>(
-                    duration: const Duration(milliseconds: 260),
+                    duration: slowDuration,
                     curve: Curves.easeInOutCubic,
                     tween: ColorTween(end: targetForegroundColor),
                     builder: (context, color, _) {

@@ -509,6 +509,8 @@ class _IngredientSearchField extends StatelessWidget {
       height: _RawSearchHeaderDelegate.searchFieldHeight,
       child: AnimatedGradientBorder(
         enabled: !powerSavingMode,
+        showBorderWhenDisabled: true,
+        disabledBorderColor: const Color(0xFF5568A8),
         colors: const <Color>[
           Color(0xFF6D5CFF),
           Color(0xFF52C7FF),
@@ -612,7 +614,9 @@ class IngredientCard extends StatelessWidget {
       child: AnimatedGradientBorder(
         enabled: !powerSavingMode && selected,
         showBorderWhenDisabled: true,
-        disabledBorderColor: const Color(0xFF354067),
+        disabledBorderColor: powerSavingMode && selected
+            ? const Color(0xFF6E86D8)
+            : const Color(0xFF354067),
         glowEffect: !powerSavingMode && selected,
         glow: const AnimatedGradientBorderGlow(opacity: 0.5),
         borderRadius: BorderRadius.circular(22),
