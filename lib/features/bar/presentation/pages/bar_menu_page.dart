@@ -1455,8 +1455,9 @@ class CocktailList extends StatelessWidget {
                         ],
                       ),
                     ),
-                    if (isExpanded)
-                      Padding(
+                    _AnimatedExpandSection(
+                      expanded: isExpanded,
+                      childBuilder: (context) => Padding(
                         padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1639,10 +1640,110 @@ class CocktailList extends StatelessWidget {
                           ],
                         ),
                       ),
+                    ),
                   ],
                 ),
               ),
             ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _AnimatedExpandSection extends StatefulWidget {
+  const _AnimatedExpandSection({
+    required this.expanded,
+    required this.childBuilder,
+  });
+
+  final bool expanded;
+  final WidgetBuilder childBuilder;
+
+  @override
+  State<_AnimatedExpandSection> createState() => _AnimatedExpandSectionState();
+}
+
+class _AnimatedExpandSectionState extends State<_AnimatedExpandSection>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _sizeFactor;
+  late final Animation<double> _opacity;
+  bool _showChild = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _showChild = widget.expanded;
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 240),
+      reverseDuration: const Duration(milliseconds: 180),
+      value: widget.expanded ? 1 : 0,
+    );
+    _sizeFactor = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutCubic,
+      reverseCurve: Curves.easeInCubic,
+    );
+    _opacity = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.14, 1, curve: Curves.easeOut),
+      reverseCurve: const Interval(0, 0.85, curve: Curves.easeIn),
+    );
+    _controller.addStatusListener(_handleStatusChange);
+  }
+
+  @override
+  void didUpdateWidget(covariant _AnimatedExpandSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.expanded == widget.expanded) {
+      return;
+    }
+    if (widget.expanded) {
+      if (!_showChild) {
+        setState(() => _showChild = true);
+      }
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
+  }
+
+  void _handleStatusChange(AnimationStatus status) {
+    if (!mounted) {
+      return;
+    }
+    if (status == AnimationStatus.dismissed && !widget.expanded && _showChild) {
+      setState(() => _showChild = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.removeStatusListener(_handleStatusChange);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_showChild && _controller.isDismissed) {
+      return const SizedBox.shrink();
+    }
+
+    return ClipRect(
+      child: AnimatedBuilder(
+        animation: _controller,
+        child: _showChild
+            ? widget.childBuilder(context)
+            : const SizedBox.shrink(),
+        builder: (context, child) {
+          return Align(
+            alignment: Alignment.topCenter,
+            heightFactor: _sizeFactor.value,
+            child: FadeTransition(opacity: _opacity, child: child),
           );
         },
       ),
