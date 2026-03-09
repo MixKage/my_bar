@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:my_bar/core/localization/app_language.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
+import 'package:my_bar/features/bar/domain/models/measurement_system.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -17,6 +18,7 @@ void main() {
         powerSavingMode: true,
         catalogDataSource: CatalogDataSource.theCocktailDb,
         appLanguage: AppLanguage.english,
+        measurementSystem: MeasurementSystem.cl,
       ),
     );
 
@@ -26,6 +28,7 @@ void main() {
     expect(settings.powerSavingMode, isTrue);
     expect(settings.catalogDataSource, CatalogDataSource.theCocktailDb);
     expect(settings.appLanguage, AppLanguage.english);
+    expect(settings.measurementSystem, MeasurementSystem.cl);
   });
 
   test('keeps catalog source null when it was not selected', () async {
@@ -41,5 +44,6 @@ void main() {
     expect(settings.catalogDataSource, isNull);
     expect(settings.powerSavingMode, isFalse);
     expect(settings.appLanguage, AppLanguage.system);
+    expect(settings.measurementSystem, MeasurementSystem.flOz);
   });
 }

@@ -12,6 +12,7 @@ import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
+import 'package:my_bar/features/bar/domain/models/measurement_system.dart';
 
 void main() {
   test('throws export error when bar catalog is unchanged', () async {
@@ -231,6 +232,22 @@ void main() {
 
     expect(cubit.state.appLanguage, AppLanguage.english);
     expect(settingsStorage.readSettings().appLanguage, AppLanguage.english);
+  });
+
+  test('persists selected measurement system', () async {
+    final settingsStorage = InMemoryBarUiSettingsStorage();
+    final cubit = await _createCubit(
+      templateCatalog: _templateCatalog,
+      settingsStorage: settingsStorage,
+    );
+
+    await cubit.setMeasurementSystem(MeasurementSystem.ml);
+
+    expect(cubit.state.measurementSystem, MeasurementSystem.ml);
+    expect(
+      settingsStorage.readSettings().measurementSystem,
+      MeasurementSystem.ml,
+    );
   });
 
   test('updates ingredient fields', () async {

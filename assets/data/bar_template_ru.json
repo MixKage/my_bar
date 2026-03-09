@@ -7,7 +7,7 @@
     "sourceId": "seed_json",
     "stats": {
       "importedIngredients": 289,
-      "importedCocktails": 418,
+      "importedCocktails": 383,
       "invalidCocktailsDropped": 0,
       "unresolvedIngredientMappings": 0,
       "duplicatesRemoved": 17
@@ -5807,49 +5807,6 @@
   ],
   "cocktails": [
     {
-      "id": "a-j",
-      "name": "Эй Джей",
-      "image": "assets/data/catalog_images/img_293c8ab4.jpg",
-      "ingredients": [
-        "applejack",
-        "juice_grapefruit"
-      ],
-      "description": "Встряхните ингредиенты со льдом, процедите в коктейльный бокал и подавайте.",
-      "preparationSteps": [
-        "Встряхните ингредиенты со льдом, процедите в коктейльный бокал и подавайте."
-      ],
-      "glassType": "Мартини",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "applejack": "1 1/2",
-        "juice_grapefruit": "1"
-      },
-      "ingredientUnits": {
-        "applejack": "унц",
-        "juice_grapefruit": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "a-j",
-      "canonicalSlug": "a-j",
-      "imageUrl": "assets/data/catalog_images/img_293c8ab4.jpg",
-      "aliases": [
-        "A. J."
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/l74qo91582480316.jpg"
-    },
-    {
       "id": "a1",
       "name": "A1",
       "image": "assets/data/catalog_images/img_fc1180fa.jpg",
@@ -5875,10 +5832,10 @@
         "grenadine": "1/8"
       },
       "ingredientUnits": {
-        "gin": "шот",
-        "grand_marnier": "шот",
-        "lemon": "шот",
-        "grenadine": "шот"
+        "gin": "shot",
+        "grand_marnier": "shot",
+        "lemon": "shot",
+        "grenadine": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -5967,9 +5924,9 @@
         "juice_orange": "3"
       },
       "ingredientUnits": {
-        "rum_dark": "унц",
-        "peach_nectar": "унц",
-        "juice_orange": "унц"
+        "rum_dark": "oz",
+        "peach_nectar": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6020,7 +5977,7 @@
         "mint": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "triple_sec": "tsp",
         "lime": "tbsp",
         "sugar": "tsp"
@@ -6071,10 +6028,10 @@
         "egg_white": "1/2 Fresh"
       },
       "ingredientUnits": {
-        "gin": "шот",
-        "grenadine": "шот",
-        "heavy_cream": "шот",
-        "milk": "шот"
+        "gin": "shot",
+        "grenadine": "shot",
+        "heavy_cream": "shot",
+        "milk": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6093,50 +6050,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/l3cd7f1504818306.jpg"
-    },
-    {
-      "id": "acid",
-      "name": "КИСЛОТА",
-      "image": "assets/data/catalog_images/img_dfd9a370.jpg",
-      "ingredients": [
-        "151_proof_rum",
-        "wild_turkey"
-      ],
-      "description": "Плохо: сначала 151, затем 101, подаваемый с колой или Dr Pepper.",
-      "preparationSteps": [
-        "Плохо: сначала 151, затем 101, подаваемый с колой или Dr Pepper."
-      ],
-      "glassType": "Шот",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "151_proof_rum": "1",
-        "wild_turkey": "1"
-      },
-      "ingredientUnits": {
-        "151_proof_rum": "унц",
-        "wild_turkey": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "acid",
-      "canonicalSlug": "acid",
-      "imageUrl": "assets/data/catalog_images/img_dfd9a370.jpg",
-      "aliases": [
-        "ACID"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/xuxpxt1479209317.jpg"
     },
     {
       "id": "adam",
@@ -6164,8 +6077,8 @@
         "grenadine": "1"
       },
       "ingredientUnits": {
-        "rum_dark": "унц",
-        "lemon": "унц",
+        "rum_dark": "oz",
+        "lemon": "oz",
         "grenadine": "tsp"
       },
       "optionalIngredients": [],
@@ -6211,8 +6124,8 @@
         "soda_water": "Top up with"
       },
       "ingredientUnits": {
-        "rosso_vermouth": "шот",
-        "vermouth_dry": "шот"
+        "rosso_vermouth": "shot",
+        "vermouth_dry": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6254,8 +6167,8 @@
         "vermouth": "1 1/2"
       },
       "ingredientUnits": {
-        "gin": "шот",
-        "vermouth": "шот"
+        "gin": "shot",
+        "vermouth": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6302,9 +6215,9 @@
         "juice_cranberry": "2"
       },
       "ingredientUnits": {
-        "strawberry_schnapps": "унц",
-        "juice_orange": "унц",
-        "juice_cranberry": "унц"
+        "strawberry_schnapps": "oz",
+        "juice_orange": "oz",
+        "juice_cranberry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6352,10 +6265,10 @@
         "orange_bitter": "2"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "rosso_vermouth": "унц",
-        "vermouth_dry": "унц",
-        "orange_bitter": "дэш"
+        "scotch": "oz",
+        "rosso_vermouth": "oz",
+        "vermouth_dry": "oz",
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6401,9 +6314,9 @@
         "juice_pineapple": "4"
       },
       "ingredientUnits": {
-        "grenadine": "часть",
-        "juice_orange": "часть",
-        "juice_pineapple": "часть"
+        "grenadine": "part",
+        "juice_orange": "part",
+        "juice_pineapple": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6450,9 +6363,9 @@
         "light_cream": "2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "creme_de_cacao": "унц",
-        "light_cream": "унц"
+        "gin": "oz",
+        "creme_de_cacao": "oz",
+        "light_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6496,9 +6409,9 @@
         "juice_pineapple": "1"
       },
       "ingredientUnits": {
-        "whisky": "унц",
-        "vermouth_dry": "унц",
-        "juice_pineapple": "унц"
+        "whisky": "oz",
+        "vermouth_dry": "oz",
+        "juice_pineapple": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6545,8 +6458,8 @@
         "lemon": "1 1/2"
       },
       "ingredientUnits": {
-        "vermouth_dry": "унц",
-        "bourbon": "унц",
+        "vermouth_dry": "oz",
+        "bourbon": "oz",
         "blackberry_brandy": "tsp",
         "lemon": "tsp"
       },
@@ -6594,8 +6507,8 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "rum_dark": "унц",
-        "kahlua": "унц"
+        "rum_dark": "oz",
+        "kahlua": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6643,8 +6556,8 @@
         "orange": "Twist of"
       },
       "ingredientUnits": {
-        "campari": "унц",
-        "rosso_vermouth": "унц"
+        "campari": "oz",
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6738,9 +6651,9 @@
         "lemon": "1"
       },
       "ingredientUnits": {
-        "applejack": "унц",
-        "triple_sec": "унц",
-        "lemon": "унц"
+        "applejack": "oz",
+        "triple_sec": "oz",
+        "lemon": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6785,8 +6698,8 @@
       },
       "ingredientUnits": {
         "rosso_vermouth": "tsp",
-        "gin": "унц",
-        "bitters": "дэш"
+        "gin": "oz",
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6831,9 +6744,9 @@
         "tonic_water": "4"
       },
       "ingredientUnits": {
-        "absolut_vodka": "унц",
-        "gin": "унц",
-        "tonic_water": "унц"
+        "absolut_vodka": "oz",
+        "gin": "oz",
+        "tonic_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6878,8 +6791,8 @@
         "cream": "Fill with"
       },
       "ingredientUnits": {
-        "crown_royal": "шот",
-        "kahlua": "шот"
+        "crown_royal": "shot",
+        "kahlua": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6931,10 +6844,10 @@
         "lemon": "1 1/2"
       },
       "ingredientUnits": {
-        "vodka": "часть",
-        "pisang_ambon": "часть",
-        "juice_apple": "часть",
-        "lemon": "часть"
+        "vodka": "part",
+        "pisang_ambon": "part",
+        "juice_apple": "part",
+        "lemon": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7075,9 +6988,9 @@
         "grand_marnier": "1/3"
       },
       "ingredientUnits": {
-        "kahlua": "шот",
-        "sambuca": "шот",
-        "grand_marnier": "шот"
+        "kahlua": "shot",
+        "sambuca": "shot",
+        "grand_marnier": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7125,8 +7038,8 @@
         "vanilla_ice_cream": "2 scoops"
       },
       "ingredientUnits": {
-        "kahlua": "унц",
-        "milk": "унц"
+        "kahlua": "oz",
+        "milk": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7181,13 +7094,13 @@
         "sweet_and_sour": "1"
       },
       "ingredientUnits": {
-        "rum": "часть",
-        "rum_dark": "часть",
-        "banana_liqueur": "часть",
-        "grenadine": "часть",
-        "juice_pineapple": "часть",
-        "juice_orange": "часть",
-        "sweet_and_sour": "часть"
+        "rum": "part",
+        "rum_dark": "part",
+        "banana_liqueur": "part",
+        "grenadine": "part",
+        "juice_pineapple": "part",
+        "juice_orange": "part",
+        "sweet_and_sour": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7235,10 +7148,10 @@
         "bitters": "2"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "rosso_vermouth": "унц",
-        "vermouth_dry": "унц",
-        "bitters": "дэш"
+        "scotch": "oz",
+        "rosso_vermouth": "oz",
+        "vermouth_dry": "oz",
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7291,7 +7204,7 @@
         "rum": "cl",
         "galliano": "cl",
         "juice_pineapple": "cl",
-        "lime": "дэш"
+        "lime": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7335,8 +7248,8 @@
         "peach_schnapps": "1"
       },
       "ingredientUnits": {
-        "champagne": "унц",
-        "peach_schnapps": "унц"
+        "champagne": "oz",
+        "peach_schnapps": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7383,10 +7296,10 @@
         "sour_mix": "2"
       },
       "ingredientUnits": {
-        "southern_comfort": "унц",
-        "triple_sec": "унц",
+        "southern_comfort": "oz",
+        "triple_sec": "oz",
         "lime": "долька",
-        "sour_mix": "унц"
+        "sour_mix": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7429,8 +7342,8 @@
         "goldschlager": "1/2"
       },
       "ingredientUnits": {
-        "baileys_irish_cream": "унц",
-        "goldschlager": "унц"
+        "baileys_irish_cream": "oz",
+        "goldschlager": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7476,10 +7389,10 @@
         "rosso_vermouth": "1"
       },
       "ingredientUnits": {
-        "orange_bitter": "дэш",
-        "chartreuse_green": "унц",
-        "gin": "унц",
-        "rosso_vermouth": "унц"
+        "orange_bitter": "dash",
+        "chartreuse_green": "oz",
+        "gin": "oz",
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7524,8 +7437,8 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "rosso_vermouth": "унц",
-        "sloe_gin": "унц"
+        "rosso_vermouth": "oz",
+        "sloe_gin": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7577,10 +7490,10 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "triple_sec": "унц",
-        "blue_curacao": "унц",
-        "bitters": "дэш"
+        "gin": "oz",
+        "triple_sec": "oz",
+        "blue_curacao": "oz",
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7625,9 +7538,9 @@
         "goldschlager": "1/2"
       },
       "ingredientUnits": {
-        "midori_melon_liqueur": "унц",
-        "jagermeister": "унц",
-        "goldschlager": "унц"
+        "midori_melon_liqueur": "oz",
+        "jagermeister": "oz",
+        "goldschlager": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7677,9 +7590,9 @@
         "maraschino_cherry": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "vermouth_dry": "унц",
-        "bitters": "дэш",
+        "gin": "oz",
+        "vermouth_dry": "oz",
+        "bitters": "dash",
         "maraschino_liqueur": "tsp"
       },
       "optionalIngredients": [],
@@ -7780,7 +7693,7 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "whisky": "унц",
+        "whisky": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -7831,8 +7744,8 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "triple_sec": "унц",
+        "gin": "oz",
+        "triple_sec": "oz",
         "lemon": "tsp",
         "grenadine": "tsp"
       },
@@ -7985,9 +7898,9 @@
         "cherry_heering": "1"
       },
       "ingredientUnits": {
-        "hot_chocolate": "унц",
-        "chartreuse_green": "унц",
-        "cherry_heering": "унц"
+        "hot_chocolate": "oz",
+        "chartreuse_green": "oz",
+        "cherry_heering": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8038,8 +7951,8 @@
         "ice": "cubes"
       },
       "ingredientUnits": {
-        "151_proof_rum": "шот",
-        "scotch": "шот",
+        "151_proof_rum": "shot",
+        "scotch": "shot",
         "bitters": "капля"
       },
       "optionalIngredients": [],
@@ -8089,10 +8002,10 @@
         "maraschino_cherry": "1"
       },
       "ingredientUnits": {
-        "rye_whiskey": "унц",
-        "vermouth_dry": "унц",
-        "maraschino_liqueur": "унц",
-        "angostura_bitter": "дэш"
+        "rye_whiskey": "oz",
+        "vermouth_dry": "oz",
+        "maraschino_liqueur": "oz",
+        "angostura_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8158,48 +8071,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/spuurv1468878783.jpg"
     },
     {
-      "id": "buccaneer",
-      "name": "Пират",
-      "image": "assets/data/catalog_images/img_b39679e0.jpg",
-      "ingredients": [
-        "corona",
-        "bacardi_limon"
-      ],
-      "description": "Налейте корону в пивной бокал емкостью 18 унций, добавьте лимонный бакарди в пиво, очень осторожно перемешайте.",
-      "preparationSteps": [
-        "Налейте корону в пивной бокал емкостью 18 унций, добавьте лимонный бакарди в пиво, очень осторожно перемешайте."
-      ],
-      "glassType": "Рокс",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "corona": "1",
-        "bacardi_limon": "1"
-      },
-      "ingredientUnits": {
-        "bacardi_limon": "шот"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "buccaneer",
-      "canonicalSlug": "buccaneer",
-      "imageUrl": "assets/data/catalog_images/img_b39679e0.jpg",
-      "aliases": [
-        "Buccaneer"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/upvtyt1441249023.jpg"
-    },
-    {
       "id": "bumble-bee",
       "name": "Шмель пчела",
       "image": "assets/data/catalog_images/img_17e8fcff.jpg",
@@ -8230,9 +8101,9 @@
         "sambuca": "1/3"
       },
       "ingredientUnits": {
-        "baileys_irish_cream": "унц",
-        "kahlua": "унц",
-        "sambuca": "унц"
+        "baileys_irish_cream": "oz",
+        "kahlua": "oz",
+        "sambuca": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8277,8 +8148,8 @@
         "triple_sec": "1/2"
       },
       "ingredientUnits": {
-        "milk": "унц",
-        "triple_sec": "унц"
+        "milk": "oz",
+        "triple_sec": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8325,7 +8196,7 @@
       },
       "ingredientUnits": {
         "sugar": "tsp",
-        "cachaca": "унц"
+        "cachaca": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8374,7 +8245,7 @@
       },
       "ingredientUnits": {
         "sugar": "tbsp",
-        "rum_light": "унц"
+        "rum_light": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8465,7 +8336,7 @@
         "maraschino_liqueur": "1 1/2"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "triple_sec": "tsp",
         "lime": "tsp",
         "maraschino_liqueur": "tsp"
@@ -8521,10 +8392,10 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "maraschino_liqueur": "tsp",
         "lemon": "tsp",
-        "orange_bitter": "дэш"
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8574,10 +8445,10 @@
         "egg_yolk": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "lemon": "унц",
+        "gin": "oz",
+        "lemon": "oz",
         "maraschino_liqueur": "tsp",
-        "orange_bitter": "дэш"
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8621,7 +8492,7 @@
         "light_cream": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "cherry_brandy": "tsp",
         "light_cream": "tbsp"
       },
@@ -8674,8 +8545,8 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "port": "унц",
+        "rum_light": "oz",
+        "port": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -8769,9 +8640,9 @@
         "amaretto": "1"
       },
       "ingredientUnits": {
-        "chocolate_liqueur": "шот",
-        "milk": "шот",
-        "amaretto": "дэш"
+        "chocolate_liqueur": "shot",
+        "milk": "shot",
+        "amaretto": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8790,52 +8661,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/j6q35t1504889399.jpg"
-    },
-    {
-      "id": "citrus-coke",
-      "name": "Цитрусовая кола",
-      "image": "assets/data/catalog_images/img_d8496513.jpg",
-      "ingredients": [
-        "bacardi_limon",
-        "coca_cola"
-      ],
-      "description": "Налейте половину колы в стакан. Затем добавьте Бакарди и залейте оставшейся колой. Перемешайте и выпейте!",
-      "preparationSteps": [
-        "Налейте половину колы в стакан",
-        "Затем добавьте Бакарди и залейте оставшейся колой.",
-        "Перемешайте и выпейте!"
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "bacardi_limon": "1",
-        "coca_cola": "2"
-      },
-      "ingredientUnits": {
-        "bacardi_limon": "часть",
-        "coca_cola": "часть"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "citrus-coke",
-      "canonicalSlug": "citrus-coke",
-      "imageUrl": "assets/data/catalog_images/img_d8496513.jpg",
-      "aliases": [
-        "Citrus Coke"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/uyrvut1479473214.jpg"
     },
     {
       "id": "city-slicker",
@@ -8863,8 +8688,8 @@
         "lemon": "1"
       },
       "ingredientUnits": {
-        "brandy": "унц",
-        "triple_sec": "унц",
+        "brandy": "oz",
+        "triple_sec": "oz",
         "lemon": "tbsp"
       },
       "optionalIngredients": [],
@@ -8909,9 +8734,9 @@
         "wine": "1/2"
       },
       "ingredientUnits": {
-        "rosso_vermouth": "унц",
-        "sloe_gin": "унц",
-        "wine": "унц"
+        "rosso_vermouth": "oz",
+        "sloe_gin": "oz",
+        "wine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -8958,7 +8783,7 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "grenadine": "tsp"
       },
       "optionalIngredients": [],
@@ -9013,8 +8838,8 @@
       "ingredientUnits": {
         "coffee": "tbsp",
         "vanilla_extract": "tbsp",
-        "sugar": "чашка",
-        "water": "чашка"
+        "sugar": "cup",
+        "water": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9071,9 +8896,9 @@
         "vodka": "1 1/2"
       },
       "ingredientUnits": {
-        "water": "чашка",
-        "coffee": "чашка",
-        "vodka": "чашка"
+        "water": "cup",
+        "coffee": "cup",
+        "vodka": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9092,49 +8917,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/qvrrvu1472667494.jpg"
-    },
-    {
-      "id": "coke-and-drops",
-      "name": "Кокс и капли",
-      "image": "assets/data/catalog_images/img_6c401218.jpg",
-      "ingredients": [
-        "coca_cola",
-        "lemon"
-      ],
-      "description": "Возьмите стакан, налейте в него колу, затем добавьте 7 капель лимонного сока. Украсьте ломтиком лимона по краю бокала.",
-      "preparationSteps": [
-        "Возьмите стакан, налейте в него колу, затем добавьте 7 капель лимонного сока.",
-        "Украсьте ломтиком лимона по краю бокала."
-      ],
-      "glassType": "Мартини",
-      "tags": [
-        "Безалкогольные"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "coca_cola": "1 dl",
-        "lemon": "7"
-      },
-      "ingredientUnits": {
-        "lemon": "капля"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "coke-and-drops",
-      "canonicalSlug": "coke-and-drops",
-      "imageUrl": "assets/data/catalog_images/img_6c401218.jpg",
-      "aliases": [
-        "Coke and Drops"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/yrtxxp1472719367.jpg"
     },
     {
       "id": "corn-n-oil",
@@ -9171,10 +8953,10 @@
         "blackstrap_rum": "1"
       },
       "ingredientUnits": {
-        "falernum": "унц",
-        "angostura_bitter": "дэш",
-        "a_ejo_rum": "унц",
-        "blackstrap_rum": "унц"
+        "falernum": "oz",
+        "angostura_bitter": "dash",
+        "a_ejo_rum": "oz",
+        "blackstrap_rum": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9222,11 +9004,11 @@
         "absinthe": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "triple_sec": "унц",
-        "lillet_blanc": "унц",
-        "lemon": "унц",
-        "absinthe": "дэш"
+        "gin": "oz",
+        "triple_sec": "oz",
+        "lillet_blanc": "oz",
+        "lemon": "oz",
+        "absinthe": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9275,10 +9057,10 @@
         "juice_cranberry": "1/4"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "lime": "унц",
-        "cointreau": "унц",
-        "juice_cranberry": "чашка"
+        "vodka": "oz",
+        "lime": "oz",
+        "cointreau": "oz",
+        "juice_cranberry": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9330,9 +9112,9 @@
         "ginger_ale": "2 qt"
       },
       "ingredientUnits": {
-        "juice_cranberry": "чашка",
-        "sugar": "чашка",
-        "juice_pineapple": "чашка",
+        "juice_cranberry": "cup",
+        "sugar": "cup",
+        "juice_pineapple": "cup",
         "almond_flavoring": "tbsp"
       },
       "optionalIngredients": [],
@@ -9352,49 +9134,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/mzgaqu1504389248.jpg"
-    },
-    {
-      "id": "cream-soda",
-      "name": "Крем-сода",
-      "image": "assets/data/catalog_images/img_5d2ff5bf.jpg",
-      "ingredients": [
-        "spiced_rum",
-        "ginger_ale"
-      ],
-      "description": "Налейте 1 унцию пряного рома в высокий стакан со льдом. Залейте имбирным элем.",
-      "preparationSteps": [
-        "Налейте 1 унцию пряного рома в стакан хайбол со льдом.",
-        "Залейте имбирным элем."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "spiced_rum": "1"
-      },
-      "ingredientUnits": {
-        "spiced_rum": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "cream-soda",
-      "canonicalSlug": "cream-soda",
-      "imageUrl": "assets/data/catalog_images/img_5d2ff5bf.jpg",
-      "aliases": [
-        "Cream Soda"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/yqstxr1479209367.jpg"
     },
     {
       "id": "cuba-libra",
@@ -9427,7 +9166,7 @@
         "coca_cola": "Fill with"
       },
       "ingredientUnits": {
-        "rum_dark": "шот"
+        "rum_dark": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9473,7 +9212,7 @@
         "lime": "Juice of 1/2"
       },
       "ingredientUnits": {
-        "rum_light": "унц"
+        "rum_light": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9520,7 +9259,7 @@
         "powdered_sugar": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -9540,52 +9279,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg"
-    },
-    {
-      "id": "damned-if-you-do",
-      "name": "Будь ты проклят, если ты это сделаешь",
-      "image": "assets/data/catalog_images/img_3bd03901.jpg",
-      "ingredients": [
-        "whisky",
-        "hot_damn"
-      ],
-      "description": "Перелейте в рюмку. Положите в рот. Повторите, если сочтете необходимым.",
-      "preparationSteps": [
-        "Перелейте в рюмку",
-        "Положить в рот",
-        "Повторите, если сочтете необходимым."
-      ],
-      "glassType": "Шот",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "whisky": "0.75",
-        "hot_damn": "0.25"
-      },
-      "ingredientUnits": {
-        "whisky": "унц",
-        "hot_damn": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "damned-if-you-do",
-      "canonicalSlug": "damned-if-you-do",
-      "imageUrl": "assets/data/catalog_images/img_3bd03901.jpg",
-      "aliases": [
-        "Damned if you do"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/ql7bmx1503565106.jpg"
     },
     {
       "id": "danbooka",
@@ -9609,8 +9302,8 @@
         "everclear": "1"
       },
       "ingredientUnits": {
-        "coffee": "часть",
-        "everclear": "часть"
+        "coffee": "part",
+        "everclear": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9705,7 +9398,7 @@
       },
       "ingredientUnits": {
         "demerara_sugar": "tsp",
-        "cachaca": "унц"
+        "cachaca": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9755,9 +9448,9 @@
         "ice": "cubes"
       },
       "ingredientUnits": {
-        "cherry_heering": "часть",
-        "soda_water": "часть",
-        "juice_orange": "часть"
+        "cherry_heering": "part",
+        "soda_water": "part",
+        "juice_orange": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9800,7 +9493,7 @@
         "champagne": "Top"
       },
       "ingredientUnits": {
-        "absinthe": "шот"
+        "absinthe": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9849,7 +9542,7 @@
       },
       "ingredientUnits": {
         "gin": "cl",
-        "peach_bitters": "дэш"
+        "peach_bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -9895,7 +9588,7 @@
         "blackcurrant_cordial": "1"
       },
       "ingredientUnits": {
-        "blackcurrant_cordial": "дэш"
+        "blackcurrant_cordial": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10000,9 +9693,9 @@
         "151_proof_rum": "Float Bacardi"
       },
       "ingredientUnits": {
-        "fruit_punch": "часть",
-        "sprite": "часть",
-        "tequila": "шот"
+        "fruit_punch": "part",
+        "sprite": "part",
+        "tequila": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10049,8 +9742,8 @@
         "lime": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "ginger_ale": "унц"
+        "gin": "oz",
+        "ginger_ale": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10108,10 +9801,10 @@
         "whipped_cream": "Fresh"
       },
       "ingredientUnits": {
-        "heavy_cream": "унц",
-        "milk": "унц",
+        "heavy_cream": "oz",
+        "milk": "oz",
         "cinnamon": "шт",
-        "chocolate": "унц"
+        "chocolate": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10158,7 +9851,7 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "scotch": "унц",
+        "scotch": "oz",
         "vermouth_dry": "tsp"
       },
       "optionalIngredients": [],
@@ -10206,9 +9899,9 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "dubonnet_rouge": "унц",
-        "gin": "унц",
-        "bitters": "дэш"
+        "dubonnet_rouge": "oz",
+        "gin": "oz",
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10266,7 +9959,7 @@
         "lime": "cl",
         "pineapple_syrup": "cl",
         "st_germain": "cl",
-        "angostura_bitter": "дэш",
+        "angostura_bitter": "dash",
         "lavender": "шт"
       },
       "optionalIngredients": [],
@@ -10313,8 +10006,8 @@
       },
       "ingredientUnits": {
         "syrup_chocolate": "tbsp",
-        "milk": "унц",
-        "soda_water": "унц"
+        "milk": "oz",
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10385,13 +10078,13 @@
         "nutmeg": "Ground"
       },
       "ingredientUnits": {
-        "sugar": "чашка",
-        "milk": "чашка",
-        "rum_light": "чашка",
-        "bourbon": "чашка",
+        "sugar": "cup",
+        "milk": "cup",
+        "rum_light": "cup",
+        "bourbon": "cup",
         "vanilla_extract": "tsp",
         "salt": "tsp",
-        "whipped_cream": "чашка"
+        "whipped_cream": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10447,10 +10140,10 @@
         "rum": "1"
       },
       "ingredientUnits": {
-        "egg": "чашка",
+        "egg": "cup",
         "sugar": "tbsp",
-        "condensed_milk": "унц",
-        "milk": "чашка",
+        "condensed_milk": "oz",
+        "milk": "cup",
         "vanilla_extract": "tsp",
         "rum": "tsp"
       },
@@ -10510,7 +10203,7 @@
         "vanilla_extract": "1"
       },
       "ingredientUnits": {
-        "sugar": "чашка",
+        "sugar": "cup",
         "salt": "tsp",
         "vanilla_extract": "tsp"
       },
@@ -10630,9 +10323,9 @@
         "coffee_liqueur": "1/2"
       },
       "ingredientUnits": {
-        "mezcal": "унц",
-        "chocolate_liqueur": "унц",
-        "coffee_liqueur": "унц"
+        "mezcal": "oz",
+        "chocolate_liqueur": "oz",
+        "coffee_liqueur": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10682,9 +10375,9 @@
         "rosso_vermouth": "3/4"
       },
       "ingredientUnits": {
-        "brandy": "унц",
-        "gin": "унц",
-        "rosso_vermouth": "унц"
+        "brandy": "oz",
+        "gin": "oz",
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10736,9 +10429,9 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "apricot_brandy": "унц",
-        "gin": "унц",
-        "vermouth_dry": "унц",
+        "apricot_brandy": "oz",
+        "gin": "oz",
+        "vermouth_dry": "oz",
         "grenadine": "tsp",
         "lemon": "tsp"
       },
@@ -10787,7 +10480,7 @@
       "ingredientUnits": {
         "vodka": "cl",
         "kahlua": "cl",
-        "syrup_sugar": "дэш"
+        "syrup_sugar": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10834,10 +10527,10 @@
         "coffee": "1"
       },
       "ingredientUnits": {
-        "rum": "шот",
-        "vanilla_syrup": "шот",
-        "espresso": "шот",
-        "coffee": "шот"
+        "rum": "shot",
+        "vanilla_syrup": "shot",
+        "espresso": "shot",
+        "coffee": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10882,9 +10575,9 @@
         "tabasco_sauce": "1"
       },
       "ingredientUnits": {
-        "firewater": "унц",
-        "absolut_peppar": "унц",
-        "tabasco_sauce": "дэш"
+        "firewater": "oz",
+        "absolut_peppar": "oz",
+        "tabasco_sauce": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10941,10 +10634,10 @@
         "tonic_water": "Top"
       },
       "ingredientUnits": {
-        "vodka": "унц",
+        "vodka": "oz",
         "honey": "tsp",
         "thyme": "шт",
-        "angostura_bitter": "дэш"
+        "angostura_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10996,11 +10689,11 @@
         "beer": "1"
       },
       "ingredientUnits": {
-        "amaretto": "унц",
-        "vodka": "унц",
-        "151_proof_rum": "унц",
-        "dr_pepper": "унц",
-        "beer": "унц"
+        "amaretto": "oz",
+        "vodka": "oz",
+        "151_proof_rum": "oz",
+        "dr_pepper": "oz",
+        "beer": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11048,10 +10741,10 @@
         "baileys_irish_cream": "1"
       },
       "ingredientUnits": {
-        "kahlua": "унц",
-        "sambuca": "унц",
-        "blue_curacao": "унц",
-        "baileys_irish_cream": "унц"
+        "kahlua": "oz",
+        "sambuca": "oz",
+        "blue_curacao": "oz",
+        "baileys_irish_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11070,50 +10763,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/yywpss1461866587.jpg"
-    },
-    {
-      "id": "flander-s-flake-out",
-      "name": "Отщепление Фландрии",
-      "image": "assets/data/catalog_images/img_75b09399.jpg",
-      "ingredients": [
-        "sambuca",
-        "sarsaparilla"
-      ],
-      "description": "Вбей их обоих.",
-      "preparationSteps": [
-        "Вбей их обоих."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "sambuca": "1/4",
-        "sarsaparilla": "3/4"
-      },
-      "ingredientUnits": {
-        "sambuca": "шт",
-        "sarsaparilla": "шт"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "flander-s-flake-out",
-      "canonicalSlug": "flander-s-flake-out",
-      "imageUrl": "assets/data/catalog_images/img_75b09399.jpg",
-      "aliases": [
-        "Flander's Flake-Out"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/sqvqrx1461866705.jpg"
     },
     {
       "id": "flying-dutchman",
@@ -11138,8 +10787,8 @@
         "triple_sec": "1/2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "triple_sec": "унц"
+        "gin": "oz",
+        "triple_sec": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11185,9 +10834,9 @@
         "syrup_sugar": "1/4"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "rosso_vermouth": "унц",
-        "bitters": "дэш",
+        "scotch": "oz",
+        "rosso_vermouth": "oz",
+        "bitters": "dash",
         "syrup_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -11232,9 +10881,9 @@
         "light_cream": "2"
       },
       "ingredientUnits": {
-        "amaretto": "унц",
-        "creme_de_cacao": "унц",
-        "light_cream": "унц"
+        "amaretto": "oz",
+        "creme_de_cacao": "oz",
+        "light_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11285,8 +10934,8 @@
         "sugar": "1-2"
       },
       "ingredientUnits": {
-        "coffee": "чашка",
-        "milk": "чашка",
+        "coffee": "cup",
+        "milk": "cup",
         "sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -11332,9 +10981,9 @@
         "vodka": "1/2"
       },
       "ingredientUnits": {
-        "jagermeister": "унц",
-        "sambuca": "унц",
-        "vodka": "унц"
+        "jagermeister": "oz",
+        "sambuca": "oz",
+        "vodka": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11389,10 +11038,10 @@
         "maraschino_cherry": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "sugar": "tsp",
-        "lemon": "унц",
-        "champagne": "унц"
+        "lemon": "oz",
+        "champagne": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11436,8 +11085,8 @@
         "amaretto": "3/4"
       },
       "ingredientUnits": {
-        "cognac": "унц",
-        "amaretto": "унц"
+        "cognac": "oz",
+        "amaretto": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11535,9 +11184,9 @@
         "orange": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "lillet": "унц",
-        "rosso_vermouth": "унц"
+        "gin": "oz",
+        "lillet": "oz",
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11584,8 +11233,8 @@
         "lime": "Juice of 1/2"
       },
       "ingredientUnits": {
-        "whisky": "унц",
-        "benedictine": "унц"
+        "whisky": "oz",
+        "benedictine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11646,9 +11295,9 @@
       },
       "ingredientUnits": {
         "rose": "мл",
-        "sugar": "чашка",
-        "strawberries": "унц",
-        "lemon": "унц"
+        "sugar": "cup",
+        "strawberries": "oz",
+        "lemon": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11699,11 +11348,11 @@
         "ice": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "triple_sec": "tbsp",
-        "lime": "унц",
+        "lime": "oz",
         "sugar": "tsp",
-        "ice": "чашка"
+        "ice": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11751,7 +11400,7 @@
         "sugar": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "lime": "tbsp",
         "sugar": "tsp"
       },
@@ -11801,7 +11450,7 @@
         "sugar": "1/2"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "pineapple": "шт",
         "lime": "tbsp",
         "sugar": "tsp"
@@ -11863,7 +11512,7 @@
       },
       "ingredientUnits": {
         "juice_apple": "шт",
-        "strawberries": "чашка",
+        "strawberries": "cup",
         "sugar": "tbsp",
         "soda_water": "л"
       },
@@ -11909,8 +11558,8 @@
         "fruit_juice": "1"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
-        "fruit_juice": "чашка"
+        "yoghurt": "cup",
+        "fruit_juice": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11959,8 +11608,8 @@
         "ice": "6"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
-        "juice_orange": "унц",
+        "yoghurt": "cup",
+        "juice_orange": "oz",
         "fruit": "шт"
       },
       "optionalIngredients": [],
@@ -12011,9 +11660,9 @@
         "soda_water": "Top"
       },
       "ingredientUnits": {
-        "rum": "шот",
-        "apricot_nectar": "шот",
-        "juice_pomegranate": "шот"
+        "rum": "shot",
+        "apricot_nectar": "shot",
+        "juice_pomegranate": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -12032,48 +11681,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/qtv83q1596015790.jpg"
-    },
-    {
-      "id": "fuzzy-asshole",
-      "name": "Нечеткий мудак",
-      "image": "assets/data/catalog_images/img_b3313663.jpg",
-      "ingredients": [
-        "coffee",
-        "peach_schnapps"
-      ],
-      "description": "Наполните кофейную кружку наполовину кофе. Вторую половину заполните персиковым шнапсом. Перемешайте и пейте, пока он горячий.",
-      "preparationSteps": [
-        "Наполните кружку наполовину кофе",
-        "Наполните вторую половину персиковым шнапсом.",
-        "Перемешайте и пейте, пока он горячий."
-      ],
-      "glassType": "Кружка",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "coffee": "1/2",
-        "peach_schnapps": "1/2"
-      },
-      "ingredientUnits": {},
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "fuzzy-asshole",
-      "canonicalSlug": "fuzzy-asshole",
-      "imageUrl": "assets/data/catalog_images/img_b3313663.jpg",
-      "aliases": [
-        "Fuzzy Asshole"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/wrvpuu1472667898.jpg"
     },
     {
       "id": "gagliardo",
@@ -12102,10 +11709,10 @@
         "sirup_of_roses": "1"
       },
       "ingredientUnits": {
-        "peach_vodka": "часть",
-        "lemon": "часть",
-        "galliano": "часть",
-        "sirup_of_roses": "часть"
+        "peach_vodka": "part",
+        "lemon": "part",
+        "galliano": "part",
+        "sirup_of_roses": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -12150,7 +11757,7 @@
         "galliano": "2 1/2"
       },
       "ingredientUnits": {
-        "galliano": "шот"
+        "galliano": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -12196,9 +11803,9 @@
         "syrup_sugar": "1/2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "lime": "унц",
-        "syrup_sugar": "унц"
+        "gin": "oz",
+        "lime": "oz",
+        "syrup_sugar": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -12217,54 +11824,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/3xgldt1513707271.jpg"
-    },
-    {
-      "id": "gin-and-soda",
-      "name": "Джин и Сода",
-      "image": "assets/data/catalog_images/img_dad66863.jpg",
-      "ingredients": [
-        "gin",
-        "soda_water",
-        "lime"
-      ],
-      "description": "Налейте джин и газированную воду в высокий стакан, почти наполненный кубиками льда. Хорошо перемешайте. Украсьте долькой лайма.",
-      "preparationSteps": [
-        "Налейте воду с джином и газировкой в высокий стакан, почти наполненный кубиками льда.",
-        "Хорошо перемешайте",
-        "Украсьте долькой лайма."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "gin": "2",
-        "soda_water": "5",
-        "lime": "1/4"
-      },
-      "ingredientUnits": {
-        "gin": "унц",
-        "soda_water": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "gin-and-soda",
-      "canonicalSlug": "gin-and-soda",
-      "imageUrl": "assets/data/catalog_images/img_dad66863.jpg",
-      "aliases": [
-        "Gin and Soda"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/nzlyc81605905755.jpg"
     },
     {
       "id": "gin-cooler",
@@ -12295,7 +11854,7 @@
         "gin": "2"
       },
       "ingredientUnits": {
-        "gin": "унц"
+        "gin": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -12347,8 +11906,8 @@
         "orange": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "lemon": "унц",
+        "gin": "oz",
+        "lemon": "oz",
         "sugar": "tsp",
         "grenadine": "tsp"
       },
@@ -12399,7 +11958,7 @@
         "powdered_sugar": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -12419,56 +11978,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg"
-    },
-    {
-      "id": "gin-lemon",
-      "name": "Джин Лимон",
-      "image": "assets/data/catalog_images/img_ae067a53.jpg",
-      "ingredients": [
-        "gin",
-        "lemon",
-        "ice"
-      ],
-      "description": "Для приготовления джина с лимоном шейкер не понадобится. Наполните стакан льдом, налейте джин и лимонад. Аккуратно перемешайте и украсьте ломтиком лимона. Те, кто предпочитает, могут также добавить несколько листочков мяты. Ваш джин-лимон готов к подаче.",
-      "preparationSteps": [
-        "Для приготовления джина с лимоном шейкер не понадобится.",
-        "Наполните стакан льдом, налейте джин и лимонад.",
-        "Аккуратно перемешать и украсить ломтиком лимона.",
-        "Те, кто предпочитает, могут добавить несколько листочков мяты.",
-        "Ваш джин-лимон готов к подаче."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "gin": "6",
-        "lemon": "8",
-        "ice": "cubes"
-      },
-      "ingredientUnits": {
-        "gin": "cl",
-        "lemon": "cl"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "gin-lemon",
-      "canonicalSlug": "gin-lemon",
-      "imageUrl": "assets/data/catalog_images/img_ae067a53.jpg",
-      "aliases": [
-        "Gin Lemon"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/6gdohq1681212476.jpg"
     },
     {
       "id": "gin-rickey",
@@ -12502,7 +12011,7 @@
         "lime": "Garnish"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "grenadine": "tsp"
       },
       "optionalIngredients": [],
@@ -12554,7 +12063,7 @@
         "orange": "Twist of"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "powdered_sugar": "tsp",
         "water": "tsp"
       },
@@ -12608,8 +12117,8 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "soda_water": "унц",
+        "gin": "oz",
+        "soda_water": "oz",
         "sugar": "шт",
         "orange": "долька"
       },
@@ -12661,8 +12170,8 @@
         "maraschino_cherry": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "lemon": "унц",
+        "gin": "oz",
+        "lemon": "oz",
         "sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -12715,7 +12224,7 @@
         "strawberries": "2"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "grenadine": "tsp",
         "powdered_sugar": "tbsp",
         "pineapple": "шт"
@@ -12771,11 +12280,11 @@
         "soda_water": "3"
       },
       "ingredientUnits": {
-        "lime": "унц",
+        "lime": "oz",
         "sugar": "tsp",
-        "gin": "унц",
-        "bitters": "дэш",
-        "soda_water": "унц"
+        "gin": "oz",
+        "bitters": "dash",
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -12823,7 +12332,7 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "water": "tsp",
         "powdered_sugar": "tsp"
       },
@@ -12975,9 +12484,9 @@
         "heavy_cream": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "amaretto": "унц",
-        "heavy_cream": "унц"
+        "vodka": "oz",
+        "amaretto": "oz",
+        "heavy_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13021,8 +12530,8 @@
         "amaretto": "3/4"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "amaretto": "унц"
+        "scotch": "oz",
+        "amaretto": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13065,8 +12574,8 @@
         "amaretto": "3/4"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "amaretto": "унц"
+        "vodka": "oz",
+        "amaretto": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13165,9 +12674,9 @@
         "pineapple": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "triple_sec": "унц",
-        "juice_pineapple": "унц",
+        "gin": "oz",
+        "triple_sec": "oz",
+        "juice_pineapple": "oz",
         "grenadine": "tsp"
       },
       "optionalIngredients": [],
@@ -13214,9 +12723,9 @@
         "light_cream": "3/4"
       },
       "ingredientUnits": {
-        "creme_de_menthe_green": "унц",
-        "creme_de_cacao": "унц",
-        "light_cream": "унц"
+        "creme_de_menthe_green": "oz",
+        "creme_de_cacao": "oz",
+        "light_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13235,51 +12744,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/aqm9el1504369613.jpg"
-    },
-    {
-      "id": "greyhound",
-      "name": "Борзая",
-      "image": "assets/data/catalog_images/img_cf5c89b0.jpg",
-      "ingredients": [
-        "vodka",
-        "juice_grapefruit"
-      ],
-      "description": "Добавьте водку в стакан Коллинз, наполненный льдом. Залейте грейпфрутовым соком и перемешайте.",
-      "preparationSteps": [
-        "Добавьте водку в стакан Коллинз, наполненный льдом.",
-        "Залейте грейпфрутовым соком и перемешайте."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "1 1/2",
-        "juice_grapefruit": "3"
-      },
-      "ingredientUnits": {
-        "vodka": "унц",
-        "juice_grapefruit": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "greyhound",
-      "canonicalSlug": "greyhound",
-      "imageUrl": "assets/data/catalog_images/img_cf5c89b0.jpg",
-      "aliases": [
-        "Greyhound"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/g5upn41513706732.jpg"
     },
     {
       "id": "grim-reaper",
@@ -13306,9 +12770,9 @@
         "grenadine": "1"
       },
       "ingredientUnits": {
-        "kahlua": "унц",
-        "151_proof_rum": "унц",
-        "grenadine": "дэш"
+        "kahlua": "oz",
+        "151_proof_rum": "oz",
+        "grenadine": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13506,9 +12970,9 @@
         "juice_orange": "4"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "galliano": "унц",
-        "juice_orange": "унц"
+        "vodka": "oz",
+        "galliano": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13554,8 +13018,8 @@
         "lemon": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "juice_pineapple": "унц",
+        "rum_light": "oz",
+        "juice_pineapple": "oz",
         "lemon": "tsp"
       },
       "optionalIngredients": [],
@@ -13600,8 +13064,8 @@
         "juice_pineapple": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "triple_sec": "унц",
+        "gin": "oz",
+        "triple_sec": "oz",
         "juice_pineapple": "tbsp"
       },
       "optionalIngredients": [],
@@ -13650,10 +13114,10 @@
         "lime": "3"
       },
       "ingredientUnits": {
-        "rum": "часть",
-        "juice_grapefruit": "часть",
-        "maraschino_liqueur": "часть",
-        "lime": "часть"
+        "rum": "part",
+        "juice_grapefruit": "part",
+        "maraschino_liqueur": "part",
+        "lime": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13697,7 +13161,7 @@
         "tea": "very sweet"
       },
       "ingredientUnits": {
-        "hot_damn": "шот"
+        "hot_damn": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13744,9 +13208,9 @@
         "olive": "1"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "rosso_vermouth": "унц",
-        "orange_bitter": "дэш"
+        "scotch": "oz",
+        "rosso_vermouth": "oz",
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13802,10 +13266,10 @@
         "vodka": "1 fifth"
       },
       "ingredientUnits": {
-        "sugar": "чашка",
-        "corn_syrup": "чашка",
-        "coffee": "унц",
-        "vanilla_extract": "унц"
+        "sugar": "cup",
+        "corn_syrup": "cup",
+        "coffee": "oz",
+        "vanilla_extract": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13902,9 +13366,9 @@
         "bitters": "2"
       },
       "ingredientUnits": {
-        "brandy": "унц",
-        "ginger_ale": "унц",
-        "bitters": "дэш"
+        "brandy": "oz",
+        "ginger_ale": "oz",
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13953,10 +13417,10 @@
         "marshmallows": "mini"
       },
       "ingredientUnits": {
-        "chocolate": "унц",
+        "chocolate": "oz",
         "butter": "tsp",
         "vanilla_extract": "tsp",
-        "half_and_half": "чашка"
+        "half_and_half": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14000,9 +13464,9 @@
         "coffee": "6"
       },
       "ingredientUnits": {
-        "irish_whiskey": "шот",
-        "baileys_irish_cream": "шот",
-        "coffee": "унц"
+        "irish_whiskey": "shot",
+        "baileys_irish_cream": "shot",
+        "coffee": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14128,53 +13592,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/t0iugg1509556712.jpg"
     },
     {
-      "id": "ice-pick",
-      "name": "Ледоруб",
-      "image": "assets/data/catalog_images/img_9b7de512.jpg",
-      "ingredients": [
-        "vodka",
-        "iced_tea",
-        "lemon"
-      ],
-      "description": "Налейте водку в стакан и залейте холодным чаем. Добавьте лимон по вкусу.",
-      "preparationSteps": [
-        "Налейте водку в стакан и залейте холодным чаем.",
-        "Добавьте лимон по вкусу."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "1 1/2",
-        "iced_tea": "6"
-      },
-      "ingredientUnits": {
-        "vodka": "унц",
-        "iced_tea": "унц",
-        "lemon": "по вкусу"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "ice-pick",
-      "canonicalSlug": "ice-pick",
-      "imageUrl": "assets/data/catalog_images/img_9b7de512.jpg",
-      "aliases": [
-        "Ice Pick"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/ypsrqp1469091726.jpg"
-    },
-    {
       "id": "iced-coffee",
       "name": "Холодный кофе",
       "image": "assets/data/catalog_images/img_2423a953.jpg",
@@ -14204,9 +13621,9 @@
         "milk": "4 cups cold"
       },
       "ingredientUnits": {
-        "coffee": "чашка",
-        "sugar": "чашка",
-        "water": "чашка"
+        "coffee": "cup",
+        "sugar": "cup",
+        "water": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14225,48 +13642,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/ytprxy1454513855.jpg"
-    },
-    {
-      "id": "iced-coffee-fillip",
-      "name": "Холодный кофе Филлип",
-      "image": "assets/data/catalog_images/img_1fecd342.jpg",
-      "ingredients": [
-        "kahlua",
-        "coffee"
-      ],
-      "description": "Смешайте в кофейной чашке и охладите перед подачей.",
-      "preparationSteps": [
-        "Смешайте в кофейной чашке и охладите перед подачей."
-      ],
-      "glassType": "Кружка",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "kahlua": "2",
-        "coffee": "Strong cold"
-      },
-      "ingredientUnits": {
-        "kahlua": "tsp"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "iced-coffee-fillip",
-      "canonicalSlug": "iced-coffee-fillip",
-      "imageUrl": "assets/data/catalog_images/img_1fecd342.jpg",
-      "aliases": [
-        "Iced Coffee Fillip"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/sxtxrp1454514223.jpg"
     },
     {
       "id": "imperial-cocktail",
@@ -14343,8 +13718,8 @@
         "powdered_sugar": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "whisky": "унц",
+        "rum_light": "oz",
+        "whisky": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -14445,8 +13820,8 @@
         "whipped_cream": "1"
       },
       "ingredientUnits": {
-        "irish_whiskey": "унц",
-        "coffee": "унц",
+        "irish_whiskey": "oz",
+        "coffee": "oz",
         "sugar": "tsp",
         "whipped_cream": "tbsp"
       },
@@ -14498,8 +13873,8 @@
         "syrup_chocolate": "1"
       },
       "ingredientUnits": {
-        "scotch": "чашка",
-        "half_and_half": "чашка",
+        "scotch": "cup",
+        "half_and_half": "cup",
         "condensed_milk": "шт",
         "syrup_coconut": "капля",
         "syrup_chocolate": "tbsp"
@@ -14550,10 +13925,10 @@
         "juice_orange": "2-3"
       },
       "ingredientUnits": {
-        "baileys_irish_cream": "унц",
-        "bourbon": "унц",
-        "vodka": "унц",
-        "juice_orange": "унц"
+        "baileys_irish_cream": "oz",
+        "bourbon": "oz",
+        "vodka": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14602,9 +13977,9 @@
         "guinness_stout": "Fill with"
       },
       "ingredientUnits": {
-        "vodka": "шот",
-        "kahlua": "шот",
-        "coca_cola": "дэш"
+        "vodka": "shot",
+        "kahlua": "shot",
+        "coca_cola": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14656,10 +14031,10 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "irish_whiskey": "унц",
-        "peach_brandy": "унц",
-        "juice_orange": "унц",
-        "sweet_and_sour": "унц",
+        "irish_whiskey": "oz",
+        "peach_brandy": "oz",
+        "juice_orange": "oz",
+        "sweet_and_sour": "oz",
         "orange": "долька"
       },
       "optionalIngredients": [],
@@ -14704,7 +14079,7 @@
         "lime": "Juice of 1/2"
       },
       "ingredientUnits": {
-        "apple_brandy": "унц",
+        "apple_brandy": "oz",
         "grenadine": "tsp"
       },
       "optionalIngredients": [],
@@ -14752,9 +14127,9 @@
         "coca_cola": "10-12"
       },
       "ingredientUnits": {
-        "tennessee_whiskey": "унц",
+        "tennessee_whiskey": "oz",
         "vanilla_extract": "tsp",
-        "coca_cola": "унц"
+        "coca_cola": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14797,8 +14172,8 @@
         "amaretto": "1"
       },
       "ingredientUnits": {
-        "jack_daniels": "унц",
-        "amaretto": "унц"
+        "jack_daniels": "oz",
+        "amaretto": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14847,10 +14222,10 @@
         "sugar": "2"
       },
       "ingredientUnits": {
-        "baileys_irish_cream": "унц",
-        "chambord_raspberry_liqueur": "унц",
+        "baileys_irish_cream": "oz",
+        "chambord_raspberry_liqueur": "oz",
         "syrup_sugar": "tsp",
-        "sugar": "щепотка"
+        "sugar": "pinch"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14898,8 +14273,8 @@
         "ice": "cubes"
       },
       "ingredientUnits": {
-        "coffee_liqueur": "шот",
-        "rum_light": "шот"
+        "coffee_liqueur": "shot",
+        "rum_light": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -14999,7 +14374,7 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "whisky": "унц",
+        "whisky": "oz",
         "powdered_sugar": "tsp",
         "port": "tbsp"
       },
@@ -15050,8 +14425,8 @@
         "water": "3"
       },
       "ingredientUnits": {
-        "vodka": "чашка",
-        "water": "чашка"
+        "vodka": "cup",
+        "water": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15094,8 +14469,8 @@
         "anis": "1"
       },
       "ingredientUnits": {
-        "blackberry_brandy": "унц",
-        "anis": "унц"
+        "blackberry_brandy": "oz",
+        "anis": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15141,9 +14516,9 @@
         "chartreuse_yellow": "1/2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "chartreuse_green": "унц",
-        "chartreuse_yellow": "унц"
+        "gin": "oz",
+        "chartreuse_green": "oz",
+        "chartreuse_yellow": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15200,9 +14575,9 @@
       "ingredientUnits": {
         "gin": "шт",
         "vodka": "шт",
-        "grenadine": "дэш",
-        "lime": "шот",
-        "syrup_sugar": "дэш"
+        "grenadine": "dash",
+        "lime": "shot",
+        "syrup_sugar": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15257,10 +14632,10 @@
         "orange": "1"
       },
       "ingredientUnits": {
-        "bourbon": "унц",
-        "lemon": "унц",
+        "bourbon": "oz",
+        "lemon": "oz",
         "sugar": "tsp",
-        "soda_water": "унц"
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15304,7 +14679,7 @@
         "milk": "2"
       },
       "ingredientUnits": {
-        "milk": "чашка"
+        "milk": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15350,9 +14725,9 @@
         "lime": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "triple_sec": "унц",
-        "lime": "унц"
+        "vodka": "oz",
+        "triple_sec": "oz",
+        "lime": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15396,8 +14771,8 @@
         "grain_alcohol": "2"
       },
       "ingredientUnits": {
-        "coffee": "часть",
-        "grain_alcohol": "часть"
+        "coffee": "part",
+        "grain_alcohol": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15439,8 +14814,8 @@
         "benedictine": "1/2"
       },
       "ingredientUnits": {
-        "bourbon": "унц",
-        "benedictine": "унц"
+        "bourbon": "oz",
+        "benedictine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15486,8 +14861,8 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "bourbon": "унц",
-        "benedictine": "унц"
+        "bourbon": "oz",
+        "benedictine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15533,7 +14908,7 @@
         "water": "1"
       },
       "ingredientUnits": {
-        "water": "чашка"
+        "water": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15577,8 +14952,8 @@
         "brandy": "1/2"
       },
       "ingredientUnits": {
-        "kahlua": "унц",
-        "brandy": "унц"
+        "kahlua": "oz",
+        "brandy": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15620,8 +14995,8 @@
         "champagne": "5"
       },
       "ingredientUnits": {
-        "creme_de_cassis": "часть",
-        "champagne": "часть"
+        "creme_de_cassis": "part",
+        "champagne": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15720,8 +15095,8 @@
         "ice": "cubes"
       },
       "ingredientUnits": {
-        "kiwi_liqueur": "часть",
-        "bitter_lemon": "часть"
+        "kiwi_liqueur": "part",
+        "bitter_lemon": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15769,7 +15144,7 @@
       },
       "ingredientUnits": {
         "syrup_sugar": "tsp",
-        "vodka": "унц"
+        "vodka": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15831,51 +15206,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/jogv4w1487603571.jpg"
     },
     {
-      "id": "kool-first-aid",
-      "name": "Крутая первая помощь",
-      "image": "assets/data/catalog_images/img_a2324983.jpg",
-      "ingredients": [
-        "151_proof_rum",
-        "kool_aid"
-      ],
-      "description": "Добавьте Kool Aid в двойную рюмку и залейте ромом. Хлопни и стреляй.",
-      "preparationSteps": [
-        "Добавьте Kool Aid в двойную рюмку и залейте ромом.",
-        "Хлопни и стреляй."
-      ],
-      "glassType": "Шот",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "151_proof_rum": "2",
-        "kool_aid": "1/2"
-      },
-      "ingredientUnits": {
-        "151_proof_rum": "унц",
-        "kool_aid": "tsp"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "kool-first-aid",
-      "canonicalSlug": "kool-first-aid",
-      "imageUrl": "assets/data/catalog_images/img_a2324983.jpg",
-      "aliases": [
-        "Kool First Aid"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/hfp6sv1503564824.jpg"
-    },
-    {
       "id": "kool-aid-shot",
       "name": "Kool-Aid Shot",
       "image": "assets/data/catalog_images/img_b855ee4a.jpg",
@@ -15904,10 +15234,10 @@
         "triple_sec": "1"
       },
       "ingredientUnits": {
-        "vodka": "шот",
-        "amaretto": "шот",
-        "sloe_gin": "шот",
-        "triple_sec": "шот"
+        "vodka": "shot",
+        "amaretto": "shot",
+        "sloe_gin": "shot",
+        "triple_sec": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15926,53 +15256,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/fegm621503564966.jpg"
-    },
-    {
-      "id": "kool-aid-slammer",
-      "name": "Kool-Aid Slammer",
-      "image": "assets/data/catalog_images/img_e919ffce.jpg",
-      "ingredients": [
-        "kool_aid",
-        "vodka"
-      ],
-      "description": "Сначала наполните половину рюмки охлаждающим средством. Затем накройте стакан бумажным полотенцем и медленно влейте водку. Если вы все сделаете правильно, вы увидите, что две жидкости разделены, а водка находится сверху. А теперь хлопни! Последнее, что вы попробуете, это прохладительный напиток.",
-      "preparationSteps": [
-        "Сначала наполните половину рюмки охлаждающим средством.",
-        "Затем накройте стакан бумажным полотенцем и медленно влейте водку.",
-        "Если вы все сделаете правильно, вы увидите, что две жидкости разделены, причем водка находится сверху.",
-        "А теперь хлопни! Последнее, что вы попробуете, это прохладительный напиток."
-      ],
-      "glassType": "Шот",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "kool_aid": "1/2",
-        "vodka": "1/2"
-      },
-      "ingredientUnits": {
-        "kool_aid": "унц",
-        "vodka": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "kool-aid-slammer",
-      "canonicalSlug": "kool-aid-slammer",
-      "imageUrl": "assets/data/catalog_images/img_e919ffce.jpg",
-      "aliases": [
-        "Kool-Aid Slammer"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/kugu2m1504735473.jpg"
     },
     {
       "id": "kurant-tea",
@@ -16050,7 +15333,7 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "light_cream": "tsp",
         "powdered_sugar": "tsp"
       },
@@ -16104,8 +15387,8 @@
         "mint": "1/4"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
-        "water": "чашка",
+        "yoghurt": "cup",
+        "water": "cup",
         "cumin_seed": "tsp",
         "salt": "tsp",
         "mint": "tsp"
@@ -16156,9 +15439,9 @@
         "water": "1"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
-        "sugar": "чашка",
-        "water": "чашка"
+        "yoghurt": "cup",
+        "sugar": "cup",
+        "water": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16208,7 +15491,7 @@
         "lemon": "2"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
+        "yoghurt": "cup",
         "sugar": "tbsp",
         "lemon": "tbsp"
       },
@@ -16258,9 +15541,9 @@
         "asafoetida": "1"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
+        "yoghurt": "cup",
         "salt": "tsp",
-        "asafoetida": "щепотка"
+        "asafoetida": "pinch"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16311,7 +15594,7 @@
         "ice": "4-6"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка"
+        "yoghurt": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16403,8 +15686,8 @@
         "lemon": "Juice of 1 wedge"
       },
       "ingredientUnits": {
-        "vodka": "шот",
-        "cointreau": "шот"
+        "vodka": "shot",
+        "cointreau": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16452,8 +15735,8 @@
       },
       "ingredientUnits": {
         "elderflower_cordial": "tsp",
-        "vodka": "шот",
-        "soda_water": "чашка"
+        "vodka": "shot",
+        "soda_water": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16504,8 +15787,8 @@
         "sugar": "Bacardi"
       },
       "ingredientUnits": {
-        "galliano": "унц",
-        "absolut_citron": "унц"
+        "galliano": "oz",
+        "absolut_citron": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16560,7 +15843,7 @@
       },
       "ingredientUnits": {
         "ginger": "шт",
-        "sugar": "чашка"
+        "sugar": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16659,9 +15942,9 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "drambuie": "унц",
-        "vermouth_dry": "унц"
+        "scotch": "oz",
+        "drambuie": "oz",
+        "vermouth_dry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16707,9 +15990,9 @@
         "orange_bitter": "2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "maraschino_liqueur": "унц",
-        "orange_bitter": "дэш"
+        "gin": "oz",
+        "maraschino_liqueur": "oz",
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16751,8 +16034,8 @@
         "gin": "1 1/2"
       },
       "ingredientUnits": {
-        "rosso_vermouth": "унц",
-        "gin": "унц"
+        "rosso_vermouth": "oz",
+        "gin": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16851,10 +16134,10 @@
         "coca_cola": "1 splash"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "rum_light": "унц",
-        "gin": "унц",
-        "tequila": "унц"
+        "vodka": "oz",
+        "rum_light": "oz",
+        "gin": "oz",
+        "tequila": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16905,7 +16188,7 @@
       },
       "ingredientUnits": {
         "vodka": "cl",
-        "angostura_bitter": "дэш"
+        "angostura_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16948,8 +16231,8 @@
         "tia_maria": "1/2"
       },
       "ingredientUnits": {
-        "rum_dark": "унц",
-        "tia_maria": "унц"
+        "rum_dark": "oz",
+        "tia_maria": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -16996,8 +16279,8 @@
       },
       "ingredientUnits": {
         "beer": "шт",
-        "amaretto": "шот",
-        "juice_orange": "унц"
+        "amaretto": "shot",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17049,10 +16332,10 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "orgeat_syrup": "унц",
-        "triple_sec": "унц",
-        "sweet_and_sour": "унц"
+        "rum_light": "oz",
+        "orgeat_syrup": "oz",
+        "triple_sec": "oz",
+        "sweet_and_sour": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17158,8 +16441,8 @@
         "orange": "1 twist of"
       },
       "ingredientUnits": {
-        "rosso_vermouth": "унц",
-        "bourbon": "унц"
+        "rosso_vermouth": "oz",
+        "bourbon": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17208,9 +16491,9 @@
         "lime": "1"
       },
       "ingredientUnits": {
-        "tequila": "унц",
-        "triple_sec": "унц",
-        "lime": "унц"
+        "tequila": "oz",
+        "triple_sec": "oz",
+        "lime": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17257,10 +16540,10 @@
         "angostura_bitter": "2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "rosso_vermouth": "унц",
+        "gin": "oz",
+        "rosso_vermouth": "oz",
         "maraschino_liqueur": "tsp",
-        "angostura_bitter": "дэш"
+        "angostura_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17307,8 +16590,8 @@
         "olive": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "vermouth_dry": "унц"
+        "gin": "oz",
+        "vermouth_dry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17357,8 +16640,8 @@
         "maraschino_cherry": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "juice_pineapple": "унц",
+        "rum_light": "oz",
+        "juice_pineapple": "oz",
         "maraschino_liqueur": "tsp",
         "grenadine": "tsp"
       },
@@ -17420,7 +16703,7 @@
         "black_pepper": "1-2 whole"
       },
       "ingredientUnits": {
-        "water": "чашка",
+        "water": "cup",
         "tea": "tsp",
         "ginger": "шт",
         "cinnamon": "шт",
@@ -17569,7 +16852,7 @@
         "daiquiri_mix": "frozen"
       },
       "ingredientUnits": {
-        "151_proof_rum": "унц"
+        "151_proof_rum": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17620,8 +16903,8 @@
         "soy_sauce": "Dash"
       },
       "ingredientUnits": {
-        "beer": "унц",
-        "juice_tomato": "унц",
+        "beer": "oz",
+        "juice_tomato": "oz",
         "lime": "tbsp"
       },
       "optionalIngredients": [],
@@ -17668,9 +16951,9 @@
         "cream": "3/4"
       },
       "ingredientUnits": {
-        "baileys_irish_cream": "унц",
-        "creme_de_menthe_white": "унц",
-        "cream": "унц"
+        "baileys_irish_cream": "oz",
+        "creme_de_menthe_white": "oz",
+        "cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17714,7 +16997,7 @@
         "juice_orange": "2"
       },
       "ingredientUnits": {
-        "juice_orange": "унц"
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -17764,7 +17047,7 @@
         "water": "2"
       },
       "ingredientUnits": {
-        "bourbon": "унц",
+        "bourbon": "oz",
         "powdered_sugar": "tsp",
         "water": "tsp"
       },
@@ -17813,8 +17096,8 @@
         "cocoa_powder": "2"
       },
       "ingredientUnits": {
-        "coffee": "унц",
-        "chambord_raspberry_liqueur": "унц",
+        "coffee": "oz",
+        "chambord_raspberry_liqueur": "oz",
         "cocoa_powder": "tbsp"
       },
       "optionalIngredients": [],
@@ -17867,7 +17150,7 @@
         "mint": "2-4"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -17968,9 +17251,9 @@
         "grenadine": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "benedictine": "tsp",
-        "juice_orange": "унц",
+        "juice_orange": "oz",
         "grenadine": "tsp"
       },
       "optionalIngredients": [],
@@ -18016,9 +17299,9 @@
         "bitters": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "juice_grapefruit": "унц",
-        "bitters": "дэш"
+        "rum_light": "oz",
+        "juice_grapefruit": "oz",
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18110,9 +17393,9 @@
         "ginger_ale": "8"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "lime": "унц",
-        "ginger_ale": "унц"
+        "vodka": "oz",
+        "lime": "oz",
+        "ginger_ale": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18214,10 +17497,10 @@
         "brandy": "1/4"
       },
       "ingredientUnits": {
-        "water": "чашка",
-        "sugar": "чашка",
+        "water": "cup",
+        "sugar": "cup",
         "wine_red": "мл",
-        "brandy": "чашка"
+        "brandy": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18324,11 +17607,11 @@
         "lemon_lime_soda": "1 splash"
       },
       "ingredientUnits": {
-        "rum": "унц",
-        "vodka": "унц",
-        "gin": "унц",
-        "blue_curacao": "унц",
-        "sour_mix": "унц"
+        "rum": "oz",
+        "vodka": "oz",
+        "gin": "oz",
+        "blue_curacao": "oz",
+        "sour_mix": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18373,9 +17656,9 @@
         "rosso_vermouth": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "campari": "унц",
-        "rosso_vermouth": "унц"
+        "gin": "oz",
+        "campari": "oz",
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18423,10 +17706,10 @@
         "soda_water": "1"
       },
       "ingredientUnits": {
-        "absolut_citron": "унц",
-        "grand_marnier": "унц",
-        "lemon": "унц",
-        "soda_water": "унц"
+        "absolut_citron": "oz",
+        "grand_marnier": "oz",
+        "lemon": "oz",
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18475,7 +17758,7 @@
         "wine_red": "(Claret)"
       },
       "ingredientUnits": {
-        "whisky": "унц",
+        "whisky": "oz",
         "sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -18529,7 +17812,7 @@
         "cocoa_powder": "tsp",
         "sugar": "tsp",
         "vanilla_extract": "tsp",
-        "milk": "унц"
+        "milk": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18574,9 +17857,9 @@
         "milk": "1"
       },
       "ingredientUnits": {
-        "baileys_irish_cream": "часть",
-        "frangelico": "часть",
-        "milk": "часть"
+        "baileys_irish_cream": "part",
+        "frangelico": "part",
+        "milk": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18626,11 +17909,11 @@
         "goldschlager": "1/2"
       },
       "ingredientUnits": {
-        "kahlua": "часть",
-        "baileys_irish_cream": "часть",
-        "butterscotch_schnapps": "часть",
-        "jagermeister": "часть",
-        "goldschlager": "часть"
+        "kahlua": "part",
+        "baileys_irish_cream": "part",
+        "butterscotch_schnapps": "part",
+        "jagermeister": "part",
+        "goldschlager": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18679,11 +17962,11 @@
         "prosecco": "2"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "syrup_sugar": "унц",
-        "lime": "унц",
-        "angostura_bitter": "дэш",
-        "prosecco": "унц"
+        "rum_light": "oz",
+        "syrup_sugar": "oz",
+        "lime": "oz",
+        "angostura_bitter": "dash",
+        "prosecco": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18734,7 +18017,7 @@
       },
       "ingredientUnits": {
         "bourbon": "cl",
-        "angostura_bitter": "дэш",
+        "angostura_bitter": "dash",
         "sugar": "шт"
       },
       "optionalIngredients": [],
@@ -18783,9 +18066,9 @@
         "vermouth_dry": "1"
       },
       "ingredientUnits": {
-        "rye_whiskey": "унц",
-        "campari": "унц",
-        "vermouth_dry": "унц"
+        "rye_whiskey": "oz",
+        "campari": "oz",
+        "vermouth_dry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18830,9 +18113,9 @@
         "juice_orange": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "triple_sec": "унц",
-        "juice_orange": "унц"
+        "vodka": "oz",
+        "triple_sec": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18879,9 +18162,9 @@
         "juice_orange": "4"
       },
       "ingredientUnits": {
-        "cherry_brandy": "унц",
-        "gin": "унц",
-        "juice_orange": "унц"
+        "cherry_brandy": "oz",
+        "gin": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18930,9 +18213,9 @@
         "sour_mix": "1 splash"
       },
       "ingredientUnits": {
-        "spiced_rum": "унц",
-        "grenadine": "унц",
-        "juice_orange": "унц"
+        "spiced_rum": "oz",
+        "grenadine": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18986,7 +18269,7 @@
         "orange": "Garnish with"
       },
       "ingredientUnits": {
-        "gin": "шот",
+        "gin": "shot",
         "syrup_rosemary": "мл"
       },
       "optionalIngredients": [],
@@ -19046,8 +18329,8 @@
         "nutmeg": "1/8"
       },
       "ingredientUnits": {
-        "milk": "чашка",
-        "chocolate": "унц",
+        "milk": "cup",
+        "chocolate": "oz",
         "espresso": "tsp",
         "nutmeg": "tsp"
       },
@@ -19098,9 +18381,9 @@
         "ice": "Over"
       },
       "ingredientUnits": {
-        "juice_orange": "унц",
-        "rum": "унц",
-        "vodka": "унц"
+        "juice_orange": "oz",
+        "rum": "oz",
+        "vodka": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19200,9 +18483,9 @@
         "oreo_cookie": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "kahlua": "унц",
-        "baileys_irish_cream": "унц"
+        "vodka": "oz",
+        "kahlua": "oz",
+        "baileys_irish_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19250,11 +18533,11 @@
         "light_cream": "1"
       },
       "ingredientUnits": {
-        "creme_de_cacao": "унц",
-        "amaretto": "унц",
-        "triple_sec": "унц",
-        "vodka": "унц",
-        "light_cream": "унц"
+        "creme_de_cacao": "oz",
+        "amaretto": "oz",
+        "triple_sec": "oz",
+        "vodka": "oz",
+        "light_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19301,10 +18584,10 @@
         "ice": "1"
       },
       "ingredientUnits": {
-        "whisky": "унц",
-        "beer": "унц",
-        "lemonade": "унц",
-        "ice": "чашка"
+        "whisky": "oz",
+        "beer": "oz",
+        "lemonade": "oz",
+        "ice": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19347,8 +18630,8 @@
         "tequila": "1 1/2"
       },
       "ingredientUnits": {
-        "grape_soda": "унц",
-        "tequila": "унц"
+        "grape_soda": "oz",
+        "tequila": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19394,9 +18677,9 @@
         "juice_orange": "3"
       },
       "ingredientUnits": {
-        "gin": "часть",
-        "apricot_brandy": "часть",
-        "juice_orange": "часть"
+        "gin": "part",
+        "apricot_brandy": "part",
+        "juice_orange": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19441,8 +18724,8 @@
         "juice_passion_fruit": "Full Glass"
       },
       "ingredientUnits": {
-        "vodka": "шот",
-        "syrup_sugar": "шот"
+        "vodka": "shot",
+        "syrup_sugar": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19490,11 +18773,11 @@
         "orange_bitter": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "orange_curacao": "унц",
-        "lime": "унц",
-        "angostura_bitter": "дэш",
-        "orange_bitter": "дэш"
+        "gin": "oz",
+        "orange_curacao": "oz",
+        "lime": "oz",
+        "angostura_bitter": "dash",
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19545,11 +18828,11 @@
         "islay_single_malt_scotch": "1/4"
       },
       "ingredientUnits": {
-        "blended_scotch": "унц",
-        "lemon": "унц",
+        "blended_scotch": "oz",
+        "lemon": "oz",
         "syrup_honey": "tsp",
         "syrup_gingerbread": "tsp",
-        "islay_single_malt_scotch": "унц"
+        "islay_single_malt_scotch": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19596,7 +18879,7 @@
         "pineapple": "3"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "coconut_milk": "tbsp",
         "pineapple": "tbsp"
       },
@@ -19693,10 +18976,10 @@
         "pepper": "Rimmed"
       },
       "ingredientUnits": {
-        "tequila": "унц",
-        "juice_grapefruit": "унц",
-        "fresh_lime_juice": "унц",
-        "juice_pineapple": "унц"
+        "tequila": "oz",
+        "juice_grapefruit": "oz",
+        "fresh_lime_juice": "oz",
+        "juice_pineapple": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19741,8 +19024,8 @@
         "gin": "2"
       },
       "ingredientUnits": {
-        "bitters": "дэш",
-        "gin": "унц"
+        "bitters": "dash",
+        "gin": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19788,7 +19071,7 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "grenadine": "tsp",
         "light_cream": "tsp"
       },
@@ -19841,8 +19124,8 @@
         "blackberries": "Garnish with"
       },
       "ingredientUnits": {
-        "gin": "шот",
-        "coconut_liqueur": "шот",
+        "gin": "shot",
+        "coconut_liqueur": "shot",
         "elderflower_cordial": "мл",
         "lime": "мл"
       },
@@ -19890,8 +19173,8 @@
       },
       "ingredientUnits": {
         "sprite": "л",
-        "pink_lemonade": "чашка",
-        "vodka": "чашка"
+        "pink_lemonade": "cup",
+        "vodka": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -19990,8 +19273,8 @@
         "ice": "1"
       },
       "ingredientUnits": {
-        "pisco": "унц",
-        "lemon": "унц",
+        "pisco": "oz",
+        "lemon": "oz",
         "sugar": "tbsp"
       },
       "optionalIngredients": [],
@@ -20044,10 +19327,10 @@
         "juice_pineapple": "1"
       },
       "ingredientUnits": {
-        "rum_dark": "часть",
-        "orgeat_syrup": "часть",
-        "juice_orange": "часть",
-        "juice_pineapple": "часть"
+        "rum_dark": "part",
+        "orgeat_syrup": "part",
+        "juice_orange": "part",
+        "juice_pineapple": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20094,10 +19377,10 @@
         "juice_orange": "4"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "cherry_liqueur": "унц",
-        "juice_cranberry": "унц",
-        "juice_orange": "унц"
+        "vodka": "oz",
+        "cherry_liqueur": "oz",
+        "juice_cranberry": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20139,8 +19422,8 @@
         "creme_de_cacao": "3/4"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "creme_de_cacao": "унц"
+        "gin": "oz",
+        "creme_de_cacao": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20196,7 +19479,7 @@
         "passoa": "cl",
         "juice_passion_fruit": "cl",
         "lime": "cl",
-        "prosecco": "шот"
+        "prosecco": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20240,7 +19523,7 @@
       },
       "ingredientUnits": {
         "grenadine": "tbsp",
-        "creme_de_menthe_green": "унц"
+        "creme_de_menthe_green": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20282,7 +19565,7 @@
         "brandy": "1/2"
       },
       "ingredientUnits": {
-        "port": "унц",
+        "port": "oz",
         "brandy": "tsp"
       },
       "optionalIngredients": [],
@@ -20331,7 +19614,7 @@
         "egg": "1 whole"
       },
       "ingredientUnits": {
-        "port": "унц",
+        "port": "oz",
         "light_cream": "tsp",
         "powdered_sugar": "tsp"
       },
@@ -20379,9 +19662,9 @@
         "egg_yolk": "2"
       },
       "ingredientUnits": {
-        "brandy": "часть",
-        "port": "часть",
-        "egg_yolk": "часть"
+        "brandy": "part",
+        "port": "part",
+        "egg_yolk": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20480,9 +19763,9 @@
         "juice_pineapple": "1"
       },
       "ingredientUnits": {
-        "juice_orange": "часть",
-        "juice_apple": "часть",
-        "juice_pineapple": "часть"
+        "juice_orange": "part",
+        "juice_apple": "part",
+        "juice_pineapple": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20528,8 +19811,8 @@
         "syrup_raspberry": "2"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "brandy": "унц",
+        "rum_light": "oz",
+        "brandy": "oz",
         "syrup_raspberry": "tsp"
       },
       "optionalIngredients": [],
@@ -20574,7 +19857,7 @@
         "lime": "Juice of 1/2"
       },
       "ingredientUnits": {
-        "sherry": "унц"
+        "sherry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20618,9 +19901,9 @@
         "sherry": "1/2"
       },
       "ingredientUnits": {
-        "coffee_brandy": "унц",
-        "lime_vodka": "унц",
-        "sherry": "унц"
+        "coffee_brandy": "oz",
+        "lime_vodka": "oz",
+        "sherry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20665,8 +19948,8 @@
         "grenadine": "1"
       },
       "ingredientUnits": {
-        "wine_red": "унц",
-        "grenadine": "унц"
+        "wine_red": "oz",
+        "grenadine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20710,8 +19993,8 @@
         "benedictine": "1 1/2"
       },
       "ingredientUnits": {
-        "vermouth_dry": "унц",
-        "gin": "унц",
+        "vermouth_dry": "oz",
+        "gin": "oz",
         "benedictine": "tsp"
       },
       "optionalIngredients": [],
@@ -20760,9 +20043,9 @@
         "nutmeg": "1/8"
       },
       "ingredientUnits": {
-        "rum_dark": "унц",
-        "kahlua": "унц",
-        "light_cream": "унц",
+        "rum_dark": "oz",
+        "kahlua": "oz",
+        "light_cream": "oz",
         "nutmeg": "tsp"
       },
       "optionalIngredients": [],
@@ -20809,9 +20092,9 @@
         "baileys_irish_cream": "1"
       },
       "ingredientUnits": {
-        "kahlua": "часть",
-        "midori_melon_liqueur": "часть",
-        "baileys_irish_cream": "часть"
+        "kahlua": "part",
+        "midori_melon_liqueur": "part",
+        "baileys_irish_cream": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20830,50 +20113,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/wvtwpp1478963454.jpg"
-    },
-    {
-      "id": "quick-sand",
-      "name": "Зыбучий песок",
-      "image": "assets/data/catalog_images/img_5b5bf524.jpg",
-      "ingredients": [
-        "black_sambuca",
-        "juice_orange"
-      ],
-      "description": "Просто добавьте апельсиновый сок, влейте довольно быстро, чтобы смешать самбукку с апельсиновым соком. В соке ОБЯЗАТЕЛЬНО должна быть фруктовая мякоть!",
-      "preparationSteps": [
-        "Просто добавьте апельсиновый сок, влейте довольно быстро, чтобы смешать самбукку с апельсиновым соком.",
-        "В соке ОБЯЗАТЕЛЬНО должна быть фруктовая мякоть!"
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "black_sambuca": "25",
-        "juice_orange": "Add 250 ml"
-      },
-      "ingredientUnits": {
-        "black_sambuca": "мл"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "quick-sand",
-      "canonicalSlug": "quick-sand",
-      "imageUrl": "assets/data/catalog_images/img_5b5bf524.jpg",
-      "aliases": [
-        "Quick-sand"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/vprxqv1478963533.jpg"
     },
     {
       "id": "radioactive-long-island-iced-tea",
@@ -20911,14 +20150,14 @@
         "malibu_rum": "1"
       },
       "ingredientUnits": {
-        "rum": "унц",
-        "vodka": "унц",
-        "tequila": "унц",
-        "gin": "унц",
-        "triple_sec": "унц",
-        "chambord_raspberry_liqueur": "унц",
-        "midori_melon_liqueur": "унц",
-        "malibu_rum": "унц"
+        "rum": "oz",
+        "vodka": "oz",
+        "tequila": "oz",
+        "gin": "oz",
+        "triple_sec": "oz",
+        "chambord_raspberry_liqueur": "oz",
+        "midori_melon_liqueur": "oz",
+        "malibu_rum": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -20937,50 +20176,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/rdvqmh1503563512.jpg"
-    },
-    {
-      "id": "radler",
-      "name": "Радлер",
-      "image": "assets/data/catalog_images/img_8bd9cf4b.jpg",
-      "ingredients": [
-        "beer",
-        "7_up"
-      ],
-      "description": "Налейте пиво в большую кружку, медленно добавьте 7-up (или Sprite).",
-      "preparationSteps": [
-        "Налейте пиво в большую кружку, медленно добавьте 7-up (или Sprite)."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "beer": "12",
-        "7_up": "12"
-      },
-      "ingredientUnits": {
-        "beer": "унц",
-        "7_up": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "radler",
-      "canonicalSlug": "radler",
-      "imageUrl": "assets/data/catalog_images/img_8bd9cf4b.jpg",
-      "aliases": [
-        "Radler"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/xz8igv1504888995.jpg"
     },
     {
       "id": "rail-splitter",
@@ -21091,52 +20286,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/967t911643844053.jpg"
     },
     {
-      "id": "raspberry-cooler",
-      "name": "Малиновый холодильник",
-      "image": "assets/data/catalog_images/img_6a76074b.jpg",
-      "ingredients": [
-        "raspberry_vodka",
-        "lemon_lime_soda",
-        "ice"
-      ],
-      "description": "Налейте малиновую водку и газировку в высокий стакан, почти наполненный кубиками льда. Хорошо перемешайте.",
-      "preparationSteps": [
-        "Налейте малиновую водку и газировку в стакан хайбол, почти наполненный кубиками льда.",
-        "Хорошо перемешайте."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "raspberry_vodka": "2",
-        "lemon_lime_soda": "4"
-      },
-      "ingredientUnits": {
-        "raspberry_vodka": "унц",
-        "lemon_lime_soda": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "raspberry-cooler",
-      "canonicalSlug": "raspberry-cooler",
-      "imageUrl": "assets/data/catalog_images/img_6a76074b.jpg",
-      "aliases": [
-        "Raspberry Cooler"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/suqyyx1441254346.jpg"
-    },
-    {
       "id": "raspberry-julep",
       "name": "Малиновый джулеп",
       "image": "assets/data/catalog_images/img_289de085.jpg",
@@ -21162,8 +20311,8 @@
         "mint": "8"
       },
       "ingredientUnits": {
-        "bourbon": "унц",
-        "syrup_raspberry": "унц"
+        "bourbon": "oz",
+        "syrup_raspberry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21208,9 +20357,9 @@
         "juice_cranberry": "1"
       },
       "ingredientUnits": {
-        "crown_royal": "шот",
-        "amaretto": "шот",
-        "juice_cranberry": "шот"
+        "crown_royal": "shot",
+        "amaretto": "shot",
+        "juice_cranberry": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21261,9 +20410,9 @@
         "grenadine": "1"
       },
       "ingredientUnits": {
-        "vermouth_dry": "унц",
-        "gin": "унц",
-        "apricot_brandy": "унц",
+        "vermouth_dry": "oz",
+        "gin": "oz",
+        "apricot_brandy": "oz",
         "lemon": "tsp",
         "grenadine": "tsp"
       },
@@ -21337,50 +20486,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/qwc5f91512406543.jpg"
     },
     {
-      "id": "royal-bitch",
-      "name": "Королевская сука",
-      "image": "assets/data/catalog_images/img_d4848f94.jpg",
-      "ingredients": [
-        "frangelico",
-        "crown_royal"
-      ],
-      "description": "В рюмку слой Королевской Короны на вершине Франжелико.",
-      "preparationSteps": [
-        "В рюмку слой Королевской Короны на вершине Франжелико."
-      ],
-      "glassType": "Шот",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "frangelico": "1",
-        "crown_royal": "1"
-      },
-      "ingredientUnits": {
-        "frangelico": "часть",
-        "crown_royal": "часть"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "royal-bitch",
-      "canonicalSlug": "royal-bitch",
-      "imageUrl": "assets/data/catalog_images/img_d4848f94.jpg",
-      "aliases": [
-        "Royal Bitch"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/qupuyr1441210090.jpg"
-    },
-    {
       "id": "royal-fizz",
       "name": "Роял Физз",
       "image": "assets/data/catalog_images/img_5e651b20.jpg",
@@ -21407,8 +20512,8 @@
         "egg": "1 whole"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "sweet_and_sour": "унц"
+        "gin": "oz",
+        "sweet_and_sour": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21456,10 +20561,10 @@
         "juice_cranberry": "1"
       },
       "ingredientUnits": {
-        "crown_royal": "унц",
-        "peach_schnapps": "унц",
-        "chambord_raspberry_liqueur": "унц",
-        "juice_cranberry": "унц"
+        "crown_royal": "oz",
+        "peach_schnapps": "oz",
+        "chambord_raspberry_liqueur": "oz",
+        "juice_cranberry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21508,7 +20613,7 @@
         "egg": "1 whole"
       },
       "ingredientUnits": {
-        "gin": "унц",
+        "gin": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -21555,8 +20660,8 @@
         "grenadine": "2 splashes"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "juice_cranberry": "унц"
+        "gin": "oz",
+        "juice_cranberry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21611,8 +20716,8 @@
       },
       "ingredientUnits": {
         "sugar": "tsp",
-        "soda_water": "унц",
-        "rum_dark": "унц"
+        "soda_water": "oz",
+        "rum_dark": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21631,53 +20736,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/5vh9ld1504390683.jpg"
-    },
-    {
-      "id": "rum-cooler",
-      "name": "Охладитель рома",
-      "image": "assets/data/catalog_images/img_56f1844e.jpg",
-      "ingredients": [
-        "rum",
-        "lemon_lime_soda",
-        "lemon"
-      ],
-      "description": "Налейте ром и газировку в стакан коллинз, почти наполненный кубиками льда. Хорошо перемешайте и украсьте долькой лимона.",
-      "preparationSteps": [
-        "Налейте ром и газировку в стакан коллинз, почти наполненный кубиками льда.",
-        "Хорошо перемешайте и украсьте долькой лимона."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "rum": "2",
-        "lemon_lime_soda": "4",
-        "lemon": "1"
-      },
-      "ingredientUnits": {
-        "rum": "унц",
-        "lemon_lime_soda": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "rum-cooler",
-      "canonicalSlug": "rum-cooler",
-      "imageUrl": "assets/data/catalog_images/img_56f1844e.jpg",
-      "aliases": [
-        "Rum Cooler"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/2hgwsb1504888674.jpg"
     },
     {
       "id": "rum-milk-punch",
@@ -21706,8 +20764,8 @@
         "powdered_sugar": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "milk": "чашка",
+        "rum_light": "oz",
+        "milk": "cup",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -21760,10 +20818,10 @@
         "lime_peel": "Twist of"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
+        "rum_light": "oz",
         "151_proof_rum": "tsp",
         "powdered_sugar": "tsp",
-        "bitters": "дэш",
+        "bitters": "dash",
         "water": "tsp"
       },
       "optionalIngredients": [],
@@ -21863,11 +20921,11 @@
         "juice_cranberry": "3-4"
       },
       "ingredientUnits": {
-        "malibu_rum": "унц",
-        "blackberry_brandy": "унц",
-        "juice_orange": "унц",
-        "juice_pineapple": "унц",
-        "juice_cranberry": "унц"
+        "malibu_rum": "oz",
+        "blackberry_brandy": "oz",
+        "juice_orange": "oz",
+        "juice_pineapple": "oz",
+        "juice_cranberry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -21886,51 +20944,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/vqws6t1504888857.jpg"
-    },
-    {
-      "id": "rum-screwdriver",
-      "name": "Ромовая отвертка",
-      "image": "assets/data/catalog_images/img_73b4a04a.jpg",
-      "ingredients": [
-        "rum_light",
-        "juice_orange"
-      ],
-      "description": "Налейте ром в стакан хайбол поверх кубиков льда. Добавьте апельсиновый сок, перемешайте и подавайте.",
-      "preparationSteps": [
-        "Налейте ром в стакан хайбол поверх кубиков льда.",
-        "Добавьте апельсиновый сок, перемешайте и подавайте."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "rum_light": "1 1/2",
-        "juice_orange": "5"
-      },
-      "ingredientUnits": {
-        "rum_light": "унц",
-        "juice_orange": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "rum-screwdriver",
-      "canonicalSlug": "rum-screwdriver",
-      "imageUrl": "assets/data/catalog_images/img_73b4a04a.jpg",
-      "aliases": [
-        "Rum Screwdriver"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/4c85zq1511782093.jpg"
     },
     {
       "id": "rum-sour",
@@ -21962,8 +20975,8 @@
         "maraschino_cherry": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "lemon": "унц",
+        "rum_light": "oz",
+        "lemon": "oz",
         "sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -22012,7 +21025,7 @@
         "water": "2"
       },
       "ingredientUnits": {
-        "rum": "унц",
+        "rum": "oz",
         "powdered_sugar": "tsp",
         "water": "tsp"
       },
@@ -22112,8 +21125,8 @@
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "drambuie": "унц"
+        "scotch": "oz",
+        "drambuie": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22160,8 +21173,8 @@
         "salt": "1/4"
       },
       "ingredientUnits": {
-        "juice_grapefruit": "унц",
-        "gin": "унц",
+        "juice_grapefruit": "oz",
+        "gin": "oz",
         "salt": "tsp"
       },
       "optionalIngredients": [],
@@ -22261,9 +21274,9 @@
       },
       "ingredientUnits": {
         "wine_red": "шт",
-        "sugar": "чашка",
-        "juice_orange": "чашка",
-        "lemon": "чашка"
+        "sugar": "cup",
+        "juice_orange": "cup",
+        "lemon": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22319,9 +21332,9 @@
       "ingredientUnits": {
         "ricard": "tsp",
         "sugar": "tsp",
-        "peychauds_bitter": "дэш",
+        "peychauds_bitter": "dash",
         "water": "tsp",
-        "bourbon": "унц"
+        "bourbon": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22365,9 +21378,9 @@
         "light_cream": "1"
       },
       "ingredientUnits": {
-        "brandy": "унц",
-        "amaretto": "унц",
-        "light_cream": "унц"
+        "brandy": "oz",
+        "amaretto": "oz",
+        "light_cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22416,7 +21429,7 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "scotch": "унц",
+        "scotch": "oz",
         "powdered_sugar": "tsp",
         "lemon": "долька"
       },
@@ -22462,7 +21475,7 @@
         "vodka": "2"
       },
       "ingredientUnits": {
-        "vodka": "унц"
+        "vodka": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22509,9 +21522,9 @@
         "juice_grapefruit": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "juice_cranberry": "унц",
-        "juice_grapefruit": "унц"
+        "vodka": "oz",
+        "juice_cranberry": "oz",
+        "juice_grapefruit": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22562,7 +21575,7 @@
       },
       "ingredientUnits": {
         "lemonade": "шт",
-        "vodka": "чашка"
+        "vodka": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22611,7 +21624,7 @@
         "egg": "1 whole"
       },
       "ingredientUnits": {
-        "sherry": "унц",
+        "sherry": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -22660,7 +21673,7 @@
         "egg": "1 whole"
       },
       "ingredientUnits": {
-        "sherry": "унц",
+        "sherry": "oz",
         "light_cream": "tsp",
         "powdered_sugar": "tsp"
       },
@@ -22707,9 +21720,9 @@
         "wild_turkey": "1"
       },
       "ingredientUnits": {
-        "jim_beam": "часть",
-        "jack_daniels": "часть",
-        "wild_turkey": "унц"
+        "jim_beam": "part",
+        "jack_daniels": "part",
+        "wild_turkey": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22755,9 +21768,9 @@
         "lemon": "1"
       },
       "ingredientUnits": {
-        "cognac": "унц",
-        "cointreau": "унц",
-        "lemon": "унц"
+        "cognac": "oz",
+        "cointreau": "oz",
+        "lemon": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22804,10 +21817,10 @@
         "juice_orange": "1/3"
       },
       "ingredientUnits": {
-        "wine_red": "часть",
-        "peach_schnapps": "шот",
-        "pepsi_cola": "часть",
-        "juice_orange": "часть"
+        "wine_red": "part",
+        "peach_schnapps": "shot",
+        "pepsi_cola": "part",
+        "juice_orange": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -22856,8 +21869,8 @@
         "ice": "cubes"
       },
       "ingredientUnits": {
-        "advocaat": "унц",
-        "lemonade": "унц",
+        "advocaat": "oz",
+        "lemonade": "oz",
         "lemon": "долька"
       },
       "optionalIngredients": [],
@@ -22911,9 +21924,9 @@
         "orange": "Garnish with"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "amaro_montenegro": "унц",
-        "ruby_port": "унц",
+        "vodka": "oz",
+        "amaro_montenegro": "oz",
+        "ruby_port": "oz",
         "blood_orange": "tsp"
       },
       "optionalIngredients": [],
@@ -22958,8 +21971,8 @@
         "anisette": "1 1/2"
       },
       "ingredientUnits": {
-        "brandy": "унц",
-        "anisette": "унц"
+        "brandy": "oz",
+        "anisette": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23009,9 +22022,9 @@
         "juice_pineapple": "1"
       },
       "ingredientUnits": {
-        "151_proof_rum": "шот",
-        "malibu_rum": "шот",
-        "juice_pineapple": "шот"
+        "151_proof_rum": "shot",
+        "malibu_rum": "shot",
+        "juice_pineapple": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23159,8 +22172,8 @@
         "creme_de_menthe_white": "1/2"
       },
       "ingredientUnits": {
-        "brandy": "унц",
-        "creme_de_menthe_white": "унц"
+        "brandy": "oz",
+        "creme_de_menthe_white": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23204,9 +22217,9 @@
         "sweet_and_sour": "1"
       },
       "ingredientUnits": {
-        "apricot_brandy": "унц",
-        "juice_orange": "унц",
-        "sweet_and_sour": "унц"
+        "apricot_brandy": "oz",
+        "juice_orange": "oz",
+        "sweet_and_sour": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23252,7 +22265,7 @@
         "honey": "1"
       },
       "ingredientUnits": {
-        "milk": "чашка",
+        "milk": "cup",
         "honey": "tbsp"
       },
       "optionalIngredients": [],
@@ -23309,8 +22322,8 @@
         "lime": "wedges"
       },
       "ingredientUnits": {
-        "sugar": "чашка",
-        "apple": "чашка"
+        "sugar": "cup",
+        "apple": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23329,91 +22342,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/uqqvsp1468924228.jpg"
-    },
-    {
-      "id": "sweet-tooth",
-      "name": "Сладкоежка",
-      "image": "assets/data/catalog_images/img_9c667c25.jpg",
-      "ingredients": [
-        "godiva_liqueur",
-        "milk"
-      ],
-      "description": "Налейте 2 порции ликера Godiva в стакан, добавьте столько молока, сколько захотите.",
-      "preparationSteps": [
-        "Налейте 2 порции ликера Godiva в стакан, добавьте столько молока, сколько захотите."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "godiva_liqueur": "2"
-      },
-      "ingredientUnits": {
-        "godiva_liqueur": "шот"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "sweet-tooth",
-      "canonicalSlug": "sweet-tooth",
-      "imageUrl": "assets/data/catalog_images/img_9c667c25.jpg",
-      "aliases": [
-        "Sweet Tooth"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/j6rq6h1503563821.jpg"
-    },
-    {
-      "id": "talos-coffee",
-      "name": "Талос Кофе",
-      "image": "assets/data/catalog_images/img_a8a923ac.jpg",
-      "ingredients": [
-        "grand_marnier",
-        "coffee"
-      ],
-      "description": "Добавьте своего GM, а затем добавьте кофе.",
-      "preparationSteps": [
-        "Добавьте своего GM, а затем добавьте кофе."
-      ],
-      "glassType": "Кубок",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "grand_marnier": "3",
-        "coffee": "1"
-      },
-      "ingredientUnits": {
-        "grand_marnier": "часть",
-        "coffee": "часть"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "talos-coffee",
-      "canonicalSlug": "talos-coffee",
-      "imageUrl": "assets/data/catalog_images/img_a8a923ac.jpg",
-      "aliases": [
-        "Talos Coffee"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/rswqpy1441246518.jpg"
     },
     {
       "id": "tennesee-mud",
@@ -23441,9 +22369,9 @@
         "amaretto": "4"
       },
       "ingredientUnits": {
-        "coffee": "унц",
-        "jack_daniels": "унц",
-        "amaretto": "унц"
+        "coffee": "oz",
+        "jack_daniels": "oz",
+        "amaretto": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23492,9 +22420,9 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "tequila": "унц",
+        "tequila": "oz",
         "lemon": "tbsp",
-        "grenadine": "унц"
+        "grenadine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23513,50 +22441,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/2bcase1504889637.jpg"
-    },
-    {
-      "id": "tequila-slammer",
-      "name": "Текила Слэммер",
-      "image": "assets/data/catalog_images/img_f2cf8da0.jpg",
-      "ingredients": [
-        "tequila",
-        "7_up"
-      ],
-      "description": "Тщательно перемешайте, чтобы избежать выделения растворенного CO2.",
-      "preparationSteps": [
-        "Тщательно перемешайте, чтобы избежать выделения растворенного CO2."
-      ],
-      "glassType": "Харрикейн",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "tequila": "1",
-        "7_up": "1"
-      },
-      "ingredientUnits": {
-        "tequila": "шот",
-        "7_up": "часть"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "tequila-slammer",
-      "canonicalSlug": "tequila-slammer",
-      "imageUrl": "assets/data/catalog_images/img_f2cf8da0.jpg",
-      "aliases": [
-        "Tequila Slammer"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/43uhr51551451311.jpg"
     },
     {
       "id": "tequila-sour",
@@ -23585,7 +22469,7 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "tequila": "унц",
+        "tequila": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -23722,9 +22606,9 @@
         "sweet_and_sour": "1 splash"
       },
       "ingredientUnits": {
-        "yukon_jack": "часть",
-        "cherry_brandy": "часть",
-        "southern_comfort": "часть"
+        "yukon_jack": "part",
+        "cherry_brandy": "part",
+        "southern_comfort": "part"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23773,11 +22657,11 @@
         "cream": "1"
       },
       "ingredientUnits": {
-        "kahlua": "унц",
-        "baileys_irish_cream": "унц",
-        "amaretto": "унц",
-        "151_proof_rum": "унц",
-        "cream": "унц"
+        "kahlua": "oz",
+        "baileys_irish_cream": "oz",
+        "amaretto": "oz",
+        "151_proof_rum": "oz",
+        "cream": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -23930,8 +22814,8 @@
         "mint": "garnish"
       },
       "ingredientUnits": {
-        "tea": "чашка",
-        "water": "чашка",
+        "tea": "cup",
+        "water": "cup",
         "condensed_milk": "tsp"
       },
       "optionalIngredients": [],
@@ -23981,9 +22865,9 @@
         "lime": "Top"
       },
       "ingredientUnits": {
-        "rum_dark": "шот",
-        "campari": "шот",
-        "creme_de_banane": "шот"
+        "rum_dark": "shot",
+        "campari": "shot",
+        "creme_de_banane": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24032,7 +22916,7 @@
       "ingredientUnits": {
         "irish_whiskey": "мл",
         "amaretto": "мл",
-        "juice_cranberry": "унц"
+        "juice_cranberry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24078,10 +22962,10 @@
         "gin": "1"
       },
       "ingredientUnits": {
-        "chartreuse_green": "унц",
-        "maraschino_liqueur": "унц",
-        "lime": "унц",
-        "gin": "унц"
+        "chartreuse_green": "oz",
+        "maraschino_liqueur": "oz",
+        "lime": "oz",
+        "gin": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24190,10 +23074,10 @@
         "prosecco": "Top"
       },
       "ingredientUnits": {
-        "gin": "шот",
-        "melon_liqueur": "шот",
-        "orange_bitter": "дэш",
-        "lemon": "дэш"
+        "gin": "shot",
+        "melon_liqueur": "shot",
+        "orange_bitter": "dash",
+        "lemon": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24239,9 +23123,9 @@
         "juice_orange": "1"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "wine": "унц",
-        "juice_orange": "унц"
+        "scotch": "oz",
+        "wine": "oz",
+        "juice_orange": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24292,10 +23176,10 @@
         "vanilla_extract": "4"
       },
       "ingredientUnits": {
-        "water": "чашка",
-        "brown_sugar": "чашка",
+        "water": "cup",
+        "brown_sugar": "cup",
         "coffee": "tsp",
-        "rum": "чашка",
+        "rum": "cup",
         "vanilla_extract": "tsp"
       },
       "optionalIngredients": [],
@@ -24343,9 +23227,9 @@
         "chartreuse_green": "1/2"
       },
       "ingredientUnits": {
-        "irish_whiskey": "унц",
-        "rosso_vermouth": "унц",
-        "chartreuse_green": "унц"
+        "irish_whiskey": "oz",
+        "rosso_vermouth": "oz",
+        "chartreuse_green": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24400,10 +23284,10 @@
         "orange": "1"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "lemon": "унц",
+        "gin": "oz",
+        "lemon": "oz",
         "sugar": "tsp",
-        "soda_water": "унц"
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24449,9 +23333,9 @@
         "celery_salt": "1"
       },
       "ingredientUnits": {
-        "juice_tomato": "чашка",
+        "juice_tomato": "cup",
         "lemon": "tbsp",
-        "celery_salt": "дэш"
+        "celery_salt": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24500,10 +23384,10 @@
         "orange": "Twist of"
       },
       "ingredientUnits": {
-        "vermouth_dry": "унц",
-        "gin": "унц",
+        "vermouth_dry": "oz",
+        "gin": "oz",
         "anis": "tsp",
-        "bitters": "дэш"
+        "bitters": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24548,8 +23432,8 @@
         "juice_pineapple": "1 splash"
       },
       "ingredientUnits": {
-        "wild_turkey": "унц",
-        "amaretto": "унц"
+        "wild_turkey": "oz",
+        "amaretto": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24601,11 +23485,11 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "vermouth_dry": "унц",
-        "gin": "унц",
+        "vermouth_dry": "oz",
+        "gin": "oz",
         "maraschino_liqueur": "tsp",
         "anis": "tsp",
-        "orange_bitter": "дэш"
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24649,9 +23533,9 @@
         "orange_bitter": "2"
       },
       "ingredientUnits": {
-        "apricot_brandy": "унц",
+        "apricot_brandy": "oz",
         "juice_orange": "tbsp",
-        "orange_bitter": "дэш"
+        "orange_bitter": "dash"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24711,8 +23595,8 @@
         "juice_tomato": "cl",
         "juice_orange": "cl",
         "lime": "cl",
-        "syrup_sugar": "дэш",
-        "salt": "щепотка"
+        "syrup_sugar": "dash",
+        "salt": "pinch"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24756,9 +23640,9 @@
         "lemon": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "syrup_maple": "унц",
-        "lemon": "унц"
+        "rum_light": "oz",
+        "syrup_maple": "oz",
+        "lemon": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24803,8 +23687,8 @@
         "creme_de_cassis": "3/4"
       },
       "ingredientUnits": {
-        "vermouth_dry": "унц",
-        "creme_de_cassis": "унц"
+        "vermouth_dry": "oz",
+        "creme_de_cassis": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24899,8 +23783,8 @@
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "rum_light": "унц",
-        "rosso_vermouth": "унц",
+        "rum_light": "oz",
+        "rosso_vermouth": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -24944,8 +23828,8 @@
         "cherry_brandy": "1/2"
       },
       "ingredientUnits": {
-        "rum_dark": "унц",
-        "cherry_brandy": "унц"
+        "rum_dark": "oz",
+        "cherry_brandy": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -24989,9 +23873,9 @@
         "brandy": "1/2"
       },
       "ingredientUnits": {
-        "gin": "унц",
-        "rosso_vermouth": "унц",
-        "brandy": "унц"
+        "gin": "oz",
+        "rosso_vermouth": "oz",
+        "brandy": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25041,9 +23925,9 @@
         "orange": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "lemon": "унц",
-        "grape_juice": "унц",
+        "vodka": "oz",
+        "lemon": "oz",
+        "grape_juice": "oz",
         "powdered_sugar": "tsp",
         "orange": "долька"
       },
@@ -25064,49 +23948,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/lx0lvs1492976619.jpg"
-    },
-    {
-      "id": "vodka-and-tonic",
-      "name": "Водка и тоник",
-      "image": "assets/data/catalog_images/img_d39cb461.jpg",
-      "ingredients": [
-        "vodka",
-        "tonic_water"
-      ],
-      "description": "Налейте водку в стакан хайбол поверх кубиков льда. Залейте тоником, перемешайте и подавайте.",
-      "preparationSteps": [
-        "Налейте водку в стакан хайбол поверх кубиков льда.",
-        "Залейте тоником, перемешайте и подавайте."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "2"
-      },
-      "ingredientUnits": {
-        "vodka": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "vodka-and-tonic",
-      "canonicalSlug": "vodka-and-tonic",
-      "imageUrl": "assets/data/catalog_images/img_d39cb461.jpg",
-      "aliases": [
-        "Vodka And Tonic"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/lmj2yt1504820500.jpg"
     },
     {
       "id": "vodka-fizz",
@@ -25135,9 +23976,9 @@
         "limeade": "2"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "half_and_half": "унц",
-        "limeade": "унц"
+        "vodka": "oz",
+        "half_and_half": "oz",
+        "limeade": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25156,54 +23997,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/xwxyux1441254243.jpg"
-    },
-    {
-      "id": "vodka-lemon",
-      "name": "Водка Лимонная",
-      "image": "assets/data/catalog_images/img_40e61293.jpg",
-      "ingredients": [
-        "vodka",
-        "lemon",
-        "ice"
-      ],
-      "description": "Водка-лимон готовится прямо в хайболе или большом стакане: в стакан кладут 6-7 кубиков льда, заливают водкой, лимонадом и перемешивают барной ложкой. В завершение украсьте ломтиком лимона и, если хотите, добавьте несколько листочков мяты. Ваша водка-лимон готова к подаче.",
-      "preparationSteps": [
-        "Водка-лимон готовится прямо в хайболе или большом стакане: в стакан кладем 6-7 кубиков льда, заливаем водкой, лимонадом и перемешиваем барной ложкой.",
-        "В завершение украсьте ломтиком лимона и, если хотите, добавьте несколько листочков мяты.",
-        "Ваша водка-лимон готова к подаче."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "5",
-        "lemon": "7",
-        "ice": "cubes"
-      },
-      "ingredientUnits": {
-        "vodka": "cl",
-        "lemon": "cl"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "vodka-lemon",
-      "canonicalSlug": "vodka-lemon",
-      "imageUrl": "assets/data/catalog_images/img_40e61293.jpg",
-      "aliases": [
-        "Vodka Lemon"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/mql55h1643820632.jpg"
     },
     {
       "id": "vodka-martini",
@@ -25229,8 +24022,8 @@
         "olive": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "vermouth_dry": "унц"
+        "vodka": "oz",
+        "vermouth_dry": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25249,147 +24042,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/qyxrqw1439906528.jpg"
-    },
-    {
-      "id": "vodka-russian",
-      "name": "Водка Русская",
-      "image": "assets/data/catalog_images/img_2281406c.jpg",
-      "ingredients": [
-        "vodka",
-        "schweppes_russchian"
-      ],
-      "description": "Смешайте его как обычный напиток.",
-      "preparationSteps": [
-        "Смешайте его как обычный напиток."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "2"
-      },
-      "ingredientUnits": {
-        "vodka": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "vodka-russian",
-      "canonicalSlug": "vodka-russian",
-      "imageUrl": "assets/data/catalog_images/img_2281406c.jpg",
-      "aliases": [
-        "Vodka Russian"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/rpttur1454515129.jpg"
-    },
-    {
-      "id": "vodka-slime",
-      "name": "Водочный слайм",
-      "image": "assets/data/catalog_images/img_0a91c804.jpg",
-      "ingredients": [
-        "sprite",
-        "lime",
-        "vodka"
-      ],
-      "description": "Наполните стакан льдом. Добавьте водку, 7-up, затем добавьте сок лайма.",
-      "preparationSteps": [
-        "Наполните стакан льдом",
-        "Добавьте водку, 7-up, затем добавьте сок лайма."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "sprite": "1",
-        "lime": "1/2",
-        "vodka": "1 1/2"
-      },
-      "ingredientUnits": {
-        "sprite": "чашка",
-        "lime": "шот",
-        "vodka": "шот"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "vodka-slime",
-      "canonicalSlug": "vodka-slime",
-      "imageUrl": "assets/data/catalog_images/img_0a91c804.jpg",
-      "aliases": [
-        "Vodka Slime"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/apex461643588115.jpg"
-    },
-    {
-      "id": "vodka-tonic",
-      "name": "Водка Тоник",
-      "image": "assets/data/catalog_images/img_d7d5d729.jpg",
-      "ingredients": [
-        "vodka",
-        "tonic_water",
-        "lemon"
-      ],
-      "description": "Вымойте и нарежьте 1 дольку и 1 ломтик лайма или лимона. Наполните стакан свежим льдом. Налейте желаемую дозу водки и долейте тоник. Выдавите дольку лайма в стакан и украсьте ломтиком. Вот и всё, очень просто: это просто рецепт счастья!",
-      "preparationSteps": [
-        "Вымойте и нарежьте 1 дольку и 1 ломтик лайма или лимона.",
-        "Наполните стакан свежим льдом",
-        "Налейте желаемую дозу водки и долейте тоник.",
-        "Выдавите дольку лайма в стакан и украсьте ломтиком.",
-        "Вот и всё, очень просто: это просто рецепт счастья!"
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "4",
-        "tonic_water": "10",
-        "lemon": "1"
-      },
-      "ingredientUnits": {
-        "vodka": "cl",
-        "tonic_water": "cl",
-        "lemon": "долька"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "vodka-tonic",
-      "canonicalSlug": "vodka-tonic",
-      "imageUrl": "assets/data/catalog_images/img_d7d5d729.jpg",
-      "aliases": [
-        "Vodka Tonic"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/9koz3f1643821062.jpg"
     },
     {
       "id": "whiskey-sour",
@@ -25420,7 +24072,7 @@
         "cherry": "1"
       },
       "ingredientUnits": {
-        "whisky": "унц",
+        "whisky": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -25464,8 +24116,8 @@
         "wine": "1"
       },
       "ingredientUnits": {
-        "scotch": "унц",
-        "wine": "унц"
+        "scotch": "oz",
+        "wine": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25557,8 +24209,8 @@
         "coffee_liqueur": "1"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "coffee_liqueur": "унц"
+        "vodka": "oz",
+        "coffee_liqueur": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25614,9 +24266,9 @@
       },
       "ingredientUnits": {
         "wine_white": "мл",
-        "strawberries": "чашка",
-        "apple": "чашка",
-        "apple_brandy": "шот"
+        "strawberries": "cup",
+        "apple": "cup",
+        "apple_brandy": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25663,9 +24315,9 @@
         "lime": "3"
       },
       "ingredientUnits": {
-        "ice": "чашка",
-        "tequila": "унц",
-        "cream_of_coconut": "чашка",
+        "ice": "cup",
+        "tequila": "oz",
+        "cream_of_coconut": "cup",
         "lime": "tbsp"
       },
       "optionalIngredients": [],
@@ -25685,54 +24337,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/srpxxp1441209622.jpg"
-    },
-    {
-      "id": "wine-cooler",
-      "name": "Винный холодильник",
-      "image": "assets/data/catalog_images/img_cecaadb7.jpg",
-      "ingredients": [
-        "wine_red",
-        "lemon_lime_soda",
-        "ice"
-      ],
-      "description": "Смешайте вино и безалкогольный напиток. Перелейте в стакан. Добавьте лед.",
-      "preparationSteps": [
-        "Смешать вино и безалкогольный напиток",
-        "Налейте в стакан",
-        "Добавьте лед."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Мягкие"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "wine_red": "2",
-        "lemon_lime_soda": "5",
-        "ice": "cubes"
-      },
-      "ingredientUnits": {
-        "wine_red": "унц",
-        "lemon_lime_soda": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "wine-cooler",
-      "canonicalSlug": "wine-cooler",
-      "imageUrl": "assets/data/catalog_images/img_cecaadb7.jpg",
-      "aliases": [
-        "Wine Cooler"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/yutxtv1473344210.jpg"
     },
     {
       "id": "wine-punch",
@@ -25764,8 +24368,8 @@
       },
       "ingredientUnits": {
         "wine_red": "шт",
-        "juice_orange": "чашка",
-        "juice_pineapple": "чашка"
+        "juice_orange": "cup",
+        "juice_pineapple": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25818,7 +24422,7 @@
         "pepper": "Dash"
       },
       "ingredientUnits": {
-        "tequila": "шот",
+        "tequila": "shot",
         "agave_syrup": "tsp"
       },
       "optionalIngredients": [],
@@ -25871,11 +24475,11 @@
         "salt": "Dash"
       },
       "ingredientUnits": {
-        "tequila": "унц",
-        "campari": "унц",
-        "lime": "унц",
-        "juice_orange": "унц",
-        "syrup_rosemary": "унц"
+        "tequila": "oz",
+        "campari": "oz",
+        "lime": "oz",
+        "juice_orange": "oz",
+        "syrup_rosemary": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25971,8 +24575,8 @@
         "fruit": "1"
       },
       "ingredientUnits": {
-        "yoghurt": "чашка",
-        "fruit": "чашка"
+        "yoghurt": "cup",
+        "fruit": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -26018,7 +24622,7 @@
         "ice": "cubes"
       },
       "ingredientUnits": {
-        "sambuca": "унц"
+        "sambuca": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -26037,50 +24641,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/bje5401485619578.jpg"
-    },
-    {
-      "id": "zenmeister",
-      "name": "Зенмейстер",
-      "image": "assets/data/catalog_images/img_33583f4b.jpg",
-      "ingredients": [
-        "jagermeister",
-        "root_beer"
-      ],
-      "description": "Смешайте и наслаждайтесь",
-      "preparationSteps": [
-        "Смешайте и наслаждайтесь"
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "jagermeister": "1/2",
-        "root_beer": "1/2"
-      },
-      "ingredientUnits": {
-        "jagermeister": "унц",
-        "root_beer": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "zenmeister",
-      "canonicalSlug": "zenmeister",
-      "imageUrl": "assets/data/catalog_images/img_33583f4b.jpg",
-      "aliases": [
-        "Zenmeister"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/qyuvsu1479209462.jpg"
     },
     {
       "id": "ziemes-martini-apfelsaft",
@@ -26128,143 +24688,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/xnzr2p1485619687.jpg"
     },
     {
-      "id": "zima-blaster",
-      "name": "Зима Бластер",
-      "image": "assets/data/catalog_images/img_645f478f.jpg",
-      "ingredients": [
-        "zima",
-        "chambord_raspberry_liqueur"
-      ],
-      "description": "Наполните стакан льдом. Влейте Шамбор, затем залейте Зимой. Перемешайте и наслаждайтесь.",
-      "preparationSteps": [
-        "Наполните стакан льдом",
-        "Налейте Шамбор, затем залейте Зимой.",
-        "Перемешайте и наслаждайтесь."
-      ],
-      "glassType": "Харрикейн",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "zima": "12",
-        "chambord_raspberry_liqueur": "3"
-      },
-      "ingredientUnits": {
-        "zima": "унц",
-        "chambord_raspberry_liqueur": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "zima-blaster",
-      "canonicalSlug": "zima-blaster",
-      "imageUrl": "assets/data/catalog_images/img_645f478f.jpg",
-      "aliases": [
-        "Zima Blaster"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/1wifuv1485619797.jpg"
-    },
-    {
-      "id": "zimadori-zinger",
-      "name": "Зимадори Зингер",
-      "image": "assets/data/catalog_images/img_472bacfb.jpg",
-      "ingredients": [
-        "midori_melon_liqueur",
-        "zima"
-      ],
-      "description": "Налейте Зиму в стакан Коллинз поверх льда, а затем добавьте порцию Мидори. Не шевелитесь. Украсьте вишней.",
-      "preparationSteps": [
-        "Налейте Зиму в стакан коллинз поверх льда, а затем добавьте шот Мидори.",
-        "Не перемешивай",
-        "Украсьте вишней."
-      ],
-      "glassType": "Коллинз",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "midori_melon_liqueur": "1.5",
-        "zima": "12"
-      },
-      "ingredientUnits": {
-        "midori_melon_liqueur": "унц",
-        "zima": "унц"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "zimadori-zinger",
-      "canonicalSlug": "zimadori-zinger",
-      "imageUrl": "assets/data/catalog_images/img_472bacfb.jpg",
-      "aliases": [
-        "Zimadori Zinger"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/bw8gzx1485619920.jpg"
-    },
-    {
-      "id": "zinger",
-      "name": "Зингер",
-      "image": "assets/data/catalog_images/img_bbecbb37.jpg",
-      "ingredients": [
-        "peach_schnapps",
-        "surge"
-      ],
-      "description": "Возьмите рюмку и налейте в нее три рюмки шнапса. Сделайте то же самое с колой Surge. Затем вниз, как это сделал бы Шитц.",
-      "preparationSteps": [
-        "Возьмите рюмку и налейте три рюмки шнапса.",
-        "Сделайте то же самое с Surge Cola.",
-        "Затем вниз, как это сделал бы Шитц."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "peach_schnapps": "4",
-        "surge": "4"
-      },
-      "ingredientUnits": {
-        "peach_schnapps": "шот",
-        "surge": "шот"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "zinger",
-      "canonicalSlug": "zinger",
-      "imageUrl": "assets/data/catalog_images/img_bbecbb37.jpg",
-      "aliases": [
-        "Zinger"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/iixv4l1485620014.jpg"
-    },
-    {
       "id": "zipperhead",
       "name": "Зипперхед",
       "image": "assets/data/catalog_images/img_8d013a48.jpg",
@@ -26291,8 +24714,8 @@
         "soda_water": "Fill with"
       },
       "ingredientUnits": {
-        "chambord_raspberry_liqueur": "шот",
-        "vodka": "шот"
+        "chambord_raspberry_liqueur": "shot",
+        "vodka": "shot"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -26338,9 +24761,9 @@
         "kool_aid": "4"
       },
       "ingredientUnits": {
-        "amaretto": "унц",
-        "rum": "унц",
-        "kool_aid": "унц"
+        "amaretto": "oz",
+        "rum": "oz",
+        "kool_aid": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -26487,9 +24910,9 @@
         "angostura_bitter": "1"
       },
       "ingredientUnits": {
-        "rum": "унц",
-        "rum_gold": "унц",
-        "151_proof_rum": "унц",
+        "rum": "oz",
+        "rum_gold": "oz",
+        "151_proof_rum": "oz",
         "pernod": "tsp",
         "grenadine": "tsp",
         "lime": "tsp",
@@ -26536,8 +24959,8 @@
         "ouzo": "1/4"
       },
       "ingredientUnits": {
-        "vodka": "унц",
-        "ouzo": "унц"
+        "vodka": "oz",
+        "ouzo": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],

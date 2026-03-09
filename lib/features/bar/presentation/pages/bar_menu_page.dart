@@ -8,6 +8,7 @@ import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
+import '../../domain/models/measurement_system.dart';
 import 'cocktail_details_page.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
@@ -20,6 +21,7 @@ class BarMenuPage extends StatefulWidget {
     required this.selectedIngredientIds,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.measurementSystem,
     this.powerSavingMode = false,
     required this.bottomOverlayPadding,
     required this.onManagePressed,
@@ -32,6 +34,7 @@ class BarMenuPage extends StatefulWidget {
   final Set<String> selectedIngredientIds;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final MeasurementSystem measurementSystem;
   final bool powerSavingMode;
   final double bottomOverlayPadding;
   final VoidCallback onManagePressed;
@@ -326,6 +329,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           missingIngredientNames: selectedMissingIngredients,
                           ingredientsById: widget.ingredientsById,
                           visitorMode: widget.visitorMode,
+                          measurementSystem: widget.measurementSystem,
                           powerSavingMode: widget.powerSavingMode,
                           bottomPadding: bottomContentPadding,
                           scrollController: _detailsScrollController,
@@ -342,6 +346,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                         missingIngredientsByCocktailId,
                     ingredientsById: widget.ingredientsById,
                     visitorMode: widget.visitorMode,
+                    measurementSystem: widget.measurementSystem,
                     powerSavingMode: widget.powerSavingMode,
                     horizontalPadding: horizontalPadding,
                     bottomPadding: bottomContentPadding,
@@ -485,6 +490,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
           missingIngredientNames: missingIngredients,
           ingredientsById: widget.ingredientsById,
           visitorMode: widget.visitorMode,
+          measurementSystem: widget.measurementSystem,
           powerSavingMode: widget.powerSavingMode,
           onEditCocktailPressed: widget.onEditCocktailPressed,
           onToggleFavoritePressed: widget.onToggleFavoritePressed,
@@ -720,6 +726,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
     required this.missingIngredientNames,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.measurementSystem,
     required this.powerSavingMode,
     required this.bottomPadding,
     required this.scrollController,
@@ -731,6 +738,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
   final List<String> missingIngredientNames;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final MeasurementSystem measurementSystem;
   final bool powerSavingMode;
   final double bottomPadding;
   final ScrollController scrollController;
@@ -889,6 +897,8 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
                       final ingredient = ingredientsById[ingredientId];
                       final amount = selectedCocktail.ingredientAmountLabel(
                         ingredientId,
+                        measurementSystem: measurementSystem,
+                        unitLabelResolver: context.ingredientUnitLabel,
                       );
                       final isOptional = selectedCocktail.isIngredientOptional(
                         ingredientId,
@@ -1080,6 +1090,7 @@ class CocktailList extends StatelessWidget {
     required this.missingIngredientsByCocktailId,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.measurementSystem,
     required this.powerSavingMode,
     required this.horizontalPadding,
     required this.bottomPadding,
@@ -1095,6 +1106,7 @@ class CocktailList extends StatelessWidget {
   final Map<String, List<String>> missingIngredientsByCocktailId;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final MeasurementSystem measurementSystem;
   final bool powerSavingMode;
   final double horizontalPadding;
   final double bottomPadding;
@@ -1310,6 +1322,9 @@ class CocktailList extends StatelessWidget {
                                     ingredientsById[ingredientId];
                                 final amount = cocktail.ingredientAmountLabel(
                                   ingredientId,
+                                  measurementSystem: measurementSystem,
+                                  unitLabelResolver:
+                                      context.ingredientUnitLabel,
                                 );
                                 final isOptional = cocktail
                                     .isIngredientOptional(ingredientId);

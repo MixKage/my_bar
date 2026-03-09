@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../features/bar/domain/models/catalog_data_source.dart';
+import '../../features/bar/domain/models/measurement_system.dart';
 import 'app_language.dart';
 
 extension AppLocalizationX on BuildContext {
@@ -17,6 +18,17 @@ extension AppLocalizationX on BuildContext {
         return tr('Русский', 'Russian');
       case AppLanguage.english:
         return tr('Английский', 'English');
+    }
+  }
+
+  String measurementSystemLabel(MeasurementSystem system) {
+    switch (system) {
+      case MeasurementSystem.flOz:
+        return 'fl oz';
+      case MeasurementSystem.ml:
+        return 'ml';
+      case MeasurementSystem.cl:
+        return 'cl';
     }
   }
 
@@ -102,17 +114,26 @@ const Map<String, _LocalizedLabel> _cocktailGlassLabels =
 const Map<String, _LocalizedLabel> _ingredientUnitLabels =
     <String, _LocalizedLabel>{
       '': _LocalizedLabel(ru: 'Без единицы', en: 'No unit'),
+      'ml': _LocalizedLabel(ru: 'мл', en: 'ml'),
       'мл': _LocalizedLabel(ru: 'мл', en: 'ml'),
+      'l': _LocalizedLabel(ru: 'л', en: 'l'),
       'л': _LocalizedLabel(ru: 'л', en: 'l'),
-      'oz': _LocalizedLabel(ru: 'унц', en: 'oz'),
+      'oz': _LocalizedLabel(ru: 'унц', en: 'fl oz'),
+      'fl oz': _LocalizedLabel(ru: 'унц', en: 'fl oz'),
+      'унц': _LocalizedLabel(ru: 'унц', en: 'fl oz'),
       'cl': _LocalizedLabel(ru: 'cl', en: 'cl'),
       'tsp': _LocalizedLabel(ru: 'ч.ложка', en: 'tsp'),
       'tbsp': _LocalizedLabel(ru: 'ст.ложка', en: 'tbsp'),
       'shot': _LocalizedLabel(ru: 'шот', en: 'shot'),
+      'шот': _LocalizedLabel(ru: 'шот', en: 'shot'),
       'part': _LocalizedLabel(ru: 'часть', en: 'part'),
+      'часть': _LocalizedLabel(ru: 'часть', en: 'part'),
       'cup': _LocalizedLabel(ru: 'чашка', en: 'cup'),
+      'чашка': _LocalizedLabel(ru: 'чашка', en: 'cup'),
       'dash': _LocalizedLabel(ru: 'дэш', en: 'dash'),
+      'дэш': _LocalizedLabel(ru: 'дэш', en: 'dash'),
       'pinch': _LocalizedLabel(ru: 'щепотка', en: 'pinch'),
+      'щепотка': _LocalizedLabel(ru: 'щепотка', en: 'pinch'),
       'ч.ложка': _LocalizedLabel(ru: 'ч.ложка', en: 'tsp'),
       'ч.ложки': _LocalizedLabel(ru: 'ч.ложки', en: 'tsp'),
       'ст.ложка': _LocalizedLabel(ru: 'ст.ложка', en: 'tbsp'),

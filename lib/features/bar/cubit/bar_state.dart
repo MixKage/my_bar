@@ -6,6 +6,7 @@ import '../domain/models/catalog_data_source.dart';
 import '../domain/models/catalog_entity_origin.dart';
 import '../domain/models/cocktail.dart';
 import '../domain/models/ingredient.dart';
+import '../domain/models/measurement_system.dart';
 
 @immutable
 class BarState {
@@ -25,6 +26,7 @@ class BarState {
     this.powerSavingMode = false,
     this.systemPowerSavingMode = false,
     this.appLanguage = AppLanguage.system,
+    this.measurementSystem = MeasurementSystem.flOz,
   }) : ingredients = List<Ingredient>.unmodifiable(ingredients),
        cocktails = List<Cocktail>.unmodifiable(cocktails),
        selectedIngredientIds = Set<String>.unmodifiable(selectedIngredientIds),
@@ -48,6 +50,7 @@ class BarState {
   final bool powerSavingMode;
   final bool systemPowerSavingMode;
   final AppLanguage appLanguage;
+  final MeasurementSystem measurementSystem;
 
   bool get effectivePowerSavingMode => powerSavingMode || systemPowerSavingMode;
 
@@ -104,6 +107,7 @@ class BarState {
     bool? powerSavingMode,
     bool? systemPowerSavingMode,
     AppLanguage? appLanguage,
+    MeasurementSystem? measurementSystem,
   }) {
     return BarState(
       ingredients: ingredients ?? this.ingredients,
@@ -123,6 +127,7 @@ class BarState {
       systemPowerSavingMode:
           systemPowerSavingMode ?? this.systemPowerSavingMode,
       appLanguage: appLanguage ?? this.appLanguage,
+      measurementSystem: measurementSystem ?? this.measurementSystem,
     );
   }
 
@@ -142,7 +147,8 @@ class BarState {
             other.barMenuOnlyMode == barMenuOnlyMode &&
             other.powerSavingMode == powerSavingMode &&
             other.systemPowerSavingMode == systemPowerSavingMode &&
-            other.appLanguage == appLanguage;
+            other.appLanguage == appLanguage &&
+            other.measurementSystem == measurementSystem;
   }
 
   @override
@@ -162,6 +168,7 @@ class BarState {
       powerSavingMode,
       systemPowerSavingMode,
       appLanguage,
+      measurementSystem,
     );
   }
 }

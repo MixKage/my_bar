@@ -187,8 +187,9 @@ Future<AddCocktailInput?> _showCocktailDialog(
     if (!selectedIngredientIds.contains(entry.key)) {
       continue;
     }
-    if (entry.value.trim().isNotEmpty) {
-      ingredientUnits[entry.key] = entry.value.trim();
+    final normalizedUnit = normalizeIngredientUnitToken(entry.value);
+    if (normalizedUnit.isNotEmpty) {
+      ingredientUnits[entry.key] = normalizedUnit;
     }
   }
 

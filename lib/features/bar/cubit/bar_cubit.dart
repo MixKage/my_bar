@@ -12,6 +12,7 @@ import '../domain/models/cocktail.dart';
 import '../domain/models/cocktail_glass_types.dart';
 import '../domain/models/cocktail_tags.dart';
 import '../domain/models/ingredient.dart';
+import '../domain/models/measurement_system.dart';
 import 'bar_state.dart';
 
 class BarCubit extends Cubit<BarState> {
@@ -48,6 +49,7 @@ class BarCubit extends Cubit<BarState> {
              barMenuOnlyMode: settings.barMenuOnlyMode,
              powerSavingMode: settings.powerSavingMode,
              appLanguage: settings.appLanguage,
+             measurementSystem: settings.measurementSystem,
            );
          })(),
        ) {
@@ -496,6 +498,15 @@ class BarCubit extends Cubit<BarState> {
     }
   }
 
+  Future<void> setMeasurementSystem(MeasurementSystem measurementSystem) async {
+    if (state.measurementSystem == measurementSystem) {
+      return;
+    }
+    final nextState = state.copyWith(measurementSystem: measurementSystem);
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
   Future<void> importCatalog(BarCatalog catalog) async {
     final snapshot = await _catalogRepository.importCatalog(catalog);
     await _applyCatalogSnapshot(snapshot);
@@ -541,6 +552,7 @@ class BarCubit extends Cubit<BarState> {
           powerSavingMode: currentState.powerSavingMode,
           catalogDataSource: _selectedCatalogDataSource,
           appLanguage: currentState.appLanguage,
+          measurementSystem: currentState.measurementSystem,
         ),
       ),
     ]);

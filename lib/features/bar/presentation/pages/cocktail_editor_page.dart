@@ -11,6 +11,7 @@ import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
+import '../../domain/models/ingredient_units.dart';
 import '../widgets/bar_management_dialogs.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
@@ -138,7 +139,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
       if (!_selectedIngredientIds.contains(entry.key)) {
         continue;
       }
-      final unit = entry.value.trim();
+      final unit = normalizeIngredientUnitToken(entry.value);
       if (unit.isNotEmpty) {
         _ingredientUnits[entry.key] = unit;
       }

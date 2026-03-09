@@ -20,6 +20,7 @@ import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
 import '../domain/models/cocktail.dart';
 import '../domain/models/ingredient.dart';
+import '../domain/models/measurement_system.dart';
 import 'pages/cocktail_editor_page.dart';
 import 'pages/bar_menu_page.dart';
 import 'pages/raw_bar_page.dart';
@@ -96,6 +97,7 @@ class _BarHomeShellState extends State<BarHomeShell>
               selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
+              measurementSystem: state.measurementSystem,
               powerSavingMode: powerSavingMode,
               bottomOverlayPadding: bottomOverlayPadding,
               onManagePressed: () => _openBarManagement(),
@@ -120,6 +122,7 @@ class _BarHomeShellState extends State<BarHomeShell>
               selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
+              measurementSystem: state.measurementSystem,
               powerSavingMode: powerSavingMode,
               bottomOverlayPadding: bottomOverlayPadding,
               onManagePressed: () => _openBarManagement(),
@@ -371,6 +374,7 @@ class _BarHomeShellState extends State<BarHomeShell>
     var powerSavingMode = cubit.state.powerSavingMode;
     final systemPowerSavingMode = cubit.state.systemPowerSavingMode;
     var appLanguage = cubit.state.appLanguage;
+    var measurementSystem = cubit.state.measurementSystem;
 
     final action = await _showAdaptiveActionSheet<_BarSettingsAction>(
       maxDialogWidth: 640,
@@ -532,6 +536,78 @@ class _BarHomeShellState extends State<BarHomeShell>
                                       'Выбор сохраняется между запусками приложения.',
                                       'Selection is preserved between app launches.',
                                     ),
+                            ),
+                          ),
+                          const Divider(height: 16),
+                          ListTile(
+                            leading: const Icon(Icons.straighten_rounded),
+                            title: Text(
+                              context.tr(
+                                'Система измерения',
+                                'Measurement system',
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                            child: SegmentedButton<MeasurementSystem>(
+                              showSelectedIcon: false,
+                              selected: <MeasurementSystem>{measurementSystem},
+                              segments: <ButtonSegment<MeasurementSystem>>[
+                                ButtonSegment<MeasurementSystem>(
+                                  value: MeasurementSystem.flOz,
+                                  label: Text(
+                                    context.measurementSystemLabel(
+                                      MeasurementSystem.flOz,
+                                    ),
+                                  ),
+                                ),
+                                ButtonSegment<MeasurementSystem>(
+                                  value: MeasurementSystem.ml,
+                                  label: Text(
+                                    context.measurementSystemLabel(
+                                      MeasurementSystem.ml,
+                                    ),
+                                  ),
+                                ),
+                                ButtonSegment<MeasurementSystem>(
+                                  value: MeasurementSystem.cl,
+                                  label: Text(
+                                    context.measurementSystemLabel(
+                                      MeasurementSystem.cl,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              onSelectionChanged: (selection) async {
+                                if (selection.isEmpty) {
+                                  return;
+                                }
+                                final nextSystem = selection.first;
+                                setModalState(
+                                  () => measurementSystem = nextSystem,
+                                );
+                                await cubit.setMeasurementSystem(nextSystem);
+                                if (!mounted) {
+                                  return;
+                                }
+                                setModalState(
+                                  () => measurementSystem =
+                                      cubit.state.measurementSystem,
+                                );
+                              },
+                            ),
+                          ),
+                          ListTile(
+                            dense: true,
+                            title: Text(
+                              context.measurementSystemLabel(measurementSystem),
+                            ),
+                            subtitle: Text(
+                              context.tr(
+                                'Объёмные единицы в составе коктейлей конвертируются автоматически.',
+                                'Volume units in ingredients are converted automatically.',
+                              ),
                             ),
                           ),
                           const Divider(height: 16),

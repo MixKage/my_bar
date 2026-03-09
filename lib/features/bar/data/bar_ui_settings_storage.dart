@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/localization/app_language.dart';
 import '../domain/models/catalog_data_source.dart';
+import '../domain/models/measurement_system.dart';
 
 class BarUiSettings {
   const BarUiSettings({
@@ -10,6 +11,7 @@ class BarUiSettings {
     this.powerSavingMode = false,
     this.catalogDataSource,
     this.appLanguage = AppLanguage.system,
+    this.measurementSystem = MeasurementSystem.flOz,
   });
 
   final bool visitorMode;
@@ -17,6 +19,7 @@ class BarUiSettings {
   final bool powerSavingMode;
   final CatalogDataSource? catalogDataSource;
   final AppLanguage appLanguage;
+  final MeasurementSystem measurementSystem;
 
   BarUiSettings copyWith({
     bool? visitorMode,
@@ -24,6 +27,7 @@ class BarUiSettings {
     bool? powerSavingMode,
     CatalogDataSource? catalogDataSource,
     AppLanguage? appLanguage,
+    MeasurementSystem? measurementSystem,
     bool clearCatalogDataSource = false,
   }) {
     return BarUiSettings(
@@ -34,6 +38,7 @@ class BarUiSettings {
           ? null
           : (catalogDataSource ?? this.catalogDataSource),
       appLanguage: appLanguage ?? this.appLanguage,
+      measurementSystem: measurementSystem ?? this.measurementSystem,
     );
   }
 }
@@ -51,6 +56,7 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
   static const String powerSavingModeKey = 'bar_ui_power_saving_mode';
   static const String catalogDataSourceKey = 'bar_ui_catalog_data_source';
   static const String appLanguageKey = 'bar_ui_app_language';
+  static const String measurementSystemKey = 'bar_ui_measurement_system';
 
   final SharedPreferences _preferences;
 
@@ -65,6 +71,9 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
       appLanguage: AppLanguageX.fromStorage(
         _preferences.getString(appLanguageKey),
       ),
+      measurementSystem: MeasurementSystemX.fromStorage(
+        _preferences.getString(measurementSystemKey),
+      ),
     );
   }
 
@@ -75,6 +84,10 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
       _preferences.setBool(barMenuOnlyModeKey, settings.barMenuOnlyMode),
       _preferences.setBool(powerSavingModeKey, settings.powerSavingMode),
       _preferences.setString(appLanguageKey, settings.appLanguage.storageValue),
+      _preferences.setString(
+        measurementSystemKey,
+        settings.measurementSystem.storageValue,
+      ),
     ];
 
     final catalogSource = settings.catalogDataSource;

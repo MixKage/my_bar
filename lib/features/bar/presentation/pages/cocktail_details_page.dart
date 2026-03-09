@@ -5,6 +5,7 @@ import '../../../../core/localization/app_localization.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
+import '../../domain/models/measurement_system.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
 
@@ -16,6 +17,7 @@ class CocktailDetailsPage extends StatefulWidget {
     required this.missingIngredientNames,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.measurementSystem,
     this.powerSavingMode = false,
     required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
@@ -26,6 +28,7 @@ class CocktailDetailsPage extends StatefulWidget {
   final List<String> missingIngredientNames;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final MeasurementSystem measurementSystem;
   final bool powerSavingMode;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
@@ -222,6 +225,8 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                                 widget.ingredientsById[ingredientId];
                             final amount = cocktail.ingredientAmountLabel(
                               ingredientId,
+                              measurementSystem: widget.measurementSystem,
+                              unitLabelResolver: context.ingredientUnitLabel,
                             );
                             final isOptional = cocktail.isIngredientOptional(
                               ingredientId,

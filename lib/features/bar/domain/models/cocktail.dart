@@ -2,6 +2,8 @@ import 'package:meta/meta.dart';
 
 import 'cocktail_glass_types.dart';
 import 'cocktail_tags.dart';
+import 'ingredient_units.dart';
+import 'measurement_system.dart';
 
 @immutable
 class Cocktail {
@@ -60,7 +62,7 @@ class Cocktail {
       substitutionsJson,
     );
     final ingredientAmounts = _parseStringMap(json['ingredientAmounts']);
-    final ingredientUnits = _parseStringMap(json['ingredientUnits']);
+    final ingredientUnits = _parseIngredientUnitsMap(json['ingredientUnits']);
     final optionalIngredients = _parseStringList(json['optionalIngredients']);
     final decorationIngredients = _parseStringList(
       json['decorationIngredients'],
@@ -107,19 +109,50 @@ class Cocktail {
     return decorationIngredients.contains(ingredientId);
   }
 
-  String ingredientAmountLabel(String ingredientId) {
+  String ingredientAmountLabel(
+    String ingredientId, {
+    MeasurementSystem? measurementSystem,
+    String Function(String unit)? unitLabelResolver,
+  }) {
     final amount = (ingredientAmounts[ingredientId] ?? '').trim();
-    final unit = (ingredientUnits[ingredientId] ?? '').trim();
-    if (amount.isEmpty && unit.isEmpty) {
+    final unit = normalizeIngredientUnitToken(
+      (ingredientUnits[ingredientId] ?? '').trim(),
+    );
+    final resolved = measurementSystem == null
+        ? IngredientAmountPresentation(amount: amount, unit: unit)
+        : resolveIngredientAmountForMeasurementSystem(
+            amount: amount,
+            unit: unit,
+            measurementSystem: measurementSystem,
+          );
+    final resolvedUnit = unitLabelResolver == null
+        ? resolved.unit
+        : unitLabelResolver(resolved.unit);
+
+    final normalizedAmount = resolved.amount.trim();
+    final normalizedUnit = resolvedUnit.trim();
+    if (normalizedAmount.isEmpty && normalizedUnit.isEmpty) {
       return '';
     }
-    if (amount.isEmpty) {
-      return unit;
+    if (normalizedAmount.isEmpty) {
+      return normalizedUnit;
     }
-    if (unit.isEmpty) {
-      return amount;
+    if (normalizedUnit.isEmpty) {
+      return normalizedAmount;
     }
-    return '$amount $unit';
+    return '$normalizedAmount $normalizedUnit';
+  }
+
+  static Map<String, String> _parseIngredientUnitsMap(Object? value) {
+    final raw = _parseStringMap(value);
+    if (raw.isEmpty) {
+      return raw;
+    }
+    final normalized = <String, String>{};
+    for (final entry in raw.entries) {
+      normalized[entry.key] = normalizeIngredientUnitToken(entry.value);
+    }
+    return normalized;
   }
 
   Map<String, dynamic> toJson() {
