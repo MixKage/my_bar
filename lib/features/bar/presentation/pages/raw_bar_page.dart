@@ -123,6 +123,34 @@ class _RawBarPageState extends State<RawBarPage> {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
+          IgnorePointer(
+            child: AnimatedOpacity(
+              opacity: _isSearchPinned ? 1 : 0,
+              duration: widget.powerSavingMode
+                  ? Duration.zero
+                  : const Duration(milliseconds: 180),
+              curve: Curves.easeOut,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  height: topInset + 88,
+                  width: double.infinity,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: <Color>[
+                          const Color(0xFF7D4BFF).withValues(alpha: 0.8),
+                          const Color(0xFF7D4BFF).withValues(alpha: 0),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           TweenAnimationBuilder<double>(
             tween: Tween<double>(end: _searchPinProgress),
             duration: widget.powerSavingMode
@@ -307,34 +335,6 @@ class _RawBarPageState extends State<RawBarPage> {
                         ),
                 ),
               ],
-            ),
-          ),
-          IgnorePointer(
-            child: AnimatedOpacity(
-              opacity: _isSearchPinned ? 1 : 0,
-              duration: widget.powerSavingMode
-                  ? Duration.zero
-                  : const Duration(milliseconds: 180),
-              curve: Curves.easeOut,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  height: topInset + 88,
-                  width: double.infinity,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[
-                          const Color(0xFF7D4BFF).withValues(alpha: 0.8),
-                          const Color(0xFF7D4BFF).withValues(alpha: 0),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
             ),
           ),
         ],
