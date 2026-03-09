@@ -6,11 +6,11 @@
     "source": "seed",
     "sourceId": "seed_json",
     "stats": {
-      "importedIngredients": 298,
-      "importedCocktails": 426,
+      "importedIngredients": 289,
+      "importedCocktails": 418,
       "invalidCocktailsDropped": 0,
       "unresolvedIngredientMappings": 0,
-      "duplicatesRemoved": 0
+      "duplicatesRemoved": 17
     },
     "imageLocalization": {
       "entriesWithRemoteImage": 724,
@@ -922,26 +922,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Blended%20Scotch.png"
     },
     {
-      "id": "whiskey",
-      "name": "Blended whiskey",
-      "category": "Крепкий алкоголь",
-      "image": "assets/data/catalog_images/img_545d1b20.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#EBAB14",
-      "glowSecondaryColor": "#D5DF53",
-      "glowOffsetX": 0.057,
-      "glowOffsetY": 0.059,
-      "glowScale": 1.009,
-      "glowOpacity": 0.293,
-      "source": "seed_json",
-      "sourceId": "whiskey",
-      "canonicalSlug": "whiskey",
-      "displayName": "Blended whiskey",
-      "imageUrl": "assets/data/catalog_images/img_545d1b20.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Blended%20whiskey.png"
-    },
-    {
       "id": "blood_orange",
       "name": "Blood Orange",
       "category": "Фрукты и ягоды",
@@ -1182,26 +1162,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Carbonated%20soft%20drink.png"
     },
     {
-      "id": "carbonated_water",
-      "name": "Carbonated water",
-      "category": "Газировка и безалкогольные миксеры",
-      "image": "assets/data/catalog_images/img_2ddf20a2.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#3A74A6",
-      "glowSecondaryColor": "#5C6BB8",
-      "glowOffsetX": 0.172,
-      "glowOffsetY": -0.014,
-      "glowScale": 1.197,
-      "glowOpacity": 0.273,
-      "source": "seed_json",
-      "sourceId": "carbonated_water",
-      "canonicalSlug": "carbonated_water",
-      "displayName": "Carbonated water",
-      "imageUrl": "assets/data/catalog_images/img_2ddf20a2.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Carbonated%20water.png"
-    },
-    {
       "id": "cardamom",
       "name": "Cardamom",
       "category": "Специи, травы и биттеры",
@@ -1300,26 +1260,6 @@
       "displayName": "Champagne",
       "imageUrl": "assets/data/catalog_images/img_613ac9dd.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Champagne.png"
-    },
-    {
-      "id": "cherries",
-      "name": "Cherries",
-      "category": "Фрукты и ягоды",
-      "image": "assets/data/catalog_images/img_ef3b6d92.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#C41D32",
-      "glowSecondaryColor": "#D16442",
-      "glowOffsetX": 0.033,
-      "glowOffsetY": 0.007,
-      "glowScale": 1.245,
-      "glowOpacity": 0.403,
-      "source": "seed_json",
-      "sourceId": "cherries",
-      "canonicalSlug": "cherries",
-      "displayName": "Cherries",
-      "imageUrl": "assets/data/catalog_images/img_ef3b6d92.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Cherries.png"
     },
     {
       "id": "cherry",
@@ -1560,26 +1500,6 @@
       "displayName": "Cloves",
       "imageUrl": "assets/data/catalog_images/img_fc0b9101.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Cloves.png"
-    },
-    {
-      "id": "club_soda",
-      "name": "Club soda",
-      "category": "Газировка и безалкогольные миксеры",
-      "image": "assets/data/catalog_images/img_5704353f.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#3A74A6",
-      "glowSecondaryColor": "#5C6BB8",
-      "glowOffsetX": -0.065,
-      "glowOffsetY": 0.24,
-      "glowScale": 0.999,
-      "glowOpacity": 0.307,
-      "source": "seed_json",
-      "sourceId": "club_soda",
-      "canonicalSlug": "club_soda",
-      "displayName": "Club soda",
-      "imageUrl": "assets/data/catalog_images/img_5704353f.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Club%20soda.png"
     },
     {
       "id": "coca_cola",
@@ -3162,26 +3082,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Iced%20tea.png"
     },
     {
-      "id": "irish_cream",
-      "name": "Irish cream",
-      "category": "Ликёры и аперитивы",
-      "image": "assets/data/catalog_images/img_4b24a267.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#C6351B",
-      "glowSecondaryColor": "#D38D40",
-      "glowOffsetX": -0.033,
-      "glowOffsetY": 0.001,
-      "glowScale": 1.175,
-      "glowOpacity": 0.347,
-      "source": "seed_json",
-      "sourceId": "irish_cream",
-      "canonicalSlug": "irish_cream",
-      "displayName": "Irish cream",
-      "imageUrl": "assets/data/catalog_images/img_4b24a267.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Irish%20cream.png"
-    },
-    {
       "id": "irish_whiskey",
       "name": "Irish whiskey",
       "category": "Крепкий алкоголь",
@@ -3320,26 +3220,6 @@
       "displayName": "Johnnie Walker",
       "imageUrl": "assets/data/catalog_images/img_19fa3acd.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Johnnie%20Walker.png"
-    },
-    {
-      "id": "j_germeister",
-      "name": "Jägermeister",
-      "category": "Ликёры и аперитивы",
-      "image": "assets/data/catalog_images/img_b0f08b6b.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#EC5325",
-      "glowSecondaryColor": "#E2AE62",
-      "glowOffsetX": -0.049,
-      "glowOffsetY": -0.208,
-      "glowScale": 1.244,
-      "glowOpacity": 0.303,
-      "source": "seed_json",
-      "sourceId": "j_germeister",
-      "canonicalSlug": "j_germeister",
-      "displayName": "Jägermeister",
-      "imageUrl": "assets/data/catalog_images/img_b0f08b6b.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/J%C3%A4germeister.png"
     },
     {
       "id": "kahlua",
@@ -4340,26 +4220,6 @@
       "displayName": "Peach Vodka",
       "imageUrl": "assets/data/catalog_images/img_0b17e658.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Peach%20Vodka.png"
-    },
-    {
-      "id": "peachtree_schnapps",
-      "name": "Peachtree schnapps",
-      "category": "Ликёры и аперитивы",
-      "image": "assets/data/catalog_images/img_04da447d.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#D2D27F",
-      "glowSecondaryColor": "#C4D7A3",
-      "glowOffsetX": -0.151,
-      "glowOffsetY": 0.155,
-      "glowScale": 1.271,
-      "glowOpacity": 0.332,
-      "source": "seed_json",
-      "sourceId": "peachtree_schnapps",
-      "canonicalSlug": "peachtree_schnapps",
-      "displayName": "Peachtree schnapps",
-      "imageUrl": "assets/data/catalog_images/img_04da447d.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Peachtree%20schnapps.png"
     },
     {
       "id": "pepper",
@@ -5382,26 +5242,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Sweet%20and%20Sour.png"
     },
     {
-      "id": "vermouth_red",
-      "name": "Sweet Vermouth",
-      "category": "Ликёры и аперитивы",
-      "image": "assets/data/catalog_images/img_47933d82.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#CE122F",
-      "glowSecondaryColor": "#DA5B39",
-      "glowOffsetX": -0.177,
-      "glowOffsetY": -0.089,
-      "glowScale": 1.253,
-      "glowOpacity": 0.321,
-      "source": "seed_json",
-      "sourceId": "vermouth_red",
-      "canonicalSlug": "vermouth_red",
-      "displayName": "Sweet Vermouth",
-      "imageUrl": "assets/data/catalog_images/img_47933d82.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Sweet%20Vermouth.png"
-    },
-    {
       "id": "tabasco_sauce",
       "name": "Tabasco sauce",
       "category": "Соусы и солёные добавки",
@@ -5740,26 +5580,6 @@
       "displayName": "Whipped cream",
       "imageUrl": "assets/data/catalog_images/img_d8658c49.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Whipped%20cream.png"
-    },
-    {
-      "id": "whipping_cream",
-      "name": "Whipping cream",
-      "category": "Молочные и сливочные",
-      "image": "assets/data/catalog_images/img_c0537734.png",
-      "isDecoration": false,
-      "isOptional": false,
-      "glowColor": "#C61A21",
-      "glowSecondaryColor": "#D47040",
-      "glowOffsetX": 0.209,
-      "glowOffsetY": -0.022,
-      "glowScale": 1.211,
-      "glowOpacity": 0.371,
-      "source": "seed_json",
-      "sourceId": "whipping_cream",
-      "canonicalSlug": "whipping_cream",
-      "displayName": "Whipping cream",
-      "imageUrl": "assets/data/catalog_images/img_c0537734.png",
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Whipping%20cream.png"
     },
     {
       "id": "whisky",
@@ -6368,7 +6188,7 @@
       "name": "Addington",
       "image": "assets/data/catalog_images/img_83d04b9c.jpg",
       "ingredients": [
-        "vermouth_red",
+        "rosso_vermouth",
         "vermouth_dry",
         "soda_water"
       ],
@@ -6383,12 +6203,12 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "vermouth_red": "2",
+        "rosso_vermouth": "2",
         "vermouth_dry": "1",
         "soda_water": "Top up with"
       },
       "ingredientUnits": {
-        "vermouth_red": "shot",
+        "rosso_vermouth": "shot",
         "vermouth_dry": "shot"
       },
       "optionalIngredients": [],
@@ -6460,7 +6280,7 @@
         "strawberry_schnapps",
         "juice_orange",
         "juice_cranberry",
-        "club_soda"
+        "soda_water"
       ],
       "description": "Pour schnapps, orange juice, and cranberry juice over ice in a highball glass. Top with club soda and serve.",
       "preparationSteps": [
@@ -6507,7 +6327,7 @@
       "image": "assets/data/catalog_images/img_e2764be5.jpg",
       "ingredients": [
         "scotch",
-        "vermouth_red",
+        "rosso_vermouth",
         "vermouth_dry",
         "orange_bitter"
       ],
@@ -6524,13 +6344,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "scotch": "1 1/2",
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "vermouth_dry": "1",
         "orange_bitter": "2"
       },
       "ingredientUnits": {
         "scotch": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "vermouth_dry": "oz",
         "orange_bitter": "dash"
       },
@@ -6654,7 +6474,7 @@
       "name": "Algonquin",
       "image": "assets/data/catalog_images/img_ef74dbab.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "vermouth_dry",
         "juice_pineapple"
       ],
@@ -6668,12 +6488,12 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "1 1/2",
+        "whisky": "1 1/2",
         "vermouth_dry": "1",
         "juice_pineapple": "1"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "vermouth_dry": "oz",
         "juice_pineapple": "oz"
       },
@@ -6798,7 +6618,7 @@
       "image": "assets/data/catalog_images/img_0675b574.jpg",
       "ingredients": [
         "campari",
-        "vermouth_red",
+        "rosso_vermouth",
         "lemon",
         "orange"
       ],
@@ -6815,13 +6635,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "campari": "1",
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "lemon": "Twist of",
         "orange": "Twist of"
       },
       "ingredientUnits": {
         "campari": "oz",
-        "vermouth_red": "oz"
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -6942,7 +6762,7 @@
       "name": "Artillery",
       "image": "assets/data/catalog_images/img_fe9a7d31.jpg",
       "ingredients": [
-        "vermouth_red",
+        "rosso_vermouth",
         "gin",
         "bitters"
       ],
@@ -6956,12 +6776,12 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "vermouth_red": "1 1/2",
+        "rosso_vermouth": "1 1/2",
         "gin": "1 1/2",
         "bitters": "2"
       },
       "ingredientUnits": {
-        "vermouth_red": "tsp",
+        "rosso_vermouth": "tsp",
         "gin": "oz",
         "bitters": "dash"
       },
@@ -7390,7 +7210,7 @@
       "image": "assets/data/catalog_images/img_5fb94cc7.jpg",
       "ingredients": [
         "scotch",
-        "vermouth_red",
+        "rosso_vermouth",
         "vermouth_dry",
         "bitters"
       ],
@@ -7407,13 +7227,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "scotch": "1 1/2",
-        "vermouth_red": "1/2",
+        "rosso_vermouth": "1/2",
         "vermouth_dry": "1/2",
         "bitters": "2"
       },
       "ingredientUnits": {
         "scotch": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "vermouth_dry": "oz",
         "bitters": "dash"
       },
@@ -7588,7 +7408,7 @@
       "name": "Big Red",
       "image": "assets/data/catalog_images/img_44c98b8a.jpg",
       "ingredients": [
-        "irish_cream",
+        "baileys_irish_cream",
         "goldschlager"
       ],
       "description": "Pour ingredients into 1 ounce shot glass",
@@ -7602,11 +7422,11 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "irish_cream": "1/2",
+        "baileys_irish_cream": "1/2",
         "goldschlager": "1/2"
       },
       "ingredientUnits": {
-        "irish_cream": "oz",
+        "baileys_irish_cream": "oz",
         "goldschlager": "oz"
       },
       "optionalIngredients": [],
@@ -7635,7 +7455,7 @@
         "orange_bitter",
         "chartreuse_green",
         "gin",
-        "vermouth_red"
+        "rosso_vermouth"
       ],
       "description": "Stir in mixing glass with ice and strain",
       "preparationSteps": [
@@ -7650,13 +7470,13 @@
         "orange_bitter": "1",
         "chartreuse_green": "1",
         "gin": "1",
-        "vermouth_red": "1"
+        "rosso_vermouth": "1"
       },
       "ingredientUnits": {
         "orange_bitter": "dash",
         "chartreuse_green": "oz",
         "gin": "oz",
-        "vermouth_red": "oz"
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -7681,7 +7501,7 @@
       "name": "Blackthorn",
       "image": "assets/data/catalog_images/img_46bf46ac.jpg",
       "ingredients": [
-        "vermouth_red",
+        "rosso_vermouth",
         "sloe_gin",
         "lemon"
       ],
@@ -7696,12 +7516,12 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "sloe_gin": "1 1/2",
         "lemon": "1 twist of"
       },
       "ingredientUnits": {
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "sloe_gin": "oz"
       },
       "optionalIngredients": [],
@@ -7783,7 +7603,7 @@
       "image": "assets/data/catalog_images/img_3a72366e.jpg",
       "ingredients": [
         "midori_melon_liqueur",
-        "j_germeister",
+        "jagermeister",
         "goldschlager"
       ],
       "description": "Layer in a 2 oz shot glass or pony glass",
@@ -7798,12 +7618,12 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "midori_melon_liqueur": "1/2",
-        "j_germeister": "1/2",
+        "jagermeister": "1/2",
         "goldschlager": "1/2"
       },
       "ingredientUnits": {
         "midori_melon_liqueur": "oz",
-        "j_germeister": "oz",
+        "jagermeister": "oz",
         "goldschlager": "oz"
       },
       "optionalIngredients": [],
@@ -7933,7 +7753,7 @@
       "name": "Boston Sour",
       "image": "assets/data/catalog_images/img_58b6f3bd.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "lemon",
         "powdered_sugar",
         "egg_white",
@@ -7950,14 +7770,14 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "2",
+        "whisky": "2",
         "lemon": "Juice of 1/2",
         "powdered_sugar": "1",
         "egg_white": "1",
         "cherry": "1"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -8830,7 +8650,7 @@
         "lemon",
         "powdered_sugar",
         "egg_white",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Shake all ingredients (except carbonated water) with ice and strain into a highball glass over two ice cubes. Fill with carbonated water, stir, and serve.",
       "preparationSteps": [
@@ -9067,7 +8887,7 @@
       "name": "Clove Cocktail",
       "image": "assets/data/catalog_images/img_8414486e.jpg",
       "ingredients": [
-        "vermouth_red",
+        "rosso_vermouth",
         "sloe_gin",
         "wine"
       ],
@@ -9081,12 +8901,12 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "sloe_gin": "1/2",
         "wine": "1/2"
       },
       "ingredientUnits": {
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "sloe_gin": "oz",
         "wine": "oz"
       },
@@ -9723,7 +9543,7 @@
       "name": "Damned if you do",
       "image": "assets/data/catalog_images/img_3bd03901.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "hot_damn"
       ],
       "description": "Pour into shot glass. Put in mouth. Repeat as deemed necessary.",
@@ -9739,11 +9559,11 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "0.75",
+        "whisky": "0.75",
         "hot_damn": "0.25"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "hot_damn": "oz"
       },
       "optionalIngredients": [],
@@ -10148,45 +9968,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/vcyvpq1485083300.jpg"
     },
     {
-      "id": "dirty-nipple",
-      "name": "Dirty Nipple",
-      "image": "assets/data/catalog_images/img_0e75ca69.jpg",
-      "ingredients": [
-        "kahlua",
-        "sambuca",
-        "baileys_irish_cream"
-      ],
-      "description": "This is a layered shot - the Bailey's must be on top",
-      "preparationSteps": [
-        "This is a layered shot - the Bailey's must be on top"
-      ],
-      "glassType": "Шот",
-      "tags": [
-        "Крепкие",
-        "Шоты"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {},
-      "ingredientUnits": {},
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "dirty-nipple",
-      "canonicalSlug": "dirty-nipple",
-      "imageUrl": "assets/data/catalog_images/img_0e75ca69.jpg",
-      "aliases": [
-        "Dirty Nipple"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/vtyqrt1461866508.jpg"
-    },
-    {
       "id": "downshift",
       "name": "Downshift",
       "image": "assets/data/catalog_images/img_9ec04b23.jpg",
@@ -10346,55 +10127,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/u6jrdf1487603173.jpg"
-    },
-    {
-      "id": "dry-martini",
-      "name": "Dry Martini",
-      "image": "assets/data/catalog_images/img_9fdfa305.jpg",
-      "ingredients": [
-        "gin",
-        "vermouth_dry",
-        "olive"
-      ],
-      "description": "Straight: Pour all ingredients into mixing glass with ice cubes. Stir well. Strain in chilled martini cocktail glass. Squeeze oil from lemon peel onto the drink, or garnish with olive.",
-      "preparationSteps": [
-        "Straight: Pour all ingredients into mixing glass with ice cubes",
-        "Stir well",
-        "Strain in chilled martini cocktail glass",
-        "Squeeze oil from lemon peel onto the drink, or garnish with olive."
-      ],
-      "glassType": "Мартини",
-      "tags": [
-        "IBA",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "gin": "1 2/3",
-        "vermouth_dry": "1/3",
-        "olive": "1"
-      },
-      "ingredientUnits": {
-        "gin": "oz",
-        "vermouth_dry": "oz"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "dry-martini",
-      "canonicalSlug": "dry-martini",
-      "imageUrl": "assets/data/catalog_images/img_9fdfa305.jpg",
-      "aliases": [
-        "Dry Martini"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg"
     },
     {
       "id": "dry-rob-roy",
@@ -10611,7 +10343,7 @@
         "bourbon",
         "vanilla_extract",
         "salt",
-        "whipping_cream",
+        "whipped_cream",
         "egg_white",
         "nutmeg"
       ],
@@ -10645,7 +10377,7 @@
         "bourbon": "1/2",
         "vanilla_extract": "1",
         "salt": "1/4",
-        "whipping_cream": "1",
+        "whipped_cream": "1",
         "egg_white": "6",
         "nutmeg": "Ground"
       },
@@ -10656,7 +10388,7 @@
         "bourbon": "cup",
         "vanilla_extract": "tsp",
         "salt": "tsp",
-        "whipping_cream": "cup"
+        "whipped_cream": "cup"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -10924,8 +10656,8 @@
       "ingredients": [
         "brandy",
         "gin",
-        "vermouth_red",
-        "carbonated_water",
+        "rosso_vermouth",
+        "soda_water",
         "lemon"
       ],
       "description": "Pour brandy, gin, and sweet vermouth into a highball glass over ice cubes. Fill with carbonated water. Add the twist of lemon peel, stir, and serve. (Ginger ale may be substituted for carbonated water, if preferred.)",
@@ -10944,12 +10676,12 @@
       "ingredientAmounts": {
         "brandy": "3/4",
         "gin": "3/4",
-        "vermouth_red": "3/4"
+        "rosso_vermouth": "3/4"
       },
       "ingredientUnits": {
         "brandy": "oz",
         "gin": "oz",
-        "vermouth_red": "oz"
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11430,7 +11162,7 @@
       "image": "assets/data/catalog_images/img_bfdc47af.jpg",
       "ingredients": [
         "scotch",
-        "vermouth_red",
+        "rosso_vermouth",
         "bitters",
         "syrup_sugar"
       ],
@@ -11445,13 +11177,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "scotch": "1",
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "bitters": "1",
         "syrup_sugar": "1/4"
       },
       "ingredientUnits": {
         "scotch": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "bitters": "dash",
         "syrup_sugar": "tsp"
       },
@@ -11577,7 +11309,7 @@
       "name": "Freddy Kruger",
       "image": "assets/data/catalog_images/img_a86e62a5.jpg",
       "ingredients": [
-        "j_germeister",
+        "jagermeister",
         "sambuca",
         "vodka"
       ],
@@ -11592,12 +11324,12 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "j_germeister": "1/2",
+        "jagermeister": "1/2",
         "sambuca": "1/2",
         "vodka": "1/2"
       },
       "ingredientUnits": {
-        "j_germeister": "oz",
+        "jagermeister": "oz",
         "sambuca": "oz",
         "vodka": "oz"
       },
@@ -11778,7 +11510,7 @@
       "ingredients": [
         "gin",
         "lillet",
-        "vermouth_red",
+        "rosso_vermouth",
         "orange"
       ],
       "description": "Add ice to a shaker and pour in all ingredients.\nUsing a bar spoon, stir 40 to 45 revolutions or until thoroughly chilled.\nStrain into a martini glass or over ice into a rocks glass. Garnish with orange twist.",
@@ -11796,13 +11528,13 @@
       "ingredientAmounts": {
         "gin": "1",
         "lillet": "1",
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "orange": "1"
       },
       "ingredientUnits": {
         "gin": "oz",
         "lillet": "oz",
-        "vermouth_red": "oz"
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -11827,7 +11559,7 @@
       "name": "Frisco Sour",
       "image": "assets/data/catalog_images/img_72a32e45.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "benedictine",
         "lemon",
         "lime"
@@ -11843,13 +11575,13 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "2",
+        "whisky": "2",
         "benedictine": "1/2",
         "lemon": "Juice of 1/4",
         "lime": "Juice of 1/2"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "benedictine": "oz"
       },
       "optionalIngredients": [],
@@ -12537,7 +12269,7 @@
       "image": "assets/data/catalog_images/img_be993935.jpg",
       "ingredients": [
         "gin",
-        "carbonated_water",
+        "soda_water",
         "powdered_sugar",
         "orange_spiral",
         "lemon"
@@ -12643,7 +12375,7 @@
         "gin",
         "lemon",
         "powdered_sugar",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Shake all ingredients with ice cubes, except soda water. Pour into glass. Top with soda water.",
       "preparationSteps": [
@@ -12847,7 +12579,7 @@
       "image": "assets/data/catalog_images/img_84c1af4c.jpg",
       "ingredients": [
         "gin",
-        "carbonated_water",
+        "soda_water",
         "sugar",
         "mint",
         "orange",
@@ -12866,7 +12598,7 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "gin": "2",
-        "carbonated_water": "1",
+        "soda_water": "1",
         "sugar": "1",
         "mint": "4",
         "orange": "1",
@@ -12874,7 +12606,7 @@
       },
       "ingredientUnits": {
         "gin": "oz",
-        "carbonated_water": "oz",
+        "soda_water": "oz",
         "sugar": "шт",
         "orange": "долька"
       },
@@ -12958,7 +12690,7 @@
         "powdered_sugar",
         "pineapple",
         "strawberries",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Stir gin, grenadine, and powdered sugar with ice and strain into a highball glass over ice cubes. Fill with carbonated water and stir. Decorate with the pineapple chunks and the strawberries and serve.",
       "preparationSteps": [
@@ -13012,7 +12744,7 @@
         "sugar",
         "gin",
         "bitters",
-        "club_soda"
+        "soda_water"
       ],
       "description": "In a shaker half-filled with ice cubes, combine the lime juice, sugar, gin, and bitters. Shake well. Almost fill a colling glass with ice cubes. Stir until the glass is frosted. Strain the mixture in the shaker into the glass and add the club soda.",
       "preparationSteps": [
@@ -13033,14 +12765,14 @@
         "sugar": "1",
         "gin": "2",
         "bitters": "1",
-        "club_soda": "3"
+        "soda_water": "3"
       },
       "ingredientUnits": {
         "lime": "oz",
         "sugar": "tsp",
         "gin": "oz",
         "bitters": "dash",
-        "club_soda": "oz"
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -13988,7 +13720,7 @@
       "image": "assets/data/catalog_images/img_7868842c.jpg",
       "ingredients": [
         "scotch",
-        "vermouth_red",
+        "rosso_vermouth",
         "orange_bitter",
         "olive"
       ],
@@ -14004,13 +13736,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "scotch": "1 1/2",
-        "vermouth_red": "3/4",
+        "rosso_vermouth": "3/4",
         "orange_bitter": "2",
         "olive": "1"
       },
       "ingredientUnits": {
         "scotch": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "orange_bitter": "dash"
       },
       "optionalIngredients": [],
@@ -14030,51 +13762,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/0bkwca1492975553.jpg"
-    },
-    {
-      "id": "holloween-punch",
-      "name": "Holloween Punch",
-      "image": "assets/data/catalog_images/img_b6abbb6f.jpg",
-      "ingredients": [
-        "grape_juice",
-        "carbonated_soft_drink",
-        "sherbet"
-      ],
-      "description": "Take a bunch of grape juice and a bunch of fizzy stuff (club soda, ginger ale, lemonlime, whatever). Mix them in a punch bowl. Take orange sherbet and lime sherbet. Scoop out scoops and float them in the punch, let them melt a little so that a nasty film spreads all over the top of the punch but there are still \"bubbles\" in it in the form of sherbet scoops. Looks horrible, tastes just fine.",
-      "preparationSteps": [
-        "Take a bunch of grape juice and a bunch of fizzy stuff (club soda, ginger ale, lemonlime, whatever)",
-        "Mix them in a punch bowl",
-        "Take orange sherbet and lime sherbet",
-        "Scoop out scoops and float them in the punch, let them melt a little so that a nasty film spreads all over the top of the punch but there are still \"bubbles\" in it in the form of sherbet scoops",
-        "Looks horrible, tastes just fine."
-      ],
-      "glassType": "Рокс",
-      "tags": [
-        "Безалкогольные",
-        "Лонги"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "carbonated_soft_drink": ", orange"
-      },
-      "ingredientUnits": {},
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "holloween-punch",
-      "canonicalSlug": "holloween-punch",
-      "imageUrl": "assets/data/catalog_images/img_b6abbb6f.jpg",
-      "aliases": [
-        "Holloween Punch"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/lfeoe41504888925.jpg"
     },
     {
       "id": "homemade-kahlua",
@@ -14337,7 +14024,7 @@
       "name": "Hot Toddy",
       "image": "assets/data/catalog_images/img_c5d1ebbf.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "honey",
         "cinnamon",
         "lemon",
@@ -14358,14 +14045,14 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "50",
+        "whisky": "50",
         "honey": "15",
         "cinnamon": "1",
         "lemon": "1",
         "cloves": "2"
       },
       "ingredientUnits": {
-        "whiskey": "мл",
+        "whisky": "мл",
         "honey": "мл"
       },
       "optionalIngredients": [],
@@ -14630,10 +14317,10 @@
       "image": "assets/data/catalog_images/img_9af6c2ec.jpg",
       "ingredients": [
         "rum_light",
-        "whiskey",
+        "whisky",
         "lemon",
         "powdered_sugar",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Shake all ingredients (except carbonated water) with ice and strain into a highball glass over two ice cubes. Fill with carbonated water, stir, and serve.",
       "preparationSteps": [
@@ -14648,13 +14335,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "rum_light": "1/2",
-        "whiskey": "1 1/2",
+        "whisky": "1 1/2",
         "lemon": "Juice of 1/2",
         "powdered_sugar": "1"
       },
       "ingredientUnits": {
         "rum_light": "oz",
-        "whiskey": "oz",
+        "whisky": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -15283,12 +14970,12 @@
       "name": "Japanese Fizz",
       "image": "assets/data/catalog_images/img_b392e5b5.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "lemon",
         "powdered_sugar",
         "port",
         "egg_white",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Shake all ingredients (except carbonated water) with ice and strain into a highball glass over two ice cubes. Fill with carbonated water, stir, and serve.",
       "preparationSteps": [
@@ -15302,14 +14989,14 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "1 1/2",
+        "whisky": "1 1/2",
         "lemon": "Juice of 1/2",
         "powdered_sugar": "1",
         "port": "1",
         "egg_white": "1"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "powdered_sugar": "tsp",
         "port": "tbsp"
       },
@@ -15540,7 +15227,7 @@
         "bourbon",
         "lemon",
         "sugar",
-        "club_soda",
+        "soda_water",
         "maraschino_cherry",
         "orange"
       ],
@@ -15562,7 +15249,7 @@
         "bourbon": "2",
         "lemon": "1",
         "sugar": "1",
-        "club_soda": "3",
+        "soda_water": "3",
         "maraschino_cherry": "1",
         "orange": "1"
       },
@@ -15570,7 +15257,7 @@
         "bourbon": "oz",
         "lemon": "oz",
         "sugar": "tsp",
-        "club_soda": "oz"
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -15907,50 +15594,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/uppqty1441247374.jpg"
-    },
-    {
-      "id": "kir",
-      "name": "Kir",
-      "image": "assets/data/catalog_images/img_a42694eb.jpg",
-      "ingredients": [
-        "creme_de_cassis",
-        "champagne"
-      ],
-      "description": "Add the crème de cassis to the bottom of the glass, then top up with wine.",
-      "preparationSteps": [
-        "Add the crème de cassis to the bottom of the glass, then top up with wine."
-      ],
-      "glassType": "Винный бокал",
-      "tags": [
-        "IBA",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "creme_de_cassis": "1",
-        "champagne": "5"
-      },
-      "ingredientUnits": {
-        "creme_de_cassis": "part",
-        "champagne": "part"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "kir",
-      "canonicalSlug": "kir",
-      "imageUrl": "assets/data/catalog_images/img_a42694eb.jpg",
-      "aliases": [
-        "Kir"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/apneom1504370294.jpg"
     },
     {
       "id": "kir-royale",
@@ -16384,7 +16027,7 @@
         "powdered_sugar",
         "lemon",
         "egg_white",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Shake all ingredients (except carbonated water) with ice and strain into a cocktail glass over two ice cubes. Fill with carbonated water, stir, and serve.",
       "preparationSteps": [
@@ -16985,54 +16628,6 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/5jdp5r1487603680.jpg"
     },
     {
-      "id": "limona-corona",
-      "name": "Limona Corona",
-      "image": "assets/data/catalog_images/img_bfe9df39.jpg",
-      "ingredients": [
-        "corona",
-        "bacardi_limon"
-      ],
-      "description": "Open the Corona. Fill the empty space in the neck in the bottle with the rum. The bottle should be filled to the top. Plug the bottle with your thumb or the palm of your hand. Turn the bottle upside-down so the rum and beer mix. Turn the bottle rightside-up, unplug, and drink.",
-      "preparationSteps": [
-        "Open the Corona",
-        "Fill the empty space in the neck in the bottle with the rum",
-        "The bottle should be filled to the top",
-        "Plug the bottle with your thumb or the palm of your hand",
-        "Turn the bottle upside-down so the rum and beer mix",
-        "Turn the bottle rightside-up, unplug, and drink."
-      ],
-      "glassType": "Рокс",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "corona": "1",
-        "bacardi_limon": "1"
-      },
-      "ingredientUnits": {
-        "corona": "шт",
-        "bacardi_limon": "oz"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "limona-corona",
-      "canonicalSlug": "limona-corona",
-      "imageUrl": "assets/data/catalog_images/img_bfe9df39.jpg",
-      "aliases": [
-        "Limona Corona"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/wwqrsw1441248662.jpg"
-    },
-    {
       "id": "loch-lomond",
       "name": "Loch Lomond",
       "image": "assets/data/catalog_images/img_cd09550e.jpg",
@@ -17136,7 +16731,7 @@
       "name": "Lone Tree Cocktail",
       "image": "assets/data/catalog_images/img_9fcad035.jpg",
       "ingredients": [
-        "vermouth_red",
+        "rosso_vermouth",
         "gin"
       ],
       "description": "Stir ingredients with ice, strain into a cocktail glass, and serve.",
@@ -17149,11 +16744,11 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "vermouth_red": "3/4",
+        "rosso_vermouth": "3/4",
         "gin": "1 1/2"
       },
       "ingredientUnits": {
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "gin": "oz"
       },
       "optionalIngredients": [],
@@ -17179,7 +16774,7 @@
       "name": "Lone Tree Cooler",
       "image": "assets/data/catalog_images/img_b5792b0e.jpg",
       "ingredients": [
-        "carbonated_water",
+        "soda_water",
         "gin",
         "vermouth_dry",
         "powdered_sugar",
@@ -17219,63 +16814,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/wsyqry1479298485.jpg"
-    },
-    {
-      "id": "long-island-iced-tea",
-      "name": "Long Island Iced Tea",
-      "image": "assets/data/catalog_images/img_dba7ea78.jpg",
-      "ingredients": [
-        "vodka",
-        "tequila",
-        "rum_light",
-        "gin",
-        "coca_cola",
-        "lemon"
-      ],
-      "description": "Mix all contents in a highball glass and sitr gently. Add dash of Coca-Cola for the coloring and garnish with lemon or lime twist.",
-      "preparationSteps": [
-        "Mix all contents in a highball glass and sitr gently",
-        "Add dash of Coca-Cola for the coloring and garnish with lemon or lime twist."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "IBA",
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "vodka": "1/2",
-        "tequila": "1/2",
-        "rum_light": "1/2",
-        "gin": "1/2",
-        "coca_cola": "1",
-        "lemon": "Twist of"
-      },
-      "ingredientUnits": {
-        "vodka": "oz",
-        "tequila": "oz",
-        "rum_light": "oz",
-        "gin": "oz",
-        "coca_cola": "dash"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "long-island-iced-tea",
-      "canonicalSlug": "long-island-iced-tea",
-      "imageUrl": "assets/data/catalog_images/img_dba7ea78.jpg",
-      "aliases": [
-        "Long Island Iced Tea"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg"
     },
     {
       "id": "long-island-tea",
@@ -17591,7 +17129,7 @@
       "name": "Manhattan",
       "image": "assets/data/catalog_images/img_3954a5d7.jpg",
       "ingredients": [
-        "vermouth_red",
+        "rosso_vermouth",
         "bourbon",
         "angostura_bitter",
         "ice",
@@ -17609,7 +17147,7 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "vermouth_red": "3/4",
+        "rosso_vermouth": "3/4",
         "bourbon": "2 1/2",
         "angostura_bitter": "dash",
         "ice": "2 or 3",
@@ -17617,7 +17155,7 @@
         "orange": "1 twist of"
       },
       "ingredientUnits": {
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "bourbon": "oz"
       },
       "optionalIngredients": [],
@@ -17695,7 +17233,7 @@
       "image": "assets/data/catalog_images/img_376d3271.jpg",
       "ingredients": [
         "gin",
-        "vermouth_red",
+        "rosso_vermouth",
         "maraschino_liqueur",
         "angostura_bitter"
       ],
@@ -17711,13 +17249,13 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "gin": "1 1/2",
-        "vermouth_red": "1 1/2",
+        "rosso_vermouth": "1 1/2",
         "maraschino_liqueur": "1",
         "angostura_bitter": "2"
       },
       "ingredientUnits": {
         "gin": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "maraschino_liqueur": "tsp",
         "angostura_bitter": "dash"
       },
@@ -18355,7 +17893,7 @@
         "mint",
         "lemon",
         "rum_dark",
-        "club_soda",
+        "soda_water",
         "angostura_bitter"
       ],
       "description": "Put mint with lemon juice in a glas, mash the mint with a spoon, ice, rum & fill up with club soda. Top it with Angostura.",
@@ -18373,13 +17911,13 @@
         "mint": "1/2 handful",
         "lemon": "3",
         "rum_dark": "1/8",
-        "club_soda": "1/8",
+        "soda_water": "1/8",
         "angostura_bitter": "8"
       },
       "ingredientUnits": {
         "lemon": "cl",
         "rum_dark": "л",
-        "club_soda": "л",
+        "soda_water": "л",
         "angostura_bitter": "капля"
       },
       "optionalIngredients": [],
@@ -18814,7 +18352,7 @@
       "ingredients": [
         "gin",
         "campari",
-        "vermouth_red"
+        "rosso_vermouth"
       ],
       "description": "Stir into glass over ice, garnish and serve.",
       "preparationSteps": [
@@ -18829,12 +18367,12 @@
       "ingredientAmounts": {
         "gin": "1",
         "campari": "1",
-        "vermouth_red": "1"
+        "rosso_vermouth": "1"
       },
       "ingredientUnits": {
         "gin": "oz",
         "campari": "oz",
-        "vermouth_red": "oz"
+        "rosso_vermouth": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18862,7 +18400,7 @@
         "absolut_citron",
         "grand_marnier",
         "lemon",
-        "club_soda"
+        "soda_water"
       ],
       "description": "Serve in a chilled cocktail glass. Lemon and sugar the rim. Stir and Strain.",
       "preparationSteps": [
@@ -18879,13 +18417,13 @@
         "absolut_citron": "2",
         "grand_marnier": "1",
         "lemon": "2",
-        "club_soda": "1"
+        "soda_water": "1"
       },
       "ingredientUnits": {
         "absolut_citron": "oz",
         "grand_marnier": "oz",
         "lemon": "oz",
-        "club_soda": "oz"
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -18910,7 +18448,7 @@
       "name": "New York Sour",
       "image": "assets/data/catalog_images/img_c032b667.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "lemon",
         "sugar",
         "wine_red",
@@ -18928,13 +18466,13 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "2",
+        "whisky": "2",
         "lemon": "Juice of 1/2",
         "sugar": "1",
         "wine_red": "(Claret)"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -19738,7 +19276,7 @@
       "name": "Owen's Grandmother's Revenge",
       "image": "assets/data/catalog_images/img_1ba9b1ec.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "beer",
         "lemonade",
         "ice"
@@ -19754,13 +19292,13 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "12",
+        "whisky": "12",
         "beer": "12",
         "lemonade": "12",
         "ice": "1"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "beer": "oz",
         "lemonade": "oz",
         "ice": "cup"
@@ -20525,64 +20063,6 @@
         "strTags": null
       },
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/fdk8a31606854815.jpg"
-    },
-    {
-      "id": "planter-s-punch-178368-178368-178368-178368",
-      "name": "Planter’s Punch",
-      "image": "assets/data/catalog_images/img_bf909c48.jpg",
-      "ingredients": [
-        "rum_dark",
-        "juice_orange",
-        "juice_pineapple",
-        "grenadine",
-        "syrup_sugar",
-        "angostura_bitter"
-      ],
-      "description": "Squeeze an orange and strain the juice. Put all the ingredients in a shaker filled with ice and shake for at least 12 seconds. Strain into a highball glass and decorate with a pineapple wedge or fruit of your choice.",
-      "preparationSteps": [
-        "Squeeze an orange and strain the juice",
-        "Put all the ingredients in a shaker filled with ice and shake for at least 12 seconds",
-        "Strain into a highball glass and decorate with a pineapple wedge or fruit of your choice."
-      ],
-      "glassType": "Хайболл",
-      "tags": [
-        "Лонги",
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "rum_dark": "4.5",
-        "juice_orange": "3",
-        "juice_pineapple": "3.5",
-        "grenadine": "1",
-        "syrup_sugar": "1",
-        "angostura_bitter": "4"
-      },
-      "ingredientUnits": {
-        "rum_dark": "cl",
-        "juice_orange": "cl",
-        "juice_pineapple": "cl",
-        "grenadine": "cl",
-        "syrup_sugar": "cl",
-        "angostura_bitter": "капля"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "planter-s-punch-178368-178368-178368-178368",
-      "canonicalSlug": "planter-s-punch-178368-178368-178368-178368",
-      "imageUrl": "assets/data/catalog_images/img_bf909c48.jpg",
-      "aliases": [
-        "Planter’s Punch"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/jn6o251643844541.jpg"
     },
     {
       "id": "popped-cherry",
@@ -22005,7 +21485,7 @@
         "lemon",
         "powdered_sugar",
         "egg",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Shake all ingredients (except carbonated water) with ice and strain into a highball glass over two ice cubes. Fill with carbonated water, stir, and serve.",
       "preparationSteps": [
@@ -22099,7 +21579,7 @@
       "image": "assets/data/catalog_images/img_dcb66bc1.jpg",
       "ingredients": [
         "sugar",
-        "club_soda",
+        "soda_water",
         "lemon",
         "rum_dark",
         "maraschino_cherry",
@@ -22120,7 +21600,7 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "sugar": "1",
-        "club_soda": "3",
+        "soda_water": "3",
         "lemon": "1",
         "rum_dark": "2",
         "maraschino_cherry": "1",
@@ -22128,7 +21608,7 @@
       },
       "ingredientUnits": {
         "sugar": "tsp",
-        "club_soda": "oz",
+        "soda_water": "oz",
         "rum_dark": "oz"
       },
       "optionalIngredients": [],
@@ -23506,7 +22986,7 @@
         "juice_pineapple",
         "juice_orange",
         "grenadine",
-        "cherries"
+        "cherry"
       ],
       "description": "Fill glass with ice and add shots of Bacardi and Malibu. Add splash of pineapple juice and top with orange juice. Add grenadine for color and garnish with cherries.",
       "preparationSteps": [
@@ -24267,7 +23747,7 @@
       "image": "assets/data/catalog_images/img_d93ae11b.jpg",
       "ingredients": [
         "kahlua",
-        "irish_cream",
+        "baileys_irish_cream",
         "amaretto",
         "151_proof_rum",
         "cream"
@@ -24284,14 +23764,14 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "kahlua": "1/2",
-        "irish_cream": "1/2",
+        "baileys_irish_cream": "1/2",
         "amaretto": "1/2",
         "151_proof_rum": "1/2",
         "cream": "1"
       },
       "ingredientUnits": {
         "kahlua": "oz",
-        "irish_cream": "oz",
+        "baileys_irish_cream": "oz",
         "amaretto": "oz",
         "151_proof_rum": "oz",
         "cream": "oz"
@@ -24323,7 +23803,7 @@
         "coriander",
         "cardamom",
         "sugar",
-        "whipping_cream",
+        "whipped_cream",
         "ice"
       ],
       "description": "Place the coffee and spices in the filter cone of your coffee maker. Brew coffee as usual, let it cool. In a tall glass, dissolve 1 or 2 teaspoons of sugar in an ounce of the coffee (it's easier to dissolve than if you put it right over ice). Add 5-6 ice cubes and pour coffee to within about 1 inch of the top of the glass. Rest a spoon on top of the coffee and slowly pour whipping cream into the spoon. This will make the cream float on top of the coffee rather than dispersing into it right away.",
@@ -24839,7 +24319,7 @@
       "image": "assets/data/catalog_images/img_5108c701.jpg",
       "ingredients": [
         "irish_whiskey",
-        "vermouth_red",
+        "rosso_vermouth",
         "chartreuse_green"
       ],
       "description": "Stir over ice. Strain into chilled glass. Cut a wide swath of orange peel, and express the orange oils over the drink. Discard orange twist.",
@@ -24856,12 +24336,12 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "irish_whiskey": "2",
-        "vermouth_red": "1",
+        "rosso_vermouth": "1",
         "chartreuse_green": "1/2"
       },
       "ingredientUnits": {
         "irish_whiskey": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "chartreuse_green": "oz"
       },
       "optionalIngredients": [],
@@ -24890,7 +24370,7 @@
         "gin",
         "lemon",
         "sugar",
-        "club_soda",
+        "soda_water",
         "maraschino_cherry",
         "orange"
       ],
@@ -24912,7 +24392,7 @@
         "gin": "2",
         "lemon": "1",
         "sugar": "1",
-        "club_soda": "3",
+        "soda_water": "3",
         "maraschino_cherry": "1",
         "orange": "1"
       },
@@ -24920,7 +24400,7 @@
         "gin": "oz",
         "lemon": "oz",
         "sugar": "tsp",
-        "club_soda": "oz"
+        "soda_water": "oz"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -25302,7 +24782,7 @@
       "ingredients": [
         "vermouth_dry",
         "creme_de_cassis",
-        "carbonated_water"
+        "soda_water"
       ],
       "description": "Stir vermouth and creme de cassis in a highball glass with ice cubes. Fill with carbonated water, stir again, and serve.",
       "preparationSteps": [
@@ -25394,7 +24874,7 @@
       "image": "assets/data/catalog_images/img_268aaacd.jpg",
       "ingredients": [
         "rum_light",
-        "vermouth_red",
+        "rosso_vermouth",
         "lemon",
         "powdered_sugar",
         "egg_white"
@@ -25410,14 +24890,14 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "rum_light": "1",
-        "vermouth_red": "1/2",
+        "rosso_vermouth": "1/2",
         "lemon": "Juice of 1/2",
         "powdered_sugar": "1",
         "egg_white": "1"
       },
       "ingredientUnits": {
         "rum_light": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -25488,7 +24968,7 @@
       "image": "assets/data/catalog_images/img_7d9a413f.jpg",
       "ingredients": [
         "gin",
-        "vermouth_red",
+        "rosso_vermouth",
         "brandy"
       ],
       "description": "Shake all ingredients with ice, strain into a cocktail glass, and serve.",
@@ -25502,12 +24982,12 @@
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
         "gin": "1 1/2",
-        "vermouth_red": "1/2",
+        "rosso_vermouth": "1/2",
         "brandy": "1/2"
       },
       "ingredientUnits": {
         "gin": "oz",
-        "vermouth_red": "oz",
+        "rosso_vermouth": "oz",
         "brandy": "oz"
       },
       "optionalIngredients": [],
@@ -25909,57 +25389,11 @@
       "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/9koz3f1643821062.jpg"
     },
     {
-      "id": "waikiki-beachcomber",
-      "name": "Waikiki Beachcomber",
-      "image": "assets/data/catalog_images/img_c770a06c.jpg",
-      "ingredients": [
-        "triple_sec",
-        "gin",
-        "juice_pineapple"
-      ],
-      "description": "Shake all ingredients with ice, strain into a cocktail glass, and serve.",
-      "preparationSteps": [
-        "Shake all ingredients with ice, strain into a cocktail glass, and serve."
-      ],
-      "glassType": "Мартини",
-      "tags": [
-        "Средней крепости"
-      ],
-      "ingredientSubstitutions": {},
-      "ingredientAmounts": {
-        "triple_sec": "3/4",
-        "gin": "3/4",
-        "juice_pineapple": "1"
-      },
-      "ingredientUnits": {
-        "triple_sec": "oz",
-        "gin": "oz",
-        "juice_pineapple": "tbsp"
-      },
-      "optionalIngredients": [],
-      "decorationIngredients": [],
-      "isFavorite": false,
-      "source": "seed_json",
-      "sourceId": "waikiki-beachcomber",
-      "canonicalSlug": "waikiki-beachcomber",
-      "imageUrl": "assets/data/catalog_images/img_c770a06c.jpg",
-      "aliases": [
-        "Waikiki Beachcomber"
-      ],
-      "sourceMetadata": {
-        "strCategory": null,
-        "strAlcoholic": null,
-        "strGlass": null,
-        "strTags": null
-      },
-      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/ysuqus1441208583.jpg"
-    },
-    {
       "id": "whiskey-sour",
       "name": "Whiskey Sour",
       "image": "assets/data/catalog_images/img_cd2ec413.jpg",
       "ingredients": [
-        "whiskey",
+        "whisky",
         "lemon",
         "powdered_sugar",
         "cherry"
@@ -25977,13 +25411,13 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "whiskey": "2",
+        "whisky": "2",
         "lemon": "Juice of 1/2",
         "powdered_sugar": "1/2",
         "cherry": "1"
       },
       "ingredientUnits": {
-        "whiskey": "oz",
+        "whisky": "oz",
         "powdered_sugar": "tsp"
       },
       "optionalIngredients": [],
@@ -26606,7 +26040,7 @@
       "name": "Zenmeister",
       "image": "assets/data/catalog_images/img_33583f4b.jpg",
       "ingredients": [
-        "j_germeister",
+        "jagermeister",
         "root_beer"
       ],
       "description": "Mix together and enjoy",
@@ -26620,11 +26054,11 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "j_germeister": "1/2",
+        "jagermeister": "1/2",
         "root_beer": "1/2"
       },
       "ingredientUnits": {
-        "j_germeister": "oz",
+        "jagermeister": "oz",
         "root_beer": "oz"
       },
       "optionalIngredients": [],
@@ -26786,7 +26220,7 @@
       "name": "Zinger",
       "image": "assets/data/catalog_images/img_bbecbb37.jpg",
       "ingredients": [
-        "peachtree_schnapps",
+        "peach_schnapps",
         "surge"
       ],
       "description": "Get a shot glass and pour in three shots of the schnapps. Do the same with the Surge Cola. Then down it like Scheetz would.",
@@ -26802,11 +26236,11 @@
       ],
       "ingredientSubstitutions": {},
       "ingredientAmounts": {
-        "peachtree_schnapps": "4",
+        "peach_schnapps": "4",
         "surge": "4"
       },
       "ingredientUnits": {
-        "peachtree_schnapps": "shot",
+        "peach_schnapps": "shot",
         "surge": "shot"
       },
       "optionalIngredients": [],
