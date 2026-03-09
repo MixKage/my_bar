@@ -16,6 +16,7 @@ class CocktailDetailsPage extends StatefulWidget {
     required this.missingIngredientNames,
     required this.ingredientsById,
     required this.visitorMode,
+    this.powerSavingMode = false,
     required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
     super.key,
@@ -25,6 +26,7 @@ class CocktailDetailsPage extends StatefulWidget {
   final List<String> missingIngredientNames;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final bool powerSavingMode;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
 
@@ -61,6 +63,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
       body: NeonBackground(
         topGlow: const Color(0xFFFF5BB0),
         bottomGlow: const Color(0xFF6A70FF),
+        reduceEffects: widget.powerSavingMode,
         child: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(16, topInset + 8, 16, bottomInset + 24),
           child: Align(
@@ -68,6 +71,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 760),
               child: AnimatedGradientBorder(
+                enabled: !widget.powerSavingMode,
                 borderRadius: BorderRadius.circular(24),
                 borderWidth: 1.8,
                 innerColor: const Color(0xFF1A1D32),
@@ -76,7 +80,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                   Color(0xFF7E8BFF),
                   Color(0xFFFF6FAF),
                 ],
-                glowEffect: true,
+                glowEffect: !widget.powerSavingMode,
                 glow: const AnimatedGradientBorderGlow(opacity: 0.5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

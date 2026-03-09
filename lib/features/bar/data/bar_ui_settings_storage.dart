@@ -7,18 +7,21 @@ class BarUiSettings {
   const BarUiSettings({
     this.visitorMode = false,
     this.barMenuOnlyMode = false,
+    this.powerSavingMode = false,
     this.catalogDataSource,
     this.appLanguage = AppLanguage.system,
   });
 
   final bool visitorMode;
   final bool barMenuOnlyMode;
+  final bool powerSavingMode;
   final CatalogDataSource? catalogDataSource;
   final AppLanguage appLanguage;
 
   BarUiSettings copyWith({
     bool? visitorMode,
     bool? barMenuOnlyMode,
+    bool? powerSavingMode,
     CatalogDataSource? catalogDataSource,
     AppLanguage? appLanguage,
     bool clearCatalogDataSource = false,
@@ -26,6 +29,7 @@ class BarUiSettings {
     return BarUiSettings(
       visitorMode: visitorMode ?? this.visitorMode,
       barMenuOnlyMode: barMenuOnlyMode ?? this.barMenuOnlyMode,
+      powerSavingMode: powerSavingMode ?? this.powerSavingMode,
       catalogDataSource: clearCatalogDataSource
           ? null
           : (catalogDataSource ?? this.catalogDataSource),
@@ -44,6 +48,7 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
 
   static const String visitorModeKey = 'bar_ui_visitor_mode';
   static const String barMenuOnlyModeKey = 'bar_ui_bar_menu_only_mode';
+  static const String powerSavingModeKey = 'bar_ui_power_saving_mode';
   static const String catalogDataSourceKey = 'bar_ui_catalog_data_source';
   static const String appLanguageKey = 'bar_ui_app_language';
 
@@ -55,6 +60,7 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
     return BarUiSettings(
       visitorMode: _preferences.getBool(visitorModeKey) ?? false,
       barMenuOnlyMode: _preferences.getBool(barMenuOnlyModeKey) ?? false,
+      powerSavingMode: _preferences.getBool(powerSavingModeKey) ?? false,
       catalogDataSource: CatalogDataSourceX.tryParse(sourceRaw),
       appLanguage: AppLanguageX.fromStorage(
         _preferences.getString(appLanguageKey),
@@ -67,6 +73,7 @@ class SharedPreferencesBarUiSettingsStorage implements BarUiSettingsStorage {
     final futures = <Future<void>>[
       _preferences.setBool(visitorModeKey, settings.visitorMode),
       _preferences.setBool(barMenuOnlyModeKey, settings.barMenuOnlyMode),
+      _preferences.setBool(powerSavingModeKey, settings.powerSavingMode),
       _preferences.setString(appLanguageKey, settings.appLanguage.storageValue),
     ];
 

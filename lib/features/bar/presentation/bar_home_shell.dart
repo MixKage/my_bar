@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:animated_border_widgets/animated_border_widgets.dart';
+import 'package:battery_plus/battery_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,18 +33,42 @@ class BarHomeShell extends StatefulWidget {
   State<BarHomeShell> createState() => _BarHomeShellState();
 }
 
-class _BarHomeShellState extends State<BarHomeShell> {
+class _BarHomeShellState extends State<BarHomeShell>
+    with WidgetsBindingObserver {
   static const _jsonCodec = BarCatalogJsonCodec();
   static final Uri _developerSiteUri = Uri.parse('https://logion-web.ru/');
+
+  final Battery _battery = Battery();
+  StreamSubscription<BatteryState>? _batteryStateSubscription;
 
   int _currentTab = 0;
   String _appVersionLabel = '...';
   bool _isSideNavigationVisible = true;
+  bool _isSyncingSystemPowerMode = false;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _syncSystemPowerSavingMode();
+    _batteryStateSubscription = _battery.onBatteryStateChanged.listen((_) {
+      _syncSystemPowerSavingMode();
+    });
     _loadAppVersion();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _batteryStateSubscription?.cancel();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _syncSystemPowerSavingMode();
+    }
   }
 
   @override
@@ -51,6 +77,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final topInset = MediaQuery.paddingOf(context).top;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
     final showOnlyBarMenu = state.barMenuOnlyMode;
+    final powerSavingMode = state.effectivePowerSavingMode;
     final useSideNavigation =
         !showOnlyBarMenu && useLandscapeSideNavigation(context);
     final showSideNavigation = useSideNavigation && _isSideNavigationVisible;
@@ -68,6 +95,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
+              powerSavingMode: powerSavingMode,
               bottomOverlayPadding: bottomOverlayPadding,
               onManagePressed: () => _openBarManagement(),
               onEditCocktailPressed: _handleEditCocktail,
@@ -80,6 +108,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               cocktails: state.cocktails,
               selectedIngredientIds: state.selectedIngredientIds,
               allowSelection: !state.visitorMode,
+              powerSavingMode: powerSavingMode,
               bottomOverlayPadding: bottomOverlayPadding,
               onToggleIngredient: (id) => _toggleIngredient(id),
               onEditIngredient: _handleEditIngredient,
@@ -90,6 +119,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
               selectedIngredientIds: state.selectedIngredientIds,
               ingredientsById: state.ingredientsById,
               visitorMode: state.visitorMode,
+              powerSavingMode: powerSavingMode,
               bottomOverlayPadding: bottomOverlayPadding,
               onManagePressed: () => _openBarManagement(),
               onEditCocktailPressed: _handleEditCocktail,
@@ -146,6 +176,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
                                     alignment: Alignment.centerLeft,
                                     child: NeonSideNavigation(
                                       currentIndex: currentIndex,
+                                      powerSavingMode: powerSavingMode,
                                       onChanged: (index) =>
                                           setState(() => _currentTab = index),
                                     ),
@@ -236,6 +267,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
                 alignment: Alignment.bottomCenter,
                 child: NeonBottomNavigation(
                   currentIndex: currentIndex,
+                  powerSavingMode: powerSavingMode,
                   onChanged: (index) => setState(() => _currentTab = index),
                 ),
               ),
@@ -333,6 +365,8 @@ class _BarHomeShellState extends State<BarHomeShell> {
     final cubit = context.read<BarCubit>();
     var visitorMode = cubit.state.visitorMode;
     var barMenuOnlyMode = cubit.state.barMenuOnlyMode;
+    var powerSavingMode = cubit.state.powerSavingMode;
+    final systemPowerSavingMode = cubit.state.systemPowerSavingMode;
     var appLanguage = cubit.state.appLanguage;
 
     final action = await _showAdaptiveActionSheet<_BarSettingsAction>(
@@ -400,6 +434,35 @@ class _BarHomeShellState extends State<BarHomeShell> {
                                 setState(() => _currentTab = 1);
                               }
                             },
+                          ),
+                          SwitchListTile.adaptive(
+                            value: powerSavingMode || systemPowerSavingMode,
+                            activeThumbColor: const Color(0xFF8FA3FF),
+                            title: Text(
+                              context.tr(
+                                'Режим экономии энергии',
+                                'Power saving mode',
+                              ),
+                            ),
+                            subtitle: Text(
+                              systemPowerSavingMode
+                                  ? context.tr(
+                                      'Активирован системным энергосбережением устройства.',
+                                      'Enabled by the device system power saving mode.',
+                                    )
+                                  : context.tr(
+                                      'Упрощает эффекты интерфейса (blur, glow, анимации) для снижения нагрева и расхода батареи.',
+                                      'Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.',
+                                    ),
+                            ),
+                            onChanged: systemPowerSavingMode
+                                ? null
+                                : (value) async {
+                                    setModalState(
+                                      () => powerSavingMode = value,
+                                    );
+                                    await cubit.setPowerSavingMode(value);
+                                  },
                           ),
                           const Divider(height: 16),
                           ListTile(
@@ -747,6 +810,27 @@ class _BarHomeShellState extends State<BarHomeShell> {
     }
   }
 
+  Future<void> _syncSystemPowerSavingMode() async {
+    if (!mounted || _isSyncingSystemPowerMode) {
+      return;
+    }
+    _isSyncingSystemPowerMode = true;
+    try {
+      final enabled = await _battery.isInBatterySaveMode;
+      if (!mounted) {
+        return;
+      }
+      context.read<BarCubit>().setSystemPowerSavingMode(enabled);
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+      context.read<BarCubit>().setSystemPowerSavingMode(false);
+    } finally {
+      _isSyncingSystemPowerMode = false;
+    }
+  }
+
   Future<void> _loadAppVersion() async {
     try {
       final packageInfo = await PackageInfo.fromPlatform();
@@ -842,7 +926,10 @@ class _BarHomeShellState extends State<BarHomeShell> {
 
     final input = await Navigator.of(context).push<AddCocktailInput>(
       MaterialPageRoute<AddCocktailInput>(
-        builder: (_) => CocktailEditorPage.create(ingredients: ingredients),
+        builder: (_) => CocktailEditorPage.create(
+          ingredients: ingredients,
+          powerSavingMode: cubit.state.effectivePowerSavingMode,
+        ),
       ),
     );
     if (input == null || !mounted) {
@@ -883,6 +970,7 @@ class _BarHomeShellState extends State<BarHomeShell> {
         builder: (_) => CocktailEditorPage.edit(
           ingredients: cubit.state.ingredients,
           initialCocktail: cocktail,
+          powerSavingMode: cubit.state.effectivePowerSavingMode,
         ),
       ),
     );

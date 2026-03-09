@@ -20,6 +20,7 @@ class BarMenuPage extends StatefulWidget {
     required this.selectedIngredientIds,
     required this.ingredientsById,
     required this.visitorMode,
+    this.powerSavingMode = false,
     required this.bottomOverlayPadding,
     required this.onManagePressed,
     required this.onEditCocktailPressed,
@@ -31,6 +32,7 @@ class BarMenuPage extends StatefulWidget {
   final Set<String> selectedIngredientIds;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final bool powerSavingMode;
   final double bottomOverlayPadding;
   final VoidCallback onManagePressed;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
@@ -98,6 +100,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
     return NeonBackground(
       topGlow: const Color(0xFFFF5BB0),
       bottomGlow: const Color(0xFF6A70FF),
+      reduceEffects: widget.powerSavingMode,
       child: Column(
         children: <Widget>[
           Padding(
@@ -153,6 +156,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 ),
                 ViewModeSwitch(
                   mode: _viewMode,
+                  powerSavingMode: widget.powerSavingMode,
                   onModeChanged: (mode) {
                     setState(() {
                       _isViewModeOverriddenByUser = true;
@@ -251,6 +255,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                 ? NoCocktailsView(
                     bottomInsetCompensation: widget.bottomOverlayPadding,
                     horizontalPadding: horizontalPadding,
+                    powerSavingMode: widget.powerSavingMode,
                   )
                 : filteredCocktails.isEmpty
                 ? _NoTagMatchesView(horizontalPadding: horizontalPadding)
@@ -266,6 +271,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           horizontalPadding: horizontalPadding,
                           bottomPadding: bottomContentPadding,
                           scrollController: _scrollController,
+                          powerSavingMode: widget.powerSavingMode,
                           selectedCocktailId: _selectedGridCocktailId,
                           onOpenCocktailDetails: (cocktail) =>
                               _openCocktailDetailsPage(
@@ -305,6 +311,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           horizontalPadding: horizontalPadding,
                           bottomPadding: bottomContentPadding,
                           scrollController: _scrollController,
+                          powerSavingMode: widget.powerSavingMode,
                           selectedCocktailId: selectedCocktailId,
                           onOpenCocktailDetails: (cocktail) {
                             setState(
@@ -319,6 +326,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           missingIngredientNames: selectedMissingIngredients,
                           ingredientsById: widget.ingredientsById,
                           visitorMode: widget.visitorMode,
+                          powerSavingMode: widget.powerSavingMode,
                           bottomPadding: bottomContentPadding,
                           scrollController: _detailsScrollController,
                           onEditCocktailPressed: widget.onEditCocktailPressed,
@@ -334,6 +342,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                         missingIngredientsByCocktailId,
                     ingredientsById: widget.ingredientsById,
                     visitorMode: widget.visitorMode,
+                    powerSavingMode: widget.powerSavingMode,
                     horizontalPadding: horizontalPadding,
                     bottomPadding: bottomContentPadding,
                     scrollController: _scrollController,
@@ -476,6 +485,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
           missingIngredientNames: missingIngredients,
           ingredientsById: widget.ingredientsById,
           visitorMode: widget.visitorMode,
+          powerSavingMode: widget.powerSavingMode,
           onEditCocktailPressed: widget.onEditCocktailPressed,
           onToggleFavoritePressed: widget.onToggleFavoritePressed,
         ),
@@ -491,6 +501,7 @@ class CocktailGrid extends StatelessWidget {
     required this.horizontalPadding,
     required this.bottomPadding,
     required this.scrollController,
+    required this.powerSavingMode,
     required this.onOpenCocktailDetails,
     required this.onToggleFavoritePressed,
     this.selectedCocktailId,
@@ -502,6 +513,7 @@ class CocktailGrid extends StatelessWidget {
   final double horizontalPadding;
   final double bottomPadding;
   final ScrollController scrollController;
+  final bool powerSavingMode;
   final ValueChanged<Cocktail> onOpenCocktailDetails;
   final ValueChanged<String> onToggleFavoritePressed;
   final String? selectedCocktailId;
@@ -535,6 +547,7 @@ class CocktailGrid extends StatelessWidget {
                   missingIngredientsByCocktailId[cocktail.id] ??
                   const <String>[];
               return AnimatedGradientBorder(
+                enabled: !powerSavingMode,
                 borderRadius: BorderRadius.circular(20),
                 borderWidth: isSelected ? 2.0 : 1.5,
                 innerColor: const Color(0xFF191B2E),
@@ -543,7 +556,7 @@ class CocktailGrid extends StatelessWidget {
                   Color(0xFF7F8FFF),
                   Color(0xFFFF7EC8),
                 ],
-                glowEffect: true,
+                glowEffect: !powerSavingMode,
                 glow: AnimatedGradientBorderGlow(
                   opacity: isSelected ? 0.58 : 0.35,
                   outerBlurSigma: 14,
@@ -707,6 +720,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
     required this.missingIngredientNames,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.powerSavingMode,
     required this.bottomPadding,
     required this.scrollController,
     required this.onEditCocktailPressed,
@@ -717,6 +731,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
   final List<String> missingIngredientNames;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final bool powerSavingMode;
   final double bottomPadding;
   final ScrollController scrollController;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
@@ -726,7 +741,10 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedCocktail = cocktail;
     if (selectedCocktail == null) {
-      return _TabletEmptyInstructionPanel(bottomPadding: bottomPadding);
+      return _TabletEmptyInstructionPanel(
+        bottomPadding: bottomPadding,
+        powerSavingMode: powerSavingMode,
+      );
     }
 
     return NeonScrollbar(
@@ -735,6 +753,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
         controller: scrollController,
         padding: EdgeInsets.fromLTRB(0, 6, 0, bottomPadding),
         child: AnimatedGradientBorder(
+          enabled: !powerSavingMode,
           borderRadius: BorderRadius.circular(24),
           borderWidth: 1.8,
           innerColor: const Color(0xFF1A1D32),
@@ -743,7 +762,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
             Color(0xFF7E8BFF),
             Color(0xFFFF6FAF),
           ],
-          glowEffect: true,
+          glowEffect: !powerSavingMode,
           glow: const AnimatedGradientBorderGlow(opacity: 0.56),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1008,15 +1027,20 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
 }
 
 class _TabletEmptyInstructionPanel extends StatelessWidget {
-  const _TabletEmptyInstructionPanel({required this.bottomPadding});
+  const _TabletEmptyInstructionPanel({
+    required this.bottomPadding,
+    required this.powerSavingMode,
+  });
 
   final double bottomPadding;
+  final bool powerSavingMode;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 6, 0, bottomPadding),
       child: AnimatedGradientBorder(
+        enabled: !powerSavingMode,
         borderRadius: BorderRadius.circular(24),
         borderWidth: 1.2,
         innerColor: const Color(0xFF1A1D32),
@@ -1056,6 +1080,7 @@ class CocktailList extends StatelessWidget {
     required this.missingIngredientsByCocktailId,
     required this.ingredientsById,
     required this.visitorMode,
+    required this.powerSavingMode,
     required this.horizontalPadding,
     required this.bottomPadding,
     required this.scrollController,
@@ -1070,6 +1095,7 @@ class CocktailList extends StatelessWidget {
   final Map<String, List<String>> missingIngredientsByCocktailId;
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
+  final bool powerSavingMode;
   final double horizontalPadding;
   final double bottomPadding;
   final ScrollController scrollController;
@@ -1100,7 +1126,7 @@ class CocktailList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: AnimatedGradientBorder(
-              enabled: isExpanded,
+              enabled: !powerSavingMode && isExpanded,
               showBorderWhenDisabled: true,
               disabledBorderColor: const Color(0xFF444B72),
               disabledBorderWidth: 1.1,
@@ -1112,13 +1138,15 @@ class CocktailList extends StatelessWidget {
                 Color(0xFF7E8BFF),
                 Color(0xFFFF6FAF),
               ],
-              glowEffect: isExpanded,
+              glowEffect: !powerSavingMode && isExpanded,
               glow: const AnimatedGradientBorderGlow(opacity: 0.58),
               child: InkWell(
                 borderRadius: BorderRadius.circular(24),
                 onTap: () => onToggleExpanded(cocktail.id),
                 child: AnimatedSize(
-                  duration: const Duration(milliseconds: 260),
+                  duration: powerSavingMode
+                      ? Duration.zero
+                      : const Duration(milliseconds: 260),
                   curve: Curves.easeOutCubic,
                   child: Column(
                     children: <Widget>[
@@ -1583,15 +1611,18 @@ class ViewModeSwitch extends StatelessWidget {
   const ViewModeSwitch({
     required this.mode,
     required this.onModeChanged,
+    this.powerSavingMode = false,
     super.key,
   });
 
   final MenuViewMode mode;
   final ValueChanged<MenuViewMode> onModeChanged;
+  final bool powerSavingMode;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedGradientBorder(
+      enabled: !powerSavingMode,
       borderRadius: BorderRadius.circular(14),
       borderWidth: 1.2,
       innerColor: const Color(0xFF1B1E32),
@@ -1600,7 +1631,7 @@ class ViewModeSwitch extends StatelessWidget {
         Color(0xFF7C98FF),
         Color(0xFFFF77BC),
       ],
-      glowEffect: true,
+      glowEffect: !powerSavingMode,
       glow: const AnimatedGradientBorderGlow(opacity: 0.38),
       child: Row(
         children: <Widget>[
@@ -1708,11 +1739,13 @@ class NoCocktailsView extends StatelessWidget {
   const NoCocktailsView({
     required this.bottomInsetCompensation,
     required this.horizontalPadding,
+    this.powerSavingMode = false,
     super.key,
   });
 
   final double bottomInsetCompensation;
   final double horizontalPadding;
+  final bool powerSavingMode;
 
   @override
   Widget build(BuildContext context) {
@@ -1722,6 +1755,7 @@ class NoCocktailsView extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding + 8),
           child: AnimatedGradientBorder(
+            enabled: !powerSavingMode,
             borderRadius: BorderRadius.circular(24),
             borderWidth: 1.4,
             innerColor: const Color(0xFF191C2F),
@@ -1730,7 +1764,7 @@ class NoCocktailsView extends StatelessWidget {
               Color(0xFF748BFF),
               Color(0xFFFD7DB8),
             ],
-            glowEffect: true,
+            glowEffect: !powerSavingMode,
             glow: const AnimatedGradientBorderGlow(opacity: 0.4),
             child: Padding(
               padding: const EdgeInsets.all(22),

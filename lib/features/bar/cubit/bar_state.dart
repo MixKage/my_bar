@@ -22,6 +22,8 @@ class BarState {
     this.externalSourceAvailable = false,
     this.visitorMode = false,
     this.barMenuOnlyMode = false,
+    this.powerSavingMode = false,
+    this.systemPowerSavingMode = false,
     this.appLanguage = AppLanguage.system,
   }) : ingredients = List<Ingredient>.unmodifiable(ingredients),
        cocktails = List<Cocktail>.unmodifiable(cocktails),
@@ -43,7 +45,11 @@ class BarState {
   final bool externalSourceAvailable;
   final bool visitorMode;
   final bool barMenuOnlyMode;
+  final bool powerSavingMode;
+  final bool systemPowerSavingMode;
   final AppLanguage appLanguage;
+
+  bool get effectivePowerSavingMode => powerSavingMode || systemPowerSavingMode;
 
   Map<String, Ingredient> get ingredientsById {
     return <String, Ingredient>{
@@ -95,6 +101,8 @@ class BarState {
     bool? externalSourceAvailable,
     bool? visitorMode,
     bool? barMenuOnlyMode,
+    bool? powerSavingMode,
+    bool? systemPowerSavingMode,
     AppLanguage? appLanguage,
   }) {
     return BarState(
@@ -111,6 +119,9 @@ class BarState {
           externalSourceAvailable ?? this.externalSourceAvailable,
       visitorMode: visitorMode ?? this.visitorMode,
       barMenuOnlyMode: barMenuOnlyMode ?? this.barMenuOnlyMode,
+      powerSavingMode: powerSavingMode ?? this.powerSavingMode,
+      systemPowerSavingMode:
+          systemPowerSavingMode ?? this.systemPowerSavingMode,
       appLanguage: appLanguage ?? this.appLanguage,
     );
   }
@@ -129,6 +140,8 @@ class BarState {
             other.externalSourceAvailable == externalSourceAvailable &&
             other.visitorMode == visitorMode &&
             other.barMenuOnlyMode == barMenuOnlyMode &&
+            other.powerSavingMode == powerSavingMode &&
+            other.systemPowerSavingMode == systemPowerSavingMode &&
             other.appLanguage == appLanguage;
   }
 
@@ -146,6 +159,8 @@ class BarState {
       externalSourceAvailable,
       visitorMode,
       barMenuOnlyMode,
+      powerSavingMode,
+      systemPowerSavingMode,
       appLanguage,
     );
   }

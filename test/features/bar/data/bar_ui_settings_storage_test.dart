@@ -14,6 +14,7 @@ void main() {
       const BarUiSettings(
         visitorMode: true,
         barMenuOnlyMode: true,
+        powerSavingMode: true,
         catalogDataSource: CatalogDataSource.theCocktailDb,
         appLanguage: AppLanguage.english,
       ),
@@ -22,6 +23,7 @@ void main() {
     final settings = storage.readSettings();
     expect(settings.visitorMode, isTrue);
     expect(settings.barMenuOnlyMode, isTrue);
+    expect(settings.powerSavingMode, isTrue);
     expect(settings.catalogDataSource, CatalogDataSource.theCocktailDb);
     expect(settings.appLanguage, AppLanguage.english);
   });
@@ -37,6 +39,7 @@ void main() {
 
     final settings = storage.readSettings();
     expect(settings.catalogDataSource, isNull);
+    expect(settings.powerSavingMode, isFalse);
     expect(settings.appLanguage, AppLanguage.system);
   });
 }

@@ -15,14 +15,49 @@ class NeonBottomNavigation extends StatelessWidget {
   const NeonBottomNavigation({
     required this.currentIndex,
     required this.onChanged,
+    this.powerSavingMode = false,
     super.key,
   });
 
   final int currentIndex;
   final ValueChanged<int> onChanged;
+  final bool powerSavingMode;
 
   @override
   Widget build(BuildContext context) {
+    final borderChild = AnimatedGradientBorder(
+      enabled: !powerSavingMode,
+      borderRadius: BorderRadius.circular(24),
+      borderWidth: 1.5,
+      innerColor: const Color(0xCC111425),
+      colors: const <Color>[
+        Color(0xFFAE7BFF),
+        Color(0xFF63CBFF),
+        Color(0xFFAE7BFF),
+      ],
+      glowEffect: !powerSavingMode,
+      glow: const AnimatedGradientBorderGlow(opacity: 0.45),
+      child: SizedBox(
+        height: kNeonBottomNavigationHeight,
+        child: Row(
+          children: <Widget>[
+            _NavItem(
+              selected: currentIndex == 0,
+              icon: Icons.liquor_rounded,
+              title: context.tr('Ингридиенты', 'Ingredients'),
+              onTap: () => onChanged(0),
+            ),
+            _NavItem(
+              selected: currentIndex == 1,
+              icon: Icons.local_bar_rounded,
+              title: context.tr('Барная карта', 'Bar Menu'),
+              onTap: () => onChanged(1),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Padding(
       padding: EdgeInsets.fromLTRB(
         kNeonBottomNavigationHorizontalPadding,
@@ -32,40 +67,12 @@ class NeonBottomNavigation extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-          child: AnimatedGradientBorder(
-            borderRadius: BorderRadius.circular(24),
-            borderWidth: 1.5,
-            innerColor: const Color(0xCC111425),
-            colors: const <Color>[
-              Color(0xFFAE7BFF),
-              Color(0xFF63CBFF),
-              Color(0xFFAE7BFF),
-            ],
-            glowEffect: true,
-            glow: const AnimatedGradientBorderGlow(opacity: 0.45),
-            child: SizedBox(
-              height: kNeonBottomNavigationHeight,
-              child: Row(
-                children: <Widget>[
-                  _NavItem(
-                    selected: currentIndex == 0,
-                    icon: Icons.liquor_rounded,
-                    title: context.tr('Ингридиенты', 'Ingredients'),
-                    onTap: () => onChanged(0),
-                  ),
-                  _NavItem(
-                    selected: currentIndex == 1,
-                    icon: Icons.local_bar_rounded,
-                    title: context.tr('Барная карта', 'Bar Menu'),
-                    onTap: () => onChanged(1),
-                  ),
-                ],
+        child: powerSavingMode
+            ? borderChild
+            : BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                child: borderChild,
               ),
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -75,57 +82,64 @@ class NeonSideNavigation extends StatelessWidget {
   const NeonSideNavigation({
     required this.currentIndex,
     required this.onChanged,
+    this.powerSavingMode = false,
     super.key,
   });
 
   final int currentIndex;
   final ValueChanged<int> onChanged;
+  final bool powerSavingMode;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    final borderChild = AnimatedGradientBorder(
+      enabled: !powerSavingMode,
       borderRadius: BorderRadius.circular(24),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-        child: AnimatedGradientBorder(
-          borderRadius: BorderRadius.circular(24),
-          borderWidth: 1.5,
-          innerColor: const Color(0xCC111425),
-          colors: const <Color>[
-            Color(0xFFAE7BFF),
-            Color(0xFF63CBFF),
-            Color(0xFFAE7BFF),
-          ],
-          glowEffect: true,
-          glow: const AnimatedGradientBorderGlow(opacity: 0.45),
-          child: SizedBox(
-            width: kNeonSideNavigationWidth,
-            height: kNeonSideNavigationPanelHeight,
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: _NavItem(
-                    selected: currentIndex == 0,
-                    icon: Icons.liquor_rounded,
-                    title: context.tr('Ингридиенты', 'Ingredients'),
-                    onTap: () => onChanged(0),
-                    axis: Axis.vertical,
-                  ),
-                ),
-                Expanded(
-                  child: _NavItem(
-                    selected: currentIndex == 1,
-                    icon: Icons.local_bar_rounded,
-                    title: context.tr('Барная карта', 'Bar Menu'),
-                    onTap: () => onChanged(1),
-                    axis: Axis.vertical,
-                  ),
-                ),
-              ],
+      borderWidth: 1.5,
+      innerColor: const Color(0xCC111425),
+      colors: const <Color>[
+        Color(0xFFAE7BFF),
+        Color(0xFF63CBFF),
+        Color(0xFFAE7BFF),
+      ],
+      glowEffect: !powerSavingMode,
+      glow: const AnimatedGradientBorderGlow(opacity: 0.45),
+      child: SizedBox(
+        width: kNeonSideNavigationWidth,
+        height: kNeonSideNavigationPanelHeight,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: _NavItem(
+                selected: currentIndex == 0,
+                icon: Icons.liquor_rounded,
+                title: context.tr('Ингридиенты', 'Ingredients'),
+                onTap: () => onChanged(0),
+                axis: Axis.vertical,
+              ),
             ),
-          ),
+            Expanded(
+              child: _NavItem(
+                selected: currentIndex == 1,
+                icon: Icons.local_bar_rounded,
+                title: context.tr('Барная карта', 'Bar Menu'),
+                onTap: () => onChanged(1),
+                axis: Axis.vertical,
+              ),
+            ),
+          ],
         ),
       ),
+    );
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: powerSavingMode
+          ? borderChild
+          : BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: borderChild,
+            ),
     );
   }
 }

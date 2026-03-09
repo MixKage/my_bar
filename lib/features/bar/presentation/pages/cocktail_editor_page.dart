@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/localization/app_localization.dart';
+import '../../cubit/bar_cubit.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
 import '../../domain/models/cocktail_tags.dart';
@@ -14,17 +16,22 @@ import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
 
 class CocktailEditorPage extends StatefulWidget {
-  const CocktailEditorPage.create({required this.ingredients, super.key})
-    : initialCocktail = null;
+  const CocktailEditorPage.create({
+    required this.ingredients,
+    this.powerSavingMode = false,
+    super.key,
+  }) : initialCocktail = null;
 
   const CocktailEditorPage.edit({
     required this.ingredients,
     required this.initialCocktail,
+    this.powerSavingMode = false,
     super.key,
   });
 
   final List<Ingredient> ingredients;
   final Cocktail? initialCocktail;
+  final bool powerSavingMode;
 
   bool get isEditing => initialCocktail != null;
 
@@ -289,22 +296,24 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                       ),
                     ),
                   ),
-                  Positioned(
-                    left: -20,
-                    top: -18,
-                    child: _AppBarGlowOrb(
-                      size: 120,
-                      color: const Color(0xFFB36BFF).withValues(alpha: 0.35),
+                  if (!widget.powerSavingMode)
+                    Positioned(
+                      left: -20,
+                      top: -18,
+                      child: _AppBarGlowOrb(
+                        size: 120,
+                        color: const Color(0xFFB36BFF).withValues(alpha: 0.35),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    right: -14,
-                    top: -12,
-                    child: _AppBarGlowOrb(
-                      size: 100,
-                      color: const Color(0xFF53C9FF).withValues(alpha: 0.3),
+                  if (!widget.powerSavingMode)
+                    Positioned(
+                      right: -14,
+                      top: -12,
+                      child: _AppBarGlowOrb(
+                        size: 100,
+                        color: const Color(0xFF53C9FF).withValues(alpha: 0.3),
+                      ),
                     ),
-                  ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -333,6 +342,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
             child: NeonBackground(
               topGlow: const Color(0xFFFF5BB0),
               bottomGlow: const Color(0xFF6A70FF),
+              reduceEffects: widget.powerSavingMode,
               child: SafeArea(
                 top: false,
                 child: LayoutBuilder(
@@ -1597,22 +1607,35 @@ class _FrostedPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BarCubit? cubit;
+    try {
+      cubit = context.read<BarCubit>();
+    } catch (_) {
+      cubit = null;
+    }
+    final shouldReduceEffects = cubit?.state.effectivePowerSavingMode ?? false;
+    final decoratedChild = DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        color: shouldReduceEffects
+            ? const Color(0xFF161A2E)
+            : const Color(0x7A111425),
+        border: Border.all(color: borderColor ?? const Color(0x55758ABF)),
+      ),
+      child: Padding(padding: padding, child: child),
+    );
+
     return Container(
       margin: margin,
       constraints: constraints,
       child: ClipRRect(
         borderRadius: borderRadius,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              color: const Color(0x7A111425),
-              border: Border.all(color: borderColor ?? const Color(0x55758ABF)),
-            ),
-            child: Padding(padding: padding, child: child),
-          ),
-        ),
+        child: shouldReduceEffects
+            ? decoratedChild
+            : BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
+                child: decoratedChild,
+              ),
       ),
     );
   }

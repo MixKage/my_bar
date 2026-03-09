@@ -32,6 +32,7 @@ class RawBarPage extends StatefulWidget {
     required this.cocktails,
     required this.selectedIngredientIds,
     required this.allowSelection,
+    this.powerSavingMode = false,
     required this.bottomOverlayPadding,
     required this.onToggleIngredient,
     required this.onEditIngredient,
@@ -43,6 +44,7 @@ class RawBarPage extends StatefulWidget {
   final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
   final bool allowSelection;
+  final bool powerSavingMode;
   final double bottomOverlayPadding;
   final ValueChanged<String> onToggleIngredient;
   final Future<void> Function(Ingredient ingredient) onEditIngredient;
@@ -117,12 +119,15 @@ class _RawBarPageState extends State<RawBarPage> {
     return NeonBackground(
       topGlow: const Color(0xFF7D4BFF),
       bottomGlow: const Color(0xFF2AA6FF),
+      reduceEffects: widget.powerSavingMode,
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           TweenAnimationBuilder<double>(
             tween: Tween<double>(end: _searchPinProgress),
-            duration: const Duration(milliseconds: 180),
+            duration: widget.powerSavingMode
+                ? Duration.zero
+                : const Duration(milliseconds: 180),
             curve: Curves.easeOut,
             builder: (context, visibility, child) {
               return NeonScrollbar(
@@ -240,6 +245,7 @@ class _RawBarPageState extends State<RawBarPage> {
                       ),
                       child: _IngredientSearchField(
                         controller: _searchController,
+                        powerSavingMode: widget.powerSavingMode,
                         onChanged: (value) =>
                             setState(() => _query = value.trim()),
                       ),
@@ -286,6 +292,7 @@ class _RawBarPageState extends State<RawBarPage> {
                                     const <Cocktail>[],
                                 selected: selected,
                                 allowSelection: widget.allowSelection,
+                                powerSavingMode: widget.powerSavingMode,
                                 onTap: widget.allowSelection
                                     ? () => widget.onToggleIngredient(
                                         ingredient.id,
@@ -305,7 +312,9 @@ class _RawBarPageState extends State<RawBarPage> {
           IgnorePointer(
             child: AnimatedOpacity(
               opacity: _isSearchPinned ? 1 : 0,
-              duration: const Duration(milliseconds: 180),
+              duration: widget.powerSavingMode
+                  ? Duration.zero
+                  : const Duration(milliseconds: 180),
               curve: Curves.easeOut,
               child: Align(
                 alignment: Alignment.topCenter,
@@ -486,10 +495,12 @@ class _RawBarPageState extends State<RawBarPage> {
 class _IngredientSearchField extends StatelessWidget {
   const _IngredientSearchField({
     required this.controller,
+    required this.powerSavingMode,
     required this.onChanged,
   });
 
   final TextEditingController controller;
+  final bool powerSavingMode;
   final ValueChanged<String> onChanged;
 
   @override
@@ -497,6 +508,7 @@ class _IngredientSearchField extends StatelessWidget {
     return SizedBox(
       height: _RawSearchHeaderDelegate.searchFieldHeight,
       child: AnimatedGradientBorder(
+        enabled: !powerSavingMode,
         colors: const <Color>[
           Color(0xFF6D5CFF),
           Color(0xFF52C7FF),
@@ -505,7 +517,7 @@ class _IngredientSearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         borderWidth: 1.5,
         innerColor: const Color(0xFF111321),
-        glowEffect: true,
+        glowEffect: !powerSavingMode,
         glow: const AnimatedGradientBorderGlow(opacity: 0.6),
         child: Center(
           child: TextField(
@@ -576,6 +588,7 @@ class IngredientCard extends StatelessWidget {
     required this.cocktails,
     required this.selected,
     required this.allowSelection,
+    this.powerSavingMode = false,
     required this.onTap,
     required this.onLongPress,
     super.key,
@@ -585,19 +598,22 @@ class IngredientCard extends StatelessWidget {
   final List<Cocktail> cocktails;
   final bool selected;
   final bool allowSelection;
+  final bool powerSavingMode;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedScale(
-      duration: const Duration(milliseconds: 180),
-      scale: selected ? 1.0 : 0.985,
+      duration: powerSavingMode
+          ? Duration.zero
+          : const Duration(milliseconds: 180),
+      scale: powerSavingMode ? 1.0 : (selected ? 1.0 : 0.985),
       child: AnimatedGradientBorder(
-        enabled: selected,
+        enabled: !powerSavingMode && selected,
         showBorderWhenDisabled: true,
         disabledBorderColor: const Color(0xFF354067),
-        glowEffect: selected,
+        glowEffect: !powerSavingMode && selected,
         glow: const AnimatedGradientBorderGlow(opacity: 0.5),
         borderRadius: BorderRadius.circular(22),
         borderWidth: 1.7,
@@ -690,7 +706,9 @@ class IngredientCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 220),
+                      duration: powerSavingMode
+                          ? Duration.zero
+                          : const Duration(milliseconds: 220),
                       width: 30,
                       height: 30,
                       decoration: BoxDecoration(

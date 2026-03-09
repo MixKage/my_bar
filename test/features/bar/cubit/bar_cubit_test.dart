@@ -203,7 +203,7 @@ void main() {
     expect(cubit.state.selectedIngredientIds, isEmpty);
   });
 
-  test('persists visitor and bar menu only modes', () async {
+  test('persists visitor, bar menu only and power saving modes', () async {
     final settingsStorage = InMemoryBarUiSettingsStorage();
     final cubit = await _createCubit(
       templateCatalog: _templateCatalog,
@@ -212,10 +212,12 @@ void main() {
 
     await cubit.setVisitorMode(true);
     await cubit.setBarMenuOnlyMode(true);
+    await cubit.setPowerSavingMode(true);
 
     final persisted = settingsStorage.readSettings();
     expect(persisted.visitorMode, isTrue);
     expect(persisted.barMenuOnlyMode, isTrue);
+    expect(persisted.powerSavingMode, isTrue);
   });
 
   test('persists selected app language', () async {

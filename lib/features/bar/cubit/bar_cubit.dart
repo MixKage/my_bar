@@ -46,6 +46,7 @@ class BarCubit extends Cubit<BarState> {
              externalSourceAvailable: initialSnapshot.externalSourceAvailable,
              visitorMode: settings.visitorMode,
              barMenuOnlyMode: settings.barMenuOnlyMode,
+             powerSavingMode: settings.powerSavingMode,
              appLanguage: settings.appLanguage,
            );
          })(),
@@ -455,6 +456,19 @@ class BarCubit extends Cubit<BarState> {
     await _persistUiState(nextState);
   }
 
+  Future<void> setPowerSavingMode(bool enabled) async {
+    final nextState = state.copyWith(powerSavingMode: enabled);
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
+  void setSystemPowerSavingMode(bool enabled) {
+    if (state.systemPowerSavingMode == enabled) {
+      return;
+    }
+    emit(state.copyWith(systemPowerSavingMode: enabled));
+  }
+
   Future<void> setCatalogDataSource(CatalogDataSource source) async {
     if (source == CatalogDataSource.theCocktailDb &&
         !_externalProviderSelector.isTheCocktailDbAvailable) {
@@ -524,6 +538,7 @@ class BarCubit extends Cubit<BarState> {
         BarUiSettings(
           visitorMode: currentState.visitorMode,
           barMenuOnlyMode: currentState.barMenuOnlyMode,
+          powerSavingMode: currentState.powerSavingMode,
           catalogDataSource: _selectedCatalogDataSource,
           appLanguage: currentState.appLanguage,
         ),

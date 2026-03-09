@@ -5,12 +5,14 @@ class NeonBackground extends StatelessWidget {
     required this.child,
     required this.topGlow,
     required this.bottomGlow,
+    this.reduceEffects = false,
     super.key,
   });
 
   final Widget child;
   final Color topGlow;
   final Color bottomGlow;
+  final bool reduceEffects;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,14 @@ class NeonBackground extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(top: -80, left: -10, child: _GlowBlob(color: topGlow)),
-        Positioned(right: -50, bottom: 40, child: _GlowBlob(color: bottomGlow)),
+        if (!reduceEffects)
+          Positioned(top: -80, left: -10, child: _GlowBlob(color: topGlow)),
+        if (!reduceEffects)
+          Positioned(
+            right: -50,
+            bottom: 40,
+            child: _GlowBlob(color: bottomGlow),
+          ),
         child,
       ],
     );
