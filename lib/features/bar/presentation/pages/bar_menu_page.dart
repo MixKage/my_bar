@@ -1321,6 +1321,7 @@ class CocktailList extends StatelessWidget {
               missingIngredientsByCocktailId[cocktail.id] ?? const <String>[];
 
           return Padding(
+            key: ValueKey<String>('cocktail_list_item_${cocktail.id}'),
             padding: const EdgeInsets.only(bottom: 12),
             child: AnimatedGradientBorder(
               enabled: !powerSavingMode && isExpanded,
@@ -1340,322 +1341,305 @@ class CocktailList extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(24),
                 onTap: () => onToggleExpanded(cocktail.id),
-                child: AnimatedSize(
-                  duration: powerSavingMode
-                      ? Duration.zero
-                      : const Duration(milliseconds: 260),
-                  curve: Curves.easeOutCubic,
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 12, 10),
-                        child: Row(
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(14),
-                              child: SizedBox(
-                                width: 76,
-                                height: 76,
-                                child: BarNetworkImage(
-                                  imageUrl: cocktail.image,
-                                  loadingColor: const Color(0xFFE6A8E3),
-                                  loadingBackgroundColor: const Color(
-                                    0xFF2C2F4F,
-                                  ),
-                                  errorWidget: const ColoredBox(
-                                    color: Color(0xFF2C2F4F),
-                                    child: Icon(
-                                      Icons.local_drink_rounded,
-                                      color: Color(0xFFB4BEEF),
-                                    ),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 12, 10),
+                      child: Row(
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: SizedBox(
+                              width: 76,
+                              height: 76,
+                              child: BarNetworkImage(
+                                imageUrl: cocktail.image,
+                                loadingColor: const Color(0xFFE6A8E3),
+                                loadingBackgroundColor: const Color(0xFF2C2F4F),
+                                errorWidget: const ColoredBox(
+                                  color: Color(0xFF2C2F4F),
+                                  child: Icon(
+                                    Icons.local_drink_rounded,
+                                    color: Color(0xFFB4BEEF),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    cocktail.name,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  cocktail.name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w700,
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    cocktail.description,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: Color(0xFFC5CCE5),
-                                      fontSize: 13,
-                                    ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  cocktail.description,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: Color(0xFFC5CCE5),
+                                    fontSize: 13,
                                   ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    children: <Widget>[
-                                      CocktailGlassIcon(
-                                        glassType: cocktail.glassType,
-                                        size: 14,
-                                        color: const Color(0xFFAEB9E8),
+                                ),
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: <Widget>[
+                                    CocktailGlassIcon(
+                                      glassType: cocktail.glassType,
+                                      size: 14,
+                                      color: const Color(0xFFAEB9E8),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Expanded(
+                                      child: Text(
+                                        context.cocktailGlassTypeLabel(
+                                          cocktail.glassType,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          color: Color(0xFFAEB9E8),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
-                                      const SizedBox(width: 6),
-                                      Expanded(
-                                        child: Text(
-                                          context.cocktailGlassTypeLabel(
-                                            cocktail.glassType,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                                Wrap(
+                                  spacing: 6,
+                                  runSpacing: 6,
+                                  children: cocktail.tags
+                                      .map((tag) => _TagPill(tag: tag))
+                                      .toList(growable: false),
+                                ),
+                                const SizedBox(height: 6),
+                                _AvailabilityHint(
+                                  missingIngredientNames: missingIngredients,
+                                ),
+                              ],
+                            ),
+                          ),
+                          _PressableFavoriteButton(
+                            tooltip: cocktail.isFavorite
+                                ? context.tr(
+                                    'Убрать из избранного',
+                                    'Remove from favorites',
+                                  )
+                                : context.tr('В избранное', 'Add to favorites'),
+                            isFavorite: cocktail.isFavorite,
+                            size: 34,
+                            inactiveBackgroundColor: const Color(0x22323B60),
+                            activeBackgroundColor: const Color(0x663F3628),
+                            inactiveIconColor: const Color(0xFFB8C4EE),
+                            activeIconColor: const Color(0xFFFFC88A),
+                            onPressed: () =>
+                                onToggleFavoritePressed(cocktail.id),
+                          ),
+                          Icon(
+                            isExpanded
+                                ? Icons.keyboard_arrow_up_rounded
+                                : Icons.keyboard_arrow_down_rounded,
+                            color: const Color(0xFFFF7EC8),
+                            size: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (isExpanded)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const Divider(color: Color(0x33FF7EC8)),
+                            const SizedBox(height: 2),
+                            Row(
+                              children: <Widget>[
+                                CocktailGlassIcon(
+                                  glassType: cocktail.glassType,
+                                  size: 17,
+                                  color: const Color(0xFFFFB9DD),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  context.tr(
+                                    'Бокал: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
+                                    'Glass: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
+                                  ),
+                                  style: const TextStyle(
+                                    color: Color(0xFFFFB9DD),
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              context.tr('Состав', 'Ingredients'),
+                              style: const TextStyle(
+                                color: Color(0xFFFF93CC),
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            ...cocktail.ingredients.map((ingredientId) {
+                              final ingredient = ingredientsById[ingredientId];
+                              final amount = cocktail.ingredientAmountLabel(
+                                ingredientId,
+                                measurementSystem: measurementSystem,
+                                unitLabelResolver: context.ingredientUnitLabel,
+                              );
+                              final isOptional = cocktail.isIngredientOptional(
+                                ingredientId,
+                              );
+                              final isDecoration = cocktail
+                                  .isIngredientDecoration(ingredientId);
+                              final substitutions =
+                                  cocktail
+                                      .ingredientSubstitutions[ingredientId] ??
+                                  const <String>[];
+                              final substitutionsText = substitutions
+                                  .map((id) => ingredientsById[id]?.name ?? id)
+                                  .join(', ');
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        const Icon(
+                                          Icons.blur_circular_rounded,
+                                          color: Color(0xFF7FA9FF),
+                                          size: 16,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          ingredient?.name ?? ingredientId,
                                           style: const TextStyle(
-                                            color: Color(0xFFAEB9E8),
+                                            color: Color(0xFFE2E7F9),
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        if (amount.isNotEmpty) ...<Widget>[
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            amount,
+                                            style: const TextStyle(
+                                              color: Color(0xFFAEC1EE),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                    if (isOptional || isDecoration)
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 24,
+                                          top: 2,
+                                        ),
+                                        child: Text(
+                                          [
+                                            if (isOptional)
+                                              context.tr(
+                                                'Опционально',
+                                                'Optional',
+                                              ),
+                                            if (isDecoration)
+                                              context.tr(
+                                                'Украшение',
+                                                'Decoration',
+                                              ),
+                                          ].join(' • '),
+                                          style: const TextStyle(
+                                            color: Color(0xFFAFC3F2),
                                             fontSize: 12,
-                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),
-                                    ],
+                                    if (substitutions.isNotEmpty)
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 24,
+                                          top: 2,
+                                        ),
+                                        child: Text(
+                                          context.tr(
+                                            'Замена: $substitutionsText',
+                                            'Substitute: $substitutionsText',
+                                          ),
+                                          style: const TextStyle(
+                                            color: Color(0xFFAFC3F2),
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              );
+                            }),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  context.tr('Приготовление', 'Preparation'),
+                                  style: const TextStyle(
+                                    color: Color(0xFFFF93CC),
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 16,
                                   ),
-                                  const SizedBox(height: 6),
-                                  Wrap(
-                                    spacing: 6,
-                                    runSpacing: 6,
-                                    children: cocktail.tags
-                                        .map((tag) => _TagPill(tag: tag))
-                                        .toList(growable: false),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  _AvailabilityHint(
-                                    missingIngredientNames: missingIngredients,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            _PressableFavoriteButton(
-                              tooltip: cocktail.isFavorite
-                                  ? context.tr(
-                                      'Убрать из избранного',
-                                      'Remove from favorites',
-                                    )
-                                  : context.tr(
-                                      'В избранное',
-                                      'Add to favorites',
+                                ),
+                                const Spacer(),
+                                if (!visitorMode)
+                                  TextButton.icon(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: const Color(0xFFFFB9DD),
                                     ),
-                              isFavorite: cocktail.isFavorite,
-                              size: 34,
-                              inactiveBackgroundColor: const Color(0x22323B60),
-                              activeBackgroundColor: const Color(0x663F3628),
-                              inactiveIconColor: const Color(0xFFB8C4EE),
-                              activeIconColor: const Color(0xFFFFC88A),
-                              onPressed: () =>
-                                  onToggleFavoritePressed(cocktail.id),
+                                    onPressed: () =>
+                                        onEditCocktailPressed(cocktail),
+                                    icon: const Icon(
+                                      Icons.edit_rounded,
+                                      size: 16,
+                                    ),
+                                    label: Text(
+                                      context.tr('Редактировать', 'Edit'),
+                                    ),
+                                  ),
+                              ],
                             ),
-                            Icon(
-                              isExpanded
-                                  ? Icons.keyboard_arrow_up_rounded
-                                  : Icons.keyboard_arrow_down_rounded,
-                              color: const Color(0xFFFF7EC8),
-                              size: 30,
+                            const SizedBox(height: 4),
+                            ...List<Widget>.generate(
+                              cocktail.preparationSteps.length,
+                              (index) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  '${index + 1}. ${cocktail.preparationSteps[index]}',
+                                  style: const TextStyle(
+                                    color: Color(0xFFE8ECFF),
+                                    fontSize: 14,
+                                    height: 1.35,
+                                  ),
+                                ),
+                              ),
+                              growable: false,
                             ),
                           ],
                         ),
                       ),
-                      if (isExpanded)
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const Divider(color: Color(0x33FF7EC8)),
-                              const SizedBox(height: 2),
-                              Row(
-                                children: <Widget>[
-                                  CocktailGlassIcon(
-                                    glassType: cocktail.glassType,
-                                    size: 17,
-                                    color: const Color(0xFFFFB9DD),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    context.tr(
-                                      'Бокал: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
-                                      'Glass: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
-                                    ),
-                                    style: const TextStyle(
-                                      color: Color(0xFFFFB9DD),
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                context.tr('Состав', 'Ingredients'),
-                                style: const TextStyle(
-                                  color: Color(0xFFFF93CC),
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              ...cocktail.ingredients.map((ingredientId) {
-                                final ingredient =
-                                    ingredientsById[ingredientId];
-                                final amount = cocktail.ingredientAmountLabel(
-                                  ingredientId,
-                                  measurementSystem: measurementSystem,
-                                  unitLabelResolver:
-                                      context.ingredientUnitLabel,
-                                );
-                                final isOptional = cocktail
-                                    .isIngredientOptional(ingredientId);
-                                final isDecoration = cocktail
-                                    .isIngredientDecoration(ingredientId);
-                                final substitutions =
-                                    cocktail
-                                        .ingredientSubstitutions[ingredientId] ??
-                                    const <String>[];
-                                final substitutionsText = substitutions
-                                    .map(
-                                      (id) => ingredientsById[id]?.name ?? id,
-                                    )
-                                    .join(', ');
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 6),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          const Icon(
-                                            Icons.blur_circular_rounded,
-                                            color: Color(0xFF7FA9FF),
-                                            size: 16,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            ingredient?.name ?? ingredientId,
-                                            style: const TextStyle(
-                                              color: Color(0xFFE2E7F9),
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                          if (amount.isNotEmpty) ...<Widget>[
-                                            const SizedBox(width: 8),
-                                            Text(
-                                              amount,
-                                              style: const TextStyle(
-                                                color: Color(0xFFAEC1EE),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ],
-                                      ),
-                                      if (isOptional || isDecoration)
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 24,
-                                            top: 2,
-                                          ),
-                                          child: Text(
-                                            [
-                                              if (isOptional)
-                                                context.tr(
-                                                  'Опционально',
-                                                  'Optional',
-                                                ),
-                                              if (isDecoration)
-                                                context.tr(
-                                                  'Украшение',
-                                                  'Decoration',
-                                                ),
-                                            ].join(' • '),
-                                            style: const TextStyle(
-                                              color: Color(0xFFAFC3F2),
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                        ),
-                                      if (substitutions.isNotEmpty)
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 24,
-                                            top: 2,
-                                          ),
-                                          child: Text(
-                                            context.tr(
-                                              'Замена: $substitutionsText',
-                                              'Substitute: $substitutionsText',
-                                            ),
-                                            style: const TextStyle(
-                                              color: Color(0xFFAFC3F2),
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                );
-                              }),
-                              const SizedBox(height: 10),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    context.tr('Приготовление', 'Preparation'),
-                                    style: const TextStyle(
-                                      color: Color(0xFFFF93CC),
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  if (!visitorMode)
-                                    TextButton.icon(
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: const Color(
-                                          0xFFFFB9DD,
-                                        ),
-                                      ),
-                                      onPressed: () =>
-                                          onEditCocktailPressed(cocktail),
-                                      icon: const Icon(
-                                        Icons.edit_rounded,
-                                        size: 16,
-                                      ),
-                                      label: Text(
-                                        context.tr('Редактировать', 'Edit'),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              ...List<Widget>.generate(
-                                cocktail.preparationSteps.length,
-                                (index) => Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: Text(
-                                    '${index + 1}. ${cocktail.preparationSteps[index]}',
-                                    style: const TextStyle(
-                                      color: Color(0xFFE8ECFF),
-                                      fontSize: 14,
-                                      height: 1.35,
-                                    ),
-                                  ),
-                                ),
-                                growable: false,
-                              ),
-                            ],
-                          ),
-                        ),
-                    ],
-                  ),
+                  ],
                 ),
               ),
             ),
