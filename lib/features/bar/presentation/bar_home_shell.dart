@@ -1141,6 +1141,7 @@ class _BarHomeShellState extends State<BarHomeShell>
         return;
       }
 
+      final shareOrigin = _resolveSharePositionOrigin();
       await SharePlus.instance.share(
         ShareParams(
           files: <XFile>[XFile(file.path)],
@@ -1148,6 +1149,7 @@ class _BarHomeShellState extends State<BarHomeShell>
             'Экспорт барной карты "Мой Бар"',
             'Export of "My Bar" catalog',
           ),
+          sharePositionOrigin: shareOrigin,
         ),
       );
 
@@ -1195,6 +1197,57 @@ class _BarHomeShellState extends State<BarHomeShell>
     final file = File('${tempDir.path}/my_bar_map_$timestamp.json');
     await file.writeAsString(payload, flush: true);
     return file;
+  }
+
+  Rect _resolveSharePositionOrigin() {
+    final overlayRect = _rectFromRenderObject(
+      Overlay.maybeOf(context)?.context.findRenderObject(),
+    );
+    if (overlayRect != null) {
+      return overlayRect;
+    }
+
+    final currentRect = _rectFromRenderObject(context.findRenderObject());
+    if (currentRect != null) {
+      return currentRect;
+    }
+
+    final navigatorRect = _rectFromRenderObject(
+      Navigator.maybeOf(context)?.context.findRenderObject(),
+    );
+    if (navigatorRect != null) {
+      return navigatorRect;
+    }
+
+    final fallbackSize = MediaQuery.maybeSizeOf(context);
+    if (fallbackSize != null &&
+        fallbackSize.width > 0 &&
+        fallbackSize.height > 0) {
+      return Rect.fromLTWH(0, 0, fallbackSize.width, fallbackSize.height);
+    }
+
+    return const Rect.fromLTWH(0, 0, 1, 1);
+  }
+
+  Rect? _rectFromRenderObject(RenderObject? renderObject) {
+    if (renderObject is! RenderBox || !renderObject.attached) {
+      return null;
+    }
+    if (!renderObject.hasSize) {
+      return null;
+    }
+
+    final size = renderObject.size;
+    if (size.width <= 0 || size.height <= 0) {
+      return null;
+    }
+
+    final origin = renderObject.localToGlobal(Offset.zero);
+    if (!origin.dx.isFinite || !origin.dy.isFinite) {
+      return null;
+    }
+
+    return origin & size;
   }
 
   void _showSnackBar(String message) {
