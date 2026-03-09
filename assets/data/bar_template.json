@@ -24,7 +24,7 @@
     {
       "id": "151_proof_rum",
       "name": "151 proof rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5cfa9a0c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -44,7 +44,7 @@
     {
       "id": "7_up",
       "name": "7-Up",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_8ecde87a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -64,7 +64,7 @@
     {
       "id": "absinthe",
       "name": "Absinthe",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_b824b17d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -84,7 +84,7 @@
     {
       "id": "absolut_citron",
       "name": "Absolut Citron",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_fd17360f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -104,7 +104,7 @@
     {
       "id": "absolut_kurant",
       "name": "Absolut Kurant",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_241f2973.png",
       "isDecoration": false,
       "isOptional": false,
@@ -124,7 +124,7 @@
     {
       "id": "absolut_peppar",
       "name": "Absolut Peppar",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_f89e1fa4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -144,7 +144,7 @@
     {
       "id": "absolut_vodka",
       "name": "Absolut Vodka",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_a90626cb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -164,7 +164,7 @@
     {
       "id": "advocaat",
       "name": "Advocaat",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_459bad6c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -184,7 +184,7 @@
     {
       "id": "agave_syrup",
       "name": "Agave Syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_1fc95c69.png",
       "isDecoration": false,
       "isOptional": false,
@@ -204,7 +204,7 @@
     {
       "id": "ale",
       "name": "Ale",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_1bbea597.png",
       "isDecoration": false,
       "isOptional": false,
@@ -224,7 +224,7 @@
     {
       "id": "allspice",
       "name": "Allspice",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_e42c8be4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -244,7 +244,7 @@
     {
       "id": "almond_flavoring",
       "name": "Almond flavoring",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_f95f2407.png",
       "isDecoration": false,
       "isOptional": false,
@@ -264,7 +264,7 @@
     {
       "id": "amaretto",
       "name": "Amaretto",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_710ccae2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -284,7 +284,7 @@
     {
       "id": "amaro_montenegro",
       "name": "Amaro Montenegro",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_eacfb782.png",
       "isDecoration": false,
       "isOptional": false,
@@ -304,7 +304,7 @@
     {
       "id": "angelica_root",
       "name": "Angelica root",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_8da2c906.png",
       "isDecoration": false,
       "isOptional": false,
@@ -324,7 +324,7 @@
     {
       "id": "angostura_bitter",
       "name": "Angostura bitters",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_7ff4d3e7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -344,7 +344,7 @@
     {
       "id": "anis",
       "name": "Anis",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_dc655c80.png",
       "isDecoration": false,
       "isOptional": false,
@@ -364,7 +364,7 @@
     {
       "id": "anisette",
       "name": "Anisette",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_06a8622e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -384,7 +384,7 @@
     {
       "id": "aperol",
       "name": "Aperol",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_edcbcc6a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -404,7 +404,7 @@
     {
       "id": "apfelkorn",
       "name": "Apfelkorn",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_0046467d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -424,7 +424,7 @@
     {
       "id": "apple",
       "name": "Apple",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_f974e7cf.png",
       "isDecoration": false,
       "isOptional": false,
@@ -444,7 +444,7 @@
     {
       "id": "apple_brandy",
       "name": "Apple Brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_294aaa4e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -464,7 +464,7 @@
     {
       "id": "apple_cider",
       "name": "Apple cider",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_98bcf167.png",
       "isDecoration": false,
       "isOptional": false,
@@ -484,7 +484,7 @@
     {
       "id": "juice_apple",
       "name": "Apple juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_e3fc9eb4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -504,7 +504,7 @@
     {
       "id": "applejack",
       "name": "Applejack",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_ff26f7f8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -524,7 +524,7 @@
     {
       "id": "apricot_brandy",
       "name": "Apricot brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_29519b6c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -544,7 +544,7 @@
     {
       "id": "apricot_nectar",
       "name": "Apricot Nectar",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_ebe89f1d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -564,7 +564,7 @@
     {
       "id": "asafoetida",
       "name": "Asafoetida",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_a1090cf0.png",
       "isDecoration": false,
       "isOptional": false,
@@ -584,7 +584,7 @@
     {
       "id": "a_ejo_rum",
       "name": "Añejo rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_ce1add22.png",
       "isDecoration": false,
       "isOptional": false,
@@ -604,7 +604,7 @@
     {
       "id": "bacardi_limon",
       "name": "Bacardi Limon",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_2da57ebd.png",
       "isDecoration": false,
       "isOptional": false,
@@ -624,7 +624,7 @@
     {
       "id": "baileys_irish_cream",
       "name": "Baileys irish cream",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_dc195213.png",
       "isDecoration": false,
       "isOptional": false,
@@ -644,7 +644,7 @@
     {
       "id": "banana",
       "name": "Banana",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_3478af36.png",
       "isDecoration": false,
       "isOptional": false,
@@ -664,7 +664,7 @@
     {
       "id": "banana_liqueur",
       "name": "Banana liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_e406351a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -684,7 +684,7 @@
     {
       "id": "beer",
       "name": "Beer",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_de7d4661.png",
       "isDecoration": false,
       "isOptional": false,
@@ -704,7 +704,7 @@
     {
       "id": "benedictine",
       "name": "Benedictine",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_bdfe20d1.png",
       "isDecoration": false,
       "isOptional": false,
@@ -724,7 +724,7 @@
     {
       "id": "berries",
       "name": "Berries",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_bbd82f23.png",
       "isDecoration": false,
       "isOptional": false,
@@ -744,7 +744,7 @@
     {
       "id": "bitter_lemon",
       "name": "Bitter lemon",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_72509e6d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -764,7 +764,7 @@
     {
       "id": "bitters",
       "name": "Bitters",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_43843ca4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -784,7 +784,7 @@
     {
       "id": "black_pepper",
       "name": "Black pepper",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_2db1b373.png",
       "isDecoration": false,
       "isOptional": false,
@@ -804,7 +804,7 @@
     {
       "id": "black_sambuca",
       "name": "Black Sambuca",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_66a1dd51.png",
       "isDecoration": false,
       "isOptional": false,
@@ -824,7 +824,7 @@
     {
       "id": "blackberries",
       "name": "Blackberries",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_0aa0f136.png",
       "isDecoration": false,
       "isOptional": false,
@@ -844,7 +844,7 @@
     {
       "id": "blackberry_brandy",
       "name": "Blackberry brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_2ce76f55.png",
       "isDecoration": false,
       "isOptional": false,
@@ -864,7 +864,7 @@
     {
       "id": "blackcurrant_cordial",
       "name": "Blackcurrant cordial",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_61222ff2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -884,7 +884,7 @@
     {
       "id": "blackstrap_rum",
       "name": "blackstrap rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_9e704ccb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -904,7 +904,7 @@
     {
       "id": "blended_scotch",
       "name": "Blended Scotch",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_8377ec32.png",
       "isDecoration": false,
       "isOptional": false,
@@ -924,7 +924,7 @@
     {
       "id": "whiskey",
       "name": "Blended whiskey",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_545d1b20.png",
       "isDecoration": false,
       "isOptional": false,
@@ -944,7 +944,7 @@
     {
       "id": "blood_orange",
       "name": "Blood Orange",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_4d69f768.png",
       "isDecoration": false,
       "isOptional": false,
@@ -964,7 +964,7 @@
     {
       "id": "blue_curacao",
       "name": "Blue Curacao",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_434a29d6.png",
       "isDecoration": false,
       "isOptional": false,
@@ -984,7 +984,7 @@
     {
       "id": "bourbon",
       "name": "Bourbon",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_da505198.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1004,7 +1004,7 @@
     {
       "id": "brandy",
       "name": "Brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_fc55cd13.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1024,7 +1024,7 @@
     {
       "id": "brown_sugar",
       "name": "Brown sugar",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_a5538022.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1044,7 +1044,7 @@
     {
       "id": "butter",
       "name": "Butter",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_ebba6351.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1064,7 +1064,7 @@
     {
       "id": "butterscotch_schnapps",
       "name": "Butterscotch schnapps",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_fb96a1ae.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1084,7 +1084,7 @@
     {
       "id": "cachaca",
       "name": "Cachaca",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_a6cdbba1.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1104,7 +1104,7 @@
     {
       "id": "campari",
       "name": "Campari",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_f00b9956.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1124,7 +1124,7 @@
     {
       "id": "cantaloupe",
       "name": "Cantaloupe",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_ade44f07.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1144,7 +1144,7 @@
     {
       "id": "caramel_coloring",
       "name": "Caramel coloring",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_d5f627c8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1164,7 +1164,7 @@
     {
       "id": "carbonated_soft_drink",
       "name": "Carbonated soft drink",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_2b89f738.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1184,7 +1184,7 @@
     {
       "id": "carbonated_water",
       "name": "Carbonated water",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_2ddf20a2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1204,7 +1204,7 @@
     {
       "id": "cardamom",
       "name": "Cardamom",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_0de27967.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1224,7 +1224,7 @@
     {
       "id": "cayenne_pepper",
       "name": "Cayenne pepper",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_b0e2bdb9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1244,7 +1244,7 @@
     {
       "id": "celery_salt",
       "name": "Celery salt",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_ba09c308.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1264,7 +1264,7 @@
     {
       "id": "chambord_raspberry_liqueur",
       "name": "Chambord raspberry liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_f10945a2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1284,7 +1284,7 @@
     {
       "id": "champagne",
       "name": "Champagne",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_613ac9dd.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1304,7 +1304,7 @@
     {
       "id": "cherries",
       "name": "Cherries",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_ef3b6d92.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1324,7 +1324,7 @@
     {
       "id": "cherry",
       "name": "Cherry",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_1fad33b2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1344,7 +1344,7 @@
     {
       "id": "cherry_brandy",
       "name": "Cherry brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_be1bf479.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1364,7 +1364,7 @@
     {
       "id": "cherry_heering",
       "name": "Cherry Heering",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_32dc9129.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1384,7 +1384,7 @@
     {
       "id": "cherry_juice",
       "name": "Cherry Juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_69d3a829.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1404,7 +1404,7 @@
     {
       "id": "cherry_liqueur",
       "name": "Cherry liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_2c6f150e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1424,7 +1424,7 @@
     {
       "id": "chocolate",
       "name": "Chocolate",
-      "category": "Ингредиенты",
+      "category": "Десертные ингредиенты",
       "image": "assets/data/catalog_images/img_6d3fb445.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1444,7 +1444,7 @@
     {
       "id": "chocolate_ice_cream",
       "name": "Chocolate ice-cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_41fdcb7a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1464,7 +1464,7 @@
     {
       "id": "chocolate_liqueur",
       "name": "Chocolate liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_1f24c751.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1484,7 +1484,7 @@
     {
       "id": "syrup_chocolate",
       "name": "Chocolate syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_73ebead9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1504,7 +1504,7 @@
     {
       "id": "cider",
       "name": "Cider",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_d44e945c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1524,7 +1524,7 @@
     {
       "id": "cinnamon",
       "name": "Cinnamon",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_66a0cbb8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1544,7 +1544,7 @@
     {
       "id": "cloves",
       "name": "Cloves",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_fc0b9101.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1564,7 +1564,7 @@
     {
       "id": "club_soda",
       "name": "Club soda",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_5704353f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1584,7 +1584,7 @@
     {
       "id": "coca_cola",
       "name": "Coca-Cola",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_dd05e27f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1604,7 +1604,7 @@
     {
       "id": "cocoa_powder",
       "name": "Cocoa powder",
-      "category": "Ингредиенты",
+      "category": "Кофе, чай и какао",
       "image": "assets/data/catalog_images/img_1e30a006.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1624,7 +1624,7 @@
     {
       "id": "coconut_liqueur",
       "name": "Coconut Liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_51af18c0.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1644,7 +1644,7 @@
     {
       "id": "coconut_milk",
       "name": "Coconut milk",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_a136f658.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1664,7 +1664,7 @@
     {
       "id": "coconut_rum",
       "name": "Coconut rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_ad87c1ab.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1684,7 +1684,7 @@
     {
       "id": "syrup_coconut",
       "name": "Coconut syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_8f767fb0.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1704,7 +1704,7 @@
     {
       "id": "coffee",
       "name": "Coffee",
-      "category": "Ингредиенты",
+      "category": "Кофе, чай и какао",
       "image": "assets/data/catalog_images/img_31e59ab7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1724,7 +1724,7 @@
     {
       "id": "coffee_brandy",
       "name": "Coffee brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_9f9df8a6.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1744,7 +1744,7 @@
     {
       "id": "coffee_liqueur",
       "name": "Coffee liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_14a91ceb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1764,7 +1764,7 @@
     {
       "id": "cognac",
       "name": "Cognac",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_624b1978.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1784,7 +1784,7 @@
     {
       "id": "cointreau",
       "name": "Cointreau",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_002a2a4b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1804,7 +1804,7 @@
     {
       "id": "condensed_milk",
       "name": "Condensed milk",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_2aa5f782.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1824,7 +1824,7 @@
     {
       "id": "coriander",
       "name": "Coriander",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_b6174098.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1844,7 +1844,7 @@
     {
       "id": "corn_syrup",
       "name": "Corn syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_d6a7f6e5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1864,7 +1864,7 @@
     {
       "id": "corona",
       "name": "Corona",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_e43e11f7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1884,7 +1884,7 @@
     {
       "id": "cranberries",
       "name": "Cranberries",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_53268fc9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1904,7 +1904,7 @@
     {
       "id": "juice_cranberry",
       "name": "Cranberry Juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_06e3fb2e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1924,7 +1924,7 @@
     {
       "id": "cranberry_vodka",
       "name": "Cranberry vodka",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_7512a87f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1944,7 +1944,7 @@
     {
       "id": "cream",
       "name": "Cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_2e9b37a9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1964,7 +1964,7 @@
     {
       "id": "cream_of_coconut",
       "name": "Cream of coconut",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_d2fd7455.png",
       "isDecoration": false,
       "isOptional": false,
@@ -1984,7 +1984,7 @@
     {
       "id": "creme_de_banane",
       "name": "Creme de Banane",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_4dae862b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2004,7 +2004,7 @@
     {
       "id": "creme_de_cacao",
       "name": "Creme de Cacao",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_63ecd81d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2024,7 +2024,7 @@
     {
       "id": "creme_de_cassis",
       "name": "Creme de Cassis",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c74f9b48.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2044,7 +2044,7 @@
     {
       "id": "creme_de_mure",
       "name": "Creme de Mure",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c435dc81.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2064,7 +2064,7 @@
     {
       "id": "crown_royal",
       "name": "Crown Royal",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_d36dc104.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2084,7 +2084,7 @@
     {
       "id": "cucumber",
       "name": "Cucumber",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_37627b97.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2104,7 +2104,7 @@
     {
       "id": "cumin_seed",
       "name": "Cumin seed",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_08199bd7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2124,7 +2124,7 @@
     {
       "id": "daiquiri_mix",
       "name": "Daiquiri mix",
-      "category": "Ингредиенты",
+      "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_cde240a4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2144,7 +2144,7 @@
     {
       "id": "rum_dark",
       "name": "Dark rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_838c8310.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2164,7 +2164,7 @@
     {
       "id": "demerara_sugar",
       "name": "demerara Sugar",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_38eb84ff.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2184,7 +2184,7 @@
     {
       "id": "dr_pepper",
       "name": "Dr. Pepper",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_e77272be.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2204,7 +2204,7 @@
     {
       "id": "drambuie",
       "name": "Drambuie",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_67ae8ef8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2224,7 +2224,7 @@
     {
       "id": "vermouth_dry",
       "name": "Dry Vermouth",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_90934581.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2244,7 +2244,7 @@
     {
       "id": "dubonnet_rouge",
       "name": "Dubonnet Rouge",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_8c655667.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2264,7 +2264,7 @@
     {
       "id": "egg",
       "name": "Egg",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_e06da112.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2284,7 +2284,7 @@
     {
       "id": "egg_white",
       "name": "Egg White",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_151f1f68.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2304,7 +2304,7 @@
     {
       "id": "egg_yolk",
       "name": "Egg yolk",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_533e2c34.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2324,7 +2324,7 @@
     {
       "id": "elderflower_cordial",
       "name": "Elderflower cordial",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_d5171869.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2344,7 +2344,7 @@
     {
       "id": "espresso",
       "name": "Espresso",
-      "category": "Ингредиенты",
+      "category": "Кофе, чай и какао",
       "image": "assets/data/catalog_images/img_1f1c332b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2364,7 +2364,7 @@
     {
       "id": "everclear",
       "name": "Everclear",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_bb1447aa.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2384,7 +2384,7 @@
     {
       "id": "falernum",
       "name": "Falernum",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_1844b533.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2404,7 +2404,7 @@
     {
       "id": "figs",
       "name": "Figs",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_36b1ced4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2424,7 +2424,7 @@
     {
       "id": "firewater",
       "name": "Firewater",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_e86c22c4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2444,7 +2444,7 @@
     {
       "id": "frangelico",
       "name": "Frangelico",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_a53b5cf9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2464,7 +2464,7 @@
     {
       "id": "fresca",
       "name": "Fresca",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_da217be7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2484,7 +2484,7 @@
     {
       "id": "fresh_lemon_juice",
       "name": "Fresh Lemon Juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_8ea65d68.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2504,7 +2504,7 @@
     {
       "id": "fresh_lime_juice",
       "name": "Fresh Lime Juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_f27a8820.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2524,7 +2524,7 @@
     {
       "id": "fruit",
       "name": "Fruit",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_f2b5dffd.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2544,7 +2544,7 @@
     {
       "id": "fruit_juice",
       "name": "Fruit juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_6977a95e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2564,7 +2564,7 @@
     {
       "id": "fruit_punch",
       "name": "Fruit punch",
-      "category": "Ингредиенты",
+      "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_d79e961a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2584,7 +2584,7 @@
     {
       "id": "galliano",
       "name": "Galliano",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_0164d74e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2604,7 +2604,7 @@
     {
       "id": "gin",
       "name": "gin",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_d1e10591.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2624,7 +2624,7 @@
     {
       "id": "ginger",
       "name": "Ginger",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_c26222d3.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2644,7 +2644,7 @@
     {
       "id": "ginger_ale",
       "name": "Ginger ale",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_129f97d0.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2664,7 +2664,7 @@
     {
       "id": "ginger_beer",
       "name": "Ginger Beer",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_e1b10bb4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2684,7 +2684,7 @@
     {
       "id": "syrup_gingerbread",
       "name": "Ginger Syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_229baaab.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2704,7 +2704,7 @@
     {
       "id": "godiva_liqueur",
       "name": "Godiva liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_16a53f9b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2724,7 +2724,7 @@
     {
       "id": "rum_gold",
       "name": "Gold rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_d325bfee.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2744,7 +2744,7 @@
     {
       "id": "goldschlager",
       "name": "Goldschlager",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_b8a6ca40.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2764,7 +2764,7 @@
     {
       "id": "grain_alcohol",
       "name": "Grain alcohol",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_124a397d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2784,7 +2784,7 @@
     {
       "id": "grand_marnier",
       "name": "Grand Marnier",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_d481ab50.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2804,7 +2804,7 @@
     {
       "id": "grape_juice",
       "name": "Grape juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_5b2289cf.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2824,7 +2824,7 @@
     {
       "id": "grape_soda",
       "name": "Grape Soda",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_b28c86ce.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2844,7 +2844,7 @@
     {
       "id": "juice_grapefruit",
       "name": "Grapefruit Juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_218e2b7b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2864,7 +2864,7 @@
     {
       "id": "grapes",
       "name": "Grapes",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_fe49e8c7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2884,7 +2884,7 @@
     {
       "id": "chartreuse_green",
       "name": "Green Chartreuse",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_19d5884b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2904,7 +2904,7 @@
     {
       "id": "creme_de_menthe_green",
       "name": "Green Creme de Menthe",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_bd681831.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2924,7 +2924,7 @@
     {
       "id": "grenadine",
       "name": "Grenadine",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_cc849fbc.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2944,7 +2944,7 @@
     {
       "id": "guinness_stout",
       "name": "Guinness stout",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_dfbe67d5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2964,7 +2964,7 @@
     {
       "id": "half_and_half",
       "name": "Half-and-half",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_7afebc72.png",
       "isDecoration": false,
       "isOptional": false,
@@ -2984,7 +2984,7 @@
     {
       "id": "heavy_cream",
       "name": "Heavy cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_cb19b0e5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3004,7 +3004,7 @@
     {
       "id": "honey",
       "name": "Honey",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_5f1c74b8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3024,7 +3024,7 @@
     {
       "id": "syrup_honey",
       "name": "Honey syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_2751d884.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3044,7 +3044,7 @@
     {
       "id": "hot_chocolate",
       "name": "Hot Chocolate",
-      "category": "Ингредиенты",
+      "category": "Кофе, чай и какао",
       "image": "assets/data/catalog_images/img_50104945.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3064,7 +3064,7 @@
     {
       "id": "hot_damn",
       "name": "Hot Damn",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c719ca7f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3084,7 +3084,7 @@
     {
       "id": "hot_sauce",
       "name": "Hot Sauce",
-      "category": "Ингредиенты",
+      "category": "Соусы и солёные добавки",
       "image": "assets/data/catalog_images/img_5e140194.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3104,7 +3104,7 @@
     {
       "id": "hpnotiq",
       "name": "Hpnotiq",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_350a62e4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3124,7 +3124,7 @@
     {
       "id": "ice",
       "name": "Ice",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_e5fe509c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3144,7 +3144,7 @@
     {
       "id": "iced_tea",
       "name": "Iced tea",
-      "category": "Ингредиенты",
+      "category": "Кофе, чай и какао",
       "image": "assets/data/catalog_images/img_bf913cbb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3164,7 +3164,7 @@
     {
       "id": "irish_cream",
       "name": "Irish cream",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_4b24a267.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3184,7 +3184,7 @@
     {
       "id": "irish_whiskey",
       "name": "Irish whiskey",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_398aa493.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3204,7 +3204,7 @@
     {
       "id": "islay_single_malt_scotch",
       "name": "Islay single malt Scotch",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_42d4a71e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3224,7 +3224,7 @@
     {
       "id": "jack_daniels",
       "name": "Jack Daniels",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_c484480f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3244,7 +3244,7 @@
     {
       "id": "jagermeister",
       "name": "Jagermeister",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_30bff8ad.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3264,7 +3264,7 @@
     {
       "id": "jello",
       "name": "Jello",
-      "category": "Ингредиенты",
+      "category": "Десертные ингредиенты",
       "image": "assets/data/catalog_images/img_2534e33d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3284,7 +3284,7 @@
     {
       "id": "jim_beam",
       "name": "Jim Beam",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_7d6a97e5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3304,7 +3304,7 @@
     {
       "id": "johnnie_walker",
       "name": "Johnnie Walker",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_19fa3acd.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3324,7 +3324,7 @@
     {
       "id": "j_germeister",
       "name": "Jägermeister",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_b0f08b6b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3344,7 +3344,7 @@
     {
       "id": "kahlua",
       "name": "Kahlua",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c3c7b3d1.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3364,7 +3364,7 @@
     {
       "id": "kiwi",
       "name": "Kiwi",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_1d748d97.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3384,7 +3384,7 @@
     {
       "id": "kiwi_liqueur",
       "name": "Kiwi liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_837b0acb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3404,7 +3404,7 @@
     {
       "id": "kool_aid",
       "name": "Kool-Aid",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_0d96fa65.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3424,7 +3424,7 @@
     {
       "id": "lager",
       "name": "Lager",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_e8b71a50.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3444,7 +3444,7 @@
     {
       "id": "lavender",
       "name": "Lavender",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_abe72358.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3464,7 +3464,7 @@
     {
       "id": "lemon",
       "name": "Lemon",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_b0da266c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3484,7 +3484,7 @@
     {
       "id": "lemon_lime_soda",
       "name": "Lemon-lime soda",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_db917522.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3504,7 +3504,7 @@
     {
       "id": "lemonade",
       "name": "Lemonade",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_1c4295b2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3524,7 +3524,7 @@
     {
       "id": "light_cream",
       "name": "Light cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_4e9c22e6.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3544,7 +3544,7 @@
     {
       "id": "rum_light",
       "name": "Light rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5fe2f968.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3564,7 +3564,7 @@
     {
       "id": "lillet",
       "name": "Lillet",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_bd271fc5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3584,7 +3584,7 @@
     {
       "id": "lillet_blanc",
       "name": "Lillet Blanc",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_3c9b4f5c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3604,7 +3604,7 @@
     {
       "id": "lime",
       "name": "Lime",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_021c403a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3624,7 +3624,7 @@
     {
       "id": "lime_peel",
       "name": "Lime peel",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_64220457.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3644,7 +3644,7 @@
     {
       "id": "lime_vodka",
       "name": "Lime vodka",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_70cee0e8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3664,7 +3664,7 @@
     {
       "id": "limeade",
       "name": "Limeade",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_756a5934.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3684,7 +3684,7 @@
     {
       "id": "malibu_rum",
       "name": "Malibu rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5c1a24c4.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3704,7 +3704,7 @@
     {
       "id": "mango",
       "name": "Mango",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_290b4719.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3724,7 +3724,7 @@
     {
       "id": "syrup_maple",
       "name": "Maple syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_d4ee4cee.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3744,7 +3744,7 @@
     {
       "id": "maraschino_cherry",
       "name": "Maraschino Cherry",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_7d1f2300.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3764,7 +3764,7 @@
     {
       "id": "maraschino_liqueur",
       "name": "Maraschino Liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_8d582b26.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3784,7 +3784,7 @@
     {
       "id": "marshmallows",
       "name": "Marshmallows",
-      "category": "Ингредиенты",
+      "category": "Десертные ингредиенты",
       "image": "assets/data/catalog_images/img_aee7f303.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3804,7 +3804,7 @@
     {
       "id": "melon_liqueur",
       "name": "Melon Liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_46653544.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3824,7 +3824,7 @@
     {
       "id": "mezcal",
       "name": "Mezcal",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_4097be73.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3844,7 +3844,7 @@
     {
       "id": "midori_melon_liqueur",
       "name": "Midori melon liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_81f4de41.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3864,7 +3864,7 @@
     {
       "id": "milk",
       "name": "Milk",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_e1578814.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3884,7 +3884,7 @@
     {
       "id": "mint",
       "name": "Mint",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_d49e509f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3904,7 +3904,7 @@
     {
       "id": "syrup_mint",
       "name": "Mint syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_bd462477.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3924,7 +3924,7 @@
     {
       "id": "mountain_dew",
       "name": "Mountain Dew",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_937fb46b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3944,7 +3944,7 @@
     {
       "id": "nutmeg",
       "name": "Nutmeg",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_ba996cb5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3964,7 +3964,7 @@
     {
       "id": "olive",
       "name": "Olive",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_89222998.png",
       "isDecoration": false,
       "isOptional": false,
@@ -3984,7 +3984,7 @@
     {
       "id": "olive_brine",
       "name": "Olive Brine",
-      "category": "Ингредиенты",
+      "category": "Соусы и солёные добавки",
       "image": "assets/data/catalog_images/img_4aa3cdc9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4004,7 +4004,7 @@
     {
       "id": "orange",
       "name": "Orange",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_e10025d9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4024,7 +4024,7 @@
     {
       "id": "orange_bitter",
       "name": "Orange Bitters",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_fcb0d881.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4044,7 +4044,7 @@
     {
       "id": "orange_curacao",
       "name": "Orange Curacao",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_5e6c6450.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4064,7 +4064,7 @@
     {
       "id": "juice_orange",
       "name": "Orange juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_9b078c52.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4084,7 +4084,7 @@
     {
       "id": "orange_spiral",
       "name": "Orange spiral",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_a78f10f9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4104,7 +4104,7 @@
     {
       "id": "oreo_cookie",
       "name": "Oreo cookie",
-      "category": "Ингредиенты",
+      "category": "Десертные ингредиенты",
       "image": "assets/data/catalog_images/img_5e1290df.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4124,7 +4124,7 @@
     {
       "id": "orgeat_syrup",
       "name": "Orgeat syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_7297e7fb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4144,7 +4144,7 @@
     {
       "id": "ouzo",
       "name": "Ouzo",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_1b3b7e94.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4164,7 +4164,7 @@
     {
       "id": "papaya",
       "name": "Papaya",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_0878320d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4184,7 +4184,7 @@
     {
       "id": "juice_passion_fruit",
       "name": "Passion fruit juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_ae4c4774.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4204,7 +4204,7 @@
     {
       "id": "passion_fruit_syrup",
       "name": "Passion fruit syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_45f28447.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4224,7 +4224,7 @@
     {
       "id": "passoa",
       "name": "Passoa",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_0ffc2576.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4244,7 +4244,7 @@
     {
       "id": "peach_bitters",
       "name": "Peach Bitters",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_127e59a6.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4264,7 +4264,7 @@
     {
       "id": "peach_brandy",
       "name": "Peach brandy",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5a978f01.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4284,7 +4284,7 @@
     {
       "id": "peach_nectar",
       "name": "Peach nectar",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_353d0624.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4304,7 +4304,7 @@
     {
       "id": "peach_schnapps",
       "name": "Peach schnapps",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_78c31c01.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4324,7 +4324,7 @@
     {
       "id": "peach_vodka",
       "name": "Peach Vodka",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_0b17e658.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4344,7 +4344,7 @@
     {
       "id": "peachtree_schnapps",
       "name": "Peachtree schnapps",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_04da447d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4364,7 +4364,7 @@
     {
       "id": "pepper",
       "name": "Pepper",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_2a44d56b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4384,7 +4384,7 @@
     {
       "id": "pepsi_cola",
       "name": "Pepsi Cola",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_6096d174.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4404,7 +4404,7 @@
     {
       "id": "pernod",
       "name": "Pernod",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_3cae47af.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4424,7 +4424,7 @@
     {
       "id": "peychauds_bitter",
       "name": "Peychaud bitters",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_3523346a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4444,7 +4444,7 @@
     {
       "id": "pina_colada_mix",
       "name": "Pina colada mix",
-      "category": "Ингредиенты",
+      "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_4db34b43.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4464,7 +4464,7 @@
     {
       "id": "pineapple",
       "name": "Pineapple",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_3bc69fa9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4484,7 +4484,7 @@
     {
       "id": "juice_pineapple",
       "name": "Pineapple juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_9aa2ce82.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4504,7 +4504,7 @@
     {
       "id": "pineapple_syrup",
       "name": "Pineapple Syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_3bab551d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4524,7 +4524,7 @@
     {
       "id": "pink_lemonade",
       "name": "Pink lemonade",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_b1d8dfc7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4544,7 +4544,7 @@
     {
       "id": "pisang_ambon",
       "name": "Pisang Ambon",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_def0c849.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4564,7 +4564,7 @@
     {
       "id": "pisco",
       "name": "Pisco",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_d34efbc9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4584,7 +4584,7 @@
     {
       "id": "juice_pomegranate",
       "name": "Pomegranate juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_f30d2dc7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4604,7 +4604,7 @@
     {
       "id": "port",
       "name": "Port",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_3851d588.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4624,7 +4624,7 @@
     {
       "id": "powdered_sugar",
       "name": "Powdered sugar",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_e7201ada.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4644,7 +4644,7 @@
     {
       "id": "prosecco",
       "name": "Prosecco",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_f1e523b5.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4664,7 +4664,7 @@
     {
       "id": "raspberry_liqueur",
       "name": "Raspberry Liqueur",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_4d311cf1.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4684,7 +4684,7 @@
     {
       "id": "syrup_raspberry",
       "name": "Raspberry syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_16a4fe19.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4704,7 +4704,7 @@
     {
       "id": "raspberry_vodka",
       "name": "Raspberry vodka",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_d1c710b7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4724,7 +4724,7 @@
     {
       "id": "red_chili_flakes",
       "name": "Red Chili Flakes",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_3a565ab7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4744,7 +4744,7 @@
     {
       "id": "wine_red",
       "name": "Red wine",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_b9cedb9e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4764,7 +4764,7 @@
     {
       "id": "ricard",
       "name": "Ricard",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_eee4db28.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4784,7 +4784,7 @@
     {
       "id": "root_beer",
       "name": "Root beer",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_a7bcc870.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4804,7 +4804,7 @@
     {
       "id": "rose",
       "name": "Rose",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_55561ae8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4824,7 +4824,7 @@
     {
       "id": "rosemary",
       "name": "Rosemary",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_92181bd7.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4844,7 +4844,7 @@
     {
       "id": "syrup_rosemary",
       "name": "Rosemary Syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_368e7bbf.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4864,7 +4864,7 @@
     {
       "id": "rosso_vermouth",
       "name": "Rosso Vermouth",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_8fd0489c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4884,7 +4884,7 @@
     {
       "id": "ruby_port",
       "name": "Ruby Port",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_e38b7545.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4904,7 +4904,7 @@
     {
       "id": "rum",
       "name": "Rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_8a7c364f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4924,7 +4924,7 @@
     {
       "id": "rye_whiskey",
       "name": "Rye whiskey",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_04e5fd96.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4944,7 +4944,7 @@
     {
       "id": "salt",
       "name": "Salt",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_7bb3d317.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4964,7 +4964,7 @@
     {
       "id": "sambuca",
       "name": "Sambuca",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_41d031c9.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4984,7 +4984,7 @@
     {
       "id": "sarsaparilla",
       "name": "Sarsaparilla",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_d09036dc.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5004,7 +5004,7 @@
     {
       "id": "schweppes_russchian",
       "name": "Schweppes Russchian",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_dcfd2646.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5024,7 +5024,7 @@
     {
       "id": "scotch",
       "name": "Scotch",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_c0214b35.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5044,7 +5044,7 @@
     {
       "id": "sherbet",
       "name": "Sherbet",
-      "category": "Ингредиенты",
+      "category": "Десертные ингредиенты",
       "image": "assets/data/catalog_images/img_3e9beb9c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5064,7 +5064,7 @@
     {
       "id": "sherry",
       "name": "Sherry",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_0e6fd442.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5084,7 +5084,7 @@
     {
       "id": "sirup_of_roses",
       "name": "Sirup of roses",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_a856b76d.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5104,7 +5104,7 @@
     {
       "id": "sloe_gin",
       "name": "Sloe gin",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_fe2fbc15.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5124,7 +5124,7 @@
     {
       "id": "soda_water",
       "name": "Soda Water",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_28066716.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5144,7 +5144,7 @@
     {
       "id": "sour_mix",
       "name": "Sour mix",
-      "category": "Ингредиенты",
+      "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_6d1e59cf.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5164,7 +5164,7 @@
     {
       "id": "southern_comfort",
       "name": "Southern Comfort",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5f890204.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5184,7 +5184,7 @@
     {
       "id": "soy_sauce",
       "name": "Soy Sauce",
-      "category": "Ингредиенты",
+      "category": "Соусы и солёные добавки",
       "image": "assets/data/catalog_images/img_eb203f8e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5204,7 +5204,7 @@
     {
       "id": "spiced_rum",
       "name": "Spiced rum",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_2faa4e0e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5224,7 +5224,7 @@
     {
       "id": "sprite",
       "name": "Sprite",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_c323b0d2.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5244,7 +5244,7 @@
     {
       "id": "st_germain",
       "name": "St. Germain",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_adadd970.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5264,7 +5264,7 @@
     {
       "id": "strawberries",
       "name": "Strawberries",
-      "category": "Ингредиенты",
+      "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_38de48fa.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5284,7 +5284,7 @@
     {
       "id": "strawberry_schnapps",
       "name": "Strawberry schnapps",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_e1935b51.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5304,7 +5304,7 @@
     {
       "id": "sugar",
       "name": "Sugar",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_786e6cfd.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5324,7 +5324,7 @@
     {
       "id": "syrup_sugar",
       "name": "Sugar syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_e87ae281.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5344,7 +5344,7 @@
     {
       "id": "surge",
       "name": "Surge",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_b6fd0455.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5364,7 +5364,7 @@
     {
       "id": "sweet_and_sour",
       "name": "Sweet and Sour",
-      "category": "Ингредиенты",
+      "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_41dca989.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5384,7 +5384,7 @@
     {
       "id": "vermouth_red",
       "name": "Sweet Vermouth",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_47933d82.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5404,7 +5404,7 @@
     {
       "id": "tabasco_sauce",
       "name": "Tabasco sauce",
-      "category": "Ингредиенты",
+      "category": "Соусы и солёные добавки",
       "image": "assets/data/catalog_images/img_22f0060a.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5424,7 +5424,7 @@
     {
       "id": "tea",
       "name": "Tea",
-      "category": "Ингредиенты",
+      "category": "Кофе, чай и какао",
       "image": "assets/data/catalog_images/img_75b51179.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5444,7 +5444,7 @@
     {
       "id": "tennessee_whiskey",
       "name": "Tennessee whiskey",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_a8ccdc84.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5464,7 +5464,7 @@
     {
       "id": "tequila",
       "name": "Tequila",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_311207a8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5484,7 +5484,7 @@
     {
       "id": "thyme",
       "name": "Thyme",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_86e12bee.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5504,7 +5504,7 @@
     {
       "id": "tia_maria",
       "name": "Tia maria",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_b5ff3010.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5524,7 +5524,7 @@
     {
       "id": "juice_tomato",
       "name": "Tomato juice",
-      "category": "Ингредиенты",
+      "category": "Соки и нектары",
       "image": "assets/data/catalog_images/img_494a8632.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5544,7 +5544,7 @@
     {
       "id": "tonic_water",
       "name": "Tonic Water",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_f0ec4bda.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5564,7 +5564,7 @@
     {
       "id": "triple_sec",
       "name": "Triple sec",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_d060df21.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5584,7 +5584,7 @@
     {
       "id": "vanilla",
       "name": "Vanilla",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_44171650.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5604,7 +5604,7 @@
     {
       "id": "vanilla_extract",
       "name": "Vanilla extract",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_caeb2f5e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5624,7 +5624,7 @@
     {
       "id": "vanilla_ice_cream",
       "name": "Vanilla ice-cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_95e08433.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5644,7 +5644,7 @@
     {
       "id": "vanilla_syrup",
       "name": "Vanilla syrup",
-      "category": "Ингредиенты",
+      "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_45332a4c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5664,7 +5664,7 @@
     {
       "id": "vermouth",
       "name": "Vermouth",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_8e3b73cb.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5684,7 +5684,7 @@
     {
       "id": "vodka",
       "name": "Vodka",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_2bb63d36.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5704,7 +5704,7 @@
     {
       "id": "water",
       "name": "Water",
-      "category": "Ингредиенты",
+      "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_e9758f68.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5724,7 +5724,7 @@
     {
       "id": "whipped_cream",
       "name": "Whipped cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_d8658c49.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5744,7 +5744,7 @@
     {
       "id": "whipping_cream",
       "name": "Whipping cream",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_c0537734.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5764,7 +5764,7 @@
     {
       "id": "whisky",
       "name": "Whisky",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_51b039cc.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5784,7 +5784,7 @@
     {
       "id": "creme_de_menthe_white",
       "name": "White Creme de Menthe",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_a4da121f.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5804,7 +5804,7 @@
     {
       "id": "wine_white",
       "name": "White Wine",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_e5b29370.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5824,7 +5824,7 @@
     {
       "id": "wild_turkey",
       "name": "Wild Turkey",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5fa3e94c.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5844,7 +5844,7 @@
     {
       "id": "wine",
       "name": "Wine",
-      "category": "Ингредиенты",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_8c329f42.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5864,7 +5864,7 @@
     {
       "id": "worcestershire_sauce",
       "name": "Worcestershire Sauce",
-      "category": "Ингредиенты",
+      "category": "Соусы и солёные добавки",
       "image": "assets/data/catalog_images/img_7f968140.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5884,7 +5884,7 @@
     {
       "id": "wormwood",
       "name": "Wormwood",
-      "category": "Ингредиенты",
+      "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_b2431bf1.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5904,7 +5904,7 @@
     {
       "id": "chartreuse_yellow",
       "name": "Yellow Chartreuse",
-      "category": "Ингредиенты",
+      "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_08f4ce1e.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5924,7 +5924,7 @@
     {
       "id": "yoghurt",
       "name": "Yoghurt",
-      "category": "Ингредиенты",
+      "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_bc7e6347.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5944,7 +5944,7 @@
     {
       "id": "yukon_jack",
       "name": "Yukon Jack",
-      "category": "Ингредиенты",
+      "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_0fbba17b.png",
       "isDecoration": false,
       "isOptional": false,
@@ -5964,7 +5964,7 @@
     {
       "id": "zima",
       "name": "Zima",
-      "category": "Ингредиенты",
+      "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_5a839f74.png",
       "isDecoration": false,
       "isOptional": false,
