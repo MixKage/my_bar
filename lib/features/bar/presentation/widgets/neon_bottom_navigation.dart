@@ -26,7 +26,7 @@ class NeonBottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final panelColor = powerSavingMode
-        ? const Color(0xEE111425)
+        ? const Color(0xFF111425)
         : const Color(0xCC111425);
     final borderChild = AnimatedGradientBorder(
       enabled: !powerSavingMode,

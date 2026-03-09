@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/search/app_search_query.dart';
 import '../../cubit/bar_cubit.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_glass_types.dart';
@@ -209,20 +210,17 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
     final title = widget.isEditing
         ? context.tr('Редактирование коктейля', 'Edit cocktail')
         : context.tr('Создание коктейля', 'Create cocktail');
-    final normalizedIngredientSearch = _ingredientSearchQuery
-        .trim()
-        .toLowerCase();
-    final filteredIngredients = normalizedIngredientSearch.isEmpty
+    final ingredientSearch = AppSearchQuery(_ingredientSearchQuery);
+    final filteredIngredients = ingredientSearch.isEmpty
         ? _ingredients
         : _ingredients
               .where(
-                (ingredient) =>
-                    ingredient.name.toLowerCase().contains(
-                      normalizedIngredientSearch,
-                    ) ||
-                    ingredient.category.toLowerCase().contains(
-                      normalizedIngredientSearch,
-                    ),
+                (ingredient) => ingredientSearch.matchesAny(<String>[
+                  ingredient.id,
+                  ingredient.name,
+                  ingredient.category,
+                  context.ingredientCategoryLabel(ingredient.category),
+                ]),
               )
               .toList(growable: false);
 
@@ -686,8 +684,10 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                                                                         .name,
                                                                   ),
                                                                   subtitle: Text(
-                                                                    ingredient
-                                                                        .category,
+                                                                    context.ingredientCategoryLabel(
+                                                                      ingredient
+                                                                          .category,
+                                                                    ),
                                                                     style: const TextStyle(
                                                                       fontSize:
                                                                           12,
@@ -1515,7 +1515,7 @@ class _IngredientSubstitutionsDialogState
                     activeColor: const Color(0xFF7F89FF),
                     title: Text(candidate.name),
                     subtitle: Text(
-                      candidate.category,
+                      context.ingredientCategoryLabel(candidate.category),
                       style: const TextStyle(fontSize: 12),
                     ),
                     onChanged: (value) {

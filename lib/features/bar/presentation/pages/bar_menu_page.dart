@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/search/app_search_query.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
@@ -87,15 +88,15 @@ class _BarMenuPageState extends State<BarMenuPage> {
       widget.cocktails,
     );
     final hasSelectedIngredients = widget.selectedIngredientIds.isNotEmpty;
-    final normalizedSearchQuery = _searchQuery.trim().toLowerCase();
-    final hasSearchQuery = normalizedSearchQuery.isNotEmpty;
+    final searchQuery = AppSearchQuery(_searchQuery);
+    final hasSearchQuery = !searchQuery.isEmpty;
     final sortedCocktails = _sortCocktailsByAvailability(
       widget.cocktails,
       missingIngredientsByCocktailId,
     );
     final filteredCocktails = _applyFilters(
       sortedCocktails,
-      normalizedSearchQuery: normalizedSearchQuery,
+      searchQuery: searchQuery,
     );
     final availableCocktailCount = filteredCocktails.where((cocktail) {
       final missingIngredients = missingIngredientsByCocktailId[cocktail.id];
@@ -396,7 +397,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
 
   List<Cocktail> _applyFilters(
     List<Cocktail> source, {
-    required String normalizedSearchQuery,
+    required AppSearchQuery searchQuery,
   }) {
     var filtered = source;
 
@@ -412,53 +413,39 @@ class _BarMenuPageState extends State<BarMenuPage> {
           .toList(growable: false);
     }
 
-    if (normalizedSearchQuery.isEmpty) {
+    if (searchQuery.isEmpty) {
       return filtered;
     }
 
     return filtered
         .where(
-          (cocktail) => _matchesSearchQuery(
-            cocktail: cocktail,
-            normalizedSearchQuery: normalizedSearchQuery,
-          ),
+          (cocktail) =>
+              _matchesSearchQuery(cocktail: cocktail, searchQuery: searchQuery),
         )
         .toList(growable: false);
   }
 
   bool _matchesSearchQuery({
     required Cocktail cocktail,
-    required String normalizedSearchQuery,
+    required AppSearchQuery searchQuery,
   }) {
-    if (cocktail.name.toLowerCase().contains(normalizedSearchQuery)) {
-      return true;
-    }
-    if (cocktail.description.toLowerCase().contains(normalizedSearchQuery)) {
-      return true;
-    }
-    if (context
-        .cocktailGlassTypeLabel(cocktail.glassType)
-        .toLowerCase()
-        .contains(normalizedSearchQuery)) {
-      return true;
-    }
-    for (final tag in cocktail.tags) {
-      if (tag.toLowerCase().contains(normalizedSearchQuery) ||
-          context
-              .cocktailTagLabel(tag)
-              .toLowerCase()
-              .contains(normalizedSearchQuery)) {
-        return true;
-      }
-    }
-    for (final ingredientId in cocktail.ingredients) {
-      final ingredientName =
-          widget.ingredientsById[ingredientId]?.name ?? ingredientId;
-      if (ingredientName.toLowerCase().contains(normalizedSearchQuery)) {
-        return true;
-      }
-    }
-    return false;
+    final candidateFields = <String>[
+      cocktail.id,
+      cocktail.name,
+      cocktail.description,
+      context.cocktailGlassTypeLabel(cocktail.glassType),
+      ...cocktail.tags,
+      ...cocktail.tags.map(context.cocktailTagLabel),
+      ...cocktail.ingredients.map((ingredientId) {
+        final ingredientName = widget.ingredientsById[ingredientId]?.name;
+        if (ingredientName == null || ingredientName.isEmpty) {
+          return ingredientId;
+        }
+        return '$ingredientName $ingredientId';
+      }),
+    ];
+
+    return searchQuery.matchesAny(candidateFields);
   }
 
   void _handleSearchChanged(String value) {

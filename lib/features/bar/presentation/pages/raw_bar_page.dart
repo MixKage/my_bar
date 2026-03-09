@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/search/app_search_query.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
@@ -104,10 +105,15 @@ class _RawBarPageState extends State<RawBarPage> {
     );
     final bottomContentPadding = widget.bottomOverlayPadding + 24;
 
+    final searchQuery = AppSearchQuery(_query);
     final filteredIngredients = widget.ingredients
         .where(
-          (ingredient) =>
-              ingredient.name.toLowerCase().contains(_query.toLowerCase()),
+          (ingredient) => searchQuery.matchesAny(<String>[
+            ingredient.name,
+            ingredient.category,
+            context.ingredientCategoryLabel(ingredient.category),
+            ingredient.id,
+          ]),
         )
         .toList(growable: false);
     final cocktailsByIngredient = _buildCocktailUsageMap(widget.cocktails);
@@ -462,9 +468,12 @@ class _RawBarPageState extends State<RawBarPage> {
           }
           return compareByName();
         case IngredientSortMode.category:
-          final categoryCompare = left.category.toLowerCase().compareTo(
-            right.category.toLowerCase(),
-          );
+          final categoryCompare = context
+              .ingredientCategoryLabel(left.category)
+              .toLowerCase()
+              .compareTo(
+                context.ingredientCategoryLabel(right.category).toLowerCase(),
+              );
           if (categoryCompare != 0) {
             return categoryCompare;
           }
@@ -660,7 +669,9 @@ class IngredientCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            ingredient.category,
+                            context.ingredientCategoryLabel(
+                              ingredient.category,
+                            ),
                             style: const TextStyle(
                               color: Color(0xFFA4AFD3),
                               fontSize: 13,

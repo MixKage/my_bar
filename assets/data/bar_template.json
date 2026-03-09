@@ -2503,7 +2503,7 @@
     },
     {
       "id": "galliano",
-      "name": "Galliano",
+      "name": "Vanilla Liqueur Galliano",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_0164d74e.png",
       "isDecoration": false,
@@ -2517,7 +2517,7 @@
       "source": "seed_json",
       "sourceId": "galliano",
       "canonicalSlug": "galliano",
-      "displayName": "Galliano",
+      "displayName": "Vanilla Liqueur Galliano",
       "imageUrl": "assets/data/catalog_images/img_0164d74e.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Galliano.png"
     },
@@ -5803,6 +5803,54 @@
     }
   ],
   "cocktails": [
+    {
+      "id": "kabonyelka",
+      "name": "Kabonyelka",
+      "image": "assets/data/catalog_images/kabonyelka.jpg",
+      "ingredients": [
+        "galliano",
+        "sambuca",
+        "coffee_liqueur"
+      ],
+      "description": "A visually stunning and complex layered shot designed to create a \"nebula\" or \"cloud\" effect within the glass. This cocktail is a journey of textures, starting with a deep, earthy foundation of coffee liqueur, followed by the crystal-clear intensity of sambuca. The final addition of vanilla liqueur acts as the catalyst, drifting through the clear sambuca layer to create ethereal, wispy formations that mimic clouds in a dark sky.",
+      "preparationSteps": [
+        "Add 1/3 coffee liqueur to the bottom of the glass.",
+        "Add 1/3 sambuca to the middle of the glass.",
+        "Add 1/3 vanilla liqueur to the top of the glass."
+      ],
+      "glassType": "Шот",
+      "tags": [
+        "Шоты"
+      ],
+      "ingredientSubstitutions": {},
+      "ingredientAmounts": {
+        "coffee_liqueur": "1/3",
+        "sambuca": "1/3",
+        "galliano": "1/3"
+      },
+      "ingredientUnits": {
+        "coffee_liqueur": "shot",
+        "sambuca": "shot",
+        "galliano": "shot"
+      },
+      "optionalIngredients": [],
+      "decorationIngredients": [],
+      "isFavorite": false,
+      "source": "seed_json",
+      "sourceId": "kabonyelka",
+      "canonicalSlug": "kabonyelka",
+      "imageUrl": "assets/data/catalog_images/kabonyelka.jpg",
+      "aliases": [
+        "A1"
+      ],
+      "sourceMetadata": {
+        "strCategory": null,
+        "strAlcoholic": null,
+        "strGlass": null,
+        "strTags": null
+      },
+      "remoteImageUrl": "https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg"
+    },
     {
       "id": "a1",
       "name": "A1",

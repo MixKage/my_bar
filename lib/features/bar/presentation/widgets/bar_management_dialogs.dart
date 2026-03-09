@@ -355,7 +355,9 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                 activeColor: const Color(0xFF7F89FF),
                                 title: Text(ingredient.name),
                                 subtitle: Text(
-                                  ingredient.category,
+                                  context.ingredientCategoryLabel(
+                                    ingredient.category,
+                                  ),
                                   style: const TextStyle(fontSize: 12),
                                 ),
                                 onChanged: (value) {
@@ -801,7 +803,7 @@ class _IngredientSubstitutionsDialogState
                     activeColor: const Color(0xFF7F89FF),
                     title: Text(candidate.name),
                     subtitle: Text(
-                      candidate.category,
+                      context.ingredientCategoryLabel(candidate.category),
                       style: const TextStyle(fontSize: 12),
                     ),
                     onChanged: (value) {

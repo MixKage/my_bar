@@ -62,6 +62,12 @@ extension AppLocalizationX on BuildContext {
   String cocktailGlassTypeLabel(String glassType) =>
       _cocktailGlassLabels[glassType]?[isEnglish] ?? glassType;
 
+  String ingredientCategoryLabel(String category) {
+    final normalizedCategory = _normalizeLocalizationKey(category);
+    return _ingredientCategoryLabels[normalizedCategory]?[isEnglish] ??
+        category;
+  }
+
   String ingredientUnitLabel(String unit) =>
       _ingredientUnitLabels[unit]?[isEnglish] ?? unit;
 
@@ -144,6 +150,104 @@ const Map<String, _LocalizedLabel> _ingredientUnitLabels =
       'по вкусу': _LocalizedLabel(ru: 'по вкусу', en: 'to taste'),
     };
 
+const Map<String, _LocalizedLabel>
+_ingredientCategoryLabels = <String, _LocalizedLabel>{
+  'крепкий алкоголь': _LocalizedLabel(ru: 'Крепкий алкоголь', en: 'Spirits'),
+  'spirits': _LocalizedLabel(ru: 'Крепкий алкоголь', en: 'Spirits'),
+  'ликеры и аперитивы': _LocalizedLabel(
+    ru: 'Ликёры и аперитивы',
+    en: 'Liqueurs and aperitifs',
+  ),
+  'liqueurs and aperitifs': _LocalizedLabel(
+    ru: 'Ликёры и аперитивы',
+    en: 'Liqueurs and aperitifs',
+  ),
+  'специи травы и биттеры': _LocalizedLabel(
+    ru: 'Специи, травы и биттеры',
+    en: 'Spices, herbs and bitters',
+  ),
+  'spices herbs and bitters': _LocalizedLabel(
+    ru: 'Специи, травы и биттеры',
+    en: 'Spices, herbs and bitters',
+  ),
+  'газировка и безалкогольные миксеры': _LocalizedLabel(
+    ru: 'Газировка и безалкогольные миксеры',
+    en: 'Sodas and non-alcoholic mixers',
+  ),
+  'sodas and non alcoholic mixers': _LocalizedLabel(
+    ru: 'Газировка и безалкогольные миксеры',
+    en: 'Sodas and non-alcoholic mixers',
+  ),
+  'сиропы и подсластители': _LocalizedLabel(
+    ru: 'Сиропы и подсластители',
+    en: 'Syrups and sweeteners',
+  ),
+  'syrups and sweeteners': _LocalizedLabel(
+    ru: 'Сиропы и подсластители',
+    en: 'Syrups and sweeteners',
+  ),
+  'фрукты и ягоды': _LocalizedLabel(
+    ru: 'Фрукты и ягоды',
+    en: 'Fruits and berries',
+  ),
+  'fruits and berries': _LocalizedLabel(
+    ru: 'Фрукты и ягоды',
+    en: 'Fruits and berries',
+  ),
+  'молочные и сливочные': _LocalizedLabel(
+    ru: 'Молочные и сливочные',
+    en: 'Dairy and cream',
+  ),
+  'dairy and cream': _LocalizedLabel(
+    ru: 'Молочные и сливочные',
+    en: 'Dairy and cream',
+  ),
+  'соки и нектары': _LocalizedLabel(
+    ru: 'Соки и нектары',
+    en: 'Juices and nectars',
+  ),
+  'juices and nectars': _LocalizedLabel(
+    ru: 'Соки и нектары',
+    en: 'Juices and nectars',
+  ),
+  'пиво и сидр': _LocalizedLabel(ru: 'Пиво и сидр', en: 'Beer and cider'),
+  'beer and cider': _LocalizedLabel(ru: 'Пиво и сидр', en: 'Beer and cider'),
+  'вино и игристое': _LocalizedLabel(
+    ru: 'Вино и игристое',
+    en: 'Wine and sparkling',
+  ),
+  'wine and sparkling': _LocalizedLabel(
+    ru: 'Вино и игристое',
+    en: 'Wine and sparkling',
+  ),
+  'кофе чай и какао': _LocalizedLabel(
+    ru: 'Кофе, чай и какао',
+    en: 'Coffee, tea and cocoa',
+  ),
+  'coffee tea and cocoa': _LocalizedLabel(
+    ru: 'Кофе, чай и какао',
+    en: 'Coffee, tea and cocoa',
+  ),
+  'соусы и соленые добавки': _LocalizedLabel(
+    ru: 'Соусы и солёные добавки',
+    en: 'Sauces and savory additions',
+  ),
+  'sauces and savory additions': _LocalizedLabel(
+    ru: 'Соусы и солёные добавки',
+    en: 'Sauces and savory additions',
+  ),
+  'десертные ингредиенты': _LocalizedLabel(
+    ru: 'Десертные ингредиенты',
+    en: 'Dessert ingredients',
+  ),
+  'dessert ingredients': _LocalizedLabel(
+    ru: 'Десертные ингредиенты',
+    en: 'Dessert ingredients',
+  ),
+  'готовые смеси': _LocalizedLabel(ru: 'Готовые смеси', en: 'Premixes'),
+  'premixes': _LocalizedLabel(ru: 'Готовые смеси', en: 'Premixes'),
+};
+
 const Map<String, _LocalizedLabel> _errorMessageLabels =
     <String, _LocalizedLabel>{
       'Ингредиент не найден.': _LocalizedLabel(
@@ -191,4 +295,13 @@ class _LocalizedLabel {
   final String en;
 
   String operator [](bool isEnglish) => isEnglish ? en : ru;
+}
+
+String _normalizeLocalizationKey(String value) {
+  return value
+      .toLowerCase()
+      .replaceAll('ё', 'е')
+      .replaceAll(RegExp(r'[^a-z0-9а-я]+'), ' ')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .trim();
 }
