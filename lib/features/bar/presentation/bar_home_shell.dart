@@ -37,6 +37,7 @@ class _BarHomeShellState extends State<BarHomeShell>
     with WidgetsBindingObserver {
   static const _jsonCodec = BarCatalogJsonCodec();
   static final Uri _developerSiteUri = Uri.parse('https://logion-web.ru/');
+  static const double _hiddenSideToggleVisibleFraction = 1 / 3;
 
   final Battery _battery = Battery();
   StreamSubscription<BatteryState>? _batteryStateSubscription;
@@ -252,7 +253,9 @@ class _BarHomeShellState extends State<BarHomeShell>
               ),
             if (useSideNavigation && !showSideNavigation)
               Positioned(
-                left: 8,
+                left:
+                    -_SideNavigationToggleHandle.size *
+                    (1 - _hiddenSideToggleVisibleFraction),
                 top: topInset + 88,
                 child: _SideNavigationToggleHandle(
                   tooltip: context.tr('Показать меню', 'Show menu'),
@@ -1135,6 +1138,8 @@ class _SideNavigationToggleHandle extends StatefulWidget {
     required this.onPressed,
   });
 
+  static const double size = 44;
+
   final String tooltip;
   final IconData icon;
   final VoidCallback onPressed;
@@ -1186,8 +1191,8 @@ class _SideNavigationToggleHandleState
               glowEffect: true,
               glow: const AnimatedGradientBorderGlow(opacity: 0.34),
               child: SizedBox(
-                width: 44,
-                height: 44,
+                width: _SideNavigationToggleHandle.size,
+                height: _SideNavigationToggleHandle.size,
                 child: Icon(widget.icon, color: const Color(0xFFD2DEFF)),
               ),
             ),
