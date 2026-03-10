@@ -28,3 +28,4 @@ doc/api/
 
 # macOS Finder metadata
 .DS_Store
+android/upload_certificate.pem
