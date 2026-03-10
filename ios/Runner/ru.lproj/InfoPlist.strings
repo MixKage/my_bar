@@ -1,1 +1,2 @@
 "CFBundleDisplayName" = "Мой Бар";
+"NSPhotoLibraryUsageDescription" = "Разрешите доступ к фото, чтобы выбрать изображения для коктейлей и ингредиентов.";

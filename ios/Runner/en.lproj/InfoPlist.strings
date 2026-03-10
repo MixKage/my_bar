@@ -1,1 +1,2 @@
 "CFBundleDisplayName" = "My Bar";
+"NSPhotoLibraryUsageDescription" = "Allow access to your photo library to select cocktail and ingredient images.";
