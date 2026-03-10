@@ -311,7 +311,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n\n# Workaround for App Store validation: objective_c.framework may be embedded without its dSYM.\nAPP_FRAMEWORK_DIR=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}/Frameworks\"\nOBJECTIVE_C_BIN=\"${APP_FRAMEWORK_DIR}/objective_c.framework/objective_c\"\nOBJECTIVE_C_DSYM=\"${DWARF_DSYM_FOLDER_PATH}/objective_c.framework.dSYM\"\n\nif [ -f \"${OBJECTIVE_C_BIN}\" ] && [ ! -d \"${OBJECTIVE_C_DSYM}\" ]; then\n  echo \"Generating missing dSYM for objective_c.framework\"\n  xcrun dsymutil \"${OBJECTIVE_C_BIN}\" -o \"${OBJECTIVE_C_DSYM}\"\nfi";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n\nAPP_BUNDLE_DIR=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\nAPP_FRAMEWORK_DIR=\"${APP_BUNDLE_DIR}/Frameworks\"\nOBJECTIVE_C_BIN=\"${APP_FRAMEWORK_DIR}/objective_c.framework/objective_c\"\nOBJECTIVE_C_DSYM=\"${DWARF_DSYM_FOLDER_PATH}/objective_c.framework.dSYM\"\nNATIVE_ASSETS_MANIFEST=\"${APP_FRAMEWORK_DIR}/App.framework/flutter_assets/NativeAssetsManifest.json\"\n\n# Workaround: native assets manifest may point to objective_c.framework in app root,\n# while objective_c.framework is actually inside Runner.app/Frameworks.\nif [ -f \"${NATIVE_ASSETS_MANIFEST}\" ] && [ -f \"${OBJECTIVE_C_BIN}\" ]; then\n  if grep -q '\"objective_c.framework/objective_c\"' \"${NATIVE_ASSETS_MANIFEST}\"; then\n    echo \"Patching NativeAssetsManifest.json path for objective_c.framework\"\n    /usr/bin/perl -0pi -e 's|\"objective_c\\.framework/objective_c\"|\"Frameworks/objective_c.framework/objective_c\"|g' \"${NATIVE_ASSETS_MANIFEST}\"\n  fi\nfi\n\n# Workaround for App Store validation: objective_c.framework may be embedded without its dSYM.\nif [ -f \"${OBJECTIVE_C_BIN}\" ] && [ ! -d \"${OBJECTIVE_C_DSYM}\" ]; then\n  echo \"Generating missing dSYM for objective_c.framework\"\n  xcrun dsymutil \"${OBJECTIVE_C_BIN}\" -o \"${OBJECTIVE_C_DSYM}\"\nfi";
 		};
 		3CBB434472265EE369861F5B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -358,13 +358,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
