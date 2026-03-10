@@ -1,109 +1,113 @@
-# Мой Бар (My Bar)
+# My Bar
+
+<p align="right">
+  <a href="./README.md"><strong>English</strong></a> | <a href="./README.ru.md">Русский</a>
+</p>
 
 <p align="center">
   <img src="assets/icon.png" alt="My Bar Icon" width="96" height="96" />
 </p>
 
-Мобильное приложение на Flutter для управления домашним баром:
+A Flutter mobile app for managing your home bar:
 
-- отмечайте, какие ингредиенты у вас есть;
-- получайте список доступных коктейлей;
-- создавайте и редактируйте свои ингредиенты и коктейли;
-- импортируйте и экспортируйте барную карту в JSON.
+- mark ingredients you currently have,
+- see which cocktails are available right now,
+- create and edit ingredients and cocktails,
+- import and export your bar catalog as JSON.
 
-## Основные возможности
+## Key Features
 
-- `Сырой бар`: ингредиенты, поиск, сортировки, отметка наличия.
-- `Барная карта`: доступные коктейли, список/плитка, теги, избранное.
-- Неоновый UI: glow-эффекты, градиенты, кастомные tooltip, неоновый scrollbar.
-- Неоновый стиль интерфейса достигается за счёт самописной библиотеки [animated_border_widgets](https://pub.dev/packages/animated_border_widgets), используемой для неоновых рамок и свечения.
-- Редактирование ингредиентов: создание/изменение, включая фото по URL и из локального хранилища.
-- Редактирование коктейлей: отдельная страница создания/изменения с полной настройкой рецепта.
-- Логика рецептов: опциональные ингредиенты, ингредиенты-украшения, замены, количество и единицы измерения.
-- Режимы интерфейса: `Режим посетителя` и `Режим барной карты`.
-- Персистентность: выбранные ингредиенты, каталог и UI-настройки сохраняются между перезапусками.
-- Импорт/экспорт JSON: полный каталог (ингредиенты + коктейли) с валидацией.
-- Защита от пустого экспорта: ошибка `Барная карта не изменена`, если данных для экспорта нет.
+- `Raw Bar`: ingredients list, search, sorting, availability toggles.
+- `Bar Menu`: available cocktails in list or grid view, tags, favorites.
+- Neon-inspired UI: gradients, glow effects, custom tooltips, custom scrollbar.
+- Ingredient editor: create/update ingredients, including image URL or local file path.
+- Cocktail editor: dedicated create/edit page with full recipe configuration.
+- Recipe logic: optional ingredients, garnish ingredients, substitutions, amounts, and units.
+- Measurement systems: `ml`, `cl`, `fl oz`.
+- UI modes: `Visitor Mode` and `Bar Menu Mode`.
+- Power-saving mode support.
+- Persistence: selected ingredients, catalog, and UI settings are saved between launches.
+- JSON import/export with validation (ingredients + cocktails).
+- Empty export protection: shows `Bar catalog not changed` when there is nothing to export.
 
-## Технологический стек
+## Technology Stack
 
 - Flutter + Dart
 - BLoC/Cubit (`flutter_bloc`)
-- Локальное хранение: `shared_preferences`
-- Импорт файлов: `file_picker`
-- Экспорт/шаринг: `path_provider`, `share_plus`
-- UI-эффекты: `animated_border_widgets`, `loading_animation_widget`, `google_fonts`
+- Local storage: `shared_preferences`
+- File import: `file_picker`
+- Export/sharing: `path_provider`, `share_plus`
+- UI effects: `animated_border_widgets`, `loading_animation_widget`, `google_fonts`
 
-## Архитектура
+## Architecture
 
-Проект построен по слоям:
+The project follows layered architecture:
 
-- `domain`: модели (`Ingredient`, `Cocktail`, `BarCatalog`) и константы тегов/типов бокалов.
-- `data`: storage-абстракции + реализации на `SharedPreferences`, JSON-кодек барной карты.
-- `cubit`: `BarCubit` и `BarState`, бизнес-логика доступности коктейлей и работы с каталогом.
-- `presentation`: `BarHomeShell`, страницы и виджеты интерфейса.
+- `domain`: models (`Ingredient`, `Cocktail`, `BarCatalog`) and constants (tags, glass types, units).
+- `data`: storage abstractions + implementations (`SharedPreferences`), JSON codec.
+- `cubit`: `BarCubit` + `BarState` with core app logic.
+- `presentation`: `BarHomeShell`, pages, and UI widgets.
 
-Состояние приложения централизовано в `BarCubit` и сохраняется при каждом изменении.
+App state is centralized in `BarCubit` and persisted on every change.
 
-## Структура проекта
+## Project Structure
 
-Ключевые директории:
+- `lib/app` - app bootstrap and top-level app wiring.
+- `lib/core` - theme, base widgets, localization, search helpers.
+- `lib/features/bar` - main bar feature (data/domain/cubit/presentation).
+- `assets/data/bar_template.json` - default catalog template.
+- `assets/icon.png` - source app icon.
+- `docs/privacy-policy.md` - privacy policy template for store distribution.
+- `test/` - unit and widget tests.
 
-- `lib/app` - инициализация приложения.
-- `lib/core` - тема, базовые виджеты, лоадеры, скроллбар.
-- `lib/features/bar` - вся функциональность бара (data/domain/cubit/presentation).
-- `assets/data/bar_template.json` - шаблонный каталог по умолчанию.
-- `assets/icon.png` - исходная иконка приложения.
-- `test/` - unit и widget тесты.
-
-## Скриншоты
+## Screenshots
 
 <table>
   <tr>
     <td align="center" valign="top">
-      <img src="docs/screenshots/raw-bar.png" alt="Сырой бар" width="280" height="606" />
+      <img src="docs/screenshots/raw-bar.png" alt="Raw Bar" width="280" height="606" />
       <br />
-      <sub><b>Сырой бар</b></sub>
+      <sub><b>Raw Bar</b></sub>
       <br />
-      <sub>Поиск, сортировки и наличие ингредиентов</sub>
+      <sub>Ingredient search, sorting, and availability</sub>
     </td>
     <td align="center" valign="top">
-      <img src="docs/screenshots/bar-menu-list.png" alt="Барная карта — список" width="280" height="606" />
+      <img src="docs/screenshots/bar-menu-list.png" alt="Bar Menu — List" width="280" height="606" />
       <br />
-      <sub><b>Барная карта (список)</b></sub>
+      <sub><b>Bar Menu (List)</b></sub>
       <br />
-      <sub>Раскрытая карточка коктейля и состав</sub>
+      <sub>Expanded cocktail card with recipe details</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top">
-      <img src="docs/screenshots/bar-menu-grid.png" alt="Барная карта — плитка" width="280" height="606" />
+      <img src="docs/screenshots/bar-menu-grid.png" alt="Bar Menu — Grid" width="280" height="606" />
       <br />
-      <sub><b>Барная карта (плитка)</b></sub>
+      <sub><b>Bar Menu (Grid)</b></sub>
       <br />
-      <sub>Сеточный вид с быстрым просмотром</sub>
+      <sub>Grid layout for quick browsing</sub>
     </td>
     <td align="center" valign="top">
-      <img src="docs/screenshots/cocktail-editor.png" alt="Редактор коктейля" width="280" height="606" />
+      <img src="docs/screenshots/cocktail-editor.png" alt="Cocktail Editor" width="280" height="606" />
       <br />
-      <sub><b>Редактор коктейля</b></sub>
+      <sub><b>Cocktail Editor</b></sub>
       <br />
-      <sub>Создание и настройка рецепта</sub>
+      <sub>Create and tune recipes</sub>
     </td>
   </tr>
 </table>
 
-## JSON формат барной карты
+## Bar Catalog JSON Format
 
-Файл импорта/экспорта имеет структуру:
+The import/export file structure:
 
 ```json
 {
   "ingredients": [
     {
       "id": "vodka",
-      "name": "Водка",
-      "category": "Крепкий алкоголь",
+      "name": "Vodka",
+      "category": "Strong spirits",
       "image": "",
       "isDecoration": false,
       "isOptional": false
@@ -112,16 +116,16 @@
   "cocktails": [
     {
       "id": "black-russian",
-      "name": "Черный русский",
+      "name": "Black Russian",
       "image": "",
       "ingredients": ["vodka", "coffee_liqueur"],
-      "description": "Крепкий кофейный коктейль",
+      "description": "Strong coffee cocktail",
       "preparationSteps": [
-        "Наполните рокс льдом",
-        "Добавьте ингредиенты и аккуратно перемешайте"
+        "Fill a rocks glass with ice",
+        "Add ingredients and stir gently"
       ],
-      "glassType": "Рокс",
-      "tags": ["Крепкие", "IBA"],
+      "glassType": "Rocks",
+      "tags": ["Strong", "IBA"],
       "ingredientSubstitutions": {
         "coffee_liqueur": ["kahlua"]
       },
@@ -130,8 +134,8 @@
         "coffee_liqueur": "20"
       },
       "ingredientUnits": {
-        "vodka": "мл",
-        "coffee_liqueur": "мл"
+        "vodka": "ml",
+        "coffee_liqueur": "ml"
       },
       "optionalIngredients": [],
       "decorationIngredients": [],
@@ -141,66 +145,70 @@
 }
 ```
 
-Валидация JSON выполняется в `BarCatalogJsonCodec`.
+Validation is implemented in `BarCatalogJsonCodec`.
 
-## Запуск проекта
+## Getting Started
 
-### Требования
+### Requirements
 
 - Flutter stable
-- Dart SDK `^3.10.8` (см. `pubspec.yaml`)
-- Xcode (для iOS) / Android Studio + SDK (для Android)
+- Dart SDK `^3.10.8` (see `pubspec.yaml`)
+- Xcode (iOS) / Android Studio + SDK (Android)
 
-### Установка и запуск
+### Install and Run
 
 ```bash
 flutter pub get
 flutter run
 ```
 
-## Полезные команды
+## Useful Commands
 
-Проверка кода:
+Analyze:
 
 ```bash
 flutter analyze
 ```
 
-Тесты:
+Tests:
 
 ```bash
 flutter test
 ```
 
-Обновить иконки приложения из `assets/icon.png`:
+Regenerate app icons from `assets/icon.png`:
 
 ```bash
 dart run flutter_launcher_icons
 ```
 
-Если после смены иконки отображается старая версия, переустановите приложение на устройстве (удалить/установить заново).
+If a stale icon is shown after update, reinstall the app on device.
 
-## Экран управления баром
+## Bar Management Menu
 
-Меню `Управление баром`:
+`Bar Management` menu actions:
 
-- Добавить ингредиент
-- Добавить коктейль
-- Настройки
-- О приложении
+- Add ingredient
+- Add cocktail
+- Settings
+- About app
 
-В `Настройках`:
+`Settings` includes:
 
-- Режим посетителя
-- Режим барной карты
-- Импортировать барную карту
-- Экспортировать барную карту
+- Visitor mode
+- Bar menu mode
+- Import bar catalog
+- Export bar catalog
 
-## Лицензия
+## Privacy Policy
 
-Проект распространяется по лицензии [MIT](LICENSE).
+- [Privacy Policy (English)](docs/privacy-policy.md)
 
-## Ссылки
+## License
+
+Distributed under the [MIT](LICENSE) license.
+
+## Links
 
 - [animated_border_widgets](https://pub.dev/packages/animated_border_widgets)
 - [LOGION](https://logion-web.ru/)
