@@ -211,6 +211,7 @@ dart run flutter_launcher_icons
 
 ## Политика конфиденциальности
 
+- [Политика конфиденциальности (Русский)](docs/privacy-policy.ru.md)
 - [Privacy Policy (English)](docs/privacy-policy.md)
 
 ## Лицензия

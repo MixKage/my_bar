@@ -212,6 +212,7 @@ If a stale icon is shown after update, reinstall the app on device.
 ## Privacy Policy
 
 - [Privacy Policy (English)](docs/privacy-policy.md)
+- [Privacy Policy (Russian)](docs/privacy-policy.ru.md)
 
 ## License
 

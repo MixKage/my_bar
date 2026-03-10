@@ -1,21 +1,25 @@
-# Privacy Policy for My Bar
+# Privacy Policy for My Bar: Home Cocktails
+
+<p align="right">
+  <a href="./privacy-policy.md"><strong>English</strong></a> | <a href="./privacy-policy.ru.md">Русский</a>
+</p>
 
 **Last updated:** March 10, 2026
 
-This Privacy Policy explains how **My Bar** ("the App", "we", "us", "our") handles information when you use the mobile application.
+This Privacy Policy explains how **My Bar: Home Cocktails** ("the App", "we", "us", "our") handles information when you use the mobile application.
 
 This policy is intended to support app distribution requirements for Apple App Store and Google Play.
 
 ## 1. Who We Are
 
-Product name: **My Bar**  
+Product name: **My Bar: Home Cocktails**  
 Developer website: [https://logion-web.ru/](https://logion-web.ru/)
 
 If you have privacy questions, you can contact us through the developer website above.
 
 ## 2. Scope
 
-This policy applies to the My Bar mobile application and its in-app features.
+This policy applies to the My Bar: Home Cocktails mobile application and its in-app features.
 
 ## 3. Information We Process
 
@@ -118,4 +122,3 @@ We may update this policy from time to time. Material updates will be reflected 
 
 For privacy-related questions, contact us via:  
 [https://logion-web.ru/](https://logion-web.ru/)
-
