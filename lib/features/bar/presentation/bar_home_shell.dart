@@ -198,15 +198,22 @@ class _BarHomeShellState extends State<BarHomeShell>
           )
         : pageStack;
 
+    final systemUiStyle = SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Platform.isAndroid
+          ? Colors.black
+          : Colors.transparent,
+      systemNavigationBarDividerColor: Platform.isAndroid
+          ? Colors.black
+          : Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarContrastEnforced: false,
+    );
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.dark,
-        statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
+      value: systemUiStyle,
       child: Scaffold(
         extendBody: true,
         body: Stack(
