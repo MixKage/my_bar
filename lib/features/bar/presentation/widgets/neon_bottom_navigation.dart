@@ -49,7 +49,7 @@ class NeonBottomNavigation extends StatelessWidget {
             _NavItem(
               selected: currentIndex == 0,
               icon: Icons.liquor_rounded,
-              title: context.tr('Ингридиенты', 'Ingredients'),
+              title: context.tr('Ингредиенты', 'Ingredients'),
               powerSavingMode: powerSavingMode,
               onTap: () => onChanged(0),
             ),
@@ -125,7 +125,7 @@ class NeonSideNavigation extends StatelessWidget {
               child: _NavItem(
                 selected: currentIndex == 0,
                 icon: Icons.liquor_rounded,
-                title: context.tr('Ингридиенты', 'Ingredients'),
+                title: context.tr('Ингредиенты', 'Ingredients'),
                 powerSavingMode: powerSavingMode,
                 onTap: () => onChanged(0),
                 axis: Axis.vertical,

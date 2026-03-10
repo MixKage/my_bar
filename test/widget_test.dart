@@ -24,7 +24,7 @@ void main() {
     await tester.pump();
 
     expect(find.text('Мой Бар'), findsOneWidget);
-    expect(find.text('Ингридиенты'), findsOneWidget);
+    expect(find.text('Ингредиенты'), findsOneWidget);
     expect(find.text('Барная карта'), findsOneWidget);
   });
 

@@ -1,4 +1,4 @@
-package com.example.my_bar
+package com.logion.mybar
 
 import io.flutter.embedding.android.FlutterActivity
 
