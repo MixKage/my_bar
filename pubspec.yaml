@@ -2,7 +2,7 @@ name: my_bar
 description: "An application for managing your home bar and quickly selecting cocktails from what you already have at home."
 publish_to: 'none' 
 
-version: 1.0.0+61
+version: 1.0.0+62
 
 environment:
   sdk: ^3.10.8
