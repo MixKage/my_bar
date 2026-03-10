@@ -65,34 +65,43 @@ App state is centralized in `BarCubit` and persisted on every change.
 <table>
   <tr>
     <td align="center" valign="top">
-      <img src="docs/screenshots/raw-bar.png" alt="Raw Bar" width="280" height="606" />
+      <img src="docs/screenshots/1en-m.png" alt="Raw Bar" width="280" height="606" />
       <br />
       <sub><b>Raw Bar</b></sub>
       <br />
       <sub>Ingredient search, sorting, and availability</sub>
     </td>
     <td align="center" valign="top">
-      <img src="docs/screenshots/bar-menu-list.png" alt="Bar Menu — List" width="280" height="606" />
-      <br />
-      <sub><b>Bar Menu (List)</b></sub>
-      <br />
-      <sub>Expanded cocktail card with recipe details</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <img src="docs/screenshots/bar-menu-grid.png" alt="Bar Menu — Grid" width="280" height="606" />
+      <img src="docs/screenshots/2en-m.png" alt="Bar Menu — List" width="280" height="606" />
       <br />
       <sub><b>Bar Menu (Grid)</b></sub>
       <br />
       <sub>Grid layout for quick browsing</sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
-      <img src="docs/screenshots/cocktail-editor.png" alt="Cocktail Editor" width="280" height="606" />
+      <img src="docs/screenshots/3en-m.png" alt="Bar Menu — Grid" width="280" height="606" />
+      <br />
+      <sub><b>Bar Menu (List)</b></sub>
+      <br />
+      <sub>Expanded cocktail card with recipe details</sub>
+    </td>
+    <td align="center" valign="top">
+      <img src="docs/screenshots/4en-m.png" alt="Cocktail Editor" width="280" height="606" />
       <br />
       <sub><b>Cocktail Editor</b></sub>
       <br />
       <sub>Create and tune recipes</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <img src="docs/screenshots/5en-m.png" alt="Cocktail Editor" width="280" height="606" />
+      <br />
+      <sub><b>Settings</b></sub>
+      <br />
+      <sub>Multiple App Modes</sub>
     </td>
   </tr>
 </table>

@@ -65,34 +65,43 @@
 <table>
   <tr>
     <td align="center" valign="top">
-      <img src="docs/screenshots/raw-bar.png" alt="Сырой бар" width="280" height="606" />
+      <img src="docs/screenshots/1ru-m.png" alt="Raw Bar" width="280" height="606" />
       <br />
       <sub><b>Сырой бар</b></sub>
       <br />
       <sub>Поиск, сортировки и наличие ингредиентов</sub>
     </td>
     <td align="center" valign="top">
-      <img src="docs/screenshots/bar-menu-list.png" alt="Барная карта — список" width="280" height="606" />
-      <br />
-      <sub><b>Барная карта (список)</b></sub>
-      <br />
-      <sub>Раскрытая карточка коктейля и состав</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <img src="docs/screenshots/bar-menu-grid.png" alt="Барная карта — плитка" width="280" height="606" />
+      <img src="docs/screenshots/2ru-m.png" alt="Bar Menu — List" width="280" height="606" />
       <br />
       <sub><b>Барная карта (плитка)</b></sub>
       <br />
       <sub>Сеточный вид для быстрого просмотра</sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
-      <img src="docs/screenshots/cocktail-editor.png" alt="Редактор коктейля" width="280" height="606" />
+      <img src="docs/screenshots/3ru-m.png" alt="Bar Menu — Grid" width="280" height="606" />
+      <br />
+      <sub><b>Барная карта (список)</b></sub>
+      <br />
+      <sub>Раскрытая карточка коктейля и состав</sub>
+    </td>
+    <td align="center" valign="top">
+      <img src="docs/screenshots/4ru-m.png" alt="Cocktail Editor" width="280" height="606" />
       <br />
       <sub><b>Редактор коктейля</b></sub>
       <br />
       <sub>Создание и настройка рецептов</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <img src="docs/screenshots/5ru-m.png" alt="Cocktail Editor" width="280" height="606" />
+      <br />
+      <sub><b>Настройки</b></sub>
+      <br />
+      <sub>Множество режимов работы приложения</sub>
     </td>
   </tr>
 </table>
