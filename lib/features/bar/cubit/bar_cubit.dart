@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/localization/app_language.dart';
@@ -6,6 +7,7 @@ import '../data/ingredient_selection_storage.dart';
 import '../data/models/catalog_layer_models.dart';
 import '../data/providers/external_bar_data_provider.dart';
 import '../data/repositories/bar_catalog_repository.dart';
+import '../data/shopping_list_storage.dart';
 import '../domain/models/bar_catalog.dart';
 import '../domain/models/catalog_data_source.dart';
 import '../domain/models/cocktail.dart';
@@ -18,11 +20,13 @@ import 'bar_state.dart';
 class BarCubit extends Cubit<BarState> {
   BarCubit({
     required IngredientSelectionStorage selectionStorage,
+    required ShoppingListStorage shoppingListStorage,
     required BarUiSettingsStorage settingsStorage,
     required BarCatalogRepository catalogRepository,
     required SelectableExternalBarDataProvider externalProviderSelector,
     required UnifiedCatalogSnapshot initialSnapshot,
   }) : _selectionStorage = selectionStorage,
+       _shoppingListStorage = shoppingListStorage,
        _settingsStorage = settingsStorage,
        _catalogRepository = catalogRepository,
        _externalProviderSelector = externalProviderSelector,
@@ -32,12 +36,18 @@ class BarCubit extends Cubit<BarState> {
            final ingredientIds = initialSnapshot.ingredientItems
                .map((item) => item.id)
                .toSet();
+           final selectedIngredientIds = selectionStorage
+               .readSelectedIngredientIds()
+               .where(ingredientIds.contains)
+               .toSet();
            return BarState(
              ingredients: initialSnapshot.ingredientItems,
              cocktails: initialSnapshot.cocktailItems,
-             selectedIngredientIds: selectionStorage
-                 .readSelectedIngredientIds()
+             selectedIngredientIds: selectedIngredientIds,
+             shoppingIngredientIds: shoppingListStorage
+                 .readIngredientIds()
                  .where(ingredientIds.contains)
+                 .where((id) => !selectedIngredientIds.contains(id))
                  .toSet(),
              ingredientOrigins: initialSnapshot.ingredientOrigins,
              cocktailOrigins: initialSnapshot.cocktailOrigins,
@@ -59,6 +69,7 @@ class BarCubit extends Cubit<BarState> {
   }
 
   final IngredientSelectionStorage _selectionStorage;
+  final ShoppingListStorage _shoppingListStorage;
   final BarUiSettingsStorage _settingsStorage;
   final BarCatalogRepository _catalogRepository;
   final SelectableExternalBarDataProvider _externalProviderSelector;
@@ -79,7 +90,58 @@ class BarCubit extends Cubit<BarState> {
       nextSelection.add(ingredientId);
     }
 
-    final nextState = state.copyWith(selectedIngredientIds: nextSelection);
+    final nextShoppingList = Set<String>.from(state.shoppingIngredientIds);
+    if (nextSelection.contains(ingredientId)) {
+      nextShoppingList.remove(ingredientId);
+    }
+    final nextState = state.copyWith(
+      selectedIngredientIds: nextSelection,
+      shoppingIngredientIds: nextShoppingList,
+    );
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
+  Future<void> toggleShoppingIngredient(String ingredientId) async {
+    if (state.visitorMode ||
+        !state.ingredientIds.contains(ingredientId) ||
+        state.selectedIngredientIds.contains(ingredientId)) {
+      return;
+    }
+    final nextShoppingList = Set<String>.from(state.shoppingIngredientIds);
+    if (!nextShoppingList.add(ingredientId)) {
+      nextShoppingList.remove(ingredientId);
+    }
+    final nextState = state.copyWith(shoppingIngredientIds: nextShoppingList);
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
+  Future<void> addShoppingIngredients(Iterable<String> ingredientIds) async {
+    if (state.visitorMode) {
+      return;
+    }
+    final nextShoppingList = Set<String>.from(state.shoppingIngredientIds);
+    nextShoppingList.addAll(
+      ingredientIds.where(
+        (id) =>
+            state.ingredientIds.contains(id) &&
+            !state.selectedIngredientIds.contains(id),
+      ),
+    );
+    if (setEquals(nextShoppingList, state.shoppingIngredientIds)) {
+      return;
+    }
+    final nextState = state.copyWith(shoppingIngredientIds: nextShoppingList);
+    emit(nextState);
+    await _persistUiState(nextState);
+  }
+
+  Future<void> clearShoppingList() async {
+    if (state.visitorMode || state.shoppingIngredientIds.isEmpty) {
+      return;
+    }
+    final nextState = state.copyWith(shoppingIngredientIds: const <String>{});
     emit(nextState);
     await _persistUiState(nextState);
   }
@@ -523,6 +585,10 @@ class BarCubit extends Cubit<BarState> {
     final validSelection = state.selectedIngredientIds
         .where(snapshot.ingredientItems.map((item) => item.id).toSet().contains)
         .toSet();
+    final validShoppingList = state.shoppingIngredientIds
+        .where(snapshot.ingredientItems.map((item) => item.id).toSet().contains)
+        .where((id) => !validSelection.contains(id))
+        .toSet();
 
     final nextState = state.copyWith(
       ingredients: snapshot.ingredientItems,
@@ -534,6 +600,7 @@ class BarCubit extends Cubit<BarState> {
           _externalProviderSelector.isTheCocktailDbAvailable,
       externalSourceAvailable: snapshot.externalSourceAvailable,
       selectedIngredientIds: validSelection,
+      shoppingIngredientIds: validShoppingList,
     );
 
     emit(nextState);
@@ -544,6 +611,9 @@ class BarCubit extends Cubit<BarState> {
     await Future.wait<void>(<Future<void>>[
       _selectionStorage.writeSelectedIngredientIds(
         currentState.selectedIngredientIds,
+      ),
+      _shoppingListStorage.writeIngredientIds(
+        currentState.shoppingIngredientIds,
       ),
       _settingsStorage.writeSettings(
         BarUiSettings(

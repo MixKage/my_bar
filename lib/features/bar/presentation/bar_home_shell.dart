@@ -80,6 +80,9 @@ class _BarHomeShellState extends State<BarHomeShell>
     final bottomInset = MediaQuery.paddingOf(context).bottom;
     final showOnlyBarMenu = state.barMenuOnlyMode;
     final powerSavingMode = state.effectivePowerSavingMode;
+    final unlockCountsByIngredientId = state.unlockCountsByIngredientId;
+    final favoriteUnlockCountsByIngredientId =
+        state.favoriteUnlockCountsByIngredientId;
     final useSideNavigation =
         !showOnlyBarMenu && useLandscapeSideNavigation(context);
     final showSideNavigation = useSideNavigation && _isSideNavigationVisible;
@@ -95,7 +98,11 @@ class _BarHomeShellState extends State<BarHomeShell>
             BarMenuPage(
               cocktails: state.cocktails,
               selectedIngredientIds: state.selectedIngredientIds,
+              shoppingIngredientIds: state.shoppingIngredientIds,
               ingredientsById: state.ingredientsById,
+              unlockCountsByIngredientId: unlockCountsByIngredientId,
+              favoriteUnlockCountsByIngredientId:
+                  favoriteUnlockCountsByIngredientId,
               visitorMode: state.visitorMode,
               measurementSystem: state.measurementSystem,
               powerSavingMode: powerSavingMode,
@@ -103,6 +110,10 @@ class _BarHomeShellState extends State<BarHomeShell>
               onManagePressed: () => _openBarManagement(),
               onEditCocktailPressed: _handleEditCocktail,
               onToggleFavoritePressed: _toggleFavorite,
+              onToggleShoppingIngredient: _toggleShoppingIngredient,
+              onClearShoppingList: _clearShoppingList,
+              onAddShoppingIngredients: _addShoppingIngredients,
+              onMarkShoppingIngredientAsOwned: _markShoppingIngredientAsOwned,
             ),
           ]
         : <Widget>[
@@ -120,7 +131,11 @@ class _BarHomeShellState extends State<BarHomeShell>
             BarMenuPage(
               cocktails: state.cocktails,
               selectedIngredientIds: state.selectedIngredientIds,
+              shoppingIngredientIds: state.shoppingIngredientIds,
               ingredientsById: state.ingredientsById,
+              unlockCountsByIngredientId: unlockCountsByIngredientId,
+              favoriteUnlockCountsByIngredientId:
+                  favoriteUnlockCountsByIngredientId,
               visitorMode: state.visitorMode,
               measurementSystem: state.measurementSystem,
               powerSavingMode: powerSavingMode,
@@ -128,6 +143,10 @@ class _BarHomeShellState extends State<BarHomeShell>
               onManagePressed: () => _openBarManagement(),
               onEditCocktailPressed: _handleEditCocktail,
               onToggleFavoritePressed: _toggleFavorite,
+              onToggleShoppingIngredient: _toggleShoppingIngredient,
+              onClearShoppingList: _clearShoppingList,
+              onAddShoppingIngredients: _addShoppingIngredients,
+              onMarkShoppingIngredientAsOwned: _markShoppingIngredientAsOwned,
             ),
           ];
 
@@ -303,6 +322,22 @@ class _BarHomeShellState extends State<BarHomeShell>
 
   Future<void> _toggleFavorite(String cocktailId) {
     return context.read<BarCubit>().toggleCocktailFavorite(cocktailId);
+  }
+
+  Future<void> _toggleShoppingIngredient(String ingredientId) {
+    return context.read<BarCubit>().toggleShoppingIngredient(ingredientId);
+  }
+
+  Future<void> _clearShoppingList() {
+    return context.read<BarCubit>().clearShoppingList();
+  }
+
+  Future<void> _addShoppingIngredients(Iterable<String> ingredientIds) {
+    return context.read<BarCubit>().addShoppingIngredients(ingredientIds);
+  }
+
+  Future<void> _markShoppingIngredientAsOwned(String ingredientId) {
+    return context.read<BarCubit>().toggleIngredient(ingredientId);
   }
 
   Future<void> _openBarManagement() async {

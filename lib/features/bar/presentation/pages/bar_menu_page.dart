@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -11,16 +13,24 @@ import '../../domain/models/cocktail_tags.dart';
 import '../../domain/models/ingredient.dart';
 import '../../domain/models/measurement_system.dart';
 import 'cocktail_details_page.dart';
+import 'party_mode_page.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
+import '../widgets/portion_selector.dart';
+import '../widgets/smart_shopping_sheet.dart';
 
 enum MenuViewMode { list, grid }
+
+enum CocktailAvailabilityFilter { all, ready, missingOne, missingTwo }
 
 class BarMenuPage extends StatefulWidget {
   const BarMenuPage({
     required this.cocktails,
     required this.selectedIngredientIds,
+    required this.shoppingIngredientIds,
     required this.ingredientsById,
+    required this.unlockCountsByIngredientId,
+    required this.favoriteUnlockCountsByIngredientId,
     required this.visitorMode,
     required this.measurementSystem,
     this.powerSavingMode = false,
@@ -28,12 +38,19 @@ class BarMenuPage extends StatefulWidget {
     required this.onManagePressed,
     required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
+    required this.onToggleShoppingIngredient,
+    required this.onClearShoppingList,
+    required this.onAddShoppingIngredients,
+    required this.onMarkShoppingIngredientAsOwned,
     super.key,
   });
 
   final List<Cocktail> cocktails;
   final Set<String> selectedIngredientIds;
+  final Set<String> shoppingIngredientIds;
   final Map<String, Ingredient> ingredientsById;
+  final Map<String, int> unlockCountsByIngredientId;
+  final Map<String, int> favoriteUnlockCountsByIngredientId;
   final bool visitorMode;
   final MeasurementSystem measurementSystem;
   final bool powerSavingMode;
@@ -41,6 +58,12 @@ class BarMenuPage extends StatefulWidget {
   final VoidCallback onManagePressed;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
+  final Future<void> Function(String ingredientId) onToggleShoppingIngredient;
+  final Future<void> Function() onClearShoppingList;
+  final Future<void> Function(Iterable<String> ingredientIds)
+  onAddShoppingIngredients;
+  final Future<void> Function(String ingredientId)
+  onMarkShoppingIngredientAsOwned;
 
   @override
   State<BarMenuPage> createState() => _BarMenuPageState();
@@ -56,7 +79,12 @@ class _BarMenuPageState extends State<BarMenuPage> {
   String? _selectedGridCocktailId;
   final Set<String> _selectedTags = <String>{};
   bool _favoritesOnly = false;
+  CocktailAvailabilityFilter _availabilityFilter =
+      CocktailAvailabilityFilter.all;
   String _searchQuery = '';
+  int _servings = 1;
+  final Random _random = Random();
+  String? _lastSurpriseCocktailId;
 
   @override
   void didChangeDependencies() {
@@ -84,30 +112,48 @@ class _BarMenuPageState extends State<BarMenuPage> {
     );
     final bottomContentPadding = widget.bottomOverlayPadding + 24;
 
-    final missingIngredientsByCocktailId = _buildMissingIngredientsMap(
+    final missingIngredientIdsByCocktailId = _buildMissingIngredientIdsMap(
       widget.cocktails,
     );
-    final hasSelectedIngredients = widget.selectedIngredientIds.isNotEmpty;
+    final missingIngredientsByCocktailId = _buildMissingIngredientNamesMap(
+      missingIngredientIdsByCocktailId,
+    );
     final searchQuery = AppSearchQuery(_searchQuery);
     final hasSearchQuery = !searchQuery.isEmpty;
     final sortedCocktails = _sortCocktailsByAvailability(
       widget.cocktails,
       missingIngredientsByCocktailId,
     );
-    final filteredCocktails = _applyFilters(
+    final baseFilteredCocktails = _applyFilters(
       sortedCocktails,
       searchQuery: searchQuery,
     );
-    final availableCocktailCount = filteredCocktails.where((cocktail) {
-      final missingIngredients = missingIngredientsByCocktailId[cocktail.id];
-      return missingIngredients == null || missingIngredients.isEmpty;
+    final filteredCocktails = _applyAvailabilityFilter(
+      baseFilteredCocktails,
+      missingIngredientIdsByCocktailId,
+    );
+    final availabilityCounts = <CocktailAvailabilityFilter, int>{
+      for (final filter in CocktailAvailabilityFilter.values)
+        filter: _countForAvailabilityFilter(
+          baseFilteredCocktails,
+          missingIngredientIdsByCocktailId,
+          filter,
+        ),
+    };
+    final availableCocktailCount = baseFilteredCocktails.where((cocktail) {
+      return missingIngredientIdsByCocktailId[cocktail.id]?.isEmpty ?? true;
     }).length;
-    final totalCocktailCount = filteredCocktails.length;
+    final totalCocktailCount = baseFilteredCocktails.length;
     final expandedId = _resolveExpandedId(filteredCocktails);
     final hasActiveFilters =
-        _favoritesOnly || _selectedTags.isNotEmpty || hasSearchQuery;
+        _favoritesOnly ||
+        _selectedTags.isNotEmpty ||
+        hasSearchQuery ||
+        _availabilityFilter != CocktailAvailabilityFilter.all;
     final activeFilters = <String>[
       if (_favoritesOnly) context.tr('Избранные', 'Favorites'),
+      if (_availabilityFilter != CocktailAvailabilityFilter.all)
+        _availabilityFilterLabel(context, _availabilityFilter),
       ..._selectedTags.map(context.cocktailTagLabel),
       if (hasSearchQuery)
         context.tr(
@@ -184,12 +230,134 @@ class _BarMenuPageState extends State<BarMenuPage> {
                   },
                 ),
                 const SizedBox(width: 8),
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: <Widget>[
+                    IconButton.filledTonal(
+                      tooltip: context.tr('Список покупок', 'Shopping list'),
+                      onPressed: _openShoppingList,
+                      icon: const Icon(Icons.shopping_basket_rounded),
+                    ),
+                    if (widget.shoppingIngredientIds.isNotEmpty)
+                      Positioned(
+                        right: -2,
+                        top: -4,
+                        child: Container(
+                          constraints: const BoxConstraints(minWidth: 18),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 5,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFF5BAA),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: const Color(0xFF161B2E)),
+                          ),
+                          child: Text(
+                            '${widget.shoppingIngredientIds.length}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(width: 8),
                 IconButton.filledTonal(
                   tooltip: context.tr('Управление баром', 'Bar management'),
                   onPressed: widget.onManagePressed,
                   icon: const Icon(Icons.tune_rounded),
                 ),
               ],
+            ),
+          ),
+          SizedBox(
+            height: 44,
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ActionChip(
+                    avatar: const Icon(Icons.casino_rounded, size: 16),
+                    label: Text(context.tr('Удиви меня', 'Surprise me')),
+                    onPressed: () => _surpriseMe(
+                      filteredCocktails,
+                      missingIngredientsByCocktailId,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ActionChip(
+                    avatar: const Icon(Icons.celebration_rounded, size: 16),
+                    label: Text(context.tr('Вечеринка', 'Party')),
+                    onPressed: () =>
+                        _openPartyMode(missingIngredientIdsByCocktailId),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ActionChip(
+                    avatar: const Icon(Icons.people_alt_rounded, size: 16),
+                    label: Text(
+                      context.tr('$_servings порц.', '$_servings serv.'),
+                    ),
+                    onPressed: _pickServings,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 44,
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              scrollDirection: Axis.horizontal,
+              children: CocktailAvailabilityFilter.values
+                  .map((filter) {
+                    final selected = filter == _availabilityFilter;
+                    final count = availabilityCounts[filter] ?? 0;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        selected: selected,
+                        showCheckmark: false,
+                        avatar: Icon(
+                          _availabilityFilterIcon(filter),
+                          size: 16,
+                          color: selected
+                              ? const Color(0xFFFFE5F3)
+                              : const Color(0xFFC2CDEB),
+                        ),
+                        label: Text(
+                          '${_availabilityFilterLabel(context, filter)} · $count',
+                        ),
+                        selectedColor: const Color(0x554F63CC),
+                        side: BorderSide(
+                          color: selected
+                              ? const Color(0xFF8FA3FF)
+                              : const Color(0x3AD8DDF6),
+                        ),
+                        backgroundColor: const Color(0x221A2142),
+                        labelStyle: TextStyle(
+                          color: selected
+                              ? const Color(0xFFFFE5F3)
+                              : const Color(0xFFC2CDEB),
+                          fontSize: 12,
+                        ),
+                        onSelected: (_) {
+                          setState(() => _availabilityFilter = filter);
+                        },
+                      ),
+                    );
+                  })
+                  .toList(growable: false),
             ),
           ),
           SizedBox(
@@ -270,7 +438,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
             ),
           ),
           Expanded(
-            child: widget.cocktails.isEmpty || !hasSelectedIngredients
+            child: widget.cocktails.isEmpty
                 ? NoCocktailsView(
                     bottomInsetCompensation: widget.bottomOverlayPadding,
                     horizontalPadding: horizontalPadding,
@@ -354,6 +522,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           ingredientsById: widget.ingredientsById,
                           visitorMode: widget.visitorMode,
                           measurementSystem: widget.measurementSystem,
+                          servings: _servings,
                           powerSavingMode: widget.powerSavingMode,
                           bottomPadding: bottomContentPadding,
                           scrollController: _detailsScrollController,
@@ -371,6 +540,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     ingredientsById: widget.ingredientsById,
                     visitorMode: widget.visitorMode,
                     measurementSystem: widget.measurementSystem,
+                    servings: _servings,
                     powerSavingMode: widget.powerSavingMode,
                     horizontalPadding: horizontalPadding,
                     bottomPadding: bottomContentPadding,
@@ -423,6 +593,47 @@ class _BarMenuPageState extends State<BarMenuPage> {
               _matchesSearchQuery(cocktail: cocktail, searchQuery: searchQuery),
         )
         .toList(growable: false);
+  }
+
+  List<Cocktail> _applyAvailabilityFilter(
+    List<Cocktail> source,
+    Map<String, Set<String>> missingIngredientIdsByCocktailId,
+  ) {
+    if (_availabilityFilter == CocktailAvailabilityFilter.all) {
+      return source;
+    }
+    return source
+        .where((cocktail) {
+          final missingCount =
+              missingIngredientIdsByCocktailId[cocktail.id]?.length ?? 0;
+          return switch (_availabilityFilter) {
+            CocktailAvailabilityFilter.all => true,
+            CocktailAvailabilityFilter.ready => missingCount == 0,
+            CocktailAvailabilityFilter.missingOne => missingCount == 1,
+            CocktailAvailabilityFilter.missingTwo => missingCount == 2,
+          };
+        })
+        .toList(growable: false);
+  }
+
+  int _countForAvailabilityFilter(
+    List<Cocktail> source,
+    Map<String, Set<String>> missingIngredientIdsByCocktailId,
+    CocktailAvailabilityFilter filter,
+  ) {
+    if (filter == CocktailAvailabilityFilter.all) {
+      return source.length;
+    }
+    return source.where((cocktail) {
+      final missingCount =
+          missingIngredientIdsByCocktailId[cocktail.id]?.length ?? 0;
+      return switch (filter) {
+        CocktailAvailabilityFilter.all => true,
+        CocktailAvailabilityFilter.ready => missingCount == 0,
+        CocktailAvailabilityFilter.missingOne => missingCount == 1,
+        CocktailAvailabilityFilter.missingTwo => missingCount == 2,
+      };
+    }).length;
   }
 
   bool _matchesSearchQuery({
@@ -511,17 +722,28 @@ class _BarMenuPageState extends State<BarMenuPage> {
     return hasActive ? _selectedGridCocktailId : cocktails.first.id;
   }
 
-  Map<String, List<String>> _buildMissingIngredientsMap(
+  Map<String, Set<String>> _buildMissingIngredientIdsMap(
     List<Cocktail> cocktails,
   ) {
-    return <String, List<String>>{
+    return <String, Set<String>>{
       for (final cocktail in cocktails)
-        cocktail.id: _missingIngredientNamesForCocktail(cocktail),
+        cocktail.id: _missingIngredientIdsForCocktail(cocktail),
     };
   }
 
-  List<String> _missingIngredientNamesForCocktail(Cocktail cocktail) {
-    final missing = <String>[];
+  Map<String, List<String>> _buildMissingIngredientNamesMap(
+    Map<String, Set<String>> missingIngredientIdsByCocktailId,
+  ) {
+    return <String, List<String>>{
+      for (final entry in missingIngredientIdsByCocktailId.entries)
+        entry.key: entry.value
+            .map((id) => widget.ingredientsById[id]?.name ?? id)
+            .toList(growable: false),
+    };
+  }
+
+  Set<String> _missingIngredientIdsForCocktail(Cocktail cocktail) {
+    final missing = <String>{};
 
     for (final ingredientId in cocktail.ingredients) {
       if (widget.selectedIngredientIds.contains(ingredientId)) {
@@ -547,10 +769,202 @@ class _BarMenuPageState extends State<BarMenuPage> {
       if (ingredient.isOptional || ingredient.isDecoration) {
         continue;
       }
-      missing.add(ingredient.name);
+      missing.add(ingredientId);
     }
 
     return missing;
+  }
+
+  String _availabilityFilterLabel(
+    BuildContext context,
+    CocktailAvailabilityFilter filter,
+  ) {
+    return switch (filter) {
+      CocktailAvailabilityFilter.all => context.tr('Все', 'All'),
+      CocktailAvailabilityFilter.ready => context.tr('Можно сейчас', 'Ready'),
+      CocktailAvailabilityFilter.missingOne => context.tr(
+        'Не хватает 1',
+        'Missing 1',
+      ),
+      CocktailAvailabilityFilter.missingTwo => context.tr(
+        'Не хватает 2',
+        'Missing 2',
+      ),
+    };
+  }
+
+  IconData _availabilityFilterIcon(CocktailAvailabilityFilter filter) {
+    return switch (filter) {
+      CocktailAvailabilityFilter.all => Icons.local_bar_rounded,
+      CocktailAvailabilityFilter.ready => Icons.check_circle_rounded,
+      CocktailAvailabilityFilter.missingOne => Icons.looks_one_rounded,
+      CocktailAvailabilityFilter.missingTwo => Icons.looks_two_rounded,
+    };
+  }
+
+  Future<void> _openShoppingList() {
+    return showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      backgroundColor: const Color(0xFF101426),
+      builder: (_) => SmartShoppingSheet(
+        ingredientsById: widget.ingredientsById,
+        selectedIngredientIds: widget.selectedIngredientIds,
+        shoppingIngredientIds: widget.shoppingIngredientIds,
+        unlockCountsByIngredientId: widget.unlockCountsByIngredientId,
+        favoriteUnlockCountsByIngredientId:
+            widget.favoriteUnlockCountsByIngredientId,
+        readOnly: widget.visitorMode,
+        onToggleIngredient: widget.onToggleShoppingIngredient,
+        onClear: widget.onClearShoppingList,
+        onMarkAsOwned: widget.onMarkShoppingIngredientAsOwned,
+      ),
+    );
+  }
+
+  Future<void> _pickServings() async {
+    var draft = _servings;
+    final result = await showModalBottomSheet<int>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      backgroundColor: const Color(0xFF111528),
+      builder: (sheetContext) => StatefulBuilder(
+        builder: (context, setSheetState) {
+          return SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          context.tr(
+                            'Калькулятор порций',
+                            'Serving calculator',
+                          ),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: context.tr('Закрыть', 'Close'),
+                        onPressed: () => Navigator.of(sheetContext).pop(),
+                        icon: const Icon(Icons.close_rounded),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    context.tr(
+                      'Количество во всех открытых рецептах будет пересчитано.',
+                      'Amounts in opened recipes will be recalculated.',
+                    ),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Color(0xFFB8C3E2)),
+                  ),
+                  const SizedBox(height: 18),
+                  PortionSelector(
+                    servings: draft,
+                    onChanged: (value) => setSheetState(() => draft = value),
+                  ),
+                  const SizedBox(height: 16),
+                  Wrap(
+                    spacing: 8,
+                    children: <int>[1, 2, 4, 6, 10]
+                        .map((value) {
+                          return ChoiceChip(
+                            selected: draft == value,
+                            label: Text('$value'),
+                            onSelected: (_) =>
+                                setSheetState(() => draft = value),
+                          );
+                        })
+                        .toList(growable: false),
+                  ),
+                  const SizedBox(height: 18),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: () => Navigator.of(sheetContext).pop(draft),
+                      child: Text(context.tr('Применить', 'Apply')),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+    if (result != null && mounted) {
+      setState(() => _servings = result);
+    }
+  }
+
+  Future<void> _surpriseMe(
+    List<Cocktail> candidates,
+    Map<String, List<String>> missingIngredientsByCocktailId,
+  ) async {
+    if (candidates.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            context.tr(
+              'Нет коктейлей под текущие фильтры',
+              'No cocktails match the current filters',
+            ),
+          ),
+        ),
+      );
+      return;
+    }
+
+    var pool = candidates
+        .where(
+          (cocktail) =>
+              missingIngredientsByCocktailId[cocktail.id]?.isEmpty ?? true,
+        )
+        .toList(growable: false);
+    if (pool.isEmpty) {
+      pool = candidates;
+    }
+    if (pool.length > 1 && _lastSurpriseCocktailId != null) {
+      pool = pool
+          .where((cocktail) => cocktail.id != _lastSurpriseCocktailId)
+          .toList(growable: false);
+    }
+
+    final cocktail = pool[_random.nextInt(pool.length)];
+    _lastSurpriseCocktailId = cocktail.id;
+    await _openCocktailDetailsPage(
+      cocktail: cocktail,
+      missingIngredientsByCocktailId: missingIngredientsByCocktailId,
+    );
+  }
+
+  Future<void> _openPartyMode(
+    Map<String, Set<String>> missingIngredientIdsByCocktailId,
+  ) {
+    return Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => PartyModePage(
+          cocktails: widget.cocktails,
+          ingredientsById: widget.ingredientsById,
+          missingIngredientIdsByCocktailId: missingIngredientIdsByCocktailId,
+          measurementSystem: widget.measurementSystem,
+          powerSavingMode: widget.powerSavingMode,
+          readOnly: widget.visitorMode,
+          onAddShoppingIngredients: widget.onAddShoppingIngredients,
+        ),
+      ),
+    );
   }
 
   Future<void> _openCocktailDetailsPage({
@@ -867,6 +1281,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
     required this.ingredientsById,
     required this.visitorMode,
     required this.measurementSystem,
+    required this.servings,
     required this.powerSavingMode,
     required this.bottomPadding,
     required this.scrollController,
@@ -879,6 +1294,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
   final MeasurementSystem measurementSystem;
+  final int servings;
   final bool powerSavingMode;
   final double bottomPadding;
   final ScrollController scrollController;
@@ -1039,6 +1455,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
                         ingredientId,
                         measurementSystem: measurementSystem,
                         unitLabelResolver: context.ingredientUnitLabel,
+                        servings: servings,
                       );
                       final isOptional = selectedCocktail.isIngredientOptional(
                         ingredientId,
@@ -1231,6 +1648,7 @@ class CocktailList extends StatelessWidget {
     required this.ingredientsById,
     required this.visitorMode,
     required this.measurementSystem,
+    required this.servings,
     required this.powerSavingMode,
     required this.horizontalPadding,
     required this.bottomPadding,
@@ -1252,6 +1670,7 @@ class CocktailList extends StatelessWidget {
   final Map<String, Ingredient> ingredientsById;
   final bool visitorMode;
   final MeasurementSystem measurementSystem;
+  final int servings;
   final bool powerSavingMode;
   final double horizontalPadding;
   final double bottomPadding;
@@ -1487,6 +1906,7 @@ class CocktailList extends StatelessWidget {
                                 ingredientId,
                                 measurementSystem: measurementSystem,
                                 unitLabelResolver: context.ingredientUnitLabel,
+                                servings: servings,
                               );
                               final isOptional = cocktail.isIngredientOptional(
                                 ingredientId,

@@ -8,6 +8,7 @@ import '../../domain/models/ingredient.dart';
 import '../../domain/models/measurement_system.dart';
 import '../widgets/cocktail_glass_icon.dart';
 import '../widgets/neon_background.dart';
+import '../widgets/portion_selector.dart';
 
 String cocktailHeroTag(String cocktailId) => 'cocktail_hero_$cocktailId';
 
@@ -39,6 +40,7 @@ class CocktailDetailsPage extends StatefulWidget {
 
 class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
   bool _isFavorite = false;
+  int _servings = 1;
 
   @override
   void initState() {
@@ -211,13 +213,26 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                           const SizedBox(height: 10),
                           const Divider(color: Color(0x33FF7EC8)),
                           const SizedBox(height: 8),
-                          Text(
-                            context.tr('Состав', 'Ingredients'),
-                            style: const TextStyle(
-                              color: Color(0xFFFF93CC),
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Text(
+                                  context.tr('Состав', 'Ingredients'),
+                                  style: const TextStyle(
+                                    color: Color(0xFFFF93CC),
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                              PortionSelector(
+                                servings: _servings,
+                                compact: true,
+                                onChanged: (value) {
+                                  setState(() => _servings = value);
+                                },
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 8),
                           ...cocktail.ingredients.map((ingredientId) {
@@ -227,6 +242,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                               ingredientId,
                               measurementSystem: widget.measurementSystem,
                               unitLabelResolver: context.ingredientUnitLabel,
+                              servings: _servings,
                             );
                             final isOptional = cocktail.isIngredientOptional(
                               ingredientId,

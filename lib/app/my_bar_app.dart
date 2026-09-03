@@ -12,12 +12,14 @@ import '../features/bar/data/ingredient_selection_storage.dart';
 import '../features/bar/data/models/catalog_layer_models.dart';
 import '../features/bar/data/providers/external_bar_data_provider.dart';
 import '../features/bar/data/repositories/bar_catalog_repository.dart';
+import '../features/bar/data/shopping_list_storage.dart';
 import '../features/bar/presentation/bar_home_shell.dart';
 
 class MyBarApp extends StatelessWidget {
   const MyBarApp({
     required this.selectionStorage,
     required this.settingsStorage,
+    required this.shoppingListStorage,
     required this.catalogRepository,
     required this.externalProviderSelector,
     required this.initialSnapshot,
@@ -26,6 +28,7 @@ class MyBarApp extends StatelessWidget {
 
   final IngredientSelectionStorage selectionStorage;
   final BarUiSettingsStorage settingsStorage;
+  final ShoppingListStorage shoppingListStorage;
   final BarCatalogRepository catalogRepository;
   final SelectableExternalBarDataProvider externalProviderSelector;
   final UnifiedCatalogSnapshot initialSnapshot;
@@ -36,6 +39,7 @@ class MyBarApp extends StatelessWidget {
       create: (_) => BarCubit(
         selectionStorage: selectionStorage,
         settingsStorage: settingsStorage,
+        shoppingListStorage: shoppingListStorage,
         catalogRepository: catalogRepository,
         externalProviderSelector: externalProviderSelector,
         initialSnapshot: initialSnapshot,

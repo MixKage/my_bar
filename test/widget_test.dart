@@ -6,6 +6,7 @@ import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
 import 'package:my_bar/features/bar/data/local_catalog_storage.dart';
 import 'package:my_bar/features/bar/data/providers/external_bar_data_provider.dart';
 import 'package:my_bar/features/bar/data/repositories/bar_catalog_repository.dart';
+import 'package:my_bar/features/bar/data/shopping_list_storage.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
@@ -67,6 +68,75 @@ void main() {
     final stored = persisted.getStringList('selected_ingredients') ?? [];
     expect(stored, contains('vodka'));
   });
+
+  testWidgets('shows almost-ready filters and smart shopping suggestions', (
+    WidgetTester tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({
+      'selected_ingredients': <String>['gin'],
+      'bar_ui_app_language': 'ru',
+    });
+    final preferences = await SharedPreferences.getInstance();
+
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await tester.pump();
+    await tester.tap(find.text('Барная карта'));
+    await tester.pump(const Duration(milliseconds: 400));
+
+    expect(find.text('Не хватает 1 · 1'), findsOneWidget);
+    expect(find.text('Не хватает 2 · 1'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Список покупок'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+
+    expect(find.text('Умный список покупок'), findsOneWidget);
+    expect(find.text('Вермут'), findsWidgets);
+    expect(find.text('Откроет 1 коктейль'), findsOneWidget);
+
+    expect(find.byTooltip('Добавить в список'), findsOneWidget);
+  });
+
+  testWidgets('opens serving calculator, party mode and surprise cocktail', (
+    WidgetTester tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({
+      'selected_ingredients': <String>['gin', 'vermouth'],
+      'bar_ui_app_language': 'ru',
+    });
+    final preferences = await SharedPreferences.getInstance();
+
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await tester.pump();
+    await tester.tap(find.text('Барная карта'));
+    await tester.pump(const Duration(milliseconds: 400));
+
+    await tester.tap(find.text('1 порц.').first);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text('Калькулятор порций'), findsOneWidget);
+    await tester.tap(find.byTooltip('Закрыть'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+
+    await tester.tap(find.text('Вечеринка'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text('Режим вечеринки'), findsOneWidget);
+    await tester.tap(find.byTooltip('Назад'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+
+    await tester.tap(find.text('Удиви меня'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text('Мартини'), findsWidgets);
+    expect(find.byTooltip('Увеличить'), findsOneWidget);
+  });
 }
 
 Future<MyBarApp> _buildApp({
@@ -77,6 +147,7 @@ Future<MyBarApp> _buildApp({
     preferences,
   );
   final settingsStorage = SharedPreferencesBarUiSettingsStorage(preferences);
+  final shoppingListStorage = SharedPreferencesShoppingListStorage(preferences);
   final seedProvider = _StaticExternalProvider(catalog: catalog);
   final selector = SelectableExternalBarDataProvider(
     seedProvider: seedProvider,
@@ -99,6 +170,7 @@ Future<MyBarApp> _buildApp({
   return MyBarApp(
     selectionStorage: selectionStorage,
     settingsStorage: settingsStorage,
+    shoppingListStorage: shoppingListStorage,
     catalogRepository: repository,
     externalProviderSelector: selector,
     initialSnapshot: snapshot,

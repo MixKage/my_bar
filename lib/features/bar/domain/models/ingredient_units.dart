@@ -38,6 +38,13 @@ class IngredientAmountPresentation {
   final String unit;
 }
 
+class IngredientNumericRange {
+  const IngredientNumericRange({required this.start, this.end});
+
+  final double start;
+  final double? end;
+}
+
 String normalizeIngredientUnitToken(String source) {
   final unit = source.trim();
   if (unit.isEmpty) {
@@ -86,7 +93,7 @@ IngredientAmountPresentation resolveIngredientAmountForMeasurementSystem({
     return IngredientAmountPresentation(amount: rawAmount, unit: targetUnit);
   }
 
-  final parsedRange = _parseNumericRange(rawAmount);
+  final parsedRange = parseIngredientNumericRange(rawAmount);
   if (parsedRange == null) {
     return IngredientAmountPresentation(
       amount: rawAmount,
@@ -115,6 +122,36 @@ IngredientAmountPresentation resolveIngredientAmountForMeasurementSystem({
     amount: formattedAmount,
     unit: targetUnit,
   );
+}
+
+String scaleIngredientAmount(String source, int servings) {
+  final rawAmount = source.trim();
+  if (servings <= 1 || rawAmount.isEmpty) {
+    return rawAmount;
+  }
+  final parsed = parseIngredientNumericRange(rawAmount);
+  if (parsed == null) {
+    return rawAmount;
+  }
+  final scaledStart = parsed.start * servings;
+  final scaledEnd = parsed.end == null ? null : parsed.end! * servings;
+  return scaledEnd == null
+      ? formatIngredientNumber(scaledStart)
+      : '${formatIngredientNumber(scaledStart)}-'
+            '${formatIngredientNumber(scaledEnd)}';
+}
+
+IngredientNumericRange? parseIngredientNumericRange(String source) {
+  final parsed = _parseNumericRange(source);
+  if (parsed == null) {
+    return null;
+  }
+  return IngredientNumericRange(start: parsed.start, end: parsed.end);
+}
+
+String formatIngredientNumber(double value) {
+  final fractionDigits = value == value.roundToDouble() ? 0 : 2;
+  return _formatFixed(value, fractionDigits: fractionDigits);
 }
 
 double _convertVolume({

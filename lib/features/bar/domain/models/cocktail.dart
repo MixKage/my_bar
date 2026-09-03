@@ -113,6 +113,7 @@ class Cocktail {
     String ingredientId, {
     MeasurementSystem? measurementSystem,
     String Function(String unit)? unitLabelResolver,
+    int servings = 1,
   }) {
     final amount = (ingredientAmounts[ingredientId] ?? '').trim();
     final unit = normalizeIngredientUnitToken(
@@ -129,7 +130,10 @@ class Cocktail {
         ? resolved.unit
         : unitLabelResolver(resolved.unit);
 
-    final normalizedAmount = resolved.amount.trim();
+    final normalizedAmount = scaleIngredientAmount(
+      resolved.amount,
+      servings,
+    ).trim();
     final normalizedUnit = resolvedUnit.trim();
     if (normalizedAmount.isEmpty && normalizedUnit.isEmpty) {
       return '';

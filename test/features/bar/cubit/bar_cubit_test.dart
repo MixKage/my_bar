@@ -8,6 +8,7 @@ import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
 import 'package:my_bar/features/bar/data/local_catalog_storage.dart';
 import 'package:my_bar/features/bar/data/providers/external_bar_data_provider.dart';
 import 'package:my_bar/features/bar/data/repositories/bar_catalog_repository.dart';
+import 'package:my_bar/features/bar/data/shopping_list_storage.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
@@ -204,6 +205,72 @@ void main() {
     expect(cubit.state.selectedIngredientIds, isEmpty);
   });
 
+  test('persists shopping list and removes a bought ingredient', () async {
+    final shoppingStorage = InMemoryShoppingListStorage();
+    final cubit = await _createCubit(
+      templateCatalog: _templateCatalog,
+      shoppingListStorage: shoppingStorage,
+    );
+
+    await cubit.toggleIngredient('gin');
+    await cubit.addShoppingIngredients(<String>['vermouth', 'gin', 'unknown']);
+
+    expect(cubit.state.shoppingIngredientIds, <String>{'vermouth'});
+    expect(shoppingStorage.readIngredientIds(), <String>{'vermouth'});
+    expect(cubit.state.cocktailsUnlockedByAdding('vermouth'), 1);
+
+    await cubit.toggleIngredient('vermouth');
+
+    expect(cubit.state.shoppingIngredientIds, isEmpty);
+    expect(shoppingStorage.readIngredientIds(), isEmpty);
+    expect(cubit.state.availableCocktails, hasLength(1));
+  });
+
+  test('calculates unlocks through an ingredient substitution', () async {
+    final catalog = BarCatalog(
+      ingredients: <Ingredient>[
+        const Ingredient(
+          id: 'gin',
+          name: 'Джин',
+          category: 'Крепкий алкоголь',
+          image: '',
+        ),
+        const Ingredient(
+          id: 'vodka',
+          name: 'Водка',
+          category: 'Крепкий алкоголь',
+          image: '',
+        ),
+        const Ingredient(
+          id: 'vermouth',
+          name: 'Вермут',
+          category: 'Аперитивы',
+          image: '',
+        ),
+      ],
+      cocktails: <Cocktail>[
+        const Cocktail(
+          id: 'martini',
+          name: 'Мартини',
+          image: '',
+          ingredients: <String>['gin', 'vermouth'],
+          description: '',
+          preparationSteps: <String>['Смешайте'],
+          glassType: 'Мартини',
+          tags: <String>['Крепкие'],
+          ingredientSubstitutions: <String, List<String>>{
+            'gin': <String>['vodka'],
+          },
+        ),
+      ],
+    );
+    final cubit = await _createCubit(templateCatalog: catalog);
+    await cubit.toggleIngredient('vermouth');
+
+    expect(cubit.state.cocktailsUnlockedByAdding('gin'), 1);
+    expect(cubit.state.cocktailsUnlockedByAdding('vodka'), 1);
+  });
+
   test('persists visitor, bar menu only and power saving modes', () async {
     final settingsStorage = InMemoryBarUiSettingsStorage();
     final cubit = await _createCubit(
@@ -297,6 +364,7 @@ Future<BarCubit> _createCubit({
   required BarCatalog templateCatalog,
   InMemoryIngredientSelectionStorage? selectionStorage,
   InMemoryBarUiSettingsStorage? settingsStorage,
+  InMemoryShoppingListStorage? shoppingListStorage,
 }) async {
   final seedProvider = _StaticExternalProvider(catalog: templateCatalog);
   final selector = SelectableExternalBarDataProvider(
@@ -315,6 +383,7 @@ Future<BarCubit> _createCubit({
 
   return BarCubit(
     selectionStorage: selectionStorage ?? InMemoryIngredientSelectionStorage(),
+    shoppingListStorage: shoppingListStorage ?? InMemoryShoppingListStorage(),
     settingsStorage: settingsStorage ?? InMemoryBarUiSettingsStorage(),
     catalogRepository: repository,
     externalProviderSelector: selector,

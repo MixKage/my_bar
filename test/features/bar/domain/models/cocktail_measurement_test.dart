@@ -73,4 +73,23 @@ void main() {
       '1 dash',
     );
   });
+
+  test('scales numeric and fractional amounts by servings', () {
+    expect(
+      cocktail.ingredientAmountLabel(
+        'base',
+        measurementSystem: MeasurementSystem.flOz,
+        servings: 4,
+      ),
+      '6 oz',
+    );
+    expect(
+      cocktail.ingredientAmountLabel(
+        'aroma',
+        measurementSystem: MeasurementSystem.ml,
+        servings: 3,
+      ),
+      '3 dash',
+    );
+  });
 }

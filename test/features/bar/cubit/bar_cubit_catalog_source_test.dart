@@ -7,6 +7,7 @@ import 'package:my_bar/features/bar/data/ingredient_selection_storage.dart';
 import 'package:my_bar/features/bar/data/local_catalog_storage.dart';
 import 'package:my_bar/features/bar/data/providers/external_bar_data_provider.dart';
 import 'package:my_bar/features/bar/data/repositories/bar_catalog_repository.dart';
+import 'package:my_bar/features/bar/data/shopping_list_storage.dart';
 import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
@@ -42,6 +43,7 @@ void main() {
     final initialSnapshot = await repository.initialize();
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
+      shoppingListStorage: InMemoryShoppingListStorage(),
       settingsStorage: settingsStorage,
       catalogRepository: repository,
       externalProviderSelector: selector,
@@ -100,6 +102,7 @@ void main() {
     final initialSnapshot = await repository.initialize();
     final cubit = BarCubit(
       selectionStorage: InMemoryIngredientSelectionStorage(),
+      shoppingListStorage: InMemoryShoppingListStorage(),
       settingsStorage: InMemoryBarUiSettingsStorage(),
       catalogRepository: repository,
       externalProviderSelector: selector,

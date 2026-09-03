@@ -1,0 +1,541 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../../../core/localization/app_localization.dart';
+import '../../../../core/search/app_search_query.dart';
+import '../../domain/models/cocktail.dart';
+import '../../domain/models/ingredient.dart';
+import '../../domain/models/measurement_system.dart';
+import '../../domain/models/party_plan.dart';
+import '../widgets/neon_background.dart';
+import '../widgets/portion_selector.dart';
+
+class PartyModePage extends StatefulWidget {
+  const PartyModePage({
+    required this.cocktails,
+    required this.ingredientsById,
+    required this.missingIngredientIdsByCocktailId,
+    required this.measurementSystem,
+    required this.powerSavingMode,
+    required this.readOnly,
+    required this.onAddShoppingIngredients,
+    super.key,
+  });
+
+  final List<Cocktail> cocktails;
+  final Map<String, Ingredient> ingredientsById;
+  final Map<String, Set<String>> missingIngredientIdsByCocktailId;
+  final MeasurementSystem measurementSystem;
+  final bool powerSavingMode;
+  final bool readOnly;
+  final Future<void> Function(Iterable<String> ingredientIds)
+  onAddShoppingIngredients;
+
+  @override
+  State<PartyModePage> createState() => _PartyModePageState();
+}
+
+class _PartyModePageState extends State<PartyModePage> {
+  final TextEditingController _searchController = TextEditingController();
+  final Map<String, int> _servingsByCocktailId = <String, int>{};
+  String _query = '';
+  bool _readyOnly = false;
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final query = AppSearchQuery(_query);
+    final filtered =
+        widget.cocktails
+            .where((cocktail) {
+              final isReady =
+                  widget
+                      .missingIngredientIdsByCocktailId[cocktail.id]
+                      ?.isEmpty ??
+                  true;
+              if (_readyOnly && !isReady) {
+                return false;
+              }
+              return query.matchesAny(<String>[
+                cocktail.name,
+                cocktail.description,
+                ...cocktail.tags,
+                ...cocktail.ingredients.map(
+                  (id) => widget.ingredientsById[id]?.name ?? id,
+                ),
+              ]);
+            })
+            .toList(growable: false)
+          ..sort((left, right) {
+            final leftMissing =
+                widget.missingIngredientIdsByCocktailId[left.id]?.length ?? 0;
+            final rightMissing =
+                widget.missingIngredientIdsByCocktailId[right.id]?.length ?? 0;
+            final missingCompare = leftMissing.compareTo(rightMissing);
+            if (missingCompare != 0) {
+              return missingCompare;
+            }
+            return left.name.toLowerCase().compareTo(right.name.toLowerCase());
+          });
+    final selectedCocktailCount = _servingsByCocktailId.length;
+    final totalServings = _servingsByCocktailId.values.fold<int>(
+      0,
+      (sum, servings) => sum + servings,
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: NeonBackground(
+        topGlow: const Color(0xFFFF5BB0),
+        bottomGlow: const Color(0xFF6A70FF),
+        reduceEffects: widget.powerSavingMode,
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 6, 12, 8),
+                child: Row(
+                  children: <Widget>[
+                    IconButton(
+                      tooltip: context.tr('Назад', 'Back'),
+                      onPressed: () => Navigator.of(context).maybePop(),
+                      icon: const Icon(Icons.arrow_back_rounded),
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            context.tr('Режим вечеринки', 'Party mode'),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          Text(
+                            context.tr(
+                              'Выберите коктейли и количество порций',
+                              'Choose cocktails and serving counts',
+                            ),
+                            style: const TextStyle(
+                              color: Color(0xFFB8C3E2),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  controller: _searchController,
+                  onChanged: (value) => setState(() => _query = value),
+                  decoration: InputDecoration(
+                    hintText: context.tr(
+                      'Поиск коктейлей…',
+                      'Search cocktails…',
+                    ),
+                    prefixIcon: const Icon(Icons.search_rounded),
+                    suffixIcon: _query.isEmpty
+                        ? null
+                        : IconButton(
+                            tooltip: context.tr('Очистить', 'Clear'),
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() => _query = '');
+                            },
+                            icon: const Icon(Icons.close_rounded),
+                          ),
+                    filled: true,
+                    fillColor: const Color(0xCC111528),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Color(0x55768BDA)),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
+                child: Row(
+                  children: <Widget>[
+                    FilterChip(
+                      selected: _readyOnly,
+                      avatar: const Icon(Icons.check_circle_rounded, size: 16),
+                      label: Text(context.tr('Только доступные', 'Ready only')),
+                      onSelected: (value) => setState(() => _readyOnly = value),
+                    ),
+                    const Spacer(),
+                    Text(
+                      context.tr(
+                        'Выбрано: $selectedCocktailCount',
+                        'Selected: $selectedCocktailCount',
+                      ),
+                      style: const TextStyle(
+                        color: Color(0xFFAEB9DB),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: filtered.isEmpty
+                    ? Center(
+                        child: Text(
+                          context.tr('Ничего не найдено', 'Nothing found'),
+                          style: const TextStyle(color: Color(0xFFB8C3E2)),
+                        ),
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
+                        itemCount: filtered.length,
+                        itemBuilder: (context, index) {
+                          final cocktail = filtered[index];
+                          return _PartyCocktailTile(
+                            cocktail: cocktail,
+                            missingCount:
+                                widget
+                                    .missingIngredientIdsByCocktailId[cocktail
+                                        .id]
+                                    ?.length ??
+                                0,
+                            servings: _servingsByCocktailId[cocktail.id],
+                            onSelected: (selected) {
+                              setState(() {
+                                if (selected) {
+                                  _servingsByCocktailId[cocktail.id] = 1;
+                                } else {
+                                  _servingsByCocktailId.remove(cocktail.id);
+                                }
+                              });
+                            },
+                            onServingsChanged: (servings) {
+                              setState(() {
+                                _servingsByCocktailId[cocktail.id] = servings;
+                              });
+                            },
+                          );
+                        },
+                      ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+        child: FilledButton.icon(
+          onPressed: _servingsByCocktailId.isEmpty ? null : _showPartyPlan,
+          icon: const Icon(Icons.calculate_rounded),
+          label: Text(
+            context.tr(
+              'Рассчитать · $totalServings порций',
+              'Calculate · $totalServings servings',
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showPartyPlan() async {
+    final cocktailsById = <String, Cocktail>{
+      for (final cocktail in widget.cocktails) cocktail.id: cocktail,
+    };
+    final selections = _servingsByCocktailId.entries
+        .map((entry) {
+          final cocktail = cocktailsById[entry.key];
+          if (cocktail == null) {
+            return null;
+          }
+          return PartyCocktailSelection(
+            cocktail: cocktail,
+            servings: entry.value,
+          );
+        })
+        .whereType<PartyCocktailSelection>()
+        .toList(growable: false);
+    final totals = buildPartyIngredientTotals(
+      selections: selections,
+      ingredientsById: widget.ingredientsById,
+      measurementSystem: widget.measurementSystem,
+    );
+    final missingIds = <String>{
+      for (final selection in selections)
+        ...widget.missingIngredientIdsByCocktailId[selection.cocktail.id] ??
+            const <String>{},
+    };
+
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      backgroundColor: const Color(0xFF111528),
+      builder: (sheetContext) => _PartyPlanSheet(
+        selections: selections,
+        totals: totals,
+        missingIds: missingIds,
+        readOnly: widget.readOnly,
+        ingredientsById: widget.ingredientsById,
+        onAddMissingToShoppingList: () async {
+          await widget.onAddShoppingIngredients(missingIds);
+          if (!sheetContext.mounted) {
+            return;
+          }
+          ScaffoldMessenger.of(sheetContext).showSnackBar(
+            SnackBar(
+              content: Text(
+                sheetContext.tr(
+                  'Недостающие ингредиенты добавлены в покупки',
+                  'Missing ingredients added to shopping list',
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _PartyCocktailTile extends StatelessWidget {
+  const _PartyCocktailTile({
+    required this.cocktail,
+    required this.missingCount,
+    required this.servings,
+    required this.onSelected,
+    required this.onServingsChanged,
+  });
+
+  final Cocktail cocktail;
+  final int missingCount;
+  final int? servings;
+  final ValueChanged<bool> onSelected;
+  final ValueChanged<int> onServingsChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final selected = servings != null;
+    return Card(
+      color: selected ? const Color(0xFF202543) : const Color(0xCC15192D),
+      margin: const EdgeInsets.only(bottom: 8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18),
+        side: BorderSide(
+          color: selected ? const Color(0xFF8B91FF) : const Color(0x334F5D88),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Column(
+          children: <Widget>[
+            CheckboxListTile(
+              value: selected,
+              onChanged: (value) => onSelected(value ?? false),
+              title: Text(
+                cocktail.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              subtitle: Text(
+                missingCount == 0
+                    ? context.tr('Можно приготовить сейчас', 'Ready now')
+                    : context.tr(
+                        'Не хватает ингредиентов: $missingCount',
+                        'Missing ingredients: $missingCount',
+                      ),
+                style: TextStyle(
+                  color: missingCount == 0
+                      ? const Color(0xFF8FFFD4)
+                      : const Color(0xFFFFBDD8),
+                  fontSize: 12,
+                ),
+              ),
+              controlAffinity: ListTileControlAffinity.leading,
+            ),
+            if (selected)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: PortionSelector(
+                    servings: servings!,
+                    compact: true,
+                    onChanged: onServingsChanged,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PartyPlanSheet extends StatelessWidget {
+  const _PartyPlanSheet({
+    required this.selections,
+    required this.totals,
+    required this.missingIds,
+    required this.readOnly,
+    required this.ingredientsById,
+    required this.onAddMissingToShoppingList,
+  });
+
+  final List<PartyCocktailSelection> selections;
+  final List<PartyIngredientTotal> totals;
+  final Set<String> missingIds;
+  final bool readOnly;
+  final Map<String, Ingredient> ingredientsById;
+  final Future<void> Function() onAddMissingToShoppingList;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * 0.88,
+        ),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 4, 12, 10),
+              child: Row(
+                children: <Widget>[
+                  const Icon(
+                    Icons.celebration_rounded,
+                    color: Color(0xFFFF91CA),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      context.tr('План вечеринки', 'Party plan'),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    tooltip: context.tr('Скопировать', 'Copy'),
+                    onPressed: () => _copyPlan(context),
+                    icon: const Icon(Icons.copy_rounded),
+                  ),
+                  IconButton(
+                    tooltip: context.tr('Закрыть', 'Close'),
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(Icons.close_rounded),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1, color: Color(0x334F5D88)),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(20, 14, 20, 28),
+                children: <Widget>[
+                  Text(
+                    context.tr('Коктейли', 'Cocktails'),
+                    style: _sectionStyle,
+                  ),
+                  ...selections.map(
+                    (selection) => Padding(
+                      padding: const EdgeInsets.only(top: 7),
+                      child: Text(
+                        '• ${selection.cocktail.name} × ${selection.servings}',
+                        style: const TextStyle(color: Color(0xFFE1E6F8)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Text(
+                    context.tr('Нужно подготовить', 'Ingredients to prepare'),
+                    style: _sectionStyle,
+                  ),
+                  ...totals.map(
+                    (total) => ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        total.name,
+                        style: const TextStyle(color: Color(0xFFE1E6F8)),
+                      ),
+                      trailing: Text(
+                        total.label(
+                          unitLabelResolver: context.ingredientUnitLabel,
+                        ),
+                        style: const TextStyle(
+                          color: Color(0xFF9CB1FF),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (missingIds.isNotEmpty && !readOnly) ...<Widget>[
+                    const SizedBox(height: 14),
+                    FilledButton.icon(
+                      onPressed: onAddMissingToShoppingList,
+                      icon: const Icon(Icons.add_shopping_cart_rounded),
+                      label: Text(
+                        context.tr(
+                          'Добавить недостающее в покупки · ${missingIds.length}',
+                          'Add missing to shopping · ${missingIds.length}',
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _copyPlan(BuildContext context) async {
+    final buffer = StringBuffer()
+      ..writeln(context.tr('План вечеринки «Мой Бар»', 'My Bar party plan'))
+      ..writeln()
+      ..writeln(context.tr('Коктейли:', 'Cocktails:'));
+    for (final selection in selections) {
+      buffer.writeln('• ${selection.cocktail.name} × ${selection.servings}');
+    }
+    buffer
+      ..writeln()
+      ..writeln(context.tr('Ингредиенты:', 'Ingredients:'));
+    for (final total in totals) {
+      buffer.writeln(
+        '• ${total.name}: ${total.label(unitLabelResolver: context.ingredientUnitLabel)}',
+      );
+    }
+    await Clipboard.setData(ClipboardData(text: buffer.toString().trim()));
+    if (!context.mounted) {
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(context.tr('План скопирован', 'Plan copied'))),
+    );
+  }
+
+  static const TextStyle _sectionStyle = TextStyle(
+    color: Color(0xFFFFA6D5),
+    fontSize: 16,
+    fontWeight: FontWeight.w800,
+  );
+}

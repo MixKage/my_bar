@@ -14,6 +14,7 @@ import 'features/bar/data/local_catalog_storage.dart';
 import 'features/bar/data/models/catalog_layer_models.dart';
 import 'features/bar/data/providers/external_bar_data_provider.dart';
 import 'features/bar/data/repositories/bar_catalog_repository.dart';
+import 'features/bar/data/shopping_list_storage.dart';
 import 'features/bar/domain/models/bar_catalog.dart';
 import 'features/bar/domain/models/catalog_data_source.dart';
 import 'features/bar/domain/models/cocktail.dart';
@@ -29,6 +30,7 @@ Future<void> main() async {
     MyBarApp(
       selectionStorage: bootstrap.selectionStorage,
       settingsStorage: bootstrap.settingsStorage,
+      shoppingListStorage: bootstrap.shoppingListStorage,
       catalogRepository: bootstrap.catalogRepository,
       externalProviderSelector: bootstrap.externalProviderSelector,
       initialSnapshot: bootstrap.initialSnapshot,
@@ -45,6 +47,9 @@ Future<_BootstrapData> _bootstrapApp() async {
       preferences,
     );
     final settingsStorage = SharedPreferencesBarUiSettingsStorage(preferences);
+    final shoppingListStorage = SharedPreferencesShoppingListStorage(
+      preferences,
+    );
 
     final localStorage = SharedPreferencesLocalCatalogStorage(preferences);
     final overridesStorage = SharedPreferencesCatalogOverridesStorage(
@@ -82,6 +87,7 @@ Future<_BootstrapData> _bootstrapApp() async {
     return _BootstrapData(
       selectionStorage: selectionStorage,
       settingsStorage: settingsStorage,
+      shoppingListStorage: shoppingListStorage,
       catalogRepository: repository,
       externalProviderSelector: externalProviderSelector,
       initialSnapshot: initialSnapshot,
@@ -118,6 +124,7 @@ Future<_BootstrapData> _bootstrapApp() async {
     return _BootstrapData(
       selectionStorage: InMemoryIngredientSelectionStorage(),
       settingsStorage: InMemoryBarUiSettingsStorage(),
+      shoppingListStorage: InMemoryShoppingListStorage(),
       catalogRepository: fallbackRepository,
       externalProviderSelector: fallbackSelector,
       initialSnapshot: fallbackSnapshot,
@@ -177,6 +184,7 @@ class _BootstrapData {
   const _BootstrapData({
     required this.selectionStorage,
     required this.settingsStorage,
+    required this.shoppingListStorage,
     required this.catalogRepository,
     required this.externalProviderSelector,
     required this.initialSnapshot,
@@ -184,6 +192,7 @@ class _BootstrapData {
 
   final IngredientSelectionStorage selectionStorage;
   final BarUiSettingsStorage settingsStorage;
+  final ShoppingListStorage shoppingListStorage;
   final BarCatalogRepository catalogRepository;
   final SelectableExternalBarDataProvider externalProviderSelector;
   final UnifiedCatalogSnapshot initialSnapshot;
