@@ -16,6 +16,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/layout/app_breakpoints.dart';
 import '../../../core/localization/app_language.dart';
 import '../../../core/localization/app_localization.dart';
+import '../../../core/theme/app_motion.dart';
+import '../../../core/widgets/bar_pressable.dart';
 import '../cubit/bar_cubit.dart';
 import '../data/bar_catalog_json_codec.dart';
 import '../domain/models/cocktail.dart';
@@ -37,7 +39,6 @@ class BarHomeShell extends StatefulWidget {
 class _BarHomeShellState extends State<BarHomeShell>
     with WidgetsBindingObserver {
   static const _jsonCodec = BarCatalogJsonCodec();
-  static final Uri _developerSiteUri = Uri.parse('https://logion-web.ru/');
   static const double _hiddenSideToggleVisibleFraction = 1 / 3;
 
   final Battery _battery = Battery();
@@ -156,7 +157,11 @@ class _BarHomeShellState extends State<BarHomeShell>
         ? Row(
             children: <Widget>[
               AnimatedContainer(
-                duration: const Duration(milliseconds: 260),
+                duration: AppMotion.duration(
+                  context,
+                  AppMotion.standard,
+                  powerSavingMode: powerSavingMode,
+                ),
                 curve: Curves.easeOutCubic,
                 width: showSideNavigation ? kNeonSideNavigationWidth + 30 : 0,
                 child: showSideNavigation
@@ -871,7 +876,11 @@ class _BarHomeShellState extends State<BarHomeShell>
                         ),
                       ),
                       const SizedBox(height: 14),
-                      _PressableAboutButton(
+                      BarActionButton(
+                        powerSavingMode: context
+                            .read<BarCubit>()
+                            .state
+                            .effectivePowerSavingMode,
                         onPressed: _openDeveloperSite,
                         icon: Icons.open_in_new_rounded,
                         label: context.tr(
@@ -880,17 +889,19 @@ class _BarHomeShellState extends State<BarHomeShell>
                         ),
                         foregroundColor: const Color(0xFFCFE3FF),
                         backgroundColor: const Color(0x33121A38),
-                        pressedBackgroundColor: const Color(0x551B2954),
                         borderColor: const Color(0x667C8DFF),
                       ),
                       const SizedBox(height: 10),
-                      _PressableAboutButton(
+                      BarActionButton(
+                        powerSavingMode: context
+                            .read<BarCubit>()
+                            .state
+                            .effectivePowerSavingMode,
                         onPressed: () => Navigator.of(dialogContext).pop(),
                         icon: Icons.check_rounded,
                         label: context.tr('Понятно', 'OK'),
                         foregroundColor: Colors.white,
                         backgroundColor: const Color(0xFF5C63FF),
-                        pressedBackgroundColor: const Color(0xFF4D53D8),
                         glowColor: const Color(0x665C63FF),
                       ),
                     ],
@@ -974,7 +985,11 @@ class _BarHomeShellState extends State<BarHomeShell>
   Future<void> _openDeveloperSite() async {
     try {
       final launched = await launchUrl(
-        _developerSiteUri,
+        Uri.parse(
+          context.isEnglish
+              ? 'https://logion-mobile.com'
+              : 'https://logion-mobile.ru',
+        ),
         mode: LaunchMode.externalApplication,
       );
       if (!mounted) {
@@ -1366,100 +1381,6 @@ class _SideNavigationToggleHandleState
                 height: _SideNavigationToggleHandle.size,
                 child: Icon(widget.icon, color: const Color(0xFFD2DEFF)),
               ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _PressableAboutButton extends StatefulWidget {
-  const _PressableAboutButton({
-    required this.onPressed,
-    required this.icon,
-    required this.label,
-    required this.foregroundColor,
-    required this.backgroundColor,
-    required this.pressedBackgroundColor,
-    this.borderColor,
-    this.glowColor,
-  });
-
-  final VoidCallback onPressed;
-  final IconData icon;
-  final String label;
-  final Color foregroundColor;
-  final Color backgroundColor;
-  final Color pressedBackgroundColor;
-  final Color? borderColor;
-  final Color? glowColor;
-
-  @override
-  State<_PressableAboutButton> createState() => _PressableAboutButtonState();
-}
-
-class _PressableAboutButtonState extends State<_PressableAboutButton> {
-  bool _pressed = false;
-
-  void _setPressed(bool value) {
-    if (_pressed == value || !mounted) {
-      return;
-    }
-    setState(() => _pressed = value);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: widget.onPressed,
-        onTapDown: (_) => _setPressed(true),
-        onTapUp: (_) => _setPressed(false),
-        onTapCancel: () => _setPressed(false),
-        child: AnimatedScale(
-          duration: const Duration(milliseconds: 110),
-          curve: Curves.easeOut,
-          scale: _pressed ? 0.97 : 1,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 150),
-            curve: Curves.easeOut,
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(
-              color: _pressed
-                  ? widget.pressedBackgroundColor
-                  : widget.backgroundColor,
-              borderRadius: BorderRadius.circular(14),
-              border: widget.borderColor == null
-                  ? null
-                  : Border.all(color: widget.borderColor!),
-              boxShadow: widget.glowColor == null
-                  ? null
-                  : <BoxShadow>[
-                      BoxShadow(
-                        color: widget.glowColor!,
-                        blurRadius: 12,
-                        spreadRadius: 0.6,
-                      ),
-                    ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(widget.icon, size: 18, color: widget.foregroundColor),
-                const SizedBox(width: 8),
-                Text(
-                  widget.label,
-                  style: TextStyle(
-                    color: widget.foregroundColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
             ),
           ),
         ),

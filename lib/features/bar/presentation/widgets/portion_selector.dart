@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/theme/app_motion.dart';
 
 class PortionSelector extends StatelessWidget {
   const PortionSelector({
     required this.servings,
     required this.onChanged,
     this.compact = false,
+    this.powerSavingMode = false,
     super.key,
   });
 
   final int servings;
   final ValueChanged<int> onChanged;
   final bool compact;
+  final bool powerSavingMode;
 
   @override
   Widget build(BuildContext context) {
@@ -35,26 +39,44 @@ class PortionSelector extends StatelessWidget {
               visualDensity: compact ? VisualDensity.compact : null,
               tooltip: context.tr('Уменьшить', 'Decrease'),
               onPressed: normalizedServings > 1
-                  ? () => onChanged(normalizedServings - 1)
+                  ? () {
+                      HapticFeedback.selectionClick();
+                      onChanged(normalizedServings - 1);
+                    }
                   : null,
               icon: const Icon(Icons.remove_rounded, size: 19),
             ),
-            Text(
-              context.tr(
-                '$normalizedServings порц.',
-                '$normalizedServings serv.',
+            AnimatedSwitcher(
+              duration: AppMotion.duration(
+                context,
+                AppMotion.quick,
+                powerSavingMode: powerSavingMode,
               ),
-              style: const TextStyle(
-                color: Color(0xFFE5EAFF),
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
+              transitionBuilder: (child, animation) => FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(scale: animation, child: child),
+              ),
+              child: Text(
+                context.tr(
+                  '$normalizedServings порц.',
+                  '$normalizedServings serv.',
+                ),
+                key: ValueKey<int>(normalizedServings),
+                style: const TextStyle(
+                  color: Color(0xFFE5EAFF),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ),
             IconButton(
               visualDensity: compact ? VisualDensity.compact : null,
               tooltip: context.tr('Увеличить', 'Increase'),
               onPressed: normalizedServings < 50
-                  ? () => onChanged(normalizedServings + 1)
+                  ? () {
+                      HapticFeedback.selectionClick();
+                      onChanged(normalizedServings + 1);
+                    }
                   : null,
               icon: const Icon(Icons.add_rounded, size: 19),
             ),

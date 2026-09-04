@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/theme/app_motion.dart';
 import '../../domain/models/ingredient.dart';
 
 class SmartShoppingSheet extends StatefulWidget {
@@ -12,6 +13,7 @@ class SmartShoppingSheet extends StatefulWidget {
     required this.unlockCountsByIngredientId,
     required this.favoriteUnlockCountsByIngredientId,
     required this.readOnly,
+    required this.powerSavingMode,
     required this.onToggleIngredient,
     required this.onClear,
     required this.onMarkAsOwned,
@@ -24,6 +26,7 @@ class SmartShoppingSheet extends StatefulWidget {
   final Map<String, int> unlockCountsByIngredientId;
   final Map<String, int> favoriteUnlockCountsByIngredientId;
   final bool readOnly;
+  final bool powerSavingMode;
   final Future<void> Function(String ingredientId) onToggleIngredient;
   final Future<void> Function() onClear;
   final Future<void> Function(String ingredientId) onMarkAsOwned;
@@ -115,6 +118,17 @@ class _SmartShoppingSheetState extends State<SmartShoppingSheet> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),
                 children: <Widget>[
+                  _ShoppingOverviewCard(
+                    itemCount: shoppingItems.length,
+                    recommendationCount: suggestions.length,
+                    potentialUnlockCount: shoppingItems.fold<int>(
+                      0,
+                      (sum, item) =>
+                          sum +
+                          (widget.unlockCountsByIngredientId[item.id] ?? 0),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   _SectionHeader(
                     title: context.tr(
                       'В списке · ${shoppingItems.length}',
@@ -142,25 +156,43 @@ class _SmartShoppingSheetState extends State<SmartShoppingSheet> {
                             ],
                           ),
                   ),
-                  if (shoppingItems.isEmpty)
-                    _EmptyShoppingList(readOnly: widget.readOnly)
-                  else
-                    ...shoppingItems.map(
-                      (ingredient) => _ShoppingIngredientTile(
-                        ingredient: ingredient,
-                        unlockCount:
-                            widget.unlockCountsByIngredientId[ingredient.id] ??
-                            0,
-                        favoriteUnlockCount:
-                            widget.favoriteUnlockCountsByIngredientId[ingredient
-                                .id] ??
-                            0,
-                        inShoppingList: true,
-                        readOnly: widget.readOnly,
-                        onToggle: () => _toggle(ingredient.id),
-                        onMarkAsOwned: () => _markAsOwned(ingredient.id),
-                      ),
+                  AnimatedSwitcher(
+                    duration: AppMotion.duration(
+                      context,
+                      AppMotion.standard,
+                      powerSavingMode: widget.powerSavingMode,
                     ),
+                    child: shoppingItems.isEmpty
+                        ? _EmptyShoppingList(
+                            key: const ValueKey<String>('empty-shopping-list'),
+                            readOnly: widget.readOnly,
+                          )
+                        : Column(
+                            key: ValueKey<int>(shoppingItems.length),
+                            children: shoppingItems
+                                .map(
+                                  (ingredient) => _ShoppingIngredientTile(
+                                    ingredient: ingredient,
+                                    unlockCount:
+                                        widget
+                                            .unlockCountsByIngredientId[ingredient
+                                            .id] ??
+                                        0,
+                                    favoriteUnlockCount:
+                                        widget
+                                            .favoriteUnlockCountsByIngredientId[ingredient
+                                            .id] ??
+                                        0,
+                                    inShoppingList: true,
+                                    readOnly: widget.readOnly,
+                                    onToggle: () => _toggle(ingredient.id),
+                                    onMarkAsOwned: () =>
+                                        _markAsOwned(ingredient.id),
+                                  ),
+                                )
+                                .toList(growable: false),
+                          ),
+                  ),
                   const SizedBox(height: 22),
                   _SectionHeader(
                     title: context.tr(
@@ -222,6 +254,7 @@ class _SmartShoppingSheetState extends State<SmartShoppingSheet> {
     if (widget.readOnly) {
       return;
     }
+    HapticFeedback.selectionClick();
     setState(() {
       if (!_shoppingIds.add(ingredientId)) {
         _shoppingIds.remove(ingredientId);
@@ -234,11 +267,37 @@ class _SmartShoppingSheetState extends State<SmartShoppingSheet> {
     if (widget.readOnly) {
       return;
     }
+    HapticFeedback.mediumImpact();
     setState(() => _shoppingIds.remove(ingredientId));
     await widget.onMarkAsOwned(ingredientId);
   }
 
   Future<void> _clear() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(context.tr('Очистить список?', 'Clear shopping list?')),
+        content: Text(
+          context.tr(
+            'Все добавленные позиции будут удалены.',
+            'All added items will be removed.',
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(context.tr('Отмена', 'Cancel')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(context.tr('Очистить', 'Clear')),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) {
+      return;
+    }
     setState(_shoppingIds.clear);
     await widget.onClear();
   }
@@ -259,6 +318,92 @@ class _SmartShoppingSheetState extends State<SmartShoppingSheet> {
     }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(context.tr('Список скопирован', 'List copied'))),
+    );
+  }
+}
+
+class _ShoppingOverviewCard extends StatelessWidget {
+  const _ShoppingOverviewCard({
+    required this.itemCount,
+    required this.recommendationCount,
+    required this.potentialUnlockCount,
+  });
+
+  final int itemCount;
+  final int recommendationCount;
+  final int potentialUnlockCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: <Color>[Color(0xFF24294A), Color(0xFF191E37)],
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0x556F83DA)),
+      ),
+      child: Row(
+        children: <Widget>[
+          _ShoppingMetric(
+            value: '$itemCount',
+            label: context.tr('в списке', 'in list'),
+            icon: Icons.shopping_bag_outlined,
+          ),
+          _ShoppingMetric(
+            value: '$potentialUnlockCount',
+            label: context.tr('открытий', 'unlocks'),
+            icon: Icons.lock_open_rounded,
+          ),
+          _ShoppingMetric(
+            value: '$recommendationCount',
+            label: context.tr('советов', 'suggestions'),
+            icon: Icons.auto_awesome_rounded,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ShoppingMetric extends StatelessWidget {
+  const _ShoppingMetric({
+    required this.value,
+    required this.label,
+    required this.icon,
+  });
+
+  final String value;
+  final String label;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Semantics(
+        label: '$label: $value',
+        child: Column(
+          children: <Widget>[
+            Icon(icon, color: const Color(0xFF9CB1FF), size: 20),
+            const SizedBox(height: 4),
+            Text(
+              value,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(color: Color(0xFFAAB5D5), fontSize: 10),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -290,7 +435,7 @@ class _SectionHeader extends StatelessWidget {
 }
 
 class _EmptyShoppingList extends StatelessWidget {
-  const _EmptyShoppingList({required this.readOnly});
+  const _EmptyShoppingList({required this.readOnly, super.key});
 
   final bool readOnly;
 

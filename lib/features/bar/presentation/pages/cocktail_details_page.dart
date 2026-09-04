@@ -1,7 +1,9 @@
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/theme/app_motion.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
@@ -20,6 +22,7 @@ class CocktailDetailsPage extends StatefulWidget {
     required this.visitorMode,
     required this.measurementSystem,
     this.powerSavingMode = false,
+    this.initialIsFavorite,
     required this.onEditCocktailPressed,
     required this.onToggleFavoritePressed,
     super.key,
@@ -31,6 +34,7 @@ class CocktailDetailsPage extends StatefulWidget {
   final bool visitorMode;
   final MeasurementSystem measurementSystem;
   final bool powerSavingMode;
+  final bool? initialIsFavorite;
   final Future<void> Function(Cocktail cocktail) onEditCocktailPressed;
   final ValueChanged<String> onToggleFavoritePressed;
 
@@ -45,10 +49,11 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
   @override
   void initState() {
     super.initState();
-    _isFavorite = widget.cocktail.isFavorite;
+    _isFavorite = widget.initialIsFavorite ?? widget.cocktail.isFavorite;
   }
 
   void _toggleFavorite() {
+    HapticFeedback.selectionClick();
     setState(() => _isFavorite = !_isFavorite);
     widget.onToggleFavoritePressed(widget.cocktail.id);
   }
@@ -123,6 +128,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                             child: _DetailsTopActionButton(
                               tooltip: context.tr('Назад', 'Back'),
                               icon: Icons.arrow_back_rounded,
+                              powerSavingMode: widget.powerSavingMode,
                               onPressed: () => Navigator.of(context).maybePop(),
                             ),
                           ),
@@ -140,6 +146,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                                       'Add to favorites',
                                     ),
                               isFavorite: _isFavorite,
+                              powerSavingMode: widget.powerSavingMode,
                               onPressed: _toggleFavorite,
                             ),
                           ),
@@ -228,6 +235,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                               PortionSelector(
                                 servings: _servings,
                                 compact: true,
+                                powerSavingMode: widget.powerSavingMode,
                                 onChanged: (value) {
                                   setState(() => _servings = value);
                                 },
@@ -282,12 +290,23 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                                         ),
                                       ),
                                       if (amount.isNotEmpty)
-                                        Text(
-                                          amount,
-                                          style: const TextStyle(
-                                            color: Color(0xFFAEC1EE),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
+                                        AnimatedSwitcher(
+                                          duration: AppMotion.duration(
+                                            context,
+                                            AppMotion.quick,
+                                            powerSavingMode:
+                                                widget.powerSavingMode,
+                                          ),
+                                          child: Text(
+                                            amount,
+                                            key: ValueKey<String>(
+                                              '$ingredientId:$amount',
+                                            ),
+                                            style: const TextStyle(
+                                              color: Color(0xFFAEC1EE),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                            ),
                                           ),
                                         ),
                                     ],
@@ -369,15 +388,48 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                           const SizedBox(height: 6),
                           ...List<Widget>.generate(
                             cocktail.preparationSteps.length,
-                            (index) => Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Text(
-                                '${index + 1}. ${cocktail.preparationSteps[index]}',
-                                style: const TextStyle(
-                                  color: Color(0xFFE8ECFF),
-                                  fontSize: 14,
-                                  height: 1.35,
+                            (index) => Container(
+                              margin: const EdgeInsets.only(bottom: 8),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: const Color(0x6612172A),
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                  color: const Color(0x334F6093),
                                 ),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    width: 26,
+                                    height: 26,
+                                    alignment: Alignment.center,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xFF4C568F),
+                                    ),
+                                    child: Text(
+                                      '${index + 1}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      cocktail.preparationSteps[index],
+                                      style: const TextStyle(
+                                        color: Color(0xFFE8ECFF),
+                                        fontSize: 14,
+                                        height: 1.35,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             growable: false,
@@ -475,11 +527,13 @@ class _DetailsFavoriteButton extends StatefulWidget {
   const _DetailsFavoriteButton({
     required this.tooltip,
     required this.isFavorite,
+    required this.powerSavingMode,
     required this.onPressed,
   });
 
   final String tooltip;
   final bool isFavorite;
+  final bool powerSavingMode;
   final VoidCallback onPressed;
 
   @override
@@ -509,11 +563,19 @@ class _DetailsFavoriteButtonState extends State<_DetailsFavoriteButton> {
           onTapUp: (_) => _setPressed(false),
           onTapCancel: () => _setPressed(false),
           child: AnimatedScale(
-            duration: const Duration(milliseconds: 110),
+            duration: AppMotion.duration(
+              context,
+              const Duration(milliseconds: 110),
+              powerSavingMode: widget.powerSavingMode,
+            ),
             curve: Curves.easeOut,
             scale: _pressed ? 0.9 : 1,
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 160),
+              duration: AppMotion.duration(
+                context,
+                AppMotion.quick,
+                powerSavingMode: widget.powerSavingMode,
+              ),
               curve: Curves.easeOut,
               width: 40,
               height: 40,
@@ -534,7 +596,11 @@ class _DetailsFavoriteButtonState extends State<_DetailsFavoriteButton> {
                     : null,
               ),
               child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 140),
+                duration: AppMotion.duration(
+                  context,
+                  const Duration(milliseconds: 140),
+                  powerSavingMode: widget.powerSavingMode,
+                ),
                 child: Icon(
                   widget.isFavorite
                       ? Icons.star_rounded
@@ -558,11 +624,13 @@ class _DetailsTopActionButton extends StatefulWidget {
   const _DetailsTopActionButton({
     required this.tooltip,
     required this.icon,
+    required this.powerSavingMode,
     required this.onPressed,
   });
 
   final String tooltip;
   final IconData icon;
+  final bool powerSavingMode;
   final VoidCallback onPressed;
 
   @override
@@ -593,11 +661,19 @@ class _DetailsTopActionButtonState extends State<_DetailsTopActionButton> {
           onTapUp: (_) => _setPressed(false),
           onTapCancel: () => _setPressed(false),
           child: AnimatedScale(
-            duration: const Duration(milliseconds: 110),
+            duration: AppMotion.duration(
+              context,
+              const Duration(milliseconds: 110),
+              powerSavingMode: widget.powerSavingMode,
+            ),
             curve: Curves.easeOut,
             scale: _pressed ? 0.9 : 1,
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 160),
+              duration: AppMotion.duration(
+                context,
+                AppMotion.quick,
+                powerSavingMode: widget.powerSavingMode,
+              ),
               curve: Curves.easeOut,
               width: 40,
               height: 40,

@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/search/app_search_query.dart';
+import '../../../../core/theme/app_motion.dart';
+import '../../../../core/widgets/bar_pressable.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
 import '../../domain/models/measurement_system.dart';
@@ -167,35 +169,73 @@ class _PartyModePageState extends State<PartyModePage> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
-                child: Row(
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
                     FilterChip(
                       selected: _readyOnly,
-                      avatar: const Icon(Icons.check_circle_rounded, size: 16),
+                      checkmarkColor: Colors.white,
+                      selectedColor: const Color(0x554F63CC),
+                      labelStyle: const TextStyle(color: Colors.white),
+                      avatar: const Icon(
+                        Icons.check_circle_rounded,
+                        size: 16,
+                        color: Colors.white,
+                      ),
                       label: Text(context.tr('Только доступные', 'Ready only')),
                       onSelected: (value) => setState(() => _readyOnly = value),
                     ),
-                    const Spacer(),
-                    Text(
-                      context.tr(
-                        'Выбрано: $selectedCocktailCount',
-                        'Selected: $selectedCocktailCount',
+                    if (selectedCocktailCount == 0)
+                      TextButton.icon(
+                        onPressed: _selectReadyCocktails,
+                        icon: const Icon(Icons.playlist_add_check_rounded),
+                        label: Text(
+                          context.tr('Выбрать готовые', 'Select ready'),
+                        ),
+                      )
+                    else
+                      IconButton(
+                        tooltip: context.tr('Снять выбор', 'Clear selection'),
+                        onPressed: () {
+                          HapticFeedback.selectionClick();
+                          setState(_servingsByCocktailId.clear);
+                        },
+                        icon: const Icon(Icons.deselect_rounded),
                       ),
-                      style: const TextStyle(
-                        color: Color(0xFFAEB9DB),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
                   ],
                 ),
+              ),
+              _PartySelectionSummary(
+                cocktailCount: selectedCocktailCount,
+                servingCount: totalServings,
               ),
               Expanded(
                 child: filtered.isEmpty
                     ? Center(
-                        child: Text(
-                          context.tr('Ничего не найдено', 'Nothing found'),
-                          style: const TextStyle(color: Color(0xFFB8C3E2)),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            const Icon(
+                              Icons.search_off_rounded,
+                              color: Color(0xFF8997BF),
+                              size: 38,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              context.tr('Ничего не найдено', 'Nothing found'),
+                              style: const TextStyle(color: Color(0xFFB8C3E2)),
+                            ),
+                            const SizedBox(height: 10),
+                            OutlinedButton(
+                              onPressed: _resetFilters,
+                              child: Text(
+                                context.tr('Сбросить фильтры', 'Reset filters'),
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     : ListView.builder(
@@ -204,6 +244,7 @@ class _PartyModePageState extends State<PartyModePage> {
                         itemBuilder: (context, index) {
                           final cocktail = filtered[index];
                           return _PartyCocktailTile(
+                            key: ValueKey<String>(cocktail.id),
                             cocktail: cocktail,
                             missingCount:
                                 widget
@@ -212,7 +253,9 @@ class _PartyModePageState extends State<PartyModePage> {
                                     ?.length ??
                                 0,
                             servings: _servingsByCocktailId[cocktail.id],
+                            powerSavingMode: widget.powerSavingMode,
                             onSelected: (selected) {
+                              HapticFeedback.selectionClick();
                               setState(() {
                                 if (selected) {
                                   _servingsByCocktailId[cocktail.id] = 1;
@@ -236,18 +279,39 @@ class _PartyModePageState extends State<PartyModePage> {
       ),
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-        child: FilledButton.icon(
+        child: BarActionButton(
+          powerSavingMode: widget.powerSavingMode,
           onPressed: _servingsByCocktailId.isEmpty ? null : _showPartyPlan,
-          icon: const Icon(Icons.calculate_rounded),
-          label: Text(
-            context.tr(
-              'Рассчитать · $totalServings порций',
-              'Calculate · $totalServings servings',
-            ),
+          icon: Icons.calculate_rounded,
+          label: context.tr(
+            'Рассчитать · $totalServings порций',
+            'Calculate · $totalServings servings',
           ),
         ),
       ),
     );
+  }
+
+  void _selectReadyCocktails() {
+    final ready = widget.cocktails.where((cocktail) {
+      return widget.missingIngredientIdsByCocktailId[cocktail.id]?.isEmpty ??
+          true;
+    });
+    HapticFeedback.mediumImpact();
+    setState(() {
+      for (final cocktail in ready) {
+        _servingsByCocktailId.putIfAbsent(cocktail.id, () => 1);
+      }
+    });
+  }
+
+  void _resetFilters() {
+    HapticFeedback.selectionClick();
+    _searchController.clear();
+    setState(() {
+      _query = '';
+      _readyOnly = false;
+    });
   }
 
   Future<void> _showPartyPlan() async {
@@ -288,23 +352,10 @@ class _PartyModePageState extends State<PartyModePage> {
         totals: totals,
         missingIds: missingIds,
         readOnly: widget.readOnly,
+        powerSavingMode: widget.powerSavingMode,
         ingredientsById: widget.ingredientsById,
-        onAddMissingToShoppingList: () async {
-          await widget.onAddShoppingIngredients(missingIds);
-          if (!sheetContext.mounted) {
-            return;
-          }
-          ScaffoldMessenger.of(sheetContext).showSnackBar(
-            SnackBar(
-              content: Text(
-                sheetContext.tr(
-                  'Недостающие ингредиенты добавлены в покупки',
-                  'Missing ingredients added to shopping list',
-                ),
-              ),
-            ),
-          );
-        },
+        onAddMissingToShoppingList: () =>
+            widget.onAddShoppingIngredients(missingIds),
       ),
     );
   }
@@ -315,25 +366,34 @@ class _PartyCocktailTile extends StatelessWidget {
     required this.cocktail,
     required this.missingCount,
     required this.servings,
+    required this.powerSavingMode,
     required this.onSelected,
     required this.onServingsChanged,
+    super.key,
   });
 
   final Cocktail cocktail;
   final int missingCount;
   final int? servings;
+  final bool powerSavingMode;
   final ValueChanged<bool> onSelected;
   final ValueChanged<int> onServingsChanged;
 
   @override
   Widget build(BuildContext context) {
     final selected = servings != null;
-    return Card(
-      color: selected ? const Color(0xFF202543) : const Color(0xCC15192D),
+    return AnimatedContainer(
+      duration: AppMotion.duration(
+        context,
+        AppMotion.standard,
+        powerSavingMode: powerSavingMode,
+      ),
+      curve: AppMotion.enterCurve,
       margin: const EdgeInsets.only(bottom: 8),
-      shape: RoundedRectangleBorder(
+      decoration: BoxDecoration(
+        color: selected ? const Color(0xFF202543) : const Color(0xCC15192D),
         borderRadius: BorderRadius.circular(18),
-        side: BorderSide(
+        border: Border.all(
           color: selected ? const Color(0xFF8B91FF) : const Color(0x334F5D88),
         ),
       ),
@@ -342,6 +402,8 @@ class _PartyCocktailTile extends StatelessWidget {
         child: Column(
           children: <Widget>[
             CheckboxListTile(
+              activeColor: const Color(0xFF596CA9),
+              checkColor: Colors.white,
               value: selected,
               onChanged: (value) => onSelected(value ?? false),
               title: Text(
@@ -367,20 +429,95 @@ class _PartyCocktailTile extends StatelessWidget {
               ),
               controlAffinity: ListTileControlAffinity.leading,
             ),
-            if (selected)
-              Padding(
+            TweenAnimationBuilder<double>(
+              tween: Tween<double>(end: selected ? 1 : 0),
+              duration: AppMotion.duration(
+                context,
+                AppMotion.standard,
+                powerSavingMode: powerSavingMode,
+              ),
+              curve: AppMotion.enterCurve,
+              builder: (context, value, child) => ClipRect(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  heightFactor: value,
+                  child: ExcludeFocus(
+                    excluding: !selected,
+                    child: ExcludeSemantics(
+                      excluding: !selected,
+                      child: IgnorePointer(ignoring: !selected, child: child),
+                    ),
+                  ),
+                ),
+              ),
+              child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: PortionSelector(
-                    servings: servings!,
+                    servings: servings ?? 1,
                     compact: true,
+                    powerSavingMode: powerSavingMode,
                     onChanged: onServingsChanged,
                   ),
                 ),
               ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _PartySelectionSummary extends StatelessWidget {
+  const _PartySelectionSummary({
+    required this.cocktailCount,
+    required this.servingCount,
+  });
+
+  final int cocktailCount;
+  final int servingCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 2, 16, 10),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xAA191E36),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0x445F70AE)),
+      ),
+      child: Row(
+        children: <Widget>[
+          const Icon(Icons.celebration_rounded, color: Color(0xFFFF91CA)),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              cocktailCount == 0
+                  ? context.tr(
+                      'Добавьте коктейли в план',
+                      'Add cocktails to your plan',
+                    )
+                  : context.tr(
+                      'Коктейлей в плане: $cocktailCount',
+                      '$cocktailCount cocktails in plan',
+                    ),
+              style: const TextStyle(
+                color: Color(0xFFDDE4FA),
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          Text(
+            context.tr('$servingCount порц.', '$servingCount serv.'),
+            style: const TextStyle(
+              color: Color(0xFF8FFFD4),
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -392,6 +529,7 @@ class _PartyPlanSheet extends StatelessWidget {
     required this.totals,
     required this.missingIds,
     required this.readOnly,
+    required this.powerSavingMode,
     required this.ingredientsById,
     required this.onAddMissingToShoppingList,
   });
@@ -400,6 +538,7 @@ class _PartyPlanSheet extends StatelessWidget {
   final List<PartyIngredientTotal> totals;
   final Set<String> missingIds;
   final bool readOnly;
+  final bool powerSavingMode;
   final Map<String, Ingredient> ingredientsById;
   final Future<void> Function() onAddMissingToShoppingList;
 
@@ -488,15 +627,10 @@ class _PartyPlanSheet extends StatelessWidget {
                   ),
                   if (missingIds.isNotEmpty && !readOnly) ...<Widget>[
                     const SizedBox(height: 14),
-                    FilledButton.icon(
-                      onPressed: onAddMissingToShoppingList,
-                      icon: const Icon(Icons.add_shopping_cart_rounded),
-                      label: Text(
-                        context.tr(
-                          'Добавить недостающее в покупки · ${missingIds.length}',
-                          'Add missing to shopping · ${missingIds.length}',
-                        ),
-                      ),
+                    _AddMissingShoppingAction(
+                      ingredientCount: missingIds.length,
+                      powerSavingMode: powerSavingMode,
+                      onAdd: onAddMissingToShoppingList,
                     ),
                   ],
                 ],
@@ -538,4 +672,139 @@ class _PartyPlanSheet extends StatelessWidget {
     fontSize: 16,
     fontWeight: FontWeight.w800,
   );
+}
+
+/// Feedback lives inside the sheet: a snackbar on the underlying Scaffold
+/// can be obscured by the modal barrier.
+class _AddMissingShoppingAction extends StatefulWidget {
+  const _AddMissingShoppingAction({
+    required this.ingredientCount,
+    required this.powerSavingMode,
+    required this.onAdd,
+  });
+
+  final int ingredientCount;
+  final bool powerSavingMode;
+  final Future<void> Function() onAdd;
+
+  @override
+  State<_AddMissingShoppingAction> createState() =>
+      _AddMissingShoppingActionState();
+}
+
+class _AddMissingShoppingActionState extends State<_AddMissingShoppingAction> {
+  bool _adding = false;
+  bool _added = false;
+  bool _failed = false;
+
+  Future<void> _add() async {
+    if (_adding || _added) return;
+    setState(() {
+      _adding = true;
+      _failed = false;
+    });
+    try {
+      await widget.onAdd();
+      if (!mounted) return;
+      HapticFeedback.selectionClick();
+      setState(() {
+        _adding = false;
+        _added = true;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _adding = false;
+        _failed = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final count = widget.ingredientCount;
+    if (_added) {
+      return Semantics(
+        liveRegion: true,
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: const Color(0x222CBA8E),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: const Color(0x664BCDA0)),
+          ),
+          child: Row(
+            children: <Widget>[
+              const Icon(Icons.check_circle_rounded, color: Color(0xFF8FFFD4)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      context.tr(
+                        'Добавлено в покупки · $count',
+                        'Added to shopping · $count',
+                      ),
+                      style: const TextStyle(
+                        color: Color(0xFF8FFFD4),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      context.tr(
+                        'Недостающие ингредиенты теперь в разделе «Покупки» барной карты.',
+                        'The missing ingredients are now in Shopping in your bar menu.',
+                      ),
+                      style: const TextStyle(
+                        color: Color(0xFFBDC7E5),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return Column(
+      children: <Widget>[
+        if (_failed)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Semantics(
+              liveRegion: true,
+              child: Text(
+                context.tr(
+                  'Не удалось добавить ингредиенты. Попробуйте ещё раз.',
+                  'Could not add ingredients. Please try again.',
+                ),
+                style: const TextStyle(color: Color(0xFFFFB4AB)),
+              ),
+            ),
+          ),
+        Semantics(
+          liveRegion: true,
+          child: BarActionButton(
+            onPressed: _adding ? null : _add,
+            powerSavingMode: widget.powerSavingMode,
+            icon: _adding
+                ? Icons.hourglass_top_rounded
+                : Icons.add_shopping_cart_rounded,
+            label: _adding
+                ? context.tr('Добавляем…', 'Adding…')
+                : _failed
+                ? context.tr('Повторить добавление', 'Try again')
+                : context.tr(
+                    'Добавить недостающее в покупки · $count',
+                    'Add missing to shopping · $count',
+                  ),
+          ),
+        ),
+      ],
+    );
+  }
 }

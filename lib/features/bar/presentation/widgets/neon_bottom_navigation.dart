@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/localization/app_localization.dart';
+import '../../../../core/theme/app_motion.dart';
 
 const double kNeonBottomNavigationHeight = 74;
 const double kNeonBottomNavigationHorizontalPadding = 16;
@@ -191,18 +193,26 @@ class _NavItemState extends State<_NavItem> {
 
   @override
   Widget build(BuildContext context) {
-    final fastDuration = widget.powerSavingMode
-        ? Duration.zero
-        : const Duration(milliseconds: 110);
-    final mediumDuration = widget.powerSavingMode
-        ? Duration.zero
-        : const Duration(milliseconds: 180);
-    final slowDuration = widget.powerSavingMode
-        ? Duration.zero
-        : const Duration(milliseconds: 260);
-    final panelDuration = widget.powerSavingMode
-        ? Duration.zero
-        : const Duration(milliseconds: 280);
+    final fastDuration = AppMotion.duration(
+      context,
+      const Duration(milliseconds: 110),
+      powerSavingMode: widget.powerSavingMode,
+    );
+    final mediumDuration = AppMotion.duration(
+      context,
+      AppMotion.quick,
+      powerSavingMode: widget.powerSavingMode,
+    );
+    final slowDuration = AppMotion.duration(
+      context,
+      AppMotion.standard,
+      powerSavingMode: widget.powerSavingMode,
+    );
+    final panelDuration = AppMotion.duration(
+      context,
+      const Duration(milliseconds: 280),
+      powerSavingMode: widget.powerSavingMode,
+    );
     final targetForegroundColor = widget.selected
         ? Colors.white
         : const Color(0xFF98A6D2);
@@ -223,7 +233,12 @@ class _NavItemState extends State<_NavItem> {
       label: widget.title,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: widget.onTap,
+        onTap: () {
+          if (!widget.selected) {
+            HapticFeedback.selectionClick();
+          }
+          widget.onTap();
+        },
         onTapDown: (_) => _setPressed(true),
         onTapUp: (_) => _setPressed(false),
         onTapCancel: () => _setPressed(false),

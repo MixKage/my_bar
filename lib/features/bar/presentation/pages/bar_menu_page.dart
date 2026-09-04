@@ -2,11 +2,15 @@ import 'dart:math';
 
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/search/app_search_query.dart';
+import '../../../../core/theme/app_motion.dart';
 import '../../../../core/widgets/bar_network_image.dart';
+import '../../../../core/widgets/bar_pressable.dart';
+import 'surprise_cocktail_page.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/cocktail_tags.dart';
@@ -150,17 +154,8 @@ class _BarMenuPageState extends State<BarMenuPage> {
         _selectedTags.isNotEmpty ||
         hasSearchQuery ||
         _availabilityFilter != CocktailAvailabilityFilter.all;
-    final activeFilters = <String>[
-      if (_favoritesOnly) context.tr('Избранные', 'Favorites'),
-      if (_availabilityFilter != CocktailAvailabilityFilter.all)
-        _availabilityFilterLabel(context, _availabilityFilter),
-      ..._selectedTags.map(context.cocktailTagLabel),
-      if (hasSearchQuery)
-        context.tr(
-          'Поиск: "${_searchQuery.trim()}"',
-          'Search: "${_searchQuery.trim()}"',
-        ),
-    ];
+    final additionalFilterCount =
+        (_favoritesOnly ? 1 : 0) + _selectedTags.length;
 
     return NeonBackground(
       topGlow: const Color(0xFFFF5BB0),
@@ -192,30 +187,27 @@ class _BarMenuPageState extends State<BarMenuPage> {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        context.tr(
-                          'Доступно $availableCocktailCount из $totalCocktailCount',
-                          'Available $availableCocktailCount of $totalCocktailCount',
+                      const SizedBox(height: 3),
+                      AnimatedSwitcher(
+                        duration: AppMotion.duration(
+                          context,
+                          AppMotion.quick,
+                          powerSavingMode: widget.powerSavingMode,
                         ),
-                        style: const TextStyle(
-                          color: Color(0xFFCCD3E8),
-                          fontSize: 14,
+                        child: Text(
+                          context.tr(
+                            'Доступно $availableCocktailCount из $totalCocktailCount',
+                            'Available $availableCocktailCount of $totalCocktailCount',
+                          ),
+                          key: ValueKey<String>(
+                            '${filteredCocktails.length}:$availableCocktailCount',
+                          ),
+                          style: const TextStyle(
+                            color: Color(0xFFCCD3E8),
+                            fontSize: 13,
+                          ),
                         ),
                       ),
-                      if (activeFilters.isNotEmpty)
-                        Text(
-                          context.tr(
-                            'Фильтр: ${activeFilters.join(', ')}',
-                            'Filter: ${activeFilters.join(', ')}',
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Color(0xFFE8B9D7),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
                     ],
                   ),
                 ),
@@ -230,49 +222,33 @@ class _BarMenuPageState extends State<BarMenuPage> {
                   },
                 ),
                 const SizedBox(width: 8),
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: <Widget>[
-                    IconButton.filledTonal(
-                      tooltip: context.tr('Список покупок', 'Shopping list'),
-                      onPressed: _openShoppingList,
-                      icon: const Icon(Icons.shopping_basket_rounded),
-                    ),
-                    if (widget.shoppingIngredientIds.isNotEmpty)
-                      Positioned(
-                        right: -2,
-                        top: -4,
-                        child: Container(
-                          constraints: const BoxConstraints(minWidth: 18),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 5,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFF5BAA),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color(0xFF161B2E)),
-                          ),
-                          child: Text(
-                            '${widget.shoppingIngredientIds.length}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-                const SizedBox(width: 8),
-                IconButton.filledTonal(
+                BarHeaderButton(
+                  powerSavingMode: widget.powerSavingMode,
                   tooltip: context.tr('Управление баром', 'Bar management'),
                   onPressed: widget.onManagePressed,
-                  icon: const Icon(Icons.tune_rounded),
+                  icon: Icons.tune_rounded,
                 ),
               ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              horizontalPadding,
+              4,
+              horizontalPadding,
+              8,
+            ),
+            child: _MenuDashboardCard(
+              shoppingCount: widget.shoppingIngredientIds.length,
+              servings: _servings,
+              powerSavingMode: widget.powerSavingMode,
+              onSurprise: () => _surpriseMe(
+                filteredCocktails,
+                missingIngredientsByCocktailId,
+              ),
+              onParty: () => _openPartyMode(missingIngredientIdsByCocktailId),
+              onShopping: _openShoppingList,
+              onServings: _pickServings,
             ),
           ),
           SizedBox(
@@ -281,159 +257,67 @@ class _BarMenuPageState extends State<BarMenuPage> {
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: ActionChip(
-                    avatar: const Icon(Icons.casino_rounded, size: 16),
-                    label: Text(context.tr('Удиви меня', 'Surprise me')),
-                    onPressed: () => _surpriseMe(
-                      filteredCocktails,
-                      missingIngredientsByCocktailId,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: ActionChip(
-                    avatar: const Icon(Icons.celebration_rounded, size: 16),
-                    label: Text(context.tr('Вечеринка', 'Party')),
-                    onPressed: () =>
-                        _openPartyMode(missingIngredientIdsByCocktailId),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: ActionChip(
-                    avatar: const Icon(Icons.people_alt_rounded, size: 16),
-                    label: Text(
-                      context.tr('$_servings порц.', '$_servings serv.'),
-                    ),
-                    onPressed: _pickServings,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 44,
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-              scrollDirection: Axis.horizontal,
-              children: CocktailAvailabilityFilter.values
-                  .map((filter) {
-                    final selected = filter == _availabilityFilter;
-                    final count = availabilityCounts[filter] ?? 0;
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ChoiceChip(
-                        selected: selected,
-                        showCheckmark: false,
-                        avatar: Icon(
-                          _availabilityFilterIcon(filter),
-                          size: 16,
-                          color: selected
-                              ? const Color(0xFFFFE5F3)
-                              : const Color(0xFFC2CDEB),
-                        ),
-                        label: Text(
-                          '${_availabilityFilterLabel(context, filter)} · $count',
-                        ),
-                        selectedColor: const Color(0x554F63CC),
-                        side: BorderSide(
-                          color: selected
-                              ? const Color(0xFF8FA3FF)
-                              : const Color(0x3AD8DDF6),
-                        ),
-                        backgroundColor: const Color(0x221A2142),
-                        labelStyle: TextStyle(
-                          color: selected
-                              ? const Color(0xFFFFE5F3)
-                              : const Color(0xFFC2CDEB),
-                          fontSize: 12,
-                        ),
-                        onSelected: (_) {
-                          setState(() => _availabilityFilter = filter);
-                        },
-                      ),
-                    );
-                  })
-                  .toList(growable: false),
-            ),
-          ),
-          SizedBox(
-            height: 44,
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: FilterChip(
-                    selected: _favoritesOnly,
-                    avatar: Icon(
-                      _favoritesOnly
-                          ? Icons.star_rounded
-                          : Icons.star_border_rounded,
-                      size: 16,
-                      color: _favoritesOnly
-                          ? const Color(0xFFFFD8EC)
-                          : const Color(0xFFC2CDEB),
-                    ),
-                    label: Text(context.tr('Избранные', 'Favorites')),
-                    selectedColor: const Color(0x44FF6FAF),
-                    checkmarkColor: const Color(0xFFFFE5F3),
-                    side: BorderSide(
-                      color: _favoritesOnly
-                          ? const Color(0xFFEF73BD)
-                          : const Color(0x3AD8DDF6),
-                    ),
-                    backgroundColor: const Color(0x221A2142),
-                    labelStyle: TextStyle(
-                      color: _favoritesOnly
-                          ? const Color(0xFFFFD8EC)
-                          : const Color(0xFFC2CDEB),
-                      fontSize: 12,
-                    ),
-                    onSelected: (value) {
-                      setState(() {
-                        _favoritesOnly = value;
-                      });
-                    },
-                  ),
-                ),
-                ...kCocktailTags.map((tag) {
-                  final selected = _selectedTags.contains(tag);
+                ...CocktailAvailabilityFilter.values.map((filter) {
+                  final selected = filter == _availabilityFilter;
+                  final count = availabilityCounts[filter] ?? 0;
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
-                    child: FilterChip(
+                    child: ChoiceChip(
                       selected: selected,
-                      label: Text(context.cocktailTagLabel(tag)),
-                      selectedColor: const Color(0x44FF6FAF),
-                      checkmarkColor: const Color(0xFFFFE5F3),
+                      showCheckmark: false,
+                      avatar: Icon(
+                        _availabilityFilterIcon(filter),
+                        size: 16,
+                        color: selected
+                            ? const Color(0xFFFFE5F3)
+                            : const Color(0xFFC2CDEB),
+                      ),
+                      label: Text(
+                        '${_availabilityFilterLabel(context, filter)} · $count',
+                      ),
+                      selectedColor: const Color(0x554F63CC),
                       side: BorderSide(
                         color: selected
-                            ? const Color(0xFFEF73BD)
+                            ? const Color(0xFF8FA3FF)
                             : const Color(0x3AD8DDF6),
                       ),
                       backgroundColor: const Color(0x221A2142),
                       labelStyle: TextStyle(
                         color: selected
-                            ? const Color(0xFFFFD8EC)
+                            ? const Color(0xFFFFE5F3)
                             : const Color(0xFFC2CDEB),
                         fontSize: 12,
                       ),
-                      onSelected: (value) {
-                        setState(() {
-                          if (value) {
-                            _selectedTags.add(tag);
-                          } else {
-                            _selectedTags.remove(tag);
-                          }
-                        });
+                      onSelected: (_) {
+                        setState(() => _availabilityFilter = filter);
                       },
                     ),
                   );
                 }),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: FilterChip(
+                    checkmarkColor: Colors.white,
+                    selectedColor: const Color(0x554F63CC),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    selected: additionalFilterCount > 0,
+                    showCheckmark: false,
+                    avatar: const Icon(
+                      Icons.tune_rounded,
+                      size: 16,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      additionalFilterCount == 0
+                          ? context.tr('Ещё фильтры', 'More filters')
+                          : context.tr(
+                              'Ещё · $additionalFilterCount',
+                              'More · $additionalFilterCount',
+                            ),
+                    ),
+                    onSelected: (_) => _openCocktailFilters(),
+                  ),
+                ),
               ],
             ),
           ),
@@ -461,6 +345,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           hasActiveFilters: hasActiveFilters,
                           onSearchChanged: _handleSearchChanged,
                           onSearchClear: _handleSearchClear,
+                          onResetFilters: _resetAllFilters,
                           powerSavingMode: widget.powerSavingMode,
                           selectedCocktailId: _selectedGridCocktailId,
                           onOpenCocktailDetails: (cocktail) =>
@@ -506,6 +391,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                           hasActiveFilters: hasActiveFilters,
                           onSearchChanged: _handleSearchChanged,
                           onSearchClear: _handleSearchClear,
+                          onResetFilters: _resetAllFilters,
                           powerSavingMode: widget.powerSavingMode,
                           selectedCocktailId: selectedCocktailId,
                           onOpenCocktailDetails: (cocktail) {
@@ -550,6 +436,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                     hasActiveFilters: hasActiveFilters,
                     onSearchChanged: _handleSearchChanged,
                     onSearchClear: _handleSearchClear,
+                    onResetFilters: _resetAllFilters,
                     expandedId: expandedId,
                     onEditCocktailPressed: widget.onEditCocktailPressed,
                     onToggleFavoritePressed: widget.onToggleFavoritePressed,
@@ -802,6 +689,151 @@ class _BarMenuPageState extends State<BarMenuPage> {
     };
   }
 
+  Future<void> _openCocktailFilters() async {
+    var draftFavoritesOnly = _favoritesOnly;
+    final draftTags = Set<String>.from(_selectedTags);
+    final changed = await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      showDragHandle: true,
+      backgroundColor: const Color(0xFF161B2E),
+      builder: (sheetContext) => StatefulBuilder(
+        builder: (context, setSheetState) {
+          final selectedCount = (draftFavoritesOnly ? 1 : 0) + draftTags.length;
+          return SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          context.tr('Фильтры коктейлей', 'Cocktail filters'),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                      if (selectedCount > 0)
+                        TextButton(
+                          onPressed: () => setSheetState(() {
+                            draftFavoritesOnly = false;
+                            draftTags.clear();
+                          }),
+                          child: Text(context.tr('Сбросить', 'Reset')),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    context.tr(
+                      'Выберите любимые стили — результат обновится после применения.',
+                      'Choose your favorite styles — results update after applying.',
+                    ),
+                    style: const TextStyle(color: Color(0xFFAEB9DB)),
+                  ),
+                  const SizedBox(height: 16),
+                  FilterChip(
+                    checkmarkColor: Colors.white,
+                    selectedColor: const Color(0x554F63CC),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    selected: draftFavoritesOnly,
+                    avatar: Icon(
+                      draftFavoritesOnly
+                          ? Icons.star_rounded
+                          : Icons.star_border_rounded,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      context.tr('Только избранные', 'Favorites only'),
+                    ),
+                    onSelected: (value) =>
+                        setSheetState(() => draftFavoritesOnly = value),
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    context.tr('Стиль и настроение', 'Style and mood'),
+                    style: const TextStyle(
+                      color: Color(0xFFFFA6D5),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: kCocktailTags
+                        .map((tag) {
+                          final selected = draftTags.contains(tag);
+                          return FilterChip(
+                            checkmarkColor: Colors.white,
+                            selectedColor: const Color(0x554F63CC),
+                            labelStyle: const TextStyle(color: Colors.white),
+                            selected: selected,
+                            label: Text(context.cocktailTagLabel(tag)),
+                            onSelected: (value) => setSheetState(() {
+                              if (value) {
+                                draftTags.add(tag);
+                              } else {
+                                draftTags.remove(tag);
+                              }
+                            }),
+                          );
+                        })
+                        .toList(growable: false),
+                  ),
+                  const SizedBox(height: 22),
+                  SizedBox(
+                    width: double.infinity,
+                    child: BarActionButton(
+                      powerSavingMode: widget.powerSavingMode,
+                      onPressed: () => Navigator.of(sheetContext).pop(true),
+                      icon: Icons.check_rounded,
+                      label: selectedCount == 0
+                          ? context.tr('Показать все', 'Show all')
+                          : context.tr(
+                              'Применить · $selectedCount',
+                              'Apply · $selectedCount',
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+
+    if (!mounted || changed != true) {
+      return;
+    }
+    HapticFeedback.selectionClick();
+    setState(() {
+      _favoritesOnly = draftFavoritesOnly;
+      _selectedTags
+        ..clear()
+        ..addAll(draftTags);
+    });
+  }
+
+  void _resetAllFilters() {
+    HapticFeedback.selectionClick();
+    _searchController.clear();
+    setState(() {
+      _searchQuery = '';
+      _favoritesOnly = false;
+      _selectedTags.clear();
+      _availabilityFilter = CocktailAvailabilityFilter.all;
+    });
+  }
+
   Future<void> _openShoppingList() {
     return showModalBottomSheet<void>(
       context: context,
@@ -816,6 +848,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
         favoriteUnlockCountsByIngredientId:
             widget.favoriteUnlockCountsByIngredientId,
         readOnly: widget.visitorMode,
+        powerSavingMode: widget.powerSavingMode,
         onToggleIngredient: widget.onToggleShoppingIngredient,
         onClear: widget.onClearShoppingList,
         onMarkAsOwned: widget.onMarkShoppingIngredientAsOwned,
@@ -872,6 +905,7 @@ class _BarMenuPageState extends State<BarMenuPage> {
                   const SizedBox(height: 18),
                   PortionSelector(
                     servings: draft,
+                    powerSavingMode: widget.powerSavingMode,
                     onChanged: (value) => setSheetState(() => draft = value),
                   ),
                   const SizedBox(height: 16),
@@ -891,9 +925,11 @@ class _BarMenuPageState extends State<BarMenuPage> {
                   const SizedBox(height: 18),
                   SizedBox(
                     width: double.infinity,
-                    child: FilledButton(
+                    child: BarActionButton(
+                      powerSavingMode: widget.powerSavingMode,
+                      icon: Icons.check_rounded,
                       onPressed: () => Navigator.of(sheetContext).pop(draft),
-                      child: Text(context.tr('Применить', 'Apply')),
+                      label: context.tr('Применить', 'Apply'),
                     ),
                   ),
                 ],
@@ -926,26 +962,28 @@ class _BarMenuPageState extends State<BarMenuPage> {
       return;
     }
 
-    var pool = candidates
-        .where(
-          (cocktail) =>
-              missingIngredientsByCocktailId[cocktail.id]?.isEmpty ?? true,
-        )
-        .toList(growable: false);
-    if (pool.isEmpty) {
-      pool = candidates;
-    }
-    if (pool.length > 1 && _lastSurpriseCocktailId != null) {
-      pool = pool
-          .where((cocktail) => cocktail.id != _lastSurpriseCocktailId)
-          .toList(growable: false);
-    }
-
-    final cocktail = pool[_random.nextInt(pool.length)];
+    // The menu has already applied availability, search, and tag filters.
+    // Use that exact selection for both the first and subsequent recipes.
+    final pool = candidates;
+    final initialPool = pool.length > 1
+        ? pool.where((item) => item.id != _lastSurpriseCocktailId).toList()
+        : pool;
+    final cocktail = initialPool[_random.nextInt(initialPool.length)];
     _lastSurpriseCocktailId = cocktail.id;
-    await _openCocktailDetailsPage(
-      cocktail: cocktail,
-      missingIngredientsByCocktailId: missingIngredientsByCocktailId,
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => SurpriseCocktailPage(
+          cocktails: pool,
+          initialCocktailId: cocktail.id,
+          missingIngredientsByCocktailId: missingIngredientsByCocktailId,
+          ingredientsById: widget.ingredientsById,
+          visitorMode: widget.visitorMode,
+          measurementSystem: widget.measurementSystem,
+          powerSavingMode: widget.powerSavingMode,
+          onEditCocktailPressed: widget.onEditCocktailPressed,
+          onToggleFavoritePressed: widget.onToggleFavoritePressed,
+        ),
+      ),
     );
   }
 
@@ -1000,6 +1038,7 @@ class CocktailGrid extends StatelessWidget {
     required this.searchController,
     required this.onSearchChanged,
     required this.onSearchClear,
+    required this.onResetFilters,
     required this.hasSearchQuery,
     required this.hasActiveFilters,
     required this.powerSavingMode,
@@ -1017,6 +1056,7 @@ class CocktailGrid extends StatelessWidget {
   final TextEditingController searchController;
   final ValueChanged<String> onSearchChanged;
   final VoidCallback onSearchClear;
+  final VoidCallback onResetFilters;
   final bool hasSearchQuery;
   final bool hasActiveFilters;
   final bool powerSavingMode;
@@ -1062,6 +1102,7 @@ class CocktailGrid extends StatelessWidget {
                     child: _NoCocktailMatchesMessage(
                       hasSearchQuery: hasSearchQuery,
                       hasActiveFilters: hasActiveFilters,
+                      onResetFilters: onResetFilters,
                     ),
                   ),
                 )
@@ -1101,7 +1142,8 @@ class CocktailGrid extends StatelessWidget {
                           opacity: isSelected ? 0.58 : 0.35,
                           outerBlurSigma: 14,
                         ),
-                        child: InkWell(
+                        child: BarPressable(
+                          powerSavingMode: powerSavingMode,
                           borderRadius: BorderRadius.circular(20),
                           onTap: () => onOpenCocktailDetails(cocktail),
                           child: Column(
@@ -1656,6 +1698,7 @@ class CocktailList extends StatelessWidget {
     required this.searchController,
     required this.onSearchChanged,
     required this.onSearchClear,
+    required this.onResetFilters,
     required this.hasSearchQuery,
     required this.hasActiveFilters,
     required this.expandedId,
@@ -1678,6 +1721,7 @@ class CocktailList extends StatelessWidget {
   final TextEditingController searchController;
   final ValueChanged<String> onSearchChanged;
   final VoidCallback onSearchClear;
+  final VoidCallback onResetFilters;
   final bool hasSearchQuery;
   final bool hasActiveFilters;
   final String? expandedId;
@@ -1717,6 +1761,7 @@ class CocktailList extends StatelessWidget {
               child: _NoCocktailMatchesMessage(
                 hasSearchQuery: hasSearchQuery,
                 hasActiveFilters: hasActiveFilters,
+                onResetFilters: onResetFilters,
               ),
             );
           }
@@ -1744,7 +1789,8 @@ class CocktailList extends StatelessWidget {
               ],
               glowEffect: !powerSavingMode && isExpanded,
               glow: const AnimatedGradientBorderGlow(opacity: 0.58),
-              child: InkWell(
+              child: BarPressable(
+                powerSavingMode: powerSavingMode,
                 borderRadius: BorderRadius.circular(24),
                 onTap: () => onToggleExpanded(cocktail.id),
                 child: Column(
@@ -1933,11 +1979,13 @@ class CocktailList extends StatelessWidget {
                                           size: 16,
                                         ),
                                         const SizedBox(width: 8),
-                                        Text(
-                                          ingredient?.name ?? ingredientId,
-                                          style: const TextStyle(
-                                            color: Color(0xFFE2E7F9),
-                                            fontSize: 14,
+                                        Expanded(
+                                          child: Text(
+                                            ingredient?.name ?? ingredientId,
+                                            style: const TextStyle(
+                                              color: Color(0xFFE2E7F9),
+                                              fontSize: 14,
+                                            ),
                                           ),
                                         ),
                                         if (amount.isNotEmpty) ...<Widget>[
@@ -2000,7 +2048,10 @@ class CocktailList extends StatelessWidget {
                               );
                             }),
                             const SizedBox(height: 10),
-                            Row(
+                            Wrap(
+                              spacing: 12,
+                              alignment: WrapAlignment.spaceBetween,
+                              crossAxisAlignment: WrapCrossAlignment.center,
                               children: <Widget>[
                                 Text(
                                   context.tr('Приготовление', 'Preparation'),
@@ -2010,7 +2061,6 @@ class CocktailList extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                const Spacer(),
                                 if (!visitorMode)
                                   TextButton.icon(
                                     style: TextButton.styleFrom(
@@ -2299,6 +2349,155 @@ class _PressableFavoriteButtonState extends State<_PressableFavoriteButton> {
   }
 }
 
+class _MenuDashboardCard extends StatelessWidget {
+  const _MenuDashboardCard({
+    required this.shoppingCount,
+    required this.servings,
+    required this.powerSavingMode,
+    required this.onSurprise,
+    required this.onParty,
+    required this.onShopping,
+    required this.onServings,
+  });
+
+  final int shoppingCount;
+  final int servings;
+  final bool powerSavingMode;
+  final VoidCallback onSurprise;
+  final VoidCallback onParty;
+  final VoidCallback onShopping;
+  final VoidCallback onServings;
+
+  @override
+  Widget build(BuildContext context) {
+    final actions = <Widget>[
+      _MenuQuickAction(
+        powerSavingMode: powerSavingMode,
+        icon: Icons.casino_rounded,
+        label: context.tr('Удиви меня', 'Surprise me'),
+        onTap: onSurprise,
+      ),
+      _MenuQuickAction(
+        powerSavingMode: powerSavingMode,
+        icon: Icons.celebration_rounded,
+        label: context.tr('Вечеринка', 'Party'),
+        onTap: onParty,
+      ),
+      _MenuQuickAction(
+        powerSavingMode: powerSavingMode,
+        icon: Icons.shopping_basket_rounded,
+        label: context.tr('Покупки', 'Shopping'),
+        tooltip: context.tr('Список покупок', 'Shopping list'),
+        badge: shoppingCount == 0 ? null : '$shoppingCount',
+        onTap: onShopping,
+      ),
+      _MenuQuickAction(
+        powerSavingMode: powerSavingMode,
+        icon: Icons.people_alt_rounded,
+        label: context.tr('$servings порц.', '$servings serv.'),
+        onTap: onServings,
+      ),
+    ];
+
+    return Row(
+      children: actions
+          .map((action) => Expanded(child: action))
+          .toList(growable: false),
+    );
+  }
+}
+
+class _MenuQuickAction extends StatelessWidget {
+  const _MenuQuickAction({
+    required this.powerSavingMode,
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.badge,
+    this.tooltip,
+  });
+
+  final bool powerSavingMode;
+  final IconData icon;
+  final String label;
+  final String? badge;
+  final String? tooltip;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: tooltip ?? label,
+      child: Semantics(
+        button: true,
+        label: tooltip ?? label,
+        child: BarPressable(
+          powerSavingMode: powerSavingMode,
+          borderRadius: BorderRadius.circular(13),
+          onTap: () {
+            HapticFeedback.selectionClick();
+            onTap();
+          },
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 48),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: <Widget>[
+                      Icon(icon, color: const Color(0xFFFFA5D4), size: 20),
+                      if (badge != null)
+                        Positioned(
+                          right: -11,
+                          top: -8,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFF5BAA),
+                              borderRadius: BorderRadius.circular(99),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 5,
+                                vertical: 1,
+                              ),
+                              child: Text(
+                                badge!,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xFFD4DCF2),
+                      fontSize: 10,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class ViewModeSwitch extends StatelessWidget {
   const ViewModeSwitch({
     required this.mode,
@@ -2328,11 +2527,13 @@ class ViewModeSwitch extends StatelessWidget {
       child: Row(
         children: <Widget>[
           _SwitchButton(
+            powerSavingMode: powerSavingMode,
             active: mode == MenuViewMode.list,
             icon: Icons.view_agenda_rounded,
             onTap: () => onModeChanged(MenuViewMode.list),
           ),
           _SwitchButton(
+            powerSavingMode: powerSavingMode,
             active: mode == MenuViewMode.grid,
             icon: Icons.grid_view_rounded,
             onTap: () => onModeChanged(MenuViewMode.grid),
@@ -2345,21 +2546,28 @@ class ViewModeSwitch extends StatelessWidget {
 
 class _SwitchButton extends StatelessWidget {
   const _SwitchButton({
+    required this.powerSavingMode,
     required this.active,
     required this.icon,
     required this.onTap,
   });
 
+  final bool powerSavingMode;
   final bool active;
   final IconData icon;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return BarPressable(
+      powerSavingMode: powerSavingMode,
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
+        duration: AppMotion.duration(
+          context,
+          AppMotion.standard,
+          powerSavingMode: powerSavingMode,
+        ),
         margin: const EdgeInsets.all(4),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -2408,10 +2616,12 @@ class _NoCocktailMatchesMessage extends StatelessWidget {
   const _NoCocktailMatchesMessage({
     required this.hasSearchQuery,
     required this.hasActiveFilters,
+    required this.onResetFilters,
   });
 
   final bool hasSearchQuery;
   final bool hasActiveFilters;
+  final VoidCallback onResetFilters;
 
   @override
   Widget build(BuildContext context) {
@@ -2434,11 +2644,30 @@ class _NoCocktailMatchesMessage extends StatelessWidget {
         border: Border.all(color: const Color(0x445A689C)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-        child: Text(
-          message,
-          textAlign: TextAlign.center,
-          style: const TextStyle(color: Color(0xFFC3CCE8), fontSize: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const Icon(
+              Icons.search_off_rounded,
+              color: Color(0xFF9AA8D0),
+              size: 32,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Color(0xFFC3CCE8), fontSize: 15),
+            ),
+            if (hasSearchQuery || hasActiveFilters) ...<Widget>[
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                onPressed: onResetFilters,
+                icon: const Icon(Icons.restart_alt_rounded),
+                label: Text(context.tr('Сбросить фильтры', 'Reset filters')),
+              ),
+            ],
+          ],
         ),
       ),
     );
@@ -2564,7 +2793,7 @@ class NoCocktailsView extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     context.tr(
-                      'Добавь позиции в "Ингридиентах", и здесь появятся доступные коктейли.',
+                      'Добавь позиции в «Ингредиентах», и здесь появятся доступные коктейли.',
                       'Add items in "Ingredients", and available cocktails will appear here.',
                     ),
                     textAlign: TextAlign.center,

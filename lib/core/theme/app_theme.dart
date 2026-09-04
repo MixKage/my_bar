@@ -8,6 +8,13 @@ class AppTheme {
     final base = ThemeData.dark();
     return base.copyWith(
       scaffoldBackgroundColor: const Color(0xFF070911),
+      splashFactory: NoSplash.splashFactory,
+      highlightColor: Colors.transparent,
+      chipTheme: base.chipTheme.copyWith(
+        checkmarkColor: Colors.white,
+        selectedColor: const Color(0x554F63CC),
+        secondaryLabelStyle: const TextStyle(color: Colors.white),
+      ),
       textTheme: GoogleFonts.manropeTextTheme(base.textTheme).copyWith(
         displaySmall: GoogleFonts.orbitron(
           fontSize: 34,

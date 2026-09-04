@@ -1,10 +1,13 @@
 import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/search/app_search_query.dart';
+import '../../../../core/theme/app_motion.dart';
 import '../../../../core/widgets/bar_network_image.dart';
+import '../../../../core/widgets/bar_pressable.dart';
 import '../../../../core/widgets/neon_scrollbar.dart';
 import '../../domain/models/cocktail.dart';
 import '../../domain/models/ingredient.dart';
@@ -63,6 +66,7 @@ class _RawBarPageState extends State<RawBarPage> {
   bool _isSearchPinned = false;
   double _searchPinProgress = 0;
   IngredientSortMode _sortMode = IngredientSortMode.alphabet;
+  bool _selectedOnly = false;
   double _searchPinOffset = 0;
   bool _pinOffsetUpdateScheduled = false;
 
@@ -108,12 +112,15 @@ class _RawBarPageState extends State<RawBarPage> {
     final searchQuery = AppSearchQuery(_query);
     final filteredIngredients = widget.ingredients
         .where(
-          (ingredient) => searchQuery.matchesAny(<String>[
-            ingredient.name,
-            ingredient.category,
-            context.ingredientCategoryLabel(ingredient.category),
-            ingredient.id,
-          ]),
+          (ingredient) =>
+              (!_selectedOnly ||
+                  widget.selectedIngredientIds.contains(ingredient.id)) &&
+              searchQuery.matchesAny(<String>[
+                ingredient.name,
+                ingredient.category,
+                context.ingredientCategoryLabel(ingredient.category),
+                ingredient.id,
+              ]),
         )
         .toList(growable: false);
     final cocktailsByIngredient = _buildCocktailUsageMap(widget.cocktails);
@@ -121,6 +128,7 @@ class _RawBarPageState extends State<RawBarPage> {
       filteredIngredients,
       cocktailsByIngredient,
     );
+    final readyCocktailCount = _readyCocktailCount();
 
     return NeonBackground(
       topGlow: const Color(0xFF7D4BFF),
@@ -211,19 +219,21 @@ class _RawBarPageState extends State<RawBarPage> {
                                     ),
                               ),
                             ),
-                            IconButton.filledTonal(
+                            BarHeaderButton(
+                              powerSavingMode: widget.powerSavingMode,
                               tooltip: context.tr('Фильтры', 'Filters'),
                               onPressed: _openSortModeSheet,
-                              icon: const Icon(Icons.filter_list_rounded),
+                              icon: Icons.filter_list_rounded,
                             ),
                             const SizedBox(width: 8),
-                            IconButton.filledTonal(
+                            BarHeaderButton(
+                              powerSavingMode: widget.powerSavingMode,
                               tooltip: context.tr(
                                 'Управление баром',
                                 'Bar management',
                               ),
                               onPressed: widget.onManagePressed,
-                              icon: const Icon(Icons.tune_rounded),
+                              icon: Icons.tune_rounded,
                             ),
                           ],
                         ),
@@ -238,17 +248,14 @@ class _RawBarPageState extends State<RawBarPage> {
                             fontSize: 15,
                           ),
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          context.tr(
-                            'Сортировка: ${_sortMode.label(context)}',
-                            'Sorting: ${_sortMode.label(context)}',
-                          ),
-                          style: const TextStyle(
-                            color: Color(0xFF8FA0CC),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        const SizedBox(height: 12),
+                        _RawBarSummary(
+                          selectedCount: widget.selectedIngredientIds.length,
+                          totalCount: widget.ingredients.length,
+                          readyCocktailCount: readyCocktailCount,
+                          sortLabel: _sortMode.label(context),
+                          selectedOnly: _selectedOnly,
+                          powerSavingMode: widget.powerSavingMode,
                         ),
                         if (!widget.allowSelection)
                           Padding(
@@ -282,6 +289,12 @@ class _RawBarPageState extends State<RawBarPage> {
                         powerSavingMode: widget.powerSavingMode,
                         onChanged: (value) =>
                             setState(() => _query = value.trim()),
+                        onClear: _query.isEmpty
+                            ? null
+                            : () {
+                                _searchController.clear();
+                                setState(() => _query = '');
+                              },
                       ),
                     ),
                   ),
@@ -298,15 +311,37 @@ class _RawBarPageState extends State<RawBarPage> {
                           child: Padding(
                             padding: EdgeInsets.only(top: 46),
                             child: Center(
-                              child: Text(
-                                context.tr(
-                                  'Ничего не найдено',
-                                  'Nothing found',
-                                ),
-                                style: const TextStyle(
-                                  color: Color(0xFFA8B0C8),
-                                  fontSize: 16,
-                                ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const Icon(
+                                    Icons.search_off_rounded,
+                                    color: Color(0xFF8997BF),
+                                    size: 36,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    context.tr(
+                                      'Ничего не найдено',
+                                      'Nothing found',
+                                    ),
+                                    style: const TextStyle(
+                                      color: Color(0xFFA8B0C8),
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  OutlinedButton.icon(
+                                    onPressed: _resetSearchAndFilters,
+                                    icon: const Icon(Icons.restart_alt_rounded),
+                                    label: Text(
+                                      context.tr(
+                                        'Сбросить фильтры',
+                                        'Reset filters',
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -328,12 +363,21 @@ class _RawBarPageState extends State<RawBarPage> {
                                 allowSelection: widget.allowSelection,
                                 powerSavingMode: widget.powerSavingMode,
                                 onTap: widget.allowSelection
-                                    ? () => widget.onToggleIngredient(
-                                        ingredient.id,
-                                      )
+                                    ? () {
+                                        HapticFeedback.selectionClick();
+                                        widget.onToggleIngredient(
+                                          ingredient.id,
+                                        );
+                                      }
                                     : null,
                                 onLongPress: widget.allowSelection
                                     ? () => widget.onEditIngredient(ingredient)
+                                    : null,
+                                onEdit: widget.allowSelection
+                                    ? () {
+                                        HapticFeedback.lightImpact();
+                                        widget.onEditIngredient(ingredient);
+                                      }
                                     : null,
                               ),
                             );
@@ -403,27 +447,45 @@ class _RawBarPageState extends State<RawBarPage> {
   }
 
   Future<void> _openSortModeSheet() async {
-    final result = await showModalBottomSheet<IngredientSortMode>(
+    var draftSortMode = _sortMode;
+    var draftSelectedOnly = _selectedOnly;
+    final result = await showModalBottomSheet<_IngredientFilterSelection>(
       context: context,
-      backgroundColor: const Color(0xFF161B2E),
+      isScrollControlled: true,
+      useSafeArea: true,
       showDragHandle: true,
-      builder: (context) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 18),
+      backgroundColor: const Color(0xFF161B2E),
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(context).height * 0.9,
+      ),
+      builder: (sheetContext) => StatefulBuilder(
+        builder: (context, setSheetState) => SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 18),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
                   leading: const Icon(Icons.filter_list_rounded),
                   title: Text(
-                    context.tr('Сортировка ингредиентов', 'Ingredient sorting'),
+                    context.tr('Показать и сортировать', 'Show and sort'),
                   ),
                 ),
+                SwitchListTile.adaptive(
+                  activeThumbColor: const Color(0xFF8FA3FF),
+                  value: draftSelectedOnly,
+                  secondary: const Icon(Icons.inventory_2_rounded),
+                  title: Text(
+                    context.tr('Только то, что есть', 'Owned ingredients only'),
+                  ),
+                  onChanged: (value) =>
+                      setSheetState(() => draftSelectedOnly = value),
+                ),
+                const Divider(color: Color(0x334F5D88)),
                 ...IngredientSortMode.values.map(
                   (mode) => ListTile(
                     title: Text(mode.label(context)),
-                    trailing: mode == _sortMode
+                    trailing: mode == draftSortMode
                         ? const Icon(
                             Icons.check_circle_rounded,
                             color: Color(0xFF8FA3FF),
@@ -432,20 +494,73 @@ class _RawBarPageState extends State<RawBarPage> {
                             Icons.radio_button_unchecked_rounded,
                             color: Color(0xFF7C87AC),
                           ),
-                    onTap: () => Navigator.of(context).pop(mode),
+                    onTap: () => setSheetState(() => draftSortMode = mode),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: BarActionButton(
+                      label: context.tr('Применить', 'Apply'),
+                      icon: Icons.check_rounded,
+                      powerSavingMode: widget.powerSavingMode,
+                      onPressed: () => Navigator.of(sheetContext).pop(
+                        _IngredientFilterSelection(
+                          sortMode: draftSortMode,
+                          selectedOnly: draftSelectedOnly,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
 
-    if (!mounted || result == null || result == _sortMode) {
+    if (!mounted || result == null) {
       return;
     }
-    setState(() => _sortMode = result);
+    HapticFeedback.selectionClick();
+    setState(() {
+      _sortMode = result.sortMode;
+      _selectedOnly = result.selectedOnly;
+    });
+  }
+
+  void _resetSearchAndFilters() {
+    HapticFeedback.selectionClick();
+    _searchController.clear();
+    setState(() {
+      _query = '';
+      _selectedOnly = false;
+    });
+  }
+
+  int _readyCocktailCount() {
+    final ingredientsById = <String, Ingredient>{
+      for (final ingredient in widget.ingredients) ingredient.id: ingredient,
+    };
+    return widget.cocktails.where((cocktail) {
+      return cocktail.ingredients.every((ingredientId) {
+        if (widget.selectedIngredientIds.contains(ingredientId) ||
+            cocktail.isIngredientOptional(ingredientId) ||
+            cocktail.isIngredientDecoration(ingredientId)) {
+          return true;
+        }
+        final ingredient = ingredientsById[ingredientId];
+        if (ingredient?.isOptional == true ||
+            ingredient?.isDecoration == true) {
+          return true;
+        }
+        final substitutions =
+            cocktail.ingredientSubstitutions[ingredientId] ?? const <String>[];
+        return substitutions.any(widget.selectedIngredientIds.contains);
+      });
+    }).length;
   }
 
   List<Ingredient> _sortIngredients(
@@ -501,16 +616,184 @@ class _RawBarPageState extends State<RawBarPage> {
   }
 }
 
+class _IngredientFilterSelection {
+  const _IngredientFilterSelection({
+    required this.sortMode,
+    required this.selectedOnly,
+  });
+
+  final IngredientSortMode sortMode;
+  final bool selectedOnly;
+}
+
+class _RawBarSummary extends StatelessWidget {
+  const _RawBarSummary({
+    required this.selectedCount,
+    required this.totalCount,
+    required this.readyCocktailCount,
+    required this.sortLabel,
+    required this.selectedOnly,
+    required this.powerSavingMode,
+  });
+
+  final int selectedCount;
+  final int totalCount;
+  final int readyCocktailCount;
+  final String sortLabel;
+  final bool selectedOnly;
+  final bool powerSavingMode;
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = totalCount == 0 ? 0.0 : selectedCount / totalCount;
+    return Semantics(
+      container: true,
+      label: context.tr(
+        'Выбрано ингредиентов: $selectedCount. Доступно коктейлей: $readyCocktailCount.',
+        '$selectedCount ingredients selected. $readyCocktailCount cocktails ready.',
+      ),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(14, 12, 14, 11),
+        decoration: BoxDecoration(
+          color: const Color(0xB815192C),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: const Color(0x444D70B4)),
+        ),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: _RawBarMetric(
+                    icon: Icons.inventory_2_rounded,
+                    value: '$selectedCount',
+                    label: context.tr('в наличии', 'in stock'),
+                  ),
+                ),
+                Container(width: 1, height: 32, color: const Color(0x335B6C9D)),
+                Expanded(
+                  child: _RawBarMetric(
+                    icon: Icons.local_bar_rounded,
+                    value: '$readyCocktailCount',
+                    label: context.tr('можно сделать', 'ready to make'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: TweenAnimationBuilder<double>(
+                tween: Tween<double>(end: progress.clamp(0, 1)),
+                duration: AppMotion.duration(
+                  context,
+                  AppMotion.emphasized,
+                  powerSavingMode: powerSavingMode,
+                ),
+                curve: AppMotion.enterCurve,
+                builder: (context, value, _) => LinearProgressIndicator(
+                  value: value,
+                  minHeight: 4,
+                  backgroundColor: const Color(0xFF29304C),
+                  valueColor: const AlwaysStoppedAnimation<Color>(
+                    Color(0xFF67D5FF),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: <Widget>[
+                const Icon(
+                  Icons.sort_rounded,
+                  size: 14,
+                  color: Color(0xFF8999C5),
+                ),
+                const SizedBox(width: 5),
+                Expanded(
+                  child: Text(
+                    sortLabel,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Color(0xFF8999C5),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                if (selectedOnly)
+                  Text(
+                    context.tr('Только в наличии', 'In stock only'),
+                    style: const TextStyle(
+                      color: Color(0xFF8FFFD4),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RawBarMetric extends StatelessWidget {
+  const _RawBarMetric({
+    required this.icon,
+    required this.value,
+    required this.label,
+  });
+
+  final IconData icon;
+  final String value;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Icon(icon, size: 20, color: const Color(0xFF9AA8FF)),
+        const SizedBox(width: 8),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                value,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              Text(
+                label,
+                style: const TextStyle(color: Color(0xFF9DA9CA), fontSize: 10),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _IngredientSearchField extends StatelessWidget {
   const _IngredientSearchField({
     required this.controller,
     required this.powerSavingMode,
     required this.onChanged,
+    required this.onClear,
   });
 
   final TextEditingController controller;
   final bool powerSavingMode;
   final ValueChanged<String> onChanged;
+  final VoidCallback? onClear;
 
   @override
   Widget build(BuildContext context) {
@@ -550,6 +833,13 @@ class _IngredientSearchField extends StatelessWidget {
                 minWidth: 42,
                 minHeight: 42,
               ),
+              suffixIcon: onClear == null
+                  ? null
+                  : IconButton(
+                      tooltip: context.tr('Очистить', 'Clear'),
+                      onPressed: onClear,
+                      icon: const Icon(Icons.close_rounded),
+                    ),
             ),
           ),
         ),
@@ -602,6 +892,7 @@ class IngredientCard extends StatelessWidget {
     this.powerSavingMode = false,
     required this.onTap,
     required this.onLongPress,
+    required this.onEdit,
     super.key,
   });
 
@@ -612,13 +903,16 @@ class IngredientCard extends StatelessWidget {
   final bool powerSavingMode;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
+  final VoidCallback? onEdit;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedScale(
-      duration: powerSavingMode
-          ? Duration.zero
-          : const Duration(milliseconds: 180),
+      duration: AppMotion.duration(
+        context,
+        AppMotion.quick,
+        powerSavingMode: powerSavingMode,
+      ),
       scale: powerSavingMode ? 1.0 : (selected ? 1.0 : 0.985),
       child: AnimatedGradientBorder(
         enabled: !powerSavingMode && selected,
@@ -638,7 +932,8 @@ class IngredientCard extends StatelessWidget {
         ],
         child: ClipRRect(
           borderRadius: BorderRadius.circular(22),
-          child: InkWell(
+          child: BarPressable(
+            powerSavingMode: powerSavingMode,
             borderRadius: BorderRadius.circular(22),
             onTap: onTap,
             onLongPress: onLongPress,
@@ -719,40 +1014,69 @@ class IngredientCard extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: AnimatedContainer(
-                      duration: powerSavingMode
-                          ? Duration.zero
-                          : const Duration(milliseconds: 220),
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: !allowSelection
-                            ? const Color(0xFF2F3857)
-                            : selected
-                            ? const Color(0xFFB24EFF)
-                            : const Color(0xFF242B46),
-                        boxShadow: allowSelection && selected
-                            ? const <BoxShadow>[
-                                BoxShadow(
-                                  color: Color(0x88B24EFF),
-                                  blurRadius: 16,
-                                ),
-                              ]
-                            : null,
-                      ),
-                      child: Icon(
-                        !allowSelection
-                            ? Icons.lock_outline_rounded
-                            : selected
-                            ? Icons.check_rounded
-                            : Icons.add_rounded,
-                        size: 20,
-                        color: !allowSelection
-                            ? const Color(0xFFB8C4EB)
-                            : Colors.white,
-                      ),
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        if (onEdit != null)
+                          IconButton(
+                            tooltip: context.tr(
+                              'Изменить ингредиент',
+                              'Edit ingredient',
+                            ),
+                            onPressed: onEdit,
+                            visualDensity: VisualDensity.compact,
+                            icon: const Icon(
+                              Icons.edit_outlined,
+                              size: 19,
+                              color: Color(0xFFA8B6DE),
+                            ),
+                          ),
+                        AnimatedContainer(
+                          duration: AppMotion.duration(
+                            context,
+                            AppMotion.standard,
+                            powerSavingMode: powerSavingMode,
+                          ),
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: !allowSelection
+                                ? const Color(0xFF2F3857)
+                                : selected
+                                ? const Color(0xFFB24EFF)
+                                : const Color(0xFF242B46),
+                            boxShadow: allowSelection && selected
+                                ? const <BoxShadow>[
+                                    BoxShadow(
+                                      color: Color(0x88B24EFF),
+                                      blurRadius: 16,
+                                    ),
+                                  ]
+                                : null,
+                          ),
+                          child: AnimatedSwitcher(
+                            duration: AppMotion.duration(
+                              context,
+                              AppMotion.quick,
+                              powerSavingMode: powerSavingMode,
+                            ),
+                            child: Icon(
+                              !allowSelection
+                                  ? Icons.lock_outline_rounded
+                                  : selected
+                                  ? Icons.check_rounded
+                                  : Icons.add_rounded,
+                              key: ValueKey<bool>(selected),
+                              size: 20,
+                              color: !allowSelection
+                                  ? const Color(0xFFB8C4EB)
+                                  : Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

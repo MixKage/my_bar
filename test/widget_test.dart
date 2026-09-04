@@ -1,4 +1,6 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_bar/features/bar/data/onboarding_storage.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
 import 'package:my_bar/features/bar/data/external_catalog_cache_storage.dart';
@@ -11,10 +13,63 @@ import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
+import 'package:my_bar/features/bar/presentation/pages/surprise_cocktail_page.dart';
 import 'package:my_bar/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  for (final language in ['ru', 'en']) {
+    testWidgets('developer website follows $language app language', (
+      WidgetTester tester,
+    ) async {
+      final isEnglish = language == 'en';
+      SharedPreferences.setMockInitialValues({
+        'bar_ui_app_language': language,
+        'bar_ui_power_saving_mode': true,
+      });
+      final preferences = await SharedPreferences.getInstance();
+      const channel = MethodChannel('plugins.flutter.io/url_launcher');
+      final calls = <MethodCall>[];
+      tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(channel, (
+        call,
+      ) async {
+        calls.add(call);
+        return true;
+      });
+      addTearDown(() {
+        tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+          channel,
+          null,
+        );
+      });
+
+      await tester.pumpWidget(
+        await _buildApp(preferences: preferences, catalog: _testCatalog),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byTooltip(isEnglish ? 'Bar management' : 'Управление баром'),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(isEnglish ? 'About app' : 'О приложении'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.tap(
+        find.text(isEnglish ? 'Developer website' : 'Сайт разработчика'),
+      );
+      await tester.pump();
+
+      expect(calls, hasLength(1));
+      expect(calls.single.method, 'launch');
+      expect(
+        calls.single.arguments['url'],
+        isEnglish ? 'https://logion-mobile.com' : 'https://logion-mobile.ru',
+      );
+      expect(calls.single.arguments['useSafariVC'], isFalse);
+      expect(calls.single.arguments['useWebView'], isFalse);
+    });
+  }
+
   testWidgets('shows app shell with both tabs', (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({'bar_ui_app_language': 'ru'});
     final preferences = await SharedPreferences.getInstance();
@@ -27,6 +82,8 @@ void main() {
     expect(find.text('Мой Бар'), findsOneWidget);
     expect(find.text('Ингредиенты'), findsOneWidget);
     expect(find.text('Барная карта'), findsOneWidget);
+    expect(find.text('можно сделать'), findsOneWidget);
+    expect(find.byTooltip('Изменить ингредиент'), findsWidgets);
   });
 
   testWidgets('restores selected ingredients from storage', (
@@ -97,6 +154,14 @@ void main() {
     expect(find.text('Откроет 1 коктейль'), findsOneWidget);
 
     expect(find.byTooltip('Добавить в список'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Добавить в список'));
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(find.byTooltip('Очистить'));
+    await tester.pump();
+    expect(find.text('Очистить список?'), findsOneWidget);
+    await tester.tap(find.text('Отмена'));
+    await tester.pump();
   });
 
   testWidgets('opens serving calculator, party mode and surprise cocktail', (
@@ -134,7 +199,13 @@ void main() {
     await tester.tap(find.text('Удиви меня'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
-    expect(find.text('Мартини'), findsWidgets);
+    final surprise = tester.widget<SurpriseCocktailPage>(
+      find.byType(SurpriseCocktailPage),
+    );
+    expect(
+      surprise.cocktails.map((cocktail) => cocktail.id),
+      unorderedEquals(['martini', 'vodka-martini']),
+    );
     expect(find.byTooltip('Увеличить'), findsOneWidget);
   });
 }
@@ -168,6 +239,7 @@ Future<MyBarApp> _buildApp({
   final snapshot = await repository.initialize();
 
   return MyBarApp(
+    onboardingStorage: InMemoryOnboardingStorage(completed: true),
     selectionStorage: selectionStorage,
     settingsStorage: settingsStorage,
     shoppingListStorage: shoppingListStorage,

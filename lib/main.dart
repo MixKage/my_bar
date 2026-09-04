@@ -15,6 +15,7 @@ import 'features/bar/data/models/catalog_layer_models.dart';
 import 'features/bar/data/providers/external_bar_data_provider.dart';
 import 'features/bar/data/repositories/bar_catalog_repository.dart';
 import 'features/bar/data/shopping_list_storage.dart';
+import 'features/bar/data/onboarding_storage.dart';
 import 'features/bar/domain/models/bar_catalog.dart';
 import 'features/bar/domain/models/catalog_data_source.dart';
 import 'features/bar/domain/models/cocktail.dart';
@@ -28,6 +29,7 @@ Future<void> main() async {
   final bootstrap = await _bootstrapApp();
   runApp(
     MyBarApp(
+      onboardingStorage: bootstrap.onboardingStorage,
       selectionStorage: bootstrap.selectionStorage,
       settingsStorage: bootstrap.settingsStorage,
       shoppingListStorage: bootstrap.shoppingListStorage,
@@ -85,6 +87,7 @@ Future<_BootstrapData> _bootstrapApp() async {
     );
 
     return _BootstrapData(
+      onboardingStorage: SharedPreferencesOnboardingStorage(preferences),
       selectionStorage: selectionStorage,
       settingsStorage: settingsStorage,
       shoppingListStorage: shoppingListStorage,
@@ -122,6 +125,7 @@ Future<_BootstrapData> _bootstrapApp() async {
     final fallbackSnapshot = await fallbackRepository.initialize();
 
     return _BootstrapData(
+      onboardingStorage: InMemoryOnboardingStorage(),
       selectionStorage: InMemoryIngredientSelectionStorage(),
       settingsStorage: InMemoryBarUiSettingsStorage(),
       shoppingListStorage: InMemoryShoppingListStorage(),
@@ -182,6 +186,7 @@ Future<BarCatalog> _safeFallbackCatalog(BarCatalogJsonCodec codec) async {
 
 class _BootstrapData {
   const _BootstrapData({
+    required this.onboardingStorage,
     required this.selectionStorage,
     required this.settingsStorage,
     required this.shoppingListStorage,
@@ -190,6 +195,7 @@ class _BootstrapData {
     required this.initialSnapshot,
   });
 
+  final OnboardingStorage onboardingStorage;
   final IngredientSelectionStorage selectionStorage;
   final BarUiSettingsStorage settingsStorage;
   final ShoppingListStorage shoppingListStorage;

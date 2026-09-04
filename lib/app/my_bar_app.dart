@@ -14,9 +14,12 @@ import '../features/bar/data/providers/external_bar_data_provider.dart';
 import '../features/bar/data/repositories/bar_catalog_repository.dart';
 import '../features/bar/data/shopping_list_storage.dart';
 import '../features/bar/presentation/bar_home_shell.dart';
+import '../features/bar/data/onboarding_storage.dart';
+import '../features/bar/presentation/pages/onboarding_page.dart';
 
 class MyBarApp extends StatelessWidget {
   const MyBarApp({
+    required this.onboardingStorage,
     required this.selectionStorage,
     required this.settingsStorage,
     required this.shoppingListStorage,
@@ -26,6 +29,7 @@ class MyBarApp extends StatelessWidget {
     super.key,
   });
 
+  final OnboardingStorage onboardingStorage;
   final IngredientSelectionStorage selectionStorage;
   final BarUiSettingsStorage settingsStorage;
   final ShoppingListStorage shoppingListStorage;
@@ -46,7 +50,9 @@ class MyBarApp extends StatelessWidget {
       ),
       child: BlocBuilder<BarCubit, BarState>(
         buildWhen: (previous, current) =>
-            previous.appLanguage != current.appLanguage,
+            previous.appLanguage != current.appLanguage ||
+            previous.effectivePowerSavingMode !=
+                current.effectivePowerSavingMode,
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -55,7 +61,11 @@ class MyBarApp extends StatelessWidget {
             localizationsDelegates: GlobalMaterialLocalizations.delegates,
             onGenerateTitle: (context) => context.tr('Мой Бар', 'My Bar'),
             theme: AppTheme.dark,
-            home: const BarHomeShell(),
+            home: OnboardingGate(
+              storage: onboardingStorage,
+              powerSavingMode: state.effectivePowerSavingMode,
+              child: const BarHomeShell(),
+            ),
           );
         },
       ),
