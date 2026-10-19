@@ -17,6 +17,7 @@ import 'package:my_bar/features/bar/presentation/pages/onboarding_page.dart';
 import 'package:my_bar/features/bar/presentation/pages/party_mode_page.dart';
 import 'package:my_bar/features/bar/presentation/pages/raw_bar_page.dart';
 import 'package:my_bar/features/bar/presentation/pages/surprise_cocktail_page.dart';
+import 'package:my_bar/features/bar/presentation/widgets/bar_management_dialogs.dart';
 
 const _cocktails = <Cocktail>[
   Cocktail(
@@ -115,6 +116,36 @@ Future<void> _openPartyPlan(
 }
 
 void main() {
+  testWidgets(
+    'cocktail dialog renders selected ingredient substitution controls',
+    (tester) async {
+      await _pump(
+        tester,
+        Scaffold(
+          body: Builder(
+            builder: (context) => TextButton(
+              onPressed: () async {
+                await showEditCocktailDialog(
+                  context,
+                  _ingredients.values.toList(),
+                  cocktail: _cocktails.first,
+                );
+              },
+              child: const Text('edit'),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('edit'));
+      await _frames(tester);
+      expect(find.text('Замены'), findsOneWidget);
+      expect(find.text('Добавить замену'), findsOneWidget);
+      await tester.tap(find.text('Отмена'));
+      await _frames(tester);
+      expect(find.text('edit'), findsOneWidget);
+    },
+  );
+
   for (final scenario in <({String filter, Set<String> expected})>[
     (filter: 'Все · 3', expected: {'recipe_0', 'recipe_1', 'recipe_2'}),
     (filter: 'Можно сейчас · 1', expected: {'recipe_0'}),

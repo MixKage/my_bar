@@ -144,6 +144,14 @@ _ExternalProviderBundle _buildExternalProviderBundle({
     russianAssetPath: 'assets/data/bar_template_ru.json',
     useRussianCatalogResolver: () =>
         _shouldUseRussianCatalog(settingsStorage.readSettings().appLanguage),
+    languageCodeResolver: () {
+      final selected = settingsStorage.readSettings().appLanguage.locale;
+      return AppLanguageX.resolveLocale(
+        selected == null
+            ? WidgetsBinding.instance.platformDispatcher.locales
+            : [selected],
+      ).languageCode;
+    },
     sourceIdValue: 'asset_template',
   );
   return _ExternalProviderBundle(
@@ -155,20 +163,13 @@ _ExternalProviderBundle _buildExternalProviderBundle({
 }
 
 bool _shouldUseRussianCatalog(AppLanguage appLanguage) {
-  switch (appLanguage) {
-    case AppLanguage.russian:
-      return true;
-    case AppLanguage.english:
-      return false;
-    case AppLanguage.system:
-      final localeLanguageCode = WidgetsBinding
-          .instance
-          .platformDispatcher
-          .locale
-          .languageCode
-          .toLowerCase();
-      return localeLanguageCode == 'ru';
-  }
+  final selected = appLanguage.locale;
+  return AppLanguageX.resolveLocale(
+        selected == null
+            ? WidgetsBinding.instance.platformDispatcher.locales
+            : [selected],
+      ).languageCode ==
+      'ru';
 }
 
 Future<BarCatalog> _loadTemplateCatalog(BarCatalogJsonCodec codec) async {

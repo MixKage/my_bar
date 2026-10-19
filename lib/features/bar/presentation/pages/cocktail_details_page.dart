@@ -281,6 +281,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                                       ),
                                       const SizedBox(width: 8),
                                       Expanded(
+                                        flex: 2,
                                         child: Text(
                                           ingredient?.name ?? ingredientId,
                                           style: const TextStyle(
@@ -289,26 +290,30 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                                           ),
                                         ),
                                       ),
-                                      if (amount.isNotEmpty)
-                                        AnimatedSwitcher(
-                                          duration: AppMotion.duration(
-                                            context,
-                                            AppMotion.quick,
-                                            powerSavingMode:
-                                                widget.powerSavingMode,
-                                          ),
-                                          child: Text(
-                                            amount,
-                                            key: ValueKey<String>(
-                                              '$ingredientId:$amount',
+                                      if (amount.isNotEmpty) ...<Widget>[
+                                        const SizedBox(width: 8),
+                                        Flexible(
+                                          child: AnimatedSwitcher(
+                                            duration: AppMotion.duration(
+                                              context,
+                                              AppMotion.quick,
+                                              powerSavingMode:
+                                                  widget.powerSavingMode,
                                             ),
-                                            style: const TextStyle(
-                                              color: Color(0xFFAEC1EE),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w700,
+                                            child: Text(
+                                              amount,
+                                              key: ValueKey<String>(
+                                                '$ingredientId:$amount',
+                                              ),
+                                              style: const TextStyle(
+                                                color: Color(0xFFAEC1EE),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
                                           ),
                                         ),
+                                      ],
                                     ],
                                   ),
                                   if (isOptional || isDecoration)
@@ -358,7 +363,11 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                             );
                           }),
                           const SizedBox(height: 10),
-                          Row(
+                          Wrap(
+                            alignment: WrapAlignment.spaceBetween,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 12,
+                            runSpacing: 4,
                             children: <Widget>[
                               Text(
                                 context.tr('Приготовление', 'Preparation'),
@@ -368,7 +377,6 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                                   fontSize: 16,
                                 ),
                               ),
-                              const Spacer(),
                               if (!widget.visitorMode)
                                 TextButton.icon(
                                   style: TextButton.styleFrom(
@@ -502,13 +510,12 @@ class _DetailsAvailabilityHint extends StatelessWidget {
 
     final preview = missingIngredientNames.take(3).join(', ');
     final hiddenCount = missingIngredientNames.length - 3;
-    final text = context.isEnglish
-        ? hiddenCount > 0
-              ? 'Missing: $preview and $hiddenCount more'
-              : 'Missing: $preview'
-        : hiddenCount > 0
-        ? 'Не хватает: $preview и ещё $hiddenCount'
-        : 'Не хватает: $preview';
+    final text = hiddenCount > 0
+        ? context.tr(
+            'Не хватает: $preview и ещё $hiddenCount',
+            'Missing: $preview and $hiddenCount more',
+          )
+        : context.tr('Не хватает: $preview', 'Missing: $preview');
 
     return Text(
       text,

@@ -1525,6 +1525,7 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Expanded(
+                                  flex: 2,
                                   child: Text(
                                     ingredient?.name ?? ingredientId,
                                     style: const TextStyle(
@@ -1533,15 +1534,19 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                if (amount.isNotEmpty)
-                                  Text(
-                                    amount,
-                                    style: const TextStyle(
-                                      color: Color(0xFFAEC1EE),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
+                                if (amount.isNotEmpty) ...<Widget>[
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      amount,
+                                      style: const TextStyle(
+                                        color: Color(0xFFAEC1EE),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
+                                ],
                               ],
                             ),
                             if (isOptional || isDecoration)
@@ -1924,14 +1929,16 @@ class CocktailList extends StatelessWidget {
                                   color: const Color(0xFFFFB9DD),
                                 ),
                                 const SizedBox(width: 8),
-                                Text(
-                                  context.tr(
-                                    'Бокал: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
-                                    'Glass: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
-                                  ),
-                                  style: const TextStyle(
-                                    color: Color(0xFFFFB9DD),
-                                    fontWeight: FontWeight.w700,
+                                Expanded(
+                                  child: Text(
+                                    context.tr(
+                                      'Бокал: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
+                                      'Glass: ${context.cocktailGlassTypeLabel(cocktail.glassType)}',
+                                    ),
+                                    style: const TextStyle(
+                                      color: Color(0xFFFFB9DD),
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -1980,6 +1987,7 @@ class CocktailList extends StatelessWidget {
                                         ),
                                         const SizedBox(width: 8),
                                         Expanded(
+                                          flex: 2,
                                           child: Text(
                                             ingredient?.name ?? ingredientId,
                                             style: const TextStyle(
@@ -1990,12 +1998,14 @@ class CocktailList extends StatelessWidget {
                                         ),
                                         if (amount.isNotEmpty) ...<Widget>[
                                           const SizedBox(width: 8),
-                                          Text(
-                                            amount,
-                                            style: const TextStyle(
-                                              color: Color(0xFFAEC1EE),
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600,
+                                          Flexible(
+                                            child: Text(
+                                              amount,
+                                              style: const TextStyle(
+                                                color: Color(0xFFAEC1EE),
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -2234,13 +2244,12 @@ class _AvailabilityHint extends StatelessWidget {
 
     final preview = missingIngredientNames.take(3).join(', ');
     final hiddenCount = missingIngredientNames.length - 3;
-    final text = context.isEnglish
-        ? hiddenCount > 0
-              ? 'Missing: $preview and $hiddenCount more'
-              : 'Missing: $preview'
-        : hiddenCount > 0
-        ? 'Не хватает: $preview и ещё $hiddenCount'
-        : 'Не хватает: $preview';
+    final text = hiddenCount > 0
+        ? context.tr(
+            'Не хватает: $preview и ещё $hiddenCount',
+            'Missing: $preview and $hiddenCount more',
+          )
+        : context.tr('Не хватает: $preview', 'Missing: $preview');
 
     return Text(
       text,

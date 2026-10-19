@@ -308,12 +308,14 @@ void main() {
       settingsStorage: settingsStorage,
     );
 
-    await cubit.setMeasurementSystem(MeasurementSystem.ml);
-
     expect(cubit.state.measurementSystem, MeasurementSystem.ml);
+
+    await cubit.setMeasurementSystem(MeasurementSystem.flOz);
+
+    expect(cubit.state.measurementSystem, MeasurementSystem.flOz);
     expect(
       settingsStorage.readSettings().measurementSystem,
-      MeasurementSystem.ml,
+      MeasurementSystem.flOz,
     );
   });
 

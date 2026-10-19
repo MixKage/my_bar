@@ -1101,10 +1101,10 @@ class IngredientCard extends StatelessWidget {
         'Make "${cocktails.first.name}"',
       );
     }
-    if (context.isEnglish) {
-      return 'Make ${cocktails.length} cocktails';
-    }
-    return 'Приготовьте ${cocktails.length} ${_cocktailWord(cocktails.length)}';
+    return context.tr(
+      'Приготовьте ${cocktails.length} ${_cocktailWord(cocktails.length)}',
+      'Make ${cocktails.length} cocktails',
+    );
   }
 
   String _cocktailWord(int count) {

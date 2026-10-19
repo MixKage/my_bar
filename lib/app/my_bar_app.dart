@@ -58,6 +58,8 @@ class MyBarApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             locale: state.appLanguage.locale,
             supportedLocales: AppLanguageX.supportedLocales,
+            localeListResolutionCallback: (locales, _) =>
+                AppLanguageX.resolveLocale(locales),
             localizationsDelegates: GlobalMaterialLocalizations.delegates,
             onGenerateTitle: (context) => context.tr('Мой Бар', 'My Bar'),
             theme: AppTheme.dark,

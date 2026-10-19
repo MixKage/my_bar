@@ -27,6 +27,7 @@ import 'pages/cocktail_editor_page.dart';
 import 'pages/bar_menu_page.dart';
 import 'pages/raw_bar_page.dart';
 import 'widgets/bar_management_dialogs.dart';
+import 'widgets/language_selector.dart';
 import 'widgets/neon_bottom_navigation.dart';
 
 class BarHomeShell extends StatefulWidget {
@@ -71,6 +72,14 @@ class _BarHomeShellState extends State<BarHomeShell>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       _syncSystemPowerSavingMode();
+    }
+  }
+
+  @override
+  void didChangeLocales(List<Locale>? locales) {
+    if (mounted &&
+        context.read<BarCubit>().state.appLanguage == AppLanguage.system) {
+      unawaited(context.read<BarCubit>().refreshLocalizedCatalog());
     }
   }
 
@@ -522,68 +531,25 @@ class _BarHomeShellState extends State<BarHomeShell>
                           ListTile(
                             leading: const Icon(Icons.language_rounded),
                             title: Text(context.tr('Язык', 'Language')),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                            child: SegmentedButton<AppLanguage>(
-                              showSelectedIcon: false,
-                              selected: <AppLanguage>{appLanguage},
-                              segments: <ButtonSegment<AppLanguage>>[
-                                ButtonSegment<AppLanguage>(
-                                  value: AppLanguage.system,
-                                  label: Text(
-                                    context.appLanguageLabel(
-                                      AppLanguage.system,
-                                    ),
-                                  ),
-                                ),
-                                ButtonSegment<AppLanguage>(
-                                  value: AppLanguage.russian,
-                                  label: Text(
-                                    context.appLanguageLabel(
-                                      AppLanguage.russian,
-                                    ),
-                                  ),
-                                ),
-                                ButtonSegment<AppLanguage>(
-                                  value: AppLanguage.english,
-                                  label: Text(
-                                    context.appLanguageLabel(
-                                      AppLanguage.english,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              onSelectionChanged: (selection) async {
-                                if (selection.isEmpty) {
-                                  return;
-                                }
-                                final nextLanguage = selection.first;
-                                setModalState(() => appLanguage = nextLanguage);
-                                await cubit.setAppLanguage(nextLanguage);
-                                if (!mounted) {
-                                  return;
-                                }
-                                setModalState(
-                                  () => appLanguage = cubit.state.appLanguage,
-                                );
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            dense: true,
-                            title: Text(context.appLanguageLabel(appLanguage)),
+                            trailing: const Icon(Icons.chevron_right_rounded),
                             subtitle: Text(
-                              appLanguage == AppLanguage.system
-                                  ? context.tr(
-                                      'По умолчанию определяется системным языком устройства.',
-                                      'By default uses the device system language.',
-                                    )
-                                  : context.tr(
-                                      'Выбор сохраняется между запусками приложения.',
-                                      'Selection is preserved between app launches.',
-                                    ),
+                              context.appLanguageLabel(appLanguage),
                             ),
+                            onTap: () async {
+                              final nextLanguage = await showLanguageSelector(
+                                context,
+                                selected: appLanguage,
+                                powerSavingMode:
+                                    powerSavingMode || systemPowerSavingMode,
+                              );
+                              if (nextLanguage == null ||
+                                  !mounted ||
+                                  !context.mounted) {
+                                return;
+                              }
+                              setModalState(() => appLanguage = nextLanguage);
+                              await cubit.setAppLanguage(nextLanguage);
+                            },
                           ),
                           const Divider(height: 16),
                           ListTile(
@@ -853,8 +819,8 @@ class _BarHomeShellState extends State<BarHomeShell>
                       const SizedBox(height: 4),
                       Text(
                         context.tr(
-                          'Версия ${_appVersionLabel.isEmpty ? 'неизвестно' : _appVersionLabel}',
-                          'Version ${_appVersionLabel.isEmpty ? 'unknown' : _appVersionLabel}',
+                          'Версия ${_appVersionLabel.isEmpty ? context.tr('неизвестно', 'unknown') : _appVersionLabel}',
+                          'Version ${_appVersionLabel.isEmpty ? context.tr('неизвестно', 'unknown') : _appVersionLabel}',
                         ),
                         style: const TextStyle(
                           color: Color(0xFFAEC0F0),
@@ -986,9 +952,9 @@ class _BarHomeShellState extends State<BarHomeShell>
     try {
       final launched = await launchUrl(
         Uri.parse(
-          context.isEnglish
-              ? 'https://logion-mobile.com'
-              : 'https://logion-mobile.ru',
+          context.isRussian
+              ? 'https://logion-mobile.ru'
+              : 'https://logion-mobile.com',
         ),
         mode: LaunchMode.externalApplication,
       );

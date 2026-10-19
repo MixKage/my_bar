@@ -1614,7 +1614,10 @@ class _FrostedPanel extends StatelessWidget {
             : const Color(0x7A111425),
         border: Border.all(color: borderColor ?? const Color(0x55758ABF)),
       ),
-      child: Padding(padding: padding, child: child),
+      child: Material(
+        type: MaterialType.transparency,
+        child: Padding(padding: padding, child: child),
+      ),
     );
 
     return Container(

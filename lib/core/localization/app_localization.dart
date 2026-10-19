@@ -3,23 +3,43 @@ import 'package:flutter/widgets.dart';
 import '../../features/bar/domain/models/catalog_data_source.dart';
 import '../../features/bar/domain/models/measurement_system.dart';
 import 'app_language.dart';
+import 'app_translations.dart';
 
 extension AppLocalizationX on BuildContext {
   bool get isEnglish =>
       Localizations.maybeLocaleOf(this)?.languageCode.toLowerCase() == 'en';
 
-  String tr(String ru, String en) => isEnglish ? en : ru;
+  bool get isRussian =>
+      Localizations.maybeLocaleOf(this)?.languageCode.toLowerCase() == 'ru';
+
+  String translateEnglish(String english) => translateAppText(
+    Localizations.maybeLocaleOf(this)?.languageCode ?? 'en',
+    english,
+  );
+
+  String tr(String ru, String en) => isRussian ? ru : translateEnglish(en);
 
   String appLanguageLabel(AppLanguage language) {
-    switch (language) {
-      case AppLanguage.system:
-        return tr('Системный', 'System');
-      case AppLanguage.russian:
-        return tr('Русский', 'Russian');
-      case AppLanguage.english:
-        return tr('Английский', 'English');
-    }
+    if (language == AppLanguage.system) return tr('Системный', 'System');
+    return language.nativeName;
   }
+
+  String localizedLanguageName(AppLanguage language) => switch (language) {
+    AppLanguage.system => tr('Системный', 'System'),
+    AppLanguage.russian => tr('Русский', 'Russian'),
+    AppLanguage.english => tr('Английский', 'English'),
+    AppLanguage.spanish => tr('Испанский', 'Spanish'),
+    AppLanguage.portuguese => tr('Португальский', 'Portuguese'),
+    AppLanguage.german => tr('Немецкий', 'German'),
+    AppLanguage.french => tr('Французский', 'French'),
+    AppLanguage.italian => tr('Итальянский', 'Italian'),
+    AppLanguage.turkish => tr('Турецкий', 'Turkish'),
+    AppLanguage.chinese => tr('Китайский (упрощённый)', 'Chinese (Simplified)'),
+    AppLanguage.japanese => tr('Японский', 'Japanese'),
+    AppLanguage.korean => tr('Корейский', 'Korean'),
+    AppLanguage.hindi => tr('Хинди', 'Hindi'),
+    AppLanguage.arabic => tr('Арабский', 'Arabic'),
+  };
 
   String measurementSystemLabel(MeasurementSystem system) {
     switch (system) {
@@ -56,24 +76,37 @@ extension AppLocalizationX on BuildContext {
     }
   }
 
-  String cocktailTagLabel(String tag) =>
-      _cocktailTagLabels[tag]?[isEnglish] ?? tag;
+  String cocktailTagLabel(String tag) => _label(_cocktailTagLabels[tag], tag);
 
   String cocktailGlassTypeLabel(String glassType) =>
-      _cocktailGlassLabels[glassType]?[isEnglish] ?? glassType;
+      _label(_cocktailGlassLabels[glassType], glassType);
 
   String ingredientCategoryLabel(String category) {
     final normalizedCategory = _normalizeLocalizationKey(category);
-    return _ingredientCategoryLabels[normalizedCategory]?[isEnglish] ??
-        category;
+    return _label(_ingredientCategoryLabels[normalizedCategory], category);
   }
 
   String ingredientUnitLabel(String unit) =>
-      _ingredientUnitLabels[unit]?[isEnglish] ?? unit;
+      _label(_ingredientUnitLabels[unit], unit);
 
   String localizeErrorMessage(String source) {
-    return _errorMessageLabels[source]?[isEnglish] ?? source;
+    if (isRussian) return source;
+    final label = _errorMessageLabels[source];
+    if (label != null) return translateEnglish(label.en);
+    for (final template in _errorTemplates) {
+      final match = template.pattern.firstMatch(source);
+      if (match == null) continue;
+      final english = template.en.replaceAllMapped(
+        RegExp(r'\{(\d+)\}'),
+        (token) => match.group(int.parse(token[1]!) + 1) ?? '',
+      );
+      return translateEnglish(english);
+    }
+    return source;
   }
+
+  String _label(_LocalizedLabel? label, String fallback) =>
+      label == null ? fallback : tr(label.ru, label.en);
 }
 
 const Map<String, _LocalizedLabel> _cocktailTagLabels =
@@ -148,6 +181,23 @@ const Map<String, _LocalizedLabel> _ingredientUnitLabels =
       'шт': _LocalizedLabel(ru: 'шт', en: 'pcs'),
       'капля': _LocalizedLabel(ru: 'капля', en: 'drop'),
       'по вкусу': _LocalizedLabel(ru: 'по вкусу', en: 'to taste'),
+      'g': _LocalizedLabel(ru: 'г', en: 'g'),
+      'gram': _LocalizedLabel(ru: 'г', en: 'g'),
+      'sprig': _LocalizedLabel(ru: 'веточка', en: 'sprig'),
+      'leaf': _LocalizedLabel(ru: 'лист', en: 'leaf'),
+      'scoop': _LocalizedLabel(ru: 'шарик', en: 'scoop'),
+      'twist': _LocalizedLabel(ru: 'полоска цедры', en: 'twist'),
+      'stick': _LocalizedLabel(ru: 'палочка', en: 'stick'),
+      'cube': _LocalizedLabel(ru: 'кубик', en: 'cube'),
+      'bottle': _LocalizedLabel(ru: 'бутылка', en: 'bottle'),
+      'can': _LocalizedLabel(ru: 'банка', en: 'can'),
+      'package': _LocalizedLabel(ru: 'упаковка', en: 'package'),
+      'inch': _LocalizedLabel(ru: 'дюйм', en: 'inch'),
+      'lb': _LocalizedLabel(ru: 'фунт', en: 'lb'),
+      'pint': _LocalizedLabel(ru: 'пинта', en: 'pint'),
+      'qt': _LocalizedLabel(ru: 'кварта', en: 'qt'),
+      'gal': _LocalizedLabel(ru: 'галлон', en: 'gal'),
+      'handful': _LocalizedLabel(ru: 'горсть', en: 'handful'),
     };
 
 const Map<String, _LocalizedLabel>
@@ -248,53 +298,153 @@ _ingredientCategoryLabels = <String, _LocalizedLabel>{
   'premixes': _LocalizedLabel(ru: 'Готовые смеси', en: 'Premixes'),
 };
 
-const Map<String, _LocalizedLabel> _errorMessageLabels =
-    <String, _LocalizedLabel>{
-      'Ингредиент не найден.': _LocalizedLabel(
-        ru: 'Ингредиент не найден.',
-        en: 'Ingredient not found.',
+const Map<String, _LocalizedLabel>
+_errorMessageLabels = <String, _LocalizedLabel>{
+  'Ингредиент не найден.': _LocalizedLabel(
+    ru: 'Ингредиент не найден.',
+    en: 'Ingredient not found.',
+  ),
+  'Коктейль не найден.': _LocalizedLabel(
+    ru: 'Коктейль не найден.',
+    en: 'Cocktail not found.',
+  ),
+  'Название ингредиента не может быть пустым.': _LocalizedLabel(
+    ru: 'Название ингредиента не может быть пустым.',
+    en: 'Ingredient name cannot be empty.',
+  ),
+  'Название коктейля не может быть пустым.': _LocalizedLabel(
+    ru: 'Название коктейля не может быть пустым.',
+    en: 'Cocktail name cannot be empty.',
+  ),
+  'Выбери хотя бы один ингредиент для коктейля.': _LocalizedLabel(
+    ru: 'Выбери хотя бы один ингредиент для коктейля.',
+    en: 'Choose at least one ingredient for the cocktail.',
+  ),
+  'Коктейль содержит неизвестные ингредиенты.': _LocalizedLabel(
+    ru: 'Коктейль содержит неизвестные ингредиенты.',
+    en: 'Cocktail contains unknown ingredients.',
+  ),
+  'Неизвестный тип бокала.': _LocalizedLabel(
+    ru: 'Неизвестный тип бокала.',
+    en: 'Unknown glass type.',
+  ),
+  'Барная карта не изменена': _LocalizedLabel(
+    ru: 'Барная карта не изменена',
+    en: 'Bar catalog has not been changed',
+  ),
+  'Файл пустой или недоступен.': _LocalizedLabel(
+    ru: 'Файл пустой или недоступен.',
+    en: 'File is empty or unavailable.',
+  ),
+  'JSON корень должен быть объектом.': _LocalizedLabel(
+    ru: 'JSON корень должен быть объектом.',
+    en: 'JSON root must be an object.',
+  ),
+  'Замены можно добавлять только для выбранных ингредиентов.': _LocalizedLabel(
+    ru: 'Замены можно добавлять только для выбранных ингредиентов.',
+    en: 'Substitutions can only be added for selected ingredients.',
+  ),
+  'Ингредиент не может быть заменой самому себе.': _LocalizedLabel(
+    ru: 'Ингредиент не может быть заменой самому себе.',
+    en: 'An ingredient cannot substitute itself.',
+  ),
+  'Список замен содержит неизвестный ингредиент.': _LocalizedLabel(
+    ru: 'Список замен содержит неизвестный ингредиент.',
+    en: 'The substitution list contains an unknown ingredient.',
+  ),
+  'Количество можно указать только для выбранных ингредиентов.':
+      _LocalizedLabel(
+        ru: 'Количество можно указать только для выбранных ингредиентов.',
+        en: 'Amounts can only be set for selected ingredients.',
       ),
-      'Коктейль не найден.': _LocalizedLabel(
-        ru: 'Коктейль не найден.',
-        en: 'Cocktail not found.',
+  'Единицу измерения можно указать только для выбранных ингредиентов.':
+      _LocalizedLabel(
+        ru: 'Единицу измерения можно указать только для выбранных ингредиентов.',
+        en: 'Units can only be set for selected ingredients.',
       ),
-      'Название ингредиента не может быть пустым.': _LocalizedLabel(
-        ru: 'Название ингредиента не может быть пустым.',
-        en: 'Ingredient name cannot be empty.',
-      ),
-      'Название коктейля не может быть пустым.': _LocalizedLabel(
-        ru: 'Название коктейля не может быть пустым.',
-        en: 'Cocktail name cannot be empty.',
-      ),
-      'Выбери хотя бы один ингредиент для коктейля.': _LocalizedLabel(
-        ru: 'Выбери хотя бы один ингредиент для коктейля.',
-        en: 'Choose at least one ingredient for the cocktail.',
-      ),
-      'Коктейль содержит неизвестные ингредиенты.': _LocalizedLabel(
-        ru: 'Коктейль содержит неизвестные ингредиенты.',
-        en: 'Cocktail contains unknown ingredients.',
-      ),
-      'Неизвестный тип бокала.': _LocalizedLabel(
-        ru: 'Неизвестный тип бокала.',
-        en: 'Unknown glass type.',
-      ),
-      'Барная карта не изменена': _LocalizedLabel(
-        ru: 'Барная карта не изменена',
-        en: 'Bar catalog has not been changed',
-      ),
-      'Файл пустой или недоступен.': _LocalizedLabel(
-        ru: 'Файл пустой или недоступен.',
-        en: 'File is empty or unavailable.',
-      ),
-    };
+  'Опциональными можно отметить только выбранные ингредиенты.': _LocalizedLabel(
+    ru: 'Опциональными можно отметить только выбранные ингредиенты.',
+    en: 'Only selected ingredients can be marked optional.',
+  ),
+  'Украшением можно отметить только выбранные ингредиенты.': _LocalizedLabel(
+    ru: 'Украшением можно отметить только выбранные ингредиенты.',
+    en: 'Only selected ingredients can be marked as garnish.',
+  ),
+};
+
+final _errorTemplates = <_ErrorTemplate>[
+  _ErrorTemplate(
+    pattern: r'^Поле "(.+)" должно быть массивом\.$',
+    en: 'Field "{0}" must be an array.',
+  ),
+  _ErrorTemplate(
+    pattern: r'^Элемент "(.+)" должен быть объектом\.$',
+    en: 'Item "{0}" must be an object.',
+  ),
+  _ErrorTemplate(
+    pattern: r'^Повторяющийся id "(.+)" в "(.+)"\.$',
+    en: 'Duplicate id "{0}" in "{1}".',
+  ),
+  _ErrorTemplate(
+    pattern: r'^Коктейль "(.+)" содержит неизвестные ингредиенты\.$',
+    en: 'Cocktail "{0}" contains unknown ingredients.',
+  ),
+  _ErrorTemplate(
+    pattern: r'^Коктейль "(.+)" содержит неизвестный тег "(.+)"\.$',
+    en: 'Cocktail "{0}" contains an unknown tag "{1}".',
+  ),
+  _ErrorTemplate(
+    pattern: r'^Коктейль "(.+)" содержит неизвестный тип бокала "(.+)"\.$',
+    en: 'Cocktail "{0}" contains an unknown glass type "{1}".',
+  ),
+  _ErrorTemplate(
+    pattern:
+        r'^Коктейль "(.+)" содержит замену для невыбранного ингредиента "(.+)"\.$',
+    en: 'Cocktail "{0}" contains a substitution for unselected ingredient "{1}".',
+  ),
+  _ErrorTemplate(
+    pattern:
+        r'^Коктейль "(.+)" содержит неизвестный ингредиент-замену "(.+)"\.$',
+    en: 'Cocktail "{0}" contains an unknown substitute ingredient "{1}".',
+  ),
+  _ErrorTemplate(
+    pattern: r'^Коктейль "(.+)" содержит замену ингредиента самого на себя\.$',
+    en: 'Cocktail "{0}" contains an ingredient substituted with itself.',
+  ),
+  _ErrorTemplate(
+    pattern:
+        r'^Коктейль "(.+)" содержит опциональный ингредиент "(.+)", которого нет в составе\.$',
+    en: 'Cocktail "{0}" contains optional ingredient "{1}" that is not in the recipe.',
+  ),
+  _ErrorTemplate(
+    pattern:
+        r'^Коктейль "(.+)" содержит ингредиент-украшение "(.+)", которого нет в составе\.$',
+    en: 'Cocktail "{0}" contains garnish ingredient "{1}" that is not in the recipe.',
+  ),
+  _ErrorTemplate(
+    pattern:
+        r'^Коктейль "(.+)" содержит количество для неизвестного ингредиента "(.+)"\.$',
+    en: 'Cocktail "{0}" contains an amount for unknown ingredient "{1}".',
+  ),
+  _ErrorTemplate(
+    pattern:
+        r'^Коктейль "(.+)" содержит единицу измерения для неизвестного ингредиента "(.+)"\.$',
+    en: 'Cocktail "{0}" contains a unit for unknown ingredient "{1}".',
+  ),
+];
+
+class _ErrorTemplate {
+  _ErrorTemplate({required String pattern, required this.en})
+    : pattern = RegExp(pattern);
+  final RegExp pattern;
+  final String en;
+}
 
 class _LocalizedLabel {
   const _LocalizedLabel({required this.ru, required this.en});
 
   final String ru;
   final String en;
-
-  String operator [](bool isEnglish) => isEnglish ? en : ru;
 }
 
 String _normalizeLocalizationKey(String value) {

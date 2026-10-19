@@ -23,7 +23,10 @@ A Flutter mobile app for managing your home bar:
 - Ingredient editor: create/update ingredients, including image URL or local file path.
 - Cocktail editor: dedicated create/edit page with full recipe configuration.
 - Recipe logic: optional ingredients, garnish ingredients, substitutions, amounts, and units.
-- Measurement systems: `ml`, `cl`, `fl oz`.
+- Measurement systems: `ml` (default), `cl`, `fl oz`; existing preferences are preserved.
+- Offline interface and recipe translations: English, Russian, Spanish, Portuguese,
+  German, French, Italian, Turkish, Simplified Chinese, Japanese, Korean, Hindi,
+  and Arabic (RTL), with a searchable language picker.
 - UI modes: `Visitor Mode` and `Bar Menu Mode`.
 - Power-saving mode support.
 - Persistence: selected ingredients, catalog, and UI settings are saved between launches.
@@ -56,6 +59,7 @@ App state is centralized in `BarCubit` and persisted on every change.
 - `lib/core` - theme, base widgets, localization, search helpers.
 - `lib/features/bar` - main bar feature (data/domain/cubit/presentation).
 - `assets/data/bar_template.json` - default catalog template.
+- `assets/data/catalog_localizations/` - bundled recipe text translations.
 - `assets/icon.png` - source app icon.
 - `docs/privacy-policy.md` - privacy policy template for store distribution.
 - `test/` - unit and widget tests.
@@ -164,6 +168,10 @@ Validation is implemented in `BarCatalogJsonCodec`.
 - Dart SDK `^3.10.8` (see `pubspec.yaml`)
 - Xcode (iOS) / Android Studio + SDK (Android)
 
+Update 1.2.0 is verified with Flutter 3.47.5 / Dart 3.13.4. Run Flutter
+tests and release builds sequentially: they generate shared plugin registrants
+with different development/release dependency sets.
+
 ### Install and Run
 
 ```bash
@@ -184,6 +192,13 @@ Tests:
 ```bash
 flutter test
 ```
+
+After editing the English catalog, regenerate its offline text overlays with
+`python3 tool/localize_catalog.py`. Regenerate interface translations with
+`node tool/generate_ui_translations.mjs` and verify coverage with its `--check`
+option. These development tools access a translation service; the app itself
+reads bundled translations without network requests. Review generated text
+before store publication. Recipe audit findings and sources are in `docs/`.
 
 Regenerate app icons from `assets/icon.png`:
 

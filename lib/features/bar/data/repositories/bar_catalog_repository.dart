@@ -423,9 +423,14 @@ class BarCatalogRepository {
     return _snapshot.toCatalog();
   }
 
-  Future<UnifiedCatalogSnapshot> refreshExternalCatalog() async {
+  Future<UnifiedCatalogSnapshot> refreshExternalCatalog({
+    bool Function()? shouldApply,
+  }) async {
     _ensureInitialized();
-    final externalLoadResult = await _loadExternalData();
+    final externalLoadResult = await _loadExternalData(
+      shouldCache: shouldApply,
+    );
+    if (shouldApply != null && !shouldApply()) return _snapshot;
     _externalData = externalLoadResult.data;
     _snapshot = _composeSnapshot(
       externalSourceAvailable: externalLoadResult.externalSourceAvailable,
@@ -558,9 +563,16 @@ class BarCatalogRepository {
     );
   }
 
-  Future<_ExternalLoadResult> _loadExternalData() async {
+  Future<_ExternalLoadResult> _loadExternalData({
+    bool Function()? shouldCache,
+  }) async {
     try {
-      final rawIngredients = await _externalProvider.fetchIngredients();
+      final provider = _externalProvider;
+      final payload = provider is CatalogSnapshotProvider
+          ? await (provider as CatalogSnapshotProvider).fetchCatalogSnapshot()
+          : null;
+      final rawIngredients =
+          payload?.ingredients ?? await provider.fetchIngredients();
       final templateMapper = IngredientCanonicalMapper.fromKnownIngredients(
         _templateCatalog.ingredients,
       );
@@ -575,7 +587,8 @@ class BarCatalogRepository {
             ...normalizedIngredients.map((item) => item.ingredient),
           ]);
 
-      final rawCocktails = await _externalProvider.fetchCocktails();
+      final rawCocktails =
+          payload?.cocktails ?? await provider.fetchCocktails();
       final normalizedCocktails = _normalizeCocktailsByProviderFormat(
         rawCocktails: rawCocktails,
         ingredientMapper: cocktailMapper,
@@ -588,7 +601,9 @@ class BarCatalogRepository {
         cocktails: _dedupeCocktailsBySourceId(normalizedCocktails),
       );
 
-      await _externalCacheStorage.write(normalizedExternal);
+      if (shouldCache == null || shouldCache()) {
+        await _externalCacheStorage.write(normalizedExternal);
+      }
       return _ExternalLoadResult(
         data: normalizedExternal,
         externalSourceAvailable: true,

@@ -1,0 +1,4644 @@
+{
+  "locale": "zh",
+  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
+  "sourceTextChecksum": "6248f5ae",
+  "ingredients": {
+    "151_proof_rum": {
+      "name": "151 度朗姆酒"
+    },
+    "7_up": {
+      "name": "7 向上"
+    },
+    "absinthe": {
+      "name": "苦艾酒"
+    },
+    "absolut_citron": {
+      "name": "绝对香橼"
+    },
+    "absolut_kurant": {
+      "name": "绝对库兰特"
+    },
+    "absolut_peppar": {
+      "name": "绝对胡椒"
+    },
+    "absolut_vodka": {
+      "name": "绝对伏特加"
+    },
+    "advocaat": {
+      "name": "倡导者"
+    },
+    "agave_syrup": {
+      "name": "龙舌兰糖浆"
+    },
+    "ale": {
+      "name": "麦芽酒"
+    },
+    "allspice": {
+      "name": "多香果"
+    },
+    "almond_flavoring": {
+      "name": "杏仁调味料"
+    },
+    "amaretto": {
+      "name": "阿玛雷托"
+    },
+    "amaro_montenegro": {
+      "name": "阿马罗黑山"
+    },
+    "angelica_root": {
+      "name": "当归"
+    },
+    "angostura_bitter": {
+      "name": "安古斯图拉苦酒"
+    },
+    "anis": {
+      "name": "阿尼斯"
+    },
+    "anisette": {
+      "name": "茴香酒"
+    },
+    "aperol": {
+      "name": "阿佩罗"
+    },
+    "apfelkorn": {
+      "name": "阿普费尔科恩"
+    },
+    "apple": {
+      "name": "苹果"
+    },
+    "apple_brandy": {
+      "name": "苹果白兰地"
+    },
+    "apple_cider": {
+      "name": "苹果酒"
+    },
+    "juice_apple": {
+      "name": "苹果汁"
+    },
+    "applejack": {
+      "name": "阿杰"
+    },
+    "apricot_brandy": {
+      "name": "杏子白兰地"
+    },
+    "apricot_nectar": {
+      "name": "杏花蜜"
+    },
+    "asafoetida": {
+      "name": "阿魏"
+    },
+    "a_ejo_rum": {
+      "name": "阿涅霍朗姆酒"
+    },
+    "bacardi_limon": {
+      "name": "百加得柠檬"
+    },
+    "baileys_irish_cream": {
+      "name": "百利甜爱尔兰奶油"
+    },
+    "banana": {
+      "name": "香蕉"
+    },
+    "banana_liqueur": {
+      "name": "香蕉利口酒"
+    },
+    "beer": {
+      "name": "啤酒"
+    },
+    "benedictine": {
+      "name": "本笃会"
+    },
+    "berries": {
+      "name": "浆果"
+    },
+    "bitter_lemon": {
+      "name": "苦柠檬"
+    },
+    "bitters": {
+      "name": "苦味酒"
+    },
+    "black_pepper": {
+      "name": "黑胡椒"
+    },
+    "black_sambuca": {
+      "name": "黑桑布卡"
+    },
+    "blackberries": {
+      "name": "黑莓"
+    },
+    "blackberry_brandy": {
+      "name": "黑莓白兰地"
+    },
+    "blackcurrant_cordial": {
+      "name": "黑加仑甜酒"
+    },
+    "blackstrap_rum": {
+      "name": "黑带朗姆酒"
+    },
+    "blended_scotch": {
+      "name": "混合苏格兰威士忌"
+    },
+    "blood_orange": {
+      "name": "血橙"
+    },
+    "blue_curacao": {
+      "name": "蓝色库拉索岛"
+    },
+    "bourbon": {
+      "name": "波旁威士忌"
+    },
+    "brandy": {
+      "name": "白兰地"
+    },
+    "brown_sugar": {
+      "name": "红糖"
+    },
+    "butter": {
+      "name": "黄油"
+    },
+    "butterscotch_schnapps": {
+      "name": "奶油糖果杜松子酒"
+    },
+    "cachaca": {
+      "name": "卡查卡"
+    },
+    "campari": {
+      "name": "金巴利"
+    },
+    "cantaloupe": {
+      "name": "哈密​​瓜"
+    },
+    "caramel_coloring": {
+      "name": "焦糖色素"
+    },
+    "carbonated_soft_drink": {
+      "name": "碳酸软饮料"
+    },
+    "cardamom": {
+      "name": "小豆蔻"
+    },
+    "cayenne_pepper": {
+      "name": "辣椒"
+    },
+    "celery_salt": {
+      "name": "芹菜盐"
+    },
+    "chambord_raspberry_liqueur": {
+      "name": "香波覆盆子利口酒"
+    },
+    "champagne": {
+      "name": "香槟酒"
+    },
+    "cherry": {
+      "name": "樱桃"
+    },
+    "cherry_brandy": {
+      "name": "樱桃白兰地"
+    },
+    "cherry_heering": {
+      "name": "樱桃希灵"
+    },
+    "cherry_juice": {
+      "name": "樱桃汁"
+    },
+    "cherry_liqueur": {
+      "name": "樱桃利口酒"
+    },
+    "chocolate": {
+      "name": "巧克力"
+    },
+    "chocolate_ice_cream": {
+      "name": "巧克力冰淇淋"
+    },
+    "chocolate_liqueur": {
+      "name": "巧克力利口酒"
+    },
+    "syrup_chocolate": {
+      "name": "巧克力糖浆"
+    },
+    "cider": {
+      "name": "苹果酒"
+    },
+    "cinnamon": {
+      "name": "肉桂"
+    },
+    "cloves": {
+      "name": "丁香"
+    },
+    "coca_cola": {
+      "name": "可口可乐"
+    },
+    "cocoa_powder": {
+      "name": "可可粉"
+    },
+    "coconut_liqueur": {
+      "name": "椰子利口酒"
+    },
+    "coconut_milk": {
+      "name": "椰奶"
+    },
+    "coconut_rum": {
+      "name": "椰子朗姆酒"
+    },
+    "syrup_coconut": {
+      "name": "椰子糖浆"
+    },
+    "coffee": {
+      "name": "咖啡"
+    },
+    "coffee_brandy": {
+      "name": "咖啡白兰地"
+    },
+    "coffee_liqueur": {
+      "name": "咖啡利口酒"
+    },
+    "cognac": {
+      "name": "科涅克白兰地"
+    },
+    "cointreau": {
+      "name": "君度"
+    },
+    "condensed_milk": {
+      "name": "炼乳"
+    },
+    "coriander": {
+      "name": "香菜"
+    },
+    "corn_syrup": {
+      "name": "玉米糖浆"
+    },
+    "corona": {
+      "name": "科罗娜"
+    },
+    "cranberries": {
+      "name": "蔓越莓"
+    },
+    "juice_cranberry": {
+      "name": "蔓越莓汁"
+    },
+    "cranberry_vodka": {
+      "name": "蔓越莓伏特加"
+    },
+    "cream": {
+      "name": "奶油"
+    },
+    "cream_of_coconut": {
+      "name": "椰子奶油"
+    },
+    "creme_de_banane": {
+      "name": "香蕉奶油"
+    },
+    "creme_de_cacao": {
+      "name": "可可奶油"
+    },
+    "creme_de_cassis": {
+      "name": "卡西斯奶油"
+    },
+    "creme_de_mure": {
+      "name": "穆尔奶油"
+    },
+    "crown_royal": {
+      "name": "皇冠皇家"
+    },
+    "cucumber": {
+      "name": "黄瓜"
+    },
+    "cumin_seed": {
+      "name": "小茴香种子"
+    },
+    "daiquiri_mix": {
+      "name": "代基里混合酒"
+    },
+    "rum_dark": {
+      "name": "黑朗姆酒"
+    },
+    "demerara_sugar": {
+      "name": "德梅拉拉糖"
+    },
+    "dr_pepper": {
+      "name": "佩珀博士"
+    },
+    "drambuie": {
+      "name": "德拉姆布伊"
+    },
+    "vermouth_dry": {
+      "name": "干苦艾酒"
+    },
+    "dubonnet_rouge": {
+      "name": "杜本内红"
+    },
+    "egg": {
+      "name": "蛋"
+    },
+    "egg_white": {
+      "name": "蛋白"
+    },
+    "egg_yolk": {
+      "name": "蛋黄"
+    },
+    "elderflower_cordial": {
+      "name": "接骨木花甜酒"
+    },
+    "espresso": {
+      "name": "浓缩咖啡"
+    },
+    "everclear": {
+      "name": "永清"
+    },
+    "falernum": {
+      "name": "法勒努姆"
+    },
+    "figs": {
+      "name": "无花果"
+    },
+    "firewater": {
+      "name": "消防水"
+    },
+    "frangelico": {
+      "name": "弗兰吉利科"
+    },
+    "fresca": {
+      "name": "弗雷斯卡"
+    },
+    "fresh_lemon_juice": {
+      "name": "新鲜柠檬汁"
+    },
+    "fresh_lime_juice": {
+      "name": "新鲜酸橙汁"
+    },
+    "fruit": {
+      "name": "水果"
+    },
+    "fruit_juice": {
+      "name": "果汁"
+    },
+    "fruit_punch": {
+      "name": "水果潘趣酒"
+    },
+    "galliano": {
+      "name": "加利亚诺香草利口酒"
+    },
+    "gin": {
+      "name": "杜松子酒"
+    },
+    "ginger": {
+      "name": "姜"
+    },
+    "ginger_ale": {
+      "name": "姜汁汽水"
+    },
+    "ginger_beer": {
+      "name": "姜汁啤酒"
+    },
+    "syrup_gingerbread": {
+      "name": "姜糖浆"
+    },
+    "godiva_liqueur": {
+      "name": "戈黛娃利口酒"
+    },
+    "rum_gold": {
+      "name": "金朗姆酒"
+    },
+    "goldschlager": {
+      "name": "戈德施拉格"
+    },
+    "grain_alcohol": {
+      "name": "谷物酒精"
+    },
+    "grand_marnier": {
+      "name": "金万利"
+    },
+    "grape_juice": {
+      "name": "葡萄汁"
+    },
+    "grape_soda": {
+      "name": "葡萄汽水"
+    },
+    "juice_grapefruit": {
+      "name": "柚子汁"
+    },
+    "grapes": {
+      "name": "葡萄"
+    },
+    "chartreuse_green": {
+      "name": "绿色黄绿色"
+    },
+    "creme_de_menthe_green": {
+      "name": "绿色薄荷奶油"
+    },
+    "grenadine": {
+      "name": "石榴糖浆"
+    },
+    "guinness_stout": {
+      "name": "吉尼斯黑啤酒"
+    },
+    "half_and_half": {
+      "name": "对半"
+    },
+    "heavy_cream": {
+      "name": "浓奶油"
+    },
+    "honey": {
+      "name": "蜂蜜"
+    },
+    "syrup_honey": {
+      "name": "蜂蜜糖浆"
+    },
+    "hot_chocolate": {
+      "name": "热巧克力"
+    },
+    "hot_damn": {
+      "name": "热死了"
+    },
+    "hot_sauce": {
+      "name": "辣酱"
+    },
+    "hpnotiq": {
+      "name": "赫普诺蒂克"
+    },
+    "ice": {
+      "name": "冰"
+    },
+    "iced_tea": {
+      "name": "冰茶"
+    },
+    "irish_whiskey": {
+      "name": "爱尔兰威士忌"
+    },
+    "islay_single_malt_scotch": {
+      "name": "艾莱岛单一麦芽苏格兰威士忌"
+    },
+    "jack_daniels": {
+      "name": "杰克丹尼"
+    },
+    "jagermeister": {
+      "name": "野格麦斯特"
+    },
+    "jello": {
+      "name": "果冻"
+    },
+    "jim_beam": {
+      "name": "吉姆·宾"
+    },
+    "johnnie_walker": {
+      "name": "尊尼获加"
+    },
+    "kahlua": {
+      "name": "卡鲁瓦"
+    },
+    "kiwi": {
+      "name": "猕猴桃"
+    },
+    "kiwi_liqueur": {
+      "name": "猕猴桃利口酒"
+    },
+    "kool_aid": {
+      "name": "酷爱饮料"
+    },
+    "lager": {
+      "name": "拉格啤酒"
+    },
+    "lavender": {
+      "name": "薰衣草"
+    },
+    "lemon": {
+      "name": "柠檬"
+    },
+    "lemon_lime_soda": {
+      "name": "柠檬酸橙苏打水"
+    },
+    "lemonade": {
+      "name": "柠檬水"
+    },
+    "light_cream": {
+      "name": "淡奶油"
+    },
+    "rum_light": {
+      "name": "淡朗姆酒"
+    },
+    "lillet": {
+      "name": "利莱"
+    },
+    "lillet_blanc": {
+      "name": "利勒白葡萄酒"
+    },
+    "lime": {
+      "name": "酸橙"
+    },
+    "lime_peel": {
+      "name": "酸橙皮"
+    },
+    "lime_vodka": {
+      "name": "青柠伏特加"
+    },
+    "limeade": {
+      "name": "酸橙水"
+    },
+    "malibu_rum": {
+      "name": "马里布朗姆酒"
+    },
+    "mango": {
+      "name": "芒果"
+    },
+    "syrup_maple": {
+      "name": "枫糖浆"
+    },
+    "maraschino_cherry": {
+      "name": "樱桃酒"
+    },
+    "maraschino_liqueur": {
+      "name": "黑樱桃利口酒"
+    },
+    "marshmallows": {
+      "name": "棉花糖"
+    },
+    "melon_liqueur": {
+      "name": "甜瓜利口酒"
+    },
+    "mezcal": {
+      "name": "梅斯卡尔"
+    },
+    "midori_melon_liqueur": {
+      "name": "绿瓜利口酒"
+    },
+    "milk": {
+      "name": "牛奶"
+    },
+    "mint": {
+      "name": "薄荷"
+    },
+    "syrup_mint": {
+      "name": "薄荷糖浆"
+    },
+    "mountain_dew": {
+      "name": "激浪"
+    },
+    "nutmeg": {
+      "name": "肉豆蔻"
+    },
+    "olive": {
+      "name": "橄榄"
+    },
+    "olive_brine": {
+      "name": "橄榄盐水"
+    },
+    "orange": {
+      "name": "橙子"
+    },
+    "orange_bitter": {
+      "name": "橙子苦味酒"
+    },
+    "orange_curacao": {
+      "name": "橙色库拉索岛"
+    },
+    "juice_orange": {
+      "name": "橙汁"
+    },
+    "orange_spiral": {
+      "name": "橙色螺旋"
+    },
+    "oreo_cookie": {
+      "name": "奥利奥饼干"
+    },
+    "orgeat_syrup": {
+      "name": "杏仁糖浆"
+    },
+    "ouzo": {
+      "name": "茴香酒"
+    },
+    "papaya": {
+      "name": "木瓜"
+    },
+    "juice_passion_fruit": {
+      "name": "百香果汁"
+    },
+    "passion_fruit_syrup": {
+      "name": "百香果糖浆"
+    },
+    "passoa": {
+      "name": "帕索阿"
+    },
+    "peach_bitters": {
+      "name": "桃子苦味酒"
+    },
+    "peach_brandy": {
+      "name": "桃子白兰地"
+    },
+    "peach_nectar": {
+      "name": "桃花蜜"
+    },
+    "peach_schnapps": {
+      "name": "桃杜松子酒"
+    },
+    "peach_vodka": {
+      "name": "桃子伏特加"
+    },
+    "pepper": {
+      "name": "胡椒"
+    },
+    "pepsi_cola": {
+      "name": "百事可乐"
+    },
+    "pernod": {
+      "name": "保乐力加"
+    },
+    "peychauds_bitter": {
+      "name": "佩乔德苦酒"
+    },
+    "pina_colada_mix": {
+      "name": "椰林飘香混合液"
+    },
+    "pineapple": {
+      "name": "菠萝"
+    },
+    "juice_pineapple": {
+      "name": "菠萝汁"
+    },
+    "pineapple_syrup": {
+      "name": "菠萝糖浆"
+    },
+    "pink_lemonade": {
+      "name": "粉红柠檬水"
+    },
+    "pisang_ambon": {
+      "name": "皮桑安汶"
+    },
+    "pisco": {
+      "name": "皮斯科"
+    },
+    "juice_pomegranate": {
+      "name": "石榴汁"
+    },
+    "port": {
+      "name": "港口"
+    },
+    "powdered_sugar": {
+      "name": "糖粉"
+    },
+    "prosecco": {
+      "name": "普罗塞克"
+    },
+    "raspberry_liqueur": {
+      "name": "覆盆子利口酒"
+    },
+    "syrup_raspberry": {
+      "name": "覆盆子糖浆"
+    },
+    "raspberry_vodka": {
+      "name": "覆盆子伏特加"
+    },
+    "red_chili_flakes": {
+      "name": "红辣椒片"
+    },
+    "wine_red": {
+      "name": "红葡萄酒"
+    },
+    "ricard": {
+      "name": "里卡德"
+    },
+    "root_beer": {
+      "name": "根汁汽水"
+    },
+    "rose": {
+      "name": "玫瑰"
+    },
+    "rosemary": {
+      "name": "迷迭香"
+    },
+    "syrup_rosemary": {
+      "name": "迷迭香糖浆"
+    },
+    "rosso_vermouth": {
+      "name": "罗索苦艾酒"
+    },
+    "ruby_port": {
+      "name": "红宝石波特"
+    },
+    "rum": {
+      "name": "朗姆酒"
+    },
+    "rye_whiskey": {
+      "name": "黑麦威士忌"
+    },
+    "salt": {
+      "name": "盐"
+    },
+    "sambuca": {
+      "name": "桑布卡"
+    },
+    "sarsaparilla": {
+      "name": "菝葜属"
+    },
+    "schweppes_russchian": {
+      "name": "俄罗斯史威士语"
+    },
+    "scotch": {
+      "name": "苏格兰威士忌"
+    },
+    "sherbet": {
+      "name": "果子露"
+    },
+    "sherry": {
+      "name": "雪利酒"
+    },
+    "sirup_of_roses": {
+      "name": "玫瑰糖浆"
+    },
+    "sloe_gin": {
+      "name": "黑刺李杜松子酒"
+    },
+    "soda_water": {
+      "name": "汽水"
+    },
+    "sour_mix": {
+      "name": "酸味混合物"
+    },
+    "southern_comfort": {
+      "name": "南方舒适酒店"
+    },
+    "soy_sauce": {
+      "name": "酱油"
+    },
+    "spiced_rum": {
+      "name": "五香朗姆酒"
+    },
+    "sprite": {
+      "name": "雪碧"
+    },
+    "st_germain": {
+      "name": "圣日耳曼"
+    },
+    "strawberries": {
+      "name": "草莓"
+    },
+    "strawberry_schnapps": {
+      "name": "草莓杜松子酒"
+    },
+    "sugar": {
+      "name": "糖"
+    },
+    "syrup_sugar": {
+      "name": "糖浆"
+    },
+    "surge": {
+      "name": "涌"
+    },
+    "sweet_and_sour": {
+      "name": "酸甜可口"
+    },
+    "tabasco_sauce": {
+      "name": "塔巴斯科辣酱"
+    },
+    "tea": {
+      "name": "茶"
+    },
+    "tennessee_whiskey": {
+      "name": "田纳西威士忌"
+    },
+    "tequila": {
+      "name": "龙舌兰酒"
+    },
+    "thyme": {
+      "name": "百里香"
+    },
+    "tia_maria": {
+      "name": "蒂亚玛丽亚"
+    },
+    "juice_tomato": {
+      "name": "番茄汁"
+    },
+    "tonic_water": {
+      "name": "汤力水"
+    },
+    "triple_sec": {
+      "name": "三秒"
+    },
+    "vanilla": {
+      "name": "香草"
+    },
+    "vanilla_extract": {
+      "name": "香草精"
+    },
+    "vanilla_ice_cream": {
+      "name": "香草冰淇淋"
+    },
+    "vanilla_syrup": {
+      "name": "香草糖浆"
+    },
+    "vermouth": {
+      "name": "苦艾酒"
+    },
+    "vodka": {
+      "name": "伏特加酒"
+    },
+    "water": {
+      "name": "水"
+    },
+    "whipped_cream": {
+      "name": "鲜奶油"
+    },
+    "whisky": {
+      "name": "威士忌酒"
+    },
+    "creme_de_menthe_white": {
+      "name": "白薄荷酒"
+    },
+    "wine_white": {
+      "name": "白葡萄酒"
+    },
+    "wild_turkey": {
+      "name": "野生火鸡"
+    },
+    "wine": {
+      "name": "葡萄酒"
+    },
+    "worcestershire_sauce": {
+      "name": "伍斯特郡酱"
+    },
+    "wormwood": {
+      "name": "蒿"
+    },
+    "chartreuse_yellow": {
+      "name": "黄黄绿色"
+    },
+    "yoghurt": {
+      "name": "酸奶"
+    },
+    "yukon_jack": {
+      "name": "育空杰克"
+    },
+    "zima": {
+      "name": "齐玛"
+    },
+    "peach_puree": {
+      "name": "白桃泥"
+    },
+    "grapefruit_soda": {
+      "name": "柚子苏打水"
+    },
+    "creme_de_violette": {
+      "name": "紫罗兰奶油"
+    },
+    "orange_flower_water": {
+      "name": "橙花水"
+    },
+    "cinnamon_syrup": {
+      "name": "肉桂糖浆"
+    },
+    "fat_washed_mezcal": {
+      "name": "准备好洗油的梅斯卡尔酒"
+    },
+    "habanero_tincture": {
+      "name": "准备好的哈瓦那酊剂"
+    },
+    "red_chilli": {
+      "name": "新鲜红辣椒"
+    }
+  },
+  "cocktails": {
+    "kabonyelka": {
+      "name": "卡博涅尔卡",
+      "description": "视觉上令人惊叹且复杂的分层镜头，旨在在玻璃内创建“星云”或“云”效果。这款鸡尾酒是一段质感之旅，首先是咖啡利口酒的浓郁泥土气息，然后是桑布卡的水晶般清澈的强度。最后添加的香草利口酒充当催化剂，飘过清澈的桑布卡层，形成空灵、纤细的结构，模仿黑暗天空中的云彩。",
+      "preparationSteps": [
+        "将咖啡利口酒倒入冰镇的玻璃杯中。",
+        "小心地将桑布卡添加到勺子背面。",
+        "以同样的方式添加Galliano以形成顶层。"
+      ]
+    },
+    "a1": {
+      "name": "A1",
+      "description": "将所有原料倒入鸡尾酒调酒器中，混合并加冰倒入冰镇的玻璃杯中。",
+      "preparationSteps": [
+        "将所有原料倒入鸡尾酒调酒器中，混合并加冰倒入冰镇的玻璃杯中。"
+      ]
+    },
+    "abc": {
+      "name": "ABC",
+      "description": "将苦杏酒倒入冰镇的玻璃杯中。在勺子背面慢慢加入爱尔兰奶油，然后在上面铺上干邑白兰地。",
+      "preparationSteps": [
+        "将苦杏酒倒入冰镇的玻璃杯中。",
+        "在勺子背面慢慢加入爱尔兰奶油，然后在上面铺上干邑白兰地。"
+      ]
+    },
+    "abilene": {
+      "name": "阿比林",
+      "description": "将所有原料倒入几乎装满冰块的高球杯中。搅拌均匀。",
+      "preparationSteps": [
+        "将所有原料倒入几乎装满冰块的高球杯中",
+        "搅拌均匀。"
+      ]
+    },
+    "acapulco": {
+      "name": "阿卡普尔科",
+      "description": "将所有成分（薄荷除外）与冰混合并摇匀，滤入装有冰块的老式玻璃杯中。添加薄荷枝即可食用。",
+      "preparationSteps": [
+        "将所有成分（薄荷除外）与冰混合并摇匀，滤入装有冰块的老式玻璃杯中",
+        "添加薄荷枝即可食用。"
+      ]
+    },
+    "ace": {
+      "name": "高手",
+      "description": "将所有成分放入鸡尾酒调酒器和冰块中摇匀，然后滤入冷玻璃杯中。",
+      "preparationSteps": [
+        "将所有成分放入鸡尾酒调酒器和冰块中摇匀，然后滤入冷玻璃杯中。"
+      ]
+    },
+    "adam": {
+      "name": "亚当",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "addington": {
+      "name": "阿丁顿",
+      "description": "将两种苦艾酒放入调酒器中混合，滤入冷玻璃杯中。注入一滴苏打水。",
+      "preparationSteps": [
+        "将两种苦艾酒放入调酒器中混合，滤入冷玻璃杯中",
+        "注入一滴苏打水。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "addison": {
+      "name": "艾迪生",
+      "description": "将所有成分摇匀，滤入冷玻璃杯中。",
+      "preparationSteps": [
+        "将所有成分摇匀，滤入冷玻璃杯中。"
+      ]
+    },
+    "affair": {
+      "name": "事务",
+      "description": "将杜松子酒、橙汁和蔓越莓汁倒入高球杯中的冰块上。淋上苏打水即可享用。",
+      "preparationSteps": [
+        "将杜松子酒、橙汁和酸果蔓汁倒入高球杯中的冰块上",
+        "淋上苏打水即可享用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "affinity": {
+      "name": "亲和力",
+      "description": "在装有半杯冰块的搅拌杯中，混合所有成分。搅拌均匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，混合所有成分",
+        "搅拌均匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "afterglow": {
+      "name": "余辉",
+      "description": "将两种果汁和石榴糖浆混合。将冰倒入高球杯中并搅拌。",
+      "preparationSteps": [
+        "将两种果汁和石榴糖浆混合。",
+        "将冰倒入高球杯中并搅拌。"
+      ]
+    },
+    "alexander": {
+      "name": "亚历山大",
+      "description": "将所有原料加冰摇匀​​，然后将内容物滤入鸡尾酒杯中。在上面撒上肉豆蔻即可食用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，然后将内容物滤入鸡尾酒杯中",
+        "在上面撒上肉豆蔻即可食用。"
+      ],
+      "ingredientAmounts": {
+        "nutmeg": "装饰用"
+      }
+    },
+    "algonquin": {
+      "name": "阿尔冈昆",
+      "description": "将所有原料与冰混合并摇匀，将内容物滤入鸡尾酒杯中，即可享用。",
+      "preparationSteps": [
+        "将所有原料与冰混合并摇匀，将内容物滤入鸡尾酒杯中，即可享用。"
+      ]
+    },
+    "allegheny": {
+      "name": "阿勒格尼",
+      "description": "将所有原料（柠檬皮除外）加冰摇匀，滤入鸡尾酒杯中。上面撒上柠檬皮，即可食用。",
+      "preparationSteps": [
+        "将所有原料（柠檬皮除外）加冰摇匀，滤入鸡尾酒杯中",
+        "上面撒上柠檬皮，即可食用。"
+      ]
+    },
+    "almeria": {
+      "name": "阿尔梅里亚",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "americano": {
+      "name": "美式咖啡",
+      "description": "在岩石杯中加入冰块，加入金巴利酒和甜红苦艾酒。加入少量苏打水并轻轻搅拌。用橙片和柠檬皮装饰。",
+      "preparationSteps": [
+        "在岩石杯中加入冰块，加入金巴利酒和甜红苦艾酒。",
+        "加入少量苏打水并轻轻搅拌。",
+        "用橙片和柠檬皮装饰。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "apello": {
+      "name": "阿佩罗",
+      "description": "将三种果汁倒入加冰的玻璃杯中并搅拌。用马拉斯基诺樱桃装饰。",
+      "preparationSteps": [
+        "将三种果汁倒入加冰的玻璃杯中并搅拌。",
+        "用马拉斯基诺樱桃装饰。"
+      ]
+    },
+    "applecar": {
+      "name": "苹果车",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "artillery": {
+      "name": "炮兵",
+      "description": "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "at-t": {
+      "name": "美国电话电报公司",
+      "description": "将伏特加和杜松子酒倒入冰块中，加入汤力水并搅拌",
+      "preparationSteps": [
+        "将伏特加和杜松子酒倒入冰块中，加入汤力水并搅拌"
+      ]
+    },
+    "avalanche": {
+      "name": "雪崩",
+      "description": "将威士忌、咖啡利口酒和奶油放入摇酒壶中加冰摇匀。滤入加有新鲜冰块的高球杯中。",
+      "preparationSteps": [
+        "将威士忌、咖啡利口酒和奶油放入摇酒壶中加冰摇匀。",
+        "滤入加有新鲜冰块的高球杯中。"
+      ],
+      "ingredientAmounts": {
+        "cream": "充值"
+      }
+    },
+    "avalon": {
+      "name": "阿瓦隆",
+      "description": "在一个高脚玻璃杯中装满冰块。将芬兰伏特加、柠檬汁和苹果汁、Pisang Ambon 分层，最后加入柠檬水。稍微搅拌，用螺旋黄瓜皮和红樱桃装饰。黄瓜提供了热情并且看起来很有吸引力。这款饮料由蒂莫·海米 (Timo Haimi) 创造，在 1991 年芬兰迪亚伏特加长饮大赛中获得一等奖。",
+      "preparationSteps": [
+        "在一个高脚玻璃杯中装满冰块",
+        "将芬兰伏特加、柠檬汁、苹果汁、Pisang Ambon 分层，最后加入柠檬水",
+        "稍微搅拌，用螺旋黄瓜皮和红樱桃装饰",
+        "黄瓜提供热情并且看起来很有吸引力",
+        "这款饮料由蒂莫·海米 (Timo Haimi) 创造，在 1991 年芬兰迪亚伏特加长饮大赛中获得一等奖。"
+      ],
+      "ingredientAmounts": {
+        "lemonade": "充值"
+      }
+    },
+    "aviation": {
+      "name": "航空",
+      "description": "将杜松子酒、柠檬汁和两种利口酒加冰摇匀直至冷却。滤入冰镇的鸡尾酒杯中。添加可选的马拉斯奇诺樱桃。",
+      "preparationSteps": [
+        "将杜松子酒、柠檬汁和两种利口酒加冰摇匀直至冷却。",
+        "滤入冰镇的鸡尾酒杯中。",
+        "添加可选的马拉斯奇诺樱桃。"
+      ]
+    },
+    "b-52": {
+      "name": "B-52",
+      "description": "将咖啡利口酒倒入冰镇的玻璃杯中。慢慢地将爱尔兰奶油倒在勺子背面，形成中间层。以同样的方式将橙色利口酒铺在上面。无需照明即可享用。",
+      "preparationSteps": [
+        "将咖啡利口酒倒入冰镇的玻璃杯中。",
+        "慢慢地将爱尔兰奶油倒在勺子背面，形成中间层。",
+        "以同样的方式将橙色利口酒铺在上面。无需照明即可享用。"
+      ]
+    },
+    "b-53": {
+      "name": "B-53",
+      "description": "将甘露酒倒入冰镇的玻璃杯中。将桑布卡和金万利酒慢慢地铺在勺子背面。",
+      "preparationSteps": [
+        "将甘露酒倒入冰镇的玻璃杯中。",
+        "将桑布卡和金万利酒慢慢地铺在勺子背面。"
+      ]
+    },
+    "baby-eskimo": {
+      "name": "爱斯基摩宝宝",
+      "description": "让冰淇淋短暂软化。将咖啡利口酒、牛奶和冰淇淋在一个大玻璃杯中搅拌直至光滑。立即上菜。",
+      "preparationSteps": [
+        "让冰淇淋短暂软化。",
+        "将咖啡利口酒、牛奶和冰淇淋在一个大玻璃杯中搅拌直至光滑。立即上菜。"
+      ]
+    },
+    "bahama-mama": {
+      "name": "巴哈马妈妈",
+      "description": "将朗姆酒、利口酒、石榴糖浆、果汁和酸甜混合物放入装有冰块的玻璃杯中混合。最后加入苏打水并轻轻搅拌。",
+      "preparationSteps": [
+        "将朗姆酒、利口酒、石榴糖浆、果汁和酸甜混合物放入装有冰块的玻璃杯中混合。",
+        "最后加入苏打水并轻轻搅拌。"
+      ]
+    },
+    "balmoral": {
+      "name": "巴尔莫勒尔",
+      "description": "在装有半杯冰块的搅拌杯中，混合所有成分。搅拌均匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，混合所有成分",
+        "搅拌均匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "barracuda": {
+      "name": "梭鱼",
+      "description": "除了普罗塞克以外，所有的酒都加冰摇匀。滤入冰镇玻璃杯中，然后在上面倒入普罗塞克葡萄酒。",
+      "preparationSteps": [
+        "除了普罗塞克以外，所有的酒都加冰摇匀。",
+        "滤入冰镇玻璃杯中，然后在上面倒入普罗塞克葡萄酒。"
+      ],
+      "ingredientAmounts": {
+        "prosecco": "充值"
+      }
+    },
+    "bellini": {
+      "name": "贝利尼",
+      "description": "桃子泥和普罗塞克构成了这款柔和闪亮的经典之作。",
+      "preparationSteps": [
+        "将长笛杯、桃泥和普罗塞克酒冷却。",
+        "将果泥和普罗塞克酒放入混合杯中，与冰轻轻混合。",
+        "倒入冰镇的笛子中，留下冰块。"
+      ]
+    },
+    "bible-belt": {
+      "name": "圣经腰带",
+      "description": "混合所有成分，倒在冰上。",
+      "preparationSteps": [
+        "混合所有成分，倒在冰上。"
+      ]
+    },
+    "big-red": {
+      "name": "大红色",
+      "description": "将原料倒入 1 盎司小玻璃杯中",
+      "preparationSteps": [
+        "将原料倒入 1 盎司小玻璃杯中"
+      ]
+    },
+    "bijou": {
+      "name": "宝石",
+      "description": "将所有成分与冰混合在搅拌杯中。搅拌直至冷却并滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将所有成分与冰混合在搅拌杯中。",
+        "搅拌直至冷却并滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "blackthorn": {
+      "name": "黑刺李",
+      "description": "将黑刺李杜松子酒和苦艾酒加冰搅拌，滤入鸡尾酒杯中。加入柠檬皮，即可食用。",
+      "preparationSteps": [
+        "将黑刺李杜松子酒和苦艾酒加冰搅拌，滤入鸡尾酒杯中",
+        "加入柠檬皮，即可食用。"
+      ]
+    },
+    "bluebird": {
+      "name": "蓝鸟",
+      "description": "在装有半杯碎冰的搅拌杯中，将杜松子酒、三秒酒、库拉索酒和苦味酒混合。搅拌均匀。滤入鸡尾酒杯，用柠檬片和樱桃装饰。",
+      "preparationSteps": [
+        "在装有半杯碎冰的调酒杯中，将杜松子酒、三秒酒、库拉索酒和苦味酒混合",
+        "搅拌均匀",
+        "滤入鸡尾酒杯，用柠檬片和樱桃装饰。"
+      ]
+    },
+    "bob-marley": {
+      "name": "鲍勃·马利",
+      "description": "放入 2 盎司的小酒杯或小酒杯中",
+      "preparationSteps": [
+        "放入 2 盎司的小酒杯或小酒杯中"
+      ]
+    },
+    "boomerang": {
+      "name": "回旋镖",
+      "description": "在装有半杯冰块的调酒杯中，将杜松子酒、苦艾酒、苦味酒和黑樱桃利口酒混合。搅拌均匀。滤入鸡尾酒杯并用樱桃装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，将杜松子酒、苦艾酒、苦味酒和黑樱桃利口酒混合",
+        "搅拌均匀",
+        "滤入鸡尾酒杯并用樱桃装饰。"
+      ]
+    },
+    "bora-bora": {
+      "name": "波拉波拉岛",
+      "description": "在搅拌机或摇酒器中准备，放入高球杯中加冰块。用 1 片菠萝和一颗樱桃装饰。",
+      "preparationSteps": [
+        "在搅拌机或摇酒器中准备，倒入高球杯中加冰块",
+        "用 1 片菠萝和一颗樱桃装饰。"
+      ]
+    },
+    "boston-sour": {
+      "name": "波士顿酸酒",
+      "description": "将柠檬汁、糖粉、混合威士忌和蛋清与碎冰一起摇匀，滤入威士忌酸杯中。添加柠檬片，上面放上樱桃，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将柠檬汁、糖粉、混合威士忌和蛋白与碎冰摇匀，滤入威士忌酸杯中",
+        "添加柠檬片，上面放上樱桃，即可食用。"
+      ]
+    },
+    "boxcar": {
+      "name": "棚车",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入酸玻璃杯中。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入酸玻璃杯中。"
+      ]
+    },
+    "brain-fart": {
+      "name": "脑放屁",
+      "description": "将所有成分缓慢而轻轻地混合在一起，如果在潘趣酒碗中添加冰且苏打水非常冷，则效果最佳。",
+      "preparationSteps": [
+        "将所有成分混合在一起",
+        "慢慢地、轻轻地",
+        "如果在潘趣酒碗中加冰且苏打水非常冷，效果最佳。"
+      ],
+      "ingredientAmounts": {
+        "everclear": "1 第五瓶",
+        "vodka": "1 第五瓶"
+      }
+    },
+    "bramble": {
+      "name": "荆棘",
+      "description": "在玻璃杯中装满碎冰。加入杜松子酒、柠檬汁和简单糖浆。搅拌，然后以圆形方式倒入黑莓利口酒，以产生大理石花纹效果。用两颗黑莓和柠檬片装饰。",
+      "preparationSteps": [
+        "用碎冰填充玻璃杯",
+        "加入杜松子酒、柠檬汁和简单糖浆",
+        "搅拌，然后以圆形方式倒入黑莓利口酒，以产生大理石花纹效果",
+        "用两颗黑莓和柠檬片装饰。"
+      ]
+    },
+    "brigadier": {
+      "name": "准将",
+      "description": "将配料放入温热的杯子中混合并搅拌。",
+      "preparationSteps": [
+        "将配料放入温热的杯子中混合并搅拌。"
+      ]
+    },
+    "broadside": {
+      "name": "宽边",
+      "description": "将冰块装满岩石杯一半。加入新鲜艾草、朗姆酒、苏格兰威士忌和苦精，然后搅拌。",
+      "preparationSteps": [
+        "将冰块装满岩石杯一半。",
+        "加入新鲜艾草、朗姆酒、苏格兰威士忌和苦精，然后搅拌。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "brooklyn": {
+      "name": "布鲁克林",
+      "description": "将原料与冰混合，搅拌直至充分冷却。滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将配料与冰混合并搅拌直至充分冷却",
+        "滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "bubble-gum": {
+      "name": "泡泡糖",
+      "description": "将四个等量的量杯与冰混合在一起。短暂搅拌并滤入冰镇的玻璃杯中。",
+      "preparationSteps": [
+        "将四个等量的量杯与冰混合在一起。",
+        "短暂搅拌并滤入冰镇的玻璃杯中。"
+      ]
+    },
+    "bumble-bee": {
+      "name": "大黄蜂",
+      "description": "将爱尔兰奶油倒入小玻璃杯中。在勺子背面慢慢加入咖啡利口酒，然后加入桑布卡。",
+      "preparationSteps": [
+        "将爱尔兰奶油倒入小玻璃杯中。",
+        "在勺子背面慢慢加入咖啡利口酒，然后加入桑布卡。"
+      ]
+    },
+    "cafe-savoy": {
+      "name": "萨沃伊咖啡馆",
+      "description": "将咖啡装满杯子，几乎达到顶部。加入牛奶、橙皮秒和白兰地。搅拌。",
+      "preparationSteps": [
+        "将咖啡装满杯子，几乎达到顶部。加入牛奶、橙皮秒和白兰地",
+        "搅拌。"
+      ],
+      "ingredientAmounts": {
+        "coffee": "品尝",
+        "brandy": "品尝"
+      }
+    },
+    "caipirinha": {
+      "name": "凯匹林纳鸡尾酒",
+      "description": "将酸橙和糖放入老式玻璃杯中并搅拌（使用搅拌器或木勺将两种成分捣碎在一起）。将玻璃杯装满冰块，然后加入卡莎萨酒。",
+      "preparationSteps": [
+        "将酸橙和糖放入老式玻璃杯中并搅拌（使用搅拌器或木勺将两种成分捣碎在一起）",
+        "将玻璃杯装满冰块，然后加入卡莎萨酒。"
+      ]
+    },
+    "caipirissima": {
+      "name": "凯皮里西玛",
+      "description": "将酸橙切成楔形，然后在坚固的玻璃杯中轻轻地与糖混合。加入白朗姆酒和碎冰。充分搅拌。",
+      "preparationSteps": [
+        "将酸橙切成楔形，然后在坚固的玻璃杯中轻轻地与糖混合。",
+        "加入白朗姆酒和碎冰。充分搅拌。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "campari-beer": {
+      "name": "金巴利啤酒",
+      "description": "使用 15 盎司玻璃杯，先加入金巴利 (Campari)，然后倒入啤酒。",
+      "preparationSteps": [
+        "使用 15 盎司玻璃杯",
+        "首先添加金巴利",
+        "装满啤酒。"
+      ]
+    },
+    "casa-blanca": {
+      "name": "卡萨布兰卡",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "casino": {
+      "name": "赌场",
+      "description": "将老汤姆杜松子酒、黑樱桃利口酒、新鲜柠檬汁和橙子苦酒加冰摇匀。滤入冰过的岩石玻璃杯中，加冰块。用樱桃装饰；柠檬皮小扭曲是可选的。",
+      "preparationSteps": [
+        "将老汤姆杜松子酒、黑樱桃利口酒、新鲜柠檬汁和橙子苦酒加冰摇匀。",
+        "滤入冰过的岩石玻璃杯中，加冰块。",
+        "用樱桃装饰；柠檬皮小扭曲是可选的。"
+      ]
+    },
+    "casino-royale": {
+      "name": "皇家赌场",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入酸玻璃杯中。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入酸玻璃杯中。"
+      ]
+    },
+    "cherry-rum": {
+      "name": "樱桃朗姆酒",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "chicago-fizz": {
+      "name": "芝加哥菲兹",
+      "description": "将所有原料（碳酸水除外）加冰摇匀，滤入盛有两块冰块的高球杯中。加入碳酸水，搅拌，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料（碳酸水除外）与冰块一起摇匀，滤入盛有两块冰块的高球杯中",
+        "加入碳酸水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "chocolate-drink": {
+      "name": "巧克力饮料",
+      "description": "将棒放入少量沸水中融化。添加牛奶。用小火煮，轻轻搅打（我想是用搅拌器）直到充分加热。不要让它沸腾！盛入咖啡杯中。",
+      "preparationSteps": [
+        "将棒放入少量沸水中融化",
+        "添加牛奶",
+        "用小火煮，轻轻搅打（我想是用搅拌器）直到充分加热",
+        "不要让它沸腾！盛入咖啡杯中。"
+      ],
+      "ingredientAmounts": {
+        "water": "根据需要"
+      }
+    },
+    "chocolate-milk": {
+      "name": "巧克力牛奶",
+      "description": "将牛奶倒入冰镇的玻璃杯中。慢慢加入巧克力利口酒和少许苦杏酒。无需搅拌即可食用。",
+      "preparationSteps": [
+        "将牛奶倒入冰镇的玻璃杯中。",
+        "慢慢加入巧克力利口酒和少许苦杏酒。无需搅拌即可食用。"
+      ]
+    },
+    "city-slicker": {
+      "name": "城市滑头",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "clove-cocktail": {
+      "name": "丁香鸡尾酒",
+      "description": "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "clover-club": {
+      "name": "三叶草俱乐部",
+      "description": "将杜松子酒、覆盆子糖浆、新鲜柠檬汁和几滴巴氏灭菌蛋清放入摇酒壶中混合。不加冰摇匀以产生泡沫，然后加冰并再次摇匀直至冷却。滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将杜松子酒、覆盆子糖浆、新鲜柠檬汁和几滴巴氏灭菌蛋清放入摇酒壶中混合。",
+        "不加冰摇匀以产生泡沫，然后加冰并再次摇匀直至冷却。",
+        "滤入冰镇的鸡尾酒杯中。"
+      ],
+      "ingredientAmounts": {
+        "egg_white": "几滴"
+      }
+    },
+    "coffee-liqueur": {
+      "name": "咖啡利口酒",
+      "description": "将咖啡、糖和水混合。煮1小时并冷却。添加香草和伏特加。在密封罐中陈化2至3周。",
+      "preparationSteps": [
+        "将咖啡、糖和水混合",
+        "煮1小时，放凉",
+        "添加香草和伏特加",
+        "在密封罐中陈化2至3周。"
+      ]
+    },
+    "coffee-vodka": {
+      "name": "咖啡伏特加",
+      "description": "将水和糖煮沸直至溶解。关掉暖气。慢慢加入干速溶咖啡并继续搅拌。将切碎的香草豆加入伏特加中，然后将冷却的糖浆和咖啡溶液与伏特加混合。盖紧盖子并每天剧烈摇晃，持续 3 周。过滤并过滤。最好让糖混合物完全冷却，这样伏特加在添加时就不会蒸发。如果您喜欢利口酒的顺滑口感，可以在成品中添加约 1 茶匙甘油。",
+      "preparationSteps": [
+        "将水和糖煮沸直至溶解",
+        "关掉暖气",
+        "慢慢加入干速溶咖啡并继续搅拌",
+        "将切碎的香草豆加入伏特加中，然后将冷却的糖浆和咖啡溶液与伏特加混合",
+        "盖紧盖子并每天剧烈摇晃，持续 3 周",
+        "应变和过滤",
+        "最好让糖混合物完全冷却，这样伏特加在添加时就不会蒸发",
+        "如果您喜欢利口酒的顺滑口感，可以在成品中添加约 1 茶匙甘油。"
+      ],
+      "ingredientAmounts": {
+        "caramel_coloring": "品尝"
+      }
+    },
+    "corn-n-oil": {
+      "name": "玉米油",
+      "description": "将半个青柠切成两块，在岩石杯中与法莱纳姆和苦味酒混合。加入陈年朗姆酒和冰块，然后搅拌。将黑带朗姆酒慢慢地漂浮在上面。",
+      "preparationSteps": [
+        "将半个青柠切成两块，在岩石杯中与法莱纳姆和苦味酒混合。",
+        "加入陈年朗姆酒和冰块，然后搅拌。",
+        "将黑带朗姆酒慢慢地漂浮在上面。"
+      ]
+    },
+    "corpse-reviver": {
+      "name": "尸体复活者",
+      "description": "在冰镇的鸡尾酒杯上涂上苦艾酒，然后丢弃多余的苦艾酒。将所有剩余成分与冰一起摇匀，然后滤入准备好的玻璃杯中。",
+      "preparationSteps": [
+        "在冰镇的鸡尾酒杯上涂上苦艾酒，然后丢弃多余的苦艾酒。",
+        "将所有剩余成分与冰一起摇匀，然后滤入准备好的玻璃杯中。"
+      ]
+    },
+    "cosmopolitan": {
+      "name": "大都会",
+      "description": "将所有成分添加到装满冰块的鸡尾酒调酒器中。摇匀并双重滤入大鸡尾酒杯中。用石灰轮装饰。",
+      "preparationSteps": [
+        "将所有原料加入装满冰块的鸡尾酒调酒器中",
+        "摇匀并双重滤入大鸡尾酒杯中",
+        "用石灰轮装饰。"
+      ]
+    },
+    "cranberry-punch": {
+      "name": "蔓越莓潘趣酒",
+      "description": "混合前四种成分。搅拌直至糖溶解，冷却。然后在食用前加入姜汁汽水。添加冰环以保持冲床冷却。",
+      "preparationSteps": [
+        "将前四种成分混合",
+        "搅拌至糖溶解，冷却",
+        "然后在食用前加入姜汁汽水",
+        "添加冰环以保持冲床冷却。"
+      ]
+    },
+    "cuba-libra": {
+      "name": "古巴天秤座",
+      "description": "在高脚玻璃杯中装满冰块。添加朗姆酒。将切下的酸橙边缘擦在玻璃杯边缘，然后将果汁挤入玻璃杯中。装满可口可乐。用酸橙片装饰。享受！",
+      "preparationSteps": [
+        "将高脚玻璃杯装满冰块",
+        "添加朗姆酒",
+        "将切下的酸橙边缘擦在玻璃杯边缘，然后将果汁挤入玻璃杯中",
+        "装满可口可乐",
+        "用青柠片装饰",
+        "享受！"
+      ],
+      "ingredientAmounts": {
+        "lime": "新鲜果汁品尝",
+        "coca_cola": "充值",
+        "ice": "根据需要"
+      }
+    },
+    "cuba-libre": {
+      "name": "自由古巴",
+      "description": "将所有原料放入装满冰块的柯林斯玻璃杯中。用酸橙角装饰。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有成分放入装满冰块的柯林斯玻璃杯中",
+        "用酸橙角装饰。"
+      ],
+      "ingredientAmounts": {
+        "coca_cola": "充值"
+      }
+    },
+    "daiquiri": {
+      "name": "代基里酒",
+      "description": "将所有原料倒入装有冰块的摇酒壶中。摇匀。滤入冰镇鸡尾酒杯。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有材料倒入装有冰块的摇酒壶中",
+        "摇匀",
+        "滤入冰镇鸡尾酒杯。"
+      ]
+    },
+    "danbooka": {
+      "name": "丹布卡",
+      "description": "倒入并混合。",
+      "preparationSteps": [
+        "倒入并混合。"
+      ]
+    },
+    "dark-and-stormy": {
+      "name": "黑暗和暴风雨",
+      "description": "在高球杯中装满冰块，然后加入姜汁啤酒。慢慢地将黑朗姆酒倒在上面。如果需要，可以用酸橙角装饰。",
+      "preparationSteps": [
+        "在高球杯中装满冰块，然后加入姜汁啤酒。",
+        "慢慢地将黑朗姆酒倒在上面。如果需要，可以用酸橙角装饰。"
+      ]
+    },
+    "dark-caipirinha": {
+      "name": "深色凯匹林纳鸡尾酒",
+      "description": "将糖混入老式玻璃杯中的酸橙块中。\r\n将玻璃杯装满冰块。\r\n将卡查卡倒入玻璃杯中。\r\n搅拌均匀。",
+      "preparationSteps": [
+        "将糖混入老式玻璃杯中的酸橙块中",
+        "将玻璃杯装满冰块",
+        "将卡查卡倒入玻璃杯中",
+        "搅拌均匀。"
+      ]
+    },
+    "darkwood-sling": {
+      "name": "黑木弹弓",
+      "description": "有很多优质的樱桃利口酒可供选择，但我更喜欢 Heering。添加一份利口酒。然后添加一份苏打水。对于酸吊带，请使用滋补品（大多数人更喜欢不添加滋补品的饮料）。然后，在玻璃杯中倒入橙汁和冰块。",
+      "preparationSteps": [
+        "有很多好的樱桃利口酒可供选择，但我更喜欢 Heering",
+        "添加一份利口酒",
+        "然后添加一份苏打水",
+        "对于酸吊带，请使用滋补品（大多数人更喜欢不含滋补品的饮料）",
+        "然后在玻璃杯中倒入橙汁和冰块。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "death-in-the-afternoon": {
+      "name": "下午的死亡",
+      "description": "冷却玻璃杯和两种原料。倒入苦艾酒，慢慢倒入香槟，即可享用。",
+      "preparationSteps": [
+        "冷却玻璃杯和两种原料。",
+        "倒入苦艾酒，慢慢倒入香槟，即可享用。"
+      ],
+      "ingredientAmounts": {
+        "champagne": "充值"
+      }
+    },
+    "derby": {
+      "name": "德比",
+      "description": "将所有原料倒入装有冰块的搅拌杯中。搅拌。滤入鸡尾酒杯。在饮料中加入一枝新鲜薄荷装饰。",
+      "preparationSteps": [
+        "将所有原料倒入装有冰块的搅拌杯中",
+        "搅拌",
+        "滤入鸡尾酒杯中",
+        "在饮料中加入一枝新鲜薄荷装饰。"
+      ]
+    },
+    "diesel": {
+      "name": "柴油机",
+      "description": "先倒入啤酒，然后加入黑加仑甜酒。加满苹果酒。颜色应该非常深，接近吉尼斯的颜色。",
+      "preparationSteps": [
+        "先倒入啤酒，然后加入黑加仑甜酒",
+        "加满苹果酒",
+        "颜色应该非常深，接近吉尼斯的颜色。"
+      ]
+    },
+    "dirty-martini": {
+      "name": "肮脏的马提尼",
+      "description": "将伏特加、干苦艾酒和橄榄盐水倒入鸡尾酒调酒器中，加入少量冰块，摇匀。\r\n用柠檬角擦拭马提尼酒杯的边缘。\r\n将鸡尾酒调酒器中的内容物滤入玻璃杯中，然后添加橄榄。\r\n肮脏的马提尼酒含有少量的橄榄盐水或橄榄汁，通常用橄榄装饰。",
+      "preparationSteps": [
+        "将伏特加、干苦艾酒和橄榄盐水倒入装有少量冰块的鸡尾酒调酒器中，摇匀",
+        "用柠檬角擦拭马提尼酒杯的边缘",
+        "将鸡尾酒调酒器中的内容物滤入玻璃杯中，然后添加橄榄",
+        "肮脏的马提尼酒含有少量的橄榄盐水或橄榄汁，通常用橄榄装饰。"
+      ]
+    },
+    "downshift": {
+      "name": "降档",
+      "description": "从精灵开始。接下来是龙舌兰酒。之后，加入美汁源水果潘趣酒，然后加入 151. Rocks（可选）。",
+      "preparationSteps": [
+        "从精灵开始",
+        "接下来是龙舌兰酒",
+        "之后，加入美汁源水果宾治，然后将151漂浮起来",
+        "岩石可选。"
+      ],
+      "ingredientAmounts": {
+        "151_proof_rum": "一个小浮标"
+      }
+    },
+    "dragonfly": {
+      "name": "蜻蜓",
+      "description": "在几乎装满冰块的高球杯中，将杜松子酒和姜汁汽水混合，搅拌均匀，用青柠角装饰。",
+      "preparationSteps": [
+        "在几乎装满冰块的高球杯中，将杜松子酒和姜汁汽水混合",
+        "搅拌均匀",
+        "用青柠角装饰。"
+      ]
+    },
+    "drinking-chocolate": {
+      "name": "喝巧克力",
+      "description": "将奶油、牛奶、肉桂棒和切开的香草荚轻轻加热 15-20 分钟。取出香草荚和肉桂棒。加入巧克力搅拌直至融化。分成一或两个杯子，上面涂上生奶油。",
+      "preparationSteps": [
+        "将奶油、牛奶、肉桂棒和切开的香草荚轻轻加热 15-20 分钟。",
+        "取出香草荚和肉桂棒。",
+        "加入巧克力搅拌直至融化。分成一或两个杯子，上面涂上生奶油。"
+      ],
+      "ingredientAmounts": {
+        "whipped_cream": "装饰用"
+      }
+    },
+    "dry-rob-roy": {
+      "name": "干罗布·罗伊",
+      "description": "在装有半杯冰块的搅拌杯中，将苏格兰威士忌和苦艾酒混合。搅拌均匀。滤入鸡尾酒杯。用柠檬片装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，将苏格兰威士忌和苦艾酒混合",
+        "搅拌均匀",
+        "滤入鸡尾酒杯中",
+        "用柠檬片装饰。"
+      ]
+    },
+    "dubonnet-cocktail": {
+      "name": "杜本内鸡尾酒",
+      "description": "将所有原料（柠檬皮除外）与冰搅拌，滤入鸡尾酒杯中。加入柠檬皮，即可食用。",
+      "preparationSteps": [
+        "将所有原料（柠檬皮除外）与冰搅拌，滤入鸡尾酒杯中",
+        "加入柠檬皮，即可食用。"
+      ]
+    },
+    "duchamp-s-punch": {
+      "name": "杜尚的一拳",
+      "description": "将皮斯科酒、青柠汁、菠萝糖浆、接骨木花利口酒、苦味酒和少许胡椒粉加入加冰的摇酒壶中。摇匀直至冷却，然后将其滤入装有一大块冰块的冰镇双层玻璃杯中。用薰衣草小枝装饰。",
+      "preparationSteps": [
+        "将皮斯科酒、青柠汁、菠萝糖浆、接骨木花利口酒、苦味酒和少许胡椒粉加入加冰的摇酒壶中。",
+        "摇匀直至冷却，然后将其滤入装有一大块冰块的冰镇双层玻璃杯中。",
+        "用薰衣草小枝装饰。"
+      ]
+    },
+    "egg-cream": {
+      "name": "鸡蛋奶油",
+      "description": "在喷泉杯中混合糖浆和牛奶。加入苏打水，用吸管饮用。",
+      "preparationSteps": [
+        "在喷泉杯中混合糖浆和牛奶",
+        "加入苏打水，用吸管饮用。"
+      ]
+    },
+    "egg-nog-4": {
+      "name": "蛋奶酒 #4",
+      "description": "在一个小搅拌碗中，搅打蛋黄直至混合 逐渐加入 1/4 杯糖，高速搅打至浓稠并呈现柠檬色 搅拌入牛奶，拌入朗姆酒、波本威士忌、香草精和盐 彻底冷却 搅打奶油 充分清洗搅拌器 在一个大搅拌碗中，搅打蛋清直至形成软峰 逐渐加入剩余的 1/4 杯糖，搅打至硬峰 将蛋黄混合物和搅打奶油折叠到蛋清中 立即食用 撒上肉豆蔻每份装在潘趣酒碗或另一个大碗中 注意：对于不含酒精的蛋酒，按照上述方法准备蛋酒，只是省略波旁威士忌和朗姆酒并将牛奶增加到 3 杯。",
+      "preparationSteps": [
+        "在一个小搅拌碗中，将蛋黄搅拌至混合",
+        "逐渐加入1/4杯糖，高速搅打至浓稠并呈柠檬色",
+        "加入牛奶、朗姆酒、波本威士忌、香草精和盐搅拌",
+        "彻底冷却",
+        "淡奶油",
+        "好好清洗搅拌机",
+        "在一个大搅拌碗中，搅打蛋白直至形成软峰",
+        "逐渐加入剩余的 1/4 杯糖，打至硬性发泡",
+        "将蛋黄混合物和淡奶油拌入蛋白中",
+        "立即上菜",
+        "在每份食物上撒上肉豆蔻粉",
+        "盛入潘趣酒碗或另一个大碗中",
+        "注意：对于不含酒精的蛋酒，按照上述方法准备蛋酒，只是省略波旁威士忌和朗姆酒并将牛奶增加到 3 杯。"
+      ],
+      "ingredientAmounts": {
+        "nutmeg": "装饰用"
+      }
+    },
+    "egg-nog-healthy": {
+      "name": "蛋奶酒 - 健康",
+      "description": "将鸡蛋替代品和糖搅打在一起，与两种牛奶、香草和朗姆酒混合。搅拌均匀。过夜冷却。撒上肉豆蔻。做 6 份。",
+      "preparationSteps": [
+        "将鸡蛋替代品和糖搅打在一起，与两种牛奶、香草和朗姆酒混合",
+        "搅拌均匀",
+        "过夜冷却",
+        "撒上肉豆蔻粉",
+        "做 6 份。"
+      ],
+      "ingredientAmounts": {
+        "nutmeg": "装饰用"
+      }
+    },
+    "egg-nog-classic-cooked": {
+      "name": "蛋奶酒 - 经典熟制",
+      "description": "批量配方：将鸡蛋、糖和盐放入大平底锅中搅拌。加入一半牛奶搅拌。用小火煮，不断搅拌，直到混合物覆盖勺子并达到 160°F（约 71°C）。从火上移开，加入剩余的牛奶和香草精搅拌。盖上盖子并冷藏几个小时或过夜，直至完全冷却。倒入杯子前搅拌并冷藏。",
+      "preparationSteps": [
+        "批量配方：将鸡蛋、糖和盐放入大平底锅中搅拌。",
+        "加入一半牛奶搅拌。",
+        "用小火煮，不断搅拌，直到混合物覆盖勺子并达到 160°F（约 71°C）。",
+        "从火上移开，加入剩余的牛奶和香草精搅拌。",
+        "盖上盖子并冷藏几个小时或过夜，直至完全冷却。",
+        "倒入杯子前搅拌并冷藏。"
+      ]
+    },
+    "elderflower-caipirinha": {
+      "name": "接骨木花凯匹林纳鸡尾酒",
+      "description": "将酸橙切成楔形，然后在坚固的玻璃杯中轻轻搅拌。添加接骨木花甜酒、卡莎萨酒和碎冰。搅拌并根据需要添加更多碎冰。",
+      "preparationSteps": [
+        "将酸橙切成楔形，然后在坚固的玻璃杯中轻轻搅拌。",
+        "添加接骨木花甜酒、卡莎萨酒和碎冰。",
+        "搅拌并根据需要添加更多碎冰。"
+      ]
+    },
+    "empell-n-cocina-s-fat-washed-mezcal": {
+      "name": "Empellón Cocina 的肥洗梅斯卡尔酒",
+      "description": "一种巧克力和咖啡鸡尾酒，需要准备好经过油脂清洗的梅斯卡尔酒；可选的哈瓦那酊剂可以增加热量。",
+      "preparationSteps": [
+        "这个食谱使用已经准备好的阿多波脂洗梅斯卡尔酒。",
+        "将准备好的梅斯卡尔酒和巧克力利口酒加冰搅拌约 45 秒。",
+        "滤入冰镇的小杯中，然后用勺子将咖啡利口酒慢慢倒入内部。",
+        "可选择滴上五滴准备好的哈瓦那酊剂。"
+      ]
+    },
+    "english-highball": {
+      "name": "英式高球杯",
+      "description": "将白兰地、杜松子酒和甜苦艾酒倒入装有冰块的高球杯中。加满碳酸水。加入柠檬皮，搅拌，即可食用。 （如果愿意，可以用姜汁汽水代替碳酸水。）",
+      "preparationSteps": [
+        "将白兰地、杜松子酒和甜苦艾酒倒入加冰块的高球杯中",
+        "加满碳酸水",
+        "加入柠檬皮，搅拌，即可食用",
+        "（如果愿意，可以用姜汁汽水代替碳酸水。）"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值",
+        "lemon": "品尝"
+      }
+    },
+    "english-rose-cocktail": {
+      "name": "英国玫瑰鸡尾酒",
+      "description": "用柠檬汁擦拭鸡尾酒杯的边缘，然后将玻璃杯的边缘浸入糖粉中，将所有成分（樱桃除外）与冰块一起摇匀，然后滤入糖边玻璃杯中，在上面放上樱桃即可食用。",
+      "preparationSteps": [
+        "用柠檬汁擦拭鸡尾酒杯的边缘，然后将玻璃杯的边缘浸入糖粉中",
+        "将所有原料（樱桃除外）加冰摇匀，滤入糖边玻璃杯中",
+        "上面放上樱桃即可食用。"
+      ],
+      "ingredientAmounts": {
+        "powdered_sugar": "对于轮辋"
+      }
+    },
+    "espresso-martini": {
+      "name": "浓缩咖啡马提尼",
+      "description": "冲泡一杯浓咖啡并短暂冷却。将伏特加、咖啡利口酒、糖浆和浓缩咖啡加入加冰的摇酒壶中。剧烈摇晃直至形成泡沫，然后滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "冲泡一杯浓咖啡并短暂冷却。",
+        "将伏特加、咖啡利口酒、糖浆和浓缩咖啡加入加冰的摇酒壶中。",
+        "剧烈摇晃直至形成泡沫，然后滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "espresso-rumtini": {
+      "name": "浓咖啡鲁姆蒂尼",
+      "description": "将朗姆酒、香草糖浆、浓缩咖啡和咖啡与冰块一起放入摇酒壶中混合。摇匀直至冷却并滤入鸡尾酒杯中。",
+      "preparationSteps": [
+        "将朗姆酒、香草糖浆、浓缩咖啡和咖啡与冰块一起放入摇酒壶中混合。",
+        "摇匀直至冷却并滤入鸡尾酒杯中。"
+      ]
+    },
+    "fahrenheit-5000": {
+      "name": "华氏 5000",
+      "description": "用塔巴斯科酱覆盖小酒杯底部，然后倒入一半 Firewater 和一半 Absolut Peppar。",
+      "preparationSteps": [
+        "用塔巴斯科酱覆盖小酒杯底部，然后倒入一半 Firewater 和一半 Absolut Peppar。"
+      ]
+    },
+    "figgy-thyme": {
+      "name": "无花果百里香",
+      "description": "将无花果和百里香放入摇酒壶中搅匀。加入伏特加、蜂蜜和新鲜柠檬汁调味；原始来源没有指定固定的柠檬措施。加冰，摇匀，滤入装有碎冰的柯林斯杯中。顶上补品并添加苦味剂。",
+      "preparationSteps": [
+        "将无花果和百里香放入摇酒壶中搅匀。",
+        "加入伏特加、蜂蜜和新鲜柠檬汁调味；原始来源没有指定固定的柠檬措施。",
+        "加冰，摇匀，滤入装有碎冰的柯林斯杯中。",
+        "顶上补品并添加苦味剂。"
+      ],
+      "ingredientAmounts": {
+        "tonic_water": "充值",
+        "lemon": "新鲜果汁品尝"
+      }
+    },
+    "flaming-dr-pepper": {
+      "name": "燃烧的胡椒博士",
+      "description": "将苦杏酒、伏特加和朗姆酒放入冰镇玻璃杯中混合。加入 Dr Pepper 和啤酒，然后轻轻搅拌。未点燃即可食用。",
+      "preparationSteps": [
+        "将苦杏酒、伏特加和朗姆酒放入冰镇玻璃杯中混合。",
+        "加入 Dr Pepper 和啤酒，然后轻轻搅拌。未点燃即可食用。"
+      ]
+    },
+    "flaming-lamborghini": {
+      "name": "燃烧的兰博基尼",
+      "description": "将所有四种冰镇利口酒放入鸡尾酒杯中。轻轻搅拌并在未点燃的情况下食用。这是无火焰版本。",
+      "preparationSteps": [
+        "将所有四种冰镇利口酒放入鸡尾酒杯中。",
+        "轻轻搅拌并在未点燃的情况下食用。这是无火焰版本。"
+      ]
+    },
+    "flying-dutchman": {
+      "name": "飞翔的荷兰人号",
+      "description": "在一个几乎装满冰块的老式玻璃杯中，将杜松子酒和三秒酒混合。搅拌均匀。",
+      "preparationSteps": [
+        "在几乎装满冰块的老式玻璃杯中，将杜松子酒和三秒甜酒混合",
+        "搅拌均匀。"
+      ]
+    },
+    "flying-scotchman": {
+      "name": "飞翔的苏格兰人",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "foxy-lady": {
+      "name": "狡猾的女士",
+      "description": "将所有原料加冰摇匀​​，滤入冰镇的鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入冰镇的鸡尾酒杯中即可享用。"
+      ]
+    },
+    "frapp": {
+      "name": "冰沙",
+      "description": "使用冰镇咖啡和牛奶。如果咖啡是现煮的，请先冷却。将咖啡、牛奶和糖高速搅拌约一分钟，直至起泡。倒入玻璃杯中并立即食用。",
+      "preparationSteps": [
+        "使用冰镇咖啡和牛奶。如果咖啡是现煮的，请先冷却。",
+        "将咖啡、牛奶和糖高速搅拌约一分钟，直至起泡。",
+        "倒入玻璃杯中并立即食用。"
+      ]
+    },
+    "freddy-kruger": {
+      "name": "弗雷迪·克鲁格",
+      "description": "将三种冰镇烈酒放入小玻璃杯中并短暂搅拌。",
+      "preparationSteps": [
+        "将三种冰镇烈酒放入小玻璃杯中并短暂搅拌。"
+      ]
+    },
+    "french-75": {
+      "name": "法语75",
+      "description": "将杜松子酒、糖和柠檬汁放入装满冰块的鸡尾酒调酒器中混合。用力摇晃并滤入冰镇的香槟杯中。加满香槟。轻轻搅拌。",
+      "preparationSteps": [
+        "将杜松子酒、糖和柠檬汁放入装满冰块的鸡尾酒调酒器中混合",
+        "用力摇晃并滤入冰镇的香槟杯中",
+        "加满香槟",
+        "轻轻搅拌。"
+      ]
+    },
+    "french-connection": {
+      "name": "法国连线",
+      "description": "将所有原料直接倒入装有冰块的老式玻璃杯中。轻轻搅拌。",
+      "preparationSteps": [
+        "将所有原料直接倒入装有冰块的老式玻璃杯中",
+        "轻轻搅拌。"
+      ]
+    },
+    "french-martini": {
+      "name": "法国马提尼",
+      "description": "将所有原料倒入装有冰块的摇酒壶中。充分摇匀并滤入冰镇的鸡尾酒杯中。将柠檬皮上的油挤到饮料上。",
+      "preparationSteps": [
+        "将所有材料倒入装有冰块的摇酒壶中",
+        "摇匀并滤入冰镇的鸡尾酒杯中",
+        "将柠檬皮上的油挤到饮料上。"
+      ]
+    },
+    "french-negroni": {
+      "name": "法国内格罗尼",
+      "description": "在摇酒壶中加入冰块，倒入所有原料。\n使用吧勺搅拌 40 至 45 转或直至完全冷却。\n滤入马提尼杯或加冰后倒入岩石杯中。用橙色麻花装饰。",
+      "preparationSteps": [
+        "在摇酒壶中加入冰块，然后倒入所有原料",
+        "使用吧勺搅拌 40 至 45 转或直至完全冷却",
+        "滤入马提尼杯或加冰滤入岩石杯",
+        "用橙色麻花装饰。"
+      ]
+    },
+    "frisco-sour": {
+      "name": "弗里斯科酸酒",
+      "description": "将所有原料（柠檬片和酸橙片除外）加冰摇匀，滤入威士忌酸玻璃杯中。用柠檬片和酸橙片装饰即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料（柠檬片和酸橙片除外）加冰摇匀，滤入威士忌酸玻璃杯中",
+        "用柠檬片和酸橙片装饰即可食用。"
+      ]
+    },
+    "fros": {
+      "name": "弗罗塞",
+      "description": "批量配方：将桃红葡萄酒倒入可冷冻的浅容器中，冷冻至少六个小时，直至几乎凝固。将糖和半杯水加热直至溶解。离火，加入草莓，浸泡 30 分钟。过滤草莓糖浆并冷却。量出 3 1/2 盎司的糖浆作为饮料；保留任何剩余部分。将冷冻桃红葡萄酒与柠檬汁、量好的糖浆和一杯碎冰混合。将混合物冷冻 25-35 分钟，再次短暂混合并分装在玻璃杯中。",
+      "preparationSteps": [
+        "批量配方：将桃红葡萄酒倒入可冷冻的浅容器中，冷冻至少六个小时，直至几乎凝固。",
+        "将糖和半杯水加热直至溶解。离火，加入草莓，浸泡 30 分钟。",
+        "过滤草莓糖浆并冷却。量出 3 1/2 盎司的糖浆作为饮料；保留任何剩余部分。",
+        "将冷冻桃红葡萄酒与柠檬汁、量好的糖浆和一杯碎冰混合。",
+        "将混合物冷冻 25-35 分钟，再次短暂混合并分装在玻璃杯中。"
+      ]
+    },
+    "frozen-daiquiri": {
+      "name": "冷冻代基里酒",
+      "description": "将所有成分（樱桃除外）混合在电动搅拌机中，低速搅拌五秒钟，然后高速搅拌直至变硬。将内容物倒入香槟杯中，上面撒上樱桃，即可享用。",
+      "preparationSteps": [
+        "将所有成分（樱桃除外）混合在电动搅拌机中，低速搅拌五秒钟，然后高速搅拌直至变硬",
+        "将内容物倒入香槟杯中，上面撒上樱桃，即可享用。"
+      ]
+    },
+    "frozen-mint-daiquiri": {
+      "name": "冷冻薄荷代基里酒",
+      "description": "将所有原料与 1 杯碎冰放入电动搅拌机中混合。低速短时间搅拌。倒入老式玻璃杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料与 1 杯碎冰放入电动搅拌机中混合",
+        "低速短时间搅拌",
+        "倒入老式玻璃杯中即可享用。"
+      ]
+    },
+    "frozen-pineapple-daiquiri": {
+      "name": "冷冻菠萝代基里酒",
+      "description": "将所有原料与 1 杯碎冰放入电动搅拌机中混合。低速短时间搅拌。倒入鸡尾酒杯即可享用。",
+      "preparationSteps": [
+        "将所有原料与 1 杯碎冰放入电动搅拌机中混合",
+        "低速短时间搅拌",
+        "倒入鸡尾酒杯即可享用。"
+      ]
+    },
+    "fruit-cooler": {
+      "name": "水果冷藏柜",
+      "description": "将草莓与糖拌匀，在冰箱中放置过夜切柠檬，保留两片将其余的榨汁将柠檬汁，草莓，苹果汁和苏打水混合在一起添加柠檬片（实际上是装饰）放入玻璃杯中，放入冰块和一片苹果倒入饮料即可食用。",
+      "preparationSteps": [
+        "将草莓与糖拌匀，放入冰箱冷藏过夜",
+        "切开柠檬，保留两片",
+        "剩下的榨汁",
+        "将柠檬汁、草莓、苹果汁和苏打水混合在一起",
+        "添加柠檬片（装饰，真的）",
+        "在玻璃杯中放入冰块和一片苹果",
+        "倒入饮料，即可享用。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "fruit-flip-flop": {
+      "name": "水果人字拖",
+      "description": "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合。倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。",
+      "preparationSteps": [
+        "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合",
+        "倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。"
+      ]
+    },
+    "fruit-shake": {
+      "name": "水果奶昔",
+      "description": "搅拌直至光滑。",
+      "preparationSteps": [
+        "搅拌直至光滑。"
+      ]
+    },
+    "funk-and-soul": {
+      "name": "放克与灵魂乐",
+      "description": "将所有成分混合在一起，滤入柯林斯杯中。尽可能使用牙买加朗姆酒以获得更正宗的味道。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有成分混合在一起，滤入柯林斯杯中",
+        "尽可能使用牙买加朗姆酒以获得更正宗的味道。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "gagliardo": {
+      "name": "加利亚多",
+      "description": "摇匀并装入鸡尾酒杯中。这是意大利帕维亚的American/Internet Bar del Pozzo 的家庭鸡尾酒。",
+      "preparationSteps": [
+        "摇匀并盛入鸡尾酒杯中",
+        "这是意大利帕维亚的American/Internet Bar del Pozzo 的家庭鸡尾酒。"
+      ]
+    },
+    "gg": {
+      "name": "GG",
+      "description": "将加利亚诺利口酒倒在冰上。将杯子的剩余部分倒入姜汁汽水，仅此而已。现在你已经有了一个属于你自己的GG了。",
+      "preparationSteps": [
+        "将加利亚诺利口酒倒在冰上",
+        "将剩下的玻璃杯倒入姜汁汽水，仅此而已",
+        "现在你已经有了一个属于你自己的GG了。"
+      ],
+      "ingredientAmounts": {
+        "ginger_ale": "充值",
+        "ice": "根据需要"
+      }
+    },
+    "gimlet": {
+      "name": "钻头",
+      "description": "将所有原料放入摇酒壶中并加满冰块。\r\n\r\n摇匀，滤入冰镇鸡尾酒杯或装满新鲜冰块的老式玻璃杯中。\r\n\r\n用石灰轮装饰。",
+      "preparationSteps": [
+        "将所有原料放入摇酒壶中并加满冰块",
+        "摇匀，滤入冰镇鸡尾酒杯或装满新鲜冰块的老式玻璃杯中",
+        "用石灰轮装饰。"
+      ]
+    },
+    "gin-cooler": {
+      "name": "杜松子酒冷却器",
+      "description": "将糖溶解在柯林斯玻璃杯中约 60 毫升苏打水中。加入冰块和杜松子酒，加入更多苏打水并搅拌。用橙子皮和柠檬皮装饰。",
+      "preparationSteps": [
+        "将糖溶解在柯林斯玻璃杯中约 60 毫升苏打水中。",
+        "加入冰块和杜松子酒，加入更多苏打水并搅拌。",
+        "用橙子皮和柠檬皮装饰。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "gin-daisy": {
+      "name": "金菊花",
+      "description": "在装满冰块的摇酒壶中，将杜松子酒、柠檬汁、糖和石榴糖浆混合，摇匀，倒入老式玻璃杯中，用樱桃和橙片装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将杜松子酒、柠檬汁、糖和石榴糖浆混合",
+        "摇匀",
+        "倒入老式玻璃杯中，用樱桃和橙片装饰。"
+      ]
+    },
+    "gin-fizz": {
+      "name": "杜松子酒菲兹",
+      "description": "除苏打水外，将所有原料与冰块一起摇匀。倒入玻璃杯中。上面加苏打水。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "除苏打水外，将所有原料与冰块一起摇匀",
+        "倒入玻璃杯中",
+        "上面加苏打水。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "gin-rickey": {
+      "name": "金瑞奇",
+      "description": "将高脚玻璃杯装满一半冰块。将杜松子酒和石榴糖浆混合在一起，倒在冰上。加入酸橙汁或柠檬汁，最后加入苏打水。用酸橙和/或柠檬片装饰玻璃杯。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "在高脚玻璃杯中倒入半杯冰块",
+        "将杜松子酒和石榴糖浆混合在一起，倒在冰上",
+        "加入酸橙汁或柠檬汁，最后加入苏打水",
+        "用酸橙和/或柠檬片装饰玻璃杯。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值",
+        "lime": "品尝"
+      }
+    },
+    "gin-sling": {
+      "name": "杜松子酒司令",
+      "description": "将糖粉溶解在水和柠檬汁的混合物中。添加杜松子酒。倒入装有冰块的老式玻璃杯中并搅拌。加入橙皮，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将糖粉溶解在水和柠檬汁的混合物中",
+        "添加杜松子酒",
+        "倒入装有冰块的老式玻璃杯中，搅拌",
+        "加入橙皮，即可食用。"
+      ]
+    },
+    "gin-smash": {
+      "name": "杜松子酒粉碎",
+      "description": "将糖与碳酸水和薄荷枝放入老式玻璃杯中搅匀，加入杜松子酒和 1 个冰块，搅拌，加入橙片和樱桃，即可食用。",
+      "preparationSteps": [
+        "将糖与碳酸水和薄荷枝混合在老式玻璃杯中",
+        "添加杜松子酒和 1 块冰块",
+        "搅拌，加入橙片和樱桃，即可食用。"
+      ]
+    },
+    "gin-sour": {
+      "name": "金酸酒",
+      "description": "在装有半杯冰块的摇酒壶中，将杜松子酒、柠檬汁和糖混合，摇匀，滤入酸玻璃杯中，用橙片和樱桃装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将杜松子酒、柠檬汁和糖混合",
+        "摇匀",
+        "滤入酸玻璃杯中，用橙片和樱桃装饰。"
+      ]
+    },
+    "gin-squirt": {
+      "name": "杜松子酒喷",
+      "description": "将杜松子酒、石榴糖浆和糖粉与冰搅拌，滤入盛有冰块的高球杯中。加入碳酸水并搅拌。用菠萝块和草莓装饰即可食用。",
+      "preparationSteps": [
+        "将杜松子酒、石榴糖浆和糖粉与冰搅拌，滤入装有冰块的高球杯中",
+        "加入碳酸水并搅拌",
+        "用菠萝块和草莓装饰即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "gin-swizzle": {
+      "name": "杜松子酒调酒",
+      "description": "在装有半杯冰块的摇酒壶中，将酸橙汁、糖、杜松子酒和苦精混合。摇匀。冰块几乎装满了一个冷却杯。搅拌直至玻璃结霜。将摇酒器中的混合物滤入玻璃杯中，然后加入苏打水。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将酸橙汁、糖、杜松子酒和苦精混合在一起",
+        "摇匀",
+        "冰块几乎填满了一个冷却杯",
+        "搅拌直至玻璃结霜",
+        "将摇酒器中的混合物滤入玻璃杯中，然后加入苏打水。"
+      ]
+    },
+    "gin-toddy": {
+      "name": "杜松子酒托迪酒",
+      "description": "在老式玻璃杯中混合糖粉和水。添加杜松子酒和一块冰块。搅拌，加入柠檬皮，即可食用。",
+      "preparationSteps": [
+        "在老式玻璃杯中混合糖粉和水",
+        "添加杜松子酒和一块冰块",
+        "搅拌，加入柠檬皮，即可食用。"
+      ]
+    },
+    "gin-tonic": {
+      "name": "金汤力",
+      "description": "在高球杯中加入冰块，倒入杜松子酒，倒入汤力水，挤入柠檬角，并用柠檬角装饰。",
+      "preparationSteps": [
+        "在高球杯中加入冰块，倒入杜松子酒，倒入汤力水，挤入柠檬角，并用柠檬角装饰。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "gluehwein": {
+      "name": "热酒",
+      "description": "加热水、糖和香料直至糖溶解，然后浸泡 30 分钟。过滤，加入酒和柠檬汁，轻轻加热，不要沸腾。趁热食用。短暂加热并不能使葡萄酒不含酒精。",
+      "preparationSteps": [
+        "加热水、糖和香料直至糖溶解，然后浸泡 30 分钟。",
+        "过滤，加入酒和柠檬汁，轻轻加热，不要沸腾。",
+        "趁热食用。短暂加热并不能使葡萄酒不含酒精。"
+      ]
+    },
+    "godchild": {
+      "name": "教子",
+      "description": "将所有原料与碎冰充分摇匀，滤入香槟杯中即可食用。",
+      "preparationSteps": [
+        "将所有原料与碎冰充分摇匀，滤入香槟杯中即可食用。"
+      ]
+    },
+    "godfather": {
+      "name": "教父",
+      "description": "将所有原料直接倒入装有冰块的老式玻璃杯中。轻轻搅拌。",
+      "preparationSteps": [
+        "将所有原料直接倒入装有冰块的老式玻璃杯中",
+        "轻轻搅拌。"
+      ]
+    },
+    "godmother": {
+      "name": "教母",
+      "description": "将伏特加和苦杏酒倒入加冰的老式玻璃杯中即可享用。",
+      "preparationSteps": [
+        "将伏特加和苦杏酒倒入加冰的老式玻璃杯中即可享用。"
+      ]
+    },
+    "grand-blue": {
+      "name": "碧海蓝天",
+      "description": "将所有原料加冰摇匀​​直至冷却。滤入装有新鲜冰块的岩石杯中。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​直至冷却。",
+        "滤入装有新鲜冰块的岩石杯中。"
+      ]
+    },
+    "grass-skirt": {
+      "name": "草裙",
+      "description": "在装有半杯冰块的摇酒壶中，将杜松子酒、三秒酒、菠萝汁和石榴糖浆混合，摇匀，倒入老式玻璃杯中，用菠萝片装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将杜松子酒、三秒酒、菠萝汁和石榴糖浆混合",
+        "摇匀",
+        "倒入老式玻璃杯中，用菠萝片装饰。"
+      ]
+    },
+    "grasshopper": {
+      "name": "蚱蜢",
+      "description": "将原料倒入加冰的鸡尾酒调酒器中。快速摇匀，然后滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将原料倒入加冰的鸡尾酒调酒器中",
+        "快速摇匀，然后滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "grim-reaper": {
+      "name": "死神",
+      "description": "将咖啡豆和 151 在玻璃杯中混合。快速加冰，将石榴糖浆倒在冰上，呈现冰红色调。",
+      "preparationSteps": [
+        "将咖啡壶和 151 在玻璃杯中混合",
+        "快速加冰，将石榴糖浆倒在冰上，呈现冰红色调。"
+      ]
+    },
+    "h-d": {
+      "name": "高清。",
+      "description": "将威士忌和爱尔兰奶油放入容量至少为 500 毫升的耐热玻璃杯中。倒入热咖啡并搅拌。",
+      "preparationSteps": [
+        "将威士忌和爱尔兰奶油放入容量至少为 500 毫升的耐热玻璃杯中。",
+        "倒入热咖啡并搅拌。"
+      ],
+      "ingredientAmounts": {
+        "coffee": "品尝"
+      }
+    },
+    "halloween-punch": {
+      "name": "万圣节冲床",
+      "description": "批量配方：制作约12个小玻璃杯；伏特加是可选的。将橙子去皮；仅使用果皮。将整个辣椒刺穿。将樱桃汁、橙皮、辣椒、肉桂、丁香和生姜煮五分钟。冷却并冷藏至少四个小时。滤出香料并去皮。如果使用伏特加，请搅拌并倒入玻璃杯中。",
+      "preparationSteps": [
+        "批量配方：制作约12个小玻璃杯；伏特加是可选的。",
+        "将橙子去皮；仅使用果皮。将整个辣椒刺穿。",
+        "将樱桃汁、橙皮、辣椒、肉桂、丁香和生姜煮五分钟。",
+        "冷却并冷藏至少四个小时。滤出香料并去皮。",
+        "如果使用伏特加，请搅拌并倒入玻璃杯中。"
+      ]
+    },
+    "happy-skipper": {
+      "name": "快乐船长",
+      "description": "将摩根船长的香料朗姆酒倒入冰块中，倒入玻璃杯，倒入姜汁汽水。用石灰装饰。尝起来像奶油苏打水。以吉利根岛命名（《金杰》中的“船长”是一位快乐的船长！）",
+      "preparationSteps": [
+        "将摩根船长的香料朗姆酒倒在冰上，在玻璃杯中倒入姜汁汽水",
+        "用石灰装饰",
+        "尝起来像奶油苏打水",
+        "以吉利根岛命名（《金杰》中的“船长”是一位快乐的船长！）"
+      ],
+      "ingredientAmounts": {
+        "ginger_ale": "充值",
+        "lime": "品尝",
+        "ice": "根据需要"
+      }
+    },
+    "harvey-wallbanger": {
+      "name": "哈维·沃尔班格",
+      "description": "将伏特加和橙汁与冰块一起放入玻璃杯中搅拌，然后将加利亚诺浮在上面。装饰并上菜。",
+      "preparationSteps": [
+        "将伏特加和橙汁与冰块放入玻璃杯中搅拌，然后将加利亚诺浮在上面",
+        "装饰并上菜。"
+      ]
+    },
+    "havana-cocktail": {
+      "name": "哈瓦那鸡尾酒",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "hawaiian-cocktail": {
+      "name": "夏威夷鸡尾酒",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "hemingway-special": {
+      "name": "海明威特辑",
+      "description": "将所有原料加冰摇匀​​直至冷却。滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​直至冷却。",
+        "滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "herbal-flame": {
+      "name": "草本火焰",
+      "description": "将 Hot Damn 100 倒入罐子或普通玻璃杯的底部。将剩下的杯子装满甜茶。用勺子、吸管或者更好的是肉桂棒搅拌，然后将其留在里面。",
+      "preparationSteps": [
+        "将 Hot Damn 100 倒入罐子或普通玻璃杯的底部",
+        "将剩下的杯子装满甜茶",
+        "用勺子、吸管或者更好的是肉桂棒搅拌，然后将其留在里面。"
+      ],
+      "ingredientAmounts": {
+        "tea": "品尝"
+      }
+    },
+    "highland-fling-cocktail": {
+      "name": "高地狂欢鸡尾酒",
+      "description": "将所有原料（橄榄除外）与冰搅拌，滤入鸡尾酒杯中。加入橄榄即可食用。",
+      "preparationSteps": [
+        "将所有原料（橄榄除外）与冰搅拌，滤入鸡尾酒杯中",
+        "加入橄榄即可食用。"
+      ]
+    },
+    "homemade-kahlua": {
+      "name": "自制卡鲁瓦咖啡",
+      "description": "将糖溶解在 2 杯沸水中，然后加入玉米糖浆 将速溶咖啡溶解在剩余的水中 将糖浆和咖啡倒入一加仑壶中 让它冷却 冷时添加伏特加和香草 为了获得最佳效果，让混合物“成熟” 4-5 周。",
+      "preparationSteps": [
+        "将糖溶解在 2 杯沸水中，加入玉米糖浆",
+        "将速溶咖啡溶解在剩余的水中",
+        "将糖浆和咖啡倒入一加仑壶中",
+        "让它冷却",
+        "冷后加入伏特加和香草",
+        "为了获得最佳效果，让混合物“熟化”4-5 周。"
+      ],
+      "ingredientAmounts": {
+        "vodka": "1 第五瓶"
+      }
+    },
+    "honey-bee": {
+      "name": "蜜蜂",
+      "description": "将蜂蜜与新鲜柠檬汁搅拌直至松散。加入朗姆酒和冰块，摇匀，滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将蜂蜜与新鲜柠檬汁搅拌直至松散。",
+        "加入朗姆酒和冰块，摇匀，滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "horse-s-neck": {
+      "name": "马脖子",
+      "description": "将白兰地和姜汁汽水直接倒入装有冰块的高球杯中。轻轻搅拌。用柠檬皮装饰。如果需要，可添加少许安古斯图拉苦酒。",
+      "preparationSteps": [
+        "将白兰地和姜汁汽水直接倒入装有冰块的高球杯中",
+        "轻轻搅拌",
+        "用柠檬皮装饰",
+        "如果需要，可添加少许安古斯图拉苦酒。"
+      ]
+    },
+    "hot-chocolate-to-die-for": {
+      "name": "令人垂涎欲滴的热巧克力",
+      "description": "将巧克力与黄油和香草一起在水浴上融化。一半一半地搅拌直至光滑且热，但不要沸腾。倒入杯子中，加入迷你棉花糖。",
+      "preparationSteps": [
+        "将巧克力与黄油和香草一起在水浴上融化。",
+        "一半一半地搅拌直至光滑且热，但不要沸腾。",
+        "倒入杯子中，加入迷你棉花糖。"
+      ],
+      "ingredientAmounts": {
+        "marshmallows": "装饰用"
+      }
+    },
+    "hot-creamy-bush": {
+      "name": "热奶油布什",
+      "description": "将所有成分混合在玻璃杯中",
+      "preparationSteps": [
+        "将所有成分混合在玻璃杯中"
+      ]
+    },
+    "hot-toddy": {
+      "name": "热棕榈酒",
+      "description": "其数量相当于两块耐热玻璃杯。将威士忌和蜂蜜分装在玻璃杯中。每条加入半根肉桂棒。在每个玻璃杯中加入 200 毫升热水并搅拌。加入柠檬汁调味，并用一片柠檬片和一瓣丁香装饰每个玻璃杯。",
+      "preparationSteps": [
+        "其数量相当于两块耐热玻璃杯。",
+        "将威士忌和蜂蜜分装在玻璃杯中。每条加入半根肉桂棒。",
+        "在每个玻璃杯中加入 200 毫升热水并搅拌。",
+        "加入柠檬汁调味，并用一片柠檬片和一瓣丁香装饰每个玻璃杯。"
+      ]
+    },
+    "hunter-s-moon": {
+      "name": "猎人的月亮",
+      "description": "继 Absolut Drinks 版本之后推出的杜松子酒、干苦艾酒和雪利酒鸡尾酒。",
+      "preparationSteps": [
+        "这是 Hunter’s Moon 的精神前卫 Absolut Drinks 版本。",
+        "将杜松子酒、干苦艾酒和雪利酒加冰搅拌直至冷却。",
+        "滤入冰镇的鸡尾酒杯中，用橄榄和柠檬皮装饰。"
+      ]
+    },
+    "iced-coffee": {
+      "name": "冰咖啡",
+      "description": "混合直至咖啡和糖溶解。添加牛奶。摇匀。使用搅拌机或奶昔机可以制作出泡沫丰富的饮料。盛入咖啡杯中。",
+      "preparationSteps": [
+        "混合直至咖啡和糖溶解",
+        "添加牛奶",
+        "摇匀",
+        "使用搅拌机或奶昔机制作出泡沫丰富的饮料",
+        "盛入咖啡杯中。"
+      ]
+    },
+    "imperial-cocktail": {
+      "name": "帝国鸡尾酒",
+      "description": "加冰摇匀，滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "加冰摇匀，滤入鸡尾酒杯。"
+      ]
+    },
+    "imperial-fizz": {
+      "name": "帝国菲兹",
+      "description": "将所有原料（碳酸水除外）加冰摇匀，滤入盛有两块冰块的高球杯中。加入碳酸水，搅拌，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料（碳酸水除外）与冰块一起摇匀，滤入盛有两块冰块的高球杯中",
+        "加入碳酸水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "ipamena": {
+      "name": "伊帕梅纳",
+      "description": "将半个青柠切成片，与红糖一起放入摇酒壶中搅匀。加入百香果汁和冰块，然后摇匀。滤入玻璃杯中，倒入姜汁汽水，轻轻搅拌。",
+      "preparationSteps": [
+        "将半个青柠切成片，与红糖一起放入摇酒壶中搅匀。",
+        "加入百香果汁和冰块，然后摇匀。",
+        "滤入玻璃杯，倒入姜汁汽水，轻轻搅拌。"
+      ],
+      "ingredientAmounts": {
+        "ginger_ale": "充值",
+        "ice": "根据需要"
+      }
+    },
+    "irish-coffee": {
+      "name": "爱尔兰咖啡",
+      "description": "加热咖啡、威士忌和糖；不要煮沸。倒入玻璃杯中，并在上面涂上奶油；趁热上桌。",
+      "preparationSteps": [
+        "加热咖啡、威士忌和糖；不要煮沸",
+        "倒入玻璃杯中，并在上面涂上奶油；趁热上桌。"
+      ]
+    },
+    "irish-cream": {
+      "name": "爱尔兰奶油",
+      "description": "将苏格兰威士忌和炼乳混合。加入各半的椰子糖浆和巧克力糖浆，搅拌至光滑。放入干净的密闭容器中冷藏并冷藏。",
+      "preparationSteps": [
+        "将苏格兰威士忌和炼乳混合。",
+        "加入各半的椰子糖浆和巧克力糖浆，搅拌至光滑。",
+        "放入干净的密闭容器中冷藏并冷藏。"
+      ]
+    },
+    "irish-curdling-cow": {
+      "name": "爱尔兰凝乳牛",
+      "description": "将爱尔兰奶油、伏特加和波本威士忌倒入玻璃杯中。添加一些冰块并与橙汁混合。",
+      "preparationSteps": [
+        "将爱尔兰奶油、伏特加和波本威士忌倒入玻璃杯中",
+        "添加一些冰块并与橙汁混合。"
+      ]
+    },
+    "irish-russian": {
+      "name": "爱尔兰语 俄语",
+      "description": "按照食谱中列出的顺序添加成分。添加吉尼斯黑啤酒时必须小心，以防止产生过多的泡沫。不要加冰。",
+      "preparationSteps": [
+        "按照食谱中列出的顺序添加成分",
+        "添加吉尼斯黑啤酒时必须小心，以防止产生过多的泡沫",
+        "不要加冰。"
+      ],
+      "ingredientAmounts": {
+        "guinness_stout": "充值"
+      }
+    },
+    "irish-spring": {
+      "name": "爱尔兰之春",
+      "description": "将所有原料（橙片和樱桃除外）倒入装有冰块的柯林斯玻璃杯中。用橙片装饰，在上面添加樱桃，即可食用。",
+      "preparationSteps": [
+        "将所有原料（橙片和樱桃除外）倒入装有冰块的柯林斯玻璃杯中",
+        "用橙片装饰，在上面添加樱桃，即可食用。"
+      ]
+    },
+    "jack-rose-cocktail": {
+      "name": "杰克玫瑰鸡尾酒",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "jack-s-vanilla-coke": {
+      "name": "杰克香草可乐",
+      "description": "倒入材料后，根据口味添加3-5块冰块。用搅拌器搅拌饮料，去除底部的香草味。",
+      "preparationSteps": [
+        "倒入材料后，根据口味加入3-5块冰块",
+        "用搅拌器搅拌饮料，去除底部的香草味。"
+      ]
+    },
+    "jackhammer": {
+      "name": "手提钻",
+      "description": "将两种烈酒倒入加冰的岩石杯中并搅拌。",
+      "preparationSteps": [
+        "将两种烈酒倒入加冰的岩石杯中并搅拌。"
+      ]
+    },
+    "jam-donut": {
+      "name": "果酱甜甜圈",
+      "description": "在小玻璃杯的边缘涂上糖，然后用糖浆粘住。将香波覆盆子利口酒倒入玻璃杯中，小心地在上面铺上百利甜爱尔兰奶油。服务。",
+      "preparationSteps": [
+        "在小玻璃杯的边缘涂上糖，然后用糖浆粘住",
+        "将香波覆盆子利口酒倒入玻璃杯中，小心地在上面铺上百利甜爱尔兰奶油",
+        "服务。"
+      ]
+    },
+    "jamaica-kiss": {
+      "name": "牙买加之吻",
+      "description": "将玻璃杯装满冰块。添加一杯蒂亚玛丽亚和一杯牙买加淡朗姆酒。将玻璃杯装满牛奶。搅拌至光滑并立即食用。",
+      "preparationSteps": [
+        "将玻璃杯装满冰块",
+        "添加一杯蒂亚玛丽亚和一杯牙买加淡朗姆酒",
+        "将玻璃杯装满牛奶",
+        "搅拌至光滑并立即食用。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要",
+        "milk": "品尝"
+      }
+    },
+    "jamaican-coffee": {
+      "name": "牙买加咖啡",
+      "description": "将朗姆酒、咖啡和水搅拌在一起，在上面撒上生奶油，撒上少许磨碎的咖啡，然后用吸管饮用。",
+      "preparationSteps": [
+        "将朗姆酒、咖啡和水搅拌在一起",
+        "上面撒上生奶油",
+        "撒上少许磨碎的咖啡，然后用吸管饮用。"
+      ],
+      "ingredientAmounts": {
+        "whipped_cream": "装饰用"
+      }
+    },
+    "japanese-fizz": {
+      "name": "日本汽水",
+      "description": "将所有原料（碳酸水除外）加冰摇匀，滤入盛有两块冰块的高球杯中。加入碳酸水，搅拌，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料（碳酸水除外）与冰块一起摇匀，滤入盛有两块冰块的高球杯中",
+        "加入碳酸水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "jello-shots": {
+      "name": "果冻射击",
+      "description": "煮沸 3 杯水，然后加入果冻。将果冻和水混合直至果冻完全溶解。添加两杯伏特加并混合在一起。将混合物倒入塑料玻璃杯中并冷却直至变硬。然后，吃掉...",
+      "preparationSteps": [
+        "煮沸 3 杯水，然后加入果冻",
+        "将果冻和水混合直至果冻完全溶解",
+        "添加两杯伏特加并混合在一起",
+        "将混合物倒入塑料玻璃杯中并冷却直至变硬",
+        "然后，吃掉..."
+      ]
+    },
+    "jelly-bean": {
+      "name": "果冻豆",
+      "description": "在小马杯中混合等份，味道就像软糖一样！",
+      "preparationSteps": [
+        "在小马杯中混合等份，味道就像软糖一样！"
+      ]
+    },
+    "jewel-of-the-nile": {
+      "name": "尼罗河宝石",
+      "description": "在装有半杯冰块的搅拌杯中，混合所有成分。搅拌均匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，混合所有成分",
+        "搅拌均匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "jitterbug": {
+      "name": "吉特巴",
+      "description": "弄湿玻璃杯，将边缘浸入糖中，然后添加冰块，然后添加其他所有东西，就这么简单！",
+      "preparationSteps": [
+        "湿玻璃杯，将边缘浸入糖中",
+        "然后加入冰块",
+        "然后添加其他所有内容",
+        "就这么简单！"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "john-collins": {
+      "name": "约翰·柯林斯",
+      "description": "将所有原料直接倒入装满冰块的高球杯中，轻轻搅拌，装饰，加入少许安古斯图拉苦精。",
+      "preparationSteps": [
+        "将所有原料直接倒入装满冰块的高球杯中",
+        "轻轻搅拌",
+        "装饰",
+        "添加少许安古斯图拉苦精。"
+      ]
+    },
+    "just-a-moonmint": {
+      "name": "只是一颗月薄荷",
+      "description": "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合。倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。",
+      "preparationSteps": [
+        "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合",
+        "倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。"
+      ],
+      "ingredientAmounts": {
+        "syrup_chocolate": "品尝",
+        "syrup_mint": "品尝"
+      }
+    },
+    "kamikaze": {
+      "name": "神风队",
+      "description": "将所有成分与冰一起摇匀。滤入玻璃杯中，装饰并上桌。",
+      "preparationSteps": [
+        "将所有材料与冰块一起摇匀",
+        "滤入玻璃杯，装饰并上桌。"
+      ]
+    },
+    "karsk": {
+      "name": "卡尔斯克",
+      "description": "将热咖啡倒入耐热杯中。加入称量好的食品级谷物酒精并搅拌。不需要硬币。",
+      "preparationSteps": [
+        "将热咖啡倒入耐热杯中。",
+        "加入称量好的食品级谷物酒精并搅拌。不需要硬币。"
+      ]
+    },
+    "kentucky-b-and-b": {
+      "name": "肯塔基民宿",
+      "description": "将波本威士忌和本笃会倒入白兰地酒杯中。",
+      "preparationSteps": [
+        "将波本威士忌和本笃会倒入白兰地酒杯中。"
+      ]
+    },
+    "kentucky-colonel": {
+      "name": "肯塔基上校",
+      "description": "在装有半杯冰块的摇酒壶中，将库本和本笃会混合在一起。摇匀并滤入鸡尾酒杯。用柠檬片装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将库本和本笃会混合在一起",
+        "摇匀并滤入鸡尾酒杯",
+        "用柠檬片装饰。"
+      ]
+    },
+    "kill-the-cold-smoothie": {
+      "name": "杀死冰冷的冰沙",
+      "description": "将生姜和柠檬榨汁，加入热水中。您可以添加小豆蔻。",
+      "preparationSteps": [
+        "将生姜和柠檬榨汁，加入热水中",
+        "您可以添加小豆蔻。"
+      ]
+    },
+    "kioki-coffee": {
+      "name": "奇奥基咖啡",
+      "description": "将甘露酒和白兰地倒入耐热杯中。倒入热咖啡并搅拌。如果需要，可以添加生奶油。",
+      "preparationSteps": [
+        "将甘露酒和白兰地倒入耐热杯中。",
+        "倒入热咖啡并搅拌。如果需要，可以添加生奶油。"
+      ],
+      "ingredientAmounts": {
+        "coffee": "品尝"
+      }
+    },
+    "kir-royale": {
+      "name": "皇家基尔",
+      "description": "将黑醋栗奶油倒入玻璃杯中，轻轻地在上面倒上香槟",
+      "preparationSteps": [
+        "将黑醋栗奶油倒入玻璃杯中，轻轻地在上面倒上香槟"
+      ]
+    },
+    "kiss-me-quick": {
+      "name": "快点吻我",
+      "description": "在玻璃杯中混合",
+      "preparationSteps": [
+        "在玻璃杯中混合"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "kiwi-lemon": {
+      "name": "猕猴桃柠檬",
+      "description": "在高球杯中混合。搅拌。用猕猴桃片装饰。",
+      "preparationSteps": [
+        "加入高球杯中混合",
+        "搅拌器",
+        "用猕猴桃片装饰。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "kiwi-martini": {
+      "name": "奇异果马提尼",
+      "description": "将猕猴桃去皮，并在摇酒器中与糖浆混合。加入伏特加和冰块，然后摇匀。滤入冰镇鸡尾酒杯中。",
+      "preparationSteps": [
+        "将猕猴桃去皮，并在摇酒器中与糖浆混合。",
+        "加入伏特加和冰块，然后摇匀。",
+        "滤入冰镇鸡尾酒杯中。"
+      ]
+    },
+    "kiwi-papaya-smoothie": {
+      "name": "猕猴桃木瓜冰沙",
+      "description": "将所有东西放入搅拌机中并液化。",
+      "preparationSteps": [
+        "将所有东西放入搅拌机中并液化。"
+      ]
+    },
+    "kool-aid-shot": {
+      "name": "酷爱饮料",
+      "description": "倒入装有冰块的大玻璃杯中并搅拌。加入少许酸果蔓汁调味。",
+      "preparationSteps": [
+        "倒入装有冰块的大玻璃杯中并搅拌",
+        "加入少许酸果蔓汁调味。"
+      ],
+      "ingredientAmounts": {
+        "juice_cranberry": "品尝"
+      }
+    },
+    "kurant-tea": {
+      "name": "库兰特茶",
+      "description": "将 Absolut Kurant 倒入一个舒适的大茶杯中。添加不太热（！）的苹果茶，如果您愿意，可以添加一些糖。享受！",
+      "preparationSteps": [
+        "将 Absolut Kurant 倒入舒适的大茶杯中",
+        "添加不太热（！）的苹果茶，如果你喜欢的话，可以添加一些糖",
+        "享受！"
+      ],
+      "ingredientAmounts": {
+        "tea": "品尝",
+        "sugar": "品尝"
+      }
+    },
+    "lady-love-fizz": {
+      "name": "女士爱菲兹",
+      "description": "将所有原料（碳酸水除外）加冰摇匀，滤入盛有两块冰块的鸡尾酒杯中。加入碳酸水，搅拌，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料（碳酸水除外）加冰摇匀，滤入盛有两块冰块的鸡尾酒杯中",
+        "加入碳酸水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "lassi-a-south-indian-drink": {
+      "name": "Lassi - 南印度饮料",
+      "description": "在搅拌机中搅拌 3 秒钟。 Lassi 是最容易制作的东西之一，而且制作方法有很多种。基本上，它是酪乳（加水搅拌的酸奶），您可以选择几乎任何您喜欢的稠度，从最稀到最稠。冷食。",
+      "preparationSteps": [
+        "用搅拌机搅拌 3 秒",
+        "Lassi 是最容易制作的东西之一，而且制作方法有很多种",
+        "基本上，它是酪乳（酸奶加水搅拌），你可以选择几乎任何你喜欢的稠度，从最稀到最稠",
+        "冷食。"
+      ]
+    },
+    "lassi-mango": {
+      "name": "拉西-芒果",
+      "description": "将它们全部放入搅拌机中并倒在碎冰上。您还可以使用其他水果，例如草莓和香蕉。",
+      "preparationSteps": [
+        "将其全部放入搅拌机中并倒在碎冰上",
+        "您还可以使用其他水果，例如草莓和香蕉。"
+      ]
+    },
+    "lassi-sweet": {
+      "name": "拉西 - 甜",
+      "description": "将所有成分放入搅拌机中，搅拌直至细腻且起泡。冷藏后食用。",
+      "preparationSteps": [
+        "将所有原料放入搅拌机中，搅拌至细腻且起泡",
+        "冷藏后食用。"
+      ]
+    },
+    "lassi-khara": {
+      "name": "拉西卡拉",
+      "description": "将酸奶、冷水、盐和细辛搅拌至起泡。冷藏后食用。咖喱叶是可选的装饰。",
+      "preparationSteps": [
+        "将酸奶、冷水、盐和细辛搅拌至起泡。",
+        "冷藏后食用。咖喱叶是可选的装饰。"
+      ]
+    },
+    "lassi-raita": {
+      "name": "拉西·雷塔",
+      "description": "将酸奶和冰块混合在一起，直到酸奶变得更加流动。加糖调味。柠檬/酸橙是可选的，但它会给它带来轻微的酸味。少许盐。 Raita 也很适合夏天。您可以制作raita，而不是传统的沙拉。",
+      "preparationSteps": [
+        "将酸奶和冰块混合在一起，直到酸奶变得更加液态",
+        "加糖调味",
+        "柠檬/酸橙是可选的，但它会给它带来轻微的酸味",
+        "少许盐",
+        "Raita 也很适合夏天",
+        "您可以制作raita，而不是传统的沙拉。"
+      ],
+      "ingredientAmounts": {
+        "sugar": "品尝",
+        "lime": "品尝",
+        "salt": "品尝"
+      }
+    },
+    "lazy-coconut-paloma": {
+      "name": "懒惰的椰子帕洛玛",
+      "description": "在高球杯中装满冰块。加入椰子利口酒和柚子汁，加入苏打水，轻轻搅拌。",
+      "preparationSteps": [
+        "在高球杯中装满冰块。",
+        "加入椰子利口酒和柚子汁，加入苏打水，轻轻搅拌。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "lemon-drop": {
+      "name": "柠檬滴",
+      "description": "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。摇匀并滤入镶有糖的冰镇鸡尾酒杯中。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "摇匀并滤入镶有糖的冰镇鸡尾酒杯中。"
+      ],
+      "ingredientAmounts": {
+        "sugar": "对于轮辋"
+      }
+    },
+    "lemon-elderflower-spritzer": {
+      "name": "柠檬接骨木花雪碧",
+      "description": "将所有原料倒在冰上，搅拌并享用！",
+      "preparationSteps": [
+        "将所有原料倒在冰上，搅拌并享用！"
+      ],
+      "ingredientAmounts": {
+        "fresh_lemon_juice": "充值"
+      }
+    },
+    "lemon-shot": {
+      "name": "柠檬汁",
+      "description": "将加利亚诺酒、柠檬伏特加和少量朗姆酒放入小玻璃杯中混合。与撒有糖的柠檬角一起食用。未点燃即可食用。",
+      "preparationSteps": [
+        "将加利亚诺酒、柠檬伏特加和少量朗姆酒放入小玻璃杯中混合。",
+        "与撒有糖的柠檬角一起食用。未点燃即可食用。"
+      ],
+      "ingredientAmounts": {
+        "151_proof_rum": "品尝"
+      }
+    },
+    "lemouroudji": {
+      "name": "勒穆鲁吉",
+      "description": "将柠檬榨汁。将生姜去皮并磨碎。将磨碎的生姜和适量的辣椒放入一块粗棉布中，然后打一个结。让我们浸泡在水中。大约15分钟后，加入糖和柠檬汁。冷静一下，然后上菜。",
+      "preparationSteps": [
+        "将柠檬榨汁",
+        "将生姜去皮并磨碎",
+        "将磨碎的生姜和适量的辣椒放入一块粗棉布中，然后打结",
+        "让我们泡在水里",
+        "15分钟左右后，加入糖和柠檬汁",
+        "冷静一下，然后上菜。"
+      ],
+      "ingredientAmounts": {
+        "cayenne_pepper": "装饰用"
+      }
+    },
+    "limeade": {
+      "name": "酸橙水",
+      "description": "在一个大玻璃杯中，放入酸橙汁和糖，搅拌均匀。添加冷苏打水以填充。将柠檬皮放入玻璃杯中。喝。重复此操作，直到酸橙或苏打水用完。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "在一个大玻璃杯中，放入酸橙汁和糖，搅拌均匀",
+        "添加冷苏打水以填充",
+        "将柠檬皮放入玻璃杯中",
+        "喝",
+        "重复此操作，直到酸橙或苏打水用完。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值",
+        "lime_peel": "装饰用"
+      }
+    },
+    "loch-lomond": {
+      "name": "洛蒙德湖",
+      "description": "在装有半杯冰块的调酒杯中，将苏格兰威士忌、烈酒和苦艾酒混合。搅拌均匀。滤入鸡尾酒杯。用柠檬片装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，将苏格兰威士忌、Drambuie 和苦艾酒混合",
+        "搅拌均匀",
+        "滤入鸡尾酒杯中",
+        "用柠檬片装饰。"
+      ]
+    },
+    "london-town": {
+      "name": "伦敦城",
+      "description": "在装有半杯冰块的搅拌杯中，混合所有成分。搅拌均匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的搅拌杯中，混合所有成分",
+        "搅拌均匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "lone-tree-cocktail": {
+      "name": "孤树鸡尾酒",
+      "description": "加冰搅拌原料，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "加冰搅拌原料，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "lone-tree-cooler": {
+      "name": "孤树冷却器",
+      "description": "将糖溶解在柯林斯玻璃杯中约 60 毫升的苏打水中。加入冰块、杜松子酒和干苦艾酒并搅拌。上面加更多的苏打水，并用柑橘皮装饰。",
+      "preparationSteps": [
+        "将糖溶解在柯林斯玻璃杯中约 60 毫升的苏打水中。",
+        "加入冰块、杜松子酒和干苦艾酒并搅拌。",
+        "上面加更多的苏打水，并用柑橘皮装饰。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "long-island-tea": {
+      "name": "长岛茶",
+      "description": "在高球杯中装满冰块。加入五种烈酒、新鲜柠檬汁和糖浆。倒入可乐并轻轻搅拌。",
+      "preparationSteps": [
+        "在高球杯中装满冰块。",
+        "加入五种烈酒、新鲜柠檬汁和糖浆。",
+        "倒入可乐并轻轻搅拌。"
+      ],
+      "ingredientAmounts": {
+        "coca_cola": "充值"
+      }
+    },
+    "long-vodka": {
+      "name": "长伏特加",
+      "description": "用冰块和安古斯图拉摇匀高脚玻璃杯，使玻璃杯内部覆盖一层冰块。将伏特加倒在上面，加入 1 片酸橙，挤出剩余的汁液，与滋补品混合，搅拌，瞧，你就有了一杯长伏特加",
+      "preparationSteps": [
+        "用冰块和安古斯图拉摇匀高脚玻璃杯，使玻璃杯内部覆盖一层冰块",
+        "将伏特加倒在上面，加入 1 片酸橙，挤出剩余的汁液，与滋补品混合，搅拌，瞧，你就有了一杯长伏特加"
+      ]
+    },
+    "lord-and-lady": {
+      "name": "勋爵与夫人",
+      "description": "将朗姆酒和蒂亚玛丽亚倒入几乎装满冰块的老式玻璃杯中。搅拌均匀。",
+      "preparationSteps": [
+        "将朗姆酒和蒂亚玛丽亚倒入几乎装满冰块的老式玻璃杯中",
+        "搅拌均匀。"
+      ]
+    },
+    "lunch-box": {
+      "name": "饭盒",
+      "description": "将冰镇啤酒和橙汁倒入品脱玻璃杯中，留出空间。直接倒入苦杏酒，轻轻搅拌；不要将玻璃杯掉入饮料中。",
+      "preparationSteps": [
+        "将冰镇啤酒和橙汁倒入品脱玻璃杯中，留出空间。",
+        "直接倒入苦杏酒，轻轻搅拌；不要将玻璃杯掉入饮料中。"
+      ]
+    },
+    "mai-tai": {
+      "name": "麦泰",
+      "description": "使用琥珀牙买加朗姆酒和基于糖蜜的马提尼克朗姆酒来制作两种朗姆酒。将朗姆酒、柑橘酒、杏仁饼、新鲜酸橙汁和糖浆加冰摇匀。倒入装有冰块的双层玻璃杯中。如果需要，可以用薄荷和酸橙皮装饰。",
+      "preparationSteps": [
+        "使用琥珀牙买加朗姆酒和基于糖蜜的马提尼克朗姆酒来制作两种朗姆酒。",
+        "将朗姆酒、柑橘酒、杏仁饼、新鲜酸橙汁和糖浆加冰摇匀。",
+        "倒入装有冰块的双层玻璃杯中。如果需要，可以用薄荷和酸橙皮装饰。"
+      ]
+    },
+    "mango-mojito": {
+      "name": "芒果莫吉托",
+      "description": "水罐配方：以下数量适用于整批。将芒果去皮并切丁。将其与一半酸橙汁混合。将剩余的酸橙切成楔形，轻轻地与糖和薄荷混合，放入水罐中品尝。加入芒果泥、所有量好的朗姆酒和碎冰；搅拌均匀。倒入苏打水，均匀地分装在玻璃杯中。",
+      "preparationSteps": [
+        "水罐配方：以下数量适用于整批。",
+        "将芒果去皮并切丁。将其与一半酸橙汁混合。",
+        "将剩余的酸橙切成楔形，轻轻地与糖和薄荷混合，放入水罐中品尝。",
+        "加入芒果泥、所有量好的朗姆酒和碎冰；搅拌均匀。",
+        "倒入苏打水，均匀地分装在玻璃杯中。"
+      ],
+      "ingredientAmounts": {
+        "mint": "品尝",
+        "ice": "根据需要",
+        "soda_water": "充值",
+        "sugar": "品尝"
+      }
+    },
+    "manhattan": {
+      "name": "曼哈顿",
+      "description": "加冰搅拌，滤入冰镇玻璃杯中，装饰后即可享用。",
+      "preparationSteps": [
+        "加冰搅拌，滤入冰镇玻璃杯中，装饰后即可享用。"
+      ]
+    },
+    "margarita": {
+      "name": "玛格丽特",
+      "description": "用石灰片擦拭玻璃杯的边缘，使盐粘在玻璃杯上。注意仅润湿外缘并在其上撒盐。盐应该出现在饮用者的嘴唇上，并且不要混入鸡尾酒中。将其他成分与冰一起摇匀，然后小心地倒入玻璃杯中。",
+      "preparationSteps": [
+        "用石灰片擦拭玻璃杯边缘，使盐粘在玻璃杯上",
+        "注意仅润湿外缘并在其上撒上盐",
+        "盐应该出现在饮用者的嘴唇上，并且不要混入鸡尾酒中",
+        "将其他成分与冰一起摇匀，然后小心地倒入玻璃杯中。"
+      ],
+      "ingredientAmounts": {
+        "salt": "品尝"
+      }
+    },
+    "martinez-2": {
+      "name": "马丁内斯 2",
+      "description": "将所有成分添加到搅拌杯中并加满冰块。\r\n\r\n搅拌直至冷却，然后滤入冷却的轿跑车玻璃杯中。",
+      "preparationSteps": [
+        "将所有成分添加到搅拌杯中并加满冰块",
+        "搅拌直至冷却，然后滤入冷却的轿跑车玻璃杯中。"
+      ]
+    },
+    "martini": {
+      "name": "马提尼",
+      "description": "直接：将所有原料倒入装有冰块的混合杯中。搅拌均匀。滤入冰镇马提尼鸡尾酒杯。将柠檬皮中的油挤到饮料上，或用橄榄装饰。",
+      "preparationSteps": [
+        "直接：将所有原料倒入装有冰块的混合杯中",
+        "搅拌均匀",
+        "滤入冰镇马提尼鸡尾酒杯",
+        "将柠檬皮中的油挤到饮料上，或用橄榄装饰。"
+      ]
+    },
+    "mary-pickford": {
+      "name": "玛丽·碧克馥",
+      "description": "摇匀并滤入冰镇的大鸡尾酒杯中",
+      "preparationSteps": [
+        "摇匀并滤入冰镇的大鸡尾酒杯中"
+      ]
+    },
+    "masala-chai": {
+      "name": "马沙拉柴",
+      "description": "将2杯水煮沸。添加所有成分并再次煮沸约15秒。让我们静置一分钟。将牛奶倒入锅中加热。将茶过滤到杯子中。添加牛奶和糖。就是这样。",
+      "preparationSteps": [
+        "将2杯水煮沸",
+        "加入所有材料，再次煮约15秒",
+        "静置一分钟",
+        "牛奶倒入锅中加热",
+        "将茶过滤入杯中",
+        "加入牛奶和糖",
+        "就是这样。"
+      ],
+      "ingredientAmounts": {
+        "sugar": "品尝",
+        "milk": "品尝"
+      }
+    },
+    "mauresque": {
+      "name": "摩尔式",
+      "description": "1 - 倒入里卡德（或茴香酒）\n2 - 倒入燕麦糖浆\n3 - 最后倒入水并根据需要添加冰块。\n\n最后加入冰块，否则糖浆和茴香酒混合不好。",
+      "preparationSteps": [
+        "1 - 倒入里卡德（或茴香酒）",
+        "2 - 倒入燕麦糖浆",
+        "3 - 最后倒入水并根据需要添加冰块",
+        "最后加入冰块，否则糖浆和茴香酒混合不好。"
+      ],
+      "ingredientAmounts": {
+        "water": "充值"
+      }
+    },
+    "melya": {
+      "name": "梅利亚",
+      "description": "在咖啡杯中混合一茶匙可可粉和一茶匙蜂蜜。倒入新煮的浓缩咖啡，同时搅拌直至溶解。",
+      "preparationSteps": [
+        "在咖啡杯中混合一茶匙可可粉和一茶匙蜂蜜。",
+        "倒入新煮的浓缩咖啡，同时搅拌直至溶解。"
+      ]
+    },
+    "miami-vice": {
+      "name": "迈阿密风云",
+      "description": "将冰镇果汁朗姆酒混合物与一半量好的朗姆酒和碎冰混合；放在一边。将代基里酒混合物与剩余的朗姆酒和碎冰分别混合。将两种冷冻混合物分层放入一个大玻璃杯中。来源使两种准备好的混合物的数量可变。",
+      "preparationSteps": [
+        "将冰镇果汁朗姆酒混合物与一半量好的朗姆酒和碎冰混合；放在一边。",
+        "将代基里酒混合物与剩余的朗姆酒和碎冰分别混合。",
+        "将两种冷冻混合物分层放入一个大玻璃杯中。来源使两种准备好的混合物的数量可变。"
+      ],
+      "ingredientAmounts": {
+        "pina_colada_mix": "品尝",
+        "daiquiri_mix": "品尝"
+      }
+    },
+    "michelada": {
+      "name": "米凯拉达",
+      "description": "将番茄汁、酸橙汁和酱汁倒入冰镇的玻璃杯中并搅拌。慢慢加入啤酒并轻轻搅拌。不要摇晃。",
+      "preparationSteps": [
+        "将番茄汁、酸橙汁和酱汁倒入冰镇的玻璃杯中并搅拌。",
+        "慢慢加入啤酒并轻轻搅拌。不要摇晃。"
+      ]
+    },
+    "midnight-mint": {
+      "name": "午夜薄荷",
+      "description": "如果有的话，在鸡尾酒（马提尼）杯中加入糖浆，然后浸入巧克力片或粉末中。将配料加入加冰的摇酒壶中。摇匀，然后滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "如果有的话，在鸡尾酒（马提尼）杯中加入糖浆，然后浸入巧克力片或粉末中",
+        "将配料加入加冰的摇酒壶中",
+        "摇匀，然后滤入鸡尾酒杯。"
+      ]
+    },
+    "mimosa": {
+      "name": "含羞草",
+      "description": "将橙汁、普罗塞克和长笛杯冷却。将果汁倒入玻璃杯中，慢慢加入普罗塞克并轻轻搅拌一次。",
+      "preparationSteps": [
+        "将橙汁、普罗塞克和长笛杯冷却。",
+        "将果汁倒入玻璃杯中，慢慢加入普罗塞克并轻轻搅拌一次。"
+      ]
+    },
+    "mint-julep": {
+      "name": "薄荷冰镇酒",
+      "description": "在高球杯中轻轻搅拌薄荷、糖和水。将碎冰倒入玻璃杯中，加入波本威士忌并充分搅拌，直至玻璃杯充分磨砂。用薄荷枝装饰。",
+      "preparationSteps": [
+        "在高球杯中轻轻搅拌薄荷、糖和水",
+        "将碎冰倒入玻璃杯中，加入波本威士忌并搅拌均匀，直至玻璃杯充分磨砂",
+        "用薄荷枝装饰。"
+      ]
+    },
+    "mocha-berry": {
+      "name": "摩卡浆果",
+      "description": "将可可粉和覆盆子利口酒倒入热咖啡中搅拌至光滑。倒入耐热杯中，并在上面涂上生奶油。",
+      "preparationSteps": [
+        "将可可粉和覆盆子利口酒倒入热咖啡中搅拌至光滑。",
+        "倒入耐热杯中，并在上面涂上生奶油。"
+      ],
+      "ingredientAmounts": {
+        "whipped_cream": "装饰用"
+      }
+    },
+    "mojito": {
+      "name": "莫吉托",
+      "description": "将薄荷叶与糖和酸橙汁搅匀。加入少许苏打水，并在玻璃杯中装满碎冰。倒入朗姆酒并在上面加入苏打水。用稻草装饰并食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将薄荷叶与糖和酸橙汁搅匀",
+        "加入少许苏打水，并在玻璃杯中装满碎冰",
+        "倒入朗姆酒并在上面加入苏打水",
+        "用稻草装饰并食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "mojito-extra": {
+      "name": "莫吉托特级",
+      "description": "将薄荷和柠檬汁放入玻璃杯中，用勺子将薄荷捣碎，加入冰块和朗姆酒，然后加入苏打水。在上面放上安古斯图拉。",
+      "preparationSteps": [
+        "将薄荷和柠檬汁放入玻璃杯中，用勺子、冰块、朗姆酒将薄荷捣碎，然后加入苏打水",
+        "在上面放上安古斯图拉。"
+      ]
+    },
+    "monkey-gland": {
+      "name": "猴腺",
+      "description": "将杜松子酒、橙汁、苦艾酒和石榴糖浆加冰摇匀。滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将杜松子酒、橙汁、苦艾酒和石榴糖浆加冰摇匀。",
+        "滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "monkey-wrench": {
+      "name": "活动扳手",
+      "description": "将所有原料倒入几乎装满冰块的老式玻璃杯中。搅拌均匀。",
+      "preparationSteps": [
+        "将所有原料倒入几乎装满冰块的老式玻璃杯中",
+        "搅拌均匀。"
+      ]
+    },
+    "moranguito": {
+      "name": "莫兰吉托",
+      "description": "首先放苦艾酒，然后放龙舌兰酒，最后放格拉纳丁糖浆。",
+      "preparationSteps": [
+        "首先放苦艾酒，然后放龙舌兰酒，最后放格拉纳丁糖浆。"
+      ]
+    },
+    "moscow-mule": {
+      "name": "莫斯科骡子",
+      "description": "在骡子杯或玻璃杯中装满冰块。加入伏特加、姜汁啤酒和新鲜酸橙汁；轻轻搅拌。",
+      "preparationSteps": [
+        "在骡子杯或玻璃杯中装满冰块。",
+        "加入伏特加、姜汁啤酒和新鲜酸橙汁；轻轻搅拌。"
+      ]
+    },
+    "mudslinger": {
+      "name": "泥弹手",
+      "description": "将所有内容物添加到一个大壶或潘趣酒碗中。搅拌均匀！",
+      "preparationSteps": [
+        "将所有内容物添加到一个大壶或潘趣酒碗中",
+        "搅拌均匀！"
+      ]
+    },
+    "mulled-wine": {
+      "name": "热红酒",
+      "description": "将 3 杯水、糖、丁香、肉桂棒和柠檬皮放入不锈钢锅中煮 10 分钟。将葡萄酒加热至“咖啡温度”（不要煮沸），然后添加白兰地。",
+      "preparationSteps": [
+        "将 3 杯水、糖、丁香、肉桂棒和柠檬皮放入不锈钢锅中煮 10 分钟",
+        "将葡萄酒加热至“咖啡温度”（不要煮沸），然后添加白兰地。"
+      ]
+    },
+    "munich-mule": {
+      "name": "慕尼黑骡子",
+      "description": "在高球杯中装满冰块。加入杜松子酒和新鲜酸橙汁。倒入姜汁啤酒，轻轻搅拌，用黄瓜装饰。",
+      "preparationSteps": [
+        "在高球杯中装满冰块。",
+        "加入杜松子酒和新鲜酸橙汁。",
+        "倒入姜汁啤酒，轻轻搅拌，用黄瓜装饰。"
+      ],
+      "ingredientAmounts": {
+        "cucumber": "装饰用"
+      }
+    },
+    "national-aquarium": {
+      "name": "国家水族馆",
+      "description": "除柠檬汽水外，将所有原料加冰摇匀​​。在高脚玻璃杯中滤入新鲜冰块，然后加入苏打水并轻轻搅拌。",
+      "preparationSteps": [
+        "除柠檬汽水外，将所有原料加冰摇匀​​。",
+        "在高脚玻璃杯中滤入新鲜冰块，然后加入苏打水并轻轻搅拌。"
+      ],
+      "ingredientAmounts": {
+        "lemon_lime_soda": "溅起的水花"
+      }
+    },
+    "negroni": {
+      "name": "内格罗尼",
+      "description": "倒入加冰的玻璃杯中搅拌，装饰即可食用。",
+      "preparationSteps": [
+        "倒入加冰的玻璃杯中搅拌，装饰即可食用。"
+      ]
+    },
+    "new-york-lemonade": {
+      "name": "纽约柠檬水",
+      "description": "用柠檬汁润湿玻璃杯边缘，如果需要的话可以蘸上糖。将伏特加、橙子利口酒和柠檬汁加冰摇匀。滤入玻璃杯中，加入苏打水并轻轻搅拌。",
+      "preparationSteps": [
+        "用柠檬汁润湿玻璃杯边缘，如果需要的话可以蘸上糖。",
+        "将伏特加、橙子利口酒和柠檬汁加冰摇匀。",
+        "滤入玻璃杯中，加入苏打水并轻轻搅拌。"
+      ]
+    },
+    "new-york-sour": {
+      "name": "纽约酸酒",
+      "description": "将威士忌、新鲜柠檬汁和糖加冰摇匀。滤入装有新鲜冰块的岩石杯中。慢慢地将红酒倒在勺子背面，使其漂浮在上面。用樱桃装饰。",
+      "preparationSteps": [
+        "将威士忌、新鲜柠檬汁和糖加冰摇匀。",
+        "滤入装有新鲜冰块的岩石杯中。",
+        "慢慢地将红酒倒在勺子背面，使其漂浮在上面。用樱桃装饰。"
+      ],
+      "ingredientAmounts": {
+        "wine_red": "品尝",
+        "cherry": "装饰用"
+      }
+    },
+    "nuked-hot-chocolate": {
+      "name": "核热巧克力",
+      "description": "将可可、糖、香草和少许牛奶放入微波炉安全杯中混合。短暂加热并搅拌直至光滑。加入剩余的牛奶并短时间加热，搅拌直至变热。",
+      "preparationSteps": [
+        "将可可、糖、香草和少许牛奶放入微波炉安全杯中混合。",
+        "短暂加热并搅拌直至光滑。",
+        "加入剩余的牛奶并短时间加热，搅拌直至变热。"
+      ]
+    },
+    "nutty-irishman": {
+      "name": "疯狂的爱尔兰人",
+      "description": "加冰食用",
+      "preparationSteps": [
+        "加冰食用"
+      ]
+    },
+    "oatmeal-cookie": {
+      "name": "燕麦饼干",
+      "description": "只需将它们混合在一起即可。\n它本来是一杯酒，但作为成人份量的加冰的饮料也很好。\n\n尝起来像燕麦饼干。",
+      "preparationSteps": [
+        "只需将它们混合在一起即可",
+        "它本来是为了一杯，但它作为成人大小的饮料加大量冰块效果很好",
+        "尝起来像燕麦饼干。"
+      ]
+    },
+    "old-cuban": {
+      "name": "老古巴人",
+      "description": "将陈年朗姆酒、新鲜酸橙汁、糖浆、苦味剂和薄荷放入装有冰的摇酒壶中混合。摇匀并双重滤入冰镇鸡尾酒杯中。慢慢加入普罗塞克，如果需要的话可以用薄荷装饰。",
+      "preparationSteps": [
+        "将陈年朗姆酒、新鲜酸橙汁、糖浆、苦味剂和薄荷放入装有冰的摇酒壶中混合。",
+        "摇匀并双重滤入冰镇鸡尾酒杯中。",
+        "慢慢加入普罗塞克，如果需要的话可以用薄荷装饰。"
+      ]
+    },
+    "old-fashioned": {
+      "name": "老式",
+      "description": "将方糖放入老式玻璃杯中，加入苦味剂，加入少许白开水。搅拌直至溶解。\r\n将玻璃杯装满冰块，然后加入威士忌。\r\n\r\n用橙花和鸡尾酒樱桃装饰。",
+      "preparationSteps": [
+        "将方糖放入老式玻璃杯中，加入苦味剂，加入少许清水",
+        "搅拌直至溶解",
+        "将玻璃杯装满冰块并加入威士忌",
+        "用橙花和鸡尾酒樱桃装饰。"
+      ]
+    },
+    "old-pal": {
+      "name": "老朋友",
+      "description": "冷却鸡尾酒杯。将配料添加到搅拌杯中，并装满 2/3 的冰块。搅拌约20秒。倒空鸡尾酒杯并滤入杯中。用柠檬皮装饰。",
+      "preparationSteps": [
+        "冷却鸡尾酒杯",
+        "将配料添加到搅拌杯中，并加入 2/3 满的冰块",
+        "搅拌约20秒",
+        "倒空鸡尾酒杯并滤入杯中",
+        "用柠檬皮装饰。"
+      ]
+    },
+    "orange-crush": {
+      "name": "橙子粉碎",
+      "description": "将所有原料加冰摇匀​​。滤入冰镇的玻璃杯中。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​。",
+        "滤入冰镇的玻璃杯中。"
+      ]
+    },
+    "orange-oasis": {
+      "name": "橙色绿洲",
+      "description": "将白兰地、杜松子酒和橙汁加冰摇匀，滤入装有冰块的高球杯中。倒入姜汁汽水，搅拌，即可食用。",
+      "preparationSteps": [
+        "将白兰地、杜松子酒和橙汁加冰摇匀，滤入装有冰块的高球杯中",
+        "倒入姜汁汽水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "ginger_ale": "充值"
+      }
+    },
+    "orange-push-up": {
+      "name": "橙色俯卧撑",
+      "description": "将所有成分与碎冰混合直至光滑。倒入一个大玻璃杯中。",
+      "preparationSteps": [
+        "将所有成分与碎冰混合直至光滑。",
+        "倒入一个大玻璃杯中。"
+      ],
+      "ingredientAmounts": {
+        "sour_mix": "溅起的水花"
+      }
+    },
+    "orange-rosemary-collins": {
+      "name": "橙色迷迭香柯林斯",
+      "description": "将烈酒添加到玻璃杯的底部，并与搅拌饮料均匀地添加到顶部。在玻璃杯内装饰橙片，并在上面放一些迷迭香。",
+      "preparationSteps": [
+        "将烈酒添加到玻璃杯的底部，并与搅拌饮料均匀地添加到顶部",
+        "在玻璃杯内装饰橙片，并在上面放一些迷迭香。"
+      ],
+      "ingredientAmounts": {
+        "juice_orange": "充值",
+        "lemon": "充值",
+        "soda_water": "充值",
+        "rosemary": "品尝",
+        "orange": "品尝"
+      }
+    },
+    "orange-scented-hot-chocolate": {
+      "name": "橙香热巧克力",
+      "description": "将所有成分混合在中型平底锅中。小火搅拌直至巧克力融化。增加热量并煮沸，经常搅拌。从火上移开并搅拌直至起泡。重新加热并再次煮沸。从火上移开，搅拌直至起泡。再次重复加热和搅拌。丢弃橙皮。 （可以提前 2 小时准备。在室温下静置。食用前，将其煮沸，离火并搅拌直至起泡。）将热巧克力倒入咖啡杯中。做 2 份。",
+      "preparationSteps": [
+        "将所有成分混合在中型平底锅中",
+        "小火搅拌直至巧克力融化",
+        "增加热量并煮沸，经常搅拌",
+        "从火上移开并搅拌直至起泡",
+        "返回火源并再次煮沸",
+        "从火上移开，搅拌直至起泡",
+        "再次重复加热和搅拌",
+        "丢弃橘子皮",
+        "（可提前2小时准备",
+        "置于室温下",
+        "食用前，煮沸，离火，搅拌直至起泡。）将热巧克力倒入咖啡杯中",
+        "做 2 份。"
+      ],
+      "ingredientAmounts": {
+        "orange": "3条2英寸条"
+      }
+    },
+    "orange-whip": {
+      "name": "橙鞭",
+      "description": "将原料倒在冰上并搅拌。",
+      "preparationSteps": [
+        "将原料倒在冰上并搅拌。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "orangeade": {
+      "name": "橙水",
+      "description": "将一些冰块放入大玻璃杯或高球杯中，加入柠檬汁、橙汁、糖浆，搅拌均匀。加满冷苏打水，用吸管饮用。",
+      "preparationSteps": [
+        "将一些冰块放入大玻璃杯或高球杯中，加入柠檬汁、橙汁、糖浆，搅拌均匀",
+        "加满冷苏打水，用吸管饮用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "oreo-mudslide": {
+      "name": "奥利奥泥石流",
+      "description": "在搅拌机中将伏特加、甘露酒、百利甜酒、冰淇淋和奥利奥充分混合。倒入一个大磨砂玻璃杯中。用生奶油和樱桃装饰。",
+      "preparationSteps": [
+        "将伏特加、甘露酒、百利甜酒、冰淇淋和奥利奥放入搅拌机中充分搅拌",
+        "倒入一个大磨砂玻璃杯中",
+        "用生奶油和樱桃装饰。"
+      ]
+    },
+    "orgasm": {
+      "name": "性高潮",
+      "description": "将所有原料加冰摇匀​​，滤入冰镇的鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入冰镇的鸡尾酒杯中即可享用。"
+      ]
+    },
+    "owen-s-grandmother-s-revenge": {
+      "name": "欧文祖母的复仇",
+      "description": "将威士忌、啤酒和柠檬水冷却。在一个大水罐中与冰轻轻混合。请勿混合或摇动碳酸啤酒。",
+      "preparationSteps": [
+        "将威士忌、啤酒和柠檬水冷却。",
+        "在一个大水罐中与冰轻轻混合。请勿混合或摇动碳酸啤酒。"
+      ]
+    },
+    "paloma": {
+      "name": "帕洛玛",
+      "description": "将龙舌兰酒和新鲜酸橙汁倒入高球杯中。加冰和少许盐，然后倒入柚子苏打水。轻轻搅拌。",
+      "preparationSteps": [
+        "将龙舌兰酒和新鲜酸橙汁倒入高球杯中。",
+        "加冰和少许盐，然后倒入柚子苏打水。",
+        "轻轻搅拌。"
+      ]
+    },
+    "paradise": {
+      "name": "天堂",
+      "description": "在冰上一起摇匀。滤入鸡尾酒杯并冷藏后享用。",
+      "preparationSteps": [
+        "加冰一起摇匀",
+        "滤入鸡尾酒杯并冷藏后享用。"
+      ]
+    },
+    "passion-fruit-martini": {
+      "name": "百香果马提尼",
+      "description": "将所有成分倒入玻璃杯中并搅拌。用半片百香果装饰。",
+      "preparationSteps": [
+        "将所有成分倒入玻璃杯中并搅拌",
+        "用半片百香果装饰。"
+      ],
+      "ingredientAmounts": {
+        "juice_passion_fruit": "充值"
+      }
+    },
+    "pegu-club": {
+      "name": "勃固俱乐部",
+      "description": "摇匀，过滤，向上，鸡尾酒杯",
+      "preparationSteps": [
+        "摇匀，过滤，向上，鸡尾酒杯"
+      ]
+    },
+    "penicillin": {
+      "name": "青霉素",
+      "description": "将新鲜姜片放入摇酒器中搅匀。加入混合苏格兰威士忌、新鲜柠檬汁、蜂蜜糖浆和冰块；摇晃至冷。滤入装有新鲜冰块的岩石杯中。慢慢地将烟熏艾雷岛威士忌漂浮在上面。",
+      "preparationSteps": [
+        "将新鲜姜片放入摇酒器中搅匀。",
+        "加入混合苏格兰威士忌、新鲜柠檬汁、蜂蜜糖浆和冰块；摇晃至冷。",
+        "滤入装有新鲜冰块的岩石杯中。",
+        "慢慢地将烟熏艾雷岛威士忌漂浮在上面。"
+      ]
+    },
+    "pina-colada": {
+      "name": "椰林飘香",
+      "description": "将白朗姆酒、椰子奶油和菠萝汁与碎冰一起放入搅拌机中。搅拌至光滑，然后倒入一个大的冰镇玻璃杯中。",
+      "preparationSteps": [
+        "将白朗姆酒、椰子奶油和菠萝汁与碎冰一起放入搅拌机中。",
+        "搅拌至光滑，然后倒入一个大的冰镇玻璃杯中。"
+      ]
+    },
+    "pineapple-gingerale-smoothie": {
+      "name": "菠萝姜汁冰沙",
+      "description": "将所有东西放入搅拌机中并液化。",
+      "preparationSteps": [
+        "将所有东西放入搅拌机中并液化。"
+      ]
+    },
+    "pineapple-paloma": {
+      "name": "菠萝帕洛玛",
+      "description": "用石灰片擦拭每个玻璃杯的边缘，然后浸入盐中。\r\n添加冰块、龙舌兰酒、葡萄柚汁、酸橙汁，最后加入菠萝苏打水。\r\n快速搅拌一下。\r\n用新鲜菠萝或酸橙装饰。",
+      "preparationSteps": [
+        "用石灰片擦拭每个玻璃杯的边缘，然后浸入盐中",
+        "添加冰块、龙舌兰酒、葡萄柚汁、酸橙汁，最后加入菠萝苏打水",
+        "快速搅拌一下",
+        "用新鲜菠萝或酸橙装饰。"
+      ],
+      "ingredientAmounts": {
+        "lime": "品尝",
+        "pepper": "品尝"
+      }
+    },
+    "pink-gin": {
+      "name": "粉红杜松子酒",
+      "description": "将苦味酒倒入酒杯中。旋转玻璃杯，使内部充满苦味剂，抖出多余的苦味剂。将杜松子酒倒入玻璃杯中。不要加冰。",
+      "preparationSteps": [
+        "将苦味酒倒入酒杯中",
+        "旋转玻璃杯，使内部充满苦味剂，抖出多余的苦味剂",
+        "将杜松子酒倒入玻璃杯中",
+        "不要加冰。"
+      ]
+    },
+    "pink-lady": {
+      "name": "粉红佳人",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "pink-moon": {
+      "name": "粉红月亮",
+      "description": "在加冰的摇酒器中慢慢摇匀，滤入方形威士忌杯中。上面放上新鲜的冰块。加入黑莓装饰。添加花朵和绿叶以获得特别的外观！",
+      "preparationSteps": [
+        "在加冰的调酒器中慢慢摇匀，滤入方形威士忌杯中",
+        "上面放上新鲜的冰块",
+        "加入黑莓装饰",
+        "添加花朵和绿叶以获得特别的外观！"
+      ],
+      "ingredientAmounts": {
+        "blackberries": "品尝"
+      }
+    },
+    "pink-panty-pulldowns": {
+      "name": "粉色内裤下拉",
+      "description": "将所有材料冷却。将伏特加和粉红柠檬水放入水罐中混合，最后加入雪碧并轻轻搅拌。不要摇晃。",
+      "preparationSteps": [
+        "将所有材料冷却。",
+        "将伏特加和粉红柠檬水放入水罐中混合，最后加入雪碧并轻轻搅拌。不要摇晃。"
+      ]
+    },
+    "pink-penocha": {
+      "name": "粉红佩诺查",
+      "description": "将所有成分混合到碗中，保持冰镇，经常搅拌",
+      "preparationSteps": [
+        "将所有成分混合到碗中，保持冰镇，经常搅拌"
+      ]
+    },
+    "pisco-sour": {
+      "name": "皮斯科酸酒",
+      "description": "将皮斯科酒、新鲜柠檬汁、糖浆和一份巴氏灭菌蛋白（不加冰）摇匀，形成泡沫。加冰，摇匀直至冷却，然后滤入冰镇的玻璃杯中。在泡沫上滴几滴芳香苦味剂。",
+      "preparationSteps": [
+        "将皮斯科酒、新鲜柠檬汁、糖浆和一份巴氏灭菌蛋白（不加冰）摇匀，形成泡沫。",
+        "加冰，摇匀直至冷却，然后滤入冰镇的玻璃杯中。",
+        "在泡沫上滴几滴芳香苦味剂。"
+      ],
+      "ingredientAmounts": {
+        "bitters": "几个破折号"
+      }
+    },
+    "planter-s-punch-178368-178368-178368": {
+      "name": "种植者的拳头",
+      "description": "将除苦味剂外的所有原料倒入装满冰块的摇酒壶中摇匀，倒入装满冰块的大玻璃杯中，添加安古斯图拉苦味剂，“放在上面”，用鸡尾酒樱桃和菠萝装饰。",
+      "preparationSteps": [
+        "将除苦味剂外的所有原料倒入装有冰块的摇酒壶中",
+        "摇匀",
+        "倒入装满冰块的大玻璃杯中",
+        "添加安古斯图拉苦味酒，“在上面”",
+        "用鸡尾酒樱桃和菠萝装饰。"
+      ]
+    },
+    "popped-cherry": {
+      "name": "爆开的樱桃",
+      "description": "将伏特加、樱桃利口酒和两种果汁倒入装有冰块的高脚杯中。搅拌即可食用；如果需要的话可以加一颗樱桃。",
+      "preparationSteps": [
+        "将伏特加、樱桃利口酒和两种果汁倒入装有冰块的高脚杯中。",
+        "搅拌即可食用；如果需要的话可以加一颗樱桃。"
+      ]
+    },
+    "poppy-cocktail": {
+      "name": "罂粟鸡尾酒",
+      "description": "加冰摇匀原料，滤入鸡尾酒杯即可享用。",
+      "preparationSteps": [
+        "加冰摇匀原料，滤入鸡尾酒杯即可享用。"
+      ]
+    },
+    "pornstar-martini": {
+      "name": "色情明星马提尼",
+      "description": "将伏特加、Passoã、百香果汁和酸橙汁加冰摇匀；将普罗塞克分开存放。滤入冰镇的鸡尾酒杯中。将冰镇普罗塞克与小玻璃杯一起享用。",
+      "preparationSteps": [
+        "将伏特加、Passoã、百香果汁和酸橙汁加冰摇匀；将普罗塞克分开存放。",
+        "滤入冰镇的鸡尾酒杯中。",
+        "将冰镇普罗塞克与小玻璃杯一起享用。"
+      ]
+    },
+    "port-and-starboard": {
+      "name": "左舷和右舷",
+      "description": "小心地倒入咖啡杯中，使薄荷糖浮在石榴糖浆上。无需混合即可食用。",
+      "preparationSteps": [
+        "小心地倒入咖啡杯中，使薄荷糖浮在石榴糖浆上",
+        "无需混合即可食用。"
+      ]
+    },
+    "port-wine-cocktail": {
+      "name": "波特酒鸡尾酒",
+      "description": "加冰搅拌原料，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "加冰搅拌原料，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "port-wine-flip": {
+      "name": "波特酒翻转",
+      "description": "将所有原料（肉豆蔻除外）加冰摇匀，滤入威士忌酸酒杯中。在上面撒上肉豆蔻即可食用。",
+      "preparationSteps": [
+        "将所有原料（肉豆蔻除外）加冰摇匀，滤入威士忌酸杯中",
+        "在上面撒上肉豆蔻即可食用。"
+      ],
+      "ingredientAmounts": {
+        "nutmeg": "装饰用"
+      }
+    },
+    "porto-flip": {
+      "name": "波尔图翻转",
+      "description": "在搅拌机中加冰将配料摇匀。滤入玻璃杯中，装饰并上桌。",
+      "preparationSteps": [
+        "将配料与冰一起放入搅拌机中摇匀",
+        "滤入玻璃杯，装饰并上桌。"
+      ]
+    },
+    "pure-passion": {
+      "name": "纯粹的激情",
+      "description": "将朗姆酒、Passoã、青柠汁、百香果糖浆和桃子苦味酒放入装有碎冰的玻璃杯中。搅拌均匀并用薄荷装饰。",
+      "preparationSteps": [
+        "将朗姆酒、Passoã、青柠汁、百香果糖浆和桃子苦味酒放入装有碎冰的玻璃杯中。",
+        "搅拌均匀并用薄荷装饰。"
+      ],
+      "ingredientAmounts": {
+        "mint": "品尝"
+      }
+    },
+    "pysch-vitamin-light": {
+      "name": "Pysch 维生素光",
+      "description": "将三种果汁加冰摇匀。滤入装有新鲜冰块的高脚玻璃杯中。",
+      "preparationSteps": [
+        "将三种果汁加冰摇匀。",
+        "滤入装有新鲜冰块的高脚玻璃杯中。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "quaker-s-cocktail": {
+      "name": "贵格会的鸡尾酒",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "quarter-deck-cocktail": {
+      "name": "四分之一甲板鸡尾酒",
+      "description": "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "queen-bee": {
+      "name": "蜂王",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "queen-charlotte": {
+      "name": "夏洛特女王",
+      "description": "将红酒和石榴糖浆倒入装有冰块的柯林斯杯中。倒入柠檬苏打水，搅拌即可食用。",
+      "preparationSteps": [
+        "将红酒和石榴糖浆倒入装有冰块的柯林斯杯中",
+        "倒入柠檬苏打水，搅拌即可食用。"
+      ],
+      "ingredientAmounts": {
+        "lemon_lime_soda": "充值"
+      }
+    },
+    "queen-elizabeth": {
+      "name": "伊丽莎白女王",
+      "description": "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰搅拌，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "quentin": {
+      "name": "昆汀",
+      "description": "在装有半杯冰块的摇酒壶中，将朗姆酒、甘露酒和奶油混合。摇匀。滤入鸡尾酒杯并用肉豆蔻装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将朗姆酒、甘露酒和奶油混合",
+        "摇匀",
+        "滤入鸡尾酒杯并用肉豆蔻装饰。"
+      ]
+    },
+    "quick-f-k": {
+      "name": "快他妈的",
+      "description": "首先在小玻璃杯中添加 1/3 Kahlua。然后是 1/3 Miduri，最后是 1/3 贝利爱尔兰奶油",
+      "preparationSteps": [
+        "首先在小玻璃杯中加入 1/3 Kahlua",
+        "然后是 1/3 Miduri，最后是 1/3 贝利爱尔兰奶油"
+      ]
+    },
+    "radioactive-long-island-iced-tea": {
+      "name": "放射性长岛冰茶",
+      "description": "将所有原料倒入一个非常高的玻璃杯中，加冰。小心地啜饮。",
+      "preparationSteps": [
+        "将所有原料倒入一个非常高的玻璃杯中，加冰",
+        "小心地啜饮。"
+      ]
+    },
+    "rail-splitter": {
+      "name": "分轨器",
+      "description": "在高玻璃杯中将糖浆与柠檬汁混合。加满姜汁汽水。",
+      "preparationSteps": [
+        "在高玻璃杯中将糖浆和柠檬汁混合",
+        "加满姜汁汽水。"
+      ],
+      "ingredientAmounts": {
+        "lemon": "品尝",
+        "ginger_ale": "充值"
+      }
+    },
+    "ramos-gin-fizz": {
+      "name": "拉莫斯杜松子酒菲兹",
+      "description": "将除苏打水以外的所有材料放入加冰的摇酒壶中；使用巴氏灭菌蛋清。彻底摇晃约两分钟。过滤，将液体放回摇床上，在不加冰的情况下再次摇晃约一分钟。滤入高球杯中，轻轻倒入苏打水。切勿摇动苏打水。",
+      "preparationSteps": [
+        "将除苏打水以外的所有材料放入加冰的摇酒壶中；使用巴氏灭菌蛋清。",
+        "彻底摇晃约两分钟。过滤，将液体放回摇床上，在不加冰的情况下再次摇晃约一分钟。",
+        "滤入高球杯中，轻轻倒入苏打水。切勿摇动苏打水。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "raspberry-julep": {
+      "name": "覆盆子冰镇酒",
+      "description": "将薄荷叶和覆盆子糖浆放在杯底轻轻搅匀。将碎冰和波本威士忌加入杯中，然后搅拌。上面加更多的冰块，用薄荷枝装饰。",
+      "preparationSteps": [
+        "将薄荷叶和覆盆子糖浆轻轻搅匀在杯底",
+        "将碎冰和波本威士忌加入杯中，然后搅拌",
+        "上面加更多的冰块，用薄荷枝装饰。"
+      ]
+    },
+    "red-snapper": {
+      "name": "红鲷鱼",
+      "description": "将威士忌、苦杏酒和酸果蔓汁加冰摇匀。滤入冰镇的玻璃杯中。",
+      "preparationSteps": [
+        "将威士忌、苦杏酒和酸果蔓汁加冰摇匀。",
+        "滤入冰镇的玻璃杯中。"
+      ]
+    },
+    "rose": {
+      "name": "玫瑰",
+      "description": "在鸡尾酒调酒器中一起摇匀，然后滤入冰镇的玻璃杯中。装饰并上菜。",
+      "preparationSteps": [
+        "在鸡尾酒调酒器中一起摇匀，然后滤入冰镇玻璃杯中",
+        "装饰并上菜。"
+      ],
+      "ingredientAmounts": {
+        "powdered_sugar": "品尝"
+      }
+    },
+    "rosemary-blue": {
+      "name": "迷迭香蓝",
+      "description": "1) 将孟买蓝宝石、蓝柑橘、迷迭香小枝和轻轻挤压的柠檬片放入气球玻璃杯中，充分旋转混合 2) 倒入冰块，并在上面加入发烧树淡汤力水 3) 用吧勺轻轻搅拌混合。",
+      "preparationSteps": [
+        "1) 将孟买蓝宝石、蓝柑橘、迷迭香小枝和轻轻挤压的柠檬片放入气球玻璃杯中",
+        "充分旋转以混合",
+        "2) 倒入冰块，然后加入 Fever-Tree Light Tonic Water",
+        "3）用吧勺轻轻拌匀。"
+      ],
+      "ingredientAmounts": {
+        "rosemary": "品尝"
+      }
+    },
+    "royal-fizz": {
+      "name": "皇家菲兹",
+      "description": "将所有原料（可乐除外）加冰摇匀，滤入冰镇的柯林斯玻璃杯中。装满可乐即可上桌。",
+      "preparationSteps": [
+        "将所有原料（可乐除外）加冰摇匀，滤入冰镇的柯林斯玻璃杯中",
+        "装满可乐即可上桌。"
+      ],
+      "ingredientAmounts": {
+        "coca_cola": "充值"
+      }
+    },
+    "royal-flush": {
+      "name": "皇家同花顺",
+      "description": "将所有原料倒入玻璃杯中，加冰。滤入玻璃杯中。",
+      "preparationSteps": [
+        "将所有材料倒入玻璃杯中，加冰块",
+        "滤入玻璃杯中。"
+      ]
+    },
+    "royal-gin-fizz": {
+      "name": "皇家杜松子酒菲兹",
+      "description": "将所有原料（碳酸水除外）加冰摇匀，滤入盛有两块冰块的高球杯中。加入碳酸水，搅拌，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料（碳酸水除外）与冰块一起摇匀，滤入盛有两块冰块的高球杯中",
+        "加入碳酸水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "ruby-tuesday": {
+      "name": "红宝石星期二",
+      "description": "将杜松子酒和蔓越莓倒入装满冰块的高球威士忌中。加入石榴糖浆并搅拌。",
+      "preparationSteps": [
+        "将杜松子酒和蔓越莓倒入装满冰块的高球威士忌中",
+        "加入石榴糖浆并搅拌。"
+      ],
+      "ingredientAmounts": {
+        "grenadine": "两滴水花"
+      }
+    },
+    "rum-cobbler": {
+      "name": "朗姆酒馅饼",
+      "description": "在老式玻璃杯中，将糖溶解在苏打水中，加入碎冰，直到玻璃杯几乎满为止，加入朗姆酒，搅拌均匀，用樱桃、橙子和柠檬片装饰。",
+      "preparationSteps": [
+        "在老式玻璃杯中，将糖溶解在苏打水中",
+        "添加碎冰，直到玻璃杯几乎满为止",
+        "添加朗姆酒",
+        "搅拌均匀",
+        "用樱桃、橙子和柠檬片装饰。"
+      ]
+    },
+    "rum-milk-punch": {
+      "name": "朗姆酒牛奶宾治",
+      "description": "将所有成分（肉豆蔻除外）加冰摇匀，滤入柯林斯杯中。在上面撒上肉豆蔻即可食用。",
+      "preparationSteps": [
+        "将所有成分（肉豆蔻除外）加冰摇匀，滤入柯林斯杯中",
+        "在上面撒上肉豆蔻即可食用。"
+      ],
+      "ingredientAmounts": {
+        "nutmeg": "装饰用"
+      }
+    },
+    "rum-old-fashioned": {
+      "name": "朗姆酒 老式",
+      "description": "在老式玻璃杯中搅拌糖粉、水和苦精。当糖溶解后，加入冰块和淡朗姆酒。加入酸橙皮，将 151 度朗姆酒漂浮在上面，即可享用。",
+      "preparationSteps": [
+        "将糖粉、水和苦味剂放入老式玻璃杯中搅拌",
+        "当糖溶解后，加入冰块和淡朗姆酒",
+        "加入酸橙皮，将 151 度朗姆酒漂浮在上面，即可享用。"
+      ]
+    },
+    "rum-punch": {
+      "name": "朗姆潘趣酒",
+      "description": "批量配方。消息人士称需要一小瓶朗姆酒和一大瓶姜汁汽水，但没有明确其容量。将朗姆酒和果汁与碎冰混合在潘趣酒碗中。最后加入姜汁汽水并轻轻搅拌。",
+      "preparationSteps": [
+        "批量配方。消息人士称需要一小瓶朗姆酒和一大瓶姜汁汽水，但没有明确其容量。",
+        "将朗姆酒和果汁与碎冰混合在潘趣酒碗中。",
+        "最后加入姜汁汽水并轻轻搅拌。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "rum-runner": {
+      "name": "朗姆酒跑者",
+      "description": "将所有成分混合在玻璃杯中并加冰。",
+      "preparationSteps": [
+        "将所有成分混合在玻璃杯中并加冰。"
+      ]
+    },
+    "rum-sour": {
+      "name": "朗姆酒酸",
+      "description": "在装有半杯冰块的摇酒壶中，将朗姆酒、柠檬汁和糖混合，摇匀，滤入酸玻璃杯中，用橙片和樱桃装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将朗姆酒、柠檬汁和糖混合",
+        "摇匀",
+        "滤入酸玻璃杯中，用橙片和樱桃装饰。"
+      ]
+    },
+    "rum-toddy": {
+      "name": "朗姆酒托迪",
+      "description": "将糖粉溶解在老式玻璃杯中的水中。加入朗姆酒和一块冰块并搅拌。加入柠檬皮，即可食用。",
+      "preparationSteps": [
+        "将糖粉溶解在老式玻璃杯中的水中",
+        "加入朗姆酒和一块冰块，搅拌",
+        "加入柠檬皮，即可食用。"
+      ]
+    },
+    "russian-spring-punch": {
+      "name": "俄罗斯春拳",
+      "description": "将伏特加、新鲜柠檬汁、黑醋栗和糖浆加冰摇匀。滤入装满新鲜冰块的高脚玻璃杯中，然后倒入起泡酒。",
+      "preparationSteps": [
+        "将伏特加、新鲜柠檬汁、黑醋栗和糖浆加冰摇匀。",
+        "滤入装满新鲜冰块的高脚玻璃杯中，然后倒入起泡酒。"
+      ],
+      "ingredientAmounts": {
+        "prosecco": "充值"
+      }
+    },
+    "rusty-nail": {
+      "name": "生锈的钉子",
+      "description": "将苏格兰威士忌和 Drambuie 倒入几乎装满冰块的老式玻璃杯中。搅拌均匀。用柠檬片装饰。",
+      "preparationSteps": [
+        "将苏格兰威士忌和 Drambuie 倒入几乎装满冰块的老式玻璃杯中",
+        "搅拌均匀",
+        "用柠檬片装饰。"
+      ]
+    },
+    "salty-dog": {
+      "name": "咸狗",
+      "description": "用葡萄柚汁润湿高球杯的边缘，然后将其浸入盐中。加入冰块、杜松子酒和柚子汁，然后轻轻搅拌。",
+      "preparationSteps": [
+        "用葡萄柚汁润湿高球杯的边缘，然后将其浸入盐中。",
+        "加入冰块、杜松子酒和柚子汁，然后轻轻搅拌。"
+      ]
+    },
+    "san-francisco": {
+      "name": "旧金山",
+      "description": "拿一个高脚玻璃杯，放入一些冰块，在上面倒入伏特加，然后倒入果汁，然后倒入“奶油”，最后倒入石榴糖浆，但要小心地在玻璃杯的一侧，这样它就会躺在底部。用橙子和草莓装饰。",
+      "preparationSteps": [
+        "拿一个高脚玻璃杯，放入一些冰块，在上面倒入伏特加，然后倒入果汁，然后倒入“奶油”，最后倒入石榴糖浆，但要小心地在玻璃杯的一侧，这样它就会躺在底部",
+        "用橙子和草莓装饰。"
+      ],
+      "ingredientAmounts": {
+        "grenadine": "品尝",
+        "juice_orange": "品尝"
+      }
+    },
+    "sangria": {
+      "name": "桑格利亚汽酒",
+      "description": "将所有内容混合在水罐中并冷藏，添加丁香和肉桂棒调味，在酒杯中享用。",
+      "preparationSteps": [
+        "将所有内容混合在水罐中并冷藏",
+        "添加丁香和肉桂棒调味",
+        "盛入酒杯中。"
+      ],
+      "ingredientAmounts": {
+        "cloves": "品尝",
+        "cinnamon": "品尝"
+      }
+    },
+    "sazerac": {
+      "name": "萨泽拉克",
+      "description": "用苦艾酒冲洗冰镇的岩石杯，暂时加冰并放在一边。将糖与佩乔德苦精一起溶解在搅拌杯中，然后加入干邑白兰地和冰块，搅拌直至冷却。倒掉玻璃杯中的冰块和多余的苦艾酒；将鸡尾酒滤入其中。将柠檬皮油挤在饮料上，并用柠檬皮装饰。",
+      "preparationSteps": [
+        "用苦艾酒冲洗冰镇的岩石杯，暂时加冰并放在一边。",
+        "将糖与佩乔德苦精一起溶解在搅拌杯中，然后加入干邑白兰地和冰块，搅拌直至冷却。",
+        "倒掉玻璃杯中的冰块和多余的苦艾酒；将鸡尾酒滤入其中。",
+        "将柠檬皮油挤在饮料上，并用柠檬皮装饰。"
+      ]
+    },
+    "scooter": {
+      "name": "小型摩托车",
+      "description": "将所有原料与碎冰充分摇匀，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料与碎冰充分摇匀，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "scotch-sour": {
+      "name": "苏格兰酸酒",
+      "description": "将苏格兰威士忌、酸橙汁和糖粉加冰摇匀，滤入威士忌酸酒杯中。用 1/2 片柠檬装饰，上面放上樱桃，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将苏格兰威士忌、酸橙汁和糖粉加冰摇匀，滤入威士忌酸杯中",
+        "用 1/2 片柠檬装饰，上面放上樱桃，即可食用。"
+      ]
+    },
+    "screwdriver": {
+      "name": "螺丝刀",
+      "description": "在高球杯中装满冰块。加入伏特加，淋上橙汁，轻轻搅拌。",
+      "preparationSteps": [
+        "在高球杯中装满冰块。",
+        "加入伏特加，淋上橙汁，轻轻搅拌。"
+      ],
+      "ingredientAmounts": {
+        "juice_orange": "品尝"
+      }
+    },
+    "sea-breeze": {
+      "name": "海风",
+      "description": "将所有原料放入装满冰块的高球杯中。用酸橙角装饰。",
+      "preparationSteps": [
+        "将所有原料放入装满冰块的高球杯中",
+        "用酸橙角装饰。"
+      ]
+    },
+    "shark-attack": {
+      "name": "鲨鱼袭击",
+      "description": "按照罐子背面的说明混合柠檬水和水 如果说明说要添加 4 1/3 罐水，请按照说明添加 混合到水罐中 添加 1 1/2 杯伏特加（绝对伏特加） 充分混合 倒入碎冰杯中 非常好！",
+      "preparationSteps": [
+        "按照罐子背面的说明混合柠檬水和水",
+        "如果说明说添加 4 1/3 罐水，请这样做",
+        "混入壶中",
+        "添加 1 1/2 杯伏特加（绝对伏特加）",
+        "搅拌均匀",
+        "倒入装有碎冰的玻璃杯中",
+        "出色的！"
+      ]
+    },
+    "sherry-eggnog": {
+      "name": "雪莉蛋酒",
+      "description": "将雪利酒、糖粉和鸡蛋加冰摇匀，滤入柯林斯杯中。加入牛奶并搅拌。在上面撒上肉豆蔻即可食用。",
+      "preparationSteps": [
+        "将雪利酒、糖粉和鸡蛋加冰摇匀，滤入柯林斯杯中",
+        "倒入牛奶并搅拌",
+        "在上面撒上肉豆蔻即可食用。"
+      ],
+      "ingredientAmounts": {
+        "milk": "品尝",
+        "nutmeg": "装饰用"
+      }
+    },
+    "sherry-flip": {
+      "name": "雪莉·弗利普",
+      "description": "将所有原料（肉豆蔻除外）加冰摇匀，滤入威士忌酸酒杯中。在上面撒上肉豆蔻即可食用。",
+      "preparationSteps": [
+        "将所有原料（肉豆蔻除外）加冰摇匀，滤入威士忌酸杯中",
+        "在上面撒上肉豆蔻即可食用。"
+      ],
+      "ingredientAmounts": {
+        "nutmeg": "装饰用"
+      }
+    },
+    "shot-gun": {
+      "name": "霰弹枪",
+      "description": "将三种威士忌混合在冰镇的玻璃杯中并短暂搅拌。",
+      "preparationSteps": [
+        "将三种威士忌混合在冰镇的玻璃杯中并短暂搅拌。"
+      ]
+    },
+    "sidecar": {
+      "name": "边车",
+      "description": "将所有原料倒入装满冰块的鸡尾酒调酒器中。充分摇匀并滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "将所有原料倒入装满冰块的鸡尾酒调酒器中",
+        "充分摇匀并滤入鸡尾酒杯。"
+      ]
+    },
+    "smut": {
+      "name": "黑穗病",
+      "description": "把它们放在一起，然后冷饮。",
+      "preparationSteps": [
+        "把它们放在一起，然后冷饮。"
+      ]
+    },
+    "snowball": {
+      "name": "雪球",
+      "description": "将一块冰块放入玻璃杯中，然后添加 1 1/2 盎司 Advocaat。将柠檬水装满玻璃杯，并用一片柠檬装饰。立即上菜。",
+      "preparationSteps": [
+        "将一块冰块放入玻璃杯中，然后添加 1 1/2 盎司 Advocaat",
+        "将柠檬水装满玻璃杯，并用一片柠檬装饰",
+        "立即上菜。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "snowday": {
+      "name": "雪天",
+      "description": "用冰搅拌所有成分。滤入冰过的岩石玻璃杯中，加冰块。将橙皮压在饮料上并装饰。",
+      "preparationSteps": [
+        "将所有材料加冰搅拌",
+        "滤入冰过的岩石玻璃杯中，加新鲜冰块",
+        "将橙皮压在饮料上并装饰。"
+      ],
+      "ingredientAmounts": {
+        "orange": "品尝"
+      }
+    },
+    "sol-y-sombra": {
+      "name": "索尔·黑影",
+      "description": "加冰摇匀原料，滤入白兰地酒杯中即可享用。 （这款饮料名字的英文翻译是“Sun and Shade”，尝过这款饮料后，你就会明白为什么。谢谢，Kirby。）",
+      "preparationSteps": [
+        "加冰摇匀原料，滤入白兰地酒杯中，即可享用",
+        "（这款饮料名字的英文翻译是“Sun and Shade”，尝过这款饮料后你就会明白为什么",
+        "谢谢，卡比。）"
+      ]
+    },
+    "space-odyssey": {
+      "name": "太空漫游",
+      "description": "在一个高脚玻璃杯中装满冰块。加入朗姆酒和量好的菠萝汁。淋上橙汁，加入石榴糖浆调味，并用樱桃装饰。",
+      "preparationSteps": [
+        "在一个高脚玻璃杯中装满冰块。",
+        "加入朗姆酒和量好的菠萝汁。",
+        "淋上橙汁，加入石榴糖浆调味，并用樱桃装饰。"
+      ],
+      "ingredientAmounts": {
+        "juice_orange": "品尝",
+        "grenadine": "品尝",
+        "cherry": "装饰用"
+      }
+    },
+    "spice-75": {
+      "name": "香料75",
+      "description": "批量配方：数量可制作六个长笛玻璃杯。用30毫升水和五香粉加热糖直至溶解；冷却并过滤。量取 60 毫升准备好的香料糖浆。将其与朗姆酒、酸橙汁和冰一起摇匀，必要时分批摇匀。分成六个笛形杯，每个笛形杯中加入 100 毫升香槟，并用橙皮装饰。",
+      "preparationSteps": [
+        "批量配方：数量可制作六个长笛玻璃杯。",
+        "用30毫升水和五香粉加热糖直至溶解；冷却并过滤。",
+        "量取 60 毫升准备好的香料糖浆。将其与朗姆酒、酸橙汁和冰一起摇匀，必要时分批摇匀。",
+        "分成六个笛形杯，每个笛形杯中加入 100 毫升香槟，并用橙皮装饰。"
+      ],
+      "ingredientAmounts": {
+        "orange_spiral": "品尝"
+      }
+    },
+    "spritz": {
+      "name": "喷洒",
+      "description": "倒入玻璃杯中，加冰块，装饰即可食用。",
+      "preparationSteps": [
+        "倒入玻璃杯中，加冰块，装饰即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "溅起的水花"
+      }
+    },
+    "stinger": {
+      "name": "刺",
+      "description": "将白兰地和白薄荷酒加入装有冰块的混合杯中。搅拌直至冷却并滤入冰镇的鸡尾酒杯中。",
+      "preparationSteps": [
+        "将白兰地和白薄荷酒加入装有冰块的混合杯中。",
+        "搅拌直至冷却并滤入冰镇的鸡尾酒杯中。"
+      ]
+    },
+    "stone-sour": {
+      "name": "石酸",
+      "description": "将所有原料加冰摇匀​​，滤入冰镇威士忌酸玻璃杯中，即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入冰镇威士忌酸玻璃杯中，即可享用。"
+      ]
+    },
+    "sweet-bananas": {
+      "name": "甜香蕉",
+      "description": "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合。倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。",
+      "preparationSteps": [
+        "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合",
+        "倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。"
+      ]
+    },
+    "sweet-sangria": {
+      "name": "甜桑格利亚汽酒",
+      "description": "将糖溶解在热水中并冷却。将柑橘类水果去皮并切成楔形。将葡萄酒、糖浆、水果和弗雷斯卡放入水罐中混合，然后放入冰箱几个小时。用吸管盛在高脚玻璃杯中。",
+      "preparationSteps": [
+        "将糖放入热水中溶解并冷却",
+        "将柑橘类水果去皮并切成楔形",
+        "将葡萄酒、糖浆、水果和弗雷斯卡放入水罐中混合，然后放入冰箱几个小时",
+        "用吸管盛在高脚玻璃杯中。"
+      ],
+      "ingredientAmounts": {
+        "orange": "装饰用",
+        "lime": "装饰用",
+        "lemon": "品尝",
+        "fresca": "充值"
+      }
+    },
+    "tennesee-mud": {
+      "name": "田纳西泥浆",
+      "description": "将咖啡、杰克丹尼尔斯和苦杏酒混合。在上面添加奶油。",
+      "preparationSteps": [
+        "混合咖啡、杰克丹尼和苦杏酒",
+        "在上面添加奶油。"
+      ],
+      "ingredientAmounts": {
+        "whipped_cream": "装饰用"
+      }
+    },
+    "tequila-fizz": {
+      "name": "龙舌兰汽水",
+      "description": "将所有原料（姜汁汽水除外）加冰摇匀，滤入装有冰块的柯林斯玻璃杯中。倒入姜汁汽水，搅拌，即可食用。",
+      "preparationSteps": [
+        "将所有原料（姜汁汽水除外）加冰摇匀，滤入装有冰块的柯林斯玻璃杯中",
+        "倒入姜汁汽水，搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "ginger_ale": "充值"
+      }
+    },
+    "tequila-sour": {
+      "name": "龙舌兰酸酒",
+      "description": "将龙舌兰酒、柠檬汁和糖粉加冰摇匀，滤入威士忌酸酒杯中。加入半片柠檬，上面放上樱桃，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将龙舌兰酒、柠檬汁和糖粉加冰摇匀，滤入威士忌酸杯中",
+        "加入半片柠檬，上面放上樱桃，即可食用。"
+      ]
+    },
+    "tequila-sunrise": {
+      "name": "龙舌兰日出",
+      "description": "将龙舌兰酒和橙汁倒入装满冰块的高球杯中。慢慢添加石榴糖浆，使其下沉并产生日出梯度。不要搅拌。",
+      "preparationSteps": [
+        "将龙舌兰酒和橙汁倒入装满冰块的高球杯中。",
+        "慢慢添加石榴糖浆，使其下沉并产生日出梯度。不要搅拌。"
+      ]
+    },
+    "tequila-surprise": {
+      "name": "龙舌兰酒惊喜",
+      "description": "在小玻璃杯中倒入龙舌兰酒。添加几滴托巴斯科酱。",
+      "preparationSteps": [
+        "在玻璃杯中倒入龙舌兰酒",
+        "添加几滴托巴斯科酱。"
+      ],
+      "ingredientAmounts": {
+        "tequila": "充值"
+      }
+    },
+    "texas-rattlesnake": {
+      "name": "德克萨斯响尾蛇",
+      "description": "混合所有成分并摇匀。一开始是甜甜的，最后却是一口……",
+      "preparationSteps": [
+        "混合所有成分并摇匀",
+        "一开始是甜甜的，最后却是一口……"
+      ],
+      "ingredientAmounts": {
+        "sweet_and_sour": "溅起的水花"
+      }
+    },
+    "texas-sling": {
+      "name": "德克萨斯司令",
+      "description": "与冰混合直至光滑。盛入郁金香杯中，上面淋上鲜奶油。",
+      "preparationSteps": [
+        "加冰搅拌至光滑",
+        "盛入郁金香杯中，上面淋上鲜奶油。"
+      ]
+    },
+    "thai-coffee": {
+      "name": "泰国咖啡",
+      "description": "将咖啡和香料放入咖啡机的滤锥中 像平常一样煮咖啡，让它冷却 在一个高玻璃杯中，将 1 或 2 茶匙糖溶解在 1 盎司咖啡中（这比直接放在冰上更容易溶解） 添加 5-6 个冰块，将咖啡倒入距玻璃杯顶部约 1 英寸的范围内 将勺子放在咖啡上，慢慢将淡奶油倒入勺子中 这将使奶油浮在咖啡上，而不是浮在咖啡上立刻就散入其中。",
+      "preparationSteps": [
+        "将咖啡和香料放入咖啡机的滤锥中",
+        "像往常一样冲泡咖啡，让它冷却",
+        "在一个高玻璃杯中，将 1 或 2 茶匙糖溶解在 1 盎司咖啡中（这比直接放在冰上更容易溶解）",
+        "添加 5-6 个冰块，然后将咖啡倒入距玻璃杯顶部约 1 英寸的位置",
+        "将勺子放在咖啡上，然后将鲜奶油慢慢倒入勺子中",
+        "这将使奶油漂浮在咖啡上，而不是立即分散到咖啡中。"
+      ],
+      "ingredientAmounts": {
+        "whipped_cream": "装饰用"
+      }
+    },
+    "thai-iced-coffee": {
+      "name": "泰式冰咖啡",
+      "description": "用两到三个压碎的小豆蔻豆荚冲泡一壶浓咖啡。将热咖啡加糖调味，然后冷却。将冰倒入高脚玻璃杯中。在勺子背面慢慢添加奶油，形成一个单独的顶层。",
+      "preparationSteps": [
+        "用两到三个压碎的小豆蔻豆荚冲泡一壶浓咖啡。",
+        "将热咖啡加糖调味，然后冷却。",
+        "将冰倒入高脚玻璃杯中。",
+        "在勺子背面慢慢添加奶油，形成一个单独的顶层。"
+      ],
+      "ingredientAmounts": {
+        "coffee": "品尝",
+        "cream": "品尝",
+        "sugar": "品尝"
+      }
+    },
+    "thai-iced-tea": {
+      "name": "泰式冰茶",
+      "description": "将泰式茶（即粉末）、沸水和甜炼乳混合，搅拌直至混合。倒入2个装满冰块的高脚玻璃杯中。用薄荷叶装饰。做 2 份。",
+      "preparationSteps": [
+        "将泰式茶（即粉末）、沸水和甜炼乳混合，搅拌直至混合",
+        "倒入2个装满冰块的高脚玻璃杯中",
+        "用薄荷叶装饰",
+        "做 2 份。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要",
+        "mint": "装饰用"
+      }
+    },
+    "the-galah": {
+      "name": "加拉",
+      "description": "将酒精部分混合在一起，并在上面加入菠萝和酸橙汁。",
+      "preparationSteps": [
+        "将酒精部分混合在一起，并在上面加入菠萝和酸橙汁。"
+      ],
+      "ingredientAmounts": {
+        "juice_pineapple": "充值",
+        "lime": "充值"
+      }
+    },
+    "the-jimmy-conway": {
+      "name": "吉米·康威",
+      "description": "将玻璃杯装满冰块\n倒入爱尔兰人和迪萨龙诺\n用蔓越莓汁填满顶部\n用一片柠檬装饰……尽情享受吧！",
+      "preparationSteps": [
+        "将玻璃杯装满冰块",
+        "倒入爱尔兰人和迪萨龙诺",
+        "用蔓越莓汁填满顶部",
+        "用一片柠檬装饰……尽情享受吧！"
+      ]
+    },
+    "the-last-word": {
+      "name": "最后一句话",
+      "description": "加冰摇匀，滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "加冰摇匀，滤入鸡尾酒杯。"
+      ]
+    },
+    "the-laverstoke": {
+      "name": "拉弗斯托克",
+      "description": "将石灰块挤入气球玻璃中；加入生姜、接骨木花甜酒、苦艾酒和杜松子酒。加入冰块并搅拌至冷却。加入姜汁汽水，轻轻搅拌，并用薄荷装饰。这个版本使用了生产商的冬季红变体和亲切的替代品。",
+      "preparationSteps": [
+        "将石灰块挤入气球玻璃中；加入生姜、接骨木花甜酒、苦艾酒和杜松子酒。",
+        "加入冰块并搅拌至冷却。",
+        "加入姜汁汽水，轻轻搅拌，并用薄荷装饰。这个版本使用了生产商的冬季红变体和亲切的替代品。"
+      ]
+    },
+    "the-philosopher": {
+      "name": "哲学家",
+      "description": "将杜松子酒、甜瓜利口酒、橙子苦精酒和柠檬汁加冰摇匀。滤入冰镇玻璃杯中，然后在上面倒入普罗塞克葡萄酒。",
+      "preparationSteps": [
+        "将杜松子酒、甜瓜利口酒、橙子苦精酒和柠檬汁加冰摇匀。",
+        "滤入冰镇玻璃杯中，然后在上面倒入普罗塞克葡萄酒。"
+      ],
+      "ingredientAmounts": {
+        "prosecco": "充值"
+      }
+    },
+    "thriller": {
+      "name": "惊悚片",
+      "description": "在装有半杯冰块的摇酒壶中，混合所有成分。摇匀。滤入鸡尾酒杯。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，混合所有成分",
+        "摇匀",
+        "滤入鸡尾酒杯。"
+      ]
+    },
+    "tia-maria": {
+      "name": "蒂亚-玛丽亚",
+      "description": "将水、糖和咖啡煮沸 10 分钟，然后冷却。添加朗姆酒和香草。放入干净的瓶子中并放置 1 周后再使用。",
+      "preparationSteps": [
+        "将水、糖和咖啡煮沸 10 分钟，然后冷却",
+        "添加朗姆酒和香草",
+        "放入干净的瓶子中并放置 1 周后再使用。"
+      ]
+    },
+    "tipperary": {
+      "name": "蒂珀雷里",
+      "description": "将所有原料加冰搅拌直至冷却。滤入冰镇的玻璃杯中。如果需要，可以在表面涂抹橙皮油，然后丢弃果皮。",
+      "preparationSteps": [
+        "将所有原料加冰搅拌直至冷却。",
+        "滤入冰镇的玻璃杯中。如果需要，可以在表面涂抹橙皮油，然后丢弃果皮。"
+      ]
+    },
+    "tom-collins": {
+      "name": "汤姆·柯林斯",
+      "description": "在装满冰块的摇酒壶中，将杜松子酒、柠檬汁和糖混合，摇匀，滤入几乎装满冰块的柯林斯玻璃杯中，加入苏打水，搅拌，并用樱桃和橙片装饰。",
+      "preparationSteps": [
+        "在装有半杯冰块的摇酒壶中，将杜松子酒、柠檬汁和糖混合",
+        "摇匀",
+        "滤入几乎装满冰块的柯林斯玻璃杯中",
+        "添加苏打水",
+        "搅拌并用樱桃和橙片装饰。"
+      ]
+    },
+    "tomato-tang": {
+      "name": "番茄汤",
+      "description": "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合。倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。",
+      "preparationSteps": [
+        "将所有原料放入搅拌杯中 - 盖上盖子并以中速搅拌直至充分混合",
+        "倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。"
+      ]
+    },
+    "turf-cocktail": {
+      "name": "草坪鸡尾酒",
+      "description": "将所有原料（橙皮除外）与冰搅拌，滤入鸡尾酒杯中。加入橙皮，即可食用。",
+      "preparationSteps": [
+        "将所有原料（橙皮除外）与冰搅拌，滤入鸡尾酒杯中",
+        "加入橙皮，即可食用。"
+      ]
+    },
+    "turkeyball": {
+      "name": "火鸡球",
+      "description": "加冰摇匀，滤入小玻璃杯中。",
+      "preparationSteps": [
+        "加冰摇匀，滤入小玻璃杯中。"
+      ],
+      "ingredientAmounts": {
+        "juice_pineapple": "溅起的水花"
+      }
+    },
+    "tuxedo-cocktail": {
+      "name": "燕尾服鸡尾酒",
+      "description": "将所有原料加冰搅拌，滤入鸡尾酒杯中。用一颗樱桃和少许柠檬皮装饰。",
+      "preparationSteps": [
+        "将所有原料加冰搅拌，滤入鸡尾酒杯中",
+        "用一颗樱桃和少许柠檬皮装饰。"
+      ]
+    },
+    "valencia-cocktail": {
+      "name": "瓦伦西亚鸡尾酒",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "vampiro": {
+      "name": "吸血鬼",
+      "description": "吸血鬼可以用高脚玻璃杯或老式玻璃杯制成。调酒师可能会先用犹太盐“镶边”玻璃杯，具体方法是在案板上放一层犹太盐，用酸橙汁或水润湿玻璃杯边缘，然后将倒置的玻璃杯边缘放在犹太盐上，使盐粘在湿润的边缘上。第二步是在玻璃杯中装满一半冰块，并添加一到两个装满高品质龙舌兰酒的射手杯。下一阶段是添加调味元素。具体做法是，将新鲜酸橙挤入玻璃杯中，加入几粒盐，加入柑橘味汽水，直至玻璃杯充满 4/5，然后加入辛辣的 Viuda de Sanchez（或橙汁、酸橙汁和 pico de gallo）。最后一步是搅拌原料，使味道适当混合。",
+      "preparationSteps": [
+        "吸血鬼可以用高脚玻璃杯或老式玻璃杯制成",
+        "调酒师可能会先用犹太盐“镶边”玻璃杯，具体方法是在案板上放一层犹太盐，用酸橙汁或水润湿玻璃杯边缘，然后将倒置的玻璃杯边缘放在犹太盐上，使盐粘在湿润的边缘上。",
+        "第二步是在玻璃杯中装满一半冰块，并添加一到两个装满高品质龙舌兰酒的射手杯",
+        "下一阶段是添加调味元素",
+        "具体做法是：将新鲜酸橙挤入玻璃杯中，加入几粒盐，加入柑橘味汽水，直至玻璃杯充满 4/5，然后加入辛辣的 Viuda de Sanchez（或橙汁、酸橙汁和 pico de gallo）",
+        "最后一步是搅拌原料，使味道适当混合。"
+      ]
+    },
+    "van-vleet": {
+      "name": "范弗利特",
+      "description": "将所有原料加冰摇匀​​，滤入装有冰块的老式玻璃杯中，即可食用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入装有冰块的老式玻璃杯中，即可食用。"
+      ]
+    },
+    "vermouth-cassis": {
+      "name": "苦艾酒卡西斯",
+      "description": "将苦艾酒和黑醋栗奶油放入装有冰块的高球杯中搅拌。加入碳酸水，再次搅拌，即可食用。",
+      "preparationSteps": [
+        "将苦艾酒和黑醋栗奶油放入装有冰块的高球杯中搅拌",
+        "加入碳酸水，再次搅拌，即可食用。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "vesper": {
+      "name": "黄昏",
+      "description": "加冰摇匀直至充分冷却，然后滤入深高脚杯中，并用一片柠檬皮薄片装饰。",
+      "preparationSteps": [
+        "加冰摇匀直至充分冷却，然后滤入深高脚杯中，并用一片柠檬皮薄片装饰。"
+      ]
+    },
+    "vesuvio": {
+      "name": "维苏威火山",
+      "description": "将所有原料加冰摇匀​​，滤入装有冰块的老式玻璃杯中，即可食用。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "将所有原料加冰摇匀​​，滤入装有冰块的老式玻璃杯中，即可食用。"
+      ]
+    },
+    "veteran": {
+      "name": "老将",
+      "description": "将朗姆酒和樱桃白兰地倒入几乎装满冰块的老式玻璃杯中。搅拌均匀。",
+      "preparationSteps": [
+        "将朗姆酒和樱桃白兰地倒入几乎装满冰块的老式玻璃杯中",
+        "搅拌均匀。"
+      ]
+    },
+    "victor": {
+      "name": "胜利者",
+      "description": "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。",
+      "preparationSteps": [
+        "将所有原料加冰摇匀​​，滤入鸡尾酒杯中即可享用。"
+      ]
+    },
+    "victory-collins": {
+      "name": "胜利柯林斯",
+      "description": "将所有原料（橙片除外）加冰摇匀，滤入装有冰块的柯林斯玻璃杯中。加入橙片即可食用。",
+      "preparationSteps": [
+        "将所有原料（橙片除外）加冰摇匀，滤入装有冰块的柯林斯玻璃杯中",
+        "加入橙片即可食用。"
+      ]
+    },
+    "vodka-fizz": {
+      "name": "伏特加汽水",
+      "description": "混合所有成分，保留肉豆蔻。倒入大白葡萄酒杯中，并在上面撒上肉豆蔻。",
+      "preparationSteps": [
+        "将所有材料混合，保留肉豆蔻",
+        "倒入大白葡萄酒杯中，并在上面撒上肉豆蔻。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要",
+        "nutmeg": "装饰用"
+      }
+    },
+    "vodka-martini": {
+      "name": "伏特加马提尼",
+      "description": "将伏特加和苦艾酒与一些冰块一起摇匀，滤入鸡尾酒杯中，加入橄榄即可享用。",
+      "preparationSteps": [
+        "将伏特加和苦艾酒与一些冰块一起摇匀，滤入鸡尾酒杯中，加入橄榄即可享用。"
+      ]
+    },
+    "whiskey-sour": {
+      "name": "威士忌酸",
+      "description": "加冰摇匀。滤入冰镇玻璃杯中，装饰即可食用。如果加冰块供应，请将原料滤入装满冰块的老式玻璃杯中。",
+      "preparationSteps": [
+        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
+        "加冰摇匀",
+        "滤入冰镇玻璃杯中，装饰并上桌",
+        "如果加冰块供应，请将原料滤入装满冰块的老式玻璃杯中。"
+      ]
+    },
+    "whisky-mac": {
+      "name": "威士忌麦克",
+      "description": "将两种原料倒入不加冰的酒杯中。",
+      "preparationSteps": [
+        "将两种原料倒入不加冰的酒杯中。"
+      ]
+    },
+    "white-lady": {
+      "name": "白女士",
+      "description": "将所有成分添加到装满冰块的鸡尾酒调酒器中。充分摇匀并滤入大鸡尾酒杯中。",
+      "preparationSteps": [
+        "将所有原料加入装满冰块的鸡尾酒调酒器中",
+        "充分摇匀并滤入大鸡尾酒杯中。"
+      ]
+    },
+    "white-russian": {
+      "name": "白俄罗斯",
+      "description": "将伏特加和咖啡利口酒倒在老式玻璃杯中的冰块上。填入淡奶油即可食用。",
+      "preparationSteps": [
+        "将伏特加和咖啡利口酒倒在老式玻璃杯中的冰块上",
+        "填入淡奶油即可食用。"
+      ],
+      "ingredientAmounts": {
+        "light_cream": "品尝"
+      }
+    },
+    "white-wine-sangria": {
+      "name": "白葡萄酒桑格利亚汽酒",
+      "description": "将柠檬、酸橙和其他水果切成大块。将白葡萄酒倒入水罐中，然后加入苹果白兰地。淋上苏打水调味。",
+      "preparationSteps": [
+        "将柠檬、酸橙和其他水果切成大块",
+        "将白葡萄酒倒入水罐中，并与苹果白兰地混合",
+        "淋上苏打水调味。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "whitecap-margarita": {
+      "name": "白帽玛格丽特",
+      "description": "将所有成分放入搅拌机中，搅拌至光滑。这样就可以喝一杯了。",
+      "preparationSteps": [
+        "将所有成分放入搅拌机中，搅拌至光滑",
+        "这样就可以喝一杯了。"
+      ]
+    },
+    "wine-punch": {
+      "name": "潘趣酒",
+      "description": "将所有成分混合并倒在一块冰上。",
+      "preparationSteps": [
+        "将所有成分混合并倒在一块冰上。"
+      ]
+    },
+    "winter-paloma": {
+      "name": "冬季帕洛玛",
+      "description": "在岩石杯中装满冰块。加入龙舌兰酒、新鲜酸橙汁和龙舌兰糖浆。淋上葡萄柚汁，加入少许食品级胡椒粉并搅拌。这是简化版本；最初使用的是准备好的胡椒龙舌兰酒。",
+      "preparationSteps": [
+        "在岩石杯中装满冰块。",
+        "加入龙舌兰酒、新鲜酸橙汁和龙舌兰糖浆。",
+        "淋上葡萄柚汁，加入少许食品级胡椒粉并搅拌。这是简化版本；最初使用的是准备好的胡椒龙舌兰酒。"
+      ],
+      "ingredientAmounts": {
+        "juice_grapefruit": "充值"
+      }
+    },
+    "winter-rita": {
+      "name": "冬天丽塔",
+      "description": "盐边。将所有成分混合，加冰摇匀，然后滤入新鲜冰块。⠀",
+      "preparationSteps": [
+        "盐边",
+        "将所有成分混合，加冰摇匀，然后滤入新鲜冰块。⠀"
+      ]
+    },
+    "yellow-bird": {
+      "name": "黄鸟",
+      "description": "摇匀并滤入冰镇的鸡尾酒杯中",
+      "preparationSteps": [
+        "摇匀并滤入冰镇的鸡尾酒杯中"
+      ]
+    },
+    "yoghurt-cooler": {
+      "name": "酸奶冷却器",
+      "description": "将酸奶、水果和冰块放入搅拌机中，盖上盖子。搅拌至光滑并倒入玻璃杯中。添加更多冰块之前先停止搅拌机。",
+      "preparationSteps": [
+        "将酸奶、水果和冰块放入搅拌机中，盖上盖子。",
+        "搅拌至光滑并倒入玻璃杯中。添加更多冰块之前先停止搅拌机。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "zambeer": {
+      "name": "赞比尔",
+      "description": "将桑布卡与根啤酒混合并搅拌。加冰",
+      "preparationSteps": [
+        "将桑布卡与根啤酒混合并搅拌",
+        "加冰"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "ziemes-martini-apfelsaft": {
+      "name": "齐梅斯·马蒂尼·阿普菲尔萨夫特",
+      "description": "将苦艾酒和苹果汁放入玻璃杯中，轻轻搅拌。不加冰即可食用；最初的配方需要室温果汁。",
+      "preparationSteps": [
+        "将苦艾酒和苹果汁放入玻璃杯中，轻轻搅拌。",
+        "不加冰即可食用；最初的配方需要室温果汁。"
+      ]
+    },
+    "zipperhead": {
+      "name": "拉链头",
+      "description": "在一个高脚玻璃杯中装满冰块。倒入香波堡，然后倒入伏特加，最后倒入苏打水。慢慢倒入以保留层。",
+      "preparationSteps": [
+        "在一个高脚玻璃杯中装满冰块。",
+        "倒入香波堡，然后倒入伏特加，最后倒入苏打水。慢慢倒入以保留层。"
+      ],
+      "ingredientAmounts": {
+        "soda_water": "充值"
+      }
+    },
+    "zippy-s-revenge": {
+      "name": "齐皮的复仇",
+      "description": "混合酷爱饮料 (Kool-Aid) 调味，然后加入朗姆酒和苦杏仁酒。摇匀以溶解 Kool-Aid 中的糖...冷饮",
+      "preparationSteps": [
+        "混合酷爱饮料 (Kool-Aid) 调味，然后加入朗姆酒和苦杏仁酒",
+        "充分摇匀，使Kool-Aid中的糖溶解。",
+        "冷食"
+      ]
+    },
+    "zizi-coin-coin": {
+      "name": "滋滋币-币",
+      "description": "将君度和新鲜柠檬汁倒入玻璃杯中，加冰块。轻轻搅拌，如果需要，可以用柠檬片装饰。",
+      "preparationSteps": [
+        "将君度和新鲜柠檬汁倒入玻璃杯中，加冰块。",
+        "轻轻搅拌，如果需要，可以用柠檬片装饰。"
+      ],
+      "ingredientAmounts": {
+        "ice": "根据需要"
+      }
+    },
+    "zoksel": {
+      "name": "佐克塞尔",
+      "description": "将所有材料冷却。原来的配方没有给出固定的比例。将啤酒和软饮料倒入一个大玻璃杯中，加入黑醋栗调味。轻轻搅拌并用柠檬片装饰。不要摇动碳酸成分。",
+      "preparationSteps": [
+        "将所有材料冷却。原来的配方没有给出固定的比例。",
+        "将啤酒和软饮料倒入一个大玻璃杯中，加入黑醋栗调味。",
+        "轻轻搅拌并用柠檬片装饰。不要摇动碳酸成分。"
+      ],
+      "ingredientAmounts": {
+        "coca_cola": "品尝",
+        "beer": "品尝",
+        "root_beer": "品尝",
+        "lemonade": "充值",
+        "7_up": "品尝",
+        "creme_de_cassis": "品尝"
+      }
+    },
+    "zombie": {
+      "name": "僵尸",
+      "description": "葡萄柚汁和肉桂糖浆一起制成一份 Donn’s Mix (2:1)。将所有称量好的原料与约 170 克碎冰一起放入搅拌机中。仅脉冲几秒钟，然后倒入一个高玻璃杯中。如果需要的话添加更多的冰。",
+      "preparationSteps": [
+        "葡萄柚汁和肉桂糖浆一起制成一份 Donn’s Mix (2:1)。",
+        "将所有称量好的原料与约 170 克碎冰一起放入搅拌机中。",
+        "仅脉冲几秒钟，然后倒入一个高玻璃杯中。如果需要的话添加更多的冰。"
+      ]
+    },
+    "zorbatini": {
+      "name": "佐尔巴蒂尼",
+      "description": "在调酒杯中将伏特加和茴香烈酒加冰搅拌。滤入冰镇的鸡尾酒杯中。橄榄是一种可选的装饰。",
+      "preparationSteps": [
+        "在调酒杯中将伏特加和茴香烈酒加冰搅拌。",
+        "滤入冰镇的鸡尾酒杯中。橄榄是一种可选的装饰。"
+      ]
+    },
+    "zorro": {
+      "name": "佐罗",
+      "description": "添加全部并倒入黑咖啡，然后在上面添加生奶油。",
+      "preparationSteps": [
+        "添加全部并倒入黑咖啡，然后在上面添加生奶油。"
+      ],
+      "ingredientAmounts": {
+        "coffee": "充值",
+        "whipped_cream": "装饰用"
+      }
+    }
+  }
+}
