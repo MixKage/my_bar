@@ -140,7 +140,8 @@ class StoreAssetTests(unittest.TestCase):
         originals = {item["sourcePath"]: assets.digest(self.output / item["sourcePath"]) for item in entries}
         result = assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
         self.assertEqual(result["googlePlayScreenshots"], 6)
-        assets.validate_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), scenes)
+        validation = assets.validate_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), scenes)
+        self.assertEqual((validation["validatedImages"], validation["screenshots"], validation["featureGraphics"]), (6, 6, 0))
         for entry in entries:
             self.assertEqual(assets.digest(self.output / entry["path"]), originals[entry["sourcePath"]])
             self.assertEqual(assets.digest(self.output / entry["sourcePath"]), originals[entry["sourcePath"]])
@@ -155,6 +156,217 @@ class StoreAssetTests(unittest.TestCase):
             self.assertEqual(manifest["renderer"], "android-google-play-export")
         second = assets.package(self.config, self.output, self.languages, self.android_devices(), "google-play", True, scenes)
         self.assertEqual(first["sha256"], second["sha256"])
+
+    def feature_graphic_fixture(self):
+        config = copy.deepcopy(self.config)
+        config["fonts"] = []
+        config_path = self.root / "config.json"
+        assets.save_json(config_path, config)
+        copy_data = {"schemaVersion": 1, "languages": {
+            language["code"]: {"brand": "My Bar", "headline": f"Cocktails at home: {language['nativeName']}",
+                                 "altText": f"My Bar cocktail planner: {language['nativeName']}"}
+            for language in config["languages"]}}
+        assets.save_json(self.root / "feature_graphic_copy.json", copy_data)
+        (self.root / "artwork").mkdir()
+        Image.new("RGB", (1024, 500), (12, 22, 42)).save(self.root / "artwork" / "cocktails-master.png")
+        return config, config_path, copy_data
+
+    def create_feature_graphics(self, config, config_path, languages=None, mode="RGB"):
+        languages = config["languages"] if languages is None else languages
+        entries = assets.feature_graphic_entries(config, config_path, languages)
+        path = self.output / assets.FEATURE_GRAPHIC_MANIFEST
+        previous = json.loads(path.read_text())["graphics"] if path.exists() else []
+        merged = {item["language"]: item for item in previous}
+        for entry in entries:
+            target = self.output / entry["path"]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            Image.new(mode, (1024, 500), (12, 22, 42, 255) if mode == "RGBA" else (12, 22, 42)).save(target)
+            merged[entry["language"]] = {**entry, **assets.feature_graphic_inputs(config, config_path),
+                                       "layout": {"safeRect": [64, 40, 896, 420]},
+                                       "sha256": assets.digest(target), "bytes": target.stat().st_size}
+        assets.save_json(path, {"schemaVersion": 1, "renderer": assets.FEATURE_GRAPHIC_RENDERER,
+                               "uploaded": False, "graphics": sorted(merged.values(), key=lambda item: item["language"])})
+        return entries
+
+    def test_feature_graphic_all_locale_paths_copy_and_direction(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        entries = assets.feature_graphic_entries(config, config_path, config["languages"])
+        self.assertEqual(len(entries), 13)
+        self.assertEqual(len({item["path"] for item in entries}), 13)
+        by_language = {entry["language"]: entry for entry in entries}
+        self.assertEqual(by_language["ru"]["path"], "google-play/ru-RU/feature-graphic.png")
+        self.assertEqual(by_language["zh"]["locale"], "zh-CN")
+        self.assertEqual(by_language["ar"]["textDirection"], "rtl")
+        self.assertEqual(by_language["ar"]["fontFamily"], "NotoSansArabic")
+        self.assertTrue(all((entry["width"], entry["height"]) == (1024, 500) for entry in entries))
+        self.assertTrue(all(entry["assetType"] == "feature-graphic" for entry in entries))
+
+    def test_feature_graphic_copy_rejects_missing_invalid_and_unknown_before_flutter(self):
+        config, config_path, original = self.feature_graphic_fixture()
+        mutations = [lambda data: data.update(schemaVersion=2), lambda data: data.update(languages=[]),
+                     lambda data: data["languages"].pop("en"), lambda data: data["languages"].update(xx={}),
+                     lambda data: data["languages"]["en"].update(headline=" "),
+                     lambda data: data["languages"]["en"].update(brand=5),
+                     lambda data: data["languages"]["ar"].update(textDirection="ltr"),
+                     lambda data: data["languages"]["ja"].update(fontFamily="Manrope"),
+                     lambda data: data["languages"]["en"].update(altText="a" * 141)]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            assets.save_json(self.root / "feature_graphic_copy.json", data)
+            with mock.patch.object(assets.subprocess, "run") as run:
+                with self.assertRaises(assets.AssetError):
+                    assets.compose_feature_graphics(config, config_path, self.output, config["languages"], False)
+                run.assert_not_called()
+            self.assertFalse(self.output.exists())
+
+    def test_feature_graphic_preflight_checks_artwork_and_fonts_without_writes(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        source = self.root / "artwork" / "cocktails-master.png"
+        Image.new("RGB", (100, 50)).save(source)
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "at least 1024"):
+                assets.compose_feature_graphics(config, config_path, self.output, self.languages, False)
+            run.assert_not_called()
+        Image.new("RGB", (1024, 500)).save(source)
+        config["fonts"] = [{"family": "Missing", "path": "missing.ttf"}]
+        assets.save_json(config_path, config)
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "Missing font"):
+                assets.compose_feature_graphics(config, config_path, self.output, self.languages, False)
+            run.assert_not_called()
+        self.assertFalse(self.output.exists())
+
+    def test_feature_graphic_compose_refuses_hardlinks_to_input_artwork(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        source = self.root / "artwork" / "cocktails-master.png"
+        target = self.output / "google-play/en-US/feature-graphic.png"
+        target.parent.mkdir(parents=True)
+        assets.os.link(source, target)
+        original = source.read_bytes()
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "inputs must be separate"):
+                assets.compose_feature_graphics(config, config_path, self.output, config["languages"][:1], True)
+            run.assert_not_called()
+        self.assertEqual(source.read_bytes(), original)
+
+    def test_feature_graphic_compose_env_normalizes_rgba_and_preserves_unselected(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path, config["languages"][:1])
+        english = self.output / "google-play/en-US/feature-graphic.png"
+        original_hash = assets.digest(english)
+        marker = self.output / "keep.txt"
+        marker.write_text("existing file")
+        def fake_compose(command, cwd, env, check):
+            self.assertEqual(command, ["flutter", "test", "tool/store_assets/compose_feature_graphics.dart", "--run-skipped", "--no-pub"])
+            self.assertEqual(env["STORE_ASSET_LANGUAGES"], "ru")
+            self.assertEqual(env["STORE_ASSET_CONFIG"], str(config_path))
+            self.assertEqual(env["STORE_ASSET_OUTPUT"], str(self.output))
+            self.assertEqual(env["STORE_ASSET_OVERWRITE"], "false")
+            self.create_feature_graphics(config, config_path, config["languages"][1:2], "RGBA")
+        with mock.patch.object(assets.subprocess, "run", side_effect=fake_compose):
+            result = assets.compose_feature_graphics(config, config_path, self.output, config["languages"][1:2], False)
+        self.assertEqual(result["featureGraphics"], 1)
+        self.assertFalse(result["uploaded"])
+        self.assertEqual(assets.digest(english), original_hash)
+        self.assertEqual(marker.read_text(), "existing file")
+        assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:2])
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "already exists"):
+                assets.compose_feature_graphics(config, config_path, self.output, self.languages, False)
+            run.assert_not_called()
+
+    def test_feature_graphic_validation_rejects_non_rgb_dimensions_and_size(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        entries = self.create_feature_graphics(config, config_path, config["languages"][:1])
+        target = self.output / entries[0]["path"]
+        Image.new("RGBA", (1024, 500)).save(target)
+        with self.assertRaisesRegex(assets.AssetError, "opaque RGB"):
+            assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:1])
+        Image.new("RGB", (1024, 501)).save(target)
+        with self.assertRaisesRegex(assets.AssetError, "Wrong dimensions"):
+            assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:1])
+        Image.new("RGB", (1024, 500)).save(target)
+        with target.open("ab") as stream:
+            stream.write(b"\0" * (15 * 1024 * 1024))
+        with self.assertRaisesRegex(assets.AssetError, "15 MB"):
+            assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:1])
+
+    def test_feature_graphic_manifest_rejects_hashes_locale_paths_duplicates_and_upload_claims(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path)
+        path = self.output / assets.FEATURE_GRAPHIC_MANIFEST
+        original = json.loads(path.read_text())
+        mutations = [lambda data: data.update(uploaded=True), lambda data: data.update(renderer="other"),
+                     lambda data: data["graphics"].clear(), lambda data: data["graphics"].append(data["graphics"][0]),
+                     lambda data: data["graphics"][0].update(locale="wrong"),
+                     lambda data: data["graphics"][0].update(path="../escape.png"),
+                     lambda data: data["graphics"][0].update(sha256="a" * 64),
+                     lambda data: data["graphics"][0].update(sourceSha256="b" * 64),
+                     lambda data: data["graphics"][0].update(copySha256="c" * 64),
+                     lambda data: data["graphics"][0].update(configSha256="d" * 64),
+                     lambda data: data["graphics"][0].update(layout={}),
+                     lambda data: data["graphics"][0].update(bytes=0)]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            assets.save_json(path, data)
+            with self.assertRaises(assets.AssetError):
+                assets.validate_feature_graphics(config, config_path, self.output, config["languages"])
+
+    def test_feature_graphic_packages_all_13_and_no_screenshots_or_review_assets(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path)
+        result = assets.package(config, self.output, config["languages"], [], "feature-graphics", False, config_path=config_path)
+        self.assertEqual(result["images"], 13)
+        self.assertEqual(result["metadata"], 1)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            images = [name for name in archive.namelist() if name.endswith(".png")]
+            self.assertEqual(set(images), {f"{language['googlePlayLocale']}/feature-graphic.png" for language in config["languages"]})
+            self.assertFalse(any("phone/" in name or "review-guides" in name for name in archive.namelist()))
+            manifest = json.loads(archive.read("my-bar-feature-graphics-manifest.json"))
+            self.assertEqual(manifest["renderer"], assets.FEATURE_GRAPHIC_RENDERER)
+            self.assertFalse(manifest["uploaded"])
+        repeated = assets.package(config, self.output, config["languages"], [], "feature-graphics", True, config_path=config_path)
+        self.assertEqual(result["sha256"], repeated["sha256"])
+
+    def test_google_play_bundle_includes_only_selected_valid_feature_graphics_when_manifest_exists(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path)
+        entries, scenes = self.create_android_sources()
+        assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        # The feature-graphic copy/config are separate from screenshot copy in this fixture.
+        assets.save_json(self.root / "marketing_copy.json", assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json")))
+        validation = assets.validate_google_play(config, config_path, self.output, self.languages, self.android_devices(), scenes)
+        self.assertEqual((validation["validatedImages"], validation["screenshots"], validation["featureGraphics"]), (8, 6, 2))
+        result = assets.package(config, self.output, self.languages, self.android_devices(), "google-play", False, scenes, config_path)
+        self.assertEqual(result["images"], len(entries) + 2)
+        self.assertEqual(result["metadata"], 2)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            graphics = [name for name in archive.namelist() if name.endswith("/feature-graphic.png")]
+            self.assertEqual(set(graphics), {"en-US/feature-graphic.png", "ru-RU/feature-graphic.png"})
+        first = self.output / "google-play/en-US/feature-graphic.png"
+        Image.new("RGB", (1024, 500), (255, 0, 0)).save(first)
+        with self.assertRaisesRegex(assets.AssetError, "hash/byte size"):
+            assets.validate_google_play(config, config_path, self.output, self.languages, self.android_devices(), scenes)
+        with self.assertRaisesRegex(assets.AssetError, "hash/byte size"):
+            assets.package(config, self.output, self.languages, self.android_devices(), "google-play", True, scenes, config_path)
+
+    def test_feature_graphic_only_cli_ignores_default_device_scene_matrix_and_rejects_filters(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        for device in config["devices"]:
+            device["enabled"] = False
+        for scene in config["screenshots"]:
+            scene["enabled"] = False
+        assets.save_json(config_path, config)
+        with mock.patch.object(assets, "compose_feature_graphics", return_value={"uploaded": False}) as compose:
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(assets.main(["compose-feature-graphics", "--config", str(config_path), "--languages", "ar", "--output", str(self.output)]), 0)
+            self.assertEqual(compose.call_args.args[3][0]["code"], "ar")
+        for selection in (("--devices", "android-phone"), ("--scenes", "01-ingredients")):
+            with contextlib.redirect_stderr(io.StringIO()), mock.patch.object(assets.subprocess, "run") as run:
+                self.assertEqual(assets.main(["compose-feature-graphics", "--config", str(config_path), "--output", str(self.output), *selection]), 1)
+                run.assert_not_called()
 
     def test_google_play_export_rejects_ios_provenance_and_decorative_phone_frames(self):
         _, scenes = self.create_android_sources()

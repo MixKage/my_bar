@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "languages": {
+    "en": {"brand": "My Bar", "headline": "Cocktails from\nwhat you have", "altText": "My Bar: cocktails from what you have, with two cocktails, lime and mint.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "ru": {"brand": "Мой бар", "headline": "Коктейли из того,\nчто есть дома", "altText": "Мой бар: коктейли из того, что есть дома. Два коктейля, лайм и мята.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "es": {"brand": "My Bar", "headline": "Cócteles con\nlo que tienes", "altText": "My Bar: cócteles con lo que tienes, junto a dos cócteles, lima y menta.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "pt": {"brand": "My Bar", "headline": "Coquetéis com\no que você tem", "altText": "My Bar: coquetéis com o que você tem, com dois coquetéis, limão e hortelã.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "de": {"brand": "My Bar", "headline": "Cocktails mit\ndeinen Zutaten", "altText": "My Bar: Cocktails mit deinen Zutaten, dazu zwei Cocktails, Limette und Minze.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "fr": {"brand": "My Bar", "headline": "Des cocktails avec\nce que vous avez", "altText": "My Bar : des cocktails avec ce que vous avez, accompagnés de deux cocktails, de citron vert et de menthe.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "it": {"brand": "My Bar", "headline": "Cocktail con\nquello che hai", "altText": "My Bar: cocktail con quello che hai, accanto a due cocktail, lime e menta.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "tr": {"brand": "My Bar", "headline": "Elinizdekilerle\nkokteyl hazırlayın", "altText": "My Bar: elinizdekilerle kokteyl hazırlayın. İki kokteyl, misket limonu ve nane.", "fontFamily": "Manrope", "textDirection": "ltr"},
+    "zh": {"brand": "My Bar", "headline": "用家中现有材料\n调出你的下一杯", "altText": "My Bar：用家中现有材料调出你的下一杯。两杯鸡尾酒、青柠和薄荷。", "fontFamily": "NotoSansSC", "textDirection": "ltr"},
+    "ja": {"brand": "My Bar", "headline": "家にある材料で\nカクテルを作ろう", "altText": "My Bar：家にある材料でカクテルを作ろう。2杯のカクテル、ライム、ミント。", "fontFamily": "NotoSansJP", "textDirection": "ltr"},
+    "ko": {"brand": "My Bar", "headline": "집에 있는 재료로\n만드는 칵테일", "altText": "My Bar: 집에 있는 재료로 만드는 칵테일. 칵테일 두 잔과 라임, 민트.", "fontFamily": "NotoSansKR", "textDirection": "ltr"},
+    "hi": {"brand": "My Bar", "headline": "घर की सामग्री से\nबनाएँ कॉकटेल", "altText": "My Bar: घर की सामग्री से बनाएँ कॉकटेल। दो कॉकटेल, नींबू और पुदीना।", "fontFamily": "NotoSansDevanagari", "textDirection": "ltr"},
+    "ar": {"brand": "My Bar", "headline": "كوكتيلات من\nالمكوّنات المتوفّرة لديك", "altText": "My Bar: كوكتيلات من المكوّنات المتوفّرة لديك، مع كوكتيلين وليمون أخضر ونعناع.", "fontFamily": "NotoSansArabic", "textDirection": "rtl"}
+  }
+}

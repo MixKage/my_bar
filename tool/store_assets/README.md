@@ -189,6 +189,7 @@ Upload-ready folders:
 
 ```text
 build/store-assets/google-play/<Google Play locale>/
+  feature-graphic.png
   phone/01-ingredients.png ... 07-surprise.png
   tablet-7/01-ingredients.png ... 07-surprise.png
   tablet-10/01-ingredients.png ... 07-surprise.png
@@ -210,6 +211,59 @@ The tool does not log in, upload assets, or publish a release. Screen-specific
 alt text can be based on localized scene captions, limited to 140 characters as
 recommended by Google Play. Tablet UI-only captures still contain localized
 in-app text; removal of the external marketing caption is intentional.
+
+## Localized Google Play feature graphics
+
+`compose-feature-graphics` adds one **1024 × 500** banner per language to the
+same Google Play locale folders as the screenshots. It reuses the approved
+`artwork/cocktails-master.png`, with a localized headline and brand from
+`feature_graphic_copy.json`. This is marketing artwork, not an app screenshot:
+it does not draw invented app UI, device frames, ratings, ranking badges,
+prices, or install calls to action. Arabic uses RTL layout with the text and
+artwork positions reversed, without mirroring the artwork itself. Offline
+Noto fonts handle Arabic, Devanagari, Chinese, Japanese, and Korean.
+
+```sh
+python3 tool/store_assets/store_assets.py compose-feature-graphics
+python3 tool/store_assets/store_assets.py validate --kind feature-graphics
+python3 tool/store_assets/store_assets.py package --kind feature-graphics
+python3 tool/store_assets/store_assets.py package --kind google-play --overwrite
+```
+
+Use `--languages en,ru,ar` for a subset or omit it for all 13 languages. Feature
+graphics are independent of devices and screenshot scenes; `--devices` and
+`--scenes` therefore do not apply to feature-only commands. The compositor
+checks selected copy, local artwork, fonts, output paths, and overwrite policy
+before starting Flutter. Do not run it alongside another Flutter build/test.
+Use `--overwrite` explicitly to replace selected banners while retaining all
+unselected graphics and screenshot files.
+
+Each banner is an opaque 24-bit RGB PNG, with no alpha channel and a
+conservative 15 MB (15,000,000 bytes) file-size limit. The
+[Google Play preview asset guide](https://support.google.com/googleplay/android-developer/answer/9866151?hl=en)
+specifies 1024 × 500 feature graphics. Inspect every translation, text layout,
+and crop at actual size before uploading; automated validation does not
+certify store acceptance or artistic quality.
+
+`google-play-feature-graphic-manifest.json` records the language, Google Play
+locale, localized copy and alt text, direction, fonts, layout bounds, source
+artwork/config/copy hashes, and final RGB PNG hashes/byte sizes. Validation
+rejects stale inputs, wrong locales, duplicate or unsafe paths, altered PNGs,
+non-RGB images, incorrect dimensions, and any claim that assets were uploaded.
+
+The standalone `my-bar-feature-graphics.zip` contains only the selected
+`<Google Play locale>/feature-graphic.png` files and their manifests.
+`package --kind google-play` also includes these banners **when their manifest
+exists**, and validates them before packaging. `validate --kind google-play`
+likewise checks any existing banner manifest and reports separate screenshot
+and feature-graphic counts in its total. This produces 286 images for
+the full set: 273 phone/tablet screenshots plus 13 feature graphics. A missing
+feature-graphic manifest preserves the existing screenshot-only package
+behavior; an existing but invalid or incomplete selected manifest is an error,
+not a reason to silently omit banners. Device/scene selectors on the combined
+package filter screenshots only; language selection applies to both sets.
+The Apple `--kind all` bundle and its default device selection are unchanged.
+No command signs in to Play Console or uploads the generated files.
 
 ## App Store Header and Search Results
 

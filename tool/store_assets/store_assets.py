@@ -22,6 +22,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "build" / "store-assets"
 SAFE_ID = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9_-]*$")
+FEATURE_GRAPHIC_RENDERER = "flutter-feature-graphic-compositor"
+FEATURE_GRAPHIC_MANIFEST = "google-play-feature-graphic-manifest.json"
 
 
 class AssetError(Exception):
@@ -285,7 +287,12 @@ def validate_google_play(config: dict, config_path: Path, output: Path, language
         if (actual.get("sha256") != digest(path) or actual.get("sha256") != actual.get("sourceSha256") or
                 actual.get("sourceSha256") != digest(target_file(output, expected["sourcePath"]))):
             raise AssetError(f"Google Play screenshot/source hash mismatch: {expected['path']}")
-    return {"validatedImages": len(entries), "kind": "google-play", "output": str(output / "google-play"), "uploaded": False}
+    feature_graphics = 0
+    if target_file(output, FEATURE_GRAPHIC_MANIFEST).exists():
+        feature_graphics = validate_feature_graphics(config, config_path, output, languages)["validatedImages"]
+    return {"validatedImages": len(entries) + feature_graphics, "screenshots": len(entries),
+            "featureGraphics": feature_graphics, "kind": "google-play",
+            "output": str(output / "google-play"), "uploaded": False}
 
 
 def read_capture_index(path: Path, renderer: str) -> dict:
@@ -337,6 +344,165 @@ def load_marketing_copy(config: dict, config_path: Path) -> dict:
     if not isinstance(sequence, list) or any(not isinstance(item, str) for item in sequence) or len(sequence) != len(expected) or set(sequence) != expected:
         raise AssetError("Marketing copy sequence must contain each configured scene exactly once.")
     return data
+
+
+def load_feature_graphic_copy(config: dict, config_path: Path, languages: list[dict]) -> dict:
+    copy_path = config_path.parent / "feature_graphic_copy.json"
+    try:
+        data = json.loads(copy_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        raise AssetError(f"Cannot read feature graphic copy {copy_path}: {error}") from error
+    if not isinstance(data, dict) or data.get("schemaVersion") != 1 or not isinstance(data.get("languages"), dict):
+        raise AssetError("Feature graphic copy must have schemaVersion 1 and a languages object.")
+    unknown = set(data["languages"]) - {language["code"] for language in config["languages"]}
+    if unknown:
+        raise AssetError(f"Unknown feature graphic copy languages: {', '.join(sorted(unknown))}.")
+    for language in languages:
+        localized = data["languages"].get(language["code"])
+        if not isinstance(localized, dict):
+            raise AssetError(f"Missing feature graphic copy: {language['code']}")
+        for field, maximum in (("brand", 40), ("headline", 90), ("altText", 140)):
+            value = localized.get(field)
+            if not isinstance(value, str) or not value.strip() or value != value.strip() or len(value) > maximum:
+                raise AssetError(f"Invalid feature graphic {field}: {language['code']} (maximum {maximum} characters).")
+        expected_family = feature_graphic_family(language["code"])
+        for field, expected in (("fontFamily", expected_family), ("textDirection", language.get("direction", "ltr"))):
+            if field in localized and localized[field] != expected:
+                raise AssetError(f"Feature graphic copy {field} mismatch: {language['code']}.")
+    return data
+
+
+def feature_graphic_family(language: str) -> str:
+    return {"zh": "NotoSansSC", "ja": "NotoSansJP", "ko": "NotoSansKR", "hi": "NotoSansDevanagari", "ar": "NotoSansArabic"}.get(language, "Manrope")
+
+
+def feature_graphic_entries(config: dict, config_path: Path, languages: list[dict]) -> list[dict]:
+    copy = load_feature_graphic_copy(config, config_path, languages)
+    return [{"language": language["code"], "locale": language["googlePlayLocale"],
+             "path": f"google-play/{language['googlePlayLocale']}/feature-graphic.png",
+             "width": 1024, "height": 500, "assetType": "feature-graphic",
+             "renderer": FEATURE_GRAPHIC_RENDERER,
+             "brand": copy["languages"][language["code"]]["brand"],
+             "headline": copy["languages"][language["code"]]["headline"],
+             "altText": copy["languages"][language["code"]]["altText"],
+             "textDirection": language.get("direction", "ltr"),
+             "fontFamily": feature_graphic_family(language["code"])}
+            for language in languages]
+
+
+def feature_graphic_inputs(config: dict, config_path: Path) -> dict:
+    """Pinned local provenance; this helper never connects to the network."""
+    Image, _ = pillow()
+    source = config_path.parent / "artwork" / "cocktails-master.png"
+    copy = config_path.parent / "feature_graphic_copy.json"
+    for path in (source, copy, config_path):
+        if not path.is_file() or any(part.is_symlink() for part in (path, *path.parents)):
+            raise AssetError(f"Missing or unsafe feature graphic input: {path}")
+    try:
+        with Image.open(source) as image:
+            image.load()
+            if image.format != "PNG" or image.width < 1024 or image.height < 500:
+                raise AssetError(f"Feature graphic artwork must be a PNG at least 1024 × 500: {source}")
+    except (OSError, ValueError) as error:
+        raise AssetError(f"Cannot decode feature graphic artwork {source}: {error}") from error
+    return {"sourceSha256": digest(source), "copySha256": digest(copy), "configSha256": digest(config_path)}
+
+
+def read_feature_graphic_index(config: dict, output: Path) -> dict:
+    path = target_file(output, FEATURE_GRAPHIC_MANIFEST)
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        raise AssetError(f"Cannot read feature graphic metadata {path}: {error}") from error
+    if (not isinstance(data, dict) or data.get("schemaVersion") != 1 or
+            data.get("renderer") != FEATURE_GRAPHIC_RENDERER or data.get("uploaded") is not False or
+            not isinstance(data.get("graphics"), list)):
+        raise AssetError(f"Invalid feature graphic manifest schema/renderer/graphics/uploaded: {path}")
+    languages = {language["code"]: language for language in config["languages"]}
+    seen = set()
+    for item in data["graphics"]:
+        if not isinstance(item, dict) or not isinstance(item.get("language"), str):
+            raise AssetError("Invalid feature graphic manifest entry.")
+        language = languages.get(item["language"])
+        if language is None or item["language"] in seen:
+            raise AssetError("Invalid or duplicate feature graphic manifest language.")
+        seen.add(item["language"])
+        expected_path = f"google-play/{language['googlePlayLocale']}/feature-graphic.png"
+        if item.get("locale") != language["googlePlayLocale"] or item.get("path") != expected_path:
+            raise AssetError("Feature graphic locale/path mismatch.")
+        target_file(output, item["path"])
+    return data
+
+
+def verify_feature_graphic_image(path: Path) -> None:
+    verify_image(path, 1024, 500)
+    if path.stat().st_size > 15_000_000:
+        raise AssetError(f"Feature graphic exceeds the conservative 15 MB upload limit: {path}")
+
+
+def validate_feature_graphics(config: dict, config_path: Path, output: Path, languages: list[dict]) -> dict:
+    expected = feature_graphic_entries(config, config_path, languages)
+    provenance = feature_graphic_inputs(config, config_path)
+    manifest = read_feature_graphic_index(config, output)
+    by_language = {item["language"]: item for item in manifest["graphics"]}
+    for entry in expected:
+        actual = by_language.get(entry["language"], {})
+        for field, value in {**entry, **provenance}.items():
+            if actual.get(field) != value:
+                raise AssetError(f"Feature graphic manifest {field} mismatch: {entry['path']}")
+        if not isinstance(actual.get("layout"), dict) or not actual["layout"]:
+            raise AssetError(f"Missing feature graphic layout provenance: {entry['path']}")
+        path = target_file(output, entry["path"])
+        verify_feature_graphic_image(path)
+        if actual.get("sha256") != digest(path) or actual.get("bytes") != path.stat().st_size:
+            raise AssetError(f"Feature graphic hash/byte size mismatch: {entry['path']}")
+    return {"validatedImages": len(expected), "kind": "feature-graphics", "output": str(output / "google-play"), "uploaded": False}
+
+
+def compose_feature_graphics(config: dict, config_path: Path, output: Path, languages: list[dict], overwrite: bool) -> dict:
+    entries = feature_graphic_entries(config, config_path, languages)
+    provenance = feature_graphic_inputs(config, config_path)
+    errors = font_errors(config, config_path)
+    if errors:
+        raise AssetError("\n".join(errors))
+    targets = [target_file(output, item["path"]) for item in entries]
+    ensure_writable(targets, overwrite)
+    manifest_path = target_file(output, FEATURE_GRAPHIC_MANIFEST)
+    if manifest_path.exists():
+        read_feature_graphic_index(config, output)
+    inputs = [config_path, config_path.parent / "artwork" / "cocktails-master.png",
+              config_path.parent / "feature_graphic_copy.json",
+              *[(config_path.parent / font["path"]).resolve() for font in config.get("fonts", [])]]
+    for target in [*targets, manifest_path]:
+        if any(target.exists() and target.samefile(source) for source in inputs):
+            raise AssetError("Feature graphic inputs must be separate from output files.")
+    env = os.environ.copy()
+    env.update(STORE_ASSET_CONFIG=str(config_path), STORE_ASSET_OUTPUT=str(output),
+               STORE_ASSET_LANGUAGES=",".join(language["code"] for language in languages),
+               STORE_ASSET_OVERWRITE="true" if overwrite else "false",
+               FLUTTER_SUPPRESS_ANALYTICS="true", DART_SUPPRESS_ANALYTICS="true")
+    try:
+        subprocess.run(["flutter", "test", "tool/store_assets/compose_feature_graphics.dart", "--run-skipped", "--no-pub"], cwd=REPO_ROOT, env=env, check=True)
+    except FileNotFoundError as error:
+        raise AssetError("Flutter is not available on PATH.") from error
+    except subprocess.CalledProcessError as error:
+        raise AssetError(f"Feature graphic composition failed (exit {error.returncode}). Completed PNGs were retained; retry the same selection with --overwrite.") from error
+    # Flutter's PNG encoder emits RGBA. Hash only after the opaque RGB conversion.
+    data = read_feature_graphic_index(config, output)
+    by_language = {item["language"]: item for item in data["graphics"]}
+    for entry, target in zip(entries, targets):
+        actual = by_language.get(entry["language"], {})
+        for field, value in {**entry, **provenance}.items():
+            if actual.get(field) != value:
+                raise AssetError(f"Feature graphic composition {field} mismatch: {entry['path']}")
+        if not target.is_file():
+            raise AssetError(f"Composition did not produce {target}")
+        normalize_rgb(target)
+        verify_feature_graphic_image(target)
+        actual.update(sha256=digest(target), bytes=target.stat().st_size)
+    save_json(manifest_path, data)
+    validate_feature_graphics(config, config_path, output, languages)
+    return {"featureGraphics": len(entries), "output": str(output / "google-play"), "renderer": FEATURE_GRAPHIC_RENDERER, "uploaded": False}
 
 
 def digest(path: Path) -> str:
@@ -621,6 +787,8 @@ def export_creatives(config: dict, output: Path, languages: list[dict], source_p
 def selected_entries(config: dict, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None, config_path: Path | None = None) -> list[dict]:
     if kind == "google-play":
         return google_play_entries(config, config_path or SCRIPT_DIR / "config.json", languages, devices, scenes)
+    if kind == "feature-graphics":
+        return feature_graphic_entries(config, config_path or SCRIPT_DIR / "config.json", languages)
     entries = []
     if kind in ("all", "screenshots"):
         entries.extend(shot_entries(config, languages, devices, scenes))
@@ -634,6 +802,8 @@ def selected_entries(config: dict, languages: list[dict], devices: list[dict], k
 def validate(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None, config_path: Path | None = None) -> dict:
     if kind == "google-play":
         return validate_google_play(config, config_path or SCRIPT_DIR / "config.json", output, languages, devices, scenes)
+    if kind == "feature-graphics":
+        return validate_feature_graphics(config, config_path or SCRIPT_DIR / "config.json", output, languages)
     entries = selected_entries(config, languages, devices, kind, scenes)
     errors = []
     for item in entries:
@@ -654,6 +824,10 @@ def validate(config: dict, output: Path, languages: list[dict], devices: list[di
 def package(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, overwrite: bool, scenes: list[dict] | None = None, config_path: Path | None = None) -> dict:
     validate(config, output, languages, devices, kind, scenes, config_path)
     entries = selected_entries(config, languages, devices, kind, scenes, config_path)
+    include_feature_graphics = kind == "feature-graphics" or (kind == "google-play" and target_file(output, FEATURE_GRAPHIC_MANIFEST).exists())
+    if include_feature_graphics and kind == "google-play":
+        validate_feature_graphics(config, config_path or SCRIPT_DIR / "config.json", output, languages)
+        entries.extend(feature_graphic_entries(config, config_path or SCRIPT_DIR / "config.json", languages))
     name = f"my-bar-{kind}"
     archive_path = target_file(output, f"{name}.zip")
     manifest_path = target_file(output, f"{name}-manifest.json")
@@ -668,8 +842,9 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
             label = re.sub(r"^\d+-", "", item["screen"])
             item.update(sequence=sequence, archivePath=f"{item['locale']}/{item['device']}/{sequence:02d}-{label}.png")
         files.sort(key=lambda item: (item["locale"], item["device"], item["sequence"]))
-    elif kind == "google-play":
-        upload_sequence = load_marketing_copy(config, config_path or SCRIPT_DIR / "config.json")["sequence"]
+    elif kind in ("google-play", "feature-graphics"):
+        if kind == "google-play":
+            upload_sequence = load_marketing_copy(config, config_path or SCRIPT_DIR / "config.json")["sequence"]
         for item in files:
             item["archivePath"] = item["path"].removeprefix("google-play/")
     capture_provenance = {
@@ -695,6 +870,8 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
         metadata_names.append("creative-manifest.json")
     if kind == "google-play":
         metadata_names.append("google-play-manifest.json")
+    if include_feature_graphics:
+        metadata_names.append(FEATURE_GRAPHIC_MANIFEST)
     for relative in metadata_names:
         path = target_file(output, relative)
         if path.exists():
@@ -706,13 +883,13 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
                 raise AssetError(f"Package metadata must be a JSON object: {path}")
             metadata.append({"path": relative, "sha256": digest(path), "bytes": path.stat().st_size})
     manifest = {"schemaVersion": 1, "app": config.get("app", "My Bar"), "kind": kind,
-                "renderer": "android-google-play-export" if kind == "google-play" else "flutter-marketing-compositor" if kind == "marketing" else "flutter-widget" if kind != "creatives" else None,
-                "provenance": capture_provenance if kind != "creatives" else {"kind": "marketing-artwork", "deviceCapture": False},
+                "renderer": FEATURE_GRAPHIC_RENDERER if kind == "feature-graphics" else "android-google-play-export" if kind == "google-play" else "flutter-marketing-compositor" if kind == "marketing" else "flutter-widget" if kind != "creatives" else None,
+                "provenance": {"kind": "marketing-artwork", "deviceCapture": False} if kind in ("creatives", "feature-graphics") else capture_provenance,
                 "locales": [{"language": lang["code"], "appStore": lang["appStoreLocale"], "googlePlay": lang.get("googlePlayLocale")} for lang in languages],
                 "files": files, "imageCount": len(files), "metadata": metadata,
                 "metadataCount": len(metadata), "uploaded": False,
                 **({"uploadSequence": upload_sequence,
-                    "archivePathPolicy": "google-play-locale/device-type/story-sequence-scene.png; source files retain canonical path" if kind == "google-play" else "locale/device/marketing-sequence-scene.png; source files retain canonical path"} if upload_sequence is not None else {})}
+                    "archivePathPolicy": "google-play-locale/device-type/story-sequence-scene.png; optional locale/feature-graphic.png; source files retain canonical path" if kind == "google-play" else "locale/device/marketing-sequence-scene.png; source files retain canonical path"} if upload_sequence is not None else {})}
     # A stable manifest and fixed ZIP timestamps make repeat exports reproducible.
     save_json(manifest_path, manifest)
     with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
@@ -742,13 +919,15 @@ def parser() -> argparse.ArgumentParser:
     compose_parser.add_argument("--overwrite", action="store_true")
     google_play = commands.add_parser("export-google-play", parents=[common], help="Copy Android phone marketing and app-only tablets to ordered Google Play locale folders.")
     google_play.add_argument("--overwrite", action="store_true")
+    feature_graphics = commands.add_parser("compose-feature-graphics", parents=[common], help="Compose 1024 × 500 localized Google Play feature graphics from approved artwork; never uploads.")
+    feature_graphics.add_argument("--overwrite", action="store_true")
     creatives = commands.add_parser("export-creatives", parents=[common], help="Create opaque PNG header/search/universal crops from one PNG source.")
     creatives.add_argument("--source", required=True, type=Path)
     creatives.add_argument("--focal-point", type=parse_focal_point, default=(0.5, 0.5), metavar="X,Y", help="Normalized source focal point (0..1), default 0.5,0.5. Crop keeps it near each safe-area center when possible.")
     creatives.add_argument("--overwrite", action="store_true")
     for command in ("validate", "package"):
         child = commands.add_parser(command, parents=[common], help="Validate image dimensions/color." if command == "validate" else "Create a local ZIP with SHA-256 manifest.")
-        child.add_argument("--kind", choices=("all", "screenshots", "marketing", "creatives", "google-play"), default="all", help="all includes raw screenshots, marketing screenshots and Apple creatives; use google-play for the Android upload set.")
+        child.add_argument("--kind", choices=("all", "screenshots", "marketing", "creatives", "google-play", "feature-graphics"), default="all", help="all includes raw screenshots, marketing screenshots and Apple creatives; google-play includes Android screenshots and existing validated feature graphics; feature-graphics selects only localized banners.")
         if command == "package":
             child.add_argument("--overwrite", action="store_true")
     commands.add_parser("check-fonts", parents=[common], help="Check configured local font files and optional SHA-256 hashes; never downloads.")
@@ -773,11 +952,14 @@ def main(argv: list[str] | None = None) -> int:
         config_path = args.config.expanduser().resolve()
         config = load_config(config_path)
         languages = select(config["languages"], args.languages, "code", "languages")
+        graphics_only = args.command == "compose-feature-graphics" or getattr(args, "kind", None) == "feature-graphics"
+        if graphics_only and (args.devices is not None or args.scenes is not None):
+            raise AssetError("Feature graphics use only --languages; --devices and --scenes do not apply.")
         device_selection = args.devices
         if device_selection is None and (args.command == "export-google-play" or getattr(args, "kind", None) == "google-play"):
             device_selection = ",".join(device["id"] for device in config["devices"] if device.get("platform") == "android")
-        devices = select(config["devices"], device_selection, "id", "devices")
-        scenes = select(config["screenshots"], args.scenes, "id", "scenes")
+        devices = [] if graphics_only else select(config["devices"], device_selection, "id", "devices")
+        scenes = [] if graphics_only else select(config["screenshots"], args.scenes, "id", "scenes")
         output = safe_output(args.output)
         if args.command == "list":
             result = {"languages": config["languages"], "devices": config["devices"], "scenes": config["screenshots"], "creatives": config["creatives"], "notes": config.get("notes", [])}
@@ -791,6 +973,8 @@ def main(argv: list[str] | None = None) -> int:
             result = compose(config, config_path, output, languages, devices, args.overwrite, scenes)
         elif args.command == "export-google-play":
             result = export_google_play(config, config_path, output, languages, devices, args.overwrite, scenes)
+        elif args.command == "compose-feature-graphics":
+            result = compose_feature_graphics(config, config_path, output, languages, args.overwrite)
         elif args.command == "export-creatives":
             result = export_creatives(config, output, languages, args.source.expanduser().resolve(), args.overwrite, args.focal_point)
         elif args.command == "validate":
