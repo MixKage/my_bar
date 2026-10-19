@@ -65,6 +65,35 @@ void main() {
     );
   });
 
+  test('does not append the editor empty-unit label to recipe amounts', () {
+    const recipe = Cocktail(
+      id: 'free-form',
+      name: 'Free-form amounts',
+      image: '',
+      ingredients: ['soda', 'mint', 'unknown'],
+      description: '',
+      preparationSteps: ['Mix'],
+      glassType: 'Хайболл',
+      tags: [],
+      ingredientAmounts: {'soda': 'Top up', 'mint': '2'},
+    );
+    for (final entry in {
+      'soda': 'Top up',
+      'mint': '2',
+      'unknown': '',
+    }.entries) {
+      expect(
+        recipe.ingredientAmountLabel(
+          entry.key,
+          measurementSystem: MeasurementSystem.ml,
+          unitLabelResolver: (_) => 'No unit',
+          servings: 1,
+        ),
+        entry.value,
+      );
+    }
+  });
+
   test('does not convert non-volume units', () {
     expect(
       cocktail.ingredientAmountLabel(

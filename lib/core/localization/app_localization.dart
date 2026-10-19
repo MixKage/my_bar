@@ -76,7 +76,12 @@ extension AppLocalizationX on BuildContext {
     }
   }
 
-  String cocktailTagLabel(String tag) => _label(_cocktailTagLabels[tag], tag);
+  String cocktailTagLabel(String tag) {
+    // International Bartenders Association is a catalog identifier, not a
+    // phrase to machine-translate ("bar" otherwise becomes a lawyers' bar).
+    if (tag == 'IBA') return 'IBA';
+    return _label(_cocktailTagLabels[tag], tag);
+  }
 
   String cocktailGlassTypeLabel(String glassType) =>
       _label(_cocktailGlassLabels[glassType], glassType);

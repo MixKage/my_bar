@@ -7,6 +7,35 @@ import 'package:my_bar/core/localization/app_translations.dart';
 import 'package:my_bar/features/bar/presentation/widgets/language_selector.dart';
 
 void main() {
+  test('Arabic home-bar labels preserve their recipe context', () {
+    expect(translateAppText('ar', 'My Bar'), 'باري');
+    expect(translateAppText('ar', 'in stock'), 'متوفر');
+    expect(translateAppText('ar', 'ready to make'), 'جاهز للتحضير');
+  });
+
+  testWidgets('IBA remains the same catalog mark in every language', (
+    tester,
+  ) async {
+    for (final locale in AppLanguageX.supportedLocales) {
+      late BuildContext capturedContext;
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: locale,
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+          supportedLocales: AppLanguageX.supportedLocales,
+          home: Builder(
+            builder: (context) {
+              capturedContext = context;
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(capturedContext.cocktailTagLabel('IBA'), 'IBA', reason: '$locale');
+    }
+  });
+
   testWidgets('ingredient category is localized in english locale', (
     tester,
   ) async {

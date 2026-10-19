@@ -18,7 +18,7 @@ const reviewedOverrides = {
   ja: {'More · {0}': 'その他 · {0}', 'can': '缶', 'twist': 'ツイストピール'},
   ko: {'More · {0}': '더보기 · {0}', 'can': '캔', 'twist': '과일 껍질'},
   hi: {'More · {0}': 'और · {0}', 'can': 'कैन', 'twist': 'छिलके की पट्टी'},
-  ar: {'More · {0}': 'المزيد · {0}', 'can': 'علبة', 'twist': 'شريط قشر'},
+  ar: {'More · {0}': 'المزيد · {0}', 'can': 'علبة', 'twist': 'شريط قشر', 'My Bar': 'باري', 'Welcome to My Bar': 'مرحبًا بك في باري', 'in stock': 'متوفر', 'ready to make': 'جاهز للتحضير'},
 };
 const semanticKeys = ['Light', 'Strong', 'Long drinks', 'Shots', 'Custom', 'Medium strength', 'Non-alcoholic', 'Coupe glass', 'Wine glass', 'Irish glass', 'Collins', 'Mug', 'Goblet', 'Margarita glass', 'Martini glass', 'Pint', 'Pitcher', 'Rocks', 'Shot glass', 'Flute', 'Highball', 'Hurricane', 'Shot', 'shot', 'cup', 'wedge', 'pcs', 'drop', 'to taste', 'sprig', 'leaf', 'scoop', 'stick', 'cube', 'bottle', 'package', 'inch', 'pint', 'handful', 'dash', 'part', 'Ready only', 'Surprise me', 'Bar Menu'];
 // Reviewed in cocktail/measurement context: literal word translation would turn

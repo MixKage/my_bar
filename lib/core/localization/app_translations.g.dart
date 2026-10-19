@@ -4072,7 +4072,7 @@ appTranslations = <String, Map<String, String>>{
     "More filters": "المزيد من المرشحات",
     "More · {0}": "المزيد · {0}",
     "Mug": "مج",
-    "My Bar": "شريطي",
+    "My Bar": "باري",
     "My Bar party plan": "خطة حفلة البار الخاصة بي",
     "My Bar shopping list": "قائمة التسوق الخاصة بي في البار",
     "Name*": "اسم*",
@@ -4200,7 +4200,7 @@ appTranslations = <String, Map<String, String>>{
         "وضع الزائر: تم تعطيل اختيار المكونات",
     "Volume units in ingredients are converted automatically.":
         "يتم تحويل وحدات الحجم في المكونات تلقائيًا.",
-    "Welcome to My Bar": "مرحبا بكم في شريطي",
+    "Welcome to My Bar": "مرحبًا بك في باري",
     "Wine and sparkling": "النبيذ والفوار",
     "Wine glass": "كأس نبيذ",
     "Works offline with a stable built-in catalog.":
@@ -4223,7 +4223,7 @@ appTranslations = <String, Map<String, String>>{
     "https://... or /storage/.../photo.jpg":
         "https://... أو /storage/.../photo.jpg",
     "in list": "في القائمة",
-    "in stock": "في الأوراق المالية",
+    "in stock": "متوفر",
     "inch": "بوصة",
     "l": "l",
     "lb": "lb",
@@ -4235,7 +4235,7 @@ appTranslations = <String, Map<String, String>>{
     "pinch": "قرصة",
     "pint": "باينت",
     "qt": "qt",
-    "ready to make": "على استعداد لجعل",
+    "ready to make": "جاهز للتحضير",
     "scoop": "كرة",
     "shot": "جرعة",
     "sprig": "غصن",

@@ -937,149 +937,161 @@ class IngredientCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(22),
             onTap: onTap,
             onLongPress: onLongPress,
-            child: SizedBox(
-              height: 116,
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: _IngredientImageThumb(ingredient: ingredient),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 8,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 116),
+              // Translated names, category labels and accessibility text can
+              // require more room than the compact 116 px baseline. Keep the
+              // image and actions aligned without clipping those labels.
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Align(
+                        child: SizedBox(
+                          height: 100,
+                          child: _IngredientImageThumb(ingredient: ingredient),
+                        ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            ingredient.name,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 17,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            context.ingredientCategoryLabel(
-                              ingredient.category,
-                            ),
-                            style: const TextStyle(
-                              color: Color(0xFFA4AFD3),
-                              fontSize: 13,
-                            ),
-                          ),
-                          if (ingredient.isDecoration || ingredient.isOptional)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4),
-                              child: Wrap(
-                                spacing: 6,
-                                runSpacing: 4,
-                                children: <Widget>[
-                                  if (ingredient.isDecoration)
-                                    _IngredientAttributePill(
-                                      label: context.tr(
-                                        'Украшение',
-                                        'Decoration',
-                                      ),
-                                      color: Color(0xFF7CCBFF),
-                                    ),
-                                  if (ingredient.isOptional)
-                                    _IngredientAttributePill(
-                                      label: context.tr(
-                                        'Опционально',
-                                        'Optional',
-                                      ),
-                                      color: Color(0xFFB58BFF),
-                                    ),
-                                ],
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 8,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              ingredient.name,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
                               ),
                             ),
-                          const SizedBox(height: 4),
-                          Text(
-                            _cocktailHintText(context, cocktails),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: Color(0xFFC7CEF0),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                            const SizedBox(height: 4),
+                            Text(
+                              context.ingredientCategoryLabel(
+                                ingredient.category,
+                              ),
+                              style: const TextStyle(
+                                color: Color(0xFFA4AFD3),
+                                fontSize: 13,
+                              ),
+                            ),
+                            if (ingredient.isDecoration ||
+                                ingredient.isOptional)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: Wrap(
+                                  spacing: 6,
+                                  runSpacing: 4,
+                                  children: <Widget>[
+                                    if (ingredient.isDecoration)
+                                      _IngredientAttributePill(
+                                        label: context.tr(
+                                          'Украшение',
+                                          'Decoration',
+                                        ),
+                                        color: Color(0xFF7CCBFF),
+                                      ),
+                                    if (ingredient.isOptional)
+                                      _IngredientAttributePill(
+                                        label: context.tr(
+                                          'Опционально',
+                                          'Optional',
+                                        ),
+                                        color: Color(0xFFB58BFF),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            const SizedBox(height: 4),
+                            Text(
+                              _cocktailHintText(context, cocktails),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Color(0xFFC7CEF0),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          if (onEdit != null)
+                            IconButton(
+                              tooltip: context.tr(
+                                'Изменить ингредиент',
+                                'Edit ingredient',
+                              ),
+                              onPressed: onEdit,
+                              visualDensity: VisualDensity.compact,
+                              icon: const Icon(
+                                Icons.edit_outlined,
+                                size: 19,
+                                color: Color(0xFFA8B6DE),
+                              ),
+                            ),
+                          AnimatedContainer(
+                            duration: AppMotion.duration(
+                              context,
+                              AppMotion.standard,
+                              powerSavingMode: powerSavingMode,
+                            ),
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: !allowSelection
+                                  ? const Color(0xFF2F3857)
+                                  : selected
+                                  ? const Color(0xFFB24EFF)
+                                  : const Color(0xFF242B46),
+                              boxShadow: allowSelection && selected
+                                  ? const <BoxShadow>[
+                                      BoxShadow(
+                                        color: Color(0x88B24EFF),
+                                        blurRadius: 16,
+                                      ),
+                                    ]
+                                  : null,
+                            ),
+                            child: AnimatedSwitcher(
+                              duration: AppMotion.duration(
+                                context,
+                                AppMotion.quick,
+                                powerSavingMode: powerSavingMode,
+                              ),
+                              child: Icon(
+                                !allowSelection
+                                    ? Icons.lock_outline_rounded
+                                    : selected
+                                    ? Icons.check_rounded
+                                    : Icons.add_rounded,
+                                key: ValueKey<bool>(selected),
+                                size: 20,
+                                color: !allowSelection
+                                    ? const Color(0xFFB8C4EB)
+                                    : Colors.white,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        if (onEdit != null)
-                          IconButton(
-                            tooltip: context.tr(
-                              'Изменить ингредиент',
-                              'Edit ingredient',
-                            ),
-                            onPressed: onEdit,
-                            visualDensity: VisualDensity.compact,
-                            icon: const Icon(
-                              Icons.edit_outlined,
-                              size: 19,
-                              color: Color(0xFFA8B6DE),
-                            ),
-                          ),
-                        AnimatedContainer(
-                          duration: AppMotion.duration(
-                            context,
-                            AppMotion.standard,
-                            powerSavingMode: powerSavingMode,
-                          ),
-                          width: 32,
-                          height: 32,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: !allowSelection
-                                ? const Color(0xFF2F3857)
-                                : selected
-                                ? const Color(0xFFB24EFF)
-                                : const Color(0xFF242B46),
-                            boxShadow: allowSelection && selected
-                                ? const <BoxShadow>[
-                                    BoxShadow(
-                                      color: Color(0x88B24EFF),
-                                      blurRadius: 16,
-                                    ),
-                                  ]
-                                : null,
-                          ),
-                          child: AnimatedSwitcher(
-                            duration: AppMotion.duration(
-                              context,
-                              AppMotion.quick,
-                              powerSavingMode: powerSavingMode,
-                            ),
-                            child: Icon(
-                              !allowSelection
-                                  ? Icons.lock_outline_rounded
-                                  : selected
-                                  ? Icons.check_rounded
-                                  : Icons.add_rounded,
-                              key: ValueKey<bool>(selected),
-                              size: 20,
-                              color: !allowSelection
-                                  ? const Color(0xFFB8C4EB)
-                                  : Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
