@@ -10,7 +10,7 @@ import '../../../../core/theme/app_motion.dart';
 const double kNeonBottomNavigationHeight = 74;
 const double kNeonBottomNavigationHorizontalPadding = 16;
 // SafeArea in BarHomeShell already reserves space for the home indicator.
-const double kNeonBottomNavigationBottomMargin = 8;
+const double kNeonBottomNavigationBottomMargin = 6;
 const double kNeonSideNavigationWidth = 106;
 const double kNeonSideNavigationPanelHeight = 204;
 

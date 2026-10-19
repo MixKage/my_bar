@@ -84,7 +84,7 @@ void main() {
 
   for (final bottomInset in [0.0, 34.0]) {
     for (final powerSavingMode in [false, true]) {
-      testWidgets('bottom navigation keeps an 8-point gap above safe area '
+      testWidgets('bottom navigation keeps a 6-point gap above safe area '
           '(inset: $bottomInset, power saving: $powerSavingMode)', (
         tester,
       ) async {
@@ -114,10 +114,10 @@ void main() {
             .first;
         expect(
           tester.getRect(navigationPanel).bottom,
-          closeTo(844 - bottomInset - 8, 0.01),
+          closeTo(844 - bottomInset - 6, 0.01),
         );
         final expectedOverlayPadding =
-            kNeonBottomNavigationHeight + bottomInset + 8;
+            kNeonBottomNavigationHeight + bottomInset + 6;
         final ingredientsPage = tester.widget<RawBarPage>(
           find.byType(RawBarPage),
         );
@@ -135,7 +135,7 @@ void main() {
         );
         expect(
           tester.getRect(navigationPanel).bottom,
-          closeTo(844 - bottomInset - 8, 0.01),
+          closeTo(844 - bottomInset - 6, 0.01),
         );
         expect(find.text('Доступно 0 из 2'), findsOneWidget);
         expect(tester.takeException(), isNull);
