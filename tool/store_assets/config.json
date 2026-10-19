@@ -29,7 +29,8 @@
     {"id": "03-recipe", "name": "Recipe and portions"},
     {"id": "04-party", "name": "Party planner"},
     {"id": "05-shopping", "name": "Smart shopping list"},
-    {"id": "06-surprise", "name": "Surprise me"}
+    {"id": "06-surprise", "name": "Surprise me"},
+    {"id": "07-almost-ready", "name": "Almost ready cocktails"}
   ],
   "creatives": [
     {"id": "header", "width": 3840, "height": 1646, "safeRect": {"x": 1097, "y": 493, "width": 1646, "height": 661}},

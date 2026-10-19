@@ -6,6 +6,7 @@
 // from creating hundreds of large PNGs.
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -48,6 +49,7 @@ const _sceneNames = <String>[
   '04-party',
   '05-shopping',
   '06-surprise',
+  '07-almost-ready',
 ];
 
 // A fictional, reproducible home bar. No device preferences or user files are
@@ -73,6 +75,33 @@ const _ownedIds = <String>{
 const _shoppingIds = <String>{'campari', 'rosso_vermouth', 'cointreau'};
 
 void main() {
+  test('atomic capture manifest replaces complete JSON without leftovers', () {
+    final directory = Directory.systemTemp.createTempSync(
+      'my-bar-capture-test-',
+    );
+    addTearDown(() => directory.deleteSync(recursive: true));
+    final destination = File('${directory.path}/capture-manifest.json')
+      ..writeAsStringSync('{"old":true}');
+    _atomicWriteManifest(destination, '{"complete":true}');
+    expect(jsonDecode(destination.readAsStringSync()), {'complete': true});
+    expect(directory.listSync().length, 1);
+  });
+  test('atomic capture manifest failure cleans only its owned temporary', () {
+    final directory = Directory.systemTemp.createTempSync(
+      'my-bar-capture-test-',
+    );
+    addTearDown(() => directory.deleteSync(recursive: true));
+    final destination = Directory('${directory.path}/capture-manifest.json')
+      ..createSync();
+    final retained = File('${destination.path}/keep.txt')
+      ..writeAsStringSync('keep');
+    expect(
+      () => _atomicWriteManifest(File(destination.path), '{}'),
+      throwsA(isA<FileSystemException>()),
+    );
+    expect(retained.readAsStringSync(), 'keep');
+    expect(directory.listSync().length, 1);
+  });
   final outputPath = Platform.environment['STORE_ASSET_OUTPUT'];
   testWidgets(
     'capture localized store screenshots with the real Flutter renderer',
@@ -94,6 +123,13 @@ void main() {
         Platform.environment['STORE_ASSET_DEVICES'],
         'id',
       );
+      final scenes = _select(
+        [
+          for (final scene in _sceneNames) {'id': scene},
+        ],
+        Platform.environment['STORE_ASSET_SCENES'],
+        'id',
+      ).map((scene) => scene['id'] as String).toSet();
       final fonts = _readFonts(config, configFile.parent);
       await _installOfflineAssets(tester, fonts);
       await tester.runAsync(() => _loadFonts(fonts));
@@ -229,6 +265,7 @@ void main() {
 
             Future<void> capture(String scene) async {
               await _finishFrame(tester);
+              if (!scenes.contains(scene)) return;
               final renderingException = tester.takeException();
               expect(
                 find.byType(StretchedDotsLoader).hitTestable(),
@@ -273,9 +310,15 @@ void main() {
                       'simulator capture. Safe-area estimates require device QA.',
                 'catalogCocktails': catalog.cocktails.length,
                 'catalogIngredients': catalog.ingredients.length,
+                'selectedIngredientCount':
+                    cubit.state.selectedIngredientIds.length,
+                if (scene == '03-recipe') 'servings': 4,
+                if (scene == '07-almost-ready')
+                  'availabilityFilter': 'missingOne',
               });
               manifestFile.parent.createSync(recursive: true);
-              manifestFile.writeAsStringSync(
+              _atomicWriteManifest(
+                manifestFile,
                 const JsonEncoder.withIndent('  ').convert({
                   'schemaVersion': 1,
                   'renderer': 'flutter-widget',
@@ -296,88 +339,135 @@ void main() {
             await _finishFrame(tester);
             await tester.tap(find.byIcon(Icons.grid_view_rounded).last);
             await capture(_sceneNames[1]);
+            if (scenes.contains(_sceneNames[6])) {
+              final nearReadyCount = cubit.state.cocktails
+                  .where(
+                    (cocktail) =>
+                        cubit.state.missingIngredientIdsFor(cocktail).length ==
+                        1,
+                  )
+                  .length;
+              expect(nearReadyCount, greaterThan(0));
+              final almostReady = find.widgetWithIcon(
+                ChoiceChip,
+                Icons.looks_one_rounded,
+              );
+              final missingOneLabel = find.textContaining(
+                tr('Не хватает 1', 'Missing 1'),
+              );
+              final filter = almostReady.evaluate().isNotEmpty
+                  ? almostReady
+                  : missingOneLabel;
+              await tester.ensureVisible(filter);
+              await tester.tap(filter);
+              await _finishFrame(tester);
+              expect(tester.widget<ChoiceChip>(almostReady).selected, isTrue);
+              await capture(_sceneNames[6]);
+            }
 
             final state = cubit.state;
             final mojito = state.cocktails.firstWhere(
               (item) => item.id == 'mojito',
             );
             // Real production routes, no screenshot-specific UI substitutions.
-            navigation.push<void>(
-              MaterialPageRoute<void>(
-                builder: (_) => CocktailDetailsPage(
-                  cocktail: mojito,
-                  missingIngredientNames: const [],
-                  ingredientsById: state.ingredientsById,
-                  visitorMode: false,
-                  measurementSystem: MeasurementSystem.ml,
-                  onEditCocktailPressed: (_) async {},
-                  onToggleFavoritePressed: (_) {},
+            if (scenes.contains(_sceneNames[2])) {
+              navigation.push<void>(
+                MaterialPageRoute<void>(
+                  builder: (_) => CocktailDetailsPage(
+                    cocktail: mojito,
+                    missingIngredientNames: const [],
+                    ingredientsById: state.ingredientsById,
+                    visitorMode: false,
+                    measurementSystem: MeasurementSystem.ml,
+                    onEditCocktailPressed: (_) async {},
+                    onToggleFavoritePressed: (_) {},
+                  ),
                 ),
-              ),
-            );
-            await capture(_sceneNames[2]);
-            navigation.pop();
-            await _finishFrame(tester);
+              );
+              await _finishFrame(tester);
+              final increase = find.byTooltip(tr('Увеличить', 'Increase'));
+              await Scrollable.ensureVisible(
+                tester.element(increase),
+                alignment: .48,
+                duration: Duration.zero,
+              );
+              for (var count = 0; count < 3; count++) {
+                await tester.tap(increase);
+                await tester.pump(const Duration(milliseconds: 250));
+              }
+              await capture(_sceneNames[2]);
+              navigation.pop();
+              await _finishFrame(tester);
+            }
 
             final missing = <String, Set<String>>{
               for (final cocktail in state.cocktails)
                 cocktail.id: state.missingIngredientIdsFor(cocktail),
             };
-            navigation.push<void>(
-              MaterialPageRoute<void>(
-                builder: (_) => PartyModePage(
-                  cocktails: state.cocktails,
-                  ingredientsById: state.ingredientsById,
-                  missingIngredientIdsByCocktailId: missing,
-                  measurementSystem: MeasurementSystem.ml,
-                  powerSavingMode: false,
-                  readOnly: false,
-                  onAddShoppingIngredients: cubit.addShoppingIngredients,
+            if (scenes.contains(_sceneNames[3])) {
+              navigation.push<void>(
+                MaterialPageRoute<void>(
+                  builder: (_) => PartyModePage(
+                    cocktails: state.cocktails,
+                    ingredientsById: state.ingredientsById,
+                    missingIngredientIdsByCocktailId: missing,
+                    measurementSystem: MeasurementSystem.ml,
+                    powerSavingMode: false,
+                    readOnly: false,
+                    onAddShoppingIngredients: cubit.addShoppingIngredients,
+                  ),
                 ),
-              ),
-            );
-            await _finishFrame(tester);
-            await tester.tap(find.byType(CheckboxListTile).first);
-            await _finishFrame(tester);
-            for (var extraServing = 0; extraServing < 3; extraServing++) {
-              await tester.tap(
-                find.byTooltip(tr('Увеличить', 'Increase')).hitTestable().first,
               );
-              await tester.pump(const Duration(milliseconds: 250));
+              await _finishFrame(tester);
+              await tester.tap(find.byType(CheckboxListTile).first);
+              await _finishFrame(tester);
+              for (var extraServing = 0; extraServing < 3; extraServing++) {
+                await tester.tap(
+                  find
+                      .byTooltip(tr('Увеличить', 'Increase'))
+                      .hitTestable()
+                      .first,
+                );
+                await tester.pump(const Duration(milliseconds: 250));
+              }
+              await tester.tap(find.byType(CheckboxListTile).at(1));
+              await capture(_sceneNames[3]);
+              navigation.pop();
+              await _finishFrame(tester);
             }
-            await tester.tap(find.byType(CheckboxListTile).at(1));
-            await capture(_sceneNames[3]);
-            navigation.pop();
-            await _finishFrame(tester);
 
-            await tester.tap(
-              find.byTooltip(tr('Список покупок', 'Shopping list')),
-            );
-            await capture(_sceneNames[4]);
-            navigation.pop();
-            await _finishFrame(tester);
+            if (scenes.contains(_sceneNames[4])) {
+              await tester.tap(
+                find.byTooltip(tr('Список покупок', 'Shopping list')),
+              );
+              await capture(_sceneNames[4]);
+              navigation.pop();
+              await _finishFrame(tester);
+            }
 
-            navigation.push<void>(
-              MaterialPageRoute<void>(
-                builder: (_) => SurpriseCocktailPage(
-                  cocktails: state.cocktails,
-                  initialCocktailId: mojito.id,
-                  missingIngredientsByCocktailId: {
-                    for (final entry in missing.entries)
-                      entry.key: entry.value
-                          .map((id) => state.ingredientsById[id]!.name)
-                          .toList(),
-                  },
-                  ingredientsById: state.ingredientsById,
-                  visitorMode: false,
-                  measurementSystem: MeasurementSystem.ml,
-                  powerSavingMode: false,
-                  onEditCocktailPressed: (_) async {},
-                  onToggleFavoritePressed: (_) {},
+            if (scenes.contains(_sceneNames[5])) {
+              navigation.push<void>(
+                MaterialPageRoute<void>(
+                  builder: (_) => SurpriseCocktailPage(
+                    cocktails: state.cocktails,
+                    initialCocktailId: mojito.id,
+                    missingIngredientsByCocktailId: {
+                      for (final entry in missing.entries)
+                        entry.key: entry.value
+                            .map((id) => state.ingredientsById[id]!.name)
+                            .toList(),
+                    },
+                    ingredientsById: state.ingredientsById,
+                    visitorMode: false,
+                    measurementSystem: MeasurementSystem.ml,
+                    powerSavingMode: false,
+                    onEditCocktailPressed: (_) async {},
+                    onToggleFavoritePressed: (_) {},
+                  ),
                 ),
-              ),
-            );
-            await capture(_sceneNames[5]);
+              );
+              await capture(_sceneNames[5]);
+            }
             await tester.pumpWidget(const SizedBox.shrink());
             await captureCubit.close();
             PaintingBinding.instance.imageCache.clear();
@@ -607,4 +697,19 @@ class _OfflineOnlyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) =>
       throw StateError('Store screenshot capture is strictly offline.');
+}
+
+void _atomicWriteManifest(File destination, String contents) {
+  destination.parent.createSync(recursive: true);
+  final unique =
+      '$pid-${DateTime.now().microsecondsSinceEpoch}-'
+      '${math.Random.secure().nextInt(0x7FFFFFFF).toRadixString(16)}';
+  final temporary = File('${destination.path}.tmp-$unique');
+  temporary.createSync(exclusive: true);
+  try {
+    temporary.writeAsStringSync(contents, flush: true);
+    temporary.renameSync(destination.path);
+  } finally {
+    if (temporary.existsSync()) temporary.deleteSync();
+  }
 }

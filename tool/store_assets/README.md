@@ -20,6 +20,7 @@ python3 tool/store_assets/store_assets.py prepare-fonts
 python3 tool/store_assets/store_assets.py check-fonts
 python3 tool/store_assets/store_assets.py list
 python3 tool/store_assets/store_assets.py plan --languages en,ru,ar --devices iphone-large,iphone-duo-inner
+python3 tool/store_assets/store_assets.py plan --languages en --devices iphone-medium --scenes 03-recipe,07-almost-ready
 ```
 
 Font sources, hashes, licenses, and cache locations are recorded next to this
@@ -36,9 +37,11 @@ python3 tool/store_assets/store_assets.py validate --kind screenshots --language
 python3 tool/store_assets/store_assets.py package --kind screenshots --languages en,ru --devices iphone-large
 ```
 
-Omit `--languages` and `--devices` to generate the complete configured matrix:
-13 languages × 5 viewports × 6 screens = 390 PNGs. Use `plan --json` to inspect
-every output path first. `--output` defaults to `build/store-assets`; use a
+Omit `--languages`, `--devices`, and `--scenes` to generate the complete matrix:
+13 languages × 5 viewports × 7 scenes = 455 PNGs per raw/marketing set.
+All three selectors accept comma-separated IDs and reject unknown values before
+starting Flutter. Use `plan --json` to inspect raw and marketing paths first.
+`--output` defaults to `build/store-assets`; use a
 dedicated output directory for other destinations. Do not run another Flutter
 test or build while capture is running, because Flutter shares generated assets.
 
@@ -50,14 +53,15 @@ retains completed PNGs; repeat the same selection with `--overwrite`.
 The capture test uses actual app widgets and deterministic local fixture data.
 Each viewport is rendered independently at its physical pixel dimensions and
 pixel ratio. It does not stretch screenshots from another device. Source
-screens: ingredients at home, cocktail menu, recipe/portions, party planner,
-smart shopping, and surprise me.
+scenes: ingredients at home, cocktail menu, recipe/portions (four servings),
+party planner, smart shopping, surprise me, and almost-ready cocktails with
+one genuinely missing ingredient.
 
 Output:
 
 ```text
 build/store-assets/
-  screenshots/<App Store locale>/<device ID>/01-ingredients.png ... 06-surprise.png
+  screenshots/<App Store locale>/<device ID>/01-ingredients.png ... 07-almost-ready.png
   capture-manifest.json
   my-bar-screenshots.zip
   my-bar-screenshots-manifest.json
@@ -71,6 +75,55 @@ Flutter units. The iPhone Duo profiles reproduce Apple's accepted screenshot
 pixel sizes; they are not a claim that an iPhone Duo simulator is installed.
 Review screenshots against the real app on relevant devices before upload.
 Do not substitute invented/mock UI or unsupported app features in store images.
+
+## Localized marketing screenshots (preferred upload set)
+
+Raw screenshots are kept as source evidence. `compose` creates a separate
+upload-ready set with localized headlines, subtitles, the approved background,
+and a generic rounded frame around the **actual app capture**. It scales the
+whole UI proportionally without rectangular cropping, repainting, stretching,
+or covering controls. Only corner pixels are decoratively masked to fit the
+rounded frame (`sourceUiRoundedCornerMask` in the manifest). Captions come from
+`marketing_copy.json` for all 13 app languages;
+Arabic uses RTL text layout and the same offline font fixtures as capture.
+Device frames are generic; neither a frame nor an offscreen capture claims to
+show actual iPhone Duo hardware.
+
+```sh
+python3 tool/store_assets/store_assets.py capture --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+python3 tool/store_assets/store_assets.py compose --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+python3 tool/store_assets/store_assets.py validate --kind marketing --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+python3 tool/store_assets/store_assets.py package --kind marketing --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+```
+
+Use the same selectors for each step, or omit all selectors for a full export.
+`compose` requires matching raw captures and `artwork/screenshot-background.png`
+before it starts Flutter. It also checks fonts and caption coverage. Do not run
+composition alongside another Flutter test/build/capture. Selected output PNGs
+are refused unless `--overwrite` is explicit; only selected files are replaced
+and unrelated entries are retained in `marketing-manifest.json`.
+
+Output: `marketing/<App Store locale>/<device ID>/<scene ID>.png`,
+`marketing-manifest.json`, and `my-bar-marketing.zip` with its SHA-256 manifest.
+`package --kind marketing` is the preferred screenshot upload ZIP; it contains
+only the composed screenshots and their provenance, **not** raw source PNGs.
+The raw `screenshots/` folder and its separate ZIP remain available for review.
+The metadata records source paths, proportional UI scaling and corner masks, localized captions,
+layout bounds, offline fonts, and the non-native-device origin.
+The background's generation prompt, role, and transformations are recorded in
+[`artwork/screenshot-background-provenance.json`](artwork/screenshot-background-provenance.json).
+
+The marketing-only ZIP follows the narrative in `marketing_copy.json`'s
+`sequence`: ingredients → cocktails → almost ready → shopping → portions →
+party → surprise. Within each `<App Store locale>/<device ID>/` folder its
+filenames are numbered for that upload order: `01-ingredients.png`,
+`02-cocktails.png`, `03-almost-ready.png`, `04-shopping.png`, `05-recipe.png`,
+`06-party.png`, `07-surprise.png`. Source files under `marketing/` retain their
+canonical scene IDs, including `07-almost-ready.png`; no source is renamed.
+Each package manifest entry records both that original `path` and the ZIP's
+`archivePath`, plus its `sequence` and hash. A selected subset retains its full
+story sequence numbers rather than being renumbered from one. The raw-only and
+`--kind all` archives keep canonical source paths and names.
 
 ## Languages and devices
 
@@ -119,7 +172,8 @@ the entire subject fits the safe rectangle. Inspect `review-guides/*-safe-area.p
 (green rectangle, pink focal cross) and Apple's overlays manually. Review guides
 are **not upload assets** and are deliberately excluded from ZIP packages.
 Avoid small text, UI screenshots, device frames, or logos
-near crop edges. The tool does not paint captions, badges, or fabricated UI.
+near crop edges. This creative-artwork exporter does not paint captions, badges,
+or app UI.
 The same three text-free files serve all 13 locales; `creative-manifest.json`
 maps every selected App Store locale to the shared PNGs without duplicates.
 
@@ -140,15 +194,27 @@ python3 tool/store_assets/store_assets.py package --kind all
 ```
 
 Validation checks presence, PNG decoding, exact physical dimensions, and opaque
-RGB mode. It does not certify translations, native-device rendering, artistic
+RGB mode. Marketing validation additionally requires `marketing-manifest.json`
+with an entry matching each selected image, its source path, locale, scene,
+dimensions, and unedited/uncropped offscreen-UI provenance. Missing PNGs or
+manifest entries are errors, even if another set exists in the same folder.
+It does not certify translations, native-device rendering, artistic
 quality, or store acceptance. Packages include a file list with byte sizes and
 SHA-256 hashes, plus separate App Store/Google Play locale mappings. Existing
-`capture-manifest.json` and/or `creative-manifest.json` are included for the
+`capture-manifest.json`, `marketing-manifest.json`, and/or `creative-manifest.json` are included for the
 selected asset kind, with their own paths and hashes under `metadata`. Image
 counts are separate from metadata counts. Screenshot entries explicitly retain
 the offscreen renderer, non-native-device status, and offline font-fixture
 provenance. A capture index may describe additional captures outside the selected
 ZIP subset; the package's `files` list is the definitive set of included images.
+For marketing-only ZIPs use each entry's `archivePath` to locate its ZIP member;
+`path` always identifies the preserved canonical source on disk.
+The default `--kind all` now deliberately includes all three sets: raw
+screenshots, composed marketing screenshots, and the three shared creative
+assets. It therefore requires both screenshot sets, not just the raw sources.
+Use `--kind screenshots`, `--kind marketing`, or `--kind creatives` for separate
+review/upload archives. `--scenes` limits both screenshot sets; it does not
+filter Header/Search Results/Universal creative artwork.
 ZIP entry
 timestamps are fixed so unchanged inputs produce the same package hash.
 `package` also refuses overwriting unless explicitly requested.

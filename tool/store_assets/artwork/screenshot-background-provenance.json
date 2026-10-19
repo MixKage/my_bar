@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "asset": "screenshot-background.png",
+  "generatedAt": "2026-10-19",
+  "mode": "built-in image_gen",
+  "useCase": "ads-marketing",
+  "prompt": "Use case: ads-marketing\nAsset type: portrait background plate for My Bar App Store marketing screenshots.\nPrimary request: a polished cosmic neon background inspired by the app's existing purple, magenta and cyan galaxy visual identity. Background only, ready for real app screenshots and localized captions to be composited later.\nScene/backdrop: deep midnight purple starfield, luminous violet and magenta nebula clouds along the side edges, selective cyan glints, subtle lower magenta glow and a faint reflective haze at the bottom.\nStyle/medium: premium digital space illustration, refined cinematic texture, elegant rather than noisy.\nComposition/framing: tall portrait approximately 9:19.5. A dark quiet central area occupies most of the canvas for a phone screenshot. Keep the top 15 percent and bottom 12 percent dark and calm for readable captions; the brightest nebula detail stays near the outer side edges. Balanced framing that also tolerates center crops for tablet and foldable aspect ratios.\nColor palette: midnight navy, rich violet, pink-magenta, restrained electric cyan.\nConstraints: background artwork only. No text, letters, numbers, logos, watermark, phones, tablets, device frames, interfaces, icons, people, cocktail glasses, bottles, or other objects. No bright central starburst. Opaque background.",
+  "originalSize": [
+    853,
+    1844
+  ],
+  "role": "Background plate only. Real UI, localized captions and a generic decorative frame are composited by compose_marketing.dart.",
+  "transformations": "Uniform cover scaling and center crop for each canvas; dark readability overlay. No generated UI or generated lettering.",
+  "reference": "User-supplied docs/screenshots/1en-m.png was visual style inspiration, not edited or reused."
+}

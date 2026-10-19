@@ -210,11 +210,20 @@ If a stale icon is shown after update, reinstall the app on device.
 
 ## Store Asset Generation
 
-The [local store-asset tool](tool/store_assets/README.md) renders six real app
-screens in all 13 languages for five viewports, including both iPhone Duo
-displays. It also exports App Store Header, Search Results and Universal
-artwork, validates opaque PNG dimensions, and packages files for manual review.
-It does not upload assets or require a backend or paid service.
+The [local store-asset tool](tool/store_assets/README.md) renders seven real app
+scenes in all 13 languages for five viewports, including both iPhone Duo sizes.
+It then composes a separate marketing set with localized headlines, explanations,
+a cosmic background and a generic device frame. Scenes cover the home bar,
+recipes, almost-ready cocktails, shopping, servings, party planning and surprise.
+Use `compose` followed by `package --kind marketing` for the captioned set;
+the raw UI captures remain separate. These are real-widget renders, not native
+device captures. The tool also exports App Store Header, Search Results and
+Universal artwork and validates opaque PNG dimensions. Nothing is uploaded;
+generation requires no backend or paid service.
+
+Review the new [English](docs/screenshots/1.2.0/en-US-overview.jpg) and
+[Russian](docs/screenshots/1.2.0/ru-overview.jpg) overview sheets. These are
+review previews, not upload files; use the full-size `my-bar-marketing.zip`.
 
 ## Bar Management Menu
 

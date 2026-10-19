@@ -136,17 +136,69 @@ def save_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def shot_entries(config: dict, languages: list[dict], devices: list[dict]) -> list[dict]:
+def shot_entries(config: dict, languages: list[dict], devices: list[dict], scenes: list[dict] | None = None) -> list[dict]:
     return [
         {"language": lang["code"], "locale": lang["appStoreLocale"], "device": device["id"],
          "screen": screen["id"], "width": device["width"], "height": device["height"],
          "path": f"screenshots/{lang['appStoreLocale']}/{device['id']}/{screen['id']}.png"}
-        for lang in languages for device in devices for screen in config["screenshots"]
+        for lang in languages for device in devices for screen in (config["screenshots"] if scenes is None else scenes)
     ]
+
+
+def marketing_entries(config: dict, languages: list[dict], devices: list[dict], scenes: list[dict] | None = None) -> list[dict]:
+    return [{**item, "sourcePath": item["path"], "path": item["path"].replace("screenshots/", "marketing/", 1)}
+            for item in shot_entries(config, languages, devices, scenes)]
+
+
+def read_capture_index(path: Path, renderer: str) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        raise AssetError(f"Cannot read capture metadata {path}: {error}") from error
+    if not isinstance(data, dict) or data.get("schemaVersion") != 1 or data.get("renderer") != renderer or not isinstance(data.get("screenshots"), list):
+        raise AssetError(f"Invalid capture manifest schema/renderer/screenshots: {path}")
+    if any(not isinstance(item, dict) for item in data["screenshots"]):
+        raise AssetError(f"Invalid capture manifest entries: {path}")
+    return data
+
+
+def validate_marketing_index(output: Path, entries: list[dict]) -> None:
+    data = read_capture_index(target_file(output, "marketing-manifest.json"), "flutter-marketing-compositor")
+    by_path = {}
+    for item in data["screenshots"]:
+        path = item.get("path")
+        if not isinstance(path, str) or path in by_path:
+            raise AssetError("Invalid or duplicate marketing manifest path.")
+        target_file(output, path)
+        by_path[path] = item
+    for expected in entries:
+        actual = by_path.get(expected["path"])
+        if actual is None:
+            raise AssetError(f"Marketing manifest is missing selected image: {expected['path']}")
+        for key in ("language", "locale", "device", "screen", "width", "height", "sourcePath"):
+            if actual.get(key) != expected[key]:
+                raise AssetError(f"Marketing manifest {key} mismatch: {expected['path']}")
+        if actual.get("sourceUiEdited") is not False or actual.get("sourceUiCropped") is not False or actual.get("nativeDeviceCapture") is not False:
+            raise AssetError(f"Marketing manifest must identify unedited, uncropped offscreen UI: {expected['path']}")
 
 
 def creative_entries(config: dict) -> list[dict]:
     return [{"id": item["id"], "path": f"creatives/{item['id']}.png", "width": item["width"], "height": item["height"], "safeRect": item.get("safeRect")} for item in config["creatives"]]
+
+
+def load_marketing_copy(config: dict, config_path: Path) -> dict:
+    copy_path = config_path.parent / "marketing_copy.json"
+    try:
+        data = json.loads(copy_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        raise AssetError(f"Cannot read marketing copy {copy_path}: {error}") from error
+    if not isinstance(data, dict) or data.get("schemaVersion") != 1 or not isinstance(data.get("languages"), dict):
+        raise AssetError("Marketing copy must have schemaVersion 1 and a languages object.")
+    sequence = data.get("sequence")
+    expected = {scene["id"] for scene in config["screenshots"]}
+    if not isinstance(sequence, list) or any(not isinstance(item, str) for item in sequence) or len(sequence) != len(expected) or set(sequence) != expected:
+        raise AssetError("Marketing copy sequence must contain each configured scene exactly once.")
+    return data
 
 
 def digest(path: Path) -> str:
@@ -271,28 +323,25 @@ def prepare_fonts(config_path: Path, manifest_path: Path | None = None) -> dict:
     return {"fonts": prepared, "downloaded": sum(not entry["cached"] for entry in prepared), "uploaded": False}
 
 
-def capture(config: dict, config_path: Path, output: Path, languages: list[dict], devices: list[dict], overwrite: bool) -> dict:
+def capture(config: dict, config_path: Path, output: Path, languages: list[dict], devices: list[dict], overwrite: bool, scenes: list[dict] | None = None) -> dict:
     pillow()  # Fail before starting Flutter if image verification is unavailable.
     errors = font_errors(config, config_path)
     if errors:
         raise AssetError("\n".join(errors))
-    entries = shot_entries(config, languages, devices)
+    scenes = config["screenshots"] if scenes is None else scenes
+    entries = shot_entries(config, languages, devices, scenes)
     targets = [target_file(output, item["path"]) for item in entries]
     manifest = target_file(output, "capture-manifest.json")
     # The manifest is a merge index, so existing unrelated captures are retained.
     ensure_writable(targets, overwrite)
     if manifest.exists():
-        try:
-            previous = json.loads(manifest.read_text(encoding="utf-8"))
-        except (OSError, ValueError) as error:
-            raise AssetError(f"Cannot merge capture manifest: {error}") from error
-        if previous.get("schemaVersion") != 1 or previous.get("renderer") != "flutter-widget":
-            raise AssetError("Refusing to overwrite a capture manifest from another renderer/schema.")
+        read_capture_index(manifest, "flutter-widget")
     output.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     env.update(STORE_ASSET_CONFIG=str(config_path), STORE_ASSET_OUTPUT=str(output),
                STORE_ASSET_LANGUAGES=",".join(lang["code"] for lang in languages),
                STORE_ASSET_DEVICES=",".join(device["id"] for device in devices),
+               STORE_ASSET_SCENES=",".join(scene["id"] for scene in scenes),
                FLUTTER_SUPPRESS_ANALYTICS="true", DART_SUPPRESS_ANALYTICS="true")
     command = ["flutter", "test", "tool/store_assets/capture_ui.dart", "--run-skipped", "--no-pub"]
     try:
@@ -309,6 +358,55 @@ def capture(config: dict, config_path: Path, output: Path, languages: list[dict]
     if not manifest.is_file():
         raise AssetError("Capture did not produce capture-manifest.json.")
     return {"screenshots": len(entries), "output": str(output), "renderer": "flutter-widget", "uploaded": False}
+
+
+def compose(config: dict, config_path: Path, output: Path, languages: list[dict], devices: list[dict], overwrite: bool, scenes: list[dict] | None = None) -> dict:
+    """Frame unchanged real UI captures with localized, offline marketing copy."""
+    pillow()
+    errors = font_errors(config, config_path)
+    if errors:
+        raise AssetError("\n".join(errors))
+    scenes = config["screenshots"] if scenes is None else scenes
+    entries = marketing_entries(config, languages, devices, scenes)
+    targets = [target_file(output, item["path"]) for item in entries]
+    ensure_writable(targets, overwrite)
+    manifest = target_file(output, "marketing-manifest.json")
+    if manifest.exists():
+        validate_marketing_index(output, [])
+    for item in entries:
+        source = target_file(output, item["sourcePath"])
+        verify_image(source, item["width"], item["height"])
+        if any(target.exists() and source.samefile(target) for target in targets):
+            raise AssetError("Raw screenshot sources must be separate from marketing output files.")
+    copy = load_marketing_copy(config, config_path)
+    for language in languages:
+        localized = copy["languages"].get(language["code"])
+        for scene in scenes:
+            text = localized.get(scene["id"]) if isinstance(localized, dict) else None
+            if not isinstance(text, dict) or any(not isinstance(text.get(key), str) or not text[key].strip() for key in ("headline", "subtitle")):
+                raise AssetError(f"Missing marketing captions: {language['code']}/{scene['id']}")
+    background = config_path.parent / "artwork" / "screenshot-background.png"
+    if not background.is_file():
+        raise AssetError(f"Missing marketing background: {background}")
+    env = os.environ.copy()
+    env.update(STORE_ASSET_CONFIG=str(config_path), STORE_ASSET_OUTPUT=str(output),
+               STORE_ASSET_LANGUAGES=",".join(lang["code"] for lang in languages),
+               STORE_ASSET_DEVICES=",".join(device["id"] for device in devices),
+               STORE_ASSET_SCENES=",".join(scene["id"] for scene in scenes),
+               FLUTTER_SUPPRESS_ANALYTICS="true", DART_SUPPRESS_ANALYTICS="true")
+    try:
+        subprocess.run(["flutter", "test", "tool/store_assets/compose_marketing.dart", "--run-skipped", "--no-pub"], cwd=REPO_ROOT, env=env, check=True)
+    except FileNotFoundError as error:
+        raise AssetError("Flutter is not available on PATH.") from error
+    except subprocess.CalledProcessError as error:
+        raise AssetError(f"Flutter composition failed (exit {error.returncode}). Completed PNGs were retained; retry the same selection with --overwrite.") from error
+    for item, target in zip(entries, targets):
+        if not target.is_file():
+            raise AssetError(f"Composition did not produce {target}")
+        normalize_rgb(target)
+        verify_image(target, item["width"], item["height"])
+    validate_marketing_index(output, entries)
+    return {"marketingScreenshots": len(entries), "output": str(output), "renderer": "flutter-marketing-compositor", "uploaded": False}
 
 
 def crop_focal(source, item: dict, focal_point: tuple[float, float]):
@@ -382,16 +480,28 @@ def export_creatives(config: dict, output: Path, languages: list[dict], source_p
     return {"creatives": len(entries), "locales": len(languages), "output": str(output), "uploaded": False}
 
 
-def validate(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str) -> dict:
+def selected_entries(config: dict, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None) -> list[dict]:
     entries = []
     if kind in ("all", "screenshots"):
-        entries.extend(shot_entries(config, languages, devices))
+        entries.extend(shot_entries(config, languages, devices, scenes))
+    if kind in ("all", "marketing"):
+        entries.extend(marketing_entries(config, languages, devices, scenes))
     if kind in ("all", "creatives"):
         entries.extend(creative_entries(config))
+    return entries
+
+
+def validate(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None) -> dict:
+    entries = selected_entries(config, languages, devices, kind, scenes)
     errors = []
     for item in entries:
         try:
             verify_image(target_file(output, item["path"]), item["width"], item["height"])
+        except AssetError as error:
+            errors.append(str(error))
+    if kind in ("all", "marketing"):
+        try:
+            validate_marketing_index(output, marketing_entries(config, languages, devices, scenes))
         except AssetError as error:
             errors.append(str(error))
     if errors:
@@ -399,18 +509,23 @@ def validate(config: dict, output: Path, languages: list[dict], devices: list[di
     return {"validatedImages": len(entries), "kind": kind, "output": str(output), "uploaded": False}
 
 
-def package(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, overwrite: bool) -> dict:
-    validate(config, output, languages, devices, kind)
-    entries = []
-    if kind in ("all", "screenshots"):
-        entries.extend(shot_entries(config, languages, devices))
-    if kind in ("all", "creatives"):
-        entries.extend(creative_entries(config))
+def package(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, overwrite: bool, scenes: list[dict] | None = None, config_path: Path | None = None) -> dict:
+    validate(config, output, languages, devices, kind, scenes)
+    entries = selected_entries(config, languages, devices, kind, scenes)
     name = f"my-bar-{kind}"
     archive_path = target_file(output, f"{name}.zip")
     manifest_path = target_file(output, f"{name}-manifest.json")
     ensure_writable([archive_path, manifest_path], overwrite)
     files = [{**item, "sha256": digest(target_file(output, item["path"])), "bytes": target_file(output, item["path"]).stat().st_size} for item in entries]
+    upload_sequence = None
+    if kind == "marketing":
+        upload_sequence = load_marketing_copy(config, config_path or SCRIPT_DIR / "config.json")["sequence"]
+        positions = {scene: index + 1 for index, scene in enumerate(upload_sequence)}
+        for item in files:
+            sequence = positions[item["screen"]]
+            label = re.sub(r"^\d+-", "", item["screen"])
+            item.update(sequence=sequence, archivePath=f"{item['locale']}/{item['device']}/{sequence:02d}-{label}.png")
+        files.sort(key=lambda item: (item["locale"], item["device"], item["sequence"]))
     capture_provenance = {
         "renderer": "flutter-widget", "nativeDeviceCapture": False,
         "fontFallback": "offline Noto fixture replaces OS text fallback",
@@ -419,10 +534,15 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
     for item in files:
         if item["path"].startswith("screenshots/"):
             item.update(capture_provenance)
+        elif item["path"].startswith("marketing/"):
+            item.update(capture_provenance, renderer="flutter-marketing-compositor", sourceUiEdited=False,
+                        sourceUiCropped=False, deviceFrame="generic rounded frame; no hardware claims")
     metadata = []
     metadata_names = []
     if kind in ("all", "screenshots"):
         metadata_names.append("capture-manifest.json")
+    if kind in ("all", "marketing"):
+        metadata_names.append("marketing-manifest.json")
     if kind in ("all", "creatives"):
         metadata_names.append("creative-manifest.json")
     for relative in metadata_names:
@@ -436,15 +556,16 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
                 raise AssetError(f"Package metadata must be a JSON object: {path}")
             metadata.append({"path": relative, "sha256": digest(path), "bytes": path.stat().st_size})
     manifest = {"schemaVersion": 1, "app": config.get("app", "My Bar"), "kind": kind,
-                "renderer": "flutter-widget" if kind != "creatives" else None,
+                "renderer": "flutter-marketing-compositor" if kind == "marketing" else "flutter-widget" if kind != "creatives" else None,
                 "provenance": capture_provenance if kind != "creatives" else {"kind": "marketing-artwork", "deviceCapture": False},
                 "locales": [{"language": lang["code"], "appStore": lang["appStoreLocale"], "googlePlay": lang.get("googlePlayLocale")} for lang in languages],
                 "files": files, "imageCount": len(files), "metadata": metadata,
-                "metadataCount": len(metadata), "uploaded": False}
+                "metadataCount": len(metadata), "uploaded": False,
+                **({"uploadSequence": upload_sequence, "archivePathPolicy": "locale/device/marketing-sequence-scene.png; source files retain canonical path"} if upload_sequence is not None else {})}
     # A stable manifest and fixed ZIP timestamps make repeat exports reproducible.
     save_json(manifest_path, manifest)
     with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
-        for path, relative in [(manifest_path, manifest_path.name), *[(target_file(output, item["path"]), item["path"]) for item in [*files, *metadata]]]:
+        for path, relative in [(manifest_path, manifest_path.name), *[(target_file(output, item["path"]), item.get("archivePath", item["path"])) for item in [*files, *metadata]]]:
             info = zipfile.ZipInfo(str(relative), date_time=(2026, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
@@ -458,6 +579,7 @@ def parser() -> argparse.ArgumentParser:
     common.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     common.add_argument("--languages", help="Comma-separated app codes, e.g. en,ru,ar. Default: all configured languages.")
     common.add_argument("--devices", help="Comma-separated device IDs. Default: all enabled devices.")
+    common.add_argument("--scenes", help="Comma-separated scene IDs, e.g. 03-recipe,07-almost-ready. Default: all enabled scenes.")
     common.add_argument("--json", action="store_true", help="Print the result as JSON.")
     root = argparse.ArgumentParser(description=__doc__, epilog="Only explicit prepare-fonts downloads pinned free fonts. All other commands are offline. No authentication or upload command exists.")
     commands = root.add_subparsers(dest="command", required=True)
@@ -465,13 +587,15 @@ def parser() -> argparse.ArgumentParser:
     commands.add_parser("plan", parents=[common], help="Preview selected screenshot paths without writing files.")
     capture_parser = commands.add_parser("capture", parents=[common], help="Render real app widgets at each target viewport; no simulator required.")
     capture_parser.add_argument("--overwrite", action="store_true")
+    compose_parser = commands.add_parser("compose", parents=[common], help="Compose localized upload-ready marketing screenshots from unchanged captured UI.")
+    compose_parser.add_argument("--overwrite", action="store_true")
     creatives = commands.add_parser("export-creatives", parents=[common], help="Create opaque PNG header/search/universal crops from one PNG source.")
     creatives.add_argument("--source", required=True, type=Path)
     creatives.add_argument("--focal-point", type=parse_focal_point, default=(0.5, 0.5), metavar="X,Y", help="Normalized source focal point (0..1), default 0.5,0.5. Crop keeps it near each safe-area center when possible.")
     creatives.add_argument("--overwrite", action="store_true")
     for command in ("validate", "package"):
         child = commands.add_parser(command, parents=[common], help="Validate image dimensions/color." if command == "validate" else "Create a local ZIP with SHA-256 manifest.")
-        child.add_argument("--kind", choices=("all", "screenshots", "creatives"), default="all")
+        child.add_argument("--kind", choices=("all", "screenshots", "marketing", "creatives"), default="all", help="all includes raw screenshots, marketing screenshots and creatives; use marketing for the preferred screenshot upload ZIP.")
         if command == "package":
             child.add_argument("--overwrite", action="store_true")
     commands.add_parser("check-fonts", parents=[common], help="Check configured local font files and optional SHA-256 hashes; never downloads.")
@@ -497,20 +621,24 @@ def main(argv: list[str] | None = None) -> int:
         config = load_config(config_path)
         languages = select(config["languages"], args.languages, "code", "languages")
         devices = select(config["devices"], args.devices, "id", "devices")
+        scenes = select(config["screenshots"], args.scenes, "id", "scenes")
         output = safe_output(args.output)
         if args.command == "list":
-            result = {"languages": config["languages"], "devices": config["devices"], "creatives": config["creatives"], "notes": config.get("notes", [])}
+            result = {"languages": config["languages"], "devices": config["devices"], "scenes": config["screenshots"], "creatives": config["creatives"], "notes": config.get("notes", [])}
         elif args.command == "plan":
-            entries = shot_entries(config, languages, devices)
-            result = {"output": str(output), "languages": len(languages), "devices": len(devices), "screenshots": len(entries), "files": entries, "uploaded": False}
+            entries = shot_entries(config, languages, devices, scenes)
+            result = {"output": str(output), "languages": len(languages), "devices": len(devices), "scenes": len(scenes), "screenshots": len(entries), "files": entries,
+                      "marketingFiles": marketing_entries(config, languages, devices, scenes), "uploaded": False}
         elif args.command == "capture":
-            result = capture(config, config_path, output, languages, devices, args.overwrite)
+            result = capture(config, config_path, output, languages, devices, args.overwrite, scenes)
+        elif args.command == "compose":
+            result = compose(config, config_path, output, languages, devices, args.overwrite, scenes)
         elif args.command == "export-creatives":
             result = export_creatives(config, output, languages, args.source.expanduser().resolve(), args.overwrite, args.focal_point)
         elif args.command == "validate":
-            result = validate(config, output, languages, devices, args.kind)
+            result = validate(config, output, languages, devices, args.kind, scenes)
         elif args.command == "package":
-            result = package(config, output, languages, devices, args.kind, args.overwrite)
+            result = package(config, output, languages, devices, args.kind, args.overwrite, scenes, config_path)
         elif args.command == "prepare-fonts":
             result = prepare_fonts(config_path, args.font_sources.expanduser().resolve() if args.font_sources else None)
         else:
@@ -521,7 +649,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.json or args.command == "list":
             print(json.dumps(result, ensure_ascii=False, indent=2))
         elif args.command == "plan":
-            print(f"{result['languages']} languages × {result['devices']} devices × {len(config['screenshots'])} screens = {result['screenshots']} PNGs")
+            print(f"{result['languages']} languages × {result['devices']} devices × {result['scenes']} screens = {result['screenshots']} PNGs per raw/marketing set")
             print(f"Output: {output}\nRenderer: real Flutter widgets (not physical-device captures). No uploads.")
             for device in devices:
                 print(f"  {device['id']}: {device['width']} × {device['height']} px @ {device['pixelRatio']}x")

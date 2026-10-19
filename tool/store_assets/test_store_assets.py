@@ -6,6 +6,7 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 from unittest import mock
@@ -42,13 +43,28 @@ class StoreAssetTests(unittest.TestCase):
         Image.new("RGBA", (200, 200), (11, 22, 33, 255)).save(path)
         return path
 
+    def create_captures(self, config, languages, devices, kind="screenshots", scenes=None):
+        entries = (assets.marketing_entries if kind == "marketing" else assets.shot_entries)(config, languages, devices, scenes)
+        for item in entries:
+            path = self.output / item["path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", (item["width"], item["height"])).save(path)
+        if kind == "marketing":
+            assets.save_json(self.output / "marketing-manifest.json", {
+                "schemaVersion": 1, "renderer": "flutter-marketing-compositor",
+                "screenshots": [{**item, "sourceUiEdited": False, "sourceUiCropped": False, "nativeDeviceCapture": False} for item in entries],
+            })
+        return entries
+
     def test_all_languages_and_device_dimensions(self):
         self.assertEqual(len(self.config["languages"]), 13)
         self.assertEqual(len({lang["appStoreLocale"] for lang in self.config["languages"]}), 13)
         devices = {device["id"]: (device["width"], device["height"]) for device in self.config["devices"]}
         self.assertEqual(devices["iphone-duo-outer"], (1398, 2034))
         self.assertEqual(devices["iphone-duo-inner"], (2007, 2853))
-        self.assertEqual(len(assets.shot_entries(self.config, self.config["languages"], self.config["devices"])), 390)
+        self.assertEqual(len(self.config["screenshots"]), 7)
+        self.assertEqual(self.config["screenshots"][-1]["id"], "07-almost-ready")
+        self.assertEqual(len(assets.shot_entries(self.config, self.config["languages"], self.config["devices"])), 455)
 
     def test_locale_mapping_does_not_reuse_play_codes(self):
         mapping = {lang["code"]: lang for lang in self.config["languages"]}
@@ -196,7 +212,7 @@ class StoreAssetTests(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             Image.new("RGB", (item["width"], item["height"])).save(path)
         first = assets.package(config, self.output, languages, devices, "screenshots", False)
-        self.assertEqual((first["images"], first["metadata"], first["files"]), (6, 0, 7))
+        self.assertEqual((first["images"], first["metadata"], first["files"]), (7, 0, 8))
         with zipfile.ZipFile(first["archive"]) as archive:
             manifest = json.loads(archive.read("my-bar-screenshots-manifest.json"))
             self.assertFalse(manifest["provenance"]["nativeDeviceCapture"])
@@ -205,7 +221,7 @@ class StoreAssetTests(unittest.TestCase):
         assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "nativeDeviceCapture": False, "screenshots": []})
         metadata_bytes = (self.output / "capture-manifest.json").read_bytes()
         second = assets.package(config, self.output, languages, devices, "screenshots", True)
-        self.assertEqual((second["images"], second["metadata"], second["files"]), (6, 1, 8))
+        self.assertEqual((second["images"], second["metadata"], second["files"]), (7, 1, 9))
         with zipfile.ZipFile(second["archive"]) as archive:
             self.assertEqual(archive.read("capture-manifest.json"), metadata_bytes)
             manifest = json.loads(archive.read("my-bar-screenshots-manifest.json"))
@@ -213,7 +229,7 @@ class StoreAssetTests(unittest.TestCase):
         third = assets.package(config, self.output, languages, devices, "screenshots", True)
         self.assertEqual(second["sha256"], third["sha256"])
 
-    def test_all_package_includes_both_manifests_not_review_guides(self):
+    def test_all_package_includes_three_sets_and_manifests_not_review_guides(self):
         config = self.small_config()
         languages, devices = config["languages"][:1], config["devices"][:1]
         for item in assets.shot_entries(config, languages, devices):
@@ -221,14 +237,21 @@ class StoreAssetTests(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             Image.new("RGB", (item["width"], item["height"])).save(path)
         assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "screenshots": []})
+        self.create_captures(config, languages, devices, "marketing")
         assets.export_creatives(config, self.output, languages, self.create_source(), False)
         result = assets.package(config, self.output, languages, devices, "all", False)
-        self.assertEqual((result["images"], result["metadata"], result["files"]), (9, 2, 12))
+        self.assertEqual((result["images"], result["metadata"], result["files"]), (17, 3, 21))
         with zipfile.ZipFile(result["archive"]) as archive:
             self.assertEqual(len(archive.namelist()), result["files"])
             self.assertIn("capture-manifest.json", archive.namelist())
             self.assertIn("creative-manifest.json", archive.namelist())
+            self.assertIn("marketing-manifest.json", archive.namelist())
             self.assertFalse(any("review-guides" in name for name in archive.namelist()))
+            manifest = json.loads(archive.read("my-bar-all-manifest.json"))
+            marketing_files = [item for item in manifest["files"] if item["path"].startswith("marketing/")]
+            self.assertEqual(len(marketing_files), 7)
+            self.assertTrue(all("archivePath" not in item for item in marketing_files))
+            self.assertIn("marketing/en-US/iphone-medium/07-almost-ready.png", archive.namelist())
 
     def test_package_refuses_invalid_present_metadata(self):
         config = self.small_config()
@@ -244,7 +267,7 @@ class StoreAssetTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertFalse(self.output.exists())
         result = json.loads(stream.getvalue())
-        self.assertEqual(result["screenshots"], 12)
+        self.assertEqual(result["screenshots"], 14)
 
     def test_capture_refuses_existing_before_flutter(self):
         target = self.output / assets.shot_entries(self.config, self.languages, self.devices)[0]["path"]
@@ -262,6 +285,7 @@ class StoreAssetTests(unittest.TestCase):
             self.assertIn("--no-pub", command)
             self.assertEqual(env["STORE_ASSET_LANGUAGES"], "en")
             self.assertEqual(env["STORE_ASSET_DEVICES"], "iphone-medium")
+            self.assertEqual(env["STORE_ASSET_SCENES"], ",".join(scene["id"] for scene in config["screenshots"]))
             entries = assets.shot_entries(config, languages, devices)
             for item in entries:
                 target = self.output / item["path"]
@@ -270,8 +294,182 @@ class StoreAssetTests(unittest.TestCase):
             assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "screenshots": entries})
         with mock.patch.object(assets.subprocess, "run", side_effect=fake_capture):
             result = assets.capture(config, MODULE_PATH.with_name("config.json"), self.output, languages, devices, False)
-        self.assertEqual(result["screenshots"], 6)
+        self.assertEqual(result["screenshots"], 7)
         assets.validate(config, self.output, languages, devices, "screenshots")
+
+    def test_scene_selectors_plan_paths_and_reject_unknown_before_writes(self):
+        with contextlib.redirect_stdout(io.StringIO()) as stream:
+            code = assets.main(["plan", "--languages", "ru", "--devices", "iphone-duo-inner", "--scenes", "07-almost-ready,03-recipe,07-almost-ready", "--output", str(self.output), "--json"])
+        self.assertEqual(code, 0)
+        result = json.loads(stream.getvalue())
+        self.assertEqual((result["scenes"], result["screenshots"]), (2, 2))
+        self.assertEqual([item["screen"] for item in result["files"]], ["07-almost-ready", "03-recipe"])
+        self.assertEqual(result["marketingFiles"][0]["path"], "marketing/ru/iphone-duo-inner/07-almost-ready.png")
+        self.assertFalse(self.output.exists())
+        for command in ("capture", "compose", "validate", "package"):
+            with contextlib.redirect_stderr(io.StringIO()), mock.patch.object(assets.subprocess, "run") as run:
+                self.assertEqual(assets.main([command, "--scenes", "unknown", "--output", str(self.output)]), 1)
+                run.assert_not_called()
+
+    def test_marketing_validate_requires_matching_manifest_and_png(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][-1:]
+        entries = self.create_captures(config, languages, devices, "marketing", scenes)
+        assets.validate(config, self.output, languages, devices, "marketing", scenes)
+        manifest = self.output / "marketing-manifest.json"
+        correct = manifest.read_text()
+        manifest.unlink()
+        with self.assertRaisesRegex(assets.AssetError, "marketing-manifest"):
+            assets.validate(config, self.output, languages, devices, "marketing", scenes)
+        manifest.write_text(correct)
+        (self.output / entries[0]["path"]).unlink()
+        with self.assertRaisesRegex(assets.AssetError, "Missing image"):
+            assets.package(config, self.output, languages, devices, "marketing", False, scenes)
+        self.assertFalse((self.output / "my-bar-marketing.zip").exists())
+
+    def test_marketing_manifest_rejects_mismatches_edited_ui_and_missing_entries(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][:1]
+        self.create_captures(config, languages, devices, "marketing", scenes)
+        path = self.output / "marketing-manifest.json"
+        original = json.loads(path.read_text())
+        mutations = [lambda data: data.update(renderer="other"), lambda data: data["screenshots"].clear(),
+                     lambda data: data["screenshots"][0].update(sourceUiEdited=True),
+                     lambda data: data["screenshots"][0].update(sourcePath="screenshots/wrong.png"),
+                     lambda data: data["screenshots"].append(data["screenshots"][0]),
+                     lambda data: data["screenshots"].append({"path": "../escape.png"})]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            assets.save_json(path, data)
+            with self.assertRaises(assets.AssetError):
+                assets.validate(config, self.output, languages, devices, "marketing", scenes)
+
+    def test_marketing_package_is_selected_upload_set_with_raw_source_provenance(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][-1:]
+        self.create_captures(config, languages, devices, "marketing", scenes)
+        result = assets.package(config, self.output, languages, devices, "marketing", False, scenes)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            self.assertEqual(len(archive.namelist()), 3)
+            self.assertIn("en-US/iphone-medium/03-almost-ready.png", archive.namelist())
+            self.assertFalse(any(name.startswith("screenshots/") for name in archive.namelist()))
+            manifest = json.loads(archive.read("my-bar-marketing-manifest.json"))
+            self.assertEqual(manifest["renderer"], "flutter-marketing-compositor")
+            self.assertEqual(manifest["files"][0]["sourcePath"], "screenshots/en-US/iphone-medium/07-almost-ready.png")
+            self.assertEqual(manifest["files"][0]["path"], "marketing/en-US/iphone-medium/07-almost-ready.png")
+            self.assertEqual(manifest["files"][0]["archivePath"], "en-US/iphone-medium/03-almost-ready.png")
+            self.assertEqual(manifest["files"][0]["sequence"], 3)
+            self.assertEqual(manifest["files"][0]["sha256"], assets.hashlib.sha256(archive.read(manifest["files"][0]["archivePath"])).hexdigest())
+            self.assertFalse(manifest["files"][0]["sourceUiEdited"])
+        second = assets.package(config, self.output, languages, devices, "marketing", True, scenes)
+        self.assertEqual(result["sha256"], second["sha256"])
+
+    def test_compose_env_selections_normalization_and_preserves_unselected(self):
+        config = self.small_config()
+        config["fonts"] = []
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][-1:]
+        self.create_captures(config, languages, devices, scenes=scenes)
+        config_path = self.root / "config.json"
+        assets.save_json(config_path, config)
+        assets.save_json(self.root / "marketing_copy.json", {"schemaVersion": 1, "sequence": [scene["id"] for scene in config["screenshots"]], "languages": {"en": {"07-almost-ready": {"headline": "Almost ready", "subtitle": "Just one ingredient"}}}})
+        (self.root / "artwork").mkdir()
+        Image.new("RGB", (10, 10)).save(self.root / "artwork" / "screenshot-background.png")
+        unrelated = self.output / "keep.txt"
+        unrelated.write_text("keep")
+        def fake_compose(command, cwd, env, check):
+            self.assertEqual(command[2], "tool/store_assets/compose_marketing.dart")
+            self.assertEqual(env["STORE_ASSET_SCENES"], "07-almost-ready")
+            self.assertEqual(env["STORE_ASSET_LANGUAGES"], "en")
+            self.create_captures(config, languages, devices, "marketing", scenes)
+            for item in assets.marketing_entries(config, languages, devices, scenes):
+                Image.new("RGBA", (item["width"], item["height"]), (1, 2, 3, 255)).save(self.output / item["path"])
+        with mock.patch.object(assets.subprocess, "run", side_effect=fake_compose) as run:
+            result = assets.compose(config, config_path, self.output, languages, devices, False, scenes)
+            self.assertEqual(result["marketingScreenshots"], 1)
+            run.assert_called_once()
+        self.assertEqual(unrelated.read_text(), "keep")
+        assets.validate(config, self.output, languages, devices, "marketing", scenes)
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "already exists"):
+                assets.compose(config, config_path, self.output, languages, devices, False, scenes)
+            run.assert_not_called()
+
+    def test_compose_missing_raw_capture_fails_before_flutter(self):
+        config = self.small_config()
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "Missing image"):
+                assets.compose(config, MODULE_PATH.with_name("config.json"), self.output, config["languages"][:1], config["devices"][:1], False, config["screenshots"][:1])
+            run.assert_not_called()
+        self.assertFalse(self.output.exists())
+
+    def test_compose_refuses_hardlink_to_raw_source_before_flutter(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][:1]
+        entries = self.create_captures(config, languages, devices, scenes=scenes)
+        source = self.output / entries[0]["path"]
+        target = self.output / assets.marketing_entries(config, languages, devices, scenes)[0]["path"]
+        target.parent.mkdir(parents=True)
+        assets.os.link(source, target)
+        original = source.read_bytes()
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "sources must be separate"):
+                assets.compose(config, MODULE_PATH.with_name("config.json"), self.output, languages, devices, True, scenes)
+            run.assert_not_called()
+        self.assertEqual(source.read_bytes(), original)
+
+    def test_marketing_upload_archive_uses_story_order_without_renaming_sources(self):
+        config = self.small_config()
+        languages, devices = config["languages"][:1], config["devices"][:1]
+        entries = self.create_captures(config, languages, devices, "marketing")
+        before = {item["path"]: assets.digest(self.output / item["path"]) for item in entries}
+        result = assets.package(config, self.output, languages, devices, "marketing", False)
+        expected_names = ["01-ingredients.png", "02-cocktails.png", "03-almost-ready.png", "04-shopping.png", "05-recipe.png", "06-party.png", "07-surprise.png"]
+        with zipfile.ZipFile(result["archive"]) as archive:
+            images = [name for name in archive.namelist() if name.endswith(".png")]
+            self.assertEqual(images, [f"en-US/iphone-medium/{name}" for name in expected_names])
+            manifest = json.loads(archive.read("my-bar-marketing-manifest.json"))
+            self.assertEqual(manifest["uploadSequence"][2], "07-almost-ready")
+            self.assertEqual([item["sequence"] for item in manifest["files"]], list(range(1, 8)))
+            for item in manifest["files"]:
+                self.assertEqual(item["sha256"], before[item["path"]])
+                self.assertEqual(item["sha256"], assets.hashlib.sha256(archive.read(item["archivePath"])).hexdigest())
+        self.assertEqual(before, {item["path"]: assets.digest(self.output / item["path"]) for item in entries})
+
+    def test_marketing_copy_has_exact_locale_scene_coverage_and_reasonable_caption_lengths(self):
+        data = assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json"))
+        language_codes = {language["code"] for language in self.config["languages"]}
+        scene_ids = {scene["id"] for scene in self.config["screenshots"]}
+        self.assertEqual(set(data["languages"]), language_codes)
+        self.assertEqual(len(data["sequence"]), len(scene_ids))
+        self.assertEqual(set(data["sequence"]), scene_ids)
+        self.assertEqual(data["sequence"][2], "07-almost-ready")
+        for language, localized in data["languages"].items():
+            self.assertEqual(set(localized), scene_ids, language)
+            for scene, copy in localized.items():
+                for key, maximum in (("headline", 64), ("subtitle", 110)):
+                    value = copy[key]
+                    self.assertIsInstance(value, str)
+                    self.assertEqual(value, value.strip(), f"{language}/{scene}/{key}")
+                    self.assertTrue(value, f"{language}/{scene}/{key}")
+                    self.assertLessEqual(len(value), maximum, f"{language}/{scene}/{key}")
+                    self.assertNotIn("\n", value)
+        # Compare any concrete recipe-count claim to the shipping catalog, not
+        # to a hard-coded constant that could silently go stale after additions.
+        catalog = json.loads((assets.REPO_ROOT / "assets/data/bar_template.json").read_text())
+        count = len(catalog["cocktails"])
+        for language, localized in data["languages"].items():
+            claims = re.findall(r"\d+", localized["02-cocktails"]["subtitle"])
+            self.assertEqual(claims, [str(count)], language)
+
+    def test_marketing_copy_rejects_duplicate_missing_unknown_or_nonstring_sequence(self):
+        original = assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json"))
+        for sequence in (original["sequence"][:-1], [*original["sequence"][:-1], original["sequence"][0]], [*original["sequence"][:-1], "unknown"], [*original["sequence"][:-1], {}]):
+            data = copy.deepcopy(original)
+            data["sequence"] = sequence
+            assets.save_json(self.root / "marketing_copy.json", data)
+            with self.assertRaisesRegex(assets.AssetError, "sequence"):
+                assets.load_marketing_copy(self.config, self.root / "config.json")
 
     def test_font_download_rejects_non_pinned_or_untrusted_sources(self):
         path = self.root / "font_sources.json"

@@ -30,6 +30,7 @@ dependencies:
   battery_plus: ^7.0.0
 
 dev_dependencies:
+  crypto: ^3.0.7
   flutter_test:
     sdk: flutter
 
