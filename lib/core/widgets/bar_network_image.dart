@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'bar_resize_image.dart';
 import 'stretched_dots_loader.dart';
 
 class BarNetworkImage extends StatelessWidget {
@@ -25,46 +26,59 @@ class BarNetworkImage extends StatelessWidget {
       return errorWidget;
     }
 
-    if (_isNetworkUrl(source)) {
-      return Image.network(
-        source,
-        fit: BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) {
-            return child;
-          }
+    final provider = _imageProvider(source);
+    if (provider == null) {
+      return errorWidget;
+    }
 
-          return StretchedDotsLoader(
-            size: 36,
-            color: loadingColor,
-            backgroundColor: loadingBackgroundColor,
-          );
-        },
-        errorBuilder: (context, error, stackTrace) => errorWidget,
-      );
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final pixelRatio = MediaQuery.devicePixelRatioOf(context);
+        final width = _decodeDimension(constraints.maxWidth, pixelRatio);
+        final height = _decodeDimension(constraints.maxHeight, pixelRatio);
+        return Image(
+          image: width == null && height == null
+              ? provider
+              : BarResizeImage(provider, width: width, height: height),
+          fit: BoxFit.cover,
+          loadingBuilder: !_isNetworkUrl(source)
+              ? null
+              : (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+
+                  return StretchedDotsLoader(
+                    size: 36,
+                    color: loadingColor,
+                    backgroundColor: loadingBackgroundColor,
+                  );
+                },
+          errorBuilder: (context, error, stackTrace) => errorWidget,
+        );
+      },
+    );
+  }
+
+  ImageProvider<Object>? _imageProvider(String source) {
+    if (_isNetworkUrl(source)) {
+      return NetworkImage(source);
+    }
+    if (source.startsWith('assets/')) {
+      return AssetImage(source);
     }
 
     final localPath = source.startsWith('file://')
         ? Uri.parse(source).toFilePath()
         : source;
     final file = File(localPath);
-    if (file.existsSync()) {
-      return Image.file(
-        file,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => errorWidget,
-      );
-    }
+    return file.existsSync() ? FileImage(file) : null;
+  }
 
-    if (source.startsWith('assets/')) {
-      return Image.asset(
-        source,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => errorWidget,
-      );
-    }
-
-    return errorWidget;
+  int? _decodeDimension(double logicalSize, double pixelRatio) {
+    return logicalSize.isFinite
+        ? (logicalSize * pixelRatio).ceil().clamp(1, 0x7fffffff)
+        : null;
   }
 
   bool _isNetworkUrl(String value) {

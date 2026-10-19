@@ -54,6 +54,14 @@ android {
 
     buildTypes {
         release {
+            // Keep release optimization explicit instead of relying on Flutter
+            // tooling defaults. Preserve plugin consumer rules for JNI/reflection.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            val optimizedRules = getDefaultProguardFile("proguard-android-optimize.txt")
+            if (!proguardFiles.contains(optimizedRules)) {
+                proguardFile(optimizedRules)
+            }
             signingConfig = if (hasReleaseSigning) {
                 signingConfigs.getByName("release")
             } else {

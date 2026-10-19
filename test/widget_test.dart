@@ -14,10 +14,102 @@ import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
 import 'package:my_bar/features/bar/presentation/pages/surprise_cocktail_page.dart';
+import 'package:my_bar/features/bar/presentation/pages/raw_bar_page.dart';
+import 'package:my_bar/features/bar/presentation/widgets/neon_bottom_navigation.dart';
 import 'package:my_bar/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  testWidgets('hidden landscape menu can be restored beside a display cutout', (
+    tester,
+  ) async {
+    // The side toggle has a continuous decorative border animation.
+    Future<void> pumpShell() async {
+      for (var frame = 0; frame < 24; frame++) {
+        await tester.pump(const Duration(milliseconds: 16));
+      }
+    }
+
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(1200, 800);
+    tester.view.padding = const FakeViewPadding(left: 64, top: 24, bottom: 24);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetPadding);
+    SharedPreferences.setMockInitialValues({
+      'bar_ui_app_language': 'ru',
+      'bar_ui_power_saving_mode': true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await pumpShell();
+
+    await tester.tap(find.byTooltip('Скрыть меню'));
+    await pumpShell();
+    final handle = tester.getRect(find.byTooltip('Показать меню'));
+    // The visible portion must extend beyond the system-obscured strip.
+    expect(handle.right, greaterThan(64));
+    await tester.tapAt(Offset(66, handle.center.dy));
+    await pumpShell();
+    expect(find.byTooltip('Скрыть меню'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Скрыть меню'));
+    await pumpShell();
+    // Restoring via the edge swipe must also start inside the safe area.
+    await tester.dragFrom(const Offset(82, 400), const Offset(80, 0));
+    await pumpShell();
+    expect(find.byTooltip('Скрыть меню'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('shell protects controls from system bars and display cutouts', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.padding = const FakeViewPadding(
+      left: 24,
+      top: 32,
+      right: 16,
+      bottom: 48,
+    );
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetPadding);
+    SharedPreferences.setMockInitialValues({
+      'bar_ui_app_language': 'ru',
+      'bar_ui_power_saving_mode': true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await tester.pumpAndSettle();
+
+    final page = tester.getRect(find.byType(RawBarPage));
+    final navigation = tester.getRect(find.byType(NeonBottomNavigation));
+    expect(page.left, greaterThanOrEqualTo(24));
+    expect(page.right, lessThanOrEqualTo(390 - 16));
+    expect(
+      tester.getTopLeft(find.text('Мой Бар')).dy,
+      greaterThanOrEqualTo(32),
+    );
+    expect(navigation.left, greaterThanOrEqualTo(24));
+    expect(navigation.right, lessThanOrEqualTo(390 - 16));
+    expect(navigation.bottom, closeTo(844 - 48, 0.01));
+
+    // Insets can change when switching navigation mode or rotating the phone.
+    tester.view.padding = const FakeViewPadding(top: 24, bottom: 24);
+    await tester.pumpAndSettle();
+    expect(
+      tester.getRect(find.byType(NeonBottomNavigation)).bottom,
+      closeTo(844 - 24, 0.01),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
   for (final language in ['ru', 'en']) {
     testWidgets('developer website follows $language app language', (
       WidgetTester tester,

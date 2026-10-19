@@ -43,6 +43,33 @@ class CocktailEditorPage extends StatefulWidget {
 
 enum _RequiredField { name, preparation, glass, ingredients }
 
+class _EditorFormScrollView extends StatelessWidget {
+  const _EditorFormScrollView({
+    required this.controller,
+    required this.keyboardInset,
+    required this.padding,
+    required this.child,
+  });
+
+  final ScrollController controller;
+  final double keyboardInset;
+  final EdgeInsets padding;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: keyboardInset),
+      child: SingleChildScrollView(
+        controller: controller,
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        padding: padding,
+        child: child,
+      ),
+    );
+  }
+}
+
 class _CocktailEditorPageState extends State<CocktailEditorPage> {
   late final TextEditingController _nameController;
   late final TextEditingController _descriptionController;
@@ -199,14 +226,12 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
     final editorMaxWidth = _resolveEditorMaxWidth(screenWidth);
-    final safeBottomInset = MediaQuery.paddingOf(context).bottom;
+    final safePadding = MediaQuery.paddingOf(context);
     final rawKeyboardInset = MediaQuery.viewInsetsOf(context).bottom;
-    final keyboardInset = (rawKeyboardInset - safeBottomInset)
-        .clamp(0.0, screenHeight * 0.35)
-        .toDouble();
+    final keyboardInset = rawKeyboardInset.clamp(0.0, screenHeight).toDouble();
     final bottomActionBarPadding = keyboardInset > 0
         ? keyboardInset + 30
-        : 24.0;
+        : safePadding.bottom + 24;
     final title = widget.isEditing
         ? context.tr('Редактирование коктейля', 'Edit cocktail')
         : context.tr('Создание коктейля', 'Create cocktail');
@@ -346,24 +371,34 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                 builder: (context, viewportConstraints) {
                   const contentHorizontalPadding = 16.0;
                   const contentTopPadding = 14.0;
-                  final contentBottomPadding = bottomActionBarPadding + 86;
+                  final visibleHeight =
+                      (viewportConstraints.maxHeight - keyboardInset)
+                          .clamp(0.0, viewportConstraints.maxHeight)
+                          .toDouble();
+                  // Keep a usable form viewport in short landscape windows.
+                  // Actions return as soon as the keyboard is dismissed.
+                  final showBottomActions =
+                      keyboardInset == 0 ||
+                      visibleHeight >=
+                          MediaQuery.textScalerOf(context).scale(200);
+                  final contentBottomPadding = showBottomActions
+                      ? bottomActionBarPadding - keyboardInset + 86
+                      : 24.0;
                   final minContentHeight =
-                      (viewportConstraints.maxHeight -
-                              contentTopPadding -
-                              contentBottomPadding)
+                      (visibleHeight - contentTopPadding - contentBottomPadding)
                           .clamp(0.0, double.infinity)
                           .toDouble();
 
                   return Stack(
+                    fit: StackFit.expand,
                     children: <Widget>[
-                      SingleChildScrollView(
+                      _EditorFormScrollView(
+                        keyboardInset: keyboardInset,
                         controller: _formScrollController,
-                        keyboardDismissBehavior:
-                            ScrollViewKeyboardDismissBehavior.onDrag,
                         padding: EdgeInsets.fromLTRB(
-                          contentHorizontalPadding,
+                          contentHorizontalPadding + safePadding.left,
                           contentTopPadding,
-                          contentHorizontalPadding,
+                          contentHorizontalPadding + safePadding.right,
                           contentBottomPadding,
                         ),
                         child: ConstrainedBox(
@@ -778,12 +813,13 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
                           ),
                         ),
                       ),
-                      Positioned(
-                        left: 16,
-                        right: 16,
-                        bottom: bottomActionBarPadding,
-                        child: _buildBottomActionBar(editorMaxWidth),
-                      ),
+                      if (showBottomActions)
+                        Positioned(
+                          left: 16 + safePadding.left,
+                          right: 16 + safePadding.right,
+                          bottom: bottomActionBarPadding,
+                          child: _buildBottomActionBar(editorMaxWidth),
+                        ),
                     ],
                   );
                 },

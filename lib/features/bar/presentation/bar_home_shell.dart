@@ -88,6 +88,7 @@ class _BarHomeShellState extends State<BarHomeShell>
     final state = context.watch<BarCubit>().state;
     final topInset = MediaQuery.paddingOf(context).top;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
+    final leftInset = MediaQuery.paddingOf(context).left;
     final showOnlyBarMenu = state.barMenuOnlyMode;
     final powerSavingMode = state.effectivePowerSavingMode;
     final unlockCountsByIngredientId = state.unlockCountsByIngredientId;
@@ -231,18 +232,12 @@ class _BarHomeShellState extends State<BarHomeShell>
           )
         : pageStack;
 
-    final systemUiStyle = SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.transparent,
+    const systemUiStyle = SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: Platform.isAndroid
-          ? Colors.black
-          : Colors.transparent,
-      systemNavigationBarDividerColor: Platform.isAndroid
-          ? Colors.black
-          : Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.light,
-      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+      systemNavigationBarContrastEnforced: true,
     );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -252,7 +247,7 @@ class _BarHomeShellState extends State<BarHomeShell>
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            bodyContent,
+            SafeArea(top: false, bottom: false, child: bodyContent),
             Positioned(
               top: 0,
               left: 0,
@@ -275,7 +270,7 @@ class _BarHomeShellState extends State<BarHomeShell>
             ),
             if (useSideNavigation && !showSideNavigation)
               Positioned(
-                left: 0,
+                left: leftInset,
                 top: 0,
                 bottom: 0,
                 width: 30,
@@ -297,8 +292,9 @@ class _BarHomeShellState extends State<BarHomeShell>
             if (useSideNavigation && !showSideNavigation)
               Positioned(
                 left:
-                    -_SideNavigationToggleHandle.size *
-                    (1 - _hiddenSideToggleVisibleFraction),
+                    leftInset -
+                    _SideNavigationToggleHandle.size *
+                        (1 - _hiddenSideToggleVisibleFraction),
                 top: topInset + 88,
                 child: _SideNavigationToggleHandle(
                   tooltip: context.tr('Показать меню', 'Show menu'),
@@ -311,10 +307,13 @@ class _BarHomeShellState extends State<BarHomeShell>
             if (showBottomNavigation)
               Align(
                 alignment: Alignment.bottomCenter,
-                child: NeonBottomNavigation(
-                  currentIndex: currentIndex,
-                  powerSavingMode: powerSavingMode,
-                  onChanged: (index) => setState(() => _currentTab = index),
+                child: SafeArea(
+                  top: false,
+                  child: NeonBottomNavigation(
+                    currentIndex: currentIndex,
+                    powerSavingMode: powerSavingMode,
+                    onChanged: (index) => setState(() => _currentTab = index),
+                  ),
                 ),
               ),
           ],
@@ -779,6 +778,9 @@ class _BarHomeShellState extends State<BarHomeShell>
                               'assets/icon.png',
                               width: 72,
                               height: 72,
+                              cacheWidth:
+                                  (72 * MediaQuery.devicePixelRatioOf(context))
+                                      .ceil(),
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return const SizedBox(

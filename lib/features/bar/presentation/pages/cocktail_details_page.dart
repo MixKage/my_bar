@@ -64,8 +64,7 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final topInset = MediaQuery.paddingOf(context).top;
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
+    final safePadding = MediaQuery.paddingOf(context);
     final cocktail = widget.cocktail;
 
     return Scaffold(
@@ -75,7 +74,12 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
         bottomGlow: const Color(0xFF6A70FF),
         reduceEffects: widget.powerSavingMode,
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(16, topInset + 8, 16, bottomInset + 24),
+          padding: EdgeInsets.fromLTRB(
+            16 + safePadding.left,
+            safePadding.top + 8,
+            16 + safePadding.right,
+            safePadding.bottom + 24,
+          ),
           child: Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
