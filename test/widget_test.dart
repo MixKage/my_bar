@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:my_bar/features/bar/data/onboarding_storage.dart';
@@ -13,6 +14,7 @@ import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
+import 'package:my_bar/features/bar/presentation/pages/bar_menu_page.dart';
 import 'package:my_bar/features/bar/presentation/pages/surprise_cocktail_page.dart';
 import 'package:my_bar/features/bar/presentation/pages/raw_bar_page.dart';
 import 'package:my_bar/features/bar/presentation/widgets/neon_bottom_navigation.dart';
@@ -20,6 +22,67 @@ import 'package:my_bar/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  for (final bottomInset in [0.0, 34.0]) {
+    for (final powerSavingMode in [false, true]) {
+      testWidgets('bottom navigation keeps an 8-point gap above safe area '
+          '(inset: $bottomInset, power saving: $powerSavingMode)', (
+        tester,
+      ) async {
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(390, 844);
+        tester.view.padding = FakeViewPadding(top: 47, bottom: bottomInset);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetPadding);
+        SharedPreferences.setMockInitialValues({
+          'bar_ui_app_language': 'ru',
+          'bar_ui_power_saving_mode': powerSavingMode,
+        });
+        final preferences = await SharedPreferences.getInstance();
+        await tester.pumpWidget(
+          await _buildApp(preferences: preferences, catalog: _testCatalog),
+        );
+        await tester.pump();
+        // The neon border animates continuously when power saving is off.
+        await tester.pump(const Duration(milliseconds: 400));
+
+        final navigationPanel = find
+            .descendant(
+              of: find.byType(NeonBottomNavigation),
+              matching: find.byType(ClipRRect),
+            )
+            .first;
+        expect(
+          tester.getRect(navigationPanel).bottom,
+          closeTo(844 - bottomInset - 8, 0.01),
+        );
+        final expectedOverlayPadding =
+            kNeonBottomNavigationHeight + bottomInset + 8;
+        final ingredientsPage = tester.widget<RawBarPage>(
+          find.byType(RawBarPage),
+        );
+        expect(ingredientsPage.powerSavingMode, powerSavingMode);
+        expect(ingredientsPage.bottomOverlayPadding, expectedOverlayPadding);
+
+        await tester.tap(find.text('Барная карта'));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 400));
+        expect(
+          tester
+              .widget<BarMenuPage>(find.byType(BarMenuPage))
+              .bottomOverlayPadding,
+          expectedOverlayPadding,
+        );
+        expect(
+          tester.getRect(navigationPanel).bottom,
+          closeTo(844 - bottomInset - 8, 0.01),
+        );
+        expect(find.text('Доступно 0 из 2'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      });
+    }
+  }
+
   testWidgets('hidden landscape menu can be restored beside a display cutout', (
     tester,
   ) async {
