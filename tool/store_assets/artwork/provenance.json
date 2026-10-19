@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "mode": "built-in image_gen",
+  "source": "cocktails-master.png",
+  "sourcePixels": [1672, 941],
+  "sourceColorMode": "RGB",
+  "resolutionNote": "The built-in image tool supplied this master resolution. Required Apple output pixel sizes are produced by the documented Lanczos export, including upscaling.",
+  "purpose": "Text-free My Bar App Store creative artwork shared across all supported localizations",
+  "prompts": [
+    "Use case: ads-marketing.\nAsset type: Apple App Store product page Header and Search Results universal campaign artwork for My Bar, a free offline home-bar ingredient inventory and cocktail recipe app.\nPrimary request: create a polished premium drinks-recipe still life, dark and elegant, highly photorealistic with beautifully crafted glass and fresh ingredients. This is finished marketing artwork, NOT a mock app screen.\nScene: uninterrupted deep midnight navy background #070911, subtle violet and cyan ambient light matching the app's existing dark neon aesthetic, a minimal dark counter with a very soft reflection.\nSubject: a small clear coupe with a pale golden citrus drink, beside a low faceted tumbler with a ruby citrus drink and one clear ice cube. A fresh lime half and tiny mint sprig make the connection to ingredients and preparation clear. Realistic clean glass rims, natural condensation, restrained gorgeous highlights. No bottles.\nComposition: wide 16:9 canvas, ideally 3840x2160 pixels. Art directed for multiple Apple crops. Keep the COMPLETE important still-life group, including garnish and glass bases, compact within the CENTRAL 24% of canvas width and about 23% of canvas height. Its center is at 50% from the left and 41.5% from the top. The drink vessels should be squat and compact, not tall. Generous quiet atmospheric space on all sides, especially below the focal group; background may extend beyond safe areas. The focal group must remain readable as a small hero. Delicate broad violet glow to the left and cyan glow to the right, no busy patterns or stars.\nLighting: sophisticated studio food photography, soft key light, refined violet/cyan rim light, warm amber/ruby liquid colors, realistic surfaces, clear silhouette and crisp details.\nConstraints: absolutely NO text, letters, app icon, brand logos, phone or tablet frames, UI, numbers, watermarks, website URLs, prices, awards, badges, people, hands, or drinking gestures. This must appeal globally and be appropriate for a general App Store audience. Do not suggest overconsumption, nightlife excess, or promotions. No visible alcohol brands. No outer border or safe-area guides. Fully opaque background.",
+    "Use case: precise-object-edit.\nImage 1 is the edit target: My Bar's finished App Store creative still life.\nChange ONLY the scale and position of the entire foreground still-life group (both glasses, lime, mint and attached reflections) to satisfy strict Apple safe areas. Keep the same two drinks, same glass shapes, gorgeous materials, garnishes, navy background, counter texture, violet and cyan lighting, photorealistic quality, and 16:9 aspect ratio. No new objects.\nMake the complete foreground still-life group exactly about 80% of its current width and height, with generous dark background around it. Center the complete group at 50% of canvas width and 42% of canvas height (a little ABOVE the current position). The complete important group, from the highest citrus peel to the lowest glass base and from lime to tumbler, must fit within x37.5%..62.5% of the canvas and y30%..54% of the canvas. Reflections may extend outside that rectangle but all actual glasses and ingredients must be inside it. Keep all glass rims and bases intact.\nThis is still finished premium food/drinks recipe artwork, fully opaque. No words, logos, UI, devices, safe-area guides, people, prices, badges or watermarks. Do not add a border. Maintain crisp detailed glass and believable lighting.",
+    "Use case: precise-object-edit.\nImage 1 is the edit target, finished App Store artwork for My Bar. Make ONE precise layout adjustment, preserving the same beautiful photograph:\nReduce the entire still-life group (both glasses, citrus garnishes, lime and mint) to 90% of its current width and height, keeping the group centered at exactly 50% of the canvas width and 42% of canvas height. Do not enlarge it. This small reduction is needed so the highest peel and the lowest base have comfortable padding inside Apple safe areas.\nAll actual glass and ingredient objects must be fully inside x38%..62% and y30.5%..53.5% of the full canvas. Reflections may extend outside. Keep all glass rims and bases intact; maintain crisp detailed glass and realistic lighting.\nKeep unchanged: the dark navy background, counter, violet/cyan ambient light, color and type of the two drinks, glass designs, realistic materials, global 16:9 aspect ratio, no text/brands/devices/UI/people/borders/guides/watermarks, fully opaque."
+  ],
+  "export": {
+    "command": "python3 tool/store_assets/store_assets.py export-creatives --source tool/store_assets/artwork/cocktails-master.png --focal-point 0.5,0.417",
+    "operation": "Mechanical safe-area-aware crop, Lanczos resize and opaque RGB PNG export only",
+    "focalPoint": [
+      0.5,
+      0.417
+    ]
+  },
+  "appleReferences": [
+    "https://developer.apple.com/app-store/asset-best-practices/",
+    "https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications/",
+    "https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-templates.sketch"
+  ],
+  "review": "Main drink vessels, garnishes, lime and mint checked against Apple's Header, Search and Universal art-safe rectangles; reflection and background may extend outside.",
+  "uploaded": false
+}

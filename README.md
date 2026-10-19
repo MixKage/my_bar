@@ -208,6 +208,14 @@ dart run flutter_launcher_icons
 
 If a stale icon is shown after update, reinstall the app on device.
 
+## Store Asset Generation
+
+The [local store-asset tool](tool/store_assets/README.md) renders six real app
+screens in all 13 languages for five viewports, including both iPhone Duo
+displays. It also exports App Store Header, Search Results and Universal
+artwork, validates opaque PNG dimensions, and packages files for manual review.
+It does not upload assets or require a backend or paid service.
+
 ## Bar Management Menu
 
 `Bar Management` menu actions:
