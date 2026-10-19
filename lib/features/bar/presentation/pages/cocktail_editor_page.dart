@@ -231,7 +231,7 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
     final keyboardInset = rawKeyboardInset.clamp(0.0, screenHeight).toDouble();
     final bottomActionBarPadding = keyboardInset > 0
         ? keyboardInset + 30
-        : safePadding.bottom + 24;
+        : safePadding.bottom + 6;
     final title = widget.isEditing
         ? context.tr('Редактирование коктейля', 'Edit cocktail')
         : context.tr('Создание коктейля', 'Create cocktail');

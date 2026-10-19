@@ -7,6 +7,59 @@ import 'package:my_bar/features/bar/presentation/pages/cocktail_details_page.dar
 import 'package:my_bar/features/bar/presentation/pages/cocktail_editor_page.dart';
 
 void main() {
+  for (final isEditing in [false, true]) {
+    for (final safeBottom in [0.0, 34.0]) {
+      for (final keyboardHeight in [0.0, 360.0]) {
+        testWidgets(
+          'editor panel keeps a compact safe gap '
+          '(edit: $isEditing, safe bottom: $safeBottom, IME: $keyboardHeight)',
+          (tester) async {
+            final editor = isEditing
+                ? const CocktailEditorPage.edit(
+                    ingredients: [],
+                    initialCocktail: Cocktail(
+                      id: 'test',
+                      name: 'Тестовый коктейль',
+                      image: '',
+                      ingredients: [],
+                      description: '',
+                      preparationSteps: ['Перемешать.'],
+                      glassType: 'Мартини',
+                      tags: [],
+                    ),
+                    powerSavingMode: true,
+                  )
+                : const CocktailEditorPage.create(
+                    ingredients: [],
+                    powerSavingMode: true,
+                  );
+            await _pump(
+              tester,
+              editor,
+              padding: EdgeInsets.fromLTRB(0, 47, 0, safeBottom),
+              keyboardHeight: keyboardHeight,
+            );
+            final save = find.widgetWithText(FilledButton, 'Сохранить');
+            final panel = find.ancestor(
+              of: save,
+              matching: find.byType(ClipRRect),
+            );
+            final expectedGap = keyboardHeight > 0
+                ? keyboardHeight + 30
+                : safeBottom + 6;
+            expect(panel, findsOneWidget);
+            expect(
+              tester.getRect(panel).bottom,
+              closeTo(844 - expectedGap, 0.01),
+            );
+            expect(save.hitTestable(), findsOneWidget);
+            expect(tester.takeException(), isNull);
+          },
+        );
+      }
+    }
+  }
+
   testWidgets('short landscape keeps the form above IME and restores actions', (
     tester,
   ) async {
