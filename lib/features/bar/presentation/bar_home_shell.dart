@@ -956,7 +956,7 @@ class _BarHomeShellState extends State<BarHomeShell>
         Uri.parse(
           context.isRussian
               ? 'https://logion-mobile.ru'
-              : 'https://logion-mobile.com',
+              : 'https://whalehub.site/',
         ),
         mode: LaunchMode.externalApplication,
       );

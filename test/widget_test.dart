@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_bar/core/localization/app_language.dart';
+import 'package:my_bar/core/localization/app_translations.dart';
 import 'package:my_bar/features/bar/data/onboarding_storage.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
@@ -173,11 +175,14 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  for (final language in ['ru', 'en']) {
+  for (final locale in AppLanguageX.supportedLocales) {
+    final language = locale.languageCode;
     testWidgets('developer website follows $language app language', (
       WidgetTester tester,
     ) async {
-      final isEnglish = language == 'en';
+      final isRussian = language == 'ru';
+      String localized(String ru, String en) =>
+          isRussian ? ru : translateAppText(language, en);
       SharedPreferences.setMockInitialValues({
         'bar_ui_app_language': language,
         'bar_ui_power_saving_mode': true,
@@ -203,14 +208,14 @@ void main() {
       );
       await tester.pumpAndSettle();
       await tester.tap(
-        find.byTooltip(isEnglish ? 'Bar management' : 'Управление баром'),
+        find.byTooltip(localized('Управление баром', 'Bar management')),
       );
       await tester.pumpAndSettle();
-      await tester.tap(find.text(isEnglish ? 'About app' : 'О приложении'));
+      await tester.tap(find.text(localized('О приложении', 'About app')));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
       await tester.tap(
-        find.text(isEnglish ? 'Developer website' : 'Сайт разработчика'),
+        find.text(localized('Сайт разработчика', 'Developer website')),
       );
       await tester.pump();
 
@@ -218,7 +223,7 @@ void main() {
       expect(calls.single.method, 'launch');
       expect(
         calls.single.arguments['url'],
-        isEnglish ? 'https://logion-mobile.com' : 'https://logion-mobile.ru',
+        isRussian ? 'https://logion-mobile.ru' : 'https://whalehub.site/',
       );
       expect(calls.single.arguments['useSafariVC'], isFalse);
       expect(calls.single.arguments['useWebView'], isFalse);

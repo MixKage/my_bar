@@ -16,11 +16,9 @@
   ],
   "urlVerification": {
     "checkedOn": "2026-10-19",
-    "englishDomainStatus": "502 Bad Gateway",
-    "replacementEnglishDomain": "https://whalehub.site/",
-    "replacementStatus": "reachable, English contact information present",
-    "source": "explicit user instruction",
-    "supersededEnglishDomain": "https://logion-mobile.com"
+    "englishDomain": "https://whalehub.site/",
+    "englishDomainStatus": "reachable, English contact information present",
+    "source": "explicit user instruction"
   },
   "verification": {
     "checkedOn": "2026-10-19",
