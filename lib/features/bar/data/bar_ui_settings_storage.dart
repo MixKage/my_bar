@@ -11,7 +11,7 @@ class BarUiSettings {
     this.powerSavingMode = false,
     this.catalogDataSource,
     this.appLanguage = AppLanguage.system,
-    this.measurementSystem = MeasurementSystem.flOz,
+    this.measurementSystem = MeasurementSystem.ml,
   });
 
   final bool visitorMode;

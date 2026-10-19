@@ -102,8 +102,8 @@ Future<AddCocktailInput?> showAddCocktailDialog(
   return _showCocktailDialog(
     context,
     ingredients: ingredients,
-    title: 'Новый коктейль',
-    actionLabel: 'Добавить',
+    title: context.tr('Новый коктейль', 'New cocktail'),
+    actionLabel: context.tr('Добавить', 'Add'),
   );
 }
 
@@ -115,8 +115,8 @@ Future<AddCocktailInput?> showEditCocktailDialog(
   return _showCocktailDialog(
     context,
     ingredients: ingredients,
-    title: 'Редактировать коктейль',
-    actionLabel: 'Сохранить',
+    title: context.tr('Редактировать коктейль', 'Edit cocktail'),
+    actionLabel: context.tr('Сохранить', 'Save'),
     initialCocktail: cocktail,
   );
 }
@@ -243,48 +243,66 @@ Future<AddCocktailInput?> _showCocktailDialog(
                   children: <Widget>[
                     _DialogTextField(
                       controller: nameController,
-                      label: 'Название*',
-                      hint: 'Например, Негрони',
+                      label: context.tr('Название*', 'Name*'),
+                      hint: context.tr(
+                        'Например, Негрони',
+                        'For example, Negroni',
+                      ),
                     ),
                     const SizedBox(height: 12),
                     _DialogTextField(
                       controller: descriptionController,
-                      label: 'Описание',
-                      hint: 'Кампари, Джин, Вермут',
+                      label: context.tr('Описание', 'Description'),
+                      hint: context.tr(
+                        'Кампари, Джин, Вермут',
+                        'Campari, gin, vermouth',
+                      ),
                       maxLines: 3,
                     ),
                     const SizedBox(height: 12),
                     _DialogTextField(
                       controller: preparationController,
-                      label: 'Шаги приготовления*',
-                      hint:
-                          '1. Наполните бокал льдом\n2. Добавьте ингредиенты\n3. Украсьте и подавайте',
+                      label: context.tr(
+                        'Шаги приготовления*',
+                        'Preparation steps*',
+                      ),
+                      hint: context.tr(
+                        '1. Наполните бокал льдом\n2. Добавьте ингредиенты\n3. Украсьте и подавайте',
+                        '1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve',
+                      ),
                       maxLines: 5,
                     ),
                     const SizedBox(height: 12),
                     _DialogTextField(
                       controller: imageController,
-                      label: 'Фото (URL или путь файла)',
-                      hint: 'https://... или /storage/.../photo.jpg',
+                      label: context.tr(
+                        'Фото (URL или путь файла)',
+                        'Photo (URL or file path)',
+                      ),
+                      hint: context.tr(
+                        'https://... или /storage/.../photo.jpg',
+                        'https://... or /storage/.../photo.jpg',
+                      ),
                     ),
                     const SizedBox(height: 8),
                     OutlinedButton.icon(
                       onPressed: () async {
-                        final picked = await FilePicker.platform.pickFiles(
+                        final picked = await FilePicker.pickFile(
                           type: FileType.image,
-                          allowMultiple: false,
                         );
-                        if (picked == null || picked.files.isEmpty) {
+                        if (picked == null || !context.mounted) {
                           return;
                         }
-                        final path = picked.files.single.path;
+                        final path = picked.path;
                         if (path == null || path.trim().isEmpty) {
                           return;
                         }
                         setState(() => imageController.text = path.trim());
                       },
                       icon: const Icon(Icons.photo_library_rounded),
-                      label: const Text('Выбрать с устройства'),
+                      label: Text(
+                        context.tr('Выбрать с устройства', 'Pick from device'),
+                      ),
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<String>(
@@ -292,7 +310,7 @@ Future<AddCocktailInput?> _showCocktailDialog(
                       isExpanded: true,
                       dropdownColor: const Color(0xFF1D2240),
                       decoration: InputDecoration(
-                        labelText: 'Тип бокала*',
+                        labelText: context.tr('Тип бокала*', 'Glass type*'),
                         isDense: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -312,7 +330,7 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                   const SizedBox(width: 8),
                                   Expanded(
                                     child: Text(
-                                      item,
+                                      context.cocktailGlassTypeLabel(item),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
@@ -329,9 +347,9 @@ Future<AddCocktailInput?> _showCocktailDialog(
                       },
                     ),
                     const SizedBox(height: 14),
-                    const Text(
-                      'Ингредиенты*',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    Text(
+                      context.tr('Ингредиенты*', 'Ingredients*'),
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 8),
                     Container(
@@ -385,9 +403,12 @@ Future<AddCocktailInput?> _showCocktailDialog(
                     ),
                     if (selectedIngredientIds.isNotEmpty) ...<Widget>[
                       const SizedBox(height: 14),
-                      const Text(
-                        'Параметры ингредиентов',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                      Text(
+                        context.tr(
+                          'Параметры ингредиентов',
+                          'Ingredient options',
+                        ),
+                        style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: 8),
                       ...ingredients
@@ -400,7 +421,7 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                 selectedSubstitutionsByIngredient[item.id] ??
                                 const <String>{};
                             final substitutionsText = substitutions.isEmpty
-                                ? 'Без замен'
+                                ? context.tr('Без замен', 'No substitutions')
                                 : substitutions
                                       .map(
                                         (id) => ingredientNamesById[id] ?? id,
@@ -447,7 +468,10 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                         ),
                                       ),
                                       IconButton(
-                                        tooltip: 'Удалить из рецепта',
+                                        tooltip: context.tr(
+                                          'Удалить из рецепта',
+                                          'Remove from recipe',
+                                        ),
                                         onPressed: () {
                                           setState(() {
                                             removeIngredientState(item.id);
@@ -474,7 +498,10 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                             }
                                           },
                                           decoration: InputDecoration(
-                                            labelText: 'Количество',
+                                            labelText: context.tr(
+                                              'Количество',
+                                              'Amount',
+                                            ),
                                             hintText: '50',
                                             isDense: true,
                                             border: OutlineInputBorder(
@@ -493,7 +520,10 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                             0xFF1D2240,
                                           ),
                                           decoration: InputDecoration(
-                                            labelText: 'Единица',
+                                            labelText: context.tr(
+                                              'Единица',
+                                              'Unit',
+                                            ),
                                             isDense: true,
                                             border: OutlineInputBorder(
                                               borderRadius:
@@ -502,15 +532,16 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                           ),
                                           items: kIngredientUnits
                                               .map(
-                                                (unit) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: unit,
-                                                      child: Text(
-                                                        unit.isEmpty
-                                                            ? 'Без единицы'
-                                                            : unit,
-                                                      ),
+                                                (
+                                                  unit,
+                                                ) => DropdownMenuItem<String>(
+                                                  value: unit,
+                                                  child: Text(
+                                                    context.ingredientUnitLabel(
+                                                      unit,
                                                     ),
+                                                  ),
+                                                ),
                                               )
                                               .toList(growable: false),
                                           onChanged: (value) {
@@ -536,7 +567,9 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                       FilterChip(
                                         selected: optionalIngredientIds
                                             .contains(item.id),
-                                        label: const Text('Опционально'),
+                                        label: Text(
+                                          context.tr('Опционально', 'Optional'),
+                                        ),
                                         selectedColor: const Color(0x335E83FF),
                                         onSelected: (value) {
                                           setState(() {
@@ -555,7 +588,9 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                       FilterChip(
                                         selected: decorationIngredientIds
                                             .contains(item.id),
-                                        label: const Text('Украшение'),
+                                        label: Text(
+                                          context.tr('Украшение', 'Decoration'),
+                                        ),
                                         selectedColor: const Color(0x333FC1E5),
                                         onSelected: (value) {
                                           setState(() {
@@ -574,47 +609,58 @@ Future<AddCocktailInput?> _showCocktailDialog(
                                     ],
                                   ),
                                   const SizedBox(height: 8),
-                                  ListTile(
-                                    dense: true,
-                                    contentPadding: EdgeInsets.zero,
-                                    title: const Text('Замены'),
-                                    subtitle: Text(
-                                      substitutionsText,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                    trailing: TextButton(
-                                      onPressed: () async {
-                                        final updated =
-                                            await showDialog<Set<String>>(
-                                              context: context,
-                                              builder: (context) {
-                                                return _IngredientSubstitutionsDialog(
-                                                  allIngredients: ingredients,
-                                                  sourceIngredient: item,
-                                                  selectedIds: substitutions,
-                                                );
-                                              },
-                                            );
-                                        if (updated == null) {
-                                          return;
-                                        }
-                                        setState(() {
-                                          if (updated.isEmpty) {
-                                            selectedSubstitutionsByIngredient
-                                                .remove(item.id);
-                                          } else {
-                                            selectedSubstitutionsByIngredient[item
-                                                    .id] =
-                                                updated;
+                                  Material(
+                                    type: MaterialType.transparency,
+                                    child: ListTile(
+                                      dense: true,
+                                      contentPadding: EdgeInsets.zero,
+                                      title: Text(
+                                        context.tr('Замены', 'Substitutions'),
+                                      ),
+                                      subtitle: Text(
+                                        substitutionsText,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(fontSize: 12),
+                                      ),
+                                      trailing: TextButton(
+                                        onPressed: () async {
+                                          final updated =
+                                              await showDialog<Set<String>>(
+                                                context: context,
+                                                builder: (context) {
+                                                  return _IngredientSubstitutionsDialog(
+                                                    allIngredients: ingredients,
+                                                    sourceIngredient: item,
+                                                    selectedIds: substitutions,
+                                                  );
+                                                },
+                                              );
+                                          if (updated == null) {
+                                            return;
                                           }
-                                        });
-                                      },
-                                      child: Text(
-                                        substitutions.isEmpty
-                                            ? 'Добавить замену'
-                                            : 'Изменить',
+                                          setState(() {
+                                            if (updated.isEmpty) {
+                                              selectedSubstitutionsByIngredient
+                                                  .remove(item.id);
+                                            } else {
+                                              selectedSubstitutionsByIngredient[item
+                                                      .id] =
+                                                  updated;
+                                            }
+                                          });
+                                        },
+                                        child: Text(
+                                          substitutions.isEmpty
+                                              ? context.tr(
+                                                  'Добавить замену',
+                                                  'Add substitution',
+                                                )
+                                              : context.tr(
+                                                  'Изменить',
+                                                  'Change',
+                                                ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -624,9 +670,9 @@ Future<AddCocktailInput?> _showCocktailDialog(
                           }),
                     ],
                     const SizedBox(height: 14),
-                    const Text(
-                      'Теги',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    Text(
+                      context.tr('Теги', 'Tags'),
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 8),
                     Wrap(
@@ -637,7 +683,7 @@ Future<AddCocktailInput?> _showCocktailDialog(
                             final selected = selectedTags.contains(tag);
                             return FilterChip(
                               selected: selected,
-                              label: Text(tag),
+                              label: Text(context.cocktailTagLabel(tag)),
                               selectedColor: const Color(0x336D78FF),
                               checkmarkColor: const Color(0xFFC6CEFF),
                               onSelected: (value) {
@@ -660,7 +706,7 @@ Future<AddCocktailInput?> _showCocktailDialog(
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Отмена'),
+                child: Text(context.tr('Отмена', 'Cancel')),
               ),
               FilledButton(
                 onPressed: () {
@@ -783,7 +829,12 @@ class _IngredientSubstitutionsDialogState
 
     return AlertDialog(
       backgroundColor: const Color(0xFF14182B),
-      title: Text('Замены для "${widget.sourceIngredient.name}"'),
+      title: Text(
+        context.tr(
+          'Замены для "${widget.sourceIngredient.name}"',
+          'Substitutions for "${widget.sourceIngredient.name}"',
+        ),
+      ),
       content: SizedBox(
         width: 520,
         child: Container(
@@ -824,11 +875,11 @@ class _IngredientSubstitutionsDialogState
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Отмена'),
+          child: Text(context.tr('Отмена', 'Cancel')),
         ),
         FilledButton(
           onPressed: () => Navigator.of(context).pop(_selected),
-          child: const Text('Готово'),
+          child: Text(context.tr('Готово', 'Done')),
         ),
       ],
     );
@@ -1035,14 +1086,11 @@ class _IngredientDialogState extends State<_IngredientDialog> {
   }
 
   Future<void> _pickImageFromDevice() async {
-    final picked = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
-    if (picked == null || picked.files.isEmpty || !mounted) {
+    final picked = await FilePicker.pickFile(type: FileType.image);
+    if (picked == null || !mounted) {
       return;
     }
-    final path = picked.files.single.path;
+    final path = picked.path;
     if (path == null || path.trim().isEmpty) {
       return;
     }

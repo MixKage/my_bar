@@ -63,4 +63,46 @@ void main() {
     expect(ginTotal.unit, 'мл');
     expect(garnishTotal.notes, <String>['по вкусу']);
   });
+
+  test('combines gram aliases and scales weights for a party', () {
+    Cocktail sugarRecipe(String id, String amount, String unit) => Cocktail(
+      id: id,
+      name: id,
+      image: '',
+      ingredients: const <String>['sugar'],
+      description: '',
+      preparationSteps: const <String>['Mix'],
+      glassType: 'Рокс',
+      tags: const <String>[],
+      ingredientAmounts: <String, String>{'sugar': amount},
+      ingredientUnits: <String, String>{'sugar': unit},
+    );
+
+    final totals = buildPartyIngredientTotals(
+      selections: <PartyCocktailSelection>[
+        PartyCocktailSelection(
+          cocktail: sugarRecipe('first', '2 1/2', 'гр'),
+          servings: 4,
+        ),
+        PartyCocktailSelection(
+          cocktail: sugarRecipe('second', '5', 'g'),
+          servings: 2,
+        ),
+      ],
+      ingredientsById: const <String, Ingredient>{
+        'sugar': Ingredient(
+          id: 'sugar',
+          name: 'Sugar',
+          category: 'Other',
+          image: '',
+        ),
+      },
+      measurementSystem: MeasurementSystem.flOz,
+    );
+
+    expect(totals, hasLength(1));
+    expect(totals.single.amount, '20');
+    expect(totals.single.unit, 'g');
+    expect(totals.single.notes, isEmpty);
+  });
 }

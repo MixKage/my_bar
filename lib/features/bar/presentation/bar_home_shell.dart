@@ -6,6 +6,7 @@ import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:battery_plus/battery_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -16,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/layout/app_breakpoints.dart';
 import '../../../core/localization/app_language.dart';
 import '../../../core/localization/app_localization.dart';
+import '../../../core/reviews/review_prompt_controller.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/widgets/bar_pressable.dart';
 import '../cubit/bar_cubit.dart';
@@ -27,10 +29,13 @@ import 'pages/cocktail_editor_page.dart';
 import 'pages/bar_menu_page.dart';
 import 'pages/raw_bar_page.dart';
 import 'widgets/bar_management_dialogs.dart';
+import 'widgets/language_selector.dart';
 import 'widgets/neon_bottom_navigation.dart';
 
 class BarHomeShell extends StatefulWidget {
-  const BarHomeShell({super.key});
+  const BarHomeShell({this.reviewPromptController, super.key});
+
+  final ReviewPromptController? reviewPromptController;
 
   @override
   State<BarHomeShell> createState() => _BarHomeShellState();
@@ -75,10 +80,19 @@ class _BarHomeShellState extends State<BarHomeShell>
   }
 
   @override
+  void didChangeLocales(List<Locale>? locales) {
+    if (mounted &&
+        context.read<BarCubit>().state.appLanguage == AppLanguage.system) {
+      unawaited(context.read<BarCubit>().refreshLocalizedCatalog());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = context.watch<BarCubit>().state;
     final topInset = MediaQuery.paddingOf(context).top;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
+    final leftInset = MediaQuery.paddingOf(context).left;
     final showOnlyBarMenu = state.barMenuOnlyMode;
     final powerSavingMode = state.effectivePowerSavingMode;
     final unlockCountsByIngredientId = state.unlockCountsByIngredientId;
@@ -222,18 +236,12 @@ class _BarHomeShellState extends State<BarHomeShell>
           )
         : pageStack;
 
-    final systemUiStyle = SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.transparent,
+    const systemUiStyle = SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: Platform.isAndroid
-          ? Colors.black
-          : Colors.transparent,
-      systemNavigationBarDividerColor: Platform.isAndroid
-          ? Colors.black
-          : Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.light,
-      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+      systemNavigationBarContrastEnforced: true,
     );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -243,7 +251,7 @@ class _BarHomeShellState extends State<BarHomeShell>
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            bodyContent,
+            SafeArea(top: false, bottom: false, child: bodyContent),
             Positioned(
               top: 0,
               left: 0,
@@ -266,7 +274,7 @@ class _BarHomeShellState extends State<BarHomeShell>
             ),
             if (useSideNavigation && !showSideNavigation)
               Positioned(
-                left: 0,
+                left: leftInset,
                 top: 0,
                 bottom: 0,
                 width: 30,
@@ -288,8 +296,9 @@ class _BarHomeShellState extends State<BarHomeShell>
             if (useSideNavigation && !showSideNavigation)
               Positioned(
                 left:
-                    -_SideNavigationToggleHandle.size *
-                    (1 - _hiddenSideToggleVisibleFraction),
+                    leftInset -
+                    _SideNavigationToggleHandle.size *
+                        (1 - _hiddenSideToggleVisibleFraction),
                 top: topInset + 88,
                 child: _SideNavigationToggleHandle(
                   tooltip: context.tr('Показать меню', 'Show menu'),
@@ -302,10 +311,13 @@ class _BarHomeShellState extends State<BarHomeShell>
             if (showBottomNavigation)
               Align(
                 alignment: Alignment.bottomCenter,
-                child: NeonBottomNavigation(
-                  currentIndex: currentIndex,
-                  powerSavingMode: powerSavingMode,
-                  onChanged: (index) => setState(() => _currentTab = index),
+                child: SafeArea(
+                  top: false,
+                  child: NeonBottomNavigation(
+                    currentIndex: currentIndex,
+                    powerSavingMode: powerSavingMode,
+                    onChanged: (index) => setState(() => _currentTab = index),
+                  ),
                 ),
               ),
           ],
@@ -321,28 +333,54 @@ class _BarHomeShellState extends State<BarHomeShell>
     setState(() => _isSideNavigationVisible = visible);
   }
 
-  Future<void> _toggleIngredient(String id) {
-    return context.read<BarCubit>().toggleIngredient(id);
+  Future<void> _toggleIngredient(String id) async {
+    final cubit = context.read<BarCubit>();
+    final before = cubit.state.selectedIngredientIds;
+    await cubit.toggleIngredient(id);
+    if (!setEquals(before, cubit.state.selectedIngredientIds)) {
+      _recordReviewAction();
+    }
   }
 
-  Future<void> _toggleFavorite(String cocktailId) {
-    return context.read<BarCubit>().toggleCocktailFavorite(cocktailId);
+  Future<void> _toggleFavorite(String cocktailId) async {
+    final cubit = context.read<BarCubit>();
+    if (!cubit.state.cocktails.any((cocktail) => cocktail.id == cocktailId)) {
+      return;
+    }
+    await cubit.toggleCocktailFavorite(cocktailId);
+    _recordReviewAction();
   }
 
-  Future<void> _toggleShoppingIngredient(String ingredientId) {
-    return context.read<BarCubit>().toggleShoppingIngredient(ingredientId);
+  Future<void> _toggleShoppingIngredient(String ingredientId) async {
+    final cubit = context.read<BarCubit>();
+    final before = cubit.state.shoppingIngredientIds;
+    await cubit.toggleShoppingIngredient(ingredientId);
+    if (!setEquals(before, cubit.state.shoppingIngredientIds)) {
+      _recordReviewAction();
+    }
   }
 
   Future<void> _clearShoppingList() {
     return context.read<BarCubit>().clearShoppingList();
   }
 
-  Future<void> _addShoppingIngredients(Iterable<String> ingredientIds) {
-    return context.read<BarCubit>().addShoppingIngredients(ingredientIds);
+  Future<void> _addShoppingIngredients(Iterable<String> ingredientIds) async {
+    final cubit = context.read<BarCubit>();
+    final before = cubit.state.shoppingIngredientIds;
+    await cubit.addShoppingIngredients(ingredientIds);
+    if (!setEquals(before, cubit.state.shoppingIngredientIds)) {
+      _recordReviewAction();
+    }
   }
 
   Future<void> _markShoppingIngredientAsOwned(String ingredientId) {
-    return context.read<BarCubit>().toggleIngredient(ingredientId);
+    return _toggleIngredient(ingredientId);
+  }
+
+  void _recordReviewAction() {
+    if (mounted) {
+      unawaited(widget.reviewPromptController?.recordSuccessfulAction());
+    }
   }
 
   Future<void> _openBarManagement() async {
@@ -522,68 +560,25 @@ class _BarHomeShellState extends State<BarHomeShell>
                           ListTile(
                             leading: const Icon(Icons.language_rounded),
                             title: Text(context.tr('Язык', 'Language')),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                            child: SegmentedButton<AppLanguage>(
-                              showSelectedIcon: false,
-                              selected: <AppLanguage>{appLanguage},
-                              segments: <ButtonSegment<AppLanguage>>[
-                                ButtonSegment<AppLanguage>(
-                                  value: AppLanguage.system,
-                                  label: Text(
-                                    context.appLanguageLabel(
-                                      AppLanguage.system,
-                                    ),
-                                  ),
-                                ),
-                                ButtonSegment<AppLanguage>(
-                                  value: AppLanguage.russian,
-                                  label: Text(
-                                    context.appLanguageLabel(
-                                      AppLanguage.russian,
-                                    ),
-                                  ),
-                                ),
-                                ButtonSegment<AppLanguage>(
-                                  value: AppLanguage.english,
-                                  label: Text(
-                                    context.appLanguageLabel(
-                                      AppLanguage.english,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              onSelectionChanged: (selection) async {
-                                if (selection.isEmpty) {
-                                  return;
-                                }
-                                final nextLanguage = selection.first;
-                                setModalState(() => appLanguage = nextLanguage);
-                                await cubit.setAppLanguage(nextLanguage);
-                                if (!mounted) {
-                                  return;
-                                }
-                                setModalState(
-                                  () => appLanguage = cubit.state.appLanguage,
-                                );
-                              },
-                            ),
-                          ),
-                          ListTile(
-                            dense: true,
-                            title: Text(context.appLanguageLabel(appLanguage)),
+                            trailing: const Icon(Icons.chevron_right_rounded),
                             subtitle: Text(
-                              appLanguage == AppLanguage.system
-                                  ? context.tr(
-                                      'По умолчанию определяется системным языком устройства.',
-                                      'By default uses the device system language.',
-                                    )
-                                  : context.tr(
-                                      'Выбор сохраняется между запусками приложения.',
-                                      'Selection is preserved between app launches.',
-                                    ),
+                              context.appLanguageLabel(appLanguage),
                             ),
+                            onTap: () async {
+                              final nextLanguage = await showLanguageSelector(
+                                context,
+                                selected: appLanguage,
+                                powerSavingMode:
+                                    powerSavingMode || systemPowerSavingMode,
+                              );
+                              if (nextLanguage == null ||
+                                  !mounted ||
+                                  !context.mounted) {
+                                return;
+                              }
+                              setModalState(() => appLanguage = nextLanguage);
+                              await cubit.setAppLanguage(nextLanguage);
+                            },
                           ),
                           const Divider(height: 16),
                           ListTile(
@@ -813,6 +808,9 @@ class _BarHomeShellState extends State<BarHomeShell>
                               'assets/icon.png',
                               width: 72,
                               height: 72,
+                              cacheWidth:
+                                  (72 * MediaQuery.devicePixelRatioOf(context))
+                                      .ceil(),
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return const SizedBox(
@@ -853,8 +851,8 @@ class _BarHomeShellState extends State<BarHomeShell>
                       const SizedBox(height: 4),
                       Text(
                         context.tr(
-                          'Версия ${_appVersionLabel.isEmpty ? 'неизвестно' : _appVersionLabel}',
-                          'Version ${_appVersionLabel.isEmpty ? 'unknown' : _appVersionLabel}',
+                          'Версия ${_appVersionLabel.isEmpty ? context.tr('неизвестно', 'unknown') : _appVersionLabel}',
+                          'Version ${_appVersionLabel.isEmpty ? context.tr('неизвестно', 'unknown') : _appVersionLabel}',
                         ),
                         style: const TextStyle(
                           color: Color(0xFFAEC0F0),
@@ -930,6 +928,7 @@ class _BarHomeShellState extends State<BarHomeShell>
         isDecoration: input.isDecoration,
         isOptional: input.isOptional,
       );
+      _recordReviewAction();
       if (!mounted) {
         return;
       }
@@ -986,9 +985,9 @@ class _BarHomeShellState extends State<BarHomeShell>
     try {
       final launched = await launchUrl(
         Uri.parse(
-          context.isEnglish
-              ? 'https://logion-mobile.com'
-              : 'https://logion-mobile.ru',
+          context.isRussian
+              ? 'https://logion-mobile.ru'
+              : 'https://whalehub.site/',
         ),
         mode: LaunchMode.externalApplication,
       );
@@ -1038,6 +1037,7 @@ class _BarHomeShellState extends State<BarHomeShell>
       if (!mounted) {
         return;
       }
+      _recordReviewAction();
       _showSnackBar(context.tr('Ингредиент обновлён', 'Ingredient updated'));
     } on FormatException catch (error) {
       if (!mounted) {
@@ -1090,6 +1090,7 @@ class _BarHomeShellState extends State<BarHomeShell>
       if (!mounted) {
         return;
       }
+      _recordReviewAction();
       _showSnackBar(context.tr('Коктейль добавлен', 'Cocktail added'));
     } on FormatException catch (error) {
       if (!mounted) {
@@ -1133,6 +1134,7 @@ class _BarHomeShellState extends State<BarHomeShell>
       if (!mounted) {
         return;
       }
+      _recordReviewAction();
       _showSnackBar(context.tr('Коктейль обновлён', 'Cocktail updated'));
     } on FormatException catch (error) {
       if (!mounted) {
@@ -1145,16 +1147,14 @@ class _BarHomeShellState extends State<BarHomeShell>
   Future<void> _handleImport() async {
     final cubit = context.read<BarCubit>();
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final file = await FilePicker.pickFile(
         type: FileType.custom,
         allowedExtensions: const <String>['json'],
-        withData: true,
       );
-      if (result == null || result.files.isEmpty) {
+      if (file == null) {
         return;
       }
 
-      final file = result.files.single;
       final content = await _readPickedFile(file);
       final catalog = _jsonCodec.decode(content);
 
@@ -1238,14 +1238,7 @@ class _BarHomeShellState extends State<BarHomeShell>
   }
 
   Future<String> _readPickedFile(PlatformFile file) async {
-    if (file.bytes != null) {
-      return utf8.decode(file.bytes!);
-    }
-    if (file.path != null) {
-      return File(file.path!).readAsString();
-    }
-
-    throw const FormatException('Файл пустой или недоступен.');
+    return utf8.decode(await file.readAsBytes());
   }
 
   Future<File> _writeExportFile(String payload) async {

@@ -1,0 +1,887 @@
+"""Offline regression tests. Never invokes Flutter, downloads or uploads."""
+
+import contextlib
+import copy
+import importlib.util
+import io
+import json
+from pathlib import Path
+import re
+import tempfile
+import unittest
+from unittest import mock
+import zipfile
+
+from PIL import Image
+
+MODULE_PATH = Path(__file__).with_name("store_assets.py")
+SPEC = importlib.util.spec_from_file_location("store_assets", MODULE_PATH)
+assets = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(assets)
+
+
+class StoreAssetTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.output = self.root / "output"
+        self.config = assets.load_config(MODULE_PATH.with_name("config.json"))
+        self.languages = self.config["languages"][:2]
+        self.devices = self.config["devices"][:1]
+
+    def small_config(self):
+        result = copy.deepcopy(self.config)
+        for creative in result["creatives"]:
+            creative.update(width=120, height=80, safeRect={"x": 30, "y": 20, "width": 60, "height": 40})
+        for device in result["devices"]:
+            device.update(width=60, height=100)
+        return result
+
+    def create_source(self):
+        path = self.root / "source.png"
+        Image.new("RGBA", (200, 200), (11, 22, 33, 255)).save(path)
+        return path
+
+    def create_captures(self, config, languages, devices, kind="screenshots", scenes=None):
+        entries = (assets.marketing_entries if kind == "marketing" else assets.shot_entries)(config, languages, devices, scenes)
+        for item in entries:
+            path = self.output / item["path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", (item["width"], item["height"])).save(path)
+        if kind == "marketing":
+            assets.save_json(self.output / "marketing-manifest.json", {
+                "schemaVersion": 1, "renderer": "flutter-marketing-compositor",
+                "screenshots": [{**item, "sourceUiEdited": False, "sourceUiCropped": False, "nativeDeviceCapture": False} for item in entries],
+            })
+        return entries
+
+    def test_all_languages_and_device_dimensions(self):
+        self.assertEqual(len(self.config["languages"]), 13)
+        self.assertEqual(len({lang["appStoreLocale"] for lang in self.config["languages"]}), 13)
+        devices = {device["id"]: (device["width"], device["height"]) for device in self.config["devices"]}
+        self.assertEqual(devices["iphone-duo-outer"], (1398, 2034))
+        self.assertEqual(devices["iphone-duo-inner"], (2007, 2853))
+        self.assertEqual(len(self.config["screenshots"]), 7)
+        self.assertEqual(self.config["screenshots"][-1]["id"], "07-almost-ready")
+        default_devices = assets.select(self.config["devices"], None, "id", "devices")
+        self.assertEqual(len(assets.shot_entries(self.config, self.config["languages"], default_devices)), 455)
+        self.assertTrue(all(device["platform"] == "ios" for device in default_devices))
+        self.assertEqual(devices["android-phone"], (1080, 1920))
+        self.assertEqual(devices["android-tablet-7"], (1440, 2560))
+        self.assertEqual(devices["android-tablet-10"], (2160, 3840))
+
+    def test_locale_mapping_does_not_reuse_play_codes(self):
+        mapping = {lang["code"]: lang for lang in self.config["languages"]}
+        self.assertEqual(mapping["ru"]["appStoreLocale"], "ru")
+        self.assertEqual(mapping["ru"]["googlePlayLocale"], "ru-RU")
+        self.assertEqual(mapping["zh"]["appStoreLocale"], "zh-Hans")
+        self.assertEqual(mapping["ar"]["direction"], "rtl")
+
+    def android_devices(self):
+        return [device for device in self.config["devices"] if device["platform"] == "android"]
+
+    def create_android_sources(self, scenes=None):
+        scenes = scenes or self.config["screenshots"][:1]
+        entries = assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.languages, self.android_devices(), scenes)
+        captures, marketing = [], []
+        for entry in entries:
+            path = self.output / entry["capturePath"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", (entry["width"], entry["height"]), (12, 22, 42)).save(path)
+            captures.append({**entry, "path": entry["capturePath"], "locale": entry["appStoreLocale"]})
+            if entry["sourceKind"] == "marketing":
+                path = self.output / entry["sourcePath"]
+                path.parent.mkdir(parents=True, exist_ok=True)
+                Image.new("RGB", (entry["width"], entry["height"]), (42, 22, 12)).save(path)
+                marketing.append({**entry, "path": entry["sourcePath"], "sourcePath": entry["capturePath"],
+                                  "sourceSha256": assets.digest(self.output / entry["capturePath"]),
+                                  "sourceUiRoundedCornerMask": False})
+        assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "screenshots": captures})
+        assets.save_json(self.output / "marketing-manifest.json", {"schemaVersion": 1, "renderer": "flutter-marketing-compositor", "screenshots": marketing})
+        return entries, scenes
+
+    def test_google_play_full_matrix_locales_order_and_android_only_sources(self):
+        entries = assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.config["languages"], self.android_devices())
+        self.assertEqual(len(entries), 273)
+        self.assertEqual(len({item["path"] for item in entries}), 273)
+        for entry in entries:
+            self.assertIn(entry["locale"], entry["path"])
+            self.assertNotIn("iphone", entry["sourcePath"])
+            self.assertEqual(entry["width"] * 16, entry["height"] * 9)
+            self.assertEqual(entry["deviceFrame"], "none")
+            self.assertTrue(entry["altText"].strip())
+            self.assertLessEqual(len(entry["altText"]), 140)
+            self.assertEqual(entry["addedCaptions"], entry["deviceType"] == "phone")
+            self.assertEqual(entry["sourceKind"], "marketing" if entry["deviceType"] == "phone" else "screenshots")
+        russian = [item for item in entries if item["locale"] == "ru-RU" and item["deviceType"] == "phone"]
+        self.assertEqual(russian[2]["path"], "google-play/ru-RU/phone/03-almost-ready.png")
+        self.assertEqual(russian[4]["sourcePath"], "marketing/ru/android-phone/03-recipe.png")
+        self.assertEqual(len(assets.select(self.config["devices"], None, "id", "devices")), 5)
+
+    def test_google_play_rejects_ios_duplicate_device_type_and_bad_dimensions(self):
+        for devices in (self.devices, [self.android_devices()[0], self.android_devices()[0]],
+                        [{**self.android_devices()[0], "width": 1081}],
+                        [{**self.android_devices()[0], "width": 540, "height": 960}]):
+            with self.assertRaises(assets.AssetError):
+                assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.languages, devices)
+
+    def test_google_play_reports_missing_or_invalid_localized_context(self):
+        original = assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json"))
+        for broken in (None, {}, {"01-ingredients": None}, {"01-ingredients": {"headline": None, "subtitle": "Text"}}):
+            copy_data = copy.deepcopy(original)
+            copy_data["languages"]["en"] = broken
+            with mock.patch.object(assets, "load_marketing_copy", return_value=copy_data):
+                with self.assertRaisesRegex(assets.AssetError, "Missing localized Google Play screenshot context"):
+                    assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.languages, self.android_devices(), self.config["screenshots"][:1])
+
+    def test_google_play_export_copies_android_ui_without_resizing_or_renaming_sources(self):
+        entries, scenes = self.create_android_sources()
+        originals = {item["sourcePath"]: assets.digest(self.output / item["sourcePath"]) for item in entries}
+        result = assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        self.assertEqual(result["googlePlayScreenshots"], 6)
+        validation = assets.validate_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), scenes)
+        self.assertEqual((validation["validatedImages"], validation["screenshots"], validation["featureGraphics"]), (6, 6, 0))
+        for entry in entries:
+            self.assertEqual(assets.digest(self.output / entry["path"]), originals[entry["sourcePath"]])
+            self.assertEqual(assets.digest(self.output / entry["sourcePath"]), originals[entry["sourcePath"]])
+        with self.assertRaisesRegex(assets.AssetError, "already exists"):
+            assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        first = assets.package(self.config, self.output, self.languages, self.android_devices(), "google-play", False, scenes)
+        with zipfile.ZipFile(first["archive"]) as archive:
+            self.assertIn("ru-RU/tablet-10/01-ingredients.png", archive.namelist())
+            self.assertNotIn("screenshots/ru/android-tablet-10/01-ingredients.png", archive.namelist())
+            manifest = json.loads(archive.read("my-bar-google-play-manifest.json"))
+            self.assertEqual(manifest["imageCount"], 6)
+            self.assertEqual(manifest["renderer"], "android-google-play-export")
+        second = assets.package(self.config, self.output, self.languages, self.android_devices(), "google-play", True, scenes)
+        self.assertEqual(first["sha256"], second["sha256"])
+
+    def feature_graphic_fixture(self):
+        config = copy.deepcopy(self.config)
+        config["fonts"] = []
+        config_path = self.root / "config.json"
+        assets.save_json(config_path, config)
+        copy_data = {"schemaVersion": 1, "languages": {
+            language["code"]: {"brand": "My Bar", "headline": f"Cocktails at home: {language['nativeName']}",
+                                 "altText": f"My Bar cocktail planner: {language['nativeName']}"}
+            for language in config["languages"]}}
+        assets.save_json(self.root / "feature_graphic_copy.json", copy_data)
+        (self.root / "artwork").mkdir()
+        Image.new("RGB", (1024, 500), (12, 22, 42)).save(self.root / "artwork" / "cocktails-master.png")
+        return config, config_path, copy_data
+
+    def create_feature_graphics(self, config, config_path, languages=None, mode="RGB"):
+        languages = config["languages"] if languages is None else languages
+        entries = assets.feature_graphic_entries(config, config_path, languages)
+        path = self.output / assets.FEATURE_GRAPHIC_MANIFEST
+        previous = json.loads(path.read_text())["graphics"] if path.exists() else []
+        merged = {item["language"]: item for item in previous}
+        for entry in entries:
+            target = self.output / entry["path"]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            Image.new(mode, (1024, 500), (12, 22, 42, 255) if mode == "RGBA" else (12, 22, 42)).save(target)
+            merged[entry["language"]] = {**entry, **assets.feature_graphic_inputs(config, config_path),
+                                       "layout": {"safeRect": [64, 40, 896, 420]},
+                                       "sha256": assets.digest(target), "bytes": target.stat().st_size}
+        assets.save_json(path, {"schemaVersion": 1, "renderer": assets.FEATURE_GRAPHIC_RENDERER,
+                               "uploaded": False, "graphics": sorted(merged.values(), key=lambda item: item["language"])})
+        return entries
+
+    def test_feature_graphic_all_locale_paths_copy_and_direction(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        entries = assets.feature_graphic_entries(config, config_path, config["languages"])
+        self.assertEqual(len(entries), 13)
+        self.assertEqual(len({item["path"] for item in entries}), 13)
+        by_language = {entry["language"]: entry for entry in entries}
+        self.assertEqual(by_language["ru"]["path"], "google-play/ru-RU/feature-graphic.png")
+        self.assertEqual(by_language["zh"]["locale"], "zh-CN")
+        self.assertEqual(by_language["ar"]["textDirection"], "rtl")
+        self.assertEqual(by_language["ar"]["fontFamily"], "NotoSansArabic")
+        self.assertTrue(all((entry["width"], entry["height"]) == (1024, 500) for entry in entries))
+        self.assertTrue(all(entry["assetType"] == "feature-graphic" for entry in entries))
+
+    def test_feature_graphic_copy_rejects_missing_invalid_and_unknown_before_flutter(self):
+        config, config_path, original = self.feature_graphic_fixture()
+        mutations = [lambda data: data.update(schemaVersion=2), lambda data: data.update(languages=[]),
+                     lambda data: data["languages"].pop("en"), lambda data: data["languages"].update(xx={}),
+                     lambda data: data["languages"]["en"].update(headline=" "),
+                     lambda data: data["languages"]["en"].update(brand=5),
+                     lambda data: data["languages"]["ar"].update(textDirection="ltr"),
+                     lambda data: data["languages"]["ja"].update(fontFamily="Manrope"),
+                     lambda data: data["languages"]["en"].update(altText="a" * 141)]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            assets.save_json(self.root / "feature_graphic_copy.json", data)
+            with mock.patch.object(assets.subprocess, "run") as run:
+                with self.assertRaises(assets.AssetError):
+                    assets.compose_feature_graphics(config, config_path, self.output, config["languages"], False)
+                run.assert_not_called()
+            self.assertFalse(self.output.exists())
+
+    def test_feature_graphic_preflight_checks_artwork_and_fonts_without_writes(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        source = self.root / "artwork" / "cocktails-master.png"
+        Image.new("RGB", (100, 50)).save(source)
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "at least 1024"):
+                assets.compose_feature_graphics(config, config_path, self.output, self.languages, False)
+            run.assert_not_called()
+        Image.new("RGB", (1024, 500)).save(source)
+        config["fonts"] = [{"family": "Missing", "path": "missing.ttf"}]
+        assets.save_json(config_path, config)
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "Missing font"):
+                assets.compose_feature_graphics(config, config_path, self.output, self.languages, False)
+            run.assert_not_called()
+        self.assertFalse(self.output.exists())
+
+    def test_feature_graphic_compose_refuses_hardlinks_to_input_artwork(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        source = self.root / "artwork" / "cocktails-master.png"
+        target = self.output / "google-play/en-US/feature-graphic.png"
+        target.parent.mkdir(parents=True)
+        assets.os.link(source, target)
+        original = source.read_bytes()
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "inputs must be separate"):
+                assets.compose_feature_graphics(config, config_path, self.output, config["languages"][:1], True)
+            run.assert_not_called()
+        self.assertEqual(source.read_bytes(), original)
+
+    def test_feature_graphic_compose_env_normalizes_rgba_and_preserves_unselected(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path, config["languages"][:1])
+        english = self.output / "google-play/en-US/feature-graphic.png"
+        original_hash = assets.digest(english)
+        marker = self.output / "keep.txt"
+        marker.write_text("existing file")
+        def fake_compose(command, cwd, env, check):
+            self.assertEqual(command, ["flutter", "test", "tool/store_assets/compose_feature_graphics.dart", "--run-skipped", "--no-pub"])
+            self.assertEqual(env["STORE_ASSET_LANGUAGES"], "ru")
+            self.assertEqual(env["STORE_ASSET_CONFIG"], str(config_path))
+            self.assertEqual(env["STORE_ASSET_OUTPUT"], str(self.output))
+            self.assertEqual(env["STORE_ASSET_OVERWRITE"], "false")
+            self.create_feature_graphics(config, config_path, config["languages"][1:2], "RGBA")
+        with mock.patch.object(assets.subprocess, "run", side_effect=fake_compose):
+            result = assets.compose_feature_graphics(config, config_path, self.output, config["languages"][1:2], False)
+        self.assertEqual(result["featureGraphics"], 1)
+        self.assertFalse(result["uploaded"])
+        self.assertEqual(assets.digest(english), original_hash)
+        self.assertEqual(marker.read_text(), "existing file")
+        assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:2])
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "already exists"):
+                assets.compose_feature_graphics(config, config_path, self.output, self.languages, False)
+            run.assert_not_called()
+
+    def test_feature_graphic_validation_rejects_non_rgb_dimensions_and_size(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        entries = self.create_feature_graphics(config, config_path, config["languages"][:1])
+        target = self.output / entries[0]["path"]
+        Image.new("RGBA", (1024, 500)).save(target)
+        with self.assertRaisesRegex(assets.AssetError, "opaque RGB"):
+            assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:1])
+        Image.new("RGB", (1024, 501)).save(target)
+        with self.assertRaisesRegex(assets.AssetError, "Wrong dimensions"):
+            assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:1])
+        Image.new("RGB", (1024, 500)).save(target)
+        with target.open("ab") as stream:
+            stream.write(b"\0" * (15 * 1024 * 1024))
+        with self.assertRaisesRegex(assets.AssetError, "15 MB"):
+            assets.validate_feature_graphics(config, config_path, self.output, config["languages"][:1])
+
+    def test_feature_graphic_manifest_rejects_hashes_locale_paths_duplicates_and_upload_claims(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path)
+        path = self.output / assets.FEATURE_GRAPHIC_MANIFEST
+        original = json.loads(path.read_text())
+        mutations = [lambda data: data.update(uploaded=True), lambda data: data.update(renderer="other"),
+                     lambda data: data["graphics"].clear(), lambda data: data["graphics"].append(data["graphics"][0]),
+                     lambda data: data["graphics"][0].update(locale="wrong"),
+                     lambda data: data["graphics"][0].update(path="../escape.png"),
+                     lambda data: data["graphics"][0].update(sha256="a" * 64),
+                     lambda data: data["graphics"][0].update(sourceSha256="b" * 64),
+                     lambda data: data["graphics"][0].update(copySha256="c" * 64),
+                     lambda data: data["graphics"][0].update(configSha256="d" * 64),
+                     lambda data: data["graphics"][0].update(layout={}),
+                     lambda data: data["graphics"][0].update(bytes=0)]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            assets.save_json(path, data)
+            with self.assertRaises(assets.AssetError):
+                assets.validate_feature_graphics(config, config_path, self.output, config["languages"])
+
+    def test_feature_graphic_packages_all_13_and_no_screenshots_or_review_assets(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path)
+        result = assets.package(config, self.output, config["languages"], [], "feature-graphics", False, config_path=config_path)
+        self.assertEqual(result["images"], 13)
+        self.assertEqual(result["metadata"], 1)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            images = [name for name in archive.namelist() if name.endswith(".png")]
+            self.assertEqual(set(images), {f"{language['googlePlayLocale']}/feature-graphic.png" for language in config["languages"]})
+            self.assertFalse(any("phone/" in name or "review-guides" in name for name in archive.namelist()))
+            manifest = json.loads(archive.read("my-bar-feature-graphics-manifest.json"))
+            self.assertEqual(manifest["renderer"], assets.FEATURE_GRAPHIC_RENDERER)
+            self.assertFalse(manifest["uploaded"])
+        repeated = assets.package(config, self.output, config["languages"], [], "feature-graphics", True, config_path=config_path)
+        self.assertEqual(result["sha256"], repeated["sha256"])
+
+    def test_google_play_bundle_includes_only_selected_valid_feature_graphics_when_manifest_exists(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        self.create_feature_graphics(config, config_path)
+        entries, scenes = self.create_android_sources()
+        assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        # The feature-graphic copy/config are separate from screenshot copy in this fixture.
+        assets.save_json(self.root / "marketing_copy.json", assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json")))
+        validation = assets.validate_google_play(config, config_path, self.output, self.languages, self.android_devices(), scenes)
+        self.assertEqual((validation["validatedImages"], validation["screenshots"], validation["featureGraphics"]), (8, 6, 2))
+        result = assets.package(config, self.output, self.languages, self.android_devices(), "google-play", False, scenes, config_path)
+        self.assertEqual(result["images"], len(entries) + 2)
+        self.assertEqual(result["metadata"], 2)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            graphics = [name for name in archive.namelist() if name.endswith("/feature-graphic.png")]
+            self.assertEqual(set(graphics), {"en-US/feature-graphic.png", "ru-RU/feature-graphic.png"})
+        first = self.output / "google-play/en-US/feature-graphic.png"
+        Image.new("RGB", (1024, 500), (255, 0, 0)).save(first)
+        with self.assertRaisesRegex(assets.AssetError, "hash/byte size"):
+            assets.validate_google_play(config, config_path, self.output, self.languages, self.android_devices(), scenes)
+        with self.assertRaisesRegex(assets.AssetError, "hash/byte size"):
+            assets.package(config, self.output, self.languages, self.android_devices(), "google-play", True, scenes, config_path)
+
+    def test_feature_graphic_only_cli_ignores_default_device_scene_matrix_and_rejects_filters(self):
+        config, config_path, _ = self.feature_graphic_fixture()
+        for device in config["devices"]:
+            device["enabled"] = False
+        for scene in config["screenshots"]:
+            scene["enabled"] = False
+        assets.save_json(config_path, config)
+        with mock.patch.object(assets, "compose_feature_graphics", return_value={"uploaded": False}) as compose:
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(assets.main(["compose-feature-graphics", "--config", str(config_path), "--languages", "ar", "--output", str(self.output)]), 0)
+            self.assertEqual(compose.call_args.args[3][0]["code"], "ar")
+        for selection in (("--devices", "android-phone"), ("--scenes", "01-ingredients")):
+            with contextlib.redirect_stderr(io.StringIO()), mock.patch.object(assets.subprocess, "run") as run:
+                self.assertEqual(assets.main(["compose-feature-graphics", "--config", str(config_path), "--output", str(self.output), *selection]), 1)
+                run.assert_not_called()
+
+    def test_google_play_export_rejects_ios_provenance_and_decorative_phone_frames(self):
+        _, scenes = self.create_android_sources()
+        path = self.output / "capture-manifest.json"
+        original = path.read_text()
+        wrong = json.loads(original)
+        wrong["screenshots"][0]["platform"] = "ios"
+        assets.save_json(path, wrong)
+        with self.assertRaisesRegex(assets.AssetError, "Android"):
+            assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        self.assertFalse((self.output / "google-play").exists())
+        path.write_text(original)
+        path = self.output / "marketing-manifest.json"
+        wrong = json.loads(path.read_text())
+        wrong["screenshots"][0]["deviceFrame"] = "iPhone"
+        assets.save_json(path, wrong)
+        with self.assertRaisesRegex(assets.AssetError, "no decorative device frame"):
+            assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+
+    def test_google_play_validation_rejects_modified_exports_and_oversized_png(self):
+        entries, scenes = self.create_android_sources()
+        assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        entry = entries[0]
+        path = self.output / entry["path"]
+        Image.new("RGB", (entry["width"], entry["height"]), (123, 45, 6)).save(path)
+        with self.assertRaisesRegex(assets.AssetError, "hash mismatch"):
+            assets.validate_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), scenes)
+        with mock.patch.object(assets, "verify_image"), mock.patch.object(Path, "stat") as stat:
+            stat.return_value.st_size = 8 * 1024 * 1024 + 1
+            with self.assertRaisesRegex(assets.AssetError, "8 MiB"):
+                assets.verify_google_play_image(path, entry["width"], entry["height"])
+
+    def test_google_play_commands_default_to_android_without_changing_ios_default(self):
+        for arguments, function in ((["export-google-play"], "export_google_play"),
+                                    (["validate", "--kind", "google-play"], "validate"),
+                                    (["package", "--kind", "google-play"], "package")):
+            with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(assets, function, return_value={}) as call:
+                self.assertEqual(assets.main([*arguments, "--output", str(self.output)]), 0)
+                devices = call.call_args.args[4] if function == "export_google_play" else call.call_args.args[3]
+                self.assertEqual([device["id"] for device in devices], ["android-phone", "android-tablet-7", "android-tablet-10"])
+        with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(assets, "capture", return_value={}) as call:
+            self.assertEqual(assets.main(["capture", "--output", str(self.output)]), 0)
+            self.assertEqual(len(call.call_args.args[4]), 5)
+            self.assertTrue(all(device["platform"] == "ios" for device in call.call_args.args[4]))
+
+    def test_selection_rejects_unknown_and_empty(self):
+        self.assertEqual([lang["code"] for lang in assets.select(self.config["languages"], "ar,en,ar", "code", "languages")], ["ar", "en"])
+        for value in ("xx", ", ,"):
+            with self.assertRaises(assets.AssetError):
+                assets.select(self.config["languages"], value, "code", "languages")
+
+    def test_default_selection_rejects_all_disabled(self):
+        for items, identity in ((self.config["languages"], "code"), (self.config["devices"], "id")):
+            disabled = [{**item, "enabled": False} for item in items]
+            with self.assertRaisesRegex(assets.AssetError, "No enabled"):
+                assets.select(disabled, None, identity, "entries")
+
+    def test_output_rejects_broad_roots_and_symlinks(self):
+        for path in (Path("/"), Path.home(), assets.REPO_ROOT, assets.SCRIPT_DIR):
+            with self.assertRaises(assets.AssetError):
+                assets.safe_output(path)
+        link = self.root / "link"
+        link.symlink_to(self.output, target_is_directory=True)
+        with self.assertRaises(assets.AssetError):
+            assets.safe_output(link / "child")
+
+    def test_target_rejects_traversal_and_symlinks(self):
+        self.output.mkdir()
+        (self.output / "creatives").symlink_to(self.root, target_is_directory=True)
+        for path in ("../escape.png", "/escape.png", "creatives/escape.png"):
+            with self.assertRaises(assets.AssetError):
+                assets.target_file(self.output, path)
+
+    def test_bad_config_dimensions_duplicate_and_path(self):
+        for mutation in (lambda cfg: cfg["devices"][0].update(width=-1), lambda cfg: cfg["languages"][0].update(appStoreLocale="../en"), lambda cfg: cfg["languages"].append(cfg["languages"][0])):
+            config = copy.deepcopy(self.config)
+            mutation(config)
+            path = self.root / "bad.json"
+            path.write_text(json.dumps(config))
+            with self.assertRaises(assets.AssetError):
+                assets.load_config(path)
+
+    def test_bad_config_locale_type_and_nonfinite_pixel_ratio(self):
+        mutations = [lambda cfg: cfg["languages"][0].update(appStoreLocale=123)]
+        mutations.extend(lambda cfg, ratio=ratio: cfg["devices"][0].update(pixelRatio=ratio) for ratio in (float("nan"), float("inf"), float("-inf"), True, "3"))
+        for mutation in mutations:
+            config = copy.deepcopy(self.config)
+            mutation(config)
+            path = self.root / "bad.json"
+            path.write_text(json.dumps(config))
+            with self.assertRaises(assets.AssetError):
+                assets.load_config(path)
+
+    def test_export_rgb_dimensions_and_shared_locale_references(self):
+        config = self.small_config()
+        result = assets.export_creatives(config, self.output, self.languages, self.create_source(), False)
+        self.assertEqual(result["creatives"], 3)
+        manifest = json.loads((self.output / "creative-manifest.json").read_text())
+        self.assertEqual(manifest["localizations"]["en-US"], manifest["localizations"]["ru"])
+        for item in manifest["assets"]:
+            path = self.output / item["path"]
+            assets.verify_image(path, 120, 80)
+            self.assertEqual(item["sha256"], assets.digest(path))
+
+    def test_export_refuses_overwrite_and_preserves_unrelated(self):
+        config = self.small_config()
+        source = self.create_source()
+        assets.export_creatives(config, self.output, self.languages, source, False)
+        unrelated = self.output / "keep.txt"
+        unrelated.write_text("keep")
+        with self.assertRaises(assets.AssetError):
+            assets.export_creatives(config, self.output, self.languages, source, False)
+        assets.export_creatives(config, self.output, self.languages, source, True)
+        self.assertEqual(unrelated.read_text(), "keep")
+
+    def test_export_refuses_review_guide_as_source_without_mutation(self):
+        config = self.small_config()
+        assets.export_creatives(config, self.output, self.languages, self.create_source(), False)
+        guide = self.output / "review-guides" / "header-safe-area.png"
+        previous_hashes = {path: assets.digest(path) for path in self.output.rglob("*") if path.is_file()}
+        with self.assertRaisesRegex(assets.AssetError, "source must be separate"):
+            assets.export_creatives(config, self.output, self.languages, guide, True)
+        self.assertEqual(previous_hashes, {path: assets.digest(path) for path in self.output.rglob("*") if path.is_file()})
+
+    def test_invalid_source_does_not_create_outputs(self):
+        source = self.root / "source.jpg"
+        Image.new("RGB", (200, 200)).save(source)
+        with self.assertRaises(assets.AssetError):
+            assets.export_creatives(self.small_config(), self.output, self.languages, source, False)
+        self.assertFalse(self.output.exists())
+
+    def test_validation_rejects_alpha_missing_and_wrong_size(self):
+        path = self.root / "image.png"
+        with self.assertRaises(assets.AssetError):
+            assets.verify_image(path, 10, 10)
+        Image.new("RGBA", (10, 10)).save(path)
+        with self.assertRaises(assets.AssetError):
+            assets.verify_image(path, 10, 10)
+        assets.normalize_rgb(path)
+        assets.verify_image(path, 10, 10)
+        with self.assertRaises(assets.AssetError):
+            assets.verify_image(path, 11, 10)
+
+    def test_rgb_trns_is_rejected_and_normalized_to_opaque(self):
+        path = self.root / "transparent-rgb.png"
+        Image.new("RGB", (10, 10), (10, 20, 30)).save(path, transparency=(10, 20, 30))
+        with Image.open(path) as image:
+            self.assertEqual(image.mode, "RGB")
+            self.assertIn("transparency", image.info)
+        with self.assertRaisesRegex(assets.AssetError, "opaque RGB"):
+            assets.verify_image(path, 10, 10)
+        assets.normalize_rgb(path)
+        assets.verify_image(path, 10, 10)
+        with Image.open(path) as image:
+            self.assertNotIn("transparency", image.info)
+            self.assertEqual(image.getpixel((0, 0)), (7, 9, 17))
+
+    def test_package_hash_manifest_and_reproducible_zip(self):
+        config = self.small_config()
+        assets.export_creatives(config, self.output, self.languages, self.create_source(), False)
+        first = assets.package(config, self.output, self.languages, self.devices, "creatives", False)
+        with zipfile.ZipFile(first["archive"]) as archive:
+            self.assertEqual(len(archive.namelist()), 5)
+            manifest = json.loads(archive.read("my-bar-creatives-manifest.json"))
+            self.assertFalse(manifest["uploaded"])
+            self.assertEqual(manifest["imageCount"], 3)
+            self.assertEqual(manifest["metadataCount"], 1)
+            self.assertEqual(manifest["metadata"][0]["path"], "creative-manifest.json")
+            self.assertEqual(assets.hashlib.sha256(archive.read("creative-manifest.json")).hexdigest(), manifest["metadata"][0]["sha256"])
+            for item in manifest["files"]:
+                self.assertEqual(assets.hashlib.sha256(archive.read(item["path"])).hexdigest(), item["sha256"])
+        with self.assertRaises(assets.AssetError):
+            assets.package(config, self.output, self.languages, self.devices, "creatives", False)
+        second = assets.package(config, self.output, self.languages, self.devices, "creatives", True)
+        self.assertEqual(first["sha256"], second["sha256"])
+
+    def test_screenshot_package_metadata_is_optional_and_preserves_provenance(self):
+        config = self.small_config()
+        languages, devices = config["languages"][:1], config["devices"][:1]
+        for item in assets.shot_entries(config, languages, devices):
+            path = self.output / item["path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", (item["width"], item["height"])).save(path)
+        first = assets.package(config, self.output, languages, devices, "screenshots", False)
+        self.assertEqual((first["images"], first["metadata"], first["files"]), (7, 0, 8))
+        with zipfile.ZipFile(first["archive"]) as archive:
+            manifest = json.loads(archive.read("my-bar-screenshots-manifest.json"))
+            self.assertFalse(manifest["provenance"]["nativeDeviceCapture"])
+            self.assertIn("offline Noto", manifest["provenance"]["fontFallback"])
+            self.assertTrue(all(not image["nativeDeviceCapture"] for image in manifest["files"]))
+        assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "nativeDeviceCapture": False, "screenshots": []})
+        metadata_bytes = (self.output / "capture-manifest.json").read_bytes()
+        second = assets.package(config, self.output, languages, devices, "screenshots", True)
+        self.assertEqual((second["images"], second["metadata"], second["files"]), (7, 1, 9))
+        with zipfile.ZipFile(second["archive"]) as archive:
+            self.assertEqual(archive.read("capture-manifest.json"), metadata_bytes)
+            manifest = json.loads(archive.read("my-bar-screenshots-manifest.json"))
+            self.assertEqual(manifest["metadata"][0]["sha256"], assets.hashlib.sha256(metadata_bytes).hexdigest())
+        third = assets.package(config, self.output, languages, devices, "screenshots", True)
+        self.assertEqual(second["sha256"], third["sha256"])
+
+    def test_all_package_includes_three_sets_and_manifests_not_review_guides(self):
+        config = self.small_config()
+        languages, devices = config["languages"][:1], config["devices"][:1]
+        for item in assets.shot_entries(config, languages, devices):
+            path = self.output / item["path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", (item["width"], item["height"])).save(path)
+        assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "screenshots": []})
+        self.create_captures(config, languages, devices, "marketing")
+        assets.export_creatives(config, self.output, languages, self.create_source(), False)
+        result = assets.package(config, self.output, languages, devices, "all", False)
+        self.assertEqual((result["images"], result["metadata"], result["files"]), (17, 3, 21))
+        with zipfile.ZipFile(result["archive"]) as archive:
+            self.assertEqual(len(archive.namelist()), result["files"])
+            self.assertIn("capture-manifest.json", archive.namelist())
+            self.assertIn("creative-manifest.json", archive.namelist())
+            self.assertIn("marketing-manifest.json", archive.namelist())
+            self.assertFalse(any("review-guides" in name for name in archive.namelist()))
+            manifest = json.loads(archive.read("my-bar-all-manifest.json"))
+            marketing_files = [item for item in manifest["files"] if item["path"].startswith("marketing/")]
+            self.assertEqual(len(marketing_files), 7)
+            self.assertTrue(all("archivePath" not in item for item in marketing_files))
+            self.assertIn("marketing/en-US/iphone-medium/07-almost-ready.png", archive.namelist())
+
+    def test_package_refuses_invalid_present_metadata(self):
+        config = self.small_config()
+        assets.export_creatives(config, self.output, self.languages, self.create_source(), False)
+        (self.output / "creative-manifest.json").write_text("not valid json")
+        with self.assertRaisesRegex(assets.AssetError, "invalid metadata"):
+            assets.package(config, self.output, self.languages, self.devices, "creatives", False)
+        self.assertFalse((self.output / "my-bar-creatives.zip").exists())
+
+    def test_plan_is_read_only(self):
+        with contextlib.redirect_stdout(io.StringIO()) as stream:
+            code = assets.main(["plan", "--languages", "ru,en", "--devices", "iphone-duo-inner", "--output", str(self.output), "--json"])
+        self.assertEqual(code, 0)
+        self.assertFalse(self.output.exists())
+        result = json.loads(stream.getvalue())
+        self.assertEqual(result["screenshots"], 14)
+
+    def test_capture_refuses_existing_before_flutter(self):
+        target = self.output / assets.shot_entries(self.config, self.languages, self.devices)[0]["path"]
+        target.parent.mkdir(parents=True)
+        target.write_bytes(b"existing")
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaises(assets.AssetError):
+                assets.capture(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.devices, False)
+            run.assert_not_called()
+
+    def test_capture_env_selections_and_rgb_normalization(self):
+        config = self.small_config()
+        languages, devices = config["languages"][:1], config["devices"][:1]
+        def fake_capture(command, cwd, env, check):
+            self.assertIn("--no-pub", command)
+            self.assertEqual(env["STORE_ASSET_LANGUAGES"], "en")
+            self.assertEqual(env["STORE_ASSET_DEVICES"], "iphone-medium")
+            self.assertEqual(env["STORE_ASSET_SCENES"], ",".join(scene["id"] for scene in config["screenshots"]))
+            entries = assets.shot_entries(config, languages, devices)
+            for item in entries:
+                target = self.output / item["path"]
+                target.parent.mkdir(parents=True, exist_ok=True)
+                Image.new("RGBA", (item["width"], item["height"]), (1, 2, 3, 255)).save(target)
+            assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "screenshots": entries})
+        with mock.patch.object(assets.subprocess, "run", side_effect=fake_capture):
+            result = assets.capture(config, MODULE_PATH.with_name("config.json"), self.output, languages, devices, False)
+        self.assertEqual(result["screenshots"], 7)
+        assets.validate(config, self.output, languages, devices, "screenshots")
+
+    def test_scene_selectors_plan_paths_and_reject_unknown_before_writes(self):
+        with contextlib.redirect_stdout(io.StringIO()) as stream:
+            code = assets.main(["plan", "--languages", "ru", "--devices", "iphone-duo-inner", "--scenes", "07-almost-ready,03-recipe,07-almost-ready", "--output", str(self.output), "--json"])
+        self.assertEqual(code, 0)
+        result = json.loads(stream.getvalue())
+        self.assertEqual((result["scenes"], result["screenshots"]), (2, 2))
+        self.assertEqual([item["screen"] for item in result["files"]], ["07-almost-ready", "03-recipe"])
+        self.assertEqual(result["marketingFiles"][0]["path"], "marketing/ru/iphone-duo-inner/07-almost-ready.png")
+        self.assertFalse(self.output.exists())
+        for command in ("capture", "compose", "validate", "package"):
+            with contextlib.redirect_stderr(io.StringIO()), mock.patch.object(assets.subprocess, "run") as run:
+                self.assertEqual(assets.main([command, "--scenes", "unknown", "--output", str(self.output)]), 1)
+                run.assert_not_called()
+
+    def test_marketing_validate_requires_matching_manifest_and_png(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][-1:]
+        entries = self.create_captures(config, languages, devices, "marketing", scenes)
+        assets.validate(config, self.output, languages, devices, "marketing", scenes)
+        manifest = self.output / "marketing-manifest.json"
+        correct = manifest.read_text()
+        manifest.unlink()
+        with self.assertRaisesRegex(assets.AssetError, "marketing-manifest"):
+            assets.validate(config, self.output, languages, devices, "marketing", scenes)
+        manifest.write_text(correct)
+        (self.output / entries[0]["path"]).unlink()
+        with self.assertRaisesRegex(assets.AssetError, "Missing image"):
+            assets.package(config, self.output, languages, devices, "marketing", False, scenes)
+        self.assertFalse((self.output / "my-bar-marketing.zip").exists())
+
+    def test_marketing_manifest_rejects_mismatches_edited_ui_and_missing_entries(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][:1]
+        self.create_captures(config, languages, devices, "marketing", scenes)
+        path = self.output / "marketing-manifest.json"
+        original = json.loads(path.read_text())
+        mutations = [lambda data: data.update(renderer="other"), lambda data: data["screenshots"].clear(),
+                     lambda data: data["screenshots"][0].update(sourceUiEdited=True),
+                     lambda data: data["screenshots"][0].update(sourcePath="screenshots/wrong.png"),
+                     lambda data: data["screenshots"].append(data["screenshots"][0]),
+                     lambda data: data["screenshots"].append({"path": "../escape.png"})]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            assets.save_json(path, data)
+            with self.assertRaises(assets.AssetError):
+                assets.validate(config, self.output, languages, devices, "marketing", scenes)
+
+    def test_marketing_package_is_selected_upload_set_with_raw_source_provenance(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][-1:]
+        self.create_captures(config, languages, devices, "marketing", scenes)
+        result = assets.package(config, self.output, languages, devices, "marketing", False, scenes)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            self.assertEqual(len(archive.namelist()), 3)
+            self.assertIn("en-US/iphone-medium/03-almost-ready.png", archive.namelist())
+            self.assertFalse(any(name.startswith("screenshots/") for name in archive.namelist()))
+            manifest = json.loads(archive.read("my-bar-marketing-manifest.json"))
+            self.assertEqual(manifest["renderer"], "flutter-marketing-compositor")
+            self.assertEqual(manifest["files"][0]["sourcePath"], "screenshots/en-US/iphone-medium/07-almost-ready.png")
+            self.assertEqual(manifest["files"][0]["path"], "marketing/en-US/iphone-medium/07-almost-ready.png")
+            self.assertEqual(manifest["files"][0]["archivePath"], "en-US/iphone-medium/03-almost-ready.png")
+            self.assertEqual(manifest["files"][0]["sequence"], 3)
+            self.assertEqual(manifest["files"][0]["sha256"], assets.hashlib.sha256(archive.read(manifest["files"][0]["archivePath"])).hexdigest())
+            self.assertFalse(manifest["files"][0]["sourceUiEdited"])
+        second = assets.package(config, self.output, languages, devices, "marketing", True, scenes)
+        self.assertEqual(result["sha256"], second["sha256"])
+
+    def test_compose_env_selections_normalization_and_preserves_unselected(self):
+        config = self.small_config()
+        config["fonts"] = []
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][-1:]
+        self.create_captures(config, languages, devices, scenes=scenes)
+        config_path = self.root / "config.json"
+        assets.save_json(config_path, config)
+        assets.save_json(self.root / "marketing_copy.json", {"schemaVersion": 1, "sequence": [scene["id"] for scene in config["screenshots"]], "languages": {"en": {"07-almost-ready": {"headline": "Almost ready", "subtitle": "Just one ingredient"}}}})
+        (self.root / "artwork").mkdir()
+        Image.new("RGB", (10, 10)).save(self.root / "artwork" / "screenshot-background.png")
+        unrelated = self.output / "keep.txt"
+        unrelated.write_text("keep")
+        def fake_compose(command, cwd, env, check):
+            self.assertEqual(command[2], "tool/store_assets/compose_marketing.dart")
+            self.assertEqual(env["STORE_ASSET_SCENES"], "07-almost-ready")
+            self.assertEqual(env["STORE_ASSET_LANGUAGES"], "en")
+            self.create_captures(config, languages, devices, "marketing", scenes)
+            for item in assets.marketing_entries(config, languages, devices, scenes):
+                Image.new("RGBA", (item["width"], item["height"]), (1, 2, 3, 255)).save(self.output / item["path"])
+        with mock.patch.object(assets.subprocess, "run", side_effect=fake_compose) as run:
+            result = assets.compose(config, config_path, self.output, languages, devices, False, scenes)
+            self.assertEqual(result["marketingScreenshots"], 1)
+            run.assert_called_once()
+        self.assertEqual(unrelated.read_text(), "keep")
+        assets.validate(config, self.output, languages, devices, "marketing", scenes)
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "already exists"):
+                assets.compose(config, config_path, self.output, languages, devices, False, scenes)
+            run.assert_not_called()
+
+    def test_compose_missing_raw_capture_fails_before_flutter(self):
+        config = self.small_config()
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "Missing image"):
+                assets.compose(config, MODULE_PATH.with_name("config.json"), self.output, config["languages"][:1], config["devices"][:1], False, config["screenshots"][:1])
+            run.assert_not_called()
+        self.assertFalse(self.output.exists())
+
+    def test_compose_refuses_hardlink_to_raw_source_before_flutter(self):
+        config = self.small_config()
+        languages, devices, scenes = config["languages"][:1], config["devices"][:1], config["screenshots"][:1]
+        entries = self.create_captures(config, languages, devices, scenes=scenes)
+        source = self.output / entries[0]["path"]
+        target = self.output / assets.marketing_entries(config, languages, devices, scenes)[0]["path"]
+        target.parent.mkdir(parents=True)
+        assets.os.link(source, target)
+        original = source.read_bytes()
+        with mock.patch.object(assets.subprocess, "run") as run:
+            with self.assertRaisesRegex(assets.AssetError, "sources must be separate"):
+                assets.compose(config, MODULE_PATH.with_name("config.json"), self.output, languages, devices, True, scenes)
+            run.assert_not_called()
+        self.assertEqual(source.read_bytes(), original)
+
+    def test_marketing_upload_archive_uses_story_order_without_renaming_sources(self):
+        config = self.small_config()
+        languages, devices = config["languages"][:1], config["devices"][:1]
+        entries = self.create_captures(config, languages, devices, "marketing")
+        before = {item["path"]: assets.digest(self.output / item["path"]) for item in entries}
+        result = assets.package(config, self.output, languages, devices, "marketing", False)
+        expected_names = ["01-ingredients.png", "02-cocktails.png", "03-almost-ready.png", "04-shopping.png", "05-recipe.png", "06-party.png", "07-surprise.png"]
+        with zipfile.ZipFile(result["archive"]) as archive:
+            images = [name for name in archive.namelist() if name.endswith(".png")]
+            self.assertEqual(images, [f"en-US/iphone-medium/{name}" for name in expected_names])
+            manifest = json.loads(archive.read("my-bar-marketing-manifest.json"))
+            self.assertEqual(manifest["uploadSequence"][2], "07-almost-ready")
+            self.assertEqual([item["sequence"] for item in manifest["files"]], list(range(1, 8)))
+            for item in manifest["files"]:
+                self.assertEqual(item["sha256"], before[item["path"]])
+                self.assertEqual(item["sha256"], assets.hashlib.sha256(archive.read(item["archivePath"])).hexdigest())
+        self.assertEqual(before, {item["path"]: assets.digest(self.output / item["path"]) for item in entries})
+
+    def test_marketing_copy_has_exact_locale_scene_coverage_and_reasonable_caption_lengths(self):
+        data = assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json"))
+        language_codes = {language["code"] for language in self.config["languages"]}
+        scene_ids = {scene["id"] for scene in self.config["screenshots"]}
+        self.assertEqual(set(data["languages"]), language_codes)
+        self.assertEqual(len(data["sequence"]), len(scene_ids))
+        self.assertEqual(set(data["sequence"]), scene_ids)
+        self.assertEqual(data["sequence"][2], "07-almost-ready")
+        for language, localized in data["languages"].items():
+            self.assertEqual(set(localized), scene_ids, language)
+            for scene, copy in localized.items():
+                for key, maximum in (("headline", 64), ("subtitle", 110)):
+                    value = copy[key]
+                    self.assertIsInstance(value, str)
+                    self.assertEqual(value, value.strip(), f"{language}/{scene}/{key}")
+                    self.assertTrue(value, f"{language}/{scene}/{key}")
+                    self.assertLessEqual(len(value), maximum, f"{language}/{scene}/{key}")
+                    self.assertNotIn("\n", value)
+        # Compare any concrete recipe-count claim to the shipping catalog, not
+        # to a hard-coded constant that could silently go stale after additions.
+        catalog = json.loads((assets.REPO_ROOT / "assets/data/bar_template.json").read_text())
+        count = len(catalog["cocktails"])
+        for language, localized in data["languages"].items():
+            claims = re.findall(r"\d+", localized["02-cocktails"]["subtitle"])
+            self.assertEqual(claims, [str(count)], language)
+
+    def test_marketing_copy_rejects_duplicate_missing_unknown_or_nonstring_sequence(self):
+        original = assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json"))
+        for sequence in (original["sequence"][:-1], [*original["sequence"][:-1], original["sequence"][0]], [*original["sequence"][:-1], "unknown"], [*original["sequence"][:-1], {}]):
+            data = copy.deepcopy(original)
+            data["sequence"] = sequence
+            assets.save_json(self.root / "marketing_copy.json", data)
+            with self.assertRaisesRegex(assets.AssetError, "sequence"):
+                assets.load_marketing_copy(self.config, self.root / "config.json")
+
+    def test_font_download_rejects_non_pinned_or_untrusted_sources(self):
+        path = self.root / "font_sources.json"
+        for url, sha in (("http://raw.githubusercontent.com/google/fonts/main/a.ttf", "a" * 64), ("https://evil.example/a.ttf", "a" * 64), ("https://raw.githubusercontent.com/unknown/repo/a.ttf", "a" * 64), ("https://raw.githubusercontent.com/google/fonts/main/a.ttf", "")):
+            path.write_text(json.dumps({"schemaVersion": 1, "fonts": [{"family": "Test", "path": "../../.dart_tool/store_assets/fonts/a.ttf", "url": url, "sha256": sha}]}))
+            with mock.patch.object(assets, "urlopen") as network:
+                with self.assertRaises(assets.AssetError):
+                    assets.prepare_fonts(MODULE_PATH.with_name("config.json"), path)
+                network.assert_not_called()
+
+    def test_font_download_refuses_paths_outside_exact_cache(self):
+        path = self.root / "font_sources.json"
+        path.write_text(json.dumps({"schemaVersion": 1, "fonts": [{"family": "Test", "path": "outside.ttf", "url": "https://raw.githubusercontent.com/google/fonts/main/a.ttf", "sha256": "a" * 64}]}))
+        with mock.patch.object(assets, "urlopen") as network:
+            with self.assertRaises(assets.AssetError):
+                assets.prepare_fonts(MODULE_PATH.with_name("config.json"), path)
+            network.assert_not_called()
+
+    def test_font_prepare_download_hash_cache_and_atomic_failure(self):
+        repo = self.root / "repo"
+        tool = repo / "tool" / "store_assets"
+        tool.mkdir(parents=True)
+        manifest_path = tool / "font_sources.json"
+        target = repo / ".dart_tool" / "store_assets" / "fonts" / "Test.ttf"
+        content = b"a pinned test font (mock transport only)"
+        url = "https://raw.githubusercontent.com/google/fonts/pinned/ofl/test/Test.ttf"
+        manifest = {"schemaVersion": 1, "fonts": [{"family": "Test", "path": "../../.dart_tool/store_assets/fonts/Test.ttf", "url": url, "sha256": assets.hashlib.sha256(content).hexdigest()}]}
+        manifest_path.write_text(json.dumps(manifest))
+        class Response(io.BytesIO):
+            def geturl(self):
+                return url
+        with mock.patch.object(assets, "REPO_ROOT", repo):
+            with mock.patch.object(assets, "urlopen", return_value=Response(content)) as network:
+                result = assets.prepare_fonts(tool / "config.json")
+                self.assertEqual(result["downloaded"], 1)
+                network.assert_called_once()
+                self.assertEqual(target.read_bytes(), content)
+            with mock.patch.object(assets, "urlopen") as network:
+                result = assets.prepare_fonts(tool / "config.json")
+                self.assertEqual(result["downloaded"], 0)
+                network.assert_not_called()
+            target.write_bytes(b"old cache is preserved when download is bad")
+            with mock.patch.object(assets, "urlopen", return_value=Response(b"wrong bytes")):
+                with self.assertRaises(assets.AssetError):
+                    assets.prepare_fonts(tool / "config.json")
+                self.assertEqual(target.read_bytes(), b"old cache is preserved when download is bad")
+                self.assertEqual(list(target.parent.glob("*.download")), [])
+
+    def test_focal_crop_and_review_guides_are_not_packaged(self):
+        config = self.small_config()
+        for item in config["creatives"]:
+            item.update(width=100, height=50, safeRect={"x": 10, "y": 5, "width": 40, "height": 20})
+        source = Image.new("RGB", (100, 100))
+        cropped, actual = assets.crop_focal(source, config["creatives"][0], (0.5, 0.5))
+        self.assertEqual(cropped.size, (100, 50))
+        self.assertEqual(actual["x"], 50)
+        self.assertEqual(actual["y"], 15)
+        assets.export_creatives(config, self.output, self.languages, self.create_source(), False, (0.5, 0.5))
+        self.assertEqual(len(list((self.output / "review-guides").glob("*.png"))), 3)
+        result = assets.package(config, self.output, self.languages, self.devices, "creatives", False)
+        with zipfile.ZipFile(result["archive"]) as archive:
+            self.assertFalse(any("review-guides" in name for name in archive.namelist()))
+
+    def test_focal_point_parser_rejects_invalid_numbers(self):
+        self.assertEqual(assets.parse_focal_point("0.25, 0.75"), (0.25, 0.75))
+        for value in ("nan,0", "2,0", "0.5", "foo,bar", "1,2,3"):
+            with self.assertRaises(assets.argparse.ArgumentTypeError):
+                assets.parse_focal_point(value)
+
+    def test_config_font_hashes_match_download_manifest(self):
+        sources = json.loads(MODULE_PATH.with_name("font_sources.json").read_text())
+        self.assertEqual(self.config["fonts"], [{key: font[key] for key in ("family", "path", "sha256")} for font in sources["fonts"]])
+
+
+if __name__ == "__main__":
+    unittest.main()

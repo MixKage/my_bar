@@ -126,7 +126,9 @@ class Cocktail {
             unit: unit,
             measurementSystem: measurementSystem,
           );
-    final resolvedUnit = unitLabelResolver == null
+    // The empty-unit editor option has its own label, but a recipe with a
+    // free-form amount (for example "Top up") must not display "No unit".
+    final resolvedUnit = resolved.unit.isEmpty || unitLabelResolver == null
         ? resolved.unit
         : unitLabelResolver(resolved.unit);
 

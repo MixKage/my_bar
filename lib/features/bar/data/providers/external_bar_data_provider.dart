@@ -21,6 +21,21 @@ abstract class ExternalBarDataProvider
 
 enum ExternalProviderFormat { generic, theCocktailDb }
 
+/// Lets a repository read ingredients and recipes from one language snapshot.
+abstract class CatalogSnapshotProvider {
+  Future<ExternalCatalogPayload> fetchCatalogSnapshot();
+}
+
+class ExternalCatalogPayload {
+  const ExternalCatalogPayload({
+    required this.ingredients,
+    required this.cocktails,
+  });
+
+  final List<Map<String, dynamic>> ingredients;
+  final List<Map<String, dynamic>> cocktails;
+}
+
 class JsonAssetExternalBarDataProvider implements ExternalBarDataProvider {
   JsonAssetExternalBarDataProvider({
     required this.assetPath,
@@ -59,21 +74,25 @@ class JsonAssetExternalBarDataProvider implements ExternalBarDataProvider {
 }
 
 class LocalizedJsonAssetExternalBarDataProvider
-    implements ExternalBarDataProvider {
+    implements ExternalBarDataProvider, CatalogSnapshotProvider {
   LocalizedJsonAssetExternalBarDataProvider({
     required this.defaultAssetPath,
     required this.russianAssetPath,
     required this.useRussianCatalogResolver,
+    this.languageCodeResolver,
     this.sourceIdValue = 'asset_template',
   });
 
   final String defaultAssetPath;
   final String russianAssetPath;
   final bool Function() useRussianCatalogResolver;
+  final String Function()? languageCodeResolver;
   final String sourceIdValue;
+  final Map<String, Future<Map<String, dynamic>>> _catalogs = {};
 
-  String get _activeAssetPath =>
-      useRussianCatalogResolver() ? russianAssetPath : defaultAssetPath;
+  String get _languageCode =>
+      languageCodeResolver?.call() ??
+      (useRussianCatalogResolver() ? 'ru' : 'en');
 
   @override
   String get sourceId => sourceIdValue;
@@ -94,12 +113,62 @@ class LocalizedJsonAssetExternalBarDataProvider
   }
 
   Future<Map<String, dynamic>> _readCatalogMap() async {
-    final jsonString = await rootBundle.loadString(_activeAssetPath);
+    final code = _languageCode;
+    final loading = _catalogs.putIfAbsent(code, () => _loadCatalog(code));
+    try {
+      return await loading;
+    } catch (_) {
+      if (identical(_catalogs[code], loading)) _catalogs.remove(code);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<ExternalCatalogPayload> fetchCatalogSnapshot() async {
+    final map = await _readCatalogMap();
+    return ExternalCatalogPayload(
+      ingredients: _parseObjectList(map['ingredients'], 'ingredients'),
+      cocktails: _parseObjectList(map['cocktails'], 'cocktails'),
+    );
+  }
+
+  Future<Map<String, dynamic>> _loadCatalog(String code) async {
+    final assetPath = code == 'ru' ? russianAssetPath : defaultAssetPath;
+    final jsonString = await rootBundle.loadString(assetPath);
     final decoded = jsonDecode(jsonString);
-    if (decoded is Map<String, dynamic>) {
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('JSON root must be object');
+    }
+    if (code == 'en' || code == 'ru') {
       return decoded;
     }
-    throw const FormatException('JSON root must be object');
+    // Only text is overlaid. Recipe quantities, ingredient IDs and user data
+    // keep the same identity when switching languages.
+    final overlayJson = await rootBundle.loadString(
+      'assets/data/catalog_localizations/$code.json',
+    );
+    final overlay = jsonDecode(overlayJson) as Map<String, dynamic>;
+    for (final section in ['ingredients', 'cocktails']) {
+      final translations = overlay[section] as Map<String, dynamic>;
+      for (final item in _parseObjectList(decoded[section], section)) {
+        final text = translations[item['id']] as Map<String, dynamic>?;
+        if (text == null) continue;
+        final originalName = item['name'];
+        item.addAll({
+          for (final key in ['name', 'description', 'preparationSteps'])
+            if (text.containsKey(key)) key: text[key],
+        });
+        if (text['ingredientAmounts'] case final Map<String, dynamic> amounts) {
+          item['ingredientAmounts'] = {
+            ...?item['ingredientAmounts'] as Map<String, dynamic>?,
+            ...amounts,
+          };
+        }
+        item['displayName'] = item['name'];
+        item['aliases'] = [...?item['aliases'] as List?, originalName];
+      }
+    }
+    return decoded;
   }
 }
 
@@ -204,7 +273,8 @@ class FallbackExternalBarDataProvider implements ExternalBarDataProvider {
   }
 }
 
-class SelectableExternalBarDataProvider implements ExternalBarDataProvider {
+class SelectableExternalBarDataProvider
+    implements ExternalBarDataProvider, CatalogSnapshotProvider {
   SelectableExternalBarDataProvider({
     required ExternalBarDataProvider seedProvider,
     required ExternalBarDataProvider bootstrapDefaultProvider,
@@ -263,6 +333,18 @@ class SelectableExternalBarDataProvider implements ExternalBarDataProvider {
   @override
   Future<List<Map<String, dynamic>>> fetchIngredients() {
     return _activeEntry.provider.fetchIngredients();
+  }
+
+  @override
+  Future<ExternalCatalogPayload> fetchCatalogSnapshot() async {
+    final provider = _activeEntry.provider;
+    if (provider is CatalogSnapshotProvider) {
+      return (provider as CatalogSnapshotProvider).fetchCatalogSnapshot();
+    }
+    return ExternalCatalogPayload(
+      ingredients: await provider.fetchIngredients(),
+      cocktails: await provider.fetchCocktails(),
+    );
   }
 
   _ActiveProviderEntry _resolveEntry(CatalogDataSource? requested) {

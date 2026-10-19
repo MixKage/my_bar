@@ -27,7 +27,7 @@ class BarState {
     this.powerSavingMode = false,
     this.systemPowerSavingMode = false,
     this.appLanguage = AppLanguage.system,
-    this.measurementSystem = MeasurementSystem.flOz,
+    this.measurementSystem = MeasurementSystem.ml,
   }) : ingredients = List<Ingredient>.unmodifiable(ingredients),
        cocktails = List<Cocktail>.unmodifiable(cocktails),
        selectedIngredientIds = Set<String>.unmodifiable(selectedIngredientIds),

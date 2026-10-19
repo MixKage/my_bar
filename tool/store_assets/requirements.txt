@@ -1,0 +1,2 @@
+# Used only by the local store-asset tool, never by the app.
+Pillow==11.3.0

@@ -23,12 +23,37 @@ A Flutter mobile app for managing your home bar:
 - Ingredient editor: create/update ingredients, including image URL or local file path.
 - Cocktail editor: dedicated create/edit page with full recipe configuration.
 - Recipe logic: optional ingredients, garnish ingredients, substitutions, amounts, and units.
-- Measurement systems: `ml`, `cl`, `fl oz`.
+- Measurement systems: `ml` (default), `cl`, `fl oz`; existing preferences are preserved.
+- Offline interface and recipe translations: English, Russian, Spanish, Portuguese,
+  German, French, Italian, Turkish, Simplified Chinese, Japanese, Korean, Hindi,
+  and Arabic (RTL), with a searchable language picker.
 - UI modes: `Visitor Mode` and `Bar Menu Mode`.
 - Power-saving mode support.
 - Persistence: selected ingredients, catalog, and UI settings are saved between launches.
 - JSON import/export with validation (ingredients + cocktails).
 - Empty export protection: shows `Bar catalog not changed` when there is nothing to export.
+- Native App Store / Google Play review requests after established usage, without a custom rating dialog.
+
+### In-app review requests
+
+Requests start no earlier than seven days after this feature first records usage,
+with three distinct usage days, five successfully saved actions, and two minutes
+in the current foreground session. After an action, the home screen must be idle
+for four seconds. Onboarding, covered routes, dialogs, scrolling, text input, and
+background use never trigger a request. Attempts are limited to one per 120 days
+and three per rolling year, including requests the store silently suppresses.
+
+Only bounded usage counters and attempt dates are stored locally; no backend or
+analytics service is needed. Ratings are handled by Apple's / Google's store UI,
+and the app cannot detect whether a review was submitted. No forced store redirect
+or preliminary satisfaction question is shown. These rules follow the
+[Apple](https://developer.apple.com/app-store/ratings-and-reviews/) and
+[Google](https://developer.android.com/guide/playcore/in-app-review) guidelines.
+
+For manual verification, use an iOS development build (TestFlight does not show
+review requests) or a Google Play internal-testing installation. Store quotas can
+suppress the dialog even when eligibility is met; automated tests use a fake
+gateway and clock, without shortening production limits.
 
 ## Technology Stack
 
@@ -56,6 +81,7 @@ App state is centralized in `BarCubit` and persisted on every change.
 - `lib/core` - theme, base widgets, localization, search helpers.
 - `lib/features/bar` - main bar feature (data/domain/cubit/presentation).
 - `assets/data/bar_template.json` - default catalog template.
+- `assets/data/catalog_localizations/` - bundled recipe text translations.
 - `assets/icon.png` - source app icon.
 - `docs/privacy-policy.md` - privacy policy template for store distribution.
 - `test/` - unit and widget tests.
@@ -164,6 +190,10 @@ Validation is implemented in `BarCatalogJsonCodec`.
 - Dart SDK `^3.10.8` (see `pubspec.yaml`)
 - Xcode (iOS) / Android Studio + SDK (Android)
 
+Update 1.2.0 is verified with Flutter 3.47.5 / Dart 3.13.4. Run Flutter
+tests and release builds sequentially: they generate shared plugin registrants
+with different development/release dependency sets.
+
 ### Install and Run
 
 ```bash
@@ -185,6 +215,13 @@ Tests:
 flutter test
 ```
 
+After editing the English catalog, regenerate its offline text overlays with
+`python3 tool/localize_catalog.py`. Regenerate interface translations with
+`node tool/generate_ui_translations.mjs` and verify coverage with its `--check`
+option. These development tools access a translation service; the app itself
+reads bundled translations without network requests. Review generated text
+before store publication. Recipe audit findings and sources are in `docs/`.
+
 Regenerate app icons from `assets/icon.png`:
 
 ```bash
@@ -192,6 +229,23 @@ dart run flutter_launcher_icons
 ```
 
 If a stale icon is shown after update, reinstall the app on device.
+
+## Store Asset Generation
+
+The [local store-asset tool](tool/store_assets/README.md) renders seven real app
+scenes in all 13 languages for five viewports, including both iPhone Duo sizes.
+It then composes a separate marketing set with localized headlines, explanations,
+a cosmic background and a generic device frame. Scenes cover the home bar,
+recipes, almost-ready cocktails, shopping, servings, party planning and surprise.
+Use `compose` followed by `package --kind marketing` for the captioned set;
+the raw UI captures remain separate. These are real-widget renders, not native
+device captures. The tool also exports App Store Header, Search Results and
+Universal artwork and validates opaque PNG dimensions. Nothing is uploaded;
+generation requires no backend or paid service.
+
+Review the new [English](docs/screenshots/1.2.0/en-US-overview.jpg) and
+[Russian](docs/screenshots/1.2.0/ru-overview.jpg) overview sheets. These are
+review previews, not upload files; use the full-size `my-bar-marketing.zip`.
 
 ## Bar Management Menu
 

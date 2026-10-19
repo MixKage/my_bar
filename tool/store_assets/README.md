@@ -1,0 +1,354 @@
+# Store assets: offline generation and manual publishing
+
+This tool prepares assets; it never signs in to a store, changes store metadata,
+or uploads anything. Publishing remains a separate, manual review step.
+The only network command is an explicit `prepare-fonts`, which downloads free,
+SHA-256-pinned fonts from their official GitHub repositories to an ignored cache.
+All captures and exports then work locally without paid services or a server.
+
+## First run
+
+Requirements: the project's Flutter SDK/dependencies, Python 3.10+, and Pillow.
+Run Flutter dependency setup once before going offline. Install Pillow into your
+preferred Python environment; no additional Python packages are required.
+
+```sh
+python3 -m venv .dart_tool/store_assets/venv
+. .dart_tool/store_assets/venv/bin/activate
+python3 -m pip install -r tool/store_assets/requirements.txt
+python3 tool/store_assets/store_assets.py prepare-fonts
+python3 tool/store_assets/store_assets.py check-fonts
+python3 tool/store_assets/store_assets.py list
+python3 tool/store_assets/store_assets.py plan --languages en,ru,ar --devices iphone-large,iphone-duo-inner
+python3 tool/store_assets/store_assets.py plan --languages en --devices iphone-medium --scenes 03-recipe,07-almost-ready
+```
+
+Font sources, hashes, licenses, and cache locations are recorded next to this
+tool. `prepare-fonts` reuses matching cached files and atomically repairs only
+known font-cache files; it cannot write elsewhere. If you already have the
+matching cache, skip this download step. Font binaries are not bundled into
+the shipping app by this workflow.
+
+## Capture screenshots
+
+```sh
+python3 tool/store_assets/store_assets.py capture --languages en,ru --devices iphone-large
+python3 tool/store_assets/store_assets.py validate --kind screenshots --languages en,ru --devices iphone-large
+python3 tool/store_assets/store_assets.py package --kind screenshots --languages en,ru --devices iphone-large
+```
+
+Omit `--languages`, `--devices`, and `--scenes` to generate the complete matrix:
+13 languages × 5 viewports × 7 scenes = 455 PNGs per raw/marketing set.
+All three selectors accept comma-separated IDs and reject unknown values before
+starting Flutter. Use `plan --json` to inspect raw and marketing paths first.
+`--output` defaults to `build/store-assets`; use a
+dedicated output directory for other destinations. Do not run another Flutter
+test or build while capture is running, because Flutter shares generated assets.
+
+Existing selected image files are refused unless `--overwrite` is supplied.
+Overwriting replaces only those files; no directory tree is deleted, and
+unselected captures are retained in the merged capture manifest. A failed run
+retains completed PNGs; repeat the same selection with `--overwrite`.
+
+The capture test uses actual app widgets and deterministic local fixture data.
+Each viewport is rendered independently at its physical pixel dimensions and
+pixel ratio. It does not stretch screenshots from another device. Source
+scenes: ingredients at home, cocktail menu, recipe/portions (four servings),
+party planner, smart shopping, surprise me, and almost-ready cocktails with
+one genuinely missing ingredient.
+
+Output:
+
+```text
+build/store-assets/
+  screenshots/<App Store locale>/<device ID>/01-ingredients.png ... 07-almost-ready.png
+  capture-manifest.json
+  my-bar-screenshots.zip
+  my-bar-screenshots-manifest.json
+```
+
+PNG outputs are opaque RGB. The renderer is `flutter-widget`, **not** a native
+simulator or physical-device capture: OS status bars, exact hardware safe-area
+geometry, keyboard, native dialogs, and fold transitions are not certified by
+this test. Safe areas in the config are explicit test fixtures in logical
+Flutter units. The iPhone Duo profiles reproduce Apple's accepted screenshot
+pixel sizes; they are not a claim that an iPhone Duo simulator is installed.
+Review screenshots against the real app on relevant devices before upload.
+Do not substitute invented/mock UI or unsupported app features in store images.
+
+## Localized marketing screenshots (preferred upload set)
+
+Raw screenshots are kept as source evidence. `compose` creates a separate
+upload-ready set with localized headlines, subtitles, the approved background,
+and a generic rounded frame around the **actual app capture**. It scales the
+whole UI proportionally without rectangular cropping, repainting, stretching,
+or covering controls. Only corner pixels are decoratively masked to fit the
+rounded frame (`sourceUiRoundedCornerMask` in the manifest). Captions come from
+`marketing_copy.json` for all 13 app languages;
+Arabic uses RTL text layout and the same offline font fixtures as capture.
+Device frames are generic; neither a frame nor an offscreen capture claims to
+show actual iPhone Duo hardware.
+
+```sh
+python3 tool/store_assets/store_assets.py capture --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+python3 tool/store_assets/store_assets.py compose --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+python3 tool/store_assets/store_assets.py validate --kind marketing --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+python3 tool/store_assets/store_assets.py package --kind marketing --languages en,ru --devices iphone-medium --scenes 03-recipe,07-almost-ready
+```
+
+Use the same selectors for each step, or omit all selectors for a full export.
+`compose` requires matching raw captures and `artwork/screenshot-background.png`
+before it starts Flutter. It also checks fonts and caption coverage. Do not run
+composition alongside another Flutter test/build/capture. Selected output PNGs
+are refused unless `--overwrite` is explicit; only selected files are replaced
+and unrelated entries are retained in `marketing-manifest.json`.
+
+Output: `marketing/<App Store locale>/<device ID>/<scene ID>.png`,
+`marketing-manifest.json`, and `my-bar-marketing.zip` with its SHA-256 manifest.
+`package --kind marketing` is the preferred screenshot upload ZIP; it contains
+only the composed screenshots and their provenance, **not** raw source PNGs.
+The raw `screenshots/` folder and its separate ZIP remain available for review.
+The metadata records source paths, proportional UI scaling and corner masks, localized captions,
+layout bounds, offline fonts, and the non-native-device origin.
+The background's generation prompt, role, and transformations are recorded in
+[`artwork/screenshot-background-provenance.json`](artwork/screenshot-background-provenance.json).
+
+The marketing-only ZIP follows the narrative in `marketing_copy.json`'s
+`sequence`: ingredients → cocktails → almost ready → shopping → portions →
+party → surprise. Within each `<App Store locale>/<device ID>/` folder its
+filenames are numbered for that upload order: `01-ingredients.png`,
+`02-cocktails.png`, `03-almost-ready.png`, `04-shopping.png`, `05-recipe.png`,
+`06-party.png`, `07-surprise.png`. Source files under `marketing/` retain their
+canonical scene IDs, including `07-almost-ready.png`; no source is renamed.
+Each package manifest entry records both that original `path` and the ZIP's
+`archivePath`, plus its `sequence` and hash. A selected subset retains its full
+story sequence numbers rather than being renumbered from one. The raw-only and
+`--kind all` archives keep canonical source paths and names.
+
+## Languages and devices
+
+`config.json` maps app codes `en,ru,es,pt,de,fr,it,tr,zh,ja,ko,hi,ar` to their
+App Store and Google Play locale IDs separately. Arabic captures use RTL.
+The default device selection remains the five iOS profiles, preserving existing
+App Store exports. Select Android profiles explicitly for capture/composition;
+Google Play export/validation/packaging automatically selects all three Android
+profiles when `--devices` is omitted.
+
+| Device ID | Portrait PNG size | Pixel ratio |
+| --- | --- | --- |
+| `iphone-medium` | 1206 × 2622 | 3 |
+| `iphone-large` | 1320 × 2868 | 3 |
+| `ipad-13` | 2064 × 2752 | 2 |
+| `iphone-duo-outer` | 1398 × 2034 | 3 |
+| `iphone-duo-inner` | 2007 × 2853 | 3 |
+| `android-phone` | 1080 × 1920 | 3 |
+| `android-tablet-7` | 1440 × 2560 | 2 |
+| `android-tablet-10` | 2160 × 3840 | 2.5 |
+
+For a new viewport, add a new device ID with physical `width`/`height`,
+`pixelRatio`, and logical `safeArea` insets rather than resizing old images.
+`--config /absolute/path/config.json` permits a separate reviewed profile.
+
+## Google Play phone and tablet screenshots
+
+These are fresh renders of the app with `TargetPlatform.android`, not resized
+iPhone screenshots. Their logical widths are 360, 720, and 864 dp, respectively,
+so the tablets show the app's actual responsive tablet layout. Android safe-area
+fixtures are 24 dp at top and bottom; the renderer does not paint Apple status
+bars, a Dynamic Island, Apple hardware, or a fake system UI. As with iOS capture,
+this is an offscreen real-widget preview, not an emulator/physical-device capture.
+
+The [Google Play screenshot guide](https://support.google.com/googleplay/android-developer/answer/9866151?hl=en)
+recommends at least four screenshots at 1080px or higher, 9:16 portrait or 16:9
+landscape. It specifically recommends **no extra non-app text for large-screen
+screenshots**. This tool exports seven images per device/language: phone images
+retain the approved localized headlines/background (without decorative device
+frames or corner masking), while both tablet sets contain **only the complete
+app capture**, with no additional captions, backgrounds, or device imagery.
+Every file is opaque RGB PNG, portrait 9:16, 1080–3840px, and at most 8 MiB.
+Captions are descriptive, without ranking, price, promotional claims, or install
+calls to action. No files are stretched or cropped.
+
+```sh
+python3 tool/store_assets/store_assets.py capture --devices android-phone,android-tablet-7,android-tablet-10
+python3 tool/store_assets/store_assets.py compose --devices android-phone
+python3 tool/store_assets/store_assets.py export-google-play
+python3 tool/store_assets/store_assets.py validate --kind google-play
+python3 tool/store_assets/store_assets.py package --kind google-play
+```
+
+All commands also accept `--languages` and `--scenes`.
+Use `--overwrite` explicitly when rerunning capture, composition, export, or
+packaging. Export verifies Android provenance in the source capture manifests,
+checks frame-free phone composition, and copies the source PNGs byte-for-byte.
+It never relabels iOS imagery as Android. Validation checks exported hashes
+against their sources as well as pixel dimensions, color mode, and file size.
+Existing iOS source and marketing files remain untouched.
+
+Upload-ready folders:
+
+```text
+build/store-assets/google-play/<Google Play locale>/
+  feature-graphic.png
+  phone/01-ingredients.png ... 07-surprise.png
+  tablet-7/01-ingredients.png ... 07-surprise.png
+  tablet-10/01-ingredients.png ... 07-surprise.png
+```
+
+The narrative order is ingredients → cocktails → almost ready → shopping →
+portions → party → surprise, matching the approved marketing sequence. Locale
+IDs are Google Play's (`ru-RU`, `zh-CN`, `ja-JP`, `it-IT`, `ar`, etc.), not
+App Store IDs. Canonical raw/marketing paths keep their original names and
+locale keys. `google-play-manifest.json` records every source path, platform,
+device type, caption policy, localized `altText` (at most 140 characters), byte
+size, and SHA-256 hash. The separate
+`my-bar-google-play.zip` uses `<Google Play locale>/<device type>/<ordered name>`
+members and contains this manifest. `--kind all` remains the existing Apple
+raw/marketing/creative bundle; Google Play packaging is deliberately explicit.
+
+Review translations and representative phone/tablet images before uploading.
+The tool does not log in, upload assets, or publish a release. Screen-specific
+alt text can be based on localized scene captions, limited to 140 characters as
+recommended by Google Play. Tablet UI-only captures still contain localized
+in-app text; removal of the external marketing caption is intentional.
+
+## Localized Google Play feature graphics
+
+`compose-feature-graphics` adds one **1024 × 500** banner per language to the
+same Google Play locale folders as the screenshots. It reuses the approved
+`artwork/cocktails-master.png`, with a localized headline and brand from
+`feature_graphic_copy.json`. This is marketing artwork, not an app screenshot:
+it does not draw invented app UI, device frames, ratings, ranking badges,
+prices, or install calls to action. Arabic uses RTL layout with the text and
+artwork positions reversed, without mirroring the artwork itself. Offline
+Noto fonts handle Arabic, Devanagari, Chinese, Japanese, and Korean.
+
+```sh
+python3 tool/store_assets/store_assets.py compose-feature-graphics
+python3 tool/store_assets/store_assets.py validate --kind feature-graphics
+python3 tool/store_assets/store_assets.py package --kind feature-graphics
+python3 tool/store_assets/store_assets.py package --kind google-play --overwrite
+```
+
+Use `--languages en,ru,ar` for a subset or omit it for all 13 languages. Feature
+graphics are independent of devices and screenshot scenes; `--devices` and
+`--scenes` therefore do not apply to feature-only commands. The compositor
+checks selected copy, local artwork, fonts, output paths, and overwrite policy
+before starting Flutter. Do not run it alongside another Flutter build/test.
+Use `--overwrite` explicitly to replace selected banners while retaining all
+unselected graphics and screenshot files.
+
+Each banner is an opaque 24-bit RGB PNG, with no alpha channel and a
+conservative 15 MB (15,000,000 bytes) file-size limit. The
+[Google Play preview asset guide](https://support.google.com/googleplay/android-developer/answer/9866151?hl=en)
+specifies 1024 × 500 feature graphics. Inspect every translation, text layout,
+and crop at actual size before uploading; automated validation does not
+certify store acceptance or artistic quality.
+
+`google-play-feature-graphic-manifest.json` records the language, Google Play
+locale, localized copy and alt text, direction, fonts, layout bounds, source
+artwork/config/copy hashes, and final RGB PNG hashes/byte sizes. Validation
+rejects stale inputs, wrong locales, duplicate or unsafe paths, altered PNGs,
+non-RGB images, incorrect dimensions, and any claim that assets were uploaded.
+
+The standalone `my-bar-feature-graphics.zip` contains only the selected
+`<Google Play locale>/feature-graphic.png` files and their manifests.
+`package --kind google-play` also includes these banners **when their manifest
+exists**, and validates them before packaging. `validate --kind google-play`
+likewise checks any existing banner manifest and reports separate screenshot
+and feature-graphic counts in its total. This produces 286 images for
+the full set: 273 phone/tablet screenshots plus 13 feature graphics. A missing
+feature-graphic manifest preserves the existing screenshot-only package
+behavior; an existing but invalid or incomplete selected manifest is an error,
+not a reason to silently omit banners. Device/scene selectors on the combined
+package filter screenshots only; language selection applies to both sets.
+The Apple `--kind all` bundle and its default device selection are unchanged.
+No command signs in to Play Console or uploads the generated files.
+
+## App Store Header and Search Results
+
+Use one approved, text-free PNG artwork source with the key subject close to
+the center. This is marketing artwork, not an app screenshot. Export performs
+only mechanical focal-point cropping, Lanczos resizing and RGB conversion:
+
+```sh
+python3 tool/store_assets/store_assets.py export-creatives --source tool/store_assets/artwork/cocktails-master.png --focal-point 0.5,0.417
+python3 tool/store_assets/store_assets.py validate --kind creatives
+python3 tool/store_assets/store_assets.py package --kind creatives
+```
+
+| Asset | PNG size | Important-content safe rectangle (x, y, width, height) |
+| --- | --- | --- |
+| Header | 3840 × 1646 | 1097, 493, 1646, 661 |
+| Search Results | 3840 × 2560 | 836, 765, 2168, 1030 |
+| Universal | 5244 × 2950 | 1921, 660, 1402, 962 |
+
+The normalized source focal point defaults to the image center (`0.5,0.5`).
+The committed My Bar artwork uses `0.5,0.417`; its built-in image-generation
+prompt set and export settings are saved in `artwork/provenance.json`.
+The crop tries to place that point at each safe rectangle's center, constrained
+by the source image edges; it never adds blank borders. The actual resulting
+focal coordinates are recorded in the manifest. This does not guarantee that
+the entire subject fits the safe rectangle. Inspect `review-guides/*-safe-area.png`
+(green rectangle, pink focal cross) and Apple's overlays manually. Review guides
+are **not upload assets** and are deliberately excluded from ZIP packages.
+Avoid small text, UI screenshots, device frames, or logos
+near crop edges. This creative-artwork exporter does not paint captions, badges,
+or app UI.
+The same three text-free files serve all 13 locales; `creative-manifest.json`
+maps every selected App Store locale to the shared PNGs without duplicates.
+
+Output: `creatives/header.png`, `creatives/search-results.png`,
+`creatives/universal.png`, `creative-manifest.json`, and optional
+`my-bar-creatives.zip` plus its SHA-256 manifest.
+
+The **Product Page Information** section in App Store Connect also contains
+metadata fields; artwork does not replace translations of those fields.
+Do not upload an SVG copied from the web form: these image outputs are PNGs.
+
+## Validation and reproducibility
+
+```sh
+python3 -m unittest discover -s tool/store_assets -p 'test_*.py'
+python3 tool/store_assets/store_assets.py validate --kind all
+python3 tool/store_assets/store_assets.py package --kind all
+```
+
+Validation checks presence, PNG decoding, exact physical dimensions, and opaque
+RGB mode. Marketing validation additionally requires `marketing-manifest.json`
+with an entry matching each selected image, its source path, locale, scene,
+dimensions, and unedited/uncropped offscreen-UI provenance. Missing PNGs or
+manifest entries are errors, even if another set exists in the same folder.
+It does not certify translations, native-device rendering, artistic
+quality, or store acceptance. Packages include a file list with byte sizes and
+SHA-256 hashes, plus separate App Store/Google Play locale mappings. Existing
+`capture-manifest.json`, `marketing-manifest.json`, and/or `creative-manifest.json` are included for the
+selected asset kind, with their own paths and hashes under `metadata`. Image
+counts are separate from metadata counts. Screenshot entries explicitly retain
+the offscreen renderer, non-native-device status, and offline font-fixture
+provenance. A capture index may describe additional captures outside the selected
+ZIP subset; the package's `files` list is the definitive set of included images.
+For marketing-only ZIPs use each entry's `archivePath` to locate its ZIP member;
+`path` always identifies the preserved canonical source on disk.
+The default `--kind all` now deliberately includes all three sets: raw
+screenshots, composed marketing screenshots, and the three shared creative
+assets. It therefore requires both screenshot sets, not just the raw sources.
+Use `--kind screenshots`, `--kind marketing`, or `--kind creatives` for separate
+review/upload archives. `--scenes` limits both screenshot sets; it does not
+filter Header/Search Results/Universal creative artwork.
+ZIP entry
+timestamps are fixed so unchanged inputs produce the same package hash.
+`package` also refuses overwriting unless explicitly requested.
+
+Official references (verify again before upload if requirements change):
+
+- [Apple screenshot specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/)
+- [Apple asset best practices](https://developer.apple.com/app-store/asset-best-practices/)
+- [Apple creative asset specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/creative-assets-specifications/)
+- [Apple design templates (Sketch)](https://devimages-cdn.apple.com/design/resources/download/app-store/creative_assets-templates.sketch)
+
+iPhone Duo screenshots are optional as of the specification review on
+2026-10-19. Apple requires them starting in April 2027 for apps built with
+iOS 27.1 SDK or later; check the screenshot specification again at submission.
+
+No credentials, signing keys, store API tokens, or upload endpoints are used.

@@ -1,0 +1,404 @@
+{
+  "schemaVersion": 1,
+  "sequence": [
+    "01-ingredients",
+    "02-cocktails",
+    "07-almost-ready",
+    "05-shopping",
+    "03-recipe",
+    "04-party",
+    "06-surprise"
+  ],
+  "languages": {
+    "en": {
+      "01-ingredients": {
+        "headline": "Your home bar",
+        "subtitle": "Mark what you have. Find what you can make."
+      },
+      "02-cocktails": {
+        "headline": "Find your next cocktail",
+        "subtitle": "Explore 384 recipes, even offline."
+      },
+      "03-recipe": {
+        "headline": "Mix the right amount",
+        "subtitle": "Scale recipe quantities to your servings."
+      },
+      "04-party": {
+        "headline": "Plan your party",
+        "subtitle": "Choose cocktails and servings. Get one list."
+      },
+      "05-shopping": {
+        "headline": "Shop smarter",
+        "subtitle": "See which ingredients unlock more recipes."
+      },
+      "06-surprise": {
+        "headline": "Let us surprise you",
+        "subtitle": "Discover your next cocktail with one tap."
+      },
+      "07-almost-ready": {
+        "headline": "Almost ready to mix",
+        "subtitle": "Find recipes missing just one or two ingredients."
+      }
+    },
+    "ru": {
+      "01-ingredients": {
+        "headline": "Ваш домашний бар",
+        "subtitle": "Отметьте, что есть. Узнайте, что приготовить."
+      },
+      "02-cocktails": {
+        "headline": "Найдите свой коктейль",
+        "subtitle": "384 рецепта под рукой — даже без интернета."
+      },
+      "03-recipe": {
+        "headline": "Точные пропорции",
+        "subtitle": "Пересчитайте ингредиенты на нужное число порций."
+      },
+      "04-party": {
+        "headline": "Спланируйте вечеринку",
+        "subtitle": "Выберите коктейли и порции. Получите общий список."
+      },
+      "05-shopping": {
+        "headline": "Покупайте с умом",
+        "subtitle": "Узнайте, какие покупки откроют больше рецептов."
+      },
+      "06-surprise": {
+        "headline": "Удивите себя",
+        "subtitle": "Новый коктейль — одним нажатием."
+      },
+      "07-almost-ready": {
+        "headline": "Почти всё готово",
+        "subtitle": "Найдите рецепты, где не хватает 1–2 ингредиентов."
+      }
+    },
+    "es": {
+      "01-ingredients": {
+        "headline": "Tu bar en casa",
+        "subtitle": "Marca lo que tienes. Descubre qué puedes preparar."
+      },
+      "02-cocktails": {
+        "headline": "Encuentra tu próximo cóctel",
+        "subtitle": "Explora 384 recetas, incluso sin conexión."
+      },
+      "03-recipe": {
+        "headline": "La cantidad justa",
+        "subtitle": "Ajusta las cantidades al número de raciones."
+      },
+      "04-party": {
+        "headline": "Organiza tu fiesta",
+        "subtitle": "Elige cócteles y raciones. Obtén una sola lista."
+      },
+      "05-shopping": {
+        "headline": "Compra con criterio",
+        "subtitle": "Descubre qué ingredientes te permiten preparar más recetas."
+      },
+      "06-surprise": {
+        "headline": "Déjate sorprender",
+        "subtitle": "Descubre tu próximo cóctel con un toque."
+      },
+      "07-almost-ready": {
+        "headline": "Ya casi puedes prepararlo",
+        "subtitle": "Recetas a las que solo les faltan uno o dos ingredientes."
+      }
+    },
+    "pt": {
+      "01-ingredients": {
+        "headline": "Seu bar em casa",
+        "subtitle": "Marque o que você tem. Veja o que pode preparar."
+      },
+      "02-cocktails": {
+        "headline": "Encontre seu próximo coquetel",
+        "subtitle": "Explore 384 receitas, mesmo sem internet."
+      },
+      "03-recipe": {
+        "headline": "A quantidade certa",
+        "subtitle": "Ajuste as quantidades ao número de porções."
+      },
+      "04-party": {
+        "headline": "Planeje sua festa",
+        "subtitle": "Escolha coquetéis e porções. Receba uma lista única."
+      },
+      "05-shopping": {
+        "headline": "Compre com inteligência",
+        "subtitle": "Veja quais ingredientes permitem preparar mais receitas."
+      },
+      "06-surprise": {
+        "headline": "Deixe a surpresa com a gente",
+        "subtitle": "Descubra seu próximo coquetel com um toque."
+      },
+      "07-almost-ready": {
+        "headline": "Quase pronto para preparar",
+        "subtitle": "Receitas que precisam de só mais um ou dois ingredientes."
+      }
+    },
+    "de": {
+      "01-ingredients": {
+        "headline": "Deine Bar zu Hause",
+        "subtitle": "Markiere deine Zutaten. Entdecke passende Cocktails."
+      },
+      "02-cocktails": {
+        "headline": "Finde deinen nächsten Cocktail",
+        "subtitle": "Entdecke 384 Rezepte, auch offline."
+      },
+      "03-recipe": {
+        "headline": "Die richtige Menge",
+        "subtitle": "Passe die Zutatenmengen an deine Portionen an."
+      },
+      "04-party": {
+        "headline": "Plane deine Party",
+        "subtitle": "Cocktails und Portionen wählen. Eine Zutatenliste erhalten."
+      },
+      "05-shopping": {
+        "headline": "Clever einkaufen",
+        "subtitle": "Sieh, mit welchen Zutaten mehr Rezepte möglich werden."
+      },
+      "06-surprise": {
+        "headline": "Lass dich überraschen",
+        "subtitle": "Entdecke deinen nächsten Cocktail mit einem Tippen."
+      },
+      "07-almost-ready": {
+        "headline": "Fast bereit zum Mixen",
+        "subtitle": "Finde Rezepte, für die nur ein oder zwei Zutaten fehlen."
+      }
+    },
+    "fr": {
+      "01-ingredients": {
+        "headline": "Votre bar à la maison",
+        "subtitle": "Cochez vos ingrédients. Découvrez quoi préparer."
+      },
+      "02-cocktails": {
+        "headline": "Trouvez votre prochain cocktail",
+        "subtitle": "Explorez 384 recettes, même hors ligne."
+      },
+      "03-recipe": {
+        "headline": "Les bonnes quantités",
+        "subtitle": "Adaptez les quantités au nombre de portions."
+      },
+      "04-party": {
+        "headline": "Préparez votre soirée",
+        "subtitle": "Cocktails et portions : une seule liste d’ingrédients."
+      },
+      "05-shopping": {
+        "headline": "Des achats bien pensés",
+        "subtitle": "Repérez les ingrédients qui ouvrent de nouvelles recettes."
+      },
+      "06-surprise": {
+        "headline": "Laissez-vous surprendre",
+        "subtitle": "Découvrez votre prochain cocktail en un geste."
+      },
+      "07-almost-ready": {
+        "headline": "Presque prêt à mixer",
+        "subtitle": "Des recettes auxquelles il manque un ou deux ingrédients."
+      }
+    },
+    "it": {
+      "01-ingredients": {
+        "headline": "Il tuo bar a casa",
+        "subtitle": "Segna ciò che hai. Scopri cosa puoi preparare."
+      },
+      "02-cocktails": {
+        "headline": "Trova il tuo prossimo cocktail",
+        "subtitle": "Esplora 384 ricette, anche senza connessione."
+      },
+      "03-recipe": {
+        "headline": "Le quantità giuste",
+        "subtitle": "Adatta le quantità al numero di porzioni."
+      },
+      "04-party": {
+        "headline": "Organizza la tua festa",
+        "subtitle": "Scegli cocktail e porzioni. Ottieni un unico elenco."
+      },
+      "05-shopping": {
+        "headline": "Fai la spesa con criterio",
+        "subtitle": "Scopri quali ingredienti ti permettono di fare più ricette."
+      },
+      "06-surprise": {
+        "headline": "Lasciati sorprendere",
+        "subtitle": "Scopri il tuo prossimo cocktail con un tocco."
+      },
+      "07-almost-ready": {
+        "headline": "Manca davvero poco",
+        "subtitle": "Trova ricette a cui mancano solo uno o due ingredienti."
+      }
+    },
+    "tr": {
+      "01-ingredients": {
+        "headline": "Evdeki barınız",
+        "subtitle": "Elinizdekileri işaretleyin. Ne yapabileceğinizi görün."
+      },
+      "02-cocktails": {
+        "headline": "Sıradaki kokteylinizi bulun",
+        "subtitle": "İnternet olmadan da 384 tarifi keşfedin."
+      },
+      "03-recipe": {
+        "headline": "Tam kararında ölçüler",
+        "subtitle": "Malzeme miktarlarını porsiyon sayısına göre ayarlayın."
+      },
+      "04-party": {
+        "headline": "Partinizi planlayın",
+        "subtitle": "Kokteyl ve porsiyonları seçin. Tek malzeme listesi alın."
+      },
+      "05-shopping": {
+        "headline": "Akıllı alışveriş",
+        "subtitle": "Hangi malzemelerle daha çok tarif yapabileceğinizi görün."
+      },
+      "06-surprise": {
+        "headline": "Sürprize yer açın",
+        "subtitle": "Tek dokunuşla sıradaki kokteylinizi keşfedin."
+      },
+      "07-almost-ready": {
+        "headline": "Hazır olmasına az kaldı",
+        "subtitle": "Yalnızca bir veya iki malzemesi eksik tarifleri bulun."
+      }
+    },
+    "zh": {
+      "01-ingredients": {
+        "headline": "你的家庭酒吧",
+        "subtitle": "勾选家中已有的材料，看看能调出哪些鸡尾酒。"
+      },
+      "02-cocktails": {
+        "headline": "发现下一杯鸡尾酒",
+        "subtitle": "384 款配方，离线也能随时查看。"
+      },
+      "03-recipe": {
+        "headline": "份量恰到好处",
+        "subtitle": "按所需份数，轻松换算配方用量。"
+      },
+      "04-party": {
+        "headline": "轻松筹备聚会",
+        "subtitle": "选好鸡尾酒和份数，自动汇总材料清单。"
+      },
+      "05-shopping": {
+        "headline": "采购更有计划",
+        "subtitle": "看看添购哪些材料，就能解锁更多配方。"
+      },
+      "06-surprise": {
+        "headline": "让下一杯充满惊喜",
+        "subtitle": "轻点一下，发现下一款鸡尾酒。"
+      },
+      "07-almost-ready": {
+        "headline": "离调好只差一点",
+        "subtitle": "发现只缺一两种材料就能调制的配方。"
+      }
+    },
+    "ja": {
+      "01-ingredients": {
+        "headline": "おうちが、あなたのバーに",
+        "subtitle": "手持ちの材料を選んで、作れるカクテルを発見。"
+      },
+      "02-cocktails": {
+        "headline": "次に作る一杯を見つけよう",
+        "subtitle": "384 のレシピを、オフラインでも。"
+      },
+      "03-recipe": {
+        "headline": "作りたい杯数にぴったり",
+        "subtitle": "必要な杯数に合わせて、材料の分量を計算。"
+      },
+      "04-party": {
+        "headline": "パーティーの準備も簡単",
+        "subtitle": "カクテルと杯数を選んで、材料をひとつのリストに。"
+      },
+      "05-shopping": {
+        "headline": "買い物をもっと賢く",
+        "subtitle": "どの材料を足せば、作れるレシピが増えるかチェック。"
+      },
+      "06-surprise": {
+        "headline": "次の一杯は、おまかせ",
+        "subtitle": "ワンタップで、新しいカクテルに出会おう。"
+      },
+      "07-almost-ready": {
+        "headline": "あと少しで作れる一杯",
+        "subtitle": "足りない材料があと 1〜2 種類のレシピを発見。"
+      }
+    },
+    "ko": {
+      "01-ingredients": {
+        "headline": "나만의 홈 바",
+        "subtitle": "집에 있는 재료를 고르면 만들 수 있는 칵테일이 보여요."
+      },
+      "02-cocktails": {
+        "headline": "다음 칵테일을 찾아보세요",
+        "subtitle": "오프라인에서도 384가지 레시피를 만나보세요."
+      },
+      "03-recipe": {
+        "headline": "딱 맞는 분량으로",
+        "subtitle": "원하는 잔 수에 맞춰 재료의 양을 계산하세요."
+      },
+      "04-party": {
+        "headline": "파티 준비도 간편하게",
+        "subtitle": "칵테일과 잔 수를 고르면 재료가 한 목록에 모여요."
+      },
+      "05-shopping": {
+        "headline": "더 똑똑한 장보기",
+        "subtitle": "어떤 재료를 사면 더 많은 레시피를 만들 수 있을까요?"
+      },
+      "06-surprise": {
+        "headline": "새로운 한 잔의 발견",
+        "subtitle": "한 번의 탭으로 다음 칵테일을 만나보세요."
+      },
+      "07-almost-ready": {
+        "headline": "재료 한두 개만 더 있으면",
+        "subtitle": "재료 1~2개만 더 있으면 만들 수 있는 레시피를 찾아보세요."
+      }
+    },
+    "hi": {
+      "01-ingredients": {
+        "headline": "आपका होम बार",
+        "subtitle": "घर की सामग्री चुनें। जानें कौन से कॉकटेल बन सकते हैं।"
+      },
+      "02-cocktails": {
+        "headline": "अपना अगला कॉकटेल खोजें",
+        "subtitle": "384 रेसिपी, इंटरनेट के बिना भी।"
+      },
+      "03-recipe": {
+        "headline": "सही मात्रा, हर बार",
+        "subtitle": "हर रेसिपी की मात्रा अपनी सर्विंग के हिसाब से बदलें।"
+      },
+      "04-party": {
+        "headline": "पार्टी की तैयारी आसान",
+        "subtitle": "कॉकटेल और सर्विंग चुनें। सामग्री की एक सूची पाएँ।"
+      },
+      "05-shopping": {
+        "headline": "समझदारी से खरीदें",
+        "subtitle": "जानें किन चीज़ों से और रेसिपी बना सकते हैं।"
+      },
+      "06-surprise": {
+        "headline": "कुछ नया आज़माएँ",
+        "subtitle": "एक टैप में अगला कॉकटेल खोजें।"
+      },
+      "07-almost-ready": {
+        "headline": "बस थोड़ी-सी कमी",
+        "subtitle": "ऐसी रेसिपी देखें जिनकी बस 1–2 चीज़ें खरीदनी हों।"
+      }
+    },
+    "ar": {
+      "01-ingredients": {
+        "headline": "بار منزلي خاص بك",
+        "subtitle": "حدّد ما لديك، واكتشف ما يمكنك تحضيره."
+      },
+      "02-cocktails": {
+        "headline": "اكتشف كوكتيلك القادم",
+        "subtitle": "استكشف 384 وصفة، حتى دون إنترنت."
+      },
+      "03-recipe": {
+        "headline": "مقادير مضبوطة لكل حصة",
+        "subtitle": "عدّل المقادير حسب عدد الحصص التي تريدها."
+      },
+      "04-party": {
+        "headline": "خطّط لحفلتك",
+        "subtitle": "اختر الكوكتيلات والحصص، واجمع المكوّنات في قائمة واحدة."
+      },
+      "05-shopping": {
+        "headline": "تسوّق بذكاء",
+        "subtitle": "اكتشف المكوّنات التي تتيح لك تحضير وصفات أكثر."
+      },
+      "06-surprise": {
+        "headline": "دعنا نفاجئك",
+        "subtitle": "اكتشف كوكتيلك القادم بلمسة واحدة."
+      },
+      "07-almost-ready": {
+        "headline": "خطوة صغيرة وتكتمل الوصفة",
+        "subtitle": "اعثر على وصفات لا ينقصها سوى مكوّن أو اثنين."
+      }
+    }
+  }
+}

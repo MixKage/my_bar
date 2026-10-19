@@ -19,8 +19,9 @@ extension MeasurementSystemX on MeasurementSystem {
       case 'cl':
         return MeasurementSystem.cl;
       case 'fl_oz':
-      default:
         return MeasurementSystem.flOz;
+      default:
+        return MeasurementSystem.ml;
     }
   }
 }

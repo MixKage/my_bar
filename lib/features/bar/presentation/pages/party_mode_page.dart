@@ -97,182 +97,202 @@ class _PartyModePageState extends State<PartyModePage> {
         bottomGlow: const Color(0xFF6A70FF),
         reduceEffects: widget.powerSavingMode,
         child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 6, 12, 8),
-                child: Row(
+          child: CustomScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: Column(
                   children: <Widget>[
-                    IconButton(
-                      tooltip: context.tr('Назад', 'Back'),
-                      onPressed: () => Navigator.of(context).maybePop(),
-                      icon: const Icon(Icons.arrow_back_rounded),
-                    ),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 6, 12, 8),
+                      child: Row(
                         children: <Widget>[
-                          Text(
-                            context.tr('Режим вечеринки', 'Party mode'),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w800,
-                            ),
+                          IconButton(
+                            tooltip: context.tr('Назад', 'Back'),
+                            onPressed: () => Navigator.of(context).maybePop(),
+                            icon: const Icon(Icons.arrow_back_rounded),
                           ),
-                          Text(
-                            context.tr(
-                              'Выберите коктейли и количество порций',
-                              'Choose cocktails and serving counts',
-                            ),
-                            style: const TextStyle(
-                              color: Color(0xFFB8C3E2),
-                              fontSize: 12,
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  context.tr('Режим вечеринки', 'Party mode'),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                Text(
+                                  context.tr(
+                                    'Выберите коктейли и количество порций',
+                                    'Choose cocktails and serving counts',
+                                  ),
+                                  style: const TextStyle(
+                                    color: Color(0xFFB8C3E2),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        controller: _searchController,
+                        onChanged: (value) => setState(() => _query = value),
+                        decoration: InputDecoration(
+                          hintText: context.tr(
+                            'Поиск коктейлей…',
+                            'Search cocktails…',
+                          ),
+                          prefixIcon: const Icon(Icons.search_rounded),
+                          suffixIcon: _query.isEmpty
+                              ? null
+                              : IconButton(
+                                  tooltip: context.tr('Очистить', 'Clear'),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                    setState(() => _query = '');
+                                  },
+                                  icon: const Icon(Icons.close_rounded),
+                                ),
+                          filled: true,
+                          fillColor: const Color(0xCC111528),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: const BorderSide(
+                              color: Color(0x55768BDA),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
+                      child: Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        alignment: WrapAlignment.spaceBetween,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: <Widget>[
+                          FilterChip(
+                            selected: _readyOnly,
+                            checkmarkColor: Colors.white,
+                            selectedColor: const Color(0x554F63CC),
+                            labelStyle: const TextStyle(color: Colors.white),
+                            avatar: const Icon(
+                              Icons.check_circle_rounded,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                            label: Text(
+                              context.tr('Только доступные', 'Ready only'),
+                            ),
+                            onSelected: (value) =>
+                                setState(() => _readyOnly = value),
+                          ),
+                          if (selectedCocktailCount == 0)
+                            TextButton.icon(
+                              onPressed: _selectReadyCocktails,
+                              icon: const Icon(
+                                Icons.playlist_add_check_rounded,
+                              ),
+                              label: Text(
+                                context.tr('Выбрать готовые', 'Select ready'),
+                              ),
+                            )
+                          else
+                            IconButton(
+                              tooltip: context.tr(
+                                'Снять выбор',
+                                'Clear selection',
+                              ),
+                              onPressed: () {
+                                HapticFeedback.selectionClick();
+                                setState(_servingsByCocktailId.clear);
+                              },
+                              icon: const Icon(Icons.deselect_rounded),
+                            ),
+                        ],
+                      ),
+                    ),
+                    _PartySelectionSummary(
+                      cocktailCount: selectedCocktailCount,
+                      servingCount: totalServings,
+                    ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: TextField(
-                  controller: _searchController,
-                  onChanged: (value) => setState(() => _query = value),
-                  decoration: InputDecoration(
-                    hintText: context.tr(
-                      'Поиск коктейлей…',
-                      'Search cocktails…',
-                    ),
-                    prefixIcon: const Icon(Icons.search_rounded),
-                    suffixIcon: _query.isEmpty
-                        ? null
-                        : IconButton(
-                            tooltip: context.tr('Очистить', 'Clear'),
-                            onPressed: () {
-                              _searchController.clear();
-                              setState(() => _query = '');
-                            },
-                            icon: const Icon(Icons.close_rounded),
+              if (filtered.isEmpty)
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Icon(
+                          Icons.search_off_rounded,
+                          color: Color(0xFF8997BF),
+                          size: 38,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          context.tr('Ничего не найдено', 'Nothing found'),
+                          style: const TextStyle(color: Color(0xFFB8C3E2)),
+                        ),
+                        const SizedBox(height: 10),
+                        OutlinedButton(
+                          onPressed: _resetFilters,
+                          child: Text(
+                            context.tr('Сбросить фильтры', 'Reset filters'),
                           ),
-                    filled: true,
-                    fillColor: const Color(0xCC111528),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: const BorderSide(color: Color(0x55768BDA)),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
-                  alignment: WrapAlignment.spaceBetween,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: <Widget>[
-                    FilterChip(
-                      selected: _readyOnly,
-                      checkmarkColor: Colors.white,
-                      selectedColor: const Color(0x554F63CC),
-                      labelStyle: const TextStyle(color: Colors.white),
-                      avatar: const Icon(
-                        Icons.check_circle_rounded,
-                        size: 16,
-                        color: Colors.white,
-                      ),
-                      label: Text(context.tr('Только доступные', 'Ready only')),
-                      onSelected: (value) => setState(() => _readyOnly = value),
-                    ),
-                    if (selectedCocktailCount == 0)
-                      TextButton.icon(
-                        onPressed: _selectReadyCocktails,
-                        icon: const Icon(Icons.playlist_add_check_rounded),
-                        label: Text(
-                          context.tr('Выбрать готовые', 'Select ready'),
-                        ),
-                      )
-                    else
-                      IconButton(
-                        tooltip: context.tr('Снять выбор', 'Clear selection'),
-                        onPressed: () {
+                )
+              else
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+                  sliver: SliverList.builder(
+                    itemCount: filtered.length,
+                    itemBuilder: (context, index) {
+                      final cocktail = filtered[index];
+                      return _PartyCocktailTile(
+                        key: ValueKey<String>(cocktail.id),
+                        cocktail: cocktail,
+                        missingCount:
+                            widget
+                                .missingIngredientIdsByCocktailId[cocktail.id]
+                                ?.length ??
+                            0,
+                        servings: _servingsByCocktailId[cocktail.id],
+                        powerSavingMode: widget.powerSavingMode,
+                        onSelected: (selected) {
                           HapticFeedback.selectionClick();
-                          setState(_servingsByCocktailId.clear);
+                          setState(() {
+                            if (selected) {
+                              _servingsByCocktailId[cocktail.id] = 1;
+                            } else {
+                              _servingsByCocktailId.remove(cocktail.id);
+                            }
+                          });
                         },
-                        icon: const Icon(Icons.deselect_rounded),
-                      ),
-                  ],
+                        onServingsChanged: (servings) {
+                          setState(() {
+                            _servingsByCocktailId[cocktail.id] = servings;
+                          });
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-              _PartySelectionSummary(
-                cocktailCount: selectedCocktailCount,
-                servingCount: totalServings,
-              ),
-              Expanded(
-                child: filtered.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            const Icon(
-                              Icons.search_off_rounded,
-                              color: Color(0xFF8997BF),
-                              size: 38,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              context.tr('Ничего не найдено', 'Nothing found'),
-                              style: const TextStyle(color: Color(0xFFB8C3E2)),
-                            ),
-                            const SizedBox(height: 10),
-                            OutlinedButton(
-                              onPressed: _resetFilters,
-                              child: Text(
-                                context.tr('Сбросить фильтры', 'Reset filters'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : ListView.builder(
-                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
-                        itemCount: filtered.length,
-                        itemBuilder: (context, index) {
-                          final cocktail = filtered[index];
-                          return _PartyCocktailTile(
-                            key: ValueKey<String>(cocktail.id),
-                            cocktail: cocktail,
-                            missingCount:
-                                widget
-                                    .missingIngredientIdsByCocktailId[cocktail
-                                        .id]
-                                    ?.length ??
-                                0,
-                            servings: _servingsByCocktailId[cocktail.id],
-                            powerSavingMode: widget.powerSavingMode,
-                            onSelected: (selected) {
-                              HapticFeedback.selectionClick();
-                              setState(() {
-                                if (selected) {
-                                  _servingsByCocktailId[cocktail.id] = 1;
-                                } else {
-                                  _servingsByCocktailId.remove(cocktail.id);
-                                }
-                              });
-                            },
-                            onServingsChanged: (servings) {
-                              setState(() {
-                                _servingsByCocktailId[cocktail.id] = servings;
-                              });
-                            },
-                          );
-                        },
-                      ),
-              ),
             ],
           ),
         ),
@@ -397,73 +417,76 @@ class _PartyCocktailTile extends StatelessWidget {
           color: selected ? const Color(0xFF8B91FF) : const Color(0x334F5D88),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        child: Column(
-          children: <Widget>[
-            CheckboxListTile(
-              activeColor: const Color(0xFF596CA9),
-              checkColor: Colors.white,
-              value: selected,
-              onChanged: (value) => onSelected(value ?? false),
-              title: Text(
-                cocktail.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+      child: Material(
+        type: MaterialType.transparency,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: Column(
+            children: <Widget>[
+              CheckboxListTile(
+                activeColor: const Color(0xFF596CA9),
+                checkColor: Colors.white,
+                value: selected,
+                onChanged: (value) => onSelected(value ?? false),
+                title: Text(
+                  cocktail.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              subtitle: Text(
-                missingCount == 0
-                    ? context.tr('Можно приготовить сейчас', 'Ready now')
-                    : context.tr(
-                        'Не хватает ингредиентов: $missingCount',
-                        'Missing ingredients: $missingCount',
-                      ),
-                style: TextStyle(
-                  color: missingCount == 0
-                      ? const Color(0xFF8FFFD4)
-                      : const Color(0xFFFFBDD8),
-                  fontSize: 12,
+                subtitle: Text(
+                  missingCount == 0
+                      ? context.tr('Можно приготовить сейчас', 'Ready now')
+                      : context.tr(
+                          'Не хватает ингредиентов: $missingCount',
+                          'Missing ingredients: $missingCount',
+                        ),
+                  style: TextStyle(
+                    color: missingCount == 0
+                        ? const Color(0xFF8FFFD4)
+                        : const Color(0xFFFFBDD8),
+                    fontSize: 12,
+                  ),
                 ),
+                controlAffinity: ListTileControlAffinity.leading,
               ),
-              controlAffinity: ListTileControlAffinity.leading,
-            ),
-            TweenAnimationBuilder<double>(
-              tween: Tween<double>(end: selected ? 1 : 0),
-              duration: AppMotion.duration(
-                context,
-                AppMotion.standard,
-                powerSavingMode: powerSavingMode,
-              ),
-              curve: AppMotion.enterCurve,
-              builder: (context, value, child) => ClipRect(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  heightFactor: value,
-                  child: ExcludeFocus(
-                    excluding: !selected,
-                    child: ExcludeSemantics(
+              TweenAnimationBuilder<double>(
+                tween: Tween<double>(end: selected ? 1 : 0),
+                duration: AppMotion.duration(
+                  context,
+                  AppMotion.standard,
+                  powerSavingMode: powerSavingMode,
+                ),
+                curve: AppMotion.enterCurve,
+                builder: (context, value, child) => ClipRect(
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    heightFactor: value,
+                    child: ExcludeFocus(
                       excluding: !selected,
-                      child: IgnorePointer(ignoring: !selected, child: child),
+                      child: ExcludeSemantics(
+                        excluding: !selected,
+                        child: IgnorePointer(ignoring: !selected, child: child),
+                      ),
+                    ),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: PortionSelector(
+                      servings: servings ?? 1,
+                      compact: true,
+                      powerSavingMode: powerSavingMode,
+                      onChanged: onServingsChanged,
                     ),
                   ),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: PortionSelector(
-                    servings: servings ?? 1,
-                    compact: true,
-                    powerSavingMode: powerSavingMode,
-                    onChanged: onServingsChanged,
-                  ),
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

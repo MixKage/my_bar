@@ -1,5 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_bar/core/localization/app_language.dart';
+import 'package:my_bar/core/localization/app_translations.dart';
+import 'package:my_bar/core/reviews/native_review_gateway.dart';
+import 'package:my_bar/core/reviews/review_prompt_controller.dart';
+import 'package:my_bar/core/reviews/review_prompt_policy.dart';
+import 'package:my_bar/core/reviews/review_prompt_storage.dart';
 import 'package:my_bar/features/bar/data/onboarding_storage.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
@@ -13,16 +20,227 @@ import 'package:my_bar/features/bar/domain/models/bar_catalog.dart';
 import 'package:my_bar/features/bar/domain/models/catalog_data_source.dart';
 import 'package:my_bar/features/bar/domain/models/cocktail.dart';
 import 'package:my_bar/features/bar/domain/models/ingredient.dart';
+import 'package:my_bar/features/bar/presentation/pages/bar_menu_page.dart';
 import 'package:my_bar/features/bar/presentation/pages/surprise_cocktail_page.dart';
+import 'package:my_bar/features/bar/presentation/pages/raw_bar_page.dart';
+import 'package:my_bar/features/bar/presentation/widgets/neon_bottom_navigation.dart';
 import 'package:my_bar/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  for (final language in ['ru', 'en']) {
+  testWidgets(
+    'saved ingredient action offers a review only after home is idle',
+    (tester) async {
+      final now = DateTime.utc(2026, 10, 20);
+      final storage = InMemoryReviewPromptStorage(
+        initial: ReviewPromptState(
+          firstUsedAt: DateTime.utc(2026, 10, 1),
+          lastObservedAt: DateTime.utc(2026, 10, 3),
+          usageDays: [
+            DateTime.utc(2026, 10, 1),
+            DateTime.utc(2026, 10, 2),
+            DateTime.utc(2026, 10, 3),
+          ],
+          successfulActionCount: 4,
+        ),
+      );
+      final gateway = _ReviewGateway();
+      final controller = ReviewPromptController(
+        storage: storage,
+        gateway: gateway,
+        now: () => now,
+        foregroundDuration: () => const Duration(minutes: 2),
+      );
+      addTearDown(controller.dispose);
+      SharedPreferences.setMockInitialValues({
+        'bar_ui_app_language': 'ru',
+        'bar_ui_power_saving_mode': true,
+      });
+      final preferences = await SharedPreferences.getInstance();
+      await tester.pumpWidget(
+        await _buildApp(
+          preferences: preferences,
+          catalog: _testCatalog,
+          reviewPromptController: controller,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(gateway.requests, 0);
+
+      await tester.tap(find.text('Водка'));
+      await tester.pumpAndSettle();
+      expect(
+        preferences.getStringList('selected_ingredients'),
+        contains('vodka'),
+      );
+      expect(storage.read().successfulActionCount, 5);
+      expect(gateway.requests, 0);
+      await tester.pump(const Duration(seconds: 4));
+      expect(gateway.requests, 1);
+      expect(storage.read().attemptDates, [now]);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
+  for (final bottomInset in [0.0, 34.0]) {
+    for (final powerSavingMode in [false, true]) {
+      testWidgets('bottom navigation keeps a 6-point gap above safe area '
+          '(inset: $bottomInset, power saving: $powerSavingMode)', (
+        tester,
+      ) async {
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(390, 844);
+        tester.view.padding = FakeViewPadding(top: 47, bottom: bottomInset);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetPadding);
+        SharedPreferences.setMockInitialValues({
+          'bar_ui_app_language': 'ru',
+          'bar_ui_power_saving_mode': powerSavingMode,
+        });
+        final preferences = await SharedPreferences.getInstance();
+        await tester.pumpWidget(
+          await _buildApp(preferences: preferences, catalog: _testCatalog),
+        );
+        await tester.pump();
+        // The neon border animates continuously when power saving is off.
+        await tester.pump(const Duration(milliseconds: 400));
+
+        final navigationPanel = find
+            .descendant(
+              of: find.byType(NeonBottomNavigation),
+              matching: find.byType(ClipRRect),
+            )
+            .first;
+        expect(
+          tester.getRect(navigationPanel).bottom,
+          closeTo(844 - bottomInset - 6, 0.01),
+        );
+        final expectedOverlayPadding =
+            kNeonBottomNavigationHeight + bottomInset + 6;
+        final ingredientsPage = tester.widget<RawBarPage>(
+          find.byType(RawBarPage),
+        );
+        expect(ingredientsPage.powerSavingMode, powerSavingMode);
+        expect(ingredientsPage.bottomOverlayPadding, expectedOverlayPadding);
+
+        await tester.tap(find.text('Барная карта'));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 400));
+        expect(
+          tester
+              .widget<BarMenuPage>(find.byType(BarMenuPage))
+              .bottomOverlayPadding,
+          expectedOverlayPadding,
+        );
+        expect(
+          tester.getRect(navigationPanel).bottom,
+          closeTo(844 - bottomInset - 6, 0.01),
+        );
+        expect(find.text('Доступно 0 из 2'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      });
+    }
+  }
+
+  testWidgets('hidden landscape menu can be restored beside a display cutout', (
+    tester,
+  ) async {
+    // The side toggle has a continuous decorative border animation.
+    Future<void> pumpShell() async {
+      for (var frame = 0; frame < 24; frame++) {
+        await tester.pump(const Duration(milliseconds: 16));
+      }
+    }
+
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(1200, 800);
+    tester.view.padding = const FakeViewPadding(left: 64, top: 24, bottom: 24);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetPadding);
+    SharedPreferences.setMockInitialValues({
+      'bar_ui_app_language': 'ru',
+      'bar_ui_power_saving_mode': true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await pumpShell();
+
+    await tester.tap(find.byTooltip('Скрыть меню'));
+    await pumpShell();
+    final handle = tester.getRect(find.byTooltip('Показать меню'));
+    // The visible portion must extend beyond the system-obscured strip.
+    expect(handle.right, greaterThan(64));
+    await tester.tapAt(Offset(66, handle.center.dy));
+    await pumpShell();
+    expect(find.byTooltip('Скрыть меню'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Скрыть меню'));
+    await pumpShell();
+    // Restoring via the edge swipe must also start inside the safe area.
+    await tester.dragFrom(const Offset(82, 400), const Offset(80, 0));
+    await pumpShell();
+    expect(find.byTooltip('Скрыть меню'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('shell protects controls from system bars and display cutouts', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.padding = const FakeViewPadding(
+      left: 24,
+      top: 32,
+      right: 16,
+      bottom: 48,
+    );
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetPadding);
+    SharedPreferences.setMockInitialValues({
+      'bar_ui_app_language': 'ru',
+      'bar_ui_power_saving_mode': true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await tester.pumpAndSettle();
+
+    final page = tester.getRect(find.byType(RawBarPage));
+    final navigation = tester.getRect(find.byType(NeonBottomNavigation));
+    expect(page.left, greaterThanOrEqualTo(24));
+    expect(page.right, lessThanOrEqualTo(390 - 16));
+    expect(
+      tester.getTopLeft(find.text('Мой Бар')).dy,
+      greaterThanOrEqualTo(32),
+    );
+    expect(navigation.left, greaterThanOrEqualTo(24));
+    expect(navigation.right, lessThanOrEqualTo(390 - 16));
+    expect(navigation.bottom, closeTo(844 - 48, 0.01));
+
+    // Insets can change when switching navigation mode or rotating the phone.
+    tester.view.padding = const FakeViewPadding(top: 24, bottom: 24);
+    await tester.pumpAndSettle();
+    expect(
+      tester.getRect(find.byType(NeonBottomNavigation)).bottom,
+      closeTo(844 - 24, 0.01),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final locale in AppLanguageX.supportedLocales) {
+    final language = locale.languageCode;
     testWidgets('developer website follows $language app language', (
       WidgetTester tester,
     ) async {
-      final isEnglish = language == 'en';
+      final isRussian = language == 'ru';
+      String localized(String ru, String en) =>
+          isRussian ? ru : translateAppText(language, en);
       SharedPreferences.setMockInitialValues({
         'bar_ui_app_language': language,
         'bar_ui_power_saving_mode': true,
@@ -48,14 +266,14 @@ void main() {
       );
       await tester.pumpAndSettle();
       await tester.tap(
-        find.byTooltip(isEnglish ? 'Bar management' : 'Управление баром'),
+        find.byTooltip(localized('Управление баром', 'Bar management')),
       );
       await tester.pumpAndSettle();
-      await tester.tap(find.text(isEnglish ? 'About app' : 'О приложении'));
+      await tester.tap(find.text(localized('О приложении', 'About app')));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
       await tester.tap(
-        find.text(isEnglish ? 'Developer website' : 'Сайт разработчика'),
+        find.text(localized('Сайт разработчика', 'Developer website')),
       );
       await tester.pump();
 
@@ -63,7 +281,7 @@ void main() {
       expect(calls.single.method, 'launch');
       expect(
         calls.single.arguments['url'],
-        isEnglish ? 'https://logion-mobile.com' : 'https://logion-mobile.ru',
+        isRussian ? 'https://logion-mobile.ru' : 'https://whalehub.site/',
       );
       expect(calls.single.arguments['useSafariVC'], isFalse);
       expect(calls.single.arguments['useWebView'], isFalse);
@@ -213,6 +431,7 @@ void main() {
 Future<MyBarApp> _buildApp({
   required SharedPreferences preferences,
   required BarCatalog catalog,
+  ReviewPromptController? reviewPromptController,
 }) async {
   final selectionStorage = SharedPreferencesIngredientSelectionStorage(
     preferences,
@@ -246,7 +465,21 @@ Future<MyBarApp> _buildApp({
     catalogRepository: repository,
     externalProviderSelector: selector,
     initialSnapshot: snapshot,
+    reviewPromptController: reviewPromptController,
   );
+}
+
+class _ReviewGateway implements ReviewGateway {
+  int requests = 0;
+
+  @override
+  bool get isSupported => true;
+
+  @override
+  Future<bool> isAvailable() async => true;
+
+  @override
+  Future<void> requestReview() async => requests++;
 }
 
 class _StaticExternalProvider implements ExternalBarDataProvider {

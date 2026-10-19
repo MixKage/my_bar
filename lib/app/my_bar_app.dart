@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../core/localization/app_language.dart';
 import '../core/localization/app_localization.dart';
+import '../core/reviews/review_prompt_controller.dart';
+import '../core/reviews/review_prompt_coordinator.dart';
 import '../core/theme/app_theme.dart';
 import '../features/bar/cubit/bar_cubit.dart';
 import '../features/bar/cubit/bar_state.dart';
@@ -17,7 +19,7 @@ import '../features/bar/presentation/bar_home_shell.dart';
 import '../features/bar/data/onboarding_storage.dart';
 import '../features/bar/presentation/pages/onboarding_page.dart';
 
-class MyBarApp extends StatelessWidget {
+class MyBarApp extends StatefulWidget {
   const MyBarApp({
     required this.onboardingStorage,
     required this.selectionStorage,
@@ -26,6 +28,7 @@ class MyBarApp extends StatelessWidget {
     required this.catalogRepository,
     required this.externalProviderSelector,
     required this.initialSnapshot,
+    this.reviewPromptController,
     super.key,
   });
 
@@ -37,16 +40,26 @@ class MyBarApp extends StatelessWidget {
   final SelectableExternalBarDataProvider externalProviderSelector;
   final UnifiedCatalogSnapshot initialSnapshot;
 
+  /// Optional for previews/tests; the caller owns this controller's lifetime.
+  final ReviewPromptController? reviewPromptController;
+
+  @override
+  State<MyBarApp> createState() => _MyBarAppState();
+}
+
+class _MyBarAppState extends State<MyBarApp> {
+  final _reviewRouteObserver = RouteObserver<ModalRoute<dynamic>>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<BarCubit>(
       create: (_) => BarCubit(
-        selectionStorage: selectionStorage,
-        settingsStorage: settingsStorage,
-        shoppingListStorage: shoppingListStorage,
-        catalogRepository: catalogRepository,
-        externalProviderSelector: externalProviderSelector,
-        initialSnapshot: initialSnapshot,
+        selectionStorage: widget.selectionStorage,
+        settingsStorage: widget.settingsStorage,
+        shoppingListStorage: widget.shoppingListStorage,
+        catalogRepository: widget.catalogRepository,
+        externalProviderSelector: widget.externalProviderSelector,
+        initialSnapshot: widget.initialSnapshot,
       ),
       child: BlocBuilder<BarCubit, BarState>(
         buildWhen: (previous, current) =>
@@ -56,15 +69,26 @@ class MyBarApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
+            navigatorObservers: [_reviewRouteObserver],
             locale: state.appLanguage.locale,
             supportedLocales: AppLanguageX.supportedLocales,
+            localeListResolutionCallback: (locales, _) =>
+                AppLanguageX.resolveLocale(locales),
             localizationsDelegates: GlobalMaterialLocalizations.delegates,
             onGenerateTitle: (context) => context.tr('Мой Бар', 'My Bar'),
             theme: AppTheme.dark,
             home: OnboardingGate(
-              storage: onboardingStorage,
+              storage: widget.onboardingStorage,
               powerSavingMode: state.effectivePowerSavingMode,
-              child: const BarHomeShell(),
+              child: widget.reviewPromptController == null
+                  ? const BarHomeShell()
+                  : ReviewPromptCoordinator(
+                      controller: widget.reviewPromptController!,
+                      routeObserver: _reviewRouteObserver,
+                      child: BarHomeShell(
+                        reviewPromptController: widget.reviewPromptController,
+                      ),
+                    ),
             ),
           );
         },

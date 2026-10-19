@@ -6,6 +6,46 @@ import 'package:my_bar/features/bar/domain/models/measurement_system.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  test('fresh settings use milliliters', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
+    final preferences = await SharedPreferences.getInstance();
+    final storage = SharedPreferencesBarUiSettingsStorage(preferences);
+
+    expect(const BarUiSettings().measurementSystem, MeasurementSystem.ml);
+    expect(
+      InMemoryBarUiSettingsStorage().readSettings().measurementSystem,
+      MeasurementSystem.ml,
+    );
+    expect(storage.readSettings().measurementSystem, MeasurementSystem.ml);
+  });
+
+  for (final system in MeasurementSystem.values) {
+    test('keeps an existing ${system.storageValue} preference', () async {
+      SharedPreferences.setMockInitialValues(<String, Object>{
+        SharedPreferencesBarUiSettingsStorage.measurementSystemKey:
+            system.storageValue,
+      });
+      final preferences = await SharedPreferences.getInstance();
+      final storage = SharedPreferencesBarUiSettingsStorage(preferences);
+
+      expect(storage.readSettings().measurementSystem, system);
+      await storage.writeSettings(
+        storage.readSettings().copyWith(visitorMode: true),
+      );
+      expect(storage.readSettings().measurementSystem, system);
+    });
+  }
+
+  test('uses milliliters for an invalid stored measurement system', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{
+      SharedPreferencesBarUiSettingsStorage.measurementSystemKey: 'invalid',
+    });
+    final preferences = await SharedPreferences.getInstance();
+    final storage = SharedPreferencesBarUiSettingsStorage(preferences);
+
+    expect(storage.readSettings().measurementSystem, MeasurementSystem.ml);
+  });
+
   test('persists catalog data source setting', () async {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     final preferences = await SharedPreferences.getInstance();
@@ -44,6 +84,6 @@ void main() {
     expect(settings.catalogDataSource, isNull);
     expect(settings.powerSavingMode, isFalse);
     expect(settings.appLanguage, AppLanguage.system);
-    expect(settings.measurementSystem, MeasurementSystem.flOz);
+    expect(settings.measurementSystem, MeasurementSystem.ml);
   });
 }

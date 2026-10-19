@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "app": "My Bar",
+  "languages": [
+    {"code": "en", "name": "English", "nativeName": "English", "appStoreLocale": "en-US", "googlePlayLocale": "en-US", "direction": "ltr"},
+    {"code": "ru", "name": "Russian", "nativeName": "Русский", "appStoreLocale": "ru", "googlePlayLocale": "ru-RU", "direction": "ltr"},
+    {"code": "es", "name": "Spanish", "nativeName": "Español", "appStoreLocale": "es-ES", "googlePlayLocale": "es-ES", "direction": "ltr"},
+    {"code": "pt", "name": "Portuguese (Brazil)", "nativeName": "Português (Brasil)", "appStoreLocale": "pt-BR", "googlePlayLocale": "pt-BR", "direction": "ltr"},
+    {"code": "de", "name": "German", "nativeName": "Deutsch", "appStoreLocale": "de-DE", "googlePlayLocale": "de-DE", "direction": "ltr"},
+    {"code": "fr", "name": "French", "nativeName": "Français", "appStoreLocale": "fr-FR", "googlePlayLocale": "fr-FR", "direction": "ltr"},
+    {"code": "it", "name": "Italian", "nativeName": "Italiano", "appStoreLocale": "it", "googlePlayLocale": "it-IT", "direction": "ltr"},
+    {"code": "tr", "name": "Turkish", "nativeName": "Türkçe", "appStoreLocale": "tr", "googlePlayLocale": "tr-TR", "direction": "ltr"},
+    {"code": "zh", "name": "Chinese (Simplified)", "nativeName": "简体中文", "appStoreLocale": "zh-Hans", "googlePlayLocale": "zh-CN", "direction": "ltr"},
+    {"code": "ja", "name": "Japanese", "nativeName": "日本語", "appStoreLocale": "ja", "googlePlayLocale": "ja-JP", "direction": "ltr"},
+    {"code": "ko", "name": "Korean", "nativeName": "한국어", "appStoreLocale": "ko", "googlePlayLocale": "ko-KR", "direction": "ltr"},
+    {"code": "hi", "name": "Hindi", "nativeName": "हिन्दी", "appStoreLocale": "hi", "googlePlayLocale": "hi-IN", "direction": "ltr"},
+    {"code": "ar", "name": "Arabic", "nativeName": "العربية", "appStoreLocale": "ar-SA", "googlePlayLocale": "ar", "direction": "rtl"}
+  ],
+  "devices": [
+    {"id": "iphone-medium", "name": "iPhone 6.3-inch", "width": 1206, "height": 2622, "pixelRatio": 3, "safeArea": {"top": 62, "bottom": 34, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
+    {"id": "iphone-large", "name": "iPhone 6.9-inch", "width": 1320, "height": 2868, "pixelRatio": 3, "safeArea": {"top": 62, "bottom": 34, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
+    {"id": "ipad-13", "name": "iPad 13-inch", "width": 2064, "height": 2752, "pixelRatio": 2, "safeArea": {"top": 24, "bottom": 20, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
+    {"id": "iphone-duo-outer", "name": "iPhone Duo outer display", "width": 1398, "height": 2034, "pixelRatio": 3, "safeArea": {"top": 62, "bottom": 34, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
+    {"id": "iphone-duo-inner", "name": "iPhone Duo inner display", "width": 2007, "height": 2853, "pixelRatio": 3, "safeArea": {"top": 32, "bottom": 24, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
+    {"id": "android-phone", "name": "Android phone", "width": 1080, "height": 1920, "pixelRatio": 3, "safeArea": {"top": 24, "bottom": 24, "left": 0, "right": 0}, "platform": "android", "googlePlayDeviceType": "phone", "orientation": "portrait", "enabled": false},
+    {"id": "android-tablet-7", "name": "Android 7-inch tablet", "width": 1440, "height": 2560, "pixelRatio": 2, "safeArea": {"top": 24, "bottom": 24, "left": 0, "right": 0}, "platform": "android", "googlePlayDeviceType": "tablet-7", "orientation": "portrait", "enabled": false},
+    {"id": "android-tablet-10", "name": "Android 10-inch tablet", "width": 2160, "height": 3840, "pixelRatio": 2.5, "safeArea": {"top": 24, "bottom": 24, "left": 0, "right": 0}, "platform": "android", "googlePlayDeviceType": "tablet-10", "orientation": "portrait", "enabled": false}
+  ],
+  "screenshots": [
+    {"id": "01-ingredients", "name": "Ingredients at home"},
+    {"id": "02-cocktails", "name": "Cocktail menu"},
+    {"id": "03-recipe", "name": "Recipe and portions"},
+    {"id": "04-party", "name": "Party planner"},
+    {"id": "05-shopping", "name": "Smart shopping list"},
+    {"id": "06-surprise", "name": "Surprise me"},
+    {"id": "07-almost-ready", "name": "Almost ready cocktails"}
+  ],
+  "creatives": [
+    {"id": "header", "width": 3840, "height": 1646, "safeRect": {"x": 1097, "y": 493, "width": 1646, "height": 661}},
+    {"id": "search-results", "width": 3840, "height": 2560, "safeRect": {"x": 836, "y": 765, "width": 2168, "height": 1030}},
+    {"id": "universal", "width": 5244, "height": 2950, "safeRect": {"x": 1921, "y": 660, "width": 1402, "height": 962}}
+  ],
+  "fonts": [
+    {"family": "Manrope", "path": "../../.dart_tool/store_assets/fonts/Manrope.ttf", "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6"},
+    {"family": "Orbitron", "path": "../../.dart_tool/store_assets/fonts/Orbitron.ttf", "sha256": "f42db2dd16e642258e35782916eceb1dcdbea06fb958d77ad71dc5963587e8fd"},
+    {"family": "NotoSansSC", "path": "../../.dart_tool/store_assets/fonts/NotoSansSC.ttf", "sha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da"},
+    {"family": "NotoSansJP", "path": "../../.dart_tool/store_assets/fonts/NotoSansJP.ttf", "sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f"},
+    {"family": "NotoSansKR", "path": "../../.dart_tool/store_assets/fonts/NotoSansKR.ttf", "sha256": "194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252"},
+    {"family": "NotoSansArabic", "path": "../../.dart_tool/store_assets/fonts/NotoSansArabic.ttf", "sha256": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e"},
+    {"family": "NotoSansDevanagari", "path": "../../.dart_tool/store_assets/fonts/NotoSansDevanagari.ttf", "sha256": "14ec4af41f27482216d1c2229f417ff9b1425e1babb014e57d1d40d03229853e"}
+  ],
+  "sources": {
+    "screenshots": "https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/",
+    "creatives": "https://developer.apple.com/app-store/asset-best-practices/",
+    "googlePlayScreenshots": "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en"
+  },
+  "notes": [
+    "Safe-area insets are logical Flutter units; screenshot width and height are physical pixels.",
+    "Safe-area values are capture fixtures, not claims about unpublished hardware geometry.",
+    "Screenshots are rendered from real Flutter widgets at each target viewport, not resized from another device.",
+    "The renderer is not an iPhone Duo simulator or physical-device capture. Review on actual devices before upload.",
+    "Android profiles are selected explicitly to preserve the existing default iOS matrix.",
+    "Google Play phone exports reuse localized marketing captions without decorative device frames. Tablet exports use app-only captures with no added text, as recommended for large screens."
+  ]
+}

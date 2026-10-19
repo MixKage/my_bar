@@ -74,6 +74,8 @@ class BarCubit extends Cubit<BarState> {
   final BarCatalogRepository _catalogRepository;
   final SelectableExternalBarDataProvider _externalProviderSelector;
   CatalogDataSource? _selectedCatalogDataSource;
+  Future<void> _languageRefresh = Future<void>.value();
+  int _languageRevision = 0;
 
   Future<void> toggleIngredient(String ingredientId) async {
     if (state.visitorMode) {
@@ -546,18 +548,33 @@ class BarCubit extends Cubit<BarState> {
     await _applyCatalogSnapshot(snapshot);
   }
 
-  Future<void> setAppLanguage(AppLanguage appLanguage) async {
+  Future<void> setAppLanguage(AppLanguage appLanguage) {
     if (state.appLanguage == appLanguage) {
-      return;
+      return Future<void>.value();
     }
-    final nextState = state.copyWith(appLanguage: appLanguage);
-    emit(nextState);
-    await _persistUiState(nextState);
+    emit(state.copyWith(appLanguage: appLanguage));
+    return refreshLocalizedCatalog();
+  }
 
-    if (_externalProviderSelector.activeDataSource == CatalogDataSource.seed) {
-      final snapshot = await _catalogRepository.refreshExternalCatalog();
-      await _applyCatalogSnapshot(snapshot);
-    }
+  Future<void> refreshLocalizedCatalog() {
+    final revision = ++_languageRevision;
+    final refresh = _languageRefresh.then((_) async {
+      if (isClosed || revision != _languageRevision) return;
+      await _persistUiState(state);
+      if (isClosed || revision != _languageRevision) return;
+      if (_externalProviderSelector.activeDataSource ==
+          CatalogDataSource.seed) {
+        final snapshot = await _catalogRepository.refreshExternalCatalog(
+          shouldApply: () => !isClosed && revision == _languageRevision,
+        );
+        if (!isClosed && revision == _languageRevision) {
+          await _applyCatalogSnapshot(snapshot);
+        }
+      }
+    });
+    // A failed refresh must not block subsequent language changes.
+    _languageRefresh = refresh.catchError((Object _) {});
+    return refresh;
   }
 
   Future<void> setMeasurementSystem(MeasurementSystem measurementSystem) async {

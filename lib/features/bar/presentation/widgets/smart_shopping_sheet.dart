@@ -569,10 +569,12 @@ class _ShoppingIngredientTile extends StatelessWidget {
 }
 
 String _unlockLabel(BuildContext context, int count) {
-  if (context.isEnglish) {
-    return 'Unlocks $count ${count == 1 ? 'cocktail' : 'cocktails'}';
-  }
-  return 'Откроет $count ${_cocktailWord(count)}';
+  return count == 1
+      ? context.tr('Откроет $count коктейль', 'Unlocks $count cocktail')
+      : context.tr(
+          'Откроет $count ${_cocktailWord(count)}',
+          'Unlocks $count cocktails',
+        );
 }
 
 String _cocktailWord(int count) {
