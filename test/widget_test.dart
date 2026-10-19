@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:my_bar/core/localization/app_language.dart';
 import 'package:my_bar/core/localization/app_translations.dart';
+import 'package:my_bar/core/reviews/native_review_gateway.dart';
+import 'package:my_bar/core/reviews/review_prompt_controller.dart';
+import 'package:my_bar/core/reviews/review_prompt_policy.dart';
+import 'package:my_bar/core/reviews/review_prompt_storage.dart';
 import 'package:my_bar/features/bar/data/onboarding_storage.dart';
 import 'package:my_bar/features/bar/data/bar_ui_settings_storage.dart';
 import 'package:my_bar/features/bar/data/catalog_overrides_storage.dart';
@@ -24,6 +28,60 @@ import 'package:my_bar/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  testWidgets(
+    'saved ingredient action offers a review only after home is idle',
+    (tester) async {
+      final now = DateTime.utc(2026, 10, 20);
+      final storage = InMemoryReviewPromptStorage(
+        initial: ReviewPromptState(
+          firstUsedAt: DateTime.utc(2026, 10, 1),
+          lastObservedAt: DateTime.utc(2026, 10, 3),
+          usageDays: [
+            DateTime.utc(2026, 10, 1),
+            DateTime.utc(2026, 10, 2),
+            DateTime.utc(2026, 10, 3),
+          ],
+          successfulActionCount: 4,
+        ),
+      );
+      final gateway = _ReviewGateway();
+      final controller = ReviewPromptController(
+        storage: storage,
+        gateway: gateway,
+        now: () => now,
+        foregroundDuration: () => const Duration(minutes: 2),
+      );
+      addTearDown(controller.dispose);
+      SharedPreferences.setMockInitialValues({
+        'bar_ui_app_language': 'ru',
+        'bar_ui_power_saving_mode': true,
+      });
+      final preferences = await SharedPreferences.getInstance();
+      await tester.pumpWidget(
+        await _buildApp(
+          preferences: preferences,
+          catalog: _testCatalog,
+          reviewPromptController: controller,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(gateway.requests, 0);
+
+      await tester.tap(find.text('Водка'));
+      await tester.pumpAndSettle();
+      expect(
+        preferences.getStringList('selected_ingredients'),
+        contains('vodka'),
+      );
+      expect(storage.read().successfulActionCount, 5);
+      expect(gateway.requests, 0);
+      await tester.pump(const Duration(seconds: 4));
+      expect(gateway.requests, 1);
+      expect(storage.read().attemptDates, [now]);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
   for (final bottomInset in [0.0, 34.0]) {
     for (final powerSavingMode in [false, true]) {
       testWidgets('bottom navigation keeps an 8-point gap above safe area '
@@ -373,6 +431,7 @@ void main() {
 Future<MyBarApp> _buildApp({
   required SharedPreferences preferences,
   required BarCatalog catalog,
+  ReviewPromptController? reviewPromptController,
 }) async {
   final selectionStorage = SharedPreferencesIngredientSelectionStorage(
     preferences,
@@ -406,7 +465,21 @@ Future<MyBarApp> _buildApp({
     catalogRepository: repository,
     externalProviderSelector: selector,
     initialSnapshot: snapshot,
+    reviewPromptController: reviewPromptController,
   );
+}
+
+class _ReviewGateway implements ReviewGateway {
+  int requests = 0;
+
+  @override
+  bool get isSupported => true;
+
+  @override
+  Future<bool> isAvailable() async => true;
+
+  @override
+  Future<void> requestReview() async => requests++;
 }
 
 class _StaticExternalProvider implements ExternalBarDataProvider {

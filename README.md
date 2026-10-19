@@ -32,6 +32,28 @@ A Flutter mobile app for managing your home bar:
 - Persistence: selected ingredients, catalog, and UI settings are saved between launches.
 - JSON import/export with validation (ingredients + cocktails).
 - Empty export protection: shows `Bar catalog not changed` when there is nothing to export.
+- Native App Store / Google Play review requests after established usage, without a custom rating dialog.
+
+### In-app review requests
+
+Requests start no earlier than seven days after this feature first records usage,
+with three distinct usage days, five successfully saved actions, and two minutes
+in the current foreground session. After an action, the home screen must be idle
+for four seconds. Onboarding, covered routes, dialogs, scrolling, text input, and
+background use never trigger a request. Attempts are limited to one per 120 days
+and three per rolling year, including requests the store silently suppresses.
+
+Only bounded usage counters and attempt dates are stored locally; no backend or
+analytics service is needed. Ratings are handled by Apple's / Google's store UI,
+and the app cannot detect whether a review was submitted. No forced store redirect
+or preliminary satisfaction question is shown. These rules follow the
+[Apple](https://developer.apple.com/app-store/ratings-and-reviews/) and
+[Google](https://developer.android.com/guide/playcore/in-app-review) guidelines.
+
+For manual verification, use an iOS development build (TestFlight does not show
+review requests) or a Google Play internal-testing installation. Store quotas can
+suppress the dialog even when eligibility is met; automated tests use a fake
+gateway and clock, without shortening production limits.
 
 ## Technology Stack
 

@@ -5,6 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/my_bar_app.dart';
 import 'core/localization/app_language.dart';
+import 'core/reviews/native_review_gateway.dart';
+import 'core/reviews/review_prompt_controller.dart';
+import 'core/reviews/review_prompt_storage.dart';
 import 'features/bar/data/bar_catalog_json_codec.dart';
 import 'features/bar/data/bar_catalog_storage.dart';
 import 'features/bar/data/bar_ui_settings_storage.dart';
@@ -42,6 +45,10 @@ Future<void> main() async {
       catalogRepository: bootstrap.catalogRepository,
       externalProviderSelector: bootstrap.externalProviderSelector,
       initialSnapshot: bootstrap.initialSnapshot,
+      reviewPromptController: ReviewPromptController(
+        storage: bootstrap.reviewPromptStorage,
+        gateway: NativeReviewGateway(),
+      ),
     ),
   );
 }
@@ -94,6 +101,7 @@ Future<_BootstrapData> _bootstrapApp() async {
 
     return _BootstrapData(
       onboardingStorage: SharedPreferencesOnboardingStorage(preferences),
+      reviewPromptStorage: SharedPreferencesReviewPromptStorage(preferences),
       selectionStorage: selectionStorage,
       settingsStorage: settingsStorage,
       shoppingListStorage: shoppingListStorage,
@@ -132,6 +140,7 @@ Future<_BootstrapData> _bootstrapApp() async {
 
     return _BootstrapData(
       onboardingStorage: InMemoryOnboardingStorage(),
+      reviewPromptStorage: InMemoryReviewPromptStorage(),
       selectionStorage: InMemoryIngredientSelectionStorage(),
       settingsStorage: InMemoryBarUiSettingsStorage(),
       shoppingListStorage: InMemoryShoppingListStorage(),
@@ -194,6 +203,7 @@ Future<BarCatalog> _safeFallbackCatalog(BarCatalogJsonCodec codec) async {
 class _BootstrapData {
   const _BootstrapData({
     required this.onboardingStorage,
+    required this.reviewPromptStorage,
     required this.selectionStorage,
     required this.settingsStorage,
     required this.shoppingListStorage,
@@ -203,6 +213,7 @@ class _BootstrapData {
   });
 
   final OnboardingStorage onboardingStorage;
+  final ReviewPromptStorage reviewPromptStorage;
   final IngredientSelectionStorage selectionStorage;
   final BarUiSettingsStorage settingsStorage;
   final ShoppingListStorage shoppingListStorage;

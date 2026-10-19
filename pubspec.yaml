@@ -28,6 +28,7 @@ dependencies:
   meta: ^1.17.0
   image: ^4.2.0
   battery_plus: ^7.0.0
+  in_app_review: ^2.0.12
 
 dev_dependencies:
   crypto: ^3.0.7

@@ -6,6 +6,7 @@ import 'package:animated_border_widgets/animated_border_widgets.dart';
 import 'package:battery_plus/battery_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -16,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/layout/app_breakpoints.dart';
 import '../../../core/localization/app_language.dart';
 import '../../../core/localization/app_localization.dart';
+import '../../../core/reviews/review_prompt_controller.dart';
 import '../../../core/theme/app_motion.dart';
 import '../../../core/widgets/bar_pressable.dart';
 import '../cubit/bar_cubit.dart';
@@ -31,7 +33,9 @@ import 'widgets/language_selector.dart';
 import 'widgets/neon_bottom_navigation.dart';
 
 class BarHomeShell extends StatefulWidget {
-  const BarHomeShell({super.key});
+  const BarHomeShell({this.reviewPromptController, super.key});
+
+  final ReviewPromptController? reviewPromptController;
 
   @override
   State<BarHomeShell> createState() => _BarHomeShellState();
@@ -329,28 +333,54 @@ class _BarHomeShellState extends State<BarHomeShell>
     setState(() => _isSideNavigationVisible = visible);
   }
 
-  Future<void> _toggleIngredient(String id) {
-    return context.read<BarCubit>().toggleIngredient(id);
+  Future<void> _toggleIngredient(String id) async {
+    final cubit = context.read<BarCubit>();
+    final before = cubit.state.selectedIngredientIds;
+    await cubit.toggleIngredient(id);
+    if (!setEquals(before, cubit.state.selectedIngredientIds)) {
+      _recordReviewAction();
+    }
   }
 
-  Future<void> _toggleFavorite(String cocktailId) {
-    return context.read<BarCubit>().toggleCocktailFavorite(cocktailId);
+  Future<void> _toggleFavorite(String cocktailId) async {
+    final cubit = context.read<BarCubit>();
+    if (!cubit.state.cocktails.any((cocktail) => cocktail.id == cocktailId)) {
+      return;
+    }
+    await cubit.toggleCocktailFavorite(cocktailId);
+    _recordReviewAction();
   }
 
-  Future<void> _toggleShoppingIngredient(String ingredientId) {
-    return context.read<BarCubit>().toggleShoppingIngredient(ingredientId);
+  Future<void> _toggleShoppingIngredient(String ingredientId) async {
+    final cubit = context.read<BarCubit>();
+    final before = cubit.state.shoppingIngredientIds;
+    await cubit.toggleShoppingIngredient(ingredientId);
+    if (!setEquals(before, cubit.state.shoppingIngredientIds)) {
+      _recordReviewAction();
+    }
   }
 
   Future<void> _clearShoppingList() {
     return context.read<BarCubit>().clearShoppingList();
   }
 
-  Future<void> _addShoppingIngredients(Iterable<String> ingredientIds) {
-    return context.read<BarCubit>().addShoppingIngredients(ingredientIds);
+  Future<void> _addShoppingIngredients(Iterable<String> ingredientIds) async {
+    final cubit = context.read<BarCubit>();
+    final before = cubit.state.shoppingIngredientIds;
+    await cubit.addShoppingIngredients(ingredientIds);
+    if (!setEquals(before, cubit.state.shoppingIngredientIds)) {
+      _recordReviewAction();
+    }
   }
 
   Future<void> _markShoppingIngredientAsOwned(String ingredientId) {
-    return context.read<BarCubit>().toggleIngredient(ingredientId);
+    return _toggleIngredient(ingredientId);
+  }
+
+  void _recordReviewAction() {
+    if (mounted) {
+      unawaited(widget.reviewPromptController?.recordSuccessfulAction());
+    }
   }
 
   Future<void> _openBarManagement() async {
@@ -898,6 +928,7 @@ class _BarHomeShellState extends State<BarHomeShell>
         isDecoration: input.isDecoration,
         isOptional: input.isOptional,
       );
+      _recordReviewAction();
       if (!mounted) {
         return;
       }
@@ -1006,6 +1037,7 @@ class _BarHomeShellState extends State<BarHomeShell>
       if (!mounted) {
         return;
       }
+      _recordReviewAction();
       _showSnackBar(context.tr('Ингредиент обновлён', 'Ingredient updated'));
     } on FormatException catch (error) {
       if (!mounted) {
@@ -1058,6 +1090,7 @@ class _BarHomeShellState extends State<BarHomeShell>
       if (!mounted) {
         return;
       }
+      _recordReviewAction();
       _showSnackBar(context.tr('Коктейль добавлен', 'Cocktail added'));
     } on FormatException catch (error) {
       if (!mounted) {
@@ -1101,6 +1134,7 @@ class _BarHomeShellState extends State<BarHomeShell>
       if (!mounted) {
         return;
       }
+      _recordReviewAction();
       _showSnackBar(context.tr('Коктейль обновлён', 'Cocktail updated'));
     } on FormatException catch (error) {
       if (!mounted) {
