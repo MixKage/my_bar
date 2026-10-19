@@ -21,7 +21,10 @@
     {"id": "iphone-large", "name": "iPhone 6.9-inch", "width": 1320, "height": 2868, "pixelRatio": 3, "safeArea": {"top": 62, "bottom": 34, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
     {"id": "ipad-13", "name": "iPad 13-inch", "width": 2064, "height": 2752, "pixelRatio": 2, "safeArea": {"top": 24, "bottom": 20, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
     {"id": "iphone-duo-outer", "name": "iPhone Duo outer display", "width": 1398, "height": 2034, "pixelRatio": 3, "safeArea": {"top": 62, "bottom": 34, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
-    {"id": "iphone-duo-inner", "name": "iPhone Duo inner display", "width": 2007, "height": 2853, "pixelRatio": 3, "safeArea": {"top": 32, "bottom": 24, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true}
+    {"id": "iphone-duo-inner", "name": "iPhone Duo inner display", "width": 2007, "height": 2853, "pixelRatio": 3, "safeArea": {"top": 32, "bottom": 24, "left": 0, "right": 0}, "platform": "ios", "orientation": "portrait", "enabled": true},
+    {"id": "android-phone", "name": "Android phone", "width": 1080, "height": 1920, "pixelRatio": 3, "safeArea": {"top": 24, "bottom": 24, "left": 0, "right": 0}, "platform": "android", "googlePlayDeviceType": "phone", "orientation": "portrait", "enabled": false},
+    {"id": "android-tablet-7", "name": "Android 7-inch tablet", "width": 1440, "height": 2560, "pixelRatio": 2, "safeArea": {"top": 24, "bottom": 24, "left": 0, "right": 0}, "platform": "android", "googlePlayDeviceType": "tablet-7", "orientation": "portrait", "enabled": false},
+    {"id": "android-tablet-10", "name": "Android 10-inch tablet", "width": 2160, "height": 3840, "pixelRatio": 2.5, "safeArea": {"top": 24, "bottom": 24, "left": 0, "right": 0}, "platform": "android", "googlePlayDeviceType": "tablet-10", "orientation": "portrait", "enabled": false}
   ],
   "screenshots": [
     {"id": "01-ingredients", "name": "Ingredients at home"},
@@ -48,13 +51,15 @@
   ],
   "sources": {
     "screenshots": "https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/",
-    "creatives": "https://developer.apple.com/app-store/asset-best-practices/"
+    "creatives": "https://developer.apple.com/app-store/asset-best-practices/",
+    "googlePlayScreenshots": "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en"
   },
   "notes": [
     "Safe-area insets are logical Flutter units; screenshot width and height are physical pixels.",
     "Safe-area values are capture fixtures, not claims about unpublished hardware geometry.",
     "Screenshots are rendered from real Flutter widgets at each target viewport, not resized from another device.",
     "The renderer is not an iPhone Duo simulator or physical-device capture. Review on actual devices before upload.",
-    "Google Play locales are mapped for reuse; this configuration captures iOS layouts, not Android screenshots."
+    "Android profiles are selected explicitly to preserve the existing default iOS matrix.",
+    "Google Play phone exports reuse localized marketing captions without decorative device frames. Tablet exports use app-only captures with no added text, as recommended for large screens."
   ]
 }

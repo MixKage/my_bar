@@ -1,4 +1,4 @@
-// Offline App Store screenshot capture. This is a tooling-only Flutter test,
+// Offline App Store / Google Play screenshot capture. Tooling-only Flutter test,
 // never an application entry point and never an upload command.
 //
 // Invoke through tool/store_assets/store_assets.py so config, fonts and output
@@ -146,7 +146,6 @@ void main() {
       HttpOverrides.global = _OfflineOnlyHttpOverrides();
       addTearDown(() => HttpOverrides.global = oldHttpOverrides);
       tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
-      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
       addTearDown(() => debugDefaultTargetPlatformOverride = null);
       addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
       addTearDown(tester.view.reset);
@@ -197,6 +196,12 @@ void main() {
 
           for (final device in devices) {
             final id = device['id'] as String;
+            final platform = device['platform'] as String;
+            debugDefaultTargetPlatformOverride = switch (platform) {
+              'android' => TargetPlatform.android,
+              'ios' => TargetPlatform.iOS,
+              _ => throw FormatException('Unsupported platform: $platform'),
+            };
             final width = (device['width'] as num).toInt();
             final height = (device['height'] as num).toInt();
             final dpr = (device['pixelRatio'] as num).toDouble();
@@ -294,6 +299,7 @@ void main() {
                 'language': code,
                 'locale': locale,
                 'device': id,
+                'platform': platform,
                 'screen': scene,
                 'path': relativePath,
                 'width': width,
@@ -358,7 +364,13 @@ void main() {
               final filter = almostReady.evaluate().isNotEmpty
                   ? almostReady
                   : missingOneLabel;
-              await tester.ensureVisible(filter);
+              await Scrollable.ensureVisible(
+                tester.element(filter),
+                alignment: .5,
+              );
+              // The narrow Android viewport may need to scroll the chip row;
+              // hit testing uses the next rendered frame, not the old offset.
+              await _finishFrame(tester);
               await tester.tap(filter);
               await _finishFrame(tester);
               expect(tester.widget<ChoiceChip>(almostReady).selected, isTrue);

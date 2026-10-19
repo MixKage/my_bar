@@ -1,4 +1,4 @@
-// Offline, localized App Store screenshot composition. The app interface comes
+// Offline, localized store screenshot composition. The app interface comes
 // exclusively from capture_ui.dart; this tool never recreates or edits that UI.
 //
 // Invoked by store_assets.py after validating the local inputs. Normal test runs
@@ -111,6 +111,7 @@ void main() {
                     ? TextDirection.rtl
                     : TextDirection.ltr,
                 languageCode: code,
+                showDeviceFrame: device['platform'] != 'android',
               );
               try {
                 expect(layout.title.lineCount, inInclusiveRange(1, 2));
@@ -245,6 +246,7 @@ void main() {
                     fallbackFamilies: fontFamilies,
                     direction: direction,
                     languageCode: code,
+                    showDeviceFrame: device['platform'] != 'android',
                   );
                   final recorder = ui.PictureRecorder();
                   final canvas = Canvas(recorder)..scale(dpr);
@@ -271,6 +273,7 @@ void main() {
                     'language': code,
                     'locale': locale,
                     'device': deviceId,
+                    'platform': device['platform'],
                     'screen': sceneId,
                     'path': destination,
                     'width': width,
@@ -282,12 +285,15 @@ void main() {
                     ...inputHashes,
                     'sourceUiEdited': false,
                     'sourceUiCropped': false,
-                    'sourceUiRoundedCornerMask': true,
-                    'sourceUiTransform':
-                        'uniform scale of full source viewport; '
-                        'rounded outer-corner mask only',
+                    'sourceUiRoundedCornerMask': layout.showDeviceFrame,
+                    'sourceUiTransform': layout.showDeviceFrame
+                        ? 'uniform scale of full source viewport; '
+                              'rounded outer-corner mask only'
+                        : 'uniform scale of full source viewport; no cropping or masking',
                     'nativeDeviceCapture': false,
-                    'deviceFrame': 'generic rounded frame; no hardware claims',
+                    'deviceFrame': layout.showDeviceFrame
+                        ? 'generic rounded frame; no hardware claims'
+                        : 'none',
                     'headline': headline,
                     'subtitle': subtitle,
                     if (copy['sequence'] is List)
@@ -339,6 +345,7 @@ class _MarketingLayout {
     required List<String> fallbackFamilies,
     required TextDirection direction,
     required String languageCode,
+    this.showDeviceFrame = true,
   }) {
     final width = size.width;
     final height = size.height;
@@ -356,7 +363,7 @@ class _MarketingLayout {
       width - marginX,
       height * .895,
     );
-    bezel = math.max(2.8, math.min(width, height) * .008);
+    bezel = showDeviceFrame ? math.max(2.8, math.min(width, height) * .008) : 0;
     final available = Size(
       frameArea.width - bezel * 2,
       frameArea.height - bezel * 2,
@@ -372,7 +379,9 @@ class _MarketingLayout {
       height: imageSize.height,
     );
     frameRect = screenRect.inflate(bezel);
-    cornerRadius = math.min(screenRect.width * .069, height * .031);
+    cornerRadius = showDeviceFrame
+        ? math.min(screenRect.width * .069, height * .031)
+        : 0;
     subtitleBox = Rect.fromLTRB(
       marginX,
       frameArea.bottom + height * .014,
@@ -411,6 +420,10 @@ class _MarketingLayout {
       height: textHeight,
       color: _subtitleColor,
     );
+    if (!showDeviceFrame &&
+        (title.rect.height + detail.rect.height) / height > .20) {
+      throw StateError('Google Play caption height exceeds 20% of the image.');
+    }
     if (headlineBox.overlaps(frameRect) ||
         subtitleBox.overlaps(frameRect) ||
         headlineBox.overlaps(subtitleBox)) {
@@ -431,6 +444,7 @@ class _MarketingLayout {
   }
 
   final Size size;
+  final bool showDeviceFrame;
   late final Rect headlineBox;
   late final Rect subtitleBox;
   late final Rect screenRect;
@@ -472,44 +486,46 @@ class _MarketingLayout {
           stops: [0, .13, .4, .78, 1],
         ).createShader(bounds),
     );
-    final outer = RRect.fromRectAndRadius(
-      frameRect,
-      Radius.circular(cornerRadius + bezel),
-    );
-    canvas.drawShadow(
-      Path()..addRRect(outer),
-      const Color(0xFF000000),
-      size.height * .018,
-      false,
-    );
-    canvas.drawRRect(
-      outer,
-      Paint()
-        ..color = const Color(0x554FE8FF)
-        ..maskFilter = MaskFilter.blur(BlurStyle.normal, bezel * 2),
-    );
-    canvas.drawRRect(
-      outer,
-      Paint()
-        ..shader = const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF9696A4),
-            Color(0xFF34303F),
-            Color(0xFF0C0B14),
-            Color(0xFF6C647E),
-          ],
-          stops: [0, .19, .67, 1],
-        ).createShader(frameRect),
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        screenRect.inflate(bezel * .34),
-        Radius.circular(cornerRadius + bezel * .34),
-      ),
-      Paint()..color = const Color(0xFF030309),
-    );
+    if (showDeviceFrame) {
+      final outer = RRect.fromRectAndRadius(
+        frameRect,
+        Radius.circular(cornerRadius + bezel),
+      );
+      canvas.drawShadow(
+        Path()..addRRect(outer),
+        const Color(0xFF000000),
+        size.height * .018,
+        false,
+      );
+      canvas.drawRRect(
+        outer,
+        Paint()
+          ..color = const Color(0x554FE8FF)
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, bezel * 2),
+      );
+      canvas.drawRRect(
+        outer,
+        Paint()
+          ..shader = const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF9696A4),
+              Color(0xFF34303F),
+              Color(0xFF0C0B14),
+              Color(0xFF6C647E),
+            ],
+            stops: [0, .19, .67, 1],
+          ).createShader(frameRect),
+      );
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          screenRect.inflate(bezel * .34),
+          Radius.circular(cornerRadius + bezel * .34),
+        ),
+        Paint()..color = const Color(0xFF030309),
+      );
+    }
     canvas.save();
     canvas.clipRRect(
       RRect.fromRectAndRadius(screenRect, Radius.circular(cornerRadius)),
@@ -538,6 +554,9 @@ class _MarketingLayout {
     'noOverlapVerified': true,
     'sourceAspectRatioPreserved': true,
     'opaqueCanvas': true,
+    'captionHeightFraction': _round(
+      (title.rect.height + detail.rect.height) / size.height,
+    ),
   };
 
   void dispose() {

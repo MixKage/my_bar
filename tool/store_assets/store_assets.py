@@ -10,6 +10,7 @@ import math
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -57,13 +58,16 @@ def load_config(path: Path) -> dict:
                 raise AssetError(f"Invalid or duplicate {group} identifier: {key!r}.")
             seen.add(key)
             if group == "languages":
-                locale = item.get("appStoreLocale", "")
-                if not isinstance(locale, str) or not SAFE_ID.fullmatch(locale):
-                    raise AssetError(f"Invalid App Store locale for {key}.")
+                for field in ("appStoreLocale", "googlePlayLocale"):
+                    locale = item.get(field, "")
+                    if not isinstance(locale, str) or not SAFE_ID.fullmatch(locale):
+                        raise AssetError(f"Invalid {field} locale for {key}.")
             if group in ("devices", "creatives"):
                 if any(not isinstance(item.get(axis), int) or isinstance(item.get(axis), bool) or item[axis] <= 0 for axis in ("width", "height")):
                     raise AssetError(f"Invalid dimensions for {key}.")
                 if group == "devices":
+                    if item.get("platform") not in ("ios", "android"):
+                        raise AssetError(f"Invalid platform for {key}.")
                     ratio = item.get("pixelRatio")
                     if isinstance(ratio, bool) or not isinstance(ratio, (int, float)) or not math.isfinite(ratio) or ratio <= 0:
                         raise AssetError(f"Invalid pixelRatio for {key}.")
@@ -73,9 +77,10 @@ def load_config(path: Path) -> dict:
                         raise AssetError(f"Invalid safe rectangle for {key}.")
                     if rect["x"] < 0 or rect["y"] < 0 or rect["width"] <= 0 or rect["height"] <= 0 or rect["x"] + rect["width"] > item["width"] or rect["y"] + rect["height"] > item["height"]:
                         raise AssetError(f"Safe rectangle falls outside {key}.")
-    locales = [entry["appStoreLocale"] for entry in config["languages"]]
-    if len(set(locales)) != len(locales):
-        raise AssetError("App Store locale paths must be unique.")
+    for field in ("appStoreLocale", "googlePlayLocale"):
+        locales = [entry[field] for entry in config["languages"]]
+        if len(set(locales)) != len(locales):
+            raise AssetError(f"{field} locale paths must be unique.")
     return config
 
 
@@ -148,6 +153,139 @@ def shot_entries(config: dict, languages: list[dict], devices: list[dict], scene
 def marketing_entries(config: dict, languages: list[dict], devices: list[dict], scenes: list[dict] | None = None) -> list[dict]:
     return [{**item, "sourcePath": item["path"], "path": item["path"].replace("screenshots/", "marketing/", 1)}
             for item in shot_entries(config, languages, devices, scenes)]
+
+
+def google_play_entries(config: dict, config_path: Path, languages: list[dict], devices: list[dict], scenes: list[dict] | None = None) -> list[dict]:
+    """Android-only upload set: frame-free phone marketing, app-only tablets."""
+    copy = load_marketing_copy(config, config_path)
+    sequence = copy["sequence"]
+    positions = {scene: index + 1 for index, scene in enumerate(sequence)}
+    entries = []
+    device_types = set()
+    for device in devices:
+        device_type = device.get("googlePlayDeviceType")
+        if device.get("platform") != "android" or device_type not in ("phone", "tablet-7", "tablet-10"):
+            raise AssetError(f"Google Play export requires Android phone/tablet profiles, not {device['id']}.")
+        if device_type in device_types:
+            raise AssetError(f"Select only one profile per Google Play device type: {device_type}.")
+        device_types.add(device_type)
+        width, height = device["width"], device["height"]
+        if min(width, height) < 1080 or max(width, height) > 3840 or width * 16 != height * 9:
+            raise AssetError(f"Google Play profile must be portrait 9:16, 1080–3840 pixels: {device['id']}.")
+        for language in languages:
+            source_kind = "marketing" if device_type == "phone" else "screenshots"
+            sources = (marketing_entries if source_kind == "marketing" else shot_entries)(config, [language], [device], scenes)
+            for source in sources:
+                language_copy = copy["languages"].get(language["code"])
+                localized = language_copy.get(source["screen"]) if isinstance(language_copy, dict) else None
+                if not isinstance(localized, dict) or any(not isinstance(localized.get(key), str) or not localized[key].strip() for key in ("headline", "subtitle")):
+                    raise AssetError(f"Missing localized Google Play screenshot context: {language['code']}/{source['screen']}")
+                alt_text = f"{localized['headline']} — {localized['subtitle']}"
+                if len(alt_text) > 140:
+                    alt_text = localized["headline"]
+                if len(alt_text) > 140:
+                    raise AssetError(f"Google Play screenshot alt text exceeds 140 characters: {language['code']}/{source['screen']}")
+                number = positions[source["screen"]]
+                label = re.sub(r"^\d+-", "", source["screen"])
+                entries.append({**source, "sourcePath": source["path"],
+                                "capturePath": source.get("sourcePath", source["path"]),
+                                "path": f"google-play/{language['googlePlayLocale']}/{device_type}/{number:02d}-{label}.png",
+                                "locale": language["googlePlayLocale"], "appStoreLocale": language["appStoreLocale"],
+                                "platform": "android", "deviceType": device_type,
+                                "sourceKind": source_kind, "sequence": number,
+                                "addedCaptions": device_type == "phone", "deviceFrame": "none",
+                                "renderer": "flutter-marketing-compositor" if device_type == "phone" else "flutter-widget",
+                                "altText": alt_text,
+                                "sourceUiRoundedCornerMask": False,
+                                "nativeDeviceCapture": False, "sourceUiEdited": False, "sourceUiCropped": False})
+    return sorted(entries, key=lambda item: (item["locale"], item["deviceType"], item["sequence"]))
+
+
+def verify_google_play_image(path: Path, width: int, height: int) -> None:
+    verify_image(path, width, height)
+    if path.stat().st_size > 8 * 1024 * 1024:
+        raise AssetError(f"Google Play screenshot exceeds 8 MiB: {path}")
+
+
+def validate_android_sources(output: Path, entries: list[dict]) -> None:
+    data = read_capture_index(target_file(output, "capture-manifest.json"), "flutter-widget")
+    captures = {item.get("path"): item for item in data["screenshots"]}
+    phone_entries = [item for item in entries if item["sourceKind"] == "marketing"]
+    phone_manifest = read_capture_index(target_file(output, "marketing-manifest.json"), "flutter-marketing-compositor") if phone_entries else None
+    phones = {item.get("path"): item for item in phone_manifest["screenshots"]} if phone_manifest else {}
+    for expected in entries:
+        actual = captures.get(expected["capturePath"], {})
+        if actual.get("platform") != "android" or actual.get("nativeDeviceCapture") is not False:
+            raise AssetError(f"Missing verified Android widget capture provenance: {expected['capturePath']}")
+        for field in ("language", "device", "screen", "width", "height"):
+            if actual.get(field) != expected[field]:
+                raise AssetError(f"Android capture {field} mismatch: {expected['capturePath']}")
+        if actual.get("locale") != expected["appStoreLocale"]:
+            raise AssetError(f"Android capture source locale mismatch: {expected['capturePath']}")
+        if expected["sourceKind"] == "marketing":
+            composed = phones.get(expected["sourcePath"], {})
+            if (composed.get("platform") != "android" or composed.get("deviceFrame") != "none" or
+                    composed.get("sourceUiRoundedCornerMask") is not False or
+                    composed.get("sourceUiEdited") is not False or composed.get("sourceUiCropped") is not False or
+                    composed.get("sourcePath") != expected["capturePath"] or
+                    composed.get("sourceSha256") != digest(target_file(output, expected["capturePath"]))):
+                raise AssetError(f"Phone marketing must contain unchanged Android UI and no decorative device frame: {expected['sourcePath']}")
+
+
+def export_google_play(config: dict, config_path: Path, output: Path, languages: list[dict], devices: list[dict], overwrite: bool, scenes: list[dict] | None = None) -> dict:
+    entries = google_play_entries(config, config_path, languages, devices, scenes)
+    targets = [target_file(output, item["path"]) for item in entries]
+    ensure_writable(targets, overwrite)
+    validate_android_sources(output, entries)
+    for item, target in zip(entries, targets):
+        source = target_file(output, item["sourcePath"])
+        verify_google_play_image(source, item["width"], item["height"])
+        if target.exists() and source.samefile(target):
+            raise AssetError("Google Play upload copies must be separate from source captures.")
+    manifest_path = target_file(output, "google-play-manifest.json")
+    previous = read_capture_index(manifest_path, "android-google-play-export") if manifest_path.exists() else {"screenshots": []}
+    retained = {item["path"]: item for item in previous["screenshots"]}
+    for path in retained:
+        target_file(output, path)
+    for item, target in zip(entries, targets):
+        source = target_file(output, item["sourcePath"])
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
+        retained[item["path"]] = {**item, "sha256": digest(target), "bytes": target.stat().st_size,
+                                  "sourceSha256": digest(source)}
+    save_json(manifest_path, {"schemaVersion": 1, "renderer": "android-google-play-export", "uploaded": False,
+                             "source": config.get("sources", {}).get("googlePlayScreenshots"),
+                             "notes": ["Actual Android Flutter-widget layouts, not resized iOS screenshots or native-device captures.",
+                                       "Phone captions are localized. Tablets contain only app UI, with no added captions, backgrounds or device imagery.",
+                                       "All images are opaque 24-bit RGB PNG, portrait 9:16 and no more than 8 MiB."],
+                             "screenshots": sorted(retained.values(), key=lambda item: item["path"])})
+    return {"googlePlayScreenshots": len(entries), "output": str(output / "google-play"), "uploaded": False}
+
+
+def validate_google_play(config: dict, config_path: Path, output: Path, languages: list[dict], devices: list[dict], scenes: list[dict] | None = None) -> dict:
+    entries = google_play_entries(config, config_path, languages, devices, scenes)
+    validate_android_sources(output, entries)
+    manifest = read_capture_index(target_file(output, "google-play-manifest.json"), "android-google-play-export")
+    by_path = {}
+    for item in manifest["screenshots"]:
+        path = item.get("path")
+        if not isinstance(path, str) or path in by_path:
+            raise AssetError("Invalid or duplicate Google Play manifest path.")
+        target_file(output, path)
+        by_path[path] = item
+    for expected in entries:
+        actual = by_path.get(expected["path"], {})
+        for field, value in expected.items():
+            if actual.get(field) != value:
+                raise AssetError(f"Google Play manifest {field} mismatch: {expected['path']}")
+        path = target_file(output, expected["path"])
+        verify_google_play_image(path, expected["width"], expected["height"])
+        if actual.get("bytes") != path.stat().st_size:
+            raise AssetError(f"Google Play screenshot byte size mismatch: {expected['path']}")
+        if (actual.get("sha256") != digest(path) or actual.get("sha256") != actual.get("sourceSha256") or
+                actual.get("sourceSha256") != digest(target_file(output, expected["sourcePath"]))):
+            raise AssetError(f"Google Play screenshot/source hash mismatch: {expected['path']}")
+    return {"validatedImages": len(entries), "kind": "google-play", "output": str(output / "google-play"), "uploaded": False}
 
 
 def read_capture_index(path: Path, renderer: str) -> dict:
@@ -480,7 +618,9 @@ def export_creatives(config: dict, output: Path, languages: list[dict], source_p
     return {"creatives": len(entries), "locales": len(languages), "output": str(output), "uploaded": False}
 
 
-def selected_entries(config: dict, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None) -> list[dict]:
+def selected_entries(config: dict, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None, config_path: Path | None = None) -> list[dict]:
+    if kind == "google-play":
+        return google_play_entries(config, config_path or SCRIPT_DIR / "config.json", languages, devices, scenes)
     entries = []
     if kind in ("all", "screenshots"):
         entries.extend(shot_entries(config, languages, devices, scenes))
@@ -491,7 +631,9 @@ def selected_entries(config: dict, languages: list[dict], devices: list[dict], k
     return entries
 
 
-def validate(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None) -> dict:
+def validate(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, scenes: list[dict] | None = None, config_path: Path | None = None) -> dict:
+    if kind == "google-play":
+        return validate_google_play(config, config_path or SCRIPT_DIR / "config.json", output, languages, devices, scenes)
     entries = selected_entries(config, languages, devices, kind, scenes)
     errors = []
     for item in entries:
@@ -510,8 +652,8 @@ def validate(config: dict, output: Path, languages: list[dict], devices: list[di
 
 
 def package(config: dict, output: Path, languages: list[dict], devices: list[dict], kind: str, overwrite: bool, scenes: list[dict] | None = None, config_path: Path | None = None) -> dict:
-    validate(config, output, languages, devices, kind, scenes)
-    entries = selected_entries(config, languages, devices, kind, scenes)
+    validate(config, output, languages, devices, kind, scenes, config_path)
+    entries = selected_entries(config, languages, devices, kind, scenes, config_path)
     name = f"my-bar-{kind}"
     archive_path = target_file(output, f"{name}.zip")
     manifest_path = target_file(output, f"{name}-manifest.json")
@@ -526,11 +668,17 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
             label = re.sub(r"^\d+-", "", item["screen"])
             item.update(sequence=sequence, archivePath=f"{item['locale']}/{item['device']}/{sequence:02d}-{label}.png")
         files.sort(key=lambda item: (item["locale"], item["device"], item["sequence"]))
+    elif kind == "google-play":
+        upload_sequence = load_marketing_copy(config, config_path or SCRIPT_DIR / "config.json")["sequence"]
+        for item in files:
+            item["archivePath"] = item["path"].removeprefix("google-play/")
     capture_provenance = {
         "renderer": "flutter-widget", "nativeDeviceCapture": False,
         "fontFallback": "offline Noto fixture replaces OS text fallback",
         "note": "Offscreen responsive layout previews, not physical-device or iPhone Duo simulator captures. Safe-area fixtures require device QA.",
     }
+    if kind == "google-play":
+        capture_provenance["note"] = "Offscreen real Android Flutter-widget layouts, not native emulator/physical-device captures. Android safe-area fixtures require device QA."
     for item in files:
         if item["path"].startswith("screenshots/"):
             item.update(capture_provenance)
@@ -545,6 +693,8 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
         metadata_names.append("marketing-manifest.json")
     if kind in ("all", "creatives"):
         metadata_names.append("creative-manifest.json")
+    if kind == "google-play":
+        metadata_names.append("google-play-manifest.json")
     for relative in metadata_names:
         path = target_file(output, relative)
         if path.exists():
@@ -556,12 +706,13 @@ def package(config: dict, output: Path, languages: list[dict], devices: list[dic
                 raise AssetError(f"Package metadata must be a JSON object: {path}")
             metadata.append({"path": relative, "sha256": digest(path), "bytes": path.stat().st_size})
     manifest = {"schemaVersion": 1, "app": config.get("app", "My Bar"), "kind": kind,
-                "renderer": "flutter-marketing-compositor" if kind == "marketing" else "flutter-widget" if kind != "creatives" else None,
+                "renderer": "android-google-play-export" if kind == "google-play" else "flutter-marketing-compositor" if kind == "marketing" else "flutter-widget" if kind != "creatives" else None,
                 "provenance": capture_provenance if kind != "creatives" else {"kind": "marketing-artwork", "deviceCapture": False},
                 "locales": [{"language": lang["code"], "appStore": lang["appStoreLocale"], "googlePlay": lang.get("googlePlayLocale")} for lang in languages],
                 "files": files, "imageCount": len(files), "metadata": metadata,
                 "metadataCount": len(metadata), "uploaded": False,
-                **({"uploadSequence": upload_sequence, "archivePathPolicy": "locale/device/marketing-sequence-scene.png; source files retain canonical path"} if upload_sequence is not None else {})}
+                **({"uploadSequence": upload_sequence,
+                    "archivePathPolicy": "google-play-locale/device-type/story-sequence-scene.png; source files retain canonical path" if kind == "google-play" else "locale/device/marketing-sequence-scene.png; source files retain canonical path"} if upload_sequence is not None else {})}
     # A stable manifest and fixed ZIP timestamps make repeat exports reproducible.
     save_json(manifest_path, manifest)
     with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
@@ -578,7 +729,7 @@ def parser() -> argparse.ArgumentParser:
     common.add_argument("--config", type=Path, default=SCRIPT_DIR / "config.json")
     common.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     common.add_argument("--languages", help="Comma-separated app codes, e.g. en,ru,ar. Default: all configured languages.")
-    common.add_argument("--devices", help="Comma-separated device IDs. Default: all enabled devices.")
+    common.add_argument("--devices", help="Comma-separated device IDs. Default: enabled iOS profiles; Google Play export/validation/packaging use Android profiles.")
     common.add_argument("--scenes", help="Comma-separated scene IDs, e.g. 03-recipe,07-almost-ready. Default: all enabled scenes.")
     common.add_argument("--json", action="store_true", help="Print the result as JSON.")
     root = argparse.ArgumentParser(description=__doc__, epilog="Only explicit prepare-fonts downloads pinned free fonts. All other commands are offline. No authentication or upload command exists.")
@@ -589,13 +740,15 @@ def parser() -> argparse.ArgumentParser:
     capture_parser.add_argument("--overwrite", action="store_true")
     compose_parser = commands.add_parser("compose", parents=[common], help="Compose localized upload-ready marketing screenshots from unchanged captured UI.")
     compose_parser.add_argument("--overwrite", action="store_true")
+    google_play = commands.add_parser("export-google-play", parents=[common], help="Copy Android phone marketing and app-only tablets to ordered Google Play locale folders.")
+    google_play.add_argument("--overwrite", action="store_true")
     creatives = commands.add_parser("export-creatives", parents=[common], help="Create opaque PNG header/search/universal crops from one PNG source.")
     creatives.add_argument("--source", required=True, type=Path)
     creatives.add_argument("--focal-point", type=parse_focal_point, default=(0.5, 0.5), metavar="X,Y", help="Normalized source focal point (0..1), default 0.5,0.5. Crop keeps it near each safe-area center when possible.")
     creatives.add_argument("--overwrite", action="store_true")
     for command in ("validate", "package"):
         child = commands.add_parser(command, parents=[common], help="Validate image dimensions/color." if command == "validate" else "Create a local ZIP with SHA-256 manifest.")
-        child.add_argument("--kind", choices=("all", "screenshots", "marketing", "creatives"), default="all", help="all includes raw screenshots, marketing screenshots and creatives; use marketing for the preferred screenshot upload ZIP.")
+        child.add_argument("--kind", choices=("all", "screenshots", "marketing", "creatives", "google-play"), default="all", help="all includes raw screenshots, marketing screenshots and Apple creatives; use google-play for the Android upload set.")
         if command == "package":
             child.add_argument("--overwrite", action="store_true")
     commands.add_parser("check-fonts", parents=[common], help="Check configured local font files and optional SHA-256 hashes; never downloads.")
@@ -620,7 +773,10 @@ def main(argv: list[str] | None = None) -> int:
         config_path = args.config.expanduser().resolve()
         config = load_config(config_path)
         languages = select(config["languages"], args.languages, "code", "languages")
-        devices = select(config["devices"], args.devices, "id", "devices")
+        device_selection = args.devices
+        if device_selection is None and (args.command == "export-google-play" or getattr(args, "kind", None) == "google-play"):
+            device_selection = ",".join(device["id"] for device in config["devices"] if device.get("platform") == "android")
+        devices = select(config["devices"], device_selection, "id", "devices")
         scenes = select(config["screenshots"], args.scenes, "id", "scenes")
         output = safe_output(args.output)
         if args.command == "list":
@@ -633,10 +789,12 @@ def main(argv: list[str] | None = None) -> int:
             result = capture(config, config_path, output, languages, devices, args.overwrite, scenes)
         elif args.command == "compose":
             result = compose(config, config_path, output, languages, devices, args.overwrite, scenes)
+        elif args.command == "export-google-play":
+            result = export_google_play(config, config_path, output, languages, devices, args.overwrite, scenes)
         elif args.command == "export-creatives":
             result = export_creatives(config, output, languages, args.source.expanduser().resolve(), args.overwrite, args.focal_point)
         elif args.command == "validate":
-            result = validate(config, output, languages, devices, args.kind, scenes)
+            result = validate(config, output, languages, devices, args.kind, scenes, config_path)
         elif args.command == "package":
             result = package(config, output, languages, devices, args.kind, args.overwrite, scenes, config_path)
         elif args.command == "prepare-fonts":

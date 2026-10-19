@@ -128,9 +128,11 @@ story sequence numbers rather than being renumbered from one. The raw-only and
 ## Languages and devices
 
 `config.json` maps app codes `en,ru,es,pt,de,fr,it,tr,zh,ja,ko,hi,ar` to their
-App Store and Google Play locale IDs separately. Arabic captures use RTL. The
-Google Play mappings are available for reuse, but the current viewport profiles
-capture iOS layouts; do not label them Android-device screenshots.
+App Store and Google Play locale IDs separately. Arabic captures use RTL.
+The default device selection remains the five iOS profiles, preserving existing
+App Store exports. Select Android profiles explicitly for capture/composition;
+Google Play export/validation/packaging automatically selects all three Android
+profiles when `--devices` is omitted.
 
 | Device ID | Portrait PNG size | Pixel ratio |
 | --- | --- | --- |
@@ -139,10 +141,75 @@ capture iOS layouts; do not label them Android-device screenshots.
 | `ipad-13` | 2064 × 2752 | 2 |
 | `iphone-duo-outer` | 1398 × 2034 | 3 |
 | `iphone-duo-inner` | 2007 × 2853 | 3 |
+| `android-phone` | 1080 × 1920 | 3 |
+| `android-tablet-7` | 1440 × 2560 | 2 |
+| `android-tablet-10` | 2160 × 3840 | 2.5 |
 
 For a new viewport, add a new device ID with physical `width`/`height`,
 `pixelRatio`, and logical `safeArea` insets rather than resizing old images.
 `--config /absolute/path/config.json` permits a separate reviewed profile.
+
+## Google Play phone and tablet screenshots
+
+These are fresh renders of the app with `TargetPlatform.android`, not resized
+iPhone screenshots. Their logical widths are 360, 720, and 864 dp, respectively,
+so the tablets show the app's actual responsive tablet layout. Android safe-area
+fixtures are 24 dp at top and bottom; the renderer does not paint Apple status
+bars, a Dynamic Island, Apple hardware, or a fake system UI. As with iOS capture,
+this is an offscreen real-widget preview, not an emulator/physical-device capture.
+
+The [Google Play screenshot guide](https://support.google.com/googleplay/android-developer/answer/9866151?hl=en)
+recommends at least four screenshots at 1080px or higher, 9:16 portrait or 16:9
+landscape. It specifically recommends **no extra non-app text for large-screen
+screenshots**. This tool exports seven images per device/language: phone images
+retain the approved localized headlines/background (without decorative device
+frames or corner masking), while both tablet sets contain **only the complete
+app capture**, with no additional captions, backgrounds, or device imagery.
+Every file is opaque RGB PNG, portrait 9:16, 1080–3840px, and at most 8 MiB.
+Captions are descriptive, without ranking, price, promotional claims, or install
+calls to action. No files are stretched or cropped.
+
+```sh
+python3 tool/store_assets/store_assets.py capture --devices android-phone,android-tablet-7,android-tablet-10
+python3 tool/store_assets/store_assets.py compose --devices android-phone
+python3 tool/store_assets/store_assets.py export-google-play
+python3 tool/store_assets/store_assets.py validate --kind google-play
+python3 tool/store_assets/store_assets.py package --kind google-play
+```
+
+All commands also accept `--languages` and `--scenes`.
+Use `--overwrite` explicitly when rerunning capture, composition, export, or
+packaging. Export verifies Android provenance in the source capture manifests,
+checks frame-free phone composition, and copies the source PNGs byte-for-byte.
+It never relabels iOS imagery as Android. Validation checks exported hashes
+against their sources as well as pixel dimensions, color mode, and file size.
+Existing iOS source and marketing files remain untouched.
+
+Upload-ready folders:
+
+```text
+build/store-assets/google-play/<Google Play locale>/
+  phone/01-ingredients.png ... 07-surprise.png
+  tablet-7/01-ingredients.png ... 07-surprise.png
+  tablet-10/01-ingredients.png ... 07-surprise.png
+```
+
+The narrative order is ingredients → cocktails → almost ready → shopping →
+portions → party → surprise, matching the approved marketing sequence. Locale
+IDs are Google Play's (`ru-RU`, `zh-CN`, `ja-JP`, `it-IT`, `ar`, etc.), not
+App Store IDs. Canonical raw/marketing paths keep their original names and
+locale keys. `google-play-manifest.json` records every source path, platform,
+device type, caption policy, localized `altText` (at most 140 characters), byte
+size, and SHA-256 hash. The separate
+`my-bar-google-play.zip` uses `<Google Play locale>/<device type>/<ordered name>`
+members and contains this manifest. `--kind all` remains the existing Apple
+raw/marketing/creative bundle; Google Play packaging is deliberately explicit.
+
+Review translations and representative phone/tablet images before uploading.
+The tool does not log in, upload assets, or publish a release. Screen-specific
+alt text can be based on localized scene captions, limited to 140 characters as
+recommended by Google Play. Tablet UI-only captures still contain localized
+in-app text; removal of the external marketing caption is intentional.
 
 ## App Store Header and Search Results
 

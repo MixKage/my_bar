@@ -64,7 +64,12 @@ class StoreAssetTests(unittest.TestCase):
         self.assertEqual(devices["iphone-duo-inner"], (2007, 2853))
         self.assertEqual(len(self.config["screenshots"]), 7)
         self.assertEqual(self.config["screenshots"][-1]["id"], "07-almost-ready")
-        self.assertEqual(len(assets.shot_entries(self.config, self.config["languages"], self.config["devices"])), 455)
+        default_devices = assets.select(self.config["devices"], None, "id", "devices")
+        self.assertEqual(len(assets.shot_entries(self.config, self.config["languages"], default_devices)), 455)
+        self.assertTrue(all(device["platform"] == "ios" for device in default_devices))
+        self.assertEqual(devices["android-phone"], (1080, 1920))
+        self.assertEqual(devices["android-tablet-7"], (1440, 2560))
+        self.assertEqual(devices["android-tablet-10"], (2160, 3840))
 
     def test_locale_mapping_does_not_reuse_play_codes(self):
         mapping = {lang["code"]: lang for lang in self.config["languages"]}
@@ -72,6 +77,128 @@ class StoreAssetTests(unittest.TestCase):
         self.assertEqual(mapping["ru"]["googlePlayLocale"], "ru-RU")
         self.assertEqual(mapping["zh"]["appStoreLocale"], "zh-Hans")
         self.assertEqual(mapping["ar"]["direction"], "rtl")
+
+    def android_devices(self):
+        return [device for device in self.config["devices"] if device["platform"] == "android"]
+
+    def create_android_sources(self, scenes=None):
+        scenes = scenes or self.config["screenshots"][:1]
+        entries = assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.languages, self.android_devices(), scenes)
+        captures, marketing = [], []
+        for entry in entries:
+            path = self.output / entry["capturePath"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", (entry["width"], entry["height"]), (12, 22, 42)).save(path)
+            captures.append({**entry, "path": entry["capturePath"], "locale": entry["appStoreLocale"]})
+            if entry["sourceKind"] == "marketing":
+                path = self.output / entry["sourcePath"]
+                path.parent.mkdir(parents=True, exist_ok=True)
+                Image.new("RGB", (entry["width"], entry["height"]), (42, 22, 12)).save(path)
+                marketing.append({**entry, "path": entry["sourcePath"], "sourcePath": entry["capturePath"],
+                                  "sourceSha256": assets.digest(self.output / entry["capturePath"]),
+                                  "sourceUiRoundedCornerMask": False})
+        assets.save_json(self.output / "capture-manifest.json", {"schemaVersion": 1, "renderer": "flutter-widget", "screenshots": captures})
+        assets.save_json(self.output / "marketing-manifest.json", {"schemaVersion": 1, "renderer": "flutter-marketing-compositor", "screenshots": marketing})
+        return entries, scenes
+
+    def test_google_play_full_matrix_locales_order_and_android_only_sources(self):
+        entries = assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.config["languages"], self.android_devices())
+        self.assertEqual(len(entries), 273)
+        self.assertEqual(len({item["path"] for item in entries}), 273)
+        for entry in entries:
+            self.assertIn(entry["locale"], entry["path"])
+            self.assertNotIn("iphone", entry["sourcePath"])
+            self.assertEqual(entry["width"] * 16, entry["height"] * 9)
+            self.assertEqual(entry["deviceFrame"], "none")
+            self.assertTrue(entry["altText"].strip())
+            self.assertLessEqual(len(entry["altText"]), 140)
+            self.assertEqual(entry["addedCaptions"], entry["deviceType"] == "phone")
+            self.assertEqual(entry["sourceKind"], "marketing" if entry["deviceType"] == "phone" else "screenshots")
+        russian = [item for item in entries if item["locale"] == "ru-RU" and item["deviceType"] == "phone"]
+        self.assertEqual(russian[2]["path"], "google-play/ru-RU/phone/03-almost-ready.png")
+        self.assertEqual(russian[4]["sourcePath"], "marketing/ru/android-phone/03-recipe.png")
+        self.assertEqual(len(assets.select(self.config["devices"], None, "id", "devices")), 5)
+
+    def test_google_play_rejects_ios_duplicate_device_type_and_bad_dimensions(self):
+        for devices in (self.devices, [self.android_devices()[0], self.android_devices()[0]],
+                        [{**self.android_devices()[0], "width": 1081}],
+                        [{**self.android_devices()[0], "width": 540, "height": 960}]):
+            with self.assertRaises(assets.AssetError):
+                assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.languages, devices)
+
+    def test_google_play_reports_missing_or_invalid_localized_context(self):
+        original = assets.load_marketing_copy(self.config, MODULE_PATH.with_name("config.json"))
+        for broken in (None, {}, {"01-ingredients": None}, {"01-ingredients": {"headline": None, "subtitle": "Text"}}):
+            copy_data = copy.deepcopy(original)
+            copy_data["languages"]["en"] = broken
+            with mock.patch.object(assets, "load_marketing_copy", return_value=copy_data):
+                with self.assertRaisesRegex(assets.AssetError, "Missing localized Google Play screenshot context"):
+                    assets.google_play_entries(self.config, MODULE_PATH.with_name("config.json"), self.languages, self.android_devices(), self.config["screenshots"][:1])
+
+    def test_google_play_export_copies_android_ui_without_resizing_or_renaming_sources(self):
+        entries, scenes = self.create_android_sources()
+        originals = {item["sourcePath"]: assets.digest(self.output / item["sourcePath"]) for item in entries}
+        result = assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        self.assertEqual(result["googlePlayScreenshots"], 6)
+        assets.validate_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), scenes)
+        for entry in entries:
+            self.assertEqual(assets.digest(self.output / entry["path"]), originals[entry["sourcePath"]])
+            self.assertEqual(assets.digest(self.output / entry["sourcePath"]), originals[entry["sourcePath"]])
+        with self.assertRaisesRegex(assets.AssetError, "already exists"):
+            assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        first = assets.package(self.config, self.output, self.languages, self.android_devices(), "google-play", False, scenes)
+        with zipfile.ZipFile(first["archive"]) as archive:
+            self.assertIn("ru-RU/tablet-10/01-ingredients.png", archive.namelist())
+            self.assertNotIn("screenshots/ru/android-tablet-10/01-ingredients.png", archive.namelist())
+            manifest = json.loads(archive.read("my-bar-google-play-manifest.json"))
+            self.assertEqual(manifest["imageCount"], 6)
+            self.assertEqual(manifest["renderer"], "android-google-play-export")
+        second = assets.package(self.config, self.output, self.languages, self.android_devices(), "google-play", True, scenes)
+        self.assertEqual(first["sha256"], second["sha256"])
+
+    def test_google_play_export_rejects_ios_provenance_and_decorative_phone_frames(self):
+        _, scenes = self.create_android_sources()
+        path = self.output / "capture-manifest.json"
+        original = path.read_text()
+        wrong = json.loads(original)
+        wrong["screenshots"][0]["platform"] = "ios"
+        assets.save_json(path, wrong)
+        with self.assertRaisesRegex(assets.AssetError, "Android"):
+            assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        self.assertFalse((self.output / "google-play").exists())
+        path.write_text(original)
+        path = self.output / "marketing-manifest.json"
+        wrong = json.loads(path.read_text())
+        wrong["screenshots"][0]["deviceFrame"] = "iPhone"
+        assets.save_json(path, wrong)
+        with self.assertRaisesRegex(assets.AssetError, "no decorative device frame"):
+            assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+
+    def test_google_play_validation_rejects_modified_exports_and_oversized_png(self):
+        entries, scenes = self.create_android_sources()
+        assets.export_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), False, scenes)
+        entry = entries[0]
+        path = self.output / entry["path"]
+        Image.new("RGB", (entry["width"], entry["height"]), (123, 45, 6)).save(path)
+        with self.assertRaisesRegex(assets.AssetError, "hash mismatch"):
+            assets.validate_google_play(self.config, MODULE_PATH.with_name("config.json"), self.output, self.languages, self.android_devices(), scenes)
+        with mock.patch.object(assets, "verify_image"), mock.patch.object(Path, "stat") as stat:
+            stat.return_value.st_size = 8 * 1024 * 1024 + 1
+            with self.assertRaisesRegex(assets.AssetError, "8 MiB"):
+                assets.verify_google_play_image(path, entry["width"], entry["height"])
+
+    def test_google_play_commands_default_to_android_without_changing_ios_default(self):
+        for arguments, function in ((["export-google-play"], "export_google_play"),
+                                    (["validate", "--kind", "google-play"], "validate"),
+                                    (["package", "--kind", "google-play"], "package")):
+            with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(assets, function, return_value={}) as call:
+                self.assertEqual(assets.main([*arguments, "--output", str(self.output)]), 0)
+                devices = call.call_args.args[4] if function == "export_google_play" else call.call_args.args[3]
+                self.assertEqual([device["id"] for device in devices], ["android-phone", "android-tablet-7", "android-tablet-10"])
+        with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(assets, "capture", return_value={}) as call:
+            self.assertEqual(assets.main(["capture", "--output", str(self.output)]), 0)
+            self.assertEqual(len(call.call_args.args[4]), 5)
+            self.assertTrue(all(device["platform"] == "ios" for device in call.call_args.args[4]))
 
     def test_selection_rejects_unknown_and_empty(self):
         self.assertEqual([lang["code"] for lang in assets.select(self.config["languages"], "ar,en,ar", "code", "languages")], ["ar", "en"])
