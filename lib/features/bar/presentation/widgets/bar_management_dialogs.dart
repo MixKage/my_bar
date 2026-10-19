@@ -287,14 +287,13 @@ Future<AddCocktailInput?> _showCocktailDialog(
                     const SizedBox(height: 8),
                     OutlinedButton.icon(
                       onPressed: () async {
-                        final picked = await FilePicker.platform.pickFiles(
+                        final picked = await FilePicker.pickFile(
                           type: FileType.image,
-                          allowMultiple: false,
                         );
-                        if (picked == null || picked.files.isEmpty) {
+                        if (picked == null || !context.mounted) {
                           return;
                         }
-                        final path = picked.files.single.path;
+                        final path = picked.path;
                         if (path == null || path.trim().isEmpty) {
                           return;
                         }
@@ -1087,14 +1086,11 @@ class _IngredientDialogState extends State<_IngredientDialog> {
   }
 
   Future<void> _pickImageFromDevice() async {
-    final picked = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
-    if (picked == null || picked.files.isEmpty || !mounted) {
+    final picked = await FilePicker.pickFile(type: FileType.image);
+    if (picked == null || !mounted) {
       return;
     }
-    final path = picked.files.single.path;
+    final path = picked.path;
     if (path == null || path.trim().isEmpty) {
       return;
     }

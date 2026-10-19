@@ -1147,16 +1147,14 @@ class _BarHomeShellState extends State<BarHomeShell>
   Future<void> _handleImport() async {
     final cubit = context.read<BarCubit>();
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final file = await FilePicker.pickFile(
         type: FileType.custom,
         allowedExtensions: const <String>['json'],
-        withData: true,
       );
-      if (result == null || result.files.isEmpty) {
+      if (file == null) {
         return;
       }
 
-      final file = result.files.single;
       final content = await _readPickedFile(file);
       final catalog = _jsonCodec.decode(content);
 
@@ -1240,14 +1238,7 @@ class _BarHomeShellState extends State<BarHomeShell>
   }
 
   Future<String> _readPickedFile(PlatformFile file) async {
-    if (file.bytes != null) {
-      return utf8.decode(file.bytes!);
-    }
-    if (file.path != null) {
-      return File(file.path!).readAsString();
-    }
-
-    throw const FormatException('Файл пустой или недоступен.');
+    return utf8.decode(await file.readAsBytes());
   }
 
   Future<File> _writeExportFile(String payload) async {

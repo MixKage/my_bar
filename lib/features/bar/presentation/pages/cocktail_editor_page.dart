@@ -1108,14 +1108,11 @@ class _CocktailEditorPageState extends State<CocktailEditorPage> {
   }
 
   Future<void> _pickImageFromDevice() async {
-    final picked = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
-    if (picked == null || picked.files.isEmpty) {
+    final picked = await FilePicker.pickFile(type: FileType.image);
+    if (picked == null || !mounted) {
       return;
     }
-    final path = picked.files.single.path;
+    final path = picked.path;
     if (path == null || path.trim().isEmpty) {
       return;
     }
