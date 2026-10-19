@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "version": "1.2.0",
+  "preparedOn": "2026-10-19",
+  "status": "draft-not-submitted",
+  "buildAttached": false,
+  "sources": [
+    {
+      "title": "Apple: Creating your product page",
+      "url": "https://developer.apple.com/app-store/product-page/"
+    },
+    {
+      "title": "Apple: Platform version information",
+      "url": "https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/"
+    }
+  ],
+  "urlVerification": {
+    "checkedOn": "2026-10-19",
+    "englishDomainStatus": "502 Bad Gateway",
+    "replacementEnglishDomain": "https://whalehub.site/",
+    "replacementStatus": "reachable, English contact information present",
+    "source": "explicit user instruction",
+    "supersededEnglishDomain": "https://logion-mobile.com"
+  },
+  "verification": {
+    "checkedOn": "2026-10-19",
+    "versionPageUrl": "https://appstoreconnect.apple.com/apps/6760355928/distribution/ios/version/inflight",
+    "reviewSubmitted": false,
+    "published": false,
+    "buildAttached": false,
+    "versionMetadataLocalesVerified": 13,
+    "appInfoLocalesSaved": 13,
+    "appInfoReloadVerified": true,
+    "appInfoLocalesVerified": 13,
+    "screenshotsChanged": false,
+    "pricingChanged": false,
+    "ratingChanged": false,
+    "localValidation": {
+      "passed": true,
+      "localeIdsMatchConfig": true,
+      "characterLimits": {
+        "name": 30,
+        "subtitle": 30,
+        "promotionalText": 170,
+        "description": 4000,
+        "whatsNew": 4000,
+        "keywords": 100
+      },
+      "keywordsUtf8ByteLimit": 100,
+      "localizations": {
+        "en-US": {
+          "nameCharacters": 22,
+          "subtitleCharacters": 29,
+          "promotionalTextCharacters": 143,
+          "descriptionCharacters": 1296,
+          "whatsNewCharacters": 508,
+          "keywordsCharacters": 98,
+          "keywordsUtf8Bytes": 98
+        },
+        "ru": {
+          "nameCharacters": 26,
+          "subtitleCharacters": 29,
+          "promotionalTextCharacters": 132,
+          "descriptionCharacters": 1368,
+          "whatsNewCharacters": 494,
+          "keywordsCharacters": 49,
+          "keywordsUtf8Bytes": 93
+        },
+        "es-ES": {
+          "nameCharacters": 27,
+          "subtitleCharacters": 27,
+          "promotionalTextCharacters": 150,
+          "descriptionCharacters": 1255,
+          "whatsNewCharacters": 493,
+          "keywordsCharacters": 79,
+          "keywordsUtf8Bytes": 82
+        },
+        "pt-BR": {
+          "nameCharacters": 29,
+          "subtitleCharacters": 26,
+          "promotionalTextCharacters": 155,
+          "descriptionCharacters": 1249,
+          "whatsNewCharacters": 471,
+          "keywordsCharacters": 77,
+          "keywordsUtf8Bytes": 77
+        },
+        "de-DE": {
+          "nameCharacters": 23,
+          "subtitleCharacters": 23,
+          "promotionalTextCharacters": 157,
+          "descriptionCharacters": 1280,
+          "whatsNewCharacters": 485,
+          "keywordsCharacters": 75,
+          "keywordsUtf8Bytes": 76
+        },
+        "fr-FR": {
+          "nameCharacters": 30,
+          "subtitleCharacters": 26,
+          "promotionalTextCharacters": 157,
+          "descriptionCharacters": 1353,
+          "whatsNewCharacters": 501,
+          "keywordsCharacters": 72,
+          "keywordsUtf8Bytes": 74
+        },
+        "it": {
+          "nameCharacters": 27,
+          "subtitleCharacters": 21,
+          "promotionalTextCharacters": 152,
+          "descriptionCharacters": 1235,
+          "whatsNewCharacters": 490,
+          "keywordsCharacters": 71,
+          "keywordsUtf8Bytes": 71
+        },
+        "tr": {
+          "nameCharacters": 25,
+          "subtitleCharacters": 28,
+          "promotionalTextCharacters": 135,
+          "descriptionCharacters": 1187,
+          "whatsNewCharacters": 449,
+          "keywordsCharacters": 79,
+          "keywordsUtf8Bytes": 93
+        },
+        "zh-Hans": {
+          "nameCharacters": 12,
+          "subtitleCharacters": 13,
+          "promotionalTextCharacters": 58,
+          "descriptionCharacters": 459,
+          "whatsNewCharacters": 171,
+          "keywordsCharacters": 36,
+          "keywordsUtf8Bytes": 88
+        },
+        "ja": {
+          "nameCharacters": 14,
+          "subtitleCharacters": 15,
+          "promotionalTextCharacters": 68,
+          "descriptionCharacters": 541,
+          "whatsNewCharacters": 188,
+          "keywordsCharacters": 36,
+          "keywordsUtf8Bytes": 98
+        },
+        "ko": {
+          "nameCharacters": 15,
+          "subtitleCharacters": 16,
+          "promotionalTextCharacters": 86,
+          "descriptionCharacters": 675,
+          "whatsNewCharacters": 238,
+          "keywordsCharacters": 37,
+          "keywordsUtf8Bytes": 95
+        },
+        "hi": {
+          "nameCharacters": 21,
+          "subtitleCharacters": 27,
+          "promotionalTextCharacters": 143,
+          "descriptionCharacters": 1210,
+          "whatsNewCharacters": 417,
+          "keywordsCharacters": 33,
+          "keywordsUtf8Bytes": 91
+        },
+        "ar-SA": {
+          "nameCharacters": 20,
+          "subtitleCharacters": 24,
+          "promotionalTextCharacters": 128,
+          "descriptionCharacters": 1048,
+          "whatsNewCharacters": 376,
+          "keywordsCharacters": 52,
+          "keywordsUtf8Bytes": 96
+        }
+      }
+    }
+  },
+  "localizations": {
+    "en-US": {
+      "name": "My Bar: Home Cocktails",
+      "subtitle": "Recipes from your ingredients",
+      "promotionalText": "Your ingredients, your next cocktail. Explore 384 recipes offline, find what you can make, scale the servings and plan a smarter shopping list.",
+      "description": "What can you make with the ingredients you already have? My Bar helps you find out. Mark the bottles and ingredients in your home bar, then discover the cocktails you can prepare. Explore 384 recipes and 297 ingredients, with the included catalog available offline.\n\nSTART WITH YOUR HOME BAR\n• See which cocktails are ready to make.\n• Find recipes missing just one or two ingredients.\n• Search, filter by tags and save your favorites. Browse in a list or a grid.\n• Follow recipe quantities and preparation steps in one place.\n\nSHOP AND PLAN WITH PURPOSE\n• Add missing ingredients to your shopping list.\n• See which ingredients let you make more recipes.\n• Scale recipe quantities to your chosen number of servings. Use ml, cl or fl oz.\n• In party mode, choose cocktails and servings to create a combined ingredient list.\n\nMAKE IT YOUR OWN\n• Tap Surprise Me when you want a new idea.\n• Create and edit your own cocktails and ingredients.\n• Import and export your catalog as a JSON file.\n• Choose from 13 languages for the interface and included recipes.\n\nFrom keeping track of your ingredients to working out quantities, My Bar brings your home bar into one place. Your selections and preferences stay on your device, and the core features and included recipes work without an internet connection.",
+      "whatsNew": "My Bar 1.2.0 brings the interface and included recipe catalog to 13 languages.\n\n• Added 11 languages and a searchable language selector.\n• Milliliters (ml) are now the default for new installations. Your existing measurement preference is preserved.\n• Reviewed recipe quantities, ingredients and preparation steps, with corrections across the catalog.\n• Improved readability for long ingredient names and recipe text.\n• Refined layouts for browsing recipes, planning servings and managing your shopping list.",
+      "keywords": "mixology,bartender,drinks,shopping,party,servings,measurements,favorites,offline,planner,inventory",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "ru": {
+      "name": "Мой бар: Домашние коктейли",
+      "subtitle": "Рецепты из ваших ингредиентов",
+      "promotionalText": "Отметьте, что есть дома, и узнайте, что приготовить. 384 рецепта офлайн, расчёт порций и умный список покупок — теперь на 13 языках.",
+      "description": "Какие коктейли можно приготовить из того, что уже есть дома? «Мой бар» поможет найти ответ. Отметьте свои напитки и ингредиенты — приложение покажет доступные рецепты. Встроенный каталог из 384 рецептов и 297 ингредиентов работает без интернета.\n\nНАЧНИТЕ СО СВОИХ ИНГРЕДИЕНТОВ\n• Узнайте, какие коктейли можно приготовить прямо сейчас.\n• Найдите рецепты, для которых не хватает всего одного или двух ингредиентов.\n• Ищите по названию, используйте фильтры и сохраняйте избранное. Выбирайте список или сетку.\n• Сверяйтесь с мерками и пошаговыми инструкциями в карточке рецепта.\n\nПЛАНИРУЙТЕ ПОКУПКИ И ПОРЦИИ\n• Добавляйте недостающие ингредиенты в список покупок.\n• Смотрите, какие покупки откроют больше рецептов.\n• Пересчитывайте количество ингредиентов на нужное число порций. Выбирайте мл, cl или fl oz.\n• В режиме вечеринки выбирайте коктейли и порции, чтобы получить общий список ингредиентов.\n\nСОЗДАЙТЕ СВОЮ БАРНУЮ КАРТУ\n• Нажмите «Удиви меня», когда хочется новой идеи.\n• Создавайте и редактируйте собственные коктейли и ингредиенты.\n• Импортируйте и экспортируйте каталог в формате JSON.\n• Выбирайте один из 13 языков интерфейса и встроенных рецептов.\n\nОт учёта домашних запасов до расчёта количества ингредиентов — всё в одном приложении. Ваш выбор и настройки сохраняются на устройстве. Основные функции и встроенные рецепты доступны без подключения к интернету.",
+      "whatsNew": "В «Моём баре» 1.2.0 интерфейс и встроенный каталог рецептов доступны на 13 языках.\n\n• Добавлены 11 языков и удобный выбор языка с поиском.\n• Миллилитры (мл) стали единицей измерения по умолчанию при новой установке. Ваши прежние настройки сохраняются.\n• Проверены и исправлены количества, состав и последовательность приготовления в каталоге.\n• Улучшена читаемость длинных названий ингредиентов и текстов рецептов.\n• Доработана компоновка экранов с рецептами, расчётом порций и списком покупок.",
+      "keywords": "бармен,миксология,покупки,вечеринка,порции,офлайн",
+      "marketingUrl": "https://logion-mobile.ru",
+      "supportUrl": "https://logion-mobile.ru"
+    },
+    "es-ES": {
+      "name": "My Bar: recetas de cócteles",
+      "subtitle": "Tu bar y lista de la compra",
+      "promotionalText": "Marca los ingredientes que tienes y descubre qué puedes preparar. Explora 384 recetas sin conexión, ajusta las raciones y planifica tu próxima compra.",
+      "description": "Descubre qué cócteles puedes preparar con lo que ya tienes en casa. My Bar reúne 384 recetas y 297 ingredientes en un catálogo que puedes consultar sin conexión. Marca tus ingredientes y deja que tu bar te dé ideas.\n\nDE TUS INGREDIENTES A LA RECETA\n• Consulta los cócteles que puedes preparar ahora.\n• Encuentra recetas a las que solo les faltan uno o dos ingredientes.\n• Busca, filtra por etiquetas y guarda tus favoritos. Elige la vista de lista o de cuadrícula.\n\nCOMPRA Y PLANIFICA CON CRITERIO\n• Añade los ingredientes que te faltan a la lista de la compra.\n• Consulta qué ingredientes te permiten preparar más recetas.\n• Ajusta las cantidades al número de raciones, en ml, cl o fl oz.\n• En el modo fiesta, elige cócteles y raciones para obtener una lista conjunta de ingredientes.\n\nHAZLO TUYO\n• Pulsa «Sorpréndeme» cuando necesites una idea distinta.\n• Crea y edita tus propios cócteles e ingredientes.\n• Importa y exporta tu catálogo en formato JSON.\n• Usa la interfaz y el catálogo de recetas incluidos en cualquiera de los 13 idiomas disponibles.\n\nDesde organizar tu bar hasta consultar los pasos de una receta, My Bar te ayuda a preparar con más claridad y menos cálculos. Las funciones principales y las recetas incluidas funcionan sin conexión.",
+      "whatsNew": "My Bar 1.2.0 está disponible en 13 idiomas, con traducciones de la interfaz y del catálogo de recetas incluido.\n\n• Nuevo selector de idiomas con búsqueda.\n• Los mililitros (ml) son ahora la unidad predeterminada en nuevas instalaciones; tus preferencias actuales se conservan.\n• Revisión de medidas e instrucciones de preparación en el catálogo.\n• Mejoras de legibilidad en nombres y recetas largos.\n• Una experiencia más cuidada al explorar recetas, planificar raciones y gestionar la compra.",
+      "keywords": "coctelería,ingredientes,mezclas,porciones,fiestas,mixología,sin conexión,barman",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "pt-BR": {
+      "name": "My Bar: receitas de coquetéis",
+      "subtitle": "Seu bar, compras e porções",
+      "promotionalText": "Marque os ingredientes que você tem e descubra o que preparar. Explore 384 receitas offline, ajuste as porções e veja o que vale incluir na próxima compra.",
+      "description": "Descubra quais coquetéis você pode preparar com o que já tem em casa. O My Bar reúne 384 receitas e 297 ingredientes em um catálogo que funciona offline. Marque seus ingredientes e encontre ideias para o seu bar.\n\nDOS INGREDIENTES À RECEITA\n• Veja os coquetéis que já pode preparar.\n• Encontre receitas para as quais faltam só um ou dois ingredientes.\n• Pesquise, filtre por tags e salve seus favoritos. Escolha entre lista e grade.\n\nCOMPRE E PLANEJE COM MAIS CLAREZA\n• Adicione os ingredientes que faltam à lista de compras.\n• Veja quais ingredientes permitem preparar mais receitas.\n• Ajuste as quantidades ao número de porções, em ml, cl ou fl oz.\n• No modo festa, escolha os coquetéis e as porções para gerar uma lista combinada de ingredientes.\n\nDEIXE O BAR COM A SUA CARA\n• Use a opção de surpresa quando quiser uma ideia diferente.\n• Crie e edite seus próprios coquetéis e ingredientes.\n• Importe e exporte seu catálogo no formato JSON.\n• Use a interface e o catálogo de receitas incluído em qualquer um dos 13 idiomas disponíveis.\n\nDa organização do bar aos passos de preparo, o My Bar ajuda você a consultar receitas e calcular quantidades com praticidade. As funções principais e as receitas incluídas funcionam sem conexão com a internet.",
+      "whatsNew": "O My Bar 1.2.0 está disponível em 13 idiomas, com traduções da interface e do catálogo de receitas incluído.\n\n• Novo seletor de idiomas com busca.\n• Mililitros (ml) passam a ser a unidade padrão nas novas instalações; suas preferências atuais são mantidas.\n• Revisão de medidas e instruções de preparo no catálogo.\n• Melhorias na legibilidade de nomes e receitas longos.\n• Mais cuidado na experiência de explorar receitas, planejar porções e organizar a lista de compras.",
+      "keywords": "drinks,mixologia,ingredientes,offline,festa,bartender,preparo,medidas,bebidas",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "de-DE": {
+      "name": "My Bar: Cocktailrezepte",
+      "subtitle": "Hausbar & Einkaufsliste",
+      "promotionalText": "Markiere deine Zutaten und entdecke passende Cocktails. 384 Rezepte auch offline, Mengen für deine Portionen und Einkaufsideen, die neue Rezepte ermöglichen.",
+      "description": "Welche Cocktails kannst du mit deinen vorhandenen Zutaten mixen? My Bar zeigt es dir. Markiere, was du zu Hause hast, und entdecke passende Ideen in einem Offline-Katalog mit 384 Rezepten und 297 Zutaten.\n\nAUS ZUTATEN WERDEN IDEEN\n• Sieh, welche Cocktails du bereits zubereiten kannst.\n• Finde Rezepte, für die nur eine oder zwei Zutaten fehlen.\n• Nutze Suche und Filter, speichere Favoriten und wechsle zwischen Listen- und Rasteransicht.\n\nGEZIELT EINKAUFEN UND PLANEN\n• Übernimm fehlende Zutaten in deine Einkaufsliste.\n• Entdecke, welche Zutaten zusätzliche Rezepte ermöglichen.\n• Passe Rezeptmengen an die gewünschte Anzahl an Portionen an, in ml, cl oder fl oz.\n• Wähle im Partymodus Cocktails und Portionen aus und erhalte eine gemeinsame Zutatenliste.\n\nDEINE BAR, DEINE REZEPTE\n• Lass dich mit einem zufällig ausgewählten Cocktail überraschen.\n• Erstelle und bearbeite eigene Cocktails und Zutaten.\n• Importiere und exportiere deinen Katalog als JSON-Datei.\n• Nutze die Oberfläche und den mitgelieferten Rezeptkatalog in einer von 13 Sprachen.\n\nVon der Übersicht deiner Hausbar bis zu den einzelnen Zubereitungsschritten: My Bar hilft dir, Rezepte zu finden und Mengen zu planen. Die Kernfunktionen und die mitgelieferten Rezepte stehen auch ohne Internetverbindung bereit.",
+      "whatsNew": "My Bar 1.2.0 unterstützt 13 Sprachen – mit übersetzter Oberfläche und übersetztem Rezeptkatalog.\n\n• Neue Sprachauswahl mit Suchfunktion.\n• Milliliter (ml) sind bei neuen Installationen die Standardeinheit. Bestehende Einstellungen bleiben erhalten.\n• Mengenangaben und Zubereitungsschritte im Katalog wurden überprüft.\n• Verbesserte Lesbarkeit bei langen Namen und Rezepttexten.\n• Verfeinerte Bedienung beim Entdecken von Rezepten, Planen von Portionen und Verwalten der Einkaufsliste.",
+      "keywords": "Zutaten,Mixen,Portionen,Party,offline,Getränke,Mixologie,Barkarte,Bartender",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "fr-FR": {
+      "name": "My Bar : recettes de cocktails",
+      "subtitle": "Votre bar, vos ingrédients",
+      "promotionalText": "Cochez vos ingrédients et découvrez quoi préparer. Explorez 384 recettes hors ligne, adaptez les portions et trouvez les ingrédients à ajouter à vos courses.",
+      "description": "Quels cocktails pouvez-vous préparer avec ce que vous avez déjà chez vous ? My Bar vous aide à les trouver. Cochez vos ingrédients et explorez un catalogue de 384 recettes et 297 ingrédients, disponible hors ligne.\n\nPARTEZ DE CE QUE VOUS AVEZ\n• Retrouvez les cocktails que vous pouvez déjà préparer.\n• Découvrez les recettes auxquelles il ne manque qu'un ou deux ingrédients.\n• Recherchez, filtrez par catégories et enregistrez vos favoris. Choisissez l'affichage en liste ou en grille.\n\nFAITES VOS COURSES ET ORGANISEZ VOS PRÉPARATIONS\n• Ajoutez les ingrédients manquants à votre liste de courses.\n• Voyez quels ingrédients vous permettent de préparer davantage de recettes.\n• Adaptez les quantités au nombre de portions, en ml, cl ou fl oz.\n• En mode soirée, choisissez les cocktails et les portions pour obtenir une liste d'ingrédients commune.\n\nUN BAR À VOTRE IMAGE\n• Laissez-vous surprendre par une suggestion de cocktail.\n• Créez et modifiez vos propres cocktails et ingrédients.\n• Importez et exportez votre catalogue au format JSON.\n• Utilisez l'interface et le catalogue de recettes inclus dans l'une des 13 langues proposées.\n\nDe l'organisation de votre bar aux étapes de préparation, My Bar facilite le choix des recettes et le calcul des quantités. Les fonctions principales et les recettes incluses sont accessibles sans connexion Internet.",
+      "whatsNew": "My Bar 1.2.0 est disponible en 13 langues, avec une interface et un catalogue de recettes traduits.\n\n• Nouveau sélecteur de langue avec recherche.\n• Les millilitres (ml) deviennent l'unité par défaut pour les nouvelles installations. Vos préférences existantes sont conservées.\n• Vérification des quantités et des étapes de préparation du catalogue.\n• Meilleure lisibilité des noms et des recettes longs.\n• Une expérience affinée pour découvrir des recettes, prévoir les portions et gérer les courses.",
+      "keywords": "mixologie,boissons,hors ligne,courses,portions,soirée,barman,préparation",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "it": {
+      "name": "My Bar: ricette di cocktail",
+      "subtitle": "Il tuo bar e la spesa",
+      "promotionalText": "Segna gli ingredienti che hai e scopri cosa preparare. Esplora 384 ricette offline, adatta le porzioni e trova gli ingredienti da aggiungere alla spesa.",
+      "description": "Quali cocktail puoi preparare con quello che hai già in casa? My Bar ti aiuta a scoprirlo. Segna i tuoi ingredienti e trova nuove idee in un catalogo di 384 ricette e 297 ingredienti, disponibile anche offline.\n\nPARTI DAI TUOI INGREDIENTI\n• Scopri quali cocktail puoi già preparare.\n• Trova le ricette a cui mancano solo uno o due ingredienti.\n• Cerca, filtra per tag e salva i preferiti. Scegli la vista a elenco o a griglia.\n\nORGANIZZA LA SPESA E LE PREPARAZIONI\n• Aggiungi gli ingredienti mancanti alla lista della spesa.\n• Scopri quali ingredienti ti permettono di preparare più ricette.\n• Adatta le quantità al numero di porzioni, in ml, cl o fl oz.\n• In modalità festa, scegli cocktail e porzioni per ottenere un elenco unico degli ingredienti necessari.\n\nIL TUO BAR, LE TUE IDEE\n• Lasciati sorprendere da un cocktail scelto per te.\n• Crea e modifica i tuoi cocktail e ingredienti.\n• Importa ed esporta il catalogo in formato JSON.\n• Usa l'interfaccia e il catalogo di ricette incluso in una delle 13 lingue disponibili.\n\nDall'organizzazione del bar ai passaggi di preparazione, My Bar ti aiuta a scegliere le ricette e a calcolare le quantità. Le funzioni principali e le ricette incluse funzionano senza connessione a Internet.",
+      "whatsNew": "My Bar 1.2.0 è disponibile in 13 lingue, con traduzioni dell'interfaccia e del catalogo di ricette incluso.\n\n• Nuovo selettore delle lingue con ricerca.\n• I millilitri (ml) sono l'unità predefinita nelle nuove installazioni; le preferenze già impostate vengono mantenute.\n• Revisione delle quantità e delle istruzioni di preparazione del catalogo.\n• Migliore leggibilità di nomi e ricette lunghi.\n• Esperienza più curata per esplorare le ricette, pianificare le porzioni e gestire la spesa.",
+      "keywords": "mixology,ingredienti,bevande,porzioni,feste,offline,barman,preparazione",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "tr": {
+      "name": "My Bar: Kokteyl Tarifleri",
+      "subtitle": "Evindeki malzemelerle keşfet",
+      "promotionalText": "Evindeki malzemeleri işaretle, neler hazırlayabileceğini gör. 384 tarifi çevrimdışı keşfet, porsiyonları ayarla ve alışverişini planla.",
+      "description": "Evinde bulunan malzemelerle hangi kokteylleri hazırlayabilirsin? My Bar, 384 tarif ve 297 malzemeden oluşan çevrimdışı kataloğuyla fikir bulmanı kolaylaştırır. Elindekileri işaretle, hazırlayabileceğin tarifleri gör.\n\nELİNDEKİLERDEN YOLA ÇIK\n• Hemen hazırlayabileceğin kokteylleri bul.\n• Yalnızca bir veya iki malzemesi eksik olan tarifleri keşfet.\n• Ara, etiketlere göre filtrele ve favorilerini kaydet. Liste veya ızgara görünümünü seç.\n\nALIŞVERİŞİ VE MİKTARLARI PLANLA\n• Eksik malzemeleri alışveriş listene ekle.\n• Hangi malzemelerin daha fazla tarif hazırlamana olanak sağladığını gör.\n• Miktarları porsiyon sayısına göre ml, cl veya fl oz cinsinden hesapla.\n• Parti modunda kokteylleri ve porsiyonları seçerek ortak bir malzeme listesi oluştur.\n\nBARINI KENDİNE GÖRE DÜZENLE\n• Farklı bir fikir için «Beni şaşırt» seçeneğini kullan.\n• Kendi kokteyl ve malzemelerini oluştur, düzenle.\n• Kataloğunu JSON biçiminde içe ve dışa aktar.\n• Arayüzü ve uygulamayla gelen tarif kataloğunu 13 dilden birinde kullan.\n\nMy Bar, ev barını düzenlemekten tarif adımlarına bakmaya kadar hazırlığı kolaylaştırır. Temel özellikler ve uygulamayla gelen tarifler internet bağlantısı olmadan kullanılabilir.",
+      "whatsNew": "My Bar 1.2.0, çevrilmiş arayüzü ve tarif kataloğuyla artık 13 dilde kullanılabilir.\n\n• Arama özellikli yeni dil seçici.\n• Yeni kurulumlarda varsayılan ölçü birimi artık mililitre (ml). Mevcut tercihlerin korunur.\n• Katalogdaki miktarlar ve hazırlama adımları gözden geçirildi.\n• Uzun malzeme adları ve tarif metinlerinde okunabilirlik iyileştirildi.\n• Tarifleri keşfetme, porsiyonları planlama ve alışveriş listesini düzenleme deneyimi geliştirildi.",
+      "keywords": "içecek,miksoloji,barmen,alışveriş,davet,ölçü,favori,çevrimdışı,porsiyon,karışım",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "zh-Hans": {
+      "name": "My Bar：鸡尾酒食谱",
+      "subtitle": "用现有食材，找到下一杯灵感",
+      "promotionalText": "勾选家中已有的食材，看看能调出什么。离线浏览384款鸡尾酒食谱，按份数换算用量，规划采购，发现只差一两种材料的配方。",
+      "description": "家里的材料能调出哪些鸡尾酒？My Bar帮你从已有食材出发，找到合适的配方。内置384款鸡尾酒食谱和297种食材，无需联网也能浏览。先勾选你拥有的材料，再到酒单中查看现在就能制作的鸡尾酒。\n\n从现有食材出发\n• 查看材料齐全、可以立即制作的鸡尾酒。\n• 发现只差一种或两种材料的配方，为下一次采购寻找方向。\n• 使用搜索、标签筛选和收藏，快速找到想要的食谱。\n• 在列表与网格视图之间切换，按自己的习惯浏览。\n\n采购与份量规划\n• 将缺少的材料加入购物清单。\n• 查看补充哪些材料可以解锁更多配方。\n• 按所需份数换算用量，支持ml、cl和fl oz。\n• 在聚会模式中选择鸡尾酒与份数，生成合并的食材清单。\n\n打造自己的家庭酒吧\n• 不知道选什么时，用“给我惊喜”发现下一款鸡尾酒。\n• 创建和编辑自己的鸡尾酒与食材。\n• 以JSON格式导入或导出酒吧目录。\n• 从13种语言中选择界面与内置食谱的显示语言。\n\n从整理家中食材，到查看调制步骤与计算用量，My Bar让准备过程更清晰。主要功能和内置食谱均可离线使用。",
+      "whatsNew": "My Bar 1.2.0现已支持13种语言，界面与内置食谱目录均已提供相应翻译。\n\n• 新增支持搜索的语言选择器，更方便地切换语言。\n• 全新安装默认使用毫升（ml）；已有用户的单位偏好保持不变。\n• 核查了目录中的用量与调制步骤，让食谱说明更清晰。\n• 改善较长食材名称与食谱文本的可读性。\n• 优化食谱浏览、份量规划与购物清单的使用体验。",
+      "keywords": "调酒,购物清单,家庭酒吧,配方,聚会,离线,份量,收藏,毫升,配料,酒单",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "ja": {
+      "name": "My Bar：カクテルレシピ",
+      "subtitle": "家にある材料から、作れる一杯を",
+      "promotionalText": "手持ちの材料をチェックして、作れるカクテルを見つけましょう。384のレシピをオフラインで閲覧。杯数に合わせた分量計算や買い物の計画にも。",
+      "description": "家にある材料で、どんなカクテルが作れる？ My Barなら、手持ちの材料からレシピを探せます。384のカクテルレシピと297の材料を収録。材料をチェックして、今作れる一杯を見つけましょう。収録レシピはオフラインでも閲覧できます。\n\n手持ちの材料から探す\n• 材料がそろっているカクテルを確認。\n• あと1〜2種類の材料で作れるレシピも発見。\n• 検索やタグの絞り込みで探して、お気に入りに保存。\n• リスト表示とグリッド表示を切り替えて閲覧。\n\n買い物と分量を計画\n• 足りない材料を買い物リストに追加。\n• どの材料を買い足せば、作れるレシピが増えるかを確認。\n• 作りたい杯数に合わせて、分量をml・cl・fl ozで計算。\n• パーティーモードではカクテルと杯数を選び、必要な材料をまとめて確認。\n\n自分だけのホームバーに\n• 迷ったら、ランダム提案で次のカクテルを発見。\n• オリジナルのカクテルや材料を作成・編集。\n• カタログをJSON形式で読み込み・書き出し。\n• 画面と収録レシピの表示言語を13言語から選択。\n\n材料の整理から作り方の確認、分量計算まで。My Barがホームバーの準備をサポートします。主な機能と収録レシピは、インターネット接続なしで利用できます。",
+      "whatsNew": "My Bar 1.2.0は、画面と収録レシピの翻訳を含む13言語に対応しました。\n\n• 検索機能付きの言語選択画面を追加。\n• 新規インストール時の標準単位をミリリットル（ml）に変更。設定済みの単位はそのまま維持されます。\n• カタログ内の分量と作り方の手順を点検。\n• 長い材料名やレシピの文章を読みやすく調整。\n• レシピの閲覧、杯数の計画、買い物リストの操作性を改善。",
+      "keywords": "ホームバー,分量計算,買い物リスト,パーティー,オフライン,ミクソロジー",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "ko": {
+      "name": "My Bar: 칵테일 레시피",
+      "subtitle": "집에 있는 재료로 찾는 한 잔",
+      "promotionalText": "집에 있는 재료를 체크하고 만들 수 있는 칵테일을 찾아보세요. 384개 레시피를 오프라인으로 살펴보고, 잔 수에 맞춰 분량을 계산하고 장보기를 계획하세요.",
+      "description": "집에 있는 재료로 어떤 칵테일을 만들 수 있을까요? My Bar에서 재료를 체크하면 지금 만들 수 있는 칵테일을 찾아볼 수 있어요. 384개 칵테일 레시피와 297가지 재료가 담긴 카탈로그를 오프라인으로도 이용하세요.\n\n가지고 있는 재료부터\n• 재료가 모두 준비된 칵테일을 확인하세요.\n• 재료 한두 가지만 더 있으면 만들 수 있는 레시피를 찾아보세요.\n• 검색과 태그 필터로 원하는 레시피를 찾고 즐겨찾기에 저장하세요.\n• 목록 보기와 격자 보기를 원하는 대로 선택하세요.\n\n장보기와 분량 계획\n• 부족한 재료를 쇼핑 목록에 추가하세요.\n• 어떤 재료를 더 사면 더 많은 레시피를 만들 수 있는지 확인하세요.\n• 원하는 잔 수에 맞춰 ml, cl, fl oz 단위로 분량을 계산하세요.\n• 파티 모드에서 칵테일과 잔 수를 선택하면 필요한 재료를 하나의 목록으로 모아볼 수 있어요.\n\n나만의 홈바 만들기\n• 무엇을 만들지 고민될 때는 무작위 추천으로 다음 칵테일을 발견하세요.\n• 나만의 칵테일과 재료를 만들고 수정하세요.\n• 카탈로그를 JSON 파일로 가져오거나 내보내세요.\n• 화면과 기본 레시피 카탈로그를 13개 언어 중 하나로 이용하세요.\n\n재료 정리부터 만드는 순서 확인과 분량 계산까지, My Bar로 준비를 더 간편하게 하세요. 주요 기능과 기본 레시피는 인터넷 연결 없이도 사용할 수 있어요.",
+      "whatsNew": "My Bar 1.2.0은 화면과 기본 레시피 카탈로그 번역을 포함해 13개 언어를 지원해요.\n\n• 검색할 수 있는 새로운 언어 선택 화면을 추가했어요.\n• 새로 설치하면 밀리리터(ml)가 기본 단위로 설정돼요. 기존에 선택한 단위는 유지돼요.\n• 카탈로그의 재료 분량과 만드는 순서를 점검했어요.\n• 긴 재료 이름과 레시피 설명의 가독성을 개선했어요.\n• 레시피 탐색, 잔 수 계획, 쇼핑 목록 관리를 더 편리하게 다듬었어요.",
+      "keywords": "홈바,분량계산,쇼핑목록,파티,오프라인,바텐더,즐겨찾기,음료,밀리리터",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "hi": {
+      "name": "My Bar: कॉकटेल रेसिपी",
+      "subtitle": "घर की सामग्री से अगला स्वाद",
+      "promotionalText": "घर में मौजूद सामग्री चुनें और जानें कि क्या बना सकते हैं। 384 रेसिपी ऑफ़लाइन देखें, सर्विंग के हिसाब से मात्रा बदलें और खरीदारी की योजना बनाएँ।",
+      "description": "घर में मौजूद सामग्री से कौन-से कॉकटेल बन सकते हैं? My Bar में अपनी सामग्री चुनें और बनाने के लिए रेसिपी खोजें। ऐप में 384 कॉकटेल रेसिपी और 297 सामग्रियों का कैटलॉग है, जिसे आप ऑफ़लाइन भी देख सकते हैं।\n\nअपनी सामग्री से शुरुआत करें\n• जिन कॉकटेल की सभी सामग्री मौजूद है, उन्हें देखें।\n• ऐसी रेसिपी खोजें जिनके लिए सिर्फ़ एक या दो सामग्री कम हैं।\n• खोज और टैग फ़िल्टर का इस्तेमाल करें, पसंदीदा रेसिपी सहेजें।\n• अपनी सुविधा के अनुसार सूची या ग्रिड में देखें।\n\nखरीदारी और मात्रा की योजना बनाएँ\n• जो सामग्री कम है, उसे खरीदारी सूची में जोड़ें।\n• देखें कि कौन-सी सामग्री जोड़ने से और रेसिपी बन सकेंगी।\n• सर्विंग की संख्या के अनुसार मात्रा की गणना करें। ml, cl और fl oz इकाइयाँ उपलब्ध हैं।\n• पार्टी मोड में कॉकटेल और सर्विंग चुनकर आवश्यक सामग्री की एक संयुक्त सूची बनाएँ।\n\nअपना बार, अपने तरीके से\n• कुछ अलग आज़माना हो तो रैंडम सुझाव से अगला कॉकटेल खोजें।\n• अपने कॉकटेल और सामग्री बनाएँ या संपादित करें।\n• अपना कैटलॉग JSON फ़ाइल के रूप में इंपोर्ट या एक्सपोर्ट करें।\n• इंटरफ़ेस और ऐप में शामिल रेसिपी कैटलॉग को उपलब्ध 13 भाषाओं में से किसी एक में देखें।\n\nसामग्री को व्यवस्थित करने से लेकर बनाने के चरण देखने तक, My Bar तैयारी को आसान बनाता है। मुख्य सुविधाएँ और ऐप में शामिल रेसिपी इंटरनेट कनेक्शन के बिना भी उपलब्ध हैं।",
+      "whatsNew": "My Bar 1.2.0 में इंटरफ़ेस और ऐप में शामिल रेसिपी कैटलॉग अब 13 भाषाओं में उपलब्ध हैं।\n\n• खोज की सुविधा वाला नया भाषा चयन।\n• नए इंस्टॉलेशन में मिलीलीटर (ml) अब डिफ़ॉल्ट इकाई है। आपकी पहले से चुनी हुई इकाई नहीं बदलेगी।\n• कैटलॉग में मात्रा और बनाने के चरणों की जाँच की गई है।\n• लंबे सामग्री नाम और रेसिपी विवरण पढ़ना आसान बनाया गया है।\n• रेसिपी खोजने, सर्विंग की योजना बनाने और खरीदारी सूची को सँभालने के अनुभव में सुधार।",
+      "keywords": "पेय,मात्रा,खरीदारी,पार्टी,ऑफ़लाइन",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    },
+    "ar-SA": {
+      "name": "My Bar: وصفات كوكتيل",
+      "subtitle": "اكتشف ما تحضّره بمكوناتك",
+      "promotionalText": "حدّد المكونات المتوفرة لديك واكتشف ما يمكنك تحضيره. تصفّح 384 وصفة دون اتصال، واضبط المقادير حسب الحصص، وخطّط لمشترياتك القادمة.",
+      "description": "ما الكوكتيلات التي يمكنك تحضيرها بالمكونات الموجودة في المنزل؟ يساعدك My Bar على اكتشافها. حدّد مكوناتك وتصفّح كتالوجًا يضم 384 وصفة و297 مكوّنًا، متاحًا حتى دون اتصال بالإنترنت.\n\nابدأ بما لديك\n• اعرض الكوكتيلات التي تتوفر جميع مكوناتها.\n• اكتشف وصفات ينقصها مكوّن واحد أو مكوّنان فقط.\n• ابحث وصفِّ النتائج باستخدام الوسوم واحفظ وصفاتك المفضلة.\n• اختر عرض القائمة أو الشبكة بحسب ما يناسبك.\n\nخطّط للتسوّق والمقادير\n• أضف المكونات الناقصة إلى قائمة التسوّق.\n• اطّلع على المكونات التي تتيح لك تحضير وصفات إضافية.\n• احسب المقادير حسب عدد الحصص، بوحدات ml أو cl أو fl oz.\n• في وضع الحفلة، اختر الكوكتيلات والحصص للحصول على قائمة موحّدة بالمكونات المطلوبة.\n\nاجعل الكتالوج خاصًا بك\n• استخدم الاقتراح العشوائي عندما تبحث عن فكرة مختلفة.\n• أنشئ وصفات الكوكتيل والمكونات الخاصة بك وعدّلها.\n• استورد كتالوجك أو صدّره بصيغة JSON.\n• اختر من بين 13 لغة لواجهة التطبيق وكتالوج الوصفات المرفق.\n\nمن تنظيم المكونات إلى مراجعة خطوات التحضير وحساب المقادير، يساعدك My Bar على الاستعداد بوضوح أكبر. تعمل الميزات الأساسية والوصفات المرفقة دون الحاجة إلى اتصال بالإنترنت.",
+      "whatsNew": "يدعم My Bar 1.2.0 الآن 13 لغة، مع ترجمة الواجهة وكتالوج الوصفات المرفق.\n\n• أداة جديدة لاختيار اللغة مع إمكانية البحث.\n• أصبح الملليلتر (ml) الوحدة الافتراضية عند التثبيت الجديد، مع الحفاظ على تفضيلاتك الحالية.\n• مراجعة المقادير وخطوات التحضير في الكتالوج.\n• تحسين سهولة قراءة أسماء المكونات الطويلة ونصوص الوصفات.\n• تحسين تجربة تصفّح الوصفات وتخطيط الحصص وإدارة قائمة التسوّق.",
+      "keywords": "مشروبات,مزج,قائمة تسوق,حفلة,حصص,مقادير,ملليلتر,مفضلة",
+      "marketingUrl": "https://whalehub.site/",
+      "supportUrl": "https://whalehub.site/"
+    }
+  }
+}
