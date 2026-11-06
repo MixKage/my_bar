@@ -1,7 +1,7 @@
 {
   "locale": "de",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "151 Proof Rum"
@@ -13,16 +13,16 @@
       "name": "Absinth"
     },
     "absolut_citron": {
-      "name": "Absolute Zitrone"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
       "name": "Absolut Kurant"
     },
     "absolut_peppar": {
-      "name": "Absoluter Peppar"
+      "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "Absoluter Wodka"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "Advocaat"
@@ -49,13 +49,13 @@
       "name": "Angelikawurzel"
     },
     "angostura_bitter": {
-      "name": "Angosturabitter"
+      "name": "Angostura-Bitter"
     },
     "anis": {
       "name": "Anis"
     },
     "anisette": {
-      "name": "Anislikör"
+      "name": "Anislikör (Anisette)"
     },
     "aperol": {
       "name": "Aperol"
@@ -70,7 +70,7 @@
       "name": "Apfelbrand"
     },
     "apple_cider": {
-      "name": "Apfelwein"
+      "name": "Apfelcidre"
     },
     "juice_apple": {
       "name": "Apfelsaft"
@@ -115,7 +115,7 @@
       "name": "Bittere Zitrone"
     },
     "bitters": {
-      "name": "Bitter"
+      "name": "Cocktailbitter"
     },
     "black_pepper": {
       "name": "Schwarzer Pfeffer"
@@ -130,7 +130,7 @@
       "name": "Brombeerschnaps"
     },
     "blackcurrant_cordial": {
-      "name": "Johannisbeerlikör"
+      "name": "Schwarzer Johannisbeersirup"
     },
     "blackstrap_rum": {
       "name": "Blackstrap-Rum"
@@ -142,7 +142,7 @@
       "name": "Blutorange"
     },
     "blue_curacao": {
-      "name": "Blaues Curaçao"
+      "name": "Blue Curaçao"
     },
     "bourbon": {
       "name": "Bourbon"
@@ -160,7 +160,7 @@
       "name": "Butterscotch-Schnaps"
     },
     "cachaca": {
-      "name": "Cachaca"
+      "name": "Cachaça"
     },
     "campari": {
       "name": "Campari"
@@ -217,7 +217,7 @@
       "name": "Schokoladensirup"
     },
     "cider": {
-      "name": "Apfelwein"
+      "name": "Cidre"
     },
     "cinnamon": {
       "name": "Zimt"
@@ -280,10 +280,10 @@
       "name": "Cranberry-Wodka"
     },
     "cream": {
-      "name": "Creme"
+      "name": "Sahne"
     },
     "cream_of_coconut": {
-      "name": "Kokoscreme"
+      "name": "Gesüßte Kokoscreme"
     },
     "creme_de_banane": {
       "name": "Creme de Banane"
@@ -298,7 +298,7 @@
       "name": "Creme de Mure"
     },
     "crown_royal": {
-      "name": "Kronkönigin"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "Gurke"
@@ -313,7 +313,7 @@
       "name": "Dunkler Rum"
     },
     "demerara_sugar": {
-      "name": "demerara Zucker"
+      "name": "Demerara-Zucker"
     },
     "dr_pepper": {
       "name": "Dr. Pepper"
@@ -322,7 +322,7 @@
       "name": "Drambuie"
     },
     "vermouth_dry": {
-      "name": "Trockener Wermut"
+      "name": "Trockener Wermutwein"
     },
     "dubonnet_rouge": {
       "name": "Dubonnet Rouge"
@@ -343,7 +343,7 @@
       "name": "Espresso"
     },
     "everclear": {
-      "name": "Immer klar"
+      "name": "Everclear"
     },
     "falernum": {
       "name": "Falernum"
@@ -352,7 +352,7 @@
       "name": "Feigen"
     },
     "firewater": {
-      "name": "Feuerwasser"
+      "name": "Firewater"
     },
     "frangelico": {
       "name": "Frangelico"
@@ -388,7 +388,7 @@
       "name": "Ginger Ale"
     },
     "ginger_beer": {
-      "name": "Ingwerbier"
+      "name": "Ginger Beer"
     },
     "syrup_gingerbread": {
       "name": "Ingwersirup"
@@ -400,7 +400,7 @@
       "name": "Goldrum"
     },
     "goldschlager": {
-      "name": "Goldschlager"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "Getreidealkohol"
@@ -430,10 +430,10 @@
       "name": "Grenadine"
     },
     "guinness_stout": {
-      "name": "Guinness Stout"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "Halb und halb"
+      "name": "Milch-Sahne-Mischung"
     },
     "heavy_cream": {
       "name": "Schlagsahne"
@@ -448,7 +448,7 @@
       "name": "Heiße Schokolade"
     },
     "hot_damn": {
-      "name": "Verdammt heiß"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "Scharfe Soße"
@@ -469,13 +469,13 @@
       "name": "Islay Single Malt Scotch"
     },
     "jack_daniels": {
-      "name": "Jack Daniels"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
       "name": "Jägermeister"
     },
     "jello": {
-      "name": "Wackelpudding"
+      "name": "Jello"
     },
     "jim_beam": {
       "name": "Jim Beam"
@@ -484,7 +484,7 @@
       "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "Kahlua"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "Kiwi"
@@ -505,13 +505,13 @@
       "name": "Zitrone"
     },
     "lemon_lime_soda": {
-      "name": "Zitronen-Limetten-Soda"
+      "name": "Zitronen-Limetten-Limonade"
     },
     "lemonade": {
-      "name": "Limonade"
+      "name": "Zitronenlimonade"
     },
     "light_cream": {
-      "name": "Leichte Creme"
+      "name": "Fettarme Sahne"
     },
     "rum_light": {
       "name": "Leichter Rum"
@@ -523,7 +523,7 @@
       "name": "Lillet Blanc"
     },
     "lime": {
-      "name": "Kalk"
+      "name": "Limette"
     },
     "lime_peel": {
       "name": "Limettenschale"
@@ -532,7 +532,7 @@
       "name": "Limettenwodka"
     },
     "limeade": {
-      "name": "Limonade"
+      "name": "Limettenlimonade"
     },
     "malibu_rum": {
       "name": "Malibu-Rum"
@@ -571,7 +571,7 @@
       "name": "Minzsirup"
     },
     "mountain_dew": {
-      "name": "Gebirgstau"
+      "name": "Mountain Dew"
     },
     "nutmeg": {
       "name": "Muskatnuss"
@@ -589,19 +589,19 @@
       "name": "Orangenbitter"
     },
     "orange_curacao": {
-      "name": "Orange Curacao"
+      "name": "Orangen-Curaçao"
     },
     "juice_orange": {
       "name": "Orangensaft"
     },
     "orange_spiral": {
-      "name": "Orangefarbene Spirale"
+      "name": "Spirale aus Orangenschale"
     },
     "oreo_cookie": {
       "name": "Oreo-Keks"
     },
     "orgeat_syrup": {
-      "name": "Orgeatsirup"
+      "name": "Mandelsirup (Orgeat)"
     },
     "ouzo": {
       "name": "Ouzo"
@@ -616,13 +616,13 @@
       "name": "Passionsfruchtsirup"
     },
     "passoa": {
-      "name": "Passoa"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "Pfirsichbitter"
     },
     "peach_brandy": {
-      "name": "Pfirsichschnaps"
+      "name": "Pfirsichbrandy"
     },
     "peach_nectar": {
       "name": "Pfirsichnektar"
@@ -643,10 +643,10 @@
       "name": "Pernod"
     },
     "peychauds_bitter": {
-      "name": "Peychaud-Bitter"
+      "name": "Peychaud's Bitter"
     },
     "pina_colada_mix": {
-      "name": "Pina-Colada-Mischung"
+      "name": "Piña-Colada-Mix"
     },
     "pineapple": {
       "name": "Ananas"
@@ -670,7 +670,7 @@
       "name": "Granatapfelsaft"
     },
     "port": {
-      "name": "Hafen"
+      "name": "Portwein"
     },
     "powdered_sugar": {
       "name": "Puderzucker"
@@ -697,10 +697,10 @@
       "name": "Ricard"
     },
     "root_beer": {
-      "name": "Wurzelbier"
+      "name": "Root Beer"
     },
     "rose": {
-      "name": "Rose"
+      "name": "Roséwein"
     },
     "rosemary": {
       "name": "Rosmarin"
@@ -712,7 +712,7 @@
       "name": "Rosso Wermut"
     },
     "ruby_port": {
-      "name": "Ruby Port"
+      "name": "Ruby-Portwein"
     },
     "rum": {
       "name": "Rum"
@@ -730,13 +730,13 @@
       "name": "Sarsaparille"
     },
     "schweppes_russchian": {
-      "name": "Schweppes Russisch"
+      "name": "Schweppes Russchian"
     },
     "scotch": {
       "name": "Scotch"
     },
     "sherbet": {
-      "name": "Sorbett"
+      "name": "Sorbet"
     },
     "sherry": {
       "name": "Sherry"
@@ -745,16 +745,16 @@
       "name": "Rosensirup"
     },
     "sloe_gin": {
-      "name": "Schlehen-Gin"
+      "name": "Schlehengin"
     },
     "soda_water": {
       "name": "Sodawasser"
     },
     "sour_mix": {
-      "name": "Saure Mischung"
+      "name": "Zitrus-Sour-Mix"
     },
     "southern_comfort": {
-      "name": "Südlicher Komfort"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "Sojasauce"
@@ -766,7 +766,7 @@
       "name": "Sprite"
     },
     "st_germain": {
-      "name": "St. Germain"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "Erdbeeren"
@@ -781,7 +781,7 @@
       "name": "Zuckersirup"
     },
     "surge": {
-      "name": "Anstieg"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "Süß und sauer"
@@ -811,7 +811,7 @@
       "name": "Tonic Water"
     },
     "triple_sec": {
-      "name": "Dreifache Sek"
+      "name": "Triple Sec"
     },
     "vanilla": {
       "name": "Vanille"
@@ -826,7 +826,7 @@
       "name": "Vanillesirup"
     },
     "vermouth": {
-      "name": "Wermut"
+      "name": "Wermutwein"
     },
     "vodka": {
       "name": "Wodka"
@@ -835,7 +835,7 @@
       "name": "Wasser"
     },
     "whipped_cream": {
-      "name": "Schlagsahne"
+      "name": "Geschlagene Sahne"
     },
     "whisky": {
       "name": "Whiskey"
@@ -847,7 +847,7 @@
       "name": "Weißwein"
     },
     "wild_turkey": {
-      "name": "Wilder Truthahn"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "Wein"
@@ -856,7 +856,7 @@
       "name": "Worcestershire-Sauce"
     },
     "wormwood": {
-      "name": "Wermut"
+      "name": "Wermutkraut"
     },
     "chartreuse_yellow": {
       "name": "Gelber Chartreuse"
@@ -874,7 +874,7 @@
       "name": "Weißes Pfirsichpüree"
     },
     "grapefruit_soda": {
-      "name": "Grapefruit-Soda"
+      "name": "Grapefruitlimonade"
     },
     "creme_de_violette": {
       "name": "Creme de Violette"
@@ -960,7 +960,7 @@
         "Mit einem Spritzer Sodawasser auffüllen."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "Mit Limonade auffüllen und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "affinity": {
@@ -1042,7 +1042,7 @@
         "Mit der Orangenscheibe und Zitronenschale garnieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "In ein Longdrinkglas auf frischem Eis abseihen."
       ],
       "ingredientAmounts": {
-        "cream": "Nachfüllen"
+        "cream": "Glas auffüllen"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "Dieses von Timo Haimi kreierte Getränk gewann 1991 den ersten Preis beim Finlandia-Wodka-Longdrink-Wettbewerb."
       ],
       "ingredientAmounts": {
-        "lemonade": "Nachfüllen"
+        "lemonade": "Glas auffüllen"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "In ein gekühltes Glas abseihen und mit Prosecco auffüllen."
       ],
       "ingredientAmounts": {
-        "prosecco": "Nachfüllen"
+        "prosecco": "Glas auffüllen"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "Funktioniert am besten, wenn Eis in die Bowle gegeben wird und die Limonaden sehr kalt sind."
       ],
       "ingredientAmounts": {
-        "everclear": "1 fünfte Flasche",
-        "vodka": "1 fünfte Flasche"
+        "everclear": "1 Flasche zu einem Fünftel einer US-Gallone",
+        "vodka": "1 Flasche zu einem Fünftel einer US-Gallone"
       }
     },
     "bramble": {
@@ -1397,7 +1397,7 @@
         "Mit kohlensäurehaltigem Wasser auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "chocolate-drink": {
@@ -1446,7 +1446,7 @@
         "In ein gekühltes Cocktailglas abseihen."
       ],
       "ingredientAmounts": {
-        "egg_white": "Ein paar Tropfen"
+        "egg_white": "Einige Tropfen"
       }
     },
     "coffee-liqueur": {
@@ -1494,7 +1494,7 @@
       ]
     },
     "cosmopolitan": {
-      "name": "Kosmopolitisch",
+      "name": "Cosmopolitan",
       "description": "Alle Zutaten in einen mit Eis gefüllten Cocktailshaker geben. Gut schütteln und doppelt in ein großes Cocktailglas abseihen. Mit Limettenscheibe garnieren.",
       "preparationSteps": [
         "Alle Zutaten in einen mit Eis gefüllten Cocktailshaker geben",
@@ -1524,21 +1524,21 @@
         "Genießen!"
       ],
       "ingredientAmounts": {
-        "lime": "Frischer Saft nach Geschmack",
-        "coca_cola": "Nachfüllen",
+        "lime": "Frisch gepresster Saft nach Geschmack",
+        "coca_cola": "Glas auffüllen",
         "ice": "Nach Bedarf"
       }
     },
     "cuba-libre": {
       "name": "Cuba Libre",
-      "description": "Geben Sie alle Zutaten in ein mit Eis gefülltes Collins-Glas. Mit Limettenspalte garnieren.",
+      "description": "Die Zutaten direkt in einem Collinsglas mit Eis mischen und mit einer Limettenspalte garnieren.",
       "preparationSteps": [
-        "Drücken Sie die angegebene Menge Zitrone oder Limette aus; Verwenden Sie für das Getränk nur den Saft.",
-        "Geben Sie alle Zutaten in ein mit Eis gefülltes Collins-Glas",
-        "Mit Limettenspalte garnieren."
+        "Die angegebene Menge Zitrone oder Limette auspressen und nur den Saft verwenden.",
+        "Die Zutaten direkt in ein Collinsglas mit Eis geben.",
+        "Mit einer Limettenspalte garnieren."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Nachfüllen"
+        "coca_cola": "Glas auffüllen"
       }
     },
     "daiquiri": {
@@ -1591,14 +1591,14 @@
       }
     },
     "death-in-the-afternoon": {
-      "name": "Tod am Nachmittag",
+      "name": "Death in the Afternoon",
       "description": "Das Glas und beide Zutaten kalt stellen. Den Absinth dazugeben, langsam mit Champagner aufgießen und servieren.",
       "preparationSteps": [
         "Das Glas und beide Zutaten kalt stellen.",
         "Den Absinth dazugeben, langsam mit Champagner aufgießen und servieren."
       ],
       "ingredientAmounts": {
-        "champagne": "Nachfüllen"
+        "champagne": "Glas auffüllen"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "Steine ​​optional."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "Ein kleiner Schwimmer"
+        "151_proof_rum": "Eine dünne Schicht obendrauf"
       }
     },
     "dragonfly": {
@@ -1776,7 +1776,7 @@
         "(Bei Bedarf kann kohlensäurehaltiges Wasser durch Ginger Ale ersetzt werden.)"
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen",
+        "soda_water": "Glas auffüllen",
         "lemon": "Nach Geschmack"
       }
     },
@@ -1789,11 +1789,11 @@
         "Mit der Kirsche belegen und servieren."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "Für die Felge"
+        "powdered_sugar": "Für den Glasrand"
       }
     },
     "espresso-martini": {
-      "name": "Espresso-Martini",
+      "name": "Espresso Martini",
       "description": "Einen starken Espresso zubereiten und kurz abkühlen lassen. Wodka, Kaffeelikör, Zuckersirup und Espresso mit Eis in einen Shaker geben. Kräftig schütteln, bis es schaumig ist, und in ein gekühltes Cocktailglas abseihen.",
       "preparationSteps": [
         "Einen starken Espresso zubereiten und kurz abkühlen lassen.",
@@ -1826,8 +1826,8 @@
         "Mit Tonic auffüllen und die Bitterstoffe hinzufügen."
       ],
       "ingredientAmounts": {
-        "tonic_water": "Nachfüllen",
-        "lemon": "Frischer Saft nach Geschmack"
+        "tonic_water": "Glas auffüllen",
+        "lemon": "Frisch gepresster Saft nach Geschmack"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "Französisch 75",
+      "name": "French 75",
       "description": "Gin, Zucker und Zitronensaft in einem mit Eis gefüllten Cocktailshaker vermischen. Kräftig schütteln und in ein gekühltes Champagnerglas abseihen. Mit Champagner auffüllen. Vorsichtig umrühren.",
       "preparationSteps": [
         "Gin, Zucker und Zitronensaft in einem mit Eis gefüllten Cocktailshaker vermischen",
@@ -1968,12 +1968,12 @@
       ]
     },
     "fruit-cooler": {
-      "name": "Obstkühler",
+      "name": "Frucht-Cooler",
       "description": "Erdbeeren mit Zucker vermengen und über Nacht im Kühlschrank ruhen lassen. Zitrone schneiden, zwei Scheiben beiseite legen, den Rest entsaften, Zitronensaft, Erdbeeren, Apfelsaft und Sodawasser vermischen, Zitronenscheiben hinzufügen (wirklich Dekor), Eiswürfel und eine Apfelscheibe in Gläser geben, das Getränk hineingießen und servieren.",
       "preparationSteps": [
         "Erdbeeren mit Zucker vermengen und über Nacht im Kühlschrank ruhen lassen",
         "Zitrone schneiden, zwei Scheiben aufbewahren",
-        "Den Rest entsaften",
+        "Den Rest der Zitrone auspressen.",
         "Zitronensaft, Erdbeeren, Apfelsaft und Sodawasser vermischen",
         "Fügen Sie Zitronenscheiben hinzu (eigentlich Dekor)",
         "In Gläser Eiswürfel und eine Apfelscheibe geben",
@@ -2007,7 +2007,7 @@
         "Für einen authentischeren Geschmack verwenden Sie nach Möglichkeit jamaikanischen Rum."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "gagliardo": {
@@ -2027,7 +2027,7 @@
         "Sie haben jetzt Ihr eigenes GG."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Nachfüllen",
+        "ginger_ale": "Glas auffüllen",
         "ice": "Nach Bedarf"
       }
     },
@@ -2049,7 +2049,7 @@
         "Mit den Orangen- und Zitronenschalen garnieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "gin-daisy": {
@@ -2071,7 +2071,7 @@
         "Mit Sodawasser auffüllen."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "gin-rickey": {
@@ -2085,7 +2085,7 @@
         "Das Glas mit Limetten- und/oder Zitronenscheiben dekorieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen",
+        "soda_water": "Glas auffüllen",
         "lime": "Nach Geschmack"
       }
     },
@@ -2127,7 +2127,7 @@
         "Mit den Ananasstücken und den Erdbeeren dekorieren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "gin-swizzle": {
@@ -2256,7 +2256,7 @@
         "Benannt nach der Anspielung auf Gilligan's Island („Der Kapitän“ *in* „Ginger“ ist ein glücklicher Skipper!)"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Nachfüllen",
+        "ginger_ale": "Glas auffüllen",
         "lime": "Nach Geschmack",
         "ice": "Nach Bedarf"
       }
@@ -2325,7 +2325,7 @@
         "Um das beste Ergebnis zu erzielen, lassen Sie die Mischung 4–5 Wochen lang „reifen“."
       ],
       "ingredientAmounts": {
-        "vodka": "1 fünfte Flasche"
+        "vodka": "1 Flasche zu einem Fünftel einer US-Gallone"
       }
     },
     "honey-bee": {
@@ -2411,7 +2411,7 @@
         "Mit kohlensäurehaltigem Wasser auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "ipamena": {
@@ -2423,7 +2423,7 @@
         "In ein Glas abseihen, mit Ginger Ale auffüllen und vorsichtig umrühren."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Nachfüllen",
+        "ginger_ale": "Glas auffüllen",
         "ice": "Nach Bedarf"
       }
     },
@@ -2461,7 +2461,7 @@
         "Fügen Sie kein Eis hinzu."
       ],
       "ingredientAmounts": {
-        "guinness_stout": "Nachfüllen"
+        "guinness_stout": "Glas auffüllen"
       }
     },
     "irish-spring": {
@@ -2539,7 +2539,7 @@
         "Mit kohlensäurehaltigem Wasser auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "So einfach ist das!"
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "john-collins": {
@@ -2733,7 +2733,7 @@
         "Mit kohlensäurehaltigem Wasser auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2795,7 +2795,7 @@
         "Kokoslikör und Grapefruitsaft hinzufügen, mit Sodawasser auffüllen und vorsichtig umrühren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "Schütteln und in ein gekühltes, mit Zucker umrandetes Cocktailglas abseihen."
       ],
       "ingredientAmounts": {
-        "sugar": "Für die Felge"
+        "sugar": "Für den Glasrand"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "Alle Zutaten auf Eis gießen, umrühren und genießen!"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "Nachfüllen"
+        "fresh_lemon_juice": "Glas auffüllen"
       }
     },
     "lemon-shot": {
@@ -2857,7 +2857,7 @@
         "Wiederholen, bis Limetten oder Soda aufgebraucht sind."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen",
+        "soda_water": "Glas auffüllen",
         "lime_peel": "Zum Garnieren"
       }
     },
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "Einsamer Baumkühler",
+      "name": "Lone Tree Cooler",
       "description": "Lösen Sie den Zucker in etwa 60 ml Sodawasser in einem Collins-Glas auf. Eis, Gin und trockenen Wermut hinzufügen und umrühren. Mit mehr Sodawasser auffüllen und mit den Zitrusschalen garnieren.",
       "preparationSteps": [
         "Lösen Sie den Zucker in etwa 60 ml Sodawasser in einem Collins-Glas auf.",
@@ -2896,7 +2896,7 @@
         "Mit mehr Sodawasser auffüllen und mit den Zitrusschalen garnieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "Mit Cola auffüllen und vorsichtig umrühren."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Nachfüllen"
+        "coca_cola": "Glas auffüllen"
       }
     },
     "long-vodka": {
@@ -2957,7 +2957,7 @@
       "ingredientAmounts": {
         "mint": "Nach Geschmack",
         "ice": "Nach Bedarf",
-        "soda_water": "Nachfüllen",
+        "soda_water": "Glas auffüllen",
         "sugar": "Nach Geschmack"
       }
     },
@@ -3033,7 +3033,7 @@
         "Zum Schluss die Eiswürfel dazugeben, sonst vermischen sich Sirup und Pastis nicht gut."
       ],
       "ingredientAmounts": {
-        "water": "Nachfüllen"
+        "water": "Glas auffüllen"
       }
     },
     "melya": {
@@ -3113,7 +3113,7 @@
         "Mit Stroh garnieren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "mojito-extra": {
@@ -3148,7 +3148,7 @@
       ]
     },
     "moscow-mule": {
-      "name": "Moskauer Maultier",
+      "name": "Moscow Mule",
       "description": "Füllen Sie einen Mule-Becher oder ein Rocks-Glas mit Eis. Wodka, Ginger Beer und frischen Limettensaft hinzufügen; Vorsichtig umrühren.",
       "preparationSteps": [
         "Füllen Sie einen Mule-Becher oder ein Rocks-Glas mit Eis.",
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "Glühwein",
+      "name": "Gewürzwein mit Brandy",
       "description": "3 Tassen Wasser mit Zucker, Nelken, Zimtstangen und Zitronenschale in einem Edelstahltopf 10 Minuten köcheln lassen. Den Wein auf „Kaffeetemperatur“ erhitzen (NICHT KOCHEN) und dann den Brandy hinzufügen.",
       "preparationSteps": [
         "3 Tassen Wasser mit Zucker, Nelken, Zimtstangen und Zitronenschale in einem Edelstahltopf 10 Minuten köcheln lassen",
@@ -3191,7 +3191,7 @@
         "Über frisches Eis in ein hohes Glas abseihen, dann das Soda dazugeben und vorsichtig umrühren."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Ein Spritzer"
+        "lemon_lime_soda": "Ein Schuss"
       }
     },
     "negroni": {
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "Altmodisch",
+      "name": "Old Fashioned",
       "description": "Geben Sie den Zuckerwürfel in ein altmodisches Glas und sättigen Sie ihn mit Bitterstoffen. Fügen Sie einen Schuss klares Wasser hinzu. Mischen, bis es sich aufgelöst hat.\r\nFüllen Sie das Glas mit Eiswürfeln und fügen Sie Whiskey hinzu.\r\n\r\nMit Orangenschale und einer Cocktailkirsche garnieren.",
       "preparationSteps": [
         "Geben Sie den Zuckerwürfel in ein altmodisches Glas und sättigen Sie ihn mit Bitterstoffen. Fügen Sie einen Schuss klares Wasser hinzu",
@@ -3294,7 +3294,7 @@
         "Mit Ginger Ale auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Nachfüllen"
+        "ginger_ale": "Glas auffüllen"
       }
     },
     "orange-push-up": {
@@ -3305,20 +3305,20 @@
         "In ein großes Glas gießen."
       ],
       "ingredientAmounts": {
-        "sour_mix": "Ein Spritzer"
+        "sour_mix": "Ein Schuss"
       }
     },
     "orange-rosemary-collins": {
-      "name": "Orange Rosemary Collins",
+      "name": "Orangen-Rosmarin-Collins",
       "description": "Geben Sie die Spirituosen auf den Boden des Glases und füllen Sie es gleichmäßig mit den Mixgetränken auf. Mit Orangenscheiben im Glas und etwas Rosmarin garnieren.",
       "preparationSteps": [
-        "Geben Sie die Spirituosen auf den Boden des Glases und füllen Sie es gleichmäßig mit den Mixgetränken auf",
+        "Die Spirituosen ins Glas geben und zu gleichen Teilen mit den alkoholfreien Mixgetränken auffüllen.",
         "Mit Orangenscheiben im Glas und etwas Rosmarin garnieren."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Nachfüllen",
-        "lemon": "Nachfüllen",
-        "soda_water": "Nachfüllen",
+        "juice_orange": "Glas auffüllen",
+        "lemon": "Glas auffüllen",
+        "soda_water": "Glas auffüllen",
         "rosemary": "Nach Geschmack",
         "orange": "Nach Geschmack"
       }
@@ -3341,11 +3341,11 @@
         "Ergibt 2 Portionen."
       ],
       "ingredientAmounts": {
-        "orange": "3 2-Zoll-Streifen"
+        "orange": "3 Streifen zu je 2 Zoll"
       }
     },
     "orange-whip": {
-      "name": "Orangefarbene Peitsche",
+      "name": "Orange Whip",
       "description": "Zutaten auf Eis gießen und umrühren.",
       "preparationSteps": [
         "Zutaten auf Eis gießen und umrühren."
@@ -3362,7 +3362,7 @@
         "Mit kaltem Sodawasser auffüllen, mit Trinkhalm servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "Mit einem halben Passionsfruchtstück garnieren."
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "Nachfüllen"
+        "juice_passion_fruit": "Glas auffüllen"
       }
     },
     "pegu-club": {
@@ -3435,7 +3435,7 @@
       ]
     },
     "pina-colada": {
-      "name": "Pina Colada",
+      "name": "Piña Colada",
       "description": "Den weißen Rum, die Kokoscreme und den Ananassaft mit Crushed Ice in einen Mixer geben. Alles glatt rühren und dann in ein großes, gekühltes Glas gießen.",
       "preparationSteps": [
         "Den weißen Rum, die Kokoscreme und den Ananassaft mit Crushed Ice in einen Mixer geben.",
@@ -3517,7 +3517,7 @@
         "Geben Sie ein paar Tropfen Aromabitter auf den Schaum."
       ],
       "ingredientAmounts": {
-        "bitters": "Ein paar Striche"
+        "bitters": "Ein paar Spritzer Bitter"
       }
     },
     "planter-s-punch-178368-178368-178368": {
@@ -3642,7 +3642,7 @@
         "Mit Zitronen-Limetten-Soda auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Nachfüllen"
+        "lemon_lime_soda": "Glas auffüllen"
       }
     },
     "queen-elizabeth": {
@@ -3686,7 +3686,7 @@
       ],
       "ingredientAmounts": {
         "lemon": "Nach Geschmack",
-        "ginger_ale": "Nachfüllen"
+        "ginger_ale": "Glas auffüllen"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "In ein Longdrinkglas abseihen und vorsichtig mit Sodawasser auffüllen. Schütteln Sie die Limonade niemals."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "raspberry-julep": {
@@ -3750,7 +3750,7 @@
         "Mit Cola auffüllen und servieren."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Nachfüllen"
+        "coca_cola": "Glas auffüllen"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "Mit kohlensäurehaltigem Wasser auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "Grenadine hinzufügen und umrühren."
       ],
       "ingredientAmounts": {
-        "grenadine": "Zwei Spritzer"
+        "grenadine": "Zwei Schuss"
       }
     },
     "rum-cobbler": {
@@ -3860,7 +3860,7 @@
         "In ein mit frischem Eis gefülltes hohes Glas abseihen und mit Sekt auffüllen."
       ],
       "ingredientAmounts": {
-        "prosecco": "Nachfüllen"
+        "prosecco": "Glas auffüllen"
       }
     },
     "rusty-nail": {
@@ -4076,7 +4076,7 @@
         "Auf Eis in ein Glas geben, garnieren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Ein Spritzer"
+        "soda_water": "Ein Schuss"
       }
     },
     "stinger": {
@@ -4115,7 +4115,7 @@
         "orange": "Zum Garnieren",
         "lime": "Zum Garnieren",
         "lemon": "Nach Geschmack",
-        "fresca": "Nachfüllen"
+        "fresca": "Glas auffüllen"
       }
     },
     "tennesee-mud": {
@@ -4137,7 +4137,7 @@
         "Mit Ginger Ale auffüllen, umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Nachfüllen"
+        "ginger_ale": "Glas auffüllen"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "Tropfen Tobasco-Sauce hinzufügen."
       ],
       "ingredientAmounts": {
-        "tequila": "Nachfüllen"
+        "tequila": "Glas auffüllen"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "Zuerst süß, mit einem BISS am Ende ..."
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "Ein Spritzer"
+        "sweet_and_sour": "Ein Schuss"
       }
     },
     "texas-sling": {
@@ -4238,8 +4238,8 @@
         "Die alkoholischen Portionen vermischen und mit Ananas- und Limettensaft aufgießen."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Nachfüllen",
-        "lime": "Nachfüllen"
+        "juice_pineapple": "Glas auffüllen",
+        "lime": "Glas auffüllen"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "In ein gekühltes Glas abseihen und mit Prosecco auffüllen."
       ],
       "ingredientAmounts": {
-        "prosecco": "Nachfüllen"
+        "prosecco": "Glas auffüllen"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "Mit Eis schütteln und in ein Schnapsglas abseihen."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Ein Spritzer"
+        "juice_pineapple": "Ein Schuss"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "Mit kohlensäurehaltigem Wasser auffüllen, erneut umrühren und servieren."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "vesper": {
@@ -4489,7 +4489,7 @@
         "Mit Sodawasser abschmecken."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "Mit Grapefruitsaft auffüllen, eine Prise Lebensmittelpfeffer hinzufügen und umrühren. Dies ist die vereinfachte Version; Das Original verwendet zubereiteten, mit Pfeffer angereicherten Tequila."
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "Nachfüllen"
+        "juice_grapefruit": "Glas auffüllen"
       }
     },
     "winter-rita": {
@@ -4572,7 +4572,7 @@
         "Gießen Sie Chambord, dann Wodka und schließlich Sodawasser hinzu. Langsam gießen, um die Schichten zu erhalten."
       ],
       "ingredientAmounts": {
-        "soda_water": "Nachfüllen"
+        "soda_water": "Glas auffüllen"
       }
     },
     "zippy-s-revenge": {
@@ -4607,7 +4607,7 @@
         "coca_cola": "Nach Geschmack",
         "beer": "Nach Geschmack",
         "root_beer": "Nach Geschmack",
-        "lemonade": "Nachfüllen",
+        "lemonade": "Glas auffüllen",
         "7_up": "Nach Geschmack",
         "creme_de_cassis": "Nach Geschmack"
       }
@@ -4636,7 +4636,7 @@
         "Fügen Sie alles hinzu, gießen Sie schwarzen Kaffee ein und fügen Sie Schlagsahne hinzu."
       ],
       "ingredientAmounts": {
-        "coffee": "Nachfüllen",
+        "coffee": "Glas auffüllen",
         "whipped_cream": "Zum Garnieren"
       }
     }

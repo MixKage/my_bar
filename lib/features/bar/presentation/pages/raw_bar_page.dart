@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/search/app_search_query.dart';
+import '../catalog_search.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/bar_pressable.dart';
@@ -113,20 +114,14 @@ class _RawBarPageState extends State<RawBarPage> {
     final filteredIngredients = widget.ingredients
         .where(
           (ingredient) =>
-              (!_selectedOnly ||
-                  widget.selectedIngredientIds.contains(ingredient.id)) &&
-              searchQuery.matchesAny(<String>[
-                ingredient.name,
-                ingredient.category,
-                context.ingredientCategoryLabel(ingredient.category),
-                ingredient.id,
-              ]),
+              !_selectedOnly ||
+              widget.selectedIngredientIds.contains(ingredient.id),
         )
         .toList(growable: false);
     final cocktailsByIngredient = _buildCocktailUsageMap(widget.cocktails);
-    final sortedIngredients = _sortIngredients(
-      filteredIngredients,
-      cocktailsByIngredient,
+    final sortedIngredients = searchQuery.rank(
+      _sortIngredients(filteredIngredients, cocktailsByIngredient),
+      (ingredient) => ingredientSearchDocument(context, ingredient),
     );
     final readyCocktailCount = _readyCocktailCount();
 
@@ -306,7 +301,7 @@ class _RawBarPageState extends State<RawBarPage> {
                     horizontalPadding,
                     bottomContentPadding,
                   ),
-                  sliver: filteredIngredients.isEmpty
+                  sliver: sortedIngredients.isEmpty
                       ? SliverToBoxAdapter(
                           child: Padding(
                             padding: EdgeInsets.only(top: 46),

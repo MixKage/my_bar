@@ -111,33 +111,47 @@ class _OnboardingPageState extends State<OnboardingPage> {
       (
         icon: Icons.liquor_rounded,
         title: context.tr('Ваш домашний бар', 'Your home bar'),
-        body: context.tr(
-          '1. Откройте раздел «Ингредиенты» и нажмите на продукты и напитки, которые есть у вас дома. Галочка означает, что ингредиент в наличии.\n\n2. Перейдите в «Барную карту»: приложение покажет, какие коктейли можно приготовить из выбранного. Фильтр «Можно сейчас» оставит только доступные рецепты.',
-          '1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.',
+        body: context.trWithArgs(
+          '1. В разделе «{0}» отметьте продукты и напитки, которые есть дома. Галочка означает, что ингредиент в наличии.\n\n2. Откройте раздел «{1}» и выберите «{2}», чтобы увидеть, какие коктейли можно приготовить из ваших запасов.',
+          '1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.',
+          [
+            context.tr('Ингредиенты', 'Ingredients'),
+            context.tr('Барная карта', 'Bar Menu'),
+            context.tr('Можно сейчас', 'Ready'),
+          ],
         ),
       ),
       (
         icon: Icons.shopping_basket_rounded,
-        title: context.tr('Ещё один ингредиент…', 'Just one more ingredient…'),
-        body: context.tr(
-          'Фильтры «Не хватает 1» и «Не хватает 2» находят почти доступные рецепты. Умный список покупок подскажет, что докупить.',
-          '“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.',
+        title: context.tr('Почти всё есть', 'Almost ready to mix'),
+        body: context.trWithArgs(
+          'Фильтры «{0}» и «{1}» покажут рецепты, для которых не хватает одного или двух ингредиентов. Список покупок подскажет, что докупить.',
+          'Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.',
+          [
+            context.tr('Не хватает 1', 'Missing 1'),
+            context.tr('Не хватает 2', 'Missing 2'),
+          ],
         ),
       ),
       (
         icon: Icons.celebration_rounded,
-        title: context.tr('Готовьте для компании', 'Mix for a crowd'),
-        body: context.tr(
-          'Калькулятор пересчитает состав на нужное число порций. В режиме вечеринки выберите коктейли и получите общий список ингредиентов.',
-          'Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.',
+        title: context.tr('Готовьте для компании', 'Cocktails for a group'),
+        body: context.trWithArgs(
+          'Меняйте число порций — количество ингредиентов пересчитается. Откройте «{0}» и выберите коктейли, чтобы получить общий список ингредиентов.',
+          'Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.',
+          [context.tr('Режим вечеринки', 'Party mode')],
         ),
       ),
       (
         icon: Icons.casino_rounded,
         title: context.tr('Откройте новый вкус', 'Discover a new favorite'),
-        body: context.tr(
-          'Нажмите «Удиви меня» и листайте случайные рецепты кнопкой «Следующий коктейль». Сохраняйте понравившиеся в избранное. Все эти функции бесплатны и работают офлайн.',
-          'Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.',
+        body: context.trWithArgs(
+          'Нажмите «{0}», чтобы открыть случайный рецепт, и «{1}», чтобы увидеть другой. Сохраняйте понравившиеся рецепты в избранное. Всё это бесплатно и доступно офлайн.',
+          'Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.',
+          [
+            context.tr('Удиви меня', 'Surprise me'),
+            context.tr('Следующий коктейль', 'Next cocktail'),
+          ],
         ),
       ),
     ];

@@ -208,6 +208,7 @@ class BarCubit extends Cubit<BarState> {
     final currentIngredient = state.ingredients[ingredientIndex];
     final updatedIngredient = Ingredient(
       id: currentIngredient.id,
+      aliases: currentIngredient.aliases,
       name: normalizedName,
       category: normalizedCategory,
       image: image.trim(),
@@ -415,6 +416,7 @@ class BarCubit extends Cubit<BarState> {
 
     final updatedCocktail = Cocktail(
       id: currentCocktail.id,
+      aliases: currentCocktail.aliases,
       name: normalizedName,
       image: image.trim(),
       ingredients: normalizedIngredientIds,
@@ -453,6 +455,7 @@ class BarCubit extends Cubit<BarState> {
 
     final updatedCocktail = Cocktail(
       id: currentCocktail.id,
+      aliases: currentCocktail.aliases,
       name: currentCocktail.name,
       image: currentCocktail.image,
       ingredients: currentCocktail.ingredients,
@@ -491,6 +494,7 @@ class BarCubit extends Cubit<BarState> {
     final current = state.cocktails[cocktailIndex];
     final updated = Cocktail(
       id: current.id,
+      aliases: current.aliases,
       name: current.name,
       image: current.image,
       ingredients: current.ingredients,

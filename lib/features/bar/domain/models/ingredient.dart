@@ -1,5 +1,7 @@
 import 'package:meta/meta.dart';
 
+import 'catalog_aliases.dart';
+
 @immutable
 class Ingredient {
   const Ingredient({
@@ -7,6 +9,7 @@ class Ingredient {
     required this.name,
     required this.category,
     required this.image,
+    this.aliases = const [],
     this.isDecoration = false,
     this.isOptional = false,
     this.glowColor = '',
@@ -23,6 +26,7 @@ class Ingredient {
       name: (json['name'] as String? ?? '').trim(),
       category: (json['category'] as String? ?? '').trim(),
       image: (json['image'] as String? ?? '').trim(),
+      aliases: parseCatalogAliases(json['aliases']),
       isDecoration: _parseBool(json['isDecoration'] ?? json['decoration']),
       isOptional: _parseBool(json['isOptional'] ?? json['optional']),
       glowColor: (json['glowColor'] as String? ?? '').trim(),
@@ -38,6 +42,7 @@ class Ingredient {
   final String name;
   final String category;
   final String image;
+  final List<String> aliases;
   final bool isDecoration;
   final bool isOptional;
   final String glowColor;
@@ -53,6 +58,7 @@ class Ingredient {
       'name': name,
       'category': category,
       'image': image,
+      if (aliases.isNotEmpty) 'aliases': aliases,
       'isDecoration': isDecoration,
       'isOptional': isOptional,
       if (glowColor.trim().isNotEmpty) 'glowColor': glowColor.trim(),
@@ -73,6 +79,7 @@ class Ingredient {
             other.name == name &&
             other.category == category &&
             other.image == image &&
+            catalogAliasesEqual(other.aliases, aliases) &&
             other.isDecoration == isDecoration &&
             other.isOptional == isOptional &&
             other.glowColor == glowColor &&
@@ -89,6 +96,7 @@ class Ingredient {
     name,
     category,
     image,
+    Object.hashAll(aliases),
     isDecoration,
     isOptional,
     glowColor,

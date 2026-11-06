@@ -1,279 +1,268 @@
 import 'dart:math';
 
-/// Unified app-level search query matcher with:
-/// - normalization (case/punctuation/yo->e),
-/// - Cyrillic/Latin transliteration,
-/// - hard-coded bilingual synonym mapping,
-/// - fuzzy matching (Levenshtein + Dice coefficient).
+/// Search text is separate from the label a user sees on the card.
+class AppSearchDocument {
+  const AppSearchDocument({
+    required this.name,
+    this.aliases = const [],
+    this.related = const [],
+    this.details = const [],
+  });
+
+  final String name;
+  final Iterable<String> aliases;
+  final Iterable<String> related;
+  final Iterable<String> details;
+}
+
+/// Offline Unicode search with phrase ranking, transliteration and typo tolerance.
 class AppSearchQuery {
-  AppSearchQuery(String rawQuery)
-    : _variants = _buildQueryVariants(rawQuery),
-      _tokens = _buildQueryTokens(rawQuery);
+  AppSearchQuery(String rawQuery) : _query = _SearchText(_normalize(rawQuery));
 
-  final Set<String> _variants;
-  final Set<String> _tokens;
+  final _SearchText _query;
+  final _fields = <String, _SearchText>{};
+  final _tokenScores = <(String, String, bool, bool), int>{};
 
-  bool get isEmpty => _variants.isEmpty;
+  bool get isEmpty => _query.value.isEmpty;
 
-  bool matchesAny(Iterable<String> texts) {
-    if (isEmpty) {
-      return true;
+  bool matches(String text) => score(AppSearchDocument(name: text)) > 0;
+
+  bool matchesAny(Iterable<String> texts) =>
+      score(AppSearchDocument(name: '', aliases: texts)) > 0;
+
+  /// Results of equal relevance preserve the caller's sort order.
+  List<T> rank<T>(
+    Iterable<T> items,
+    AppSearchDocument Function(T item) describe,
+  ) {
+    if (isEmpty) return items.toList(growable: false);
+    final ranked = <({T item, int order, int score})>[];
+    for (final (index, item) in items.indexed) {
+      final value = score(describe(item));
+      if (value > 0) ranked.add((item: item, order: index, score: value));
     }
-    for (final text in texts) {
-      if (matches(text)) {
-        return true;
-      }
-    }
-    return false;
+    ranked.sort((a, b) {
+      final relevance = b.score.compareTo(a.score);
+      return relevance == 0 ? a.order.compareTo(b.order) : relevance;
+    });
+    return ranked.map((entry) => entry.item).toList(growable: false);
   }
 
-  bool matches(String text) {
-    if (isEmpty) {
-      return true;
-    }
-
-    final normalizedSource = _normalize(text);
-    if (normalizedSource.isEmpty) {
-      return false;
-    }
-
-    final sourceVariants = _buildSourceVariants(normalizedSource);
-    for (final sourceVariant in sourceVariants) {
-      for (final queryVariant in _variants) {
-        if (sourceVariant.contains(queryVariant)) {
-          return true;
+  /// Returns zero unless every query term is accounted for.
+  int score(AppSearchDocument document) {
+    if (isEmpty) return 1;
+    final fields = <(_SearchText, int)>[
+      (_field(document.name), 90),
+      for (final text in document.aliases) (_field(text), 70),
+      for (final text in document.related) (_field(text), 40),
+      for (final text in document.details) (_field(text), 10),
+    ];
+    var best = 0;
+    for (final (queryIndex, query) in _query.forms.indexed) {
+      for (final (field, weight) in fields) {
+        for (final (sourceIndex, source) in field.forms.indexed) {
+          // Transliteration can erase a real spelling distinction (ь, ъ).
+          // Prefer a literal name, alias or prefix before that fallback.
+          final penalty = queryIndex == 0 && sourceIndex == 0 ? 0 : 250;
+          if (source.value == query.value) {
+            best = max(best, 1000 + weight - penalty);
+          } else if (source.value.startsWith(query.value)) {
+            best = max(best, 800 + weight - penalty);
+          } else if (source.value.contains(' ${query.value}') ||
+              (_unsegmented.hasMatch(query.value) &&
+                  source.value.contains(query.value))) {
+            best = max(best, 650 + weight - penalty);
+          }
         }
       }
-    }
-
-    if (_tokens.isEmpty) {
-      return false;
-    }
-
-    final sourceTokens = <String>{};
-    for (final sourceVariant in sourceVariants) {
-      sourceTokens.addAll(_splitTokens(sourceVariant));
-    }
-
-    if (sourceTokens.isEmpty) {
-      return false;
-    }
-
-    for (final queryToken in _tokens) {
-      for (final sourceToken in sourceTokens) {
-        if (_isFuzzyTokenMatch(queryToken, sourceToken)) {
-          return true;
+      if (best >= 800) continue;
+      var total = 0;
+      var weakest = 200;
+      final allowShortPrefix = query.tokens.length == 1;
+      for (final term in query.tokens) {
+        var strongest = 0;
+        for (final (field, weight) in fields) {
+          for (final (sourceIndex, source) in field.forms.indexed) {
+            for (final token in source.tokens) {
+              final value = _tokenScores.putIfAbsent(
+                (term, token, weight > 10, allowShortPrefix),
+                () => _matchToken(
+                  term,
+                  token,
+                  allowTypos: weight > 10,
+                  allowShortPrefix: allowShortPrefix,
+                ),
+              );
+              if (value > 0) {
+                strongest = max(strongest, value + weight - sourceIndex * 8);
+              }
+            }
+          }
         }
-      }
-    }
-    return false;
-  }
-
-  static Set<String> _buildQueryVariants(String rawQuery) {
-    final normalized = _normalize(rawQuery);
-    if (normalized.isEmpty) {
-      return const <String>{};
-    }
-
-    final variants = <String>{normalized};
-    final latin = _normalize(_cyrillicToLatin(normalized));
-    final cyrillic = _normalize(_latinToCyrillic(normalized));
-    if (latin.isNotEmpty) {
-      variants.add(latin);
-    }
-    if (cyrillic.isNotEmpty) {
-      variants.add(cyrillic);
-    }
-
-    _addDictionaryVariants(variants, normalized);
-    _addDictionaryVariants(variants, latin);
-    _addDictionaryVariants(variants, cyrillic);
-
-    variants.removeWhere((value) => value.trim().isEmpty);
-    return variants;
-  }
-
-  static Set<String> _buildQueryTokens(String rawQuery) {
-    final tokens = <String>{};
-    for (final variant in _buildQueryVariants(rawQuery)) {
-      tokens.addAll(_splitTokens(variant));
-    }
-    tokens.removeWhere((token) => token.length < 3);
-    return tokens;
-  }
-
-  static Set<String> _buildSourceVariants(String normalizedSource) {
-    final variants = <String>{normalizedSource};
-    final latin = _normalize(_cyrillicToLatin(normalizedSource));
-    final cyrillic = _normalize(_latinToCyrillic(normalizedSource));
-    if (latin.isNotEmpty) {
-      variants.add(latin);
-    }
-    if (cyrillic.isNotEmpty) {
-      variants.add(cyrillic);
-    }
-    return variants;
-  }
-
-  static void _addDictionaryVariants(Set<String> target, String source) {
-    if (source.trim().isEmpty) {
-      return;
-    }
-    final tokens = source
-        .split(' ')
-        .where((token) => token.isNotEmpty)
-        .toList();
-    if (tokens.isEmpty) {
-      return;
-    }
-
-    for (var index = 0; index < tokens.length; index += 1) {
-      final token = tokens[index];
-      final replacements = _hardSynonymMap[token];
-      if (replacements == null || replacements.isEmpty) {
-        continue;
-      }
-      for (final replacement in replacements) {
-        final normalizedReplacement = _normalize(replacement);
-        if (normalizedReplacement.isEmpty) {
-          continue;
+        if (strongest == 0) {
+          weakest = 0;
+          break;
         }
-        target.add(normalizedReplacement);
-        final replacedTokens = List<String>.from(tokens);
-        replacedTokens[index] = normalizedReplacement;
-        target.add(replacedTokens.join(' '));
+        weakest = min(weakest, strongest);
+        total += strongest;
+      }
+      if (weakest > 0) {
+        best = max(
+          best,
+          200 + weakest + total ~/ query.tokens.length - queryIndex * 10,
+        );
       }
     }
+    return best;
   }
 
-  static bool _isFuzzyTokenMatch(String queryToken, String sourceToken) {
-    if (queryToken == sourceToken) {
-      return true;
-    }
+  _SearchText _field(String value) =>
+      _fields.putIfAbsent(value, () => _SearchText(_normalize(value)));
 
-    if (queryToken.length < 3 || sourceToken.length < 3) {
-      return false;
-    }
-
-    final maxDistance = queryToken.length <= 5 ? 1 : 2;
-    if ((queryToken.length - sourceToken.length).abs() > maxDistance) {
-      return false;
-    }
-
-    final levenshteinDistance = _levenshteinDistance(
-      queryToken,
-      sourceToken,
-      maxDistance: maxDistance,
-    );
-    if (levenshteinDistance <= maxDistance) {
-      return true;
-    }
-
-    return _diceCoefficient(queryToken, sourceToken) >= 0.74;
-  }
-
-  static int _levenshteinDistance(
-    String left,
-    String right, {
-    required int maxDistance,
+  static int _matchToken(
+    String query,
+    String source, {
+    required bool allowTypos,
+    required bool allowShortPrefix,
   }) {
-    if (left == right) {
+    if (query == source ||
+        (_equivalentTokens[query] ?? query) ==
+            (_equivalentTokens[source] ?? source)) {
+      return 100;
+    }
+    // Avoid matching "gin ginger" against Ginger Ale solely through "ginger".
+    if ((source.startsWith(query) &&
+            (allowShortPrefix || query.runes.length > 3)) ||
+        (_unsegmented.hasMatch(query) && source.contains(query))) {
+      return 75;
+    }
+    if (!allowTypos ||
+        _hasNumber.hasMatch(query) ||
+        _hasNumber.hasMatch(source)) {
       return 0;
     }
 
-    if (left.isEmpty) {
-      return right.length;
-    }
-    if (right.isEmpty) {
-      return left.length;
-    }
+    final left = query.runes.toList(growable: false);
+    final right = source.runes.toList(growable: false);
+    final minimum = _unsegmented.hasMatch(query) ? 3 : 4;
+    if (left.length < minimum || right.length < minimum - 1) return 0;
+    final limit = left.length >= 6 ? 2 : 1;
+    if ((left.length - right.length).abs() > limit) return 0;
+    final distance = _editDistance(left, right, limit);
+    return distance <= limit ? 49 - distance * 8 : 0;
+  }
 
-    if ((left.length - right.length).abs() > maxDistance) {
-      return maxDistance + 1;
-    }
-
+  // Adjacent transpositions count as one typo (e.g. "ornage").
+  static int _editDistance(List<int> left, List<int> right, int limit) {
+    var twoBack = List<int>.filled(right.length + 1, 0);
     var previous = List<int>.generate(right.length + 1, (index) => index);
     var current = List<int>.filled(right.length + 1, 0);
-
-    for (var i = 1; i <= left.length; i += 1) {
+    for (var i = 1; i <= left.length; i++) {
       current[0] = i;
-      var rowMin = current[0];
-
-      final leftUnit = left.codeUnitAt(i - 1);
-      for (var j = 1; j <= right.length; j += 1) {
-        final rightUnit = right.codeUnitAt(j - 1);
-        final substitutionCost = leftUnit == rightUnit ? 0 : 1;
-
+      var rowMin = i;
+      for (var j = 1; j <= right.length; j++) {
         current[j] = min(
           min(current[j - 1] + 1, previous[j] + 1),
-          previous[j - 1] + substitutionCost,
+          previous[j - 1] + (left[i - 1] == right[j - 1] ? 0 : 1),
         );
+        if (i > 1 &&
+            j > 1 &&
+            left[i - 1] == right[j - 2] &&
+            left[i - 2] == right[j - 1]) {
+          current[j] = min(current[j], twoBack[j - 2] + 1);
+        }
         rowMin = min(rowMin, current[j]);
       }
-
-      if (rowMin > maxDistance) {
-        return maxDistance + 1;
-      }
-
-      final swap = previous;
+      if (rowMin > limit) return limit + 1;
+      final scratch = twoBack;
+      twoBack = previous;
       previous = current;
-      current = swap;
+      current = scratch;
     }
-
     return previous[right.length];
   }
 
-  static double _diceCoefficient(String left, String right) {
-    if (left == right) {
-      return 1;
-    }
-    if (left.length < 2 || right.length < 2) {
-      return 0;
-    }
-
-    final leftBigrams = _bigramCounts(left);
-    final rightBigrams = _bigramCounts(right);
-
-    var intersection = 0;
-    for (final entry in leftBigrams.entries) {
-      final rightCount = rightBigrams[entry.key];
-      if (rightCount == null) {
-        continue;
-      }
-      intersection += min(entry.value, rightCount);
-    }
-
-    final leftTotal = left.length - 1;
-    final rightTotal = right.length - 1;
-    if (leftTotal + rightTotal == 0) {
-      return 0;
-    }
-
-    return (2 * intersection) / (leftTotal + rightTotal);
-  }
-
-  static Map<String, int> _bigramCounts(String input) {
-    final counts = <String, int>{};
-    for (var index = 0; index < input.length - 1; index += 1) {
-      final bigram = input.substring(index, index + 2);
-      counts[bigram] = (counts[bigram] ?? 0) + 1;
-    }
-    return counts;
-  }
-
-  static Set<String> _splitTokens(String value) {
-    return value
-        .split(' ')
-        .map((token) => token.trim())
-        .where((token) => token.isNotEmpty)
-        .toSet();
-  }
-
   static String _normalize(String value) {
-    final lower = value.toLowerCase().replaceAll('ё', 'е');
-    final withoutPunctuation = lower.replaceAll(_searchCleanupPattern, ' ');
-    return withoutPunctuation.replaceAll(_multiSpacePattern, ' ').trim();
+    final lower = value
+        .toLowerCase()
+        .replaceAllMapped(_possessive, (m) => m[1]!)
+        .replaceAll('ё', 'е')
+        .replaceAll('и\u0306', 'й')
+        .replaceAllMapped(_latinCombiningMarks, (m) => m[1]!)
+        .replaceAll(_arabicDecoration, '');
+    final folded = StringBuffer();
+    for (final rune in lower.runes) {
+      final character = String.fromCharCode(rune);
+      folded.write(_foldedLetters[character] ?? character);
+    }
+    return folded.toString().replaceAll(_separator, ' ').trim();
   }
+
+  static final _separator = RegExp(r'[^\p{L}\p{M}\p{N}]+', unicode: true);
+  static final _hasNumber = RegExp(r'\p{N}', unicode: true);
+  static final _possessive = RegExp(r"([a-z])['’]s\b");
+  static final _latinCombiningMarks = RegExp(r'([a-z])[\u0300-\u036f]+');
+  static final _arabicDecoration = RegExp(
+    r'[\u0610-\u061a\u0640\u064b-\u065f\u0670]',
+  );
+  static final _unsegmented = RegExp(
+    r'[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]',
+  );
+  static final _latin = RegExp(r'[a-z]');
+  static final _cyrillic = RegExp(r'[а-я]');
+
+  static const _foldedLetters = {
+    'á': 'a',
+    'à': 'a',
+    'â': 'a',
+    'ä': 'a',
+    'ã': 'a',
+    'å': 'a',
+    'ç': 'c',
+    'é': 'e',
+    'è': 'e',
+    'ê': 'e',
+    'ë': 'e',
+    'ğ': 'g',
+    'í': 'i',
+    'ì': 'i',
+    'î': 'i',
+    'ï': 'i',
+    'ı': 'i',
+    'ñ': 'n',
+    'ó': 'o',
+    'ò': 'o',
+    'ô': 'o',
+    'ö': 'o',
+    'õ': 'o',
+    'ø': 'o',
+    'ú': 'u',
+    'ù': 'u',
+    'û': 'u',
+    'ü': 'u',
+    'ý': 'y',
+    'ÿ': 'y',
+    'ş': 's',
+    'ß': 'ss',
+    'æ': 'ae',
+    'œ': 'oe',
+    'ł': 'l',
+    'أ': 'ا',
+    'إ': 'ا',
+    'آ': 'ا',
+    'ٱ': 'ا',
+  };
+
+  // These substitutions affect a single term, never the whole query.
+  static const _equivalentTokens = {
+    'самбука': 'sambuca',
+    'sambuka': 'sambuca',
+    'джин': 'gin',
+    'dzhin': 'gin',
+    'виски': 'whisky',
+    'viski': 'whisky',
+    'whiskey': 'whisky',
+  };
 
   static String _cyrillicToLatin(String value) {
     final buffer = StringBuffer();
@@ -314,9 +303,6 @@ class AppSearchQuery {
 
     return buffer.toString();
   }
-
-  static final RegExp _searchCleanupPattern = RegExp(r'[^a-z0-9а-я]+');
-  static final RegExp _multiSpacePattern = RegExp(r'\s+');
 
   static const Map<String, String> _cyrillicToLatinMap = <String, String>{
     'а': 'a',
@@ -396,14 +382,28 @@ class AppSearchQuery {
     'y': 'ы',
     'z': 'з',
   };
+}
 
-  static const Map<String, List<String>> _hardSynonymMap =
-      <String, List<String>>{
-        'самбука': <String>['sambuca'],
-        'sambuca': <String>['самбука'],
-        'sambuka': <String>['sambuca', 'самбука'],
-        'виски': <String>['whiskey', 'whisky'],
-        'whiskey': <String>['виски', 'whisky'],
-        'whisky': <String>['виски', 'whiskey'],
-      };
+class _SearchText {
+  _SearchText(this.value);
+
+  final String value;
+
+  late final forms = <_SearchForm>[
+    for (final variant in <String>{
+      if (value.isNotEmpty) value,
+      if (AppSearchQuery._cyrillic.hasMatch(value))
+        AppSearchQuery._normalize(AppSearchQuery._cyrillicToLatin(value)),
+      if (AppSearchQuery._latin.hasMatch(value))
+        AppSearchQuery._normalize(AppSearchQuery._latinToCyrillic(value)),
+    })
+      if (variant.isNotEmpty) _SearchForm(variant),
+  ];
+}
+
+class _SearchForm {
+  _SearchForm(this.value);
+
+  final String value;
+  late final tokens = value.split(' ').toSet();
 }

@@ -1,28 +1,28 @@
 {
   "locale": "tr",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "151 kanıt rom"
     },
     "7_up": {
-      "name": "7'li Yukarı"
+      "name": "7-Up"
     },
     "absinthe": {
-      "name": "Absinthe"
+      "name": "Absent"
     },
     "absolut_citron": {
-      "name": "Mutlak Ağaç Kavunu"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
-      "name": "Mutlak Kurant"
+      "name": "Absolut Kurant"
     },
     "absolut_peppar": {
-      "name": "Mutlak Peppar"
+      "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "Mutlak Votka"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "Avukat"
@@ -31,7 +31,7 @@
       "name": "Agav Şurubu"
     },
     "ale": {
-      "name": "Bira"
+      "name": "Ale tipi bira"
     },
     "allspice": {
       "name": "Yenibahar"
@@ -43,19 +43,19 @@
       "name": "Amaretto"
     },
     "amaro_montenegro": {
-      "name": "Amaro Karadağ"
+      "name": "Amaro Montenegro"
     },
     "angelica_root": {
       "name": "Melek otu kökü"
     },
     "angostura_bitter": {
-      "name": "Angostura acıları"
+      "name": "Angostura bitter"
     },
     "anis": {
       "name": "Anis"
     },
     "anisette": {
-      "name": "Anason"
+      "name": "Anason likörü (anisette)"
     },
     "aperol": {
       "name": "Aperol"
@@ -70,13 +70,13 @@
       "name": "Elma Brendi"
     },
     "apple_cider": {
-      "name": "Elma şarabı"
+      "name": "Elma cider'ı"
     },
     "juice_apple": {
       "name": "Elma suyu"
     },
     "applejack": {
-      "name": "elmalı turta"
+      "name": "Applejack"
     },
     "apricot_brandy": {
       "name": "Kayısı brendi"
@@ -94,7 +94,7 @@
       "name": "Bacardi Limon"
     },
     "baileys_irish_cream": {
-      "name": "Baileys İrlanda kreması"
+      "name": "Baileys Irish Cream"
     },
     "banana": {
       "name": "Muz"
@@ -115,7 +115,7 @@
       "name": "Acı limon"
     },
     "bitters": {
-      "name": "Acı"
+      "name": "Kokteyl bitteri"
     },
     "black_pepper": {
       "name": "Karabiber"
@@ -130,7 +130,7 @@
       "name": "Böğürtlen brendi"
     },
     "blackcurrant_cordial": {
-      "name": "Frenk üzümü likörü"
+      "name": "Siyah frenk üzümü şurubu"
     },
     "blackstrap_rum": {
       "name": "siyah kayış rom"
@@ -196,7 +196,7 @@
       "name": "Kiraz brendi"
     },
     "cherry_heering": {
-      "name": "Kiraz Heering"
+      "name": "Cherry Heering"
     },
     "cherry_juice": {
       "name": "Vişne Suyu"
@@ -217,7 +217,7 @@
       "name": "Çikolata şurubu"
     },
     "cider": {
-      "name": "Elma şarabı"
+      "name": "Cider"
     },
     "cinnamon": {
       "name": "Tarçın"
@@ -268,7 +268,7 @@
       "name": "Mısır şurubu"
     },
     "corona": {
-      "name": "Korona"
+      "name": "Corona"
     },
     "cranberries": {
       "name": "Kızılcık"
@@ -280,10 +280,10 @@
       "name": "Kızılcık votkası"
     },
     "cream": {
-      "name": "Krem"
+      "name": "Krema"
     },
     "cream_of_coconut": {
-      "name": "Hindistan cevizi kreması"
+      "name": "Şekerli Hindistan cevizi kreması"
     },
     "creme_de_banane": {
       "name": "Creme de Muz"
@@ -298,7 +298,7 @@
       "name": "Creme de Mure"
     },
     "crown_royal": {
-      "name": "Kraliyet tacı"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "Salatalık"
@@ -313,19 +313,19 @@
       "name": "Koyu rom"
     },
     "demerara_sugar": {
-      "name": "demerara Şeker"
+      "name": "Demerara şekeri"
     },
     "dr_pepper": {
-      "name": "Dr. Biber"
+      "name": "Dr. Pepper"
     },
     "drambuie": {
       "name": "Drambuie"
     },
     "vermouth_dry": {
-      "name": "Kuru Vermut"
+      "name": "Sek vermut"
     },
     "dubonnet_rouge": {
-      "name": "Dubonnet Kırmızısı"
+      "name": "Dubonnet Rouge"
     },
     "egg": {
       "name": "Yumurta"
@@ -337,7 +337,7 @@
       "name": "Yumurta sarısı"
     },
     "elderflower_cordial": {
-      "name": "Mürver çiçeği samimi"
+      "name": "Mürver çiçeği şurubu"
     },
     "espresso": {
       "name": "Espresso"
@@ -352,19 +352,19 @@
       "name": "İncir"
     },
     "firewater": {
-      "name": "Ateş suyu"
+      "name": "Firewater"
     },
     "frangelico": {
       "name": "Frangelico"
     },
     "fresca": {
-      "name": "Freska"
+      "name": "Fresca"
     },
     "fresh_lemon_juice": {
-      "name": "Taze Limon Suyu"
+      "name": "Taze sıkılmış limon suyu"
     },
     "fresh_lime_juice": {
-      "name": "Taze Limon Suyu"
+      "name": "Taze sıkılmış misket limonu suyu"
     },
     "fruit": {
       "name": "Meyve"
@@ -373,22 +373,22 @@
       "name": "Meyve suyu"
     },
     "fruit_punch": {
-      "name": "Meyve kokteyli"
+      "name": "Meyve punçu"
     },
     "galliano": {
       "name": "Vanilya Likörü Galliano"
     },
     "gin": {
-      "name": "cin"
+      "name": "Cin"
     },
     "ginger": {
       "name": "Zencefil"
     },
     "ginger_ale": {
-      "name": "Zencefilli gazoz"
+      "name": "Ginger ale"
     },
     "ginger_beer": {
-      "name": "Zencefil Birası"
+      "name": "Ginger beer"
     },
     "syrup_gingerbread": {
       "name": "Zencefil Şurubu"
@@ -400,13 +400,13 @@
       "name": "Altın rom"
     },
     "goldschlager": {
-      "name": "Goldschlager"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "Tahıl alkolü"
     },
     "grand_marnier": {
-      "name": "Büyük Marnier"
+      "name": "Grand Marnier"
     },
     "grape_juice": {
       "name": "Üzüm suyu"
@@ -430,13 +430,13 @@
       "name": "Grenadin"
     },
     "guinness_stout": {
-      "name": "Guinness güçlü"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "Yarım buçuk"
+      "name": "Süt ve krema karışımı"
     },
     "heavy_cream": {
-      "name": "Ağır krem"
+      "name": "Yüksek yağlı krema"
     },
     "honey": {
       "name": "Bal"
@@ -448,7 +448,7 @@
       "name": "Sıcak çikolata"
     },
     "hot_damn": {
-      "name": "Sıcak lanet"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "Acı Sos"
@@ -469,13 +469,13 @@
       "name": "Islay tek malt Scotch"
     },
     "jack_daniels": {
-      "name": "Jack Daniels"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
-      "name": "Jagermeister"
+      "name": "Jägermeister"
     },
     "jello": {
-      "name": "Jöle"
+      "name": "Jello"
     },
     "jim_beam": {
       "name": "Jim Beam"
@@ -484,7 +484,7 @@
       "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "Kahlua"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "Kivi"
@@ -496,7 +496,7 @@
       "name": "Kool-Aid"
     },
     "lager": {
-      "name": "Lager"
+      "name": "Lager tipi bira"
     },
     "lavender": {
       "name": "Lavanta"
@@ -505,13 +505,13 @@
       "name": "Limon"
     },
     "lemon_lime_soda": {
-      "name": "Limonlu soda"
+      "name": "Limon ve misket limonlu gazoz"
     },
     "lemonade": {
       "name": "Limonata"
     },
     "light_cream": {
-      "name": "Açık krem"
+      "name": "Az yağlı krema"
     },
     "rum_light": {
       "name": "Hafif rom"
@@ -523,7 +523,7 @@
       "name": "Lillet Blanc"
     },
     "lime": {
-      "name": "Kireç"
+      "name": "Misket limonu"
     },
     "lime_peel": {
       "name": "Kireç kabuğu"
@@ -532,7 +532,7 @@
       "name": "Limonlu votka"
     },
     "limeade": {
-      "name": "Limeade"
+      "name": "Misket limonu limonatası"
     },
     "malibu_rum": {
       "name": "Malibu romu"
@@ -571,7 +571,7 @@
       "name": "Nane şurubu"
     },
     "mountain_dew": {
-      "name": "Dağ Çiy"
+      "name": "Mountain Dew"
     },
     "nutmeg": {
       "name": "Küçük hindistan cevizi"
@@ -580,28 +580,28 @@
       "name": "Zeytin"
     },
     "olive_brine": {
-      "name": "Zeytin Salamurası"
+      "name": "Zeytin salamurası"
     },
     "orange": {
-      "name": "Turuncu"
+      "name": "Portakal"
     },
     "orange_bitter": {
-      "name": "Portakallı Acı"
+      "name": "Portakal bitteri"
     },
     "orange_curacao": {
-      "name": "Turuncu Curaçao"
+      "name": "Portakallı Curaçao"
     },
     "juice_orange": {
       "name": "Portakal suyu"
     },
     "orange_spiral": {
-      "name": "Turuncu sarmal"
+      "name": "Portakal kabuğu spirali"
     },
     "oreo_cookie": {
       "name": "Oreo kurabiyesi"
     },
     "orgeat_syrup": {
-      "name": "Orgeat şurubu"
+      "name": "Badem şurubu (orgeat)"
     },
     "ouzo": {
       "name": "Uzo"
@@ -616,19 +616,19 @@
       "name": "Tutku meyvesi şurubu"
     },
     "passoa": {
-      "name": "Passoa"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "Şeftali Acıları"
     },
     "peach_brandy": {
-      "name": "Şeftali brendi"
+      "name": "Şeftali brendisi"
     },
     "peach_nectar": {
       "name": "Şeftali nektarı"
     },
     "peach_schnapps": {
-      "name": "Şeftali likörü"
+      "name": "Şeftali schnapps"
     },
     "peach_vodka": {
       "name": "Şeftali Votkası"
@@ -643,10 +643,10 @@
       "name": "Pernod"
     },
     "peychauds_bitter": {
-      "name": "Peychaud bitterleri"
+      "name": "Peychaud's bitter"
     },
     "pina_colada_mix": {
-      "name": "Pina colada karışımı"
+      "name": "Piña Colada karışımı"
     },
     "pineapple": {
       "name": "Ananas"
@@ -670,7 +670,7 @@
       "name": "Nar suyu"
     },
     "port": {
-      "name": "Liman"
+      "name": "Porto şarabı"
     },
     "powdered_sugar": {
       "name": "Pudra şekeri"
@@ -697,10 +697,10 @@
       "name": "Ricard"
     },
     "root_beer": {
-      "name": "Kök birası"
+      "name": "Kök birası (root beer)"
     },
     "rose": {
-      "name": "Gül"
+      "name": "Roze şarap"
     },
     "rosemary": {
       "name": "Biberiye"
@@ -712,7 +712,7 @@
       "name": "Rosso Vermut"
     },
     "ruby_port": {
-      "name": "Yakut Limanı"
+      "name": "Ruby Porto şarabı"
     },
     "rum": {
       "name": "ROM"
@@ -736,7 +736,7 @@
       "name": "İskoç"
     },
     "sherbet": {
-      "name": "Şerbet"
+      "name": "Sorbe"
     },
     "sherry": {
       "name": "Sherry"
@@ -745,16 +745,16 @@
       "name": "Gül şurubu"
     },
     "sloe_gin": {
-      "name": "Sloe cin"
+      "name": "Çakal eriği cin likörü"
     },
     "soda_water": {
-      "name": "sodalı su"
+      "name": "Soda (gazlı su)"
     },
     "sour_mix": {
-      "name": "Ekşi karışımı"
+      "name": "Narenciyeli sour mix"
     },
     "southern_comfort": {
-      "name": "Güney Konforu"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "Soya sosu"
@@ -766,7 +766,7 @@
       "name": "Sprite"
     },
     "st_germain": {
-      "name": "St.Germain"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "Çilek"
@@ -781,7 +781,7 @@
       "name": "Şeker şurubu"
     },
     "surge": {
-      "name": "Kabarmak"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "Tatlı ve Ekşi"
@@ -811,7 +811,7 @@
       "name": "Tonik Su"
     },
     "triple_sec": {
-      "name": "Üç saniye"
+      "name": "Triple sec"
     },
     "vanilla": {
       "name": "Vanilya"
@@ -835,7 +835,7 @@
       "name": "su"
     },
     "whipped_cream": {
-      "name": "Krem şanti"
+      "name": "Çırpılmış krema"
     },
     "whisky": {
       "name": "Viski"
@@ -847,7 +847,7 @@
       "name": "Beyaz şarap"
     },
     "wild_turkey": {
-      "name": "Vahşi Türkiye"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "Şarap"
@@ -856,7 +856,7 @@
       "name": "Worcestershire Sosu"
     },
     "wormwood": {
-      "name": "Pelin"
+      "name": "Pelin otu"
     },
     "chartreuse_yellow": {
       "name": "Sarı Chartreuse"
@@ -874,7 +874,7 @@
       "name": "Beyaz şeftali püresi"
     },
     "grapefruit_soda": {
-      "name": "Greyfurt sodası"
+      "name": "Greyfurt gazozu"
     },
     "creme_de_violette": {
       "name": "Krema de menekşe"
@@ -960,7 +960,7 @@
         "Bir miktar Soda Suyu ile tamamlayın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "Üstüne soda ekleyin ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "affinity": {
@@ -1006,7 +1006,7 @@
         "Üzerine hindistan cevizi serpip servis yapın."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Garnitür için"
+        "nutmeg": "Süslemek için"
       }
     },
     "algonquin": {
@@ -1042,7 +1042,7 @@
         "Portakal dilimi ve limon kabuğuyla süsleyin."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "Taze buzun üzerinde bir highball bardağa süzün."
       ],
       "ingredientAmounts": {
-        "cream": "Yükleme"
+        "cream": "Bardağı tamamlayacak kadar"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "Timo Haimi'nin yarattığı bu içecek, 1991 Finlandiya Votka Uzun İçecek Yarışması'nda birincilik ödülü aldı."
       ],
       "ingredientAmounts": {
-        "lemonade": "Yükleme"
+        "lemonade": "Bardağı tamamlayacak kadar"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "Soğutulmuş bir bardağa süzün ve üzerine Prosecco ekleyin."
       ],
       "ingredientAmounts": {
-        "prosecco": "Yükleme"
+        "prosecco": "Bardağı tamamlayacak kadar"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "Punch kasesine buz eklenirse ve sodalar çok soğuksa en iyi sonucu verir."
       ],
       "ingredientAmounts": {
-        "everclear": "1 beşinci şişe",
-        "vodka": "1 beşinci şişe"
+        "everclear": "1 şişe (ABD galonunun beşte biri)",
+        "vodka": "1 şişe (ABD galonunun beşte biri)"
       }
     },
     "bramble": {
@@ -1289,7 +1289,7 @@
         "Taze pelin otu, rom, viski ve bitterleri ekleyin ve karıştırın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "brooklyn": {
@@ -1324,8 +1324,8 @@
         "Karıştırmak."
       ],
       "ingredientAmounts": {
-        "coffee": "Tatmak",
-        "brandy": "Tatmak"
+        "coffee": "Damak tadına göre",
+        "brandy": "Damak tadına göre"
       }
     },
     "caipirinha": {
@@ -1344,7 +1344,7 @@
         "Beyaz rom ve kırılmış buz ekleyin. İyice karıştırın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "campari-beer": {
@@ -1397,7 +1397,7 @@
         "Karbonatlı suyla doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "chocolate-drink": {
@@ -1410,7 +1410,7 @@
         "Kaynamasına izin vermeyin! Kahve kupasında servis yapın."
       ],
       "ingredientAmounts": {
-        "water": "Gerektiğinde"
+        "water": "Gerektiği kadar"
       }
     },
     "chocolate-milk": {
@@ -1473,7 +1473,7 @@
         "Likörün daha yumuşak bir his vermesini istiyorsanız, bitmiş ürüne yaklaşık 1 çay kaşığı gliserin ekleyebilirsiniz."
       ],
       "ingredientAmounts": {
-        "caramel_coloring": "Tatmak"
+        "caramel_coloring": "Damak tadına göre"
       }
     },
     "corn-n-oil": {
@@ -1494,7 +1494,7 @@
       ]
     },
     "cosmopolitan": {
-      "name": "Kozmopolit",
+      "name": "Cosmopolitan",
       "description": "Tüm malzemeleri buzla dolu kokteyl çalkalayıcıya ekleyin. İyice çalkalayın ve büyük kokteyl bardağına iki kez süzün. Kireç çarkı ile süsleyin.",
       "preparationSteps": [
         "Tüm malzemeleri buzla dolu kokteyl çalkalayıcıya ekleyin",
@@ -1524,21 +1524,21 @@
         "Eğlence!"
       ],
       "ingredientAmounts": {
-        "lime": "Tatmak için taze meyve suyu",
-        "coca_cola": "Yükleme",
-        "ice": "Gerektiğinde"
+        "lime": "Damak tadına göre taze sıkılmış meyve suyu",
+        "coca_cola": "Bardağı tamamlayacak kadar",
+        "ice": "Gerektiği kadar"
       }
     },
     "cuba-libre": {
-      "name": "Küba Libre'si",
-      "description": "Tüm malzemeleri buzla dolu bir Collins bardağına koyun. Kireç kaması ile süsleyin.",
+      "name": "Cuba Libre",
+      "description": "Kokteyli buz dolu Collins bardağında hazırlayın. Bir dilim misket limonuyla süsleyin.",
       "preparationSteps": [
-        "Belirtilen miktarda limon veya misket limonunu sıkın; içecekte sadece suyunu kullanın.",
-        "Tüm malzemeleri buzla dolu bir Collins bardağına koyun",
-        "Kireç kaması ile süsleyin."
+        "Belirtilen miktarda limon veya misket limonunu sıkın ve yalnızca suyunu kullanın.",
+        "Malzemeleri doğrudan buz dolu bir Collins bardağına ekleyin.",
+        "Bir dilim misket limonuyla süsleyin."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Yükleme"
+        "coca_cola": "Bardağı tamamlayacak kadar"
       }
     },
     "daiquiri": {
@@ -1587,18 +1587,18 @@
         "Daha sonra bardağı Portakal Suyu ve buz küpleriyle doldurursunuz."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "death-in-the-afternoon": {
-      "name": "Öğleden Sonra Ölüm",
+      "name": "Death in the Afternoon",
       "description": "Bardağı ve her iki malzemeyi soğutun. Absent dökün, üzerine yavaşça Şampanya ekleyin ve servis yapın.",
       "preparationSteps": [
         "Bardağı ve her iki malzemeyi soğutun.",
         "Absent dökün, üzerine yavaşça Şampanya ekleyin ve servis yapın."
       ],
       "ingredientAmounts": {
-        "champagne": "Yükleme"
+        "champagne": "Bardağı tamamlayacak kadar"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "Kayalar isteğe bağlıdır."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "Küçük bir şamandıra"
+        "151_proof_rum": "Üstte ince bir katman"
       }
     },
     "dragonfly": {
@@ -1661,7 +1661,7 @@
         "Çikolata eriyene kadar karıştırın. Bir veya iki bardağa paylaştırın ve üzerine krem ​​şanti ekleyin."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Garnitür için"
+        "whipped_cream": "Süslemek için"
       }
     },
     "dry-rob-roy": {
@@ -1718,7 +1718,7 @@
         "NOT: Alkolsüz bir yumurta likörü için, burbon ve romu çıkarıp sütü 3 bardağa çıkarmak dışında Eggnog'u yukarıdaki gibi hazırlayın."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Garnitür için"
+        "nutmeg": "Süslemek için"
       }
     },
     "egg-nog-healthy": {
@@ -1732,7 +1732,7 @@
         "6 porsiyon yapar."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Garnitür için"
+        "nutmeg": "Süslemek için"
       }
     },
     "egg-nog-classic-cooked": {
@@ -1776,8 +1776,8 @@
         "(Tercih edilirse karbonatlı su yerine zencefilli gazoz kullanılabilir.)"
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme",
-        "lemon": "Tatmak"
+        "soda_water": "Bardağı tamamlayacak kadar",
+        "lemon": "Damak tadına göre"
       }
     },
     "english-rose-cocktail": {
@@ -1789,7 +1789,7 @@
         "Üzerine kirazı ekleyip servis yapın."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "Jant için"
+        "powdered_sugar": "Bardağın kenarı için"
       }
     },
     "espresso-martini": {
@@ -1826,8 +1826,8 @@
         "Üzerine tonik dökün ve bitterleri ekleyin."
       ],
       "ingredientAmounts": {
-        "tonic_water": "Yükleme",
-        "lemon": "Tatmak için taze meyve suyu"
+        "tonic_water": "Bardağı tamamlayacak kadar",
+        "lemon": "Damak tadına göre taze sıkılmış meyve suyu"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "Fransızca 75",
+      "name": "French 75",
       "description": "Buzla dolu bir kokteyl çalkalayıcıda cin, şeker ve limon suyunu birleştirin. Kuvvetlice çalkalayın ve soğutulmuş bir şampanya bardağına süzün. Şampanya doldurun. Yavaşça karıştırın.",
       "preparationSteps": [
         "Buzla dolu bir kokteyl çalkalayıcıda cin, şeker ve limon suyunu birleştirin",
@@ -1968,19 +1968,19 @@
       ]
     },
     "fruit-cooler": {
-      "name": "Meyve Soğutucu",
+      "name": "Ferah meyve kokteyli",
       "description": "Çilekleri şekerle karıştırın ve bir gece buzdolabında bekletin. Limonu kesin, iki dilim ayırın Geriye kalanın suyunu sıkın Limon suyu, çilek, elma suyu ve soda suyunu karıştırın Limon dilimleri ekleyin (dekor, gerçekten) Bardaklara buz küpleri ve bir dilim elma koyun. İçeceği dökün ve servis yapın.",
       "preparationSteps": [
         "Çilekleri şekerle karıştırın ve bir gece buzdolabında bekletin.",
         "Limonu kesin, iki dilim ayırın",
-        "Geri kalanın suyunu sıkın",
+        "Limonun kalan kısmını sıkın.",
         "Limon suyu, çilek, elma suyu ve soda suyunu karıştırın",
         "Limon dilimleri ekleyin (dekor, gerçekten)",
         "Bardaklara buz küpleri ve bir dilim elma koyun.",
         "İçeceği dökün ve servis yapın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "fruit-flip-flop": {
@@ -2007,7 +2007,7 @@
         "Daha özgün bir tat için mümkün olduğunca Jamaika romu kullanın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "gagliardo": {
@@ -2027,8 +2027,8 @@
         "Artık kendinize ait bir GG'niz var."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Yükleme",
-        "ice": "Gerektiğinde"
+        "ginger_ale": "Bardağı tamamlayacak kadar",
+        "ice": "Gerektiği kadar"
       }
     },
     "gimlet": {
@@ -2049,7 +2049,7 @@
         "Portakal ve limon kabuklarıyla süsleyin."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "gin-daisy": {
@@ -2062,7 +2062,7 @@
       ]
     },
     "gin-fizz": {
-      "name": "Cin Fizz",
+      "name": "Gin Fizz",
       "description": "Soda hariç tüm malzemeleri buz küpleriyle çalkalayın. Bardağa dökün. Üstüne soda ekleyin.",
       "preparationSteps": [
         "Belirtilen miktarda limon veya misket limonunu sıkın; içecekte sadece suyunu kullanın.",
@@ -2071,7 +2071,7 @@
         "Üstüne soda ekleyin."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "gin-rickey": {
@@ -2085,8 +2085,8 @@
         "Bardağı limon ve/veya limon dilimleriyle süsleyin."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme",
-        "lime": "Tatmak"
+        "soda_water": "Bardağı tamamlayacak kadar",
+        "lime": "Damak tadına göre"
       }
     },
     "gin-sling": {
@@ -2127,7 +2127,7 @@
         "Ananas parçaları ve çileklerle süsleyip servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "gin-swizzle": {
@@ -2157,11 +2157,11 @@
         "Bir highball bardağını buzla doldurun, cini dökün, üzerine tonik suyu ekleyin, bir dilim limon sıkın ve limon dilimiyle süsleyin."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "gluehwein": {
-      "name": "Gluehwein",
+      "name": "Glühwein (baharatlı sıcak şarap)",
       "description": "Suyu, şekeri ve baharatları şeker eriyene kadar ısıtın, ardından 30 dakika demlenmeye bırakın. Süzün, şarap ve limon suyunu ekleyin ve kaynatmadan hafifçe ısıtın. Sıcak servis yapın. Kısa ısıtma şarabı alkolsüz yapmaz.",
       "preparationSteps": [
         "Suyu, şekeri ve baharatları şeker eriyene kadar ısıtın, ardından 30 dakika demlenmeye bırakın.",
@@ -2232,7 +2232,7 @@
         "Üzerine sıcak kahveyi ekleyip karıştırın."
       ],
       "ingredientAmounts": {
-        "coffee": "Tatmak"
+        "coffee": "Damak tadına göre"
       }
     },
     "halloween-punch": {
@@ -2256,9 +2256,9 @@
         "Adını Gilligan Adası referansından almıştır (\"Kaptan\" *içinde* \"Zencefil\" Mutlu bir Kaptandır!)"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Yükleme",
-        "lime": "Tatmak",
-        "ice": "Gerektiğinde"
+        "ginger_ale": "Bardağı tamamlayacak kadar",
+        "lime": "Damak tadına göre",
+        "ice": "Gerektiği kadar"
       }
     },
     "harvey-wallbanger": {
@@ -2302,7 +2302,7 @@
         "Kaşıkla, samanla veya daha iyisi bir tarçın çubuğuyla karıştırın ve içinde bırakın."
       ],
       "ingredientAmounts": {
-        "tea": "Tatmak"
+        "tea": "Damak tadına göre"
       }
     },
     "highland-fling-cocktail": {
@@ -2325,7 +2325,7 @@
         "En iyi sonucu elde etmek için karışımın 4-5 hafta \"olgunlaşmasına\" izin verin."
       ],
       "ingredientAmounts": {
-        "vodka": "1 beşinci şişe"
+        "vodka": "1 şişe (ABD galonunun beşte biri)"
       }
     },
     "honey-bee": {
@@ -2355,7 +2355,7 @@
         "Bardaklara dökün ve mini marshmallowları ekleyin."
       ],
       "ingredientAmounts": {
-        "marshmallows": "Garnitür için"
+        "marshmallows": "Süslemek için"
       }
     },
     "hot-creamy-bush": {
@@ -2411,7 +2411,7 @@
         "Karbonatlı suyla doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "ipamena": {
@@ -2423,8 +2423,8 @@
         "Bir bardağa süzün, üstüne zencefilli gazoz ekleyin ve hafifçe karıştırın."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Yükleme",
-        "ice": "Gerektiğinde"
+        "ginger_ale": "Bardağı tamamlayacak kadar",
+        "ice": "Gerektiği kadar"
       }
     },
     "irish-coffee": {
@@ -2461,7 +2461,7 @@
         "Buz eklemeyin."
       ],
       "ingredientAmounts": {
-        "guinness_stout": "Yükleme"
+        "guinness_stout": "Bardağı tamamlayacak kadar"
       }
     },
     "irish-spring": {
@@ -2514,8 +2514,8 @@
         "Pürüzsüz olana kadar karıştırın ve hemen servis yapın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde",
-        "milk": "Tatmak"
+        "ice": "Gerektiği kadar",
+        "milk": "Damak tadına göre"
       }
     },
     "jamaican-coffee": {
@@ -2527,7 +2527,7 @@
         "Üzerine bir tutam iyi öğütülmüş kahve serpin ve pipetle için."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Garnitür için"
+        "whipped_cream": "Süslemek için"
       }
     },
     "japanese-fizz": {
@@ -2539,7 +2539,7 @@
         "Karbonatlı suyla doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "Bu kadar basit!"
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "john-collins": {
@@ -2600,8 +2600,8 @@
         "Bir uzun, 2 orta veya 3 küçük bardağa dökün ve için."
       ],
       "ingredientAmounts": {
-        "syrup_chocolate": "Tatmak",
-        "syrup_mint": "Tatmak"
+        "syrup_chocolate": "Damak tadına göre",
+        "syrup_mint": "Damak tadına göre"
       }
     },
     "kamikaze": {
@@ -2652,7 +2652,7 @@
         "Üzerine sıcak kahveyi ekleyip karıştırın. İstenirse çırpılmış krema ekleyin."
       ],
       "ingredientAmounts": {
-        "coffee": "Tatmak"
+        "coffee": "Damak tadına göre"
       }
     },
     "kir-royale": {
@@ -2669,7 +2669,7 @@
         "bardağı karıştır"
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "kiwi-lemon": {
@@ -2681,7 +2681,7 @@
         "Kivi dilimiyle süsleyin."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "kiwi-martini": {
@@ -2708,7 +2708,7 @@
         "Tatmak için biraz kızılcık suyu ekleyin."
       ],
       "ingredientAmounts": {
-        "juice_cranberry": "Tatmak"
+        "juice_cranberry": "Damak tadına göre"
       }
     },
     "kurant-tea": {
@@ -2720,8 +2720,8 @@
         "Eğlence!"
       ],
       "ingredientAmounts": {
-        "tea": "Tatmak",
-        "sugar": "Tatmak"
+        "tea": "Damak tadına göre",
+        "sugar": "Damak tadına göre"
       }
     },
     "lady-love-fizz": {
@@ -2733,7 +2733,7 @@
         "Karbonatlı suyla doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2782,9 +2782,9 @@
         "Geleneksel salata yerine raita yapabilirsiniz."
       ],
       "ingredientAmounts": {
-        "sugar": "Tatmak",
-        "lime": "Tatmak",
-        "salt": "Tatmak"
+        "sugar": "Damak tadına göre",
+        "lime": "Damak tadına göre",
+        "salt": "Damak tadına göre"
       }
     },
     "lazy-coconut-paloma": {
@@ -2795,7 +2795,7 @@
         "Hindistan cevizi likörü ve greyfurt suyunu ekleyin, üzerine soda ekleyin ve hafifçe karıştırın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "Çalkalayın ve ağzı şekerle kaplı soğutulmuş bir kokteyl bardağına süzün."
       ],
       "ingredientAmounts": {
-        "sugar": "Jant için"
+        "sugar": "Bardağın kenarı için"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "Tüm malzemeleri buzun üzerine dökün, karıştırın ve keyfini çıkarın!"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "Yükleme"
+        "fresh_lemon_juice": "Bardağı tamamlayacak kadar"
       }
     },
     "lemon-shot": {
@@ -2827,7 +2827,7 @@
         "Şeker serpilmiş limon dilimi ile servis yapın. Işıklandırılmadan servis yapın."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "Tatmak"
+        "151_proof_rum": "Damak tadına göre"
       }
     },
     "lemouroudji": {
@@ -2842,7 +2842,7 @@
         "Soğutun ve servis yapın."
       ],
       "ingredientAmounts": {
-        "cayenne_pepper": "Garnitür için"
+        "cayenne_pepper": "Süslemek için"
       }
     },
     "limeade": {
@@ -2857,8 +2857,8 @@
         "Limon veya soda bitene kadar tekrarlayın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme",
-        "lime_peel": "Garnitür için"
+        "soda_water": "Bardağı tamamlayacak kadar",
+        "lime_peel": "Süslemek için"
       }
     },
     "loch-lomond": {
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "Yalnız Ağaç Soğutucu",
+      "name": "Lone Tree Cooler",
       "description": "Şekeri bir Collins bardağındaki yaklaşık 60 ml soda suyunda eritin. Buz, cin ve kuru vermutu ekleyip karıştırın. Üzerine biraz daha soda ekleyin ve narenciye kabuklarıyla süsleyin.",
       "preparationSteps": [
         "Şekeri bir Collins bardağındaki yaklaşık 60 ml soda suyunda eritin.",
@@ -2896,7 +2896,7 @@
         "Üzerine biraz daha soda ekleyin ve narenciye kabuklarıyla süsleyin."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "Üzerine kola ekleyin ve yavaşça karıştırın."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Yükleme"
+        "coca_cola": "Bardağı tamamlayacak kadar"
       }
     },
     "long-vodka": {
@@ -2955,10 +2955,10 @@
         "Üzerine soda ekleyin ve bardaklara eşit olarak bölün."
       ],
       "ingredientAmounts": {
-        "mint": "Tatmak",
-        "ice": "Gerektiğinde",
-        "soda_water": "Yükleme",
-        "sugar": "Tatmak"
+        "mint": "Damak tadına göre",
+        "ice": "Gerektiği kadar",
+        "soda_water": "Bardağı tamamlayacak kadar",
+        "sugar": "Damak tadına göre"
       }
     },
     "manhattan": {
@@ -2978,7 +2978,7 @@
         "Diğer malzemeleri buzla çalkalayın ve ardından dikkatlice bardağa dökün."
       ],
       "ingredientAmounts": {
-        "salt": "Tatmak"
+        "salt": "Damak tadına göre"
       }
     },
     "martinez-2": {
@@ -3019,8 +3019,8 @@
         "İşte bu."
       ],
       "ingredientAmounts": {
-        "sugar": "Tatmak",
-        "milk": "Tatmak"
+        "sugar": "Damak tadına göre",
+        "milk": "Damak tadına göre"
       }
     },
     "mauresque": {
@@ -3033,7 +3033,7 @@
         "En sonunda buz küplerini ekleyin, aksi takdirde şurup ve pastis iyice karışmaz."
       ],
       "ingredientAmounts": {
-        "water": "Yükleme"
+        "water": "Bardağı tamamlayacak kadar"
       }
     },
     "melya": {
@@ -3053,8 +3053,8 @@
         "Dondurulmuş iki karışımı büyük bir bardağa katlayın. Kaynak, hazırlanan her iki karışımın miktarlarını değişken bırakıyor."
       ],
       "ingredientAmounts": {
-        "pina_colada_mix": "Tatmak",
-        "daiquiri_mix": "Tatmak"
+        "pina_colada_mix": "Damak tadına göre",
+        "daiquiri_mix": "Damak tadına göre"
       }
     },
     "michelada": {
@@ -3099,7 +3099,7 @@
         "Isıya dayanıklı bir bardağa dökün ve üzerine krem ​​şanti ekleyin."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Garnitür için"
+        "whipped_cream": "Süslemek için"
       }
     },
     "mojito": {
@@ -3113,7 +3113,7 @@
         "Samanla süsleyip servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "mojito-extra": {
@@ -3148,7 +3148,7 @@
       ]
     },
     "moscow-mule": {
-      "name": "Moskova Katır",
+      "name": "Moscow Mule",
       "description": "Bir katır kupasını veya kaya bardağını buzla doldurun. Votka, zencefil birası ve taze limon suyu ekleyin; yavaşça karıştırın.",
       "preparationSteps": [
         "Bir katır kupasını veya kaya bardağını buzla doldurun.",
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "Sıcak Şarap",
+      "name": "Brendili baharatlı sıcak şarap",
       "description": "3 bardak suyu, şekeri, karanfili, tarçın çubuklarını ve limon kabuğunu paslanmaz çelik bir tencerede 10 dakika kaynatın. Şarap ısısını \"kahve sıcaklığına\" ekleyin (KAYNATMAYIN), ardından brendi ekleyin.",
       "preparationSteps": [
         "3 bardak suyu, şekeri, karanfilleri, tarçın çubuklarını ve limon kabuğunu paslanmaz çelik bir tencerede 10 dakika kaynatın.",
@@ -3180,7 +3180,7 @@
         "Zencefil birasına dökün, hafifçe karıştırın ve salatalıkla süsleyin."
       ],
       "ingredientAmounts": {
-        "cucumber": "Garnitür için"
+        "cucumber": "Süslemek için"
       }
     },
     "national-aquarium": {
@@ -3191,7 +3191,7 @@
         "Uzun bir bardaktaki taze buzu süzün, ardından sodayı ekleyin ve hafifçe karıştırın."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Bir sıçrama"
+        "lemon_lime_soda": "Biraz"
       }
     },
     "negroni": {
@@ -3219,8 +3219,8 @@
         "Kırmızı şarabı yavaşça kaşığın arkasına dökerek üstte yüzmesini sağlayın. Kirazla süsleyin."
       ],
       "ingredientAmounts": {
-        "wine_red": "Tatmak",
-        "cherry": "Garnitür için"
+        "wine_red": "Damak tadına göre",
+        "cherry": "Süslemek için"
       }
     },
     "nuked-hot-chocolate": {
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "Eski Moda",
+      "name": "Old Fashioned",
       "description": "Küp şekeri eski moda bardağa koyun ve bitterlerle doyurun, bir miktar sade su ekleyin. Çözünene kadar karıştırın.\r\nBardağı buz küpleriyle doldurun ve viski ekleyin.\r\n\r\nTuruncu büküm ve kokteyl kirazıyla süsleyin.",
       "preparationSteps": [
         "Küp şekeri eski moda bardağa koyun ve bitterlerle doyurun, bir miktar sade su ekleyin",
@@ -3294,7 +3294,7 @@
         "Zencefilli gazozu doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Yükleme"
+        "ginger_ale": "Bardağı tamamlayacak kadar"
       }
     },
     "orange-push-up": {
@@ -3305,22 +3305,22 @@
         "Büyük bir bardağa dökün."
       ],
       "ingredientAmounts": {
-        "sour_mix": "Bir sıçrama"
+        "sour_mix": "Biraz"
       }
     },
     "orange-rosemary-collins": {
-      "name": "Portakallı Biberiye Collins",
+      "name": "Portakal ve biberiyeli Collins",
       "description": "Alkolleri bardağın dibine ekleyin ve üzerine mikserli içeceklerle eşit şekilde dökün. Bardağın içini portakal dilimleri ve üstüne biraz biberiye ile süsleyin.",
       "preparationSteps": [
-        "Alkolleri bardağın tabanına ekleyin ve üzerini mikserli içeceklerle eşit şekilde doldurun.",
+        "Distile içkileri bardağa koyun, ardından alkolsüz karışım içeceklerini eşit miktarlarda ekleyin.",
         "Bardağın içini portakal dilimleri ve üstüne biraz biberiye ile süsleyin."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Yükleme",
-        "lemon": "Yükleme",
-        "soda_water": "Yükleme",
-        "rosemary": "Tatmak",
-        "orange": "Tatmak"
+        "juice_orange": "Bardağı tamamlayacak kadar",
+        "lemon": "Bardağı tamamlayacak kadar",
+        "soda_water": "Bardağı tamamlayacak kadar",
+        "rosemary": "Damak tadına göre",
+        "orange": "Damak tadına göre"
       }
     },
     "orange-scented-hot-chocolate": {
@@ -3341,17 +3341,17 @@
         "2 porsiyon yapar."
       ],
       "ingredientAmounts": {
-        "orange": "3 adet 2 inçlik şerit"
+        "orange": "2 inç uzunluğunda 3 şerit"
       }
     },
     "orange-whip": {
-      "name": "Turuncu Kırbaç",
+      "name": "Orange Whip",
       "description": "Malzemeleri buzun üzerine dökün ve karıştırın.",
       "preparationSteps": [
         "Malzemeleri buzun üzerine dökün ve karıştırın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "orangeade": {
@@ -3362,7 +3362,7 @@
         "Soğuk soda suyuyla doldurun, pipetle servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "Yarım çarkıfelek meyvesi parçasıyla süsleyin."
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "Yükleme"
+        "juice_passion_fruit": "Bardağı tamamlayacak kadar"
       }
     },
     "pegu-club": {
@@ -3435,7 +3435,7 @@
       ]
     },
     "pina-colada": {
-      "name": "Pina Colada",
+      "name": "Piña Colada",
       "description": "Beyaz romu, hindistancevizi kremasını ve ananas suyunu kırılmış buzla birlikte bir karıştırıcıya koyun. Pürüzsüz olana kadar karıştırın, ardından soğutulmuş büyük bir bardağa dökün.",
       "preparationSteps": [
         "Beyaz romu, hindistancevizi kremasını ve ananas suyunu kırılmış buzla birlikte bir karıştırıcıya koyun.",
@@ -3459,8 +3459,8 @@
         "Taze ananas veya limonla süsleyin."
       ],
       "ingredientAmounts": {
-        "lime": "Tatmak",
-        "pepper": "Tatmak"
+        "lime": "Damak tadına göre",
+        "pepper": "Damak tadına göre"
       }
     },
     "pink-gin": {
@@ -3490,7 +3490,7 @@
         "Özel bir görünüm için çiçekler ve yeşil bir yaprak ekleyin!"
       ],
       "ingredientAmounts": {
-        "blackberries": "Tatmak"
+        "blackberries": "Damak tadına göre"
       }
     },
     "pink-panty-pulldowns": {
@@ -3509,7 +3509,7 @@
       ]
     },
     "pisco-sour": {
-      "name": "Pisco Ekşi",
+      "name": "Pisco Sour",
       "description": "Köpük oluşturmak için pisco'yu, taze limon suyunu, şeker şurubunu ve bir pastörize yumurta akını buzsuz sallayın. Buz ekleyin, soğuyuncaya kadar çalkalayın ve soğutulmuş bir bardağa süzün. Köpüğün üzerine birkaç damla aromatik bitter damlatın.",
       "preparationSteps": [
         "Köpük oluşturmak için pisco'yu, taze limon suyunu, şeker şurubunu ve bir pastörize yumurta akını buzsuz sallayın.",
@@ -3517,11 +3517,11 @@
         "Köpüğün üzerine birkaç damla aromatik bitter damlatın."
       ],
       "ingredientAmounts": {
-        "bitters": "Birkaç çizgi"
+        "bitters": "Birkaç dash bitter"
       }
     },
     "planter-s-punch-178368-178368-178368": {
-      "name": "Ekici Yumruğu",
+      "name": "Planter's Punch",
       "description": "Bitter hariç tüm malzemeleri buzla doldurulmuş çalkalayıcıya dökün. İyice çalkalayın. Buzla doldurulmuş büyük bardağa dökün. Angostura bitterlerini \"üstüne\" ekleyin. Kokteyl kirazı ve ananasla süsleyin.",
       "preparationSteps": [
         "Bitter hariç tüm malzemeleri buzla dolu çalkalayıcıya dökün.",
@@ -3578,7 +3578,7 @@
         "Üzerine hindistan cevizi serpip servis yapın."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Garnitür için"
+        "nutmeg": "Süslemek için"
       }
     },
     "porto-flip": {
@@ -3597,7 +3597,7 @@
         "İyice karıştırın ve nane ile süsleyin."
       ],
       "ingredientAmounts": {
-        "mint": "Tatmak"
+        "mint": "Damak tadına göre"
       }
     },
     "pysch-vitamin-light": {
@@ -3608,7 +3608,7 @@
         "Taze buzun üzerinde uzun bir bardağa süzün."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "quaker-s-cocktail": {
@@ -3642,7 +3642,7 @@
         "Limonlu sodayı doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Yükleme"
+        "lemon_lime_soda": "Bardağı tamamlayacak kadar"
       }
     },
     "queen-elizabeth": {
@@ -3685,8 +3685,8 @@
         "Zencefilli gazozla doldurun."
       ],
       "ingredientAmounts": {
-        "lemon": "Tatmak",
-        "ginger_ale": "Yükleme"
+        "lemon": "Damak tadına göre",
+        "ginger_ale": "Bardağı tamamlayacak kadar"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "Bir highball bardağa süzün ve üzerine hafifçe soda ekleyin. Sodayı asla sallamayın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "raspberry-julep": {
@@ -3726,7 +3726,7 @@
         "Süsleyip servis yapın."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "Tatmak"
+        "powdered_sugar": "Damak tadına göre"
       }
     },
     "rosemary-blue": {
@@ -3739,7 +3739,7 @@
         "3) Bir bar kaşığıyla yavaşça katlayarak karıştırın."
       ],
       "ingredientAmounts": {
-        "rosemary": "Tatmak"
+        "rosemary": "Damak tadına göre"
       }
     },
     "royal-fizz": {
@@ -3750,7 +3750,7 @@
         "Kola ile doldurun ve servis yapın."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Yükleme"
+        "coca_cola": "Bardağı tamamlayacak kadar"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "Karbonatlı suyla doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "Grenadin ekleyin ve karıştırın."
       ],
       "ingredientAmounts": {
-        "grenadine": "İki sıçrama"
+        "grenadine": "İki küçük miktar"
       }
     },
     "rum-cobbler": {
@@ -3803,7 +3803,7 @@
         "Üzerine hindistan cevizi serpip servis yapın."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Garnitür için"
+        "nutmeg": "Süslemek için"
       }
     },
     "rum-old-fashioned": {
@@ -3824,7 +3824,7 @@
         "En son zencefilli gazozu ekleyin ve yavaşça karıştırın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "rum-runner": {
@@ -3860,7 +3860,7 @@
         "Taze buzla doldurulmuş uzun bir bardağa süzün, ardından üzerine köpüklü şarap ekleyin."
       ],
       "ingredientAmounts": {
-        "prosecco": "Yükleme"
+        "prosecco": "Bardağı tamamlayacak kadar"
       }
     },
     "rusty-nail": {
@@ -3888,8 +3888,8 @@
         "portakal ve çilekle süsleyin."
       ],
       "ingredientAmounts": {
-        "grenadine": "Tatmak",
-        "juice_orange": "Tatmak"
+        "grenadine": "Damak tadına göre",
+        "juice_orange": "Damak tadına göre"
       }
     },
     "sangria": {
@@ -3901,8 +3901,8 @@
         "Şarap bardaklarında servis yapın."
       ],
       "ingredientAmounts": {
-        "cloves": "Tatmak",
-        "cinnamon": "Tatmak"
+        "cloves": "Damak tadına göre",
+        "cinnamon": "Damak tadına göre"
       }
     },
     "sazerac": {
@@ -3923,7 +3923,7 @@
       ]
     },
     "scotch-sour": {
-      "name": "İskoç Ekşisi",
+      "name": "Scotch Sour",
       "description": "Viskiyi, limon suyunu ve pudra şekerini buzla çalkalayın ve bir ekşi viski bardağına süzün. 1/2 dilim limonla süsleyin, üzerine kiraz ekleyin ve servis yapın.",
       "preparationSteps": [
         "Belirtilen miktarda limon veya misket limonunu sıkın; içecekte sadece suyunu kullanın.",
@@ -3939,7 +3939,7 @@
         "Votkayı ekleyin, üzerine portakal suyunu ekleyin ve hafifçe karıştırın."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Tatmak"
+        "juice_orange": "Damak tadına göre"
       }
     },
     "sea-breeze": {
@@ -3972,8 +3972,8 @@
         "Üzerine hindistan cevizi serpip servis yapın."
       ],
       "ingredientAmounts": {
-        "milk": "Tatmak",
-        "nutmeg": "Garnitür için"
+        "milk": "Damak tadına göre",
+        "nutmeg": "Süslemek için"
       }
     },
     "sherry-flip": {
@@ -3984,7 +3984,7 @@
         "Üzerine hindistan cevizi serpip servis yapın."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Garnitür için"
+        "nutmeg": "Süslemek için"
       }
     },
     "shot-gun": {
@@ -4018,7 +4018,7 @@
         "Hemen servis yapın."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "snowday": {
@@ -4030,7 +4030,7 @@
         "Portakal kabuğunu içeceğin üzerine sıkın ve süsleyin."
       ],
       "ingredientAmounts": {
-        "orange": "Tatmak"
+        "orange": "Damak tadına göre"
       }
     },
     "sol-y-sombra": {
@@ -4051,9 +4051,9 @@
         "Üzerine portakal suyu ekleyin, tadına göre nar şurubu ekleyin ve kirazlarla süsleyin."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Tatmak",
-        "grenadine": "Tatmak",
-        "cherry": "Garnitür için"
+        "juice_orange": "Damak tadına göre",
+        "grenadine": "Damak tadına göre",
+        "cherry": "Süslemek için"
       }
     },
     "spice-75": {
@@ -4066,7 +4066,7 @@
         "Altı kadehe bölüştürün, her birine 100 ml Şampanya ekleyin ve portakal kabuğuyla süsleyin."
       ],
       "ingredientAmounts": {
-        "orange_spiral": "Tatmak"
+        "orange_spiral": "Damak tadına göre"
       }
     },
     "spritz": {
@@ -4076,7 +4076,7 @@
         "Buzun üzerine bardağa koyun, süsleyin ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Bir sıçrama"
+        "soda_water": "Biraz"
       }
     },
     "stinger": {
@@ -4112,10 +4112,10 @@
         "Uzun bardaklarda pipetle servis yapın."
       ],
       "ingredientAmounts": {
-        "orange": "Garnitür için",
-        "lime": "Garnitür için",
-        "lemon": "Tatmak",
-        "fresca": "Yükleme"
+        "orange": "Süslemek için",
+        "lime": "Süslemek için",
+        "lemon": "Damak tadına göre",
+        "fresca": "Bardağı tamamlayacak kadar"
       }
     },
     "tennesee-mud": {
@@ -4126,7 +4126,7 @@
         "Üzerine Kremayı ekleyin."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Garnitür için"
+        "whipped_cream": "Süslemek için"
       }
     },
     "tequila-fizz": {
@@ -4137,7 +4137,7 @@
         "Zencefilli gazozu doldurun, karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Yükleme"
+        "ginger_ale": "Bardağı tamamlayacak kadar"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "Damla Tobasco sosu ekleyin."
       ],
       "ingredientAmounts": {
-        "tequila": "Yükleme"
+        "tequila": "Bardağı tamamlayacak kadar"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "Başta tatlı, sonunda bir ISIKLIK..."
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "Bir sıçrama"
+        "sweet_and_sour": "Biraz"
       }
     },
     "texas-sling": {
@@ -4199,7 +4199,7 @@
         "Bu, kremanın hemen dağılmak yerine kahvenin üzerinde yüzmesini sağlayacaktır."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Garnitür için"
+        "whipped_cream": "Süslemek için"
       }
     },
     "thai-iced-coffee": {
@@ -4212,9 +4212,9 @@
         "Ayrı bir üst katman oluşturmak için kremayı kaşığın arkasına yavaşça ekleyin."
       ],
       "ingredientAmounts": {
-        "coffee": "Tatmak",
-        "cream": "Tatmak",
-        "sugar": "Tatmak"
+        "coffee": "Damak tadına göre",
+        "cream": "Damak tadına göre",
+        "sugar": "Damak tadına göre"
       }
     },
     "thai-iced-tea": {
@@ -4227,8 +4227,8 @@
         "2 porsiyon yapar."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde",
-        "mint": "Garnitür için"
+        "ice": "Gerektiği kadar",
+        "mint": "Süslemek için"
       }
     },
     "the-galah": {
@@ -4238,8 +4238,8 @@
         "Alkollü kısımları karıştırın ve üzerine Ananas ve Limon suyu ekleyin."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Yükleme",
-        "lime": "Yükleme"
+        "juice_pineapple": "Bardağı tamamlayacak kadar",
+        "lime": "Bardağı tamamlayacak kadar"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "Soğutulmuş bir bardağa süzün ve üzerine Prosecco ekleyin."
       ],
       "ingredientAmounts": {
-        "prosecco": "Yükleme"
+        "prosecco": "Bardağı tamamlayacak kadar"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "Buzla çalkalayıp shot bardağına süzün."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Bir sıçrama"
+        "juice_pineapple": "Biraz"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "Karbonatlı su ile doldurun, tekrar karıştırın ve servis yapın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "vesper": {
@@ -4433,8 +4433,8 @@
         "Büyük beyaz şarap bardağına dökün ve üzerine hindistan cevizi serpin."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde",
-        "nutmeg": "Garnitür için"
+        "ice": "Gerektiği kadar",
+        "nutmeg": "Süslemek için"
       }
     },
     "vodka-martini": {
@@ -4445,7 +4445,7 @@
       ]
     },
     "whiskey-sour": {
-      "name": "Viski Ekşi",
+      "name": "Whiskey Sour",
       "description": "Buzla çalkalayın. Soğutulmuş bardağa süzün, süsleyin ve servis yapın. 'Kayaların üzerinde' servis edilirse, malzemeleri buzla dolu eski moda bardağa süzün.",
       "preparationSteps": [
         "Belirtilen miktarda limon veya misket limonunu sıkın; içecekte sadece suyunu kullanın.",
@@ -4477,7 +4477,7 @@
         "Hafif kremayla doldurup servis yapın."
       ],
       "ingredientAmounts": {
-        "light_cream": "Tatmak"
+        "light_cream": "Damak tadına göre"
       }
     },
     "white-wine-sangria": {
@@ -4489,7 +4489,7 @@
         "Soda suyuyla tatlandırın."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "Üzerine greyfurt suyunu ekleyin, bir miktar gıdaya uygun biber ekleyin ve karıştırın. Bu basitleştirilmiş versiyondur; orijinalinde hazırlanmış biberle aşılanmış tekila kullanılıyor."
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "Yükleme"
+        "juice_grapefruit": "Bardağı tamamlayacak kadar"
       }
     },
     "winter-rita": {
@@ -4542,7 +4542,7 @@
         "Pürüzsüz olana kadar karıştırın ve bardaklara dökün. Daha fazla buz eklemeden önce blenderi durdurun."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "zambeer": {
@@ -4553,7 +4553,7 @@
         "Buz ekle"
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "ziemes-martini-apfelsaft": {
@@ -4572,7 +4572,7 @@
         "Chambord'u, ardından votkayı ve son olarak soda suyunu dökün. Katmanları korumak için yavaşça dökün."
       ],
       "ingredientAmounts": {
-        "soda_water": "Yükleme"
+        "soda_water": "Bardağı tamamlayacak kadar"
       }
     },
     "zippy-s-revenge": {
@@ -4592,7 +4592,7 @@
         "Yavaşça karıştırın ve istenirse limon dilimiyle süsleyin."
       ],
       "ingredientAmounts": {
-        "ice": "Gerektiğinde"
+        "ice": "Gerektiği kadar"
       }
     },
     "zoksel": {
@@ -4604,12 +4604,12 @@
         "Yavaşça karıştırın ve limon dilimiyle süsleyin. Karbonatlı malzemeleri sallamayın."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Tatmak",
-        "beer": "Tatmak",
-        "root_beer": "Tatmak",
-        "lemonade": "Yükleme",
-        "7_up": "Tatmak",
-        "creme_de_cassis": "Tatmak"
+        "coca_cola": "Damak tadına göre",
+        "beer": "Damak tadına göre",
+        "root_beer": "Damak tadına göre",
+        "lemonade": "Bardağı tamamlayacak kadar",
+        "7_up": "Damak tadına göre",
+        "creme_de_cassis": "Damak tadına göre"
       }
     },
     "zombie": {
@@ -4636,8 +4636,8 @@
         "hepsini ekleyin ve üzerine sade kahveyi dökün ve krem ​​şantiyi ekleyin."
       ],
       "ingredientAmounts": {
-        "coffee": "Yükleme",
-        "whipped_cream": "Garnitür için"
+        "coffee": "Bardağı tamamlayacak kadar",
+        "whipped_cream": "Süslemek için"
       }
     }
   }

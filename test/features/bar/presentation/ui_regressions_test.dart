@@ -493,8 +493,8 @@ void main() {
         reduceMotion: true,
       );
       expect(find.text('Ваш домашний бар'), findsOneWidget);
-      expect(find.textContaining('раздел «Ингредиенты»'), findsOneWidget);
-      expect(find.textContaining('Фильтр «Можно сейчас»'), findsOneWidget);
+      expect(find.textContaining('В разделе «Ингредиенты»'), findsOneWidget);
+      expect(find.textContaining('выберите «Можно сейчас»'), findsOneWidget);
       for (var i = 0; i < 3; i++) {
         await tester.tap(find.text('Далее'));
         await _frames(tester);

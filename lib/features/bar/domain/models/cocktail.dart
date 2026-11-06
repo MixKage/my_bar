@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 
+import 'catalog_aliases.dart';
 import 'cocktail_glass_types.dart';
 import 'cocktail_tags.dart';
 import 'ingredient_units.dart';
@@ -16,6 +17,7 @@ class Cocktail {
     required this.preparationSteps,
     required this.glassType,
     required this.tags,
+    this.aliases = const [],
     this.ingredientSubstitutions = const <String, List<String>>{},
     this.ingredientAmounts = const <String, String>{},
     this.ingredientUnits = const <String, String>{},
@@ -77,6 +79,7 @@ class Cocktail {
       preparationSteps: normalizedSteps,
       glassType: glassType,
       tags: tags,
+      aliases: parseCatalogAliases(json['aliases']),
       ingredientSubstitutions: ingredientSubstitutions,
       ingredientAmounts: ingredientAmounts,
       ingredientUnits: ingredientUnits,
@@ -94,6 +97,7 @@ class Cocktail {
   final List<String> preparationSteps;
   final String glassType;
   final List<String> tags;
+  final List<String> aliases;
   final Map<String, List<String>> ingredientSubstitutions;
   final Map<String, String> ingredientAmounts;
   final Map<String, String> ingredientUnits;
@@ -113,6 +117,7 @@ class Cocktail {
     String ingredientId, {
     MeasurementSystem? measurementSystem,
     String Function(String unit)? unitLabelResolver,
+    String Function(String unit, String amount)? measuredUnitLabelResolver,
     int servings = 1,
   }) {
     final amount = (ingredientAmounts[ingredientId] ?? '').trim();
@@ -126,17 +131,18 @@ class Cocktail {
             unit: unit,
             measurementSystem: measurementSystem,
           );
-    // The empty-unit editor option has its own label, but a recipe with a
-    // free-form amount (for example "Top up") must not display "No unit".
-    final resolvedUnit = resolved.unit.isEmpty || unitLabelResolver == null
-        ? resolved.unit
-        : unitLabelResolver(resolved.unit);
-
     final normalizedAmount = scaleIngredientAmount(
       resolved.amount,
       servings,
     ).trim();
-    final normalizedUnit = resolvedUnit.trim();
+    // Use the displayed quantity for grammar after scaling. A free-form
+    // amount (for example "Top up") must not display the editor's "No unit".
+    final normalizedUnit = resolved.unit.isEmpty
+        ? ''
+        : (measuredUnitLabelResolver?.call(resolved.unit, normalizedAmount) ??
+                  unitLabelResolver?.call(resolved.unit) ??
+                  resolved.unit)
+              .trim();
     if (normalizedAmount.isEmpty && normalizedUnit.isEmpty) {
       return '';
     }
@@ -171,6 +177,7 @@ class Cocktail {
       'preparationSteps': preparationSteps,
       'glassType': glassType,
       'tags': tags,
+      if (aliases.isNotEmpty) 'aliases': aliases,
       'ingredientSubstitutions': ingredientSubstitutions,
       'ingredientAmounts': ingredientAmounts,
       'ingredientUnits': ingredientUnits,
@@ -192,6 +199,7 @@ class Cocktail {
             _listEquals(other.preparationSteps, preparationSteps) &&
             other.glassType == glassType &&
             _listEquals(other.tags, tags) &&
+            catalogAliasesEqual(other.aliases, aliases) &&
             _substitutionsEquals(
               other.ingredientSubstitutions,
               ingredientSubstitutions,
@@ -214,6 +222,7 @@ class Cocktail {
       Object.hashAll(preparationSteps),
       glassType,
       Object.hashAll(tags),
+      Object.hashAll(aliases),
       Object.hashAll(_substitutionsHashEntries(ingredientSubstitutions)),
       Object.hashAll(_stringMapHashEntries(ingredientAmounts)),
       Object.hashAll(_stringMapHashEntries(ingredientUnits)),

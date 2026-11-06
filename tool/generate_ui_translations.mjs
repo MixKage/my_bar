@@ -1,9 +1,9 @@
 // Development-only generator. Runtime localization is entirely offline.
-// Run: node tool/generate_ui_translations.mjs [--check]
+// Run: node tool/generate_ui_translations.mjs [--offline | --check]
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {contextualUiOverrides, uiLocales as locales} from './ui_translation_overrides.mjs';
 
-const locales = ['es', 'pt', 'de', 'fr', 'it', 'tr', 'zh', 'ja', 'ko', 'hi', 'ar'];
 const outputPath = 'lib/core/localization/app_translations.g.dart';
 const cachePath = '.dart_tool/ui_translation_cache';
 // Short UI fragments and measurement abbreviations need explicit context.
@@ -116,7 +116,7 @@ async function extractKeys() {
   for (const file of await filesUnder('lib')) {
     if (!file.endsWith('.dart') || file.endsWith('.g.dart')) continue;
     const source = await fs.readFile(file, 'utf8');
-    for (const match of source.matchAll(/\btr\s*\(/g)) {
+    for (const match of source.matchAll(/\b(?:tr|trWithArgs)\s*\(/g)) {
       const argumentStart = skipSpace(source, match.index + match[0].length);
       if (!/['"]/.test(source[argumentStart] ?? '')) continue;
       try {
@@ -169,9 +169,14 @@ async function translateBatch(locale, batch) {
   }
 }
 
-const keys = await extractKeys();
-if (process.argv.includes('--check')) {
-  const generated = await fs.readFile(outputPath, 'utf8');
+async function readCommittedDictionaries() {
+  let generated;
+  try {
+    generated = await fs.readFile(outputPath, 'utf8');
+  } catch (error) {
+    if (error.code === 'ENOENT') return {};
+    throw error;
+  }
   const committed = {};
   for (const section of generated.matchAll(/^  '(\w+)': <String, String>\{([\s\S]*?)^  \},/gm)) {
     const dictionary = committed[section[1]] = {};
@@ -179,17 +184,45 @@ if (process.argv.includes('--check')) {
       dictionary[JSON.parse(entry[1].replace(/\\\$/g, '$'))] = JSON.parse(entry[2].replace(/\\\$/g, '$'));
     }
   }
+  return committed;
+}
+
+function reviewedTranslations(locale) {
+  const semanticValues = reviewedSemanticRows[locale];
+  if (semanticValues.length !== semanticKeys.length) throw new Error(`${locale}: invalid reviewed semantic row`);
+  return {
+    ...reviewedOverrides[locale],
+    ...Object.fromEntries(semanticKeys.map((key, index) => [key, semanticValues[index]])),
+    '{0} serv.': reviewedServings[locale],
+    ...Object.fromEntries(['l', 'ml', 'cl', 'g', 'fl oz', 'lb', 'qt', 'gal'].map(unit => [unit, unit])),
+    ...contextualUiOverrides[locale],
+  };
+}
+
+const keys = await extractKeys();
+const committed = await readCommittedDictionaries();
+const reviewed = Object.fromEntries(locales.map(locale => [locale, reviewedTranslations(locale)]));
+for (const code of locales) {
+  for (const [key, value] of Object.entries(contextualUiOverrides[code])) {
+    if (!keys.includes(key)) throw new Error(`${code}: stale reviewed UI key: ${key}`);
+    if (tokens(value) !== tokens(key)) throw new Error(`${code}: invalid reviewed UI placeholders: ${key}`);
+  }
+}
+if (process.argv.includes('--check')) {
   for (const code of locales) {
     for (const key of keys) {
       const value = committed[code]?.[key];
       if (!value || tokens(value) !== tokens(key)) throw new Error(`${code}: missing or invalid translation: ${key}`);
+      if (Object.hasOwn(reviewed[code], key) && value !== reviewed[code][key]) {
+        throw new Error(`${code}: reviewed translation not applied: ${key}`);
+      }
     }
     if (Object.keys(committed[code]).length !== keys.length) throw new Error(`${code}: stale generated dictionary`);
   }
   console.log(`${keys.length} keys × ${locales.length} locales: committed offline UI coverage verified.`);
   process.exit(0);
 }
-await fs.mkdir(cachePath, {recursive: true});
+const offline = process.argv.includes('--offline');
 const dictionaries = {};
 const pending = [...locales];
 async function worker() {
@@ -197,13 +230,12 @@ async function worker() {
     const cacheFile = `${cachePath}/${locale}.json`;
     let cache = {};
     try { cache = JSON.parse(await fs.readFile(cacheFile, 'utf8')); } catch {}
-    Object.assign(cache, reviewedOverrides[locale]);
-    const semanticValues = reviewedSemanticRows[locale];
-    if (semanticValues.length !== semanticKeys.length) throw new Error(`${locale}: invalid reviewed semantic row`);
-    semanticKeys.forEach((key, index) => cache[key] = semanticValues[index]);
-    cache['{0} serv.'] = reviewedServings[locale];
-    for (const unit of ['l', 'ml', 'cl', 'g', 'fl oz', 'lb', 'qt', 'gal']) cache[unit] = unit;
+    // Existing checked-in translations are the stable offline baseline. The
+    // context-reviewed strings always win, even over a stale generator cache.
+    Object.assign(cache, committed[locale], reviewed[locale]);
     const missing = keys.filter(key => !cache[key] || tokens(cache[key]) !== tokens(key));
+    if (offline && missing.length) throw new Error(`${locale}: missing offline translations: ${missing.join('; ')}`);
+    if (missing.length) await fs.mkdir(cachePath, {recursive: true});
     for (let offset = 0; offset < missing.length; offset += 14) {
       const batch = missing.slice(offset, offset + 14);
       const translated = await translateBatch(locale, batch);

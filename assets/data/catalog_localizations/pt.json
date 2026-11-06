@@ -1,19 +1,19 @@
 {
   "locale": "pt",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "Rum 151 provas"
     },
     "7_up": {
-      "name": "7 para cima"
+      "name": "7-Up"
     },
     "absinthe": {
       "name": "Absinto"
     },
     "absolut_citron": {
-      "name": "Absolut Cidra"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
       "name": "Absolut Kurant"
@@ -22,7 +22,7 @@
       "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "Absolut Vodca"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "Advogado"
@@ -31,10 +31,10 @@
       "name": "Xarope de Agave"
     },
     "ale": {
-      "name": "Cerveja"
+      "name": "Cerveja ale"
     },
     "allspice": {
-      "name": "Pimenta da Jamaica"
+      "name": "Pimenta-da-jamaica"
     },
     "almond_flavoring": {
       "name": "Aroma de amêndoa"
@@ -49,13 +49,13 @@
       "name": "Raiz de angélica"
     },
     "angostura_bitter": {
-      "name": "Angostura amarga"
+      "name": "Bitter Angostura"
     },
     "anis": {
       "name": "Anis"
     },
     "anisette": {
-      "name": "anis"
+      "name": "Licor de anis (anisette)"
     },
     "aperol": {
       "name": "Aperol"
@@ -70,7 +70,7 @@
       "name": "Conhaque de maçã"
     },
     "apple_cider": {
-      "name": "Cidra de maçã"
+      "name": "Sidra de maçã"
     },
     "juice_apple": {
       "name": "Suco de maçã"
@@ -91,10 +91,10 @@
       "name": "Rum Añejo"
     },
     "bacardi_limon": {
-      "name": "Bacardi Limão"
+      "name": "Bacardi Limon"
     },
     "baileys_irish_cream": {
-      "name": "Creme irlandês Baileys"
+      "name": "Baileys Irish Cream"
     },
     "banana": {
       "name": "Banana"
@@ -115,10 +115,10 @@
       "name": "Limão amargo"
     },
     "bitters": {
-      "name": "Amargo"
+      "name": "Bitter para coquetéis"
     },
     "black_pepper": {
-      "name": "Pimenta preta"
+      "name": "Pimenta-do-reino preta"
     },
     "black_sambuca": {
       "name": "Sambuca Negra"
@@ -130,7 +130,7 @@
       "name": "Conhaque de amora"
     },
     "blackcurrant_cordial": {
-      "name": "Cordial de groselha"
+      "name": "Xarope de groselha-preta"
     },
     "blackstrap_rum": {
       "name": "rum blackstrap"
@@ -139,16 +139,16 @@
       "name": "Escocês misturado"
     },
     "blood_orange": {
-      "name": "Laranja-de-sangue"
+      "name": "Laranja sanguínea"
     },
     "blue_curacao": {
-      "name": "Curaçao Azul"
+      "name": "Curaçao blue"
     },
     "bourbon": {
       "name": "Bourbon"
     },
     "brandy": {
-      "name": "conhaque"
+      "name": "Brandy"
     },
     "brown_sugar": {
       "name": "Açúcar mascavo"
@@ -196,7 +196,7 @@
       "name": "Conhaque de cereja"
     },
     "cherry_heering": {
-      "name": "Cereja Heering"
+      "name": "Cherry Heering"
     },
     "cherry_juice": {
       "name": "Suco de Cereja"
@@ -217,7 +217,7 @@
       "name": "Xarope de chocolate"
     },
     "cider": {
-      "name": "Cidra"
+      "name": "Sidra"
     },
     "cinnamon": {
       "name": "Canela"
@@ -226,7 +226,7 @@
       "name": "cravo"
     },
     "coca_cola": {
-      "name": "Coca Cola"
+      "name": "Coca-Cola"
     },
     "cocoa_powder": {
       "name": "Cacau em pó"
@@ -268,7 +268,7 @@
       "name": "Xarope de milho"
     },
     "corona": {
-      "name": "coroa"
+      "name": "Corona"
     },
     "cranberries": {
       "name": "Cranberries"
@@ -280,10 +280,10 @@
       "name": "Vodka de cranberry"
     },
     "cream": {
-      "name": "Creme"
+      "name": "Creme de leite"
     },
     "cream_of_coconut": {
-      "name": "Creme de coco"
+      "name": "Creme de coco adoçado"
     },
     "creme_de_banane": {
       "name": "Creme de Banana"
@@ -298,7 +298,7 @@
       "name": "Creme de Mure"
     },
     "crown_royal": {
-      "name": "Coroa Real"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "Pepino"
@@ -313,10 +313,10 @@
       "name": "Rum escuro"
     },
     "demerara_sugar": {
-      "name": "Açúcar Demerara"
+      "name": "Açúcar demerara"
     },
     "dr_pepper": {
-      "name": "Dr. Pimenta"
+      "name": "Dr. Pepper"
     },
     "drambuie": {
       "name": "Drambuie"
@@ -325,7 +325,7 @@
       "name": "Vermute seco"
     },
     "dubonnet_rouge": {
-      "name": "Dubonnet Vermelho"
+      "name": "Dubonnet Rouge"
     },
     "egg": {
       "name": "Ovo"
@@ -337,13 +337,13 @@
       "name": "Gema de ovo"
     },
     "elderflower_cordial": {
-      "name": "Cordial de flor de sabugueiro"
+      "name": "Xarope de flor de sabugueiro"
     },
     "espresso": {
       "name": "Café expresso"
     },
     "everclear": {
-      "name": "Sempre claro"
+      "name": "Everclear"
     },
     "falernum": {
       "name": "Falernum"
@@ -352,19 +352,19 @@
       "name": "Figos"
     },
     "firewater": {
-      "name": "Aguardente"
+      "name": "Firewater"
     },
     "frangelico": {
       "name": "Frangelico"
     },
     "fresca": {
-      "name": "fresco"
+      "name": "Fresca"
     },
     "fresh_lemon_juice": {
-      "name": "Suco de Limão Fresco"
+      "name": "Suco fresco de limão-siciliano"
     },
     "fresh_lime_juice": {
-      "name": "Suco de limão fresco"
+      "name": "Suco fresco de limão-taiti"
     },
     "fruit": {
       "name": "Fruta"
@@ -379,16 +379,16 @@
       "name": "Licor de baunilha Galliano"
     },
     "gin": {
-      "name": "Gin"
+      "name": "Gim"
     },
     "ginger": {
       "name": "Ruivo"
     },
     "ginger_ale": {
-      "name": "Cerveja de gengibre"
+      "name": "Refrigerante de gengibre (ginger ale)"
     },
     "ginger_beer": {
-      "name": "Cerveja de gengibre"
+      "name": "Cerveja de gengibre (ginger beer)"
     },
     "syrup_gingerbread": {
       "name": "Xarope de Gengibre"
@@ -400,13 +400,13 @@
       "name": "Rum dourado"
     },
     "goldschlager": {
-      "name": "Goldschlager"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "Álcool de cereais"
     },
     "grand_marnier": {
-      "name": "Grande Marnier"
+      "name": "Grand Marnier"
     },
     "grape_juice": {
       "name": "Suco de uva"
@@ -430,13 +430,13 @@
       "name": "Granadina"
     },
     "guinness_stout": {
-      "name": "Cerveja preta Guinness"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "Meio a meio"
+      "name": "Mistura de leite e creme de leite"
     },
     "heavy_cream": {
-      "name": "Creme de leite"
+      "name": "Creme de leite fresco para bater"
     },
     "honey": {
       "name": "Mel"
@@ -448,7 +448,7 @@
       "name": "Chocolate quente"
     },
     "hot_damn": {
-      "name": "Quente, caramba"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "Molho picante"
@@ -469,22 +469,22 @@
       "name": "Islay single malt escocês"
     },
     "jack_daniels": {
-      "name": "Jack Daniels"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
       "name": "Jägermeister"
     },
     "jello": {
-      "name": "gelatina"
+      "name": "Jello"
     },
     "jim_beam": {
       "name": "Jim Beam"
     },
     "johnnie_walker": {
-      "name": "Johnny Walker"
+      "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "Kahlua"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "Kiwi"
@@ -496,22 +496,22 @@
       "name": "Kool-Aid"
     },
     "lager": {
-      "name": "Cerveja"
+      "name": "Cerveja lager"
     },
     "lavender": {
       "name": "Lavanda"
     },
     "lemon": {
-      "name": "Limão"
+      "name": "Limão-siciliano"
     },
     "lemon_lime_soda": {
-      "name": "Refrigerante de limão"
+      "name": "Refrigerante de limão e lima"
     },
     "lemonade": {
-      "name": "Limonada"
+      "name": "Limonada de limão-siciliano"
     },
     "light_cream": {
-      "name": "Creme claro"
+      "name": "Creme de leite com baixo teor de gordura"
     },
     "rum_light": {
       "name": "Rum leve"
@@ -523,7 +523,7 @@
       "name": "Lille Blanc"
     },
     "lime": {
-      "name": "Lima"
+      "name": "Limão-taiti"
     },
     "lime_peel": {
       "name": "Casca de limão"
@@ -532,7 +532,7 @@
       "name": "Vodka de limão"
     },
     "limeade": {
-      "name": "Limonada"
+      "name": "Limonada de limão-taiti"
     },
     "malibu_rum": {
       "name": "Rum malibu"
@@ -571,7 +571,7 @@
       "name": "Xarope de menta"
     },
     "mountain_dew": {
-      "name": "Orvalho da montanha"
+      "name": "Mountain Dew"
     },
     "nutmeg": {
       "name": "Noz-moscada"
@@ -580,28 +580,28 @@
       "name": "Azeitona"
     },
     "olive_brine": {
-      "name": "Salmoura de azeitona"
+      "name": "Salmoura de azeitonas"
     },
     "orange": {
       "name": "Laranja"
     },
     "orange_bitter": {
-      "name": "Laranja Amarga"
+      "name": "Bitter de laranja"
     },
     "orange_curacao": {
-      "name": "Laranja Curaçao"
+      "name": "Curaçao de laranja"
     },
     "juice_orange": {
       "name": "Suco de laranja"
     },
     "orange_spiral": {
-      "name": "Espiral laranja"
+      "name": "Espiral de casca de laranja"
     },
     "oreo_cookie": {
       "name": "Biscoito Oreo"
     },
     "orgeat_syrup": {
-      "name": "Xarope de orgeat"
+      "name": "Xarope de amêndoas (orgeat)"
     },
     "ouzo": {
       "name": "Ouzo"
@@ -616,13 +616,13 @@
       "name": "Xarope de maracujá"
     },
     "passoa": {
-      "name": "Passoa"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "Amargo de Pêssego"
     },
     "peach_brandy": {
-      "name": "Conhaque de pêssego"
+      "name": "Brandy de pêssego"
     },
     "peach_nectar": {
       "name": "Néctar de pêssego"
@@ -643,10 +643,10 @@
       "name": "Pernod"
     },
     "peychauds_bitter": {
-      "name": "Peychaud amargo"
+      "name": "Bitter Peychaud's"
     },
     "pina_colada_mix": {
-      "name": "Mistura de piña colada"
+      "name": "Mistura para piña colada"
     },
     "pineapple": {
       "name": "Abacaxi"
@@ -670,7 +670,7 @@
       "name": "Suco de romã"
     },
     "port": {
-      "name": "Porta"
+      "name": "Vinho do Porto"
     },
     "powdered_sugar": {
       "name": "Açúcar em pó"
@@ -697,10 +697,10 @@
       "name": "Ricardo"
     },
     "root_beer": {
-      "name": "Cerveja de raiz"
+      "name": "Refrigerante de raízes (root beer)"
     },
     "rose": {
-      "name": "Rosa"
+      "name": "Vinho rosé"
     },
     "rosemary": {
       "name": "Alecrim"
@@ -712,7 +712,7 @@
       "name": "Vermute Rosso"
     },
     "ruby_port": {
-      "name": "Porto Rubi"
+      "name": "Vinho do Porto ruby"
     },
     "rum": {
       "name": "Rum"
@@ -730,13 +730,13 @@
       "name": "Salsaparrilha"
     },
     "schweppes_russchian": {
-      "name": "Schweppes Russo"
+      "name": "Schweppes Russchian"
     },
     "scotch": {
       "name": "Escocês"
     },
     "sherbet": {
-      "name": "Sorvete"
+      "name": "Sorbet"
     },
     "sherry": {
       "name": "Xerez"
@@ -745,16 +745,16 @@
       "name": "Xarope de rosas"
     },
     "sloe_gin": {
-      "name": "Gim de abrunho"
+      "name": "Licor de abrunho à base de gim"
     },
     "soda_water": {
       "name": "Água com gás"
     },
     "sour_mix": {
-      "name": "Mistura azeda"
+      "name": "Mistura cítrica agridoce para coquetéis"
     },
     "southern_comfort": {
-      "name": "Conforto Sulista"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "Molho de soja"
@@ -766,7 +766,7 @@
       "name": "Sprite"
     },
     "st_germain": {
-      "name": "Saint Germain"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "Morangos"
@@ -781,7 +781,7 @@
       "name": "Xarope de açúcar"
     },
     "surge": {
-      "name": "Surto"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "Doce e azedo"
@@ -811,7 +811,7 @@
       "name": "Água Tônica"
     },
     "triple_sec": {
-      "name": "Triplo segundo"
+      "name": "Triple sec"
     },
     "vanilla": {
       "name": "Baunilha"
@@ -835,7 +835,7 @@
       "name": "Água"
     },
     "whipped_cream": {
-      "name": "Chantilly"
+      "name": "Chantili"
     },
     "whisky": {
       "name": "Uísque"
@@ -847,7 +847,7 @@
       "name": "Vinho branco"
     },
     "wild_turkey": {
-      "name": "Peru Selvagem"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "Vinho"
@@ -856,7 +856,7 @@
       "name": "Molho Inglês"
     },
     "wormwood": {
-      "name": "Absinto"
+      "name": "Losna"
     },
     "chartreuse_yellow": {
       "name": "Chartreuse Amarelo"
@@ -960,7 +960,7 @@
         "Complete com um esguicho de água com gás."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "Cubra com club soda e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "affinity": {
@@ -1006,7 +1006,7 @@
         "Polvilhe noz-moscada por cima e sirva."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Para enfeitar"
+        "nutmeg": "Para decorar"
       }
     },
     "algonquin": {
@@ -1042,7 +1042,7 @@
         "Decore com a rodela de laranja e a casca de limão."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "Coe em um copo alto com gelo fresco."
       ],
       "ingredientAmounts": {
-        "cream": "Recarregar"
+        "cream": "Completar o copo"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "Esta bebida, criada por Timo Haimi, ganhou o primeiro prêmio no concurso Finlandia Vodka Long Drink de 1991."
       ],
       "ingredientAmounts": {
-        "lemonade": "Recarregar"
+        "lemonade": "Completar o copo"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "Coe para um copo gelado e cubra com Prosecco."
       ],
       "ingredientAmounts": {
-        "prosecco": "Recarregar"
+        "prosecco": "Completar o copo"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "Funciona melhor se for adicionado gelo à tigela de ponche e os refrigerantes estiverem muito frios."
       ],
       "ingredientAmounts": {
-        "everclear": "1 quinta garrafa",
-        "vodka": "1 quinta garrafa"
+        "everclear": "1 garrafa de um quinto de galão americano",
+        "vodka": "1 garrafa de um quinto de galão americano"
       }
     },
     "bramble": {
@@ -1289,7 +1289,7 @@
         "Adicione o absinto culinário fresco, o rum, o uísque e o bitters e mexa."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "brooklyn": {
@@ -1324,8 +1324,8 @@
         "Mexer."
       ],
       "ingredientAmounts": {
-        "coffee": "Para provar",
-        "brandy": "Para provar"
+        "coffee": "A gosto",
+        "brandy": "A gosto"
       }
     },
     "caipirinha": {
@@ -1344,7 +1344,7 @@
         "Adicione o rum branco e o gelo picado. Mexa bem."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "campari-beer": {
@@ -1397,7 +1397,7 @@
         "Encha com água gaseificada, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "chocolate-drink": {
@@ -1410,7 +1410,7 @@
         "Não deixe ferver! Sirva em caneca de café."
       ],
       "ingredientAmounts": {
-        "water": "Conforme necessário"
+        "water": "Quanto baste"
       }
     },
     "chocolate-milk": {
@@ -1473,7 +1473,7 @@
         "Se você gosta de um toque mais suave ao licor, pode adicionar cerca de 1 colher de chá de glicerina ao produto final."
       ],
       "ingredientAmounts": {
-        "caramel_coloring": "Para provar"
+        "caramel_coloring": "A gosto"
       }
     },
     "corn-n-oil": {
@@ -1494,7 +1494,7 @@
       ]
     },
     "cosmopolitan": {
-      "name": "Cosmopolita",
+      "name": "Cosmopolitan",
       "description": "Adicione todos os ingredientes na coqueteleira com gelo. Agite bem e coe duas vezes para um copo grande de coquetel. Decore com roda de limão.",
       "preparationSteps": [
         "Adicione todos os ingredientes na coqueteleira com gelo",
@@ -1524,21 +1524,21 @@
         "Aproveitar!"
       ],
       "ingredientAmounts": {
-        "lime": "Suco fresco a gosto",
-        "coca_cola": "Recarregar",
-        "ice": "Conforme necessário"
+        "lime": "Suco espremido na hora, a gosto",
+        "coca_cola": "Completar o copo",
+        "ice": "Quanto baste"
       }
     },
     "cuba-libre": {
-      "name": "Cuba Livre",
-      "description": "Coloque todos os ingredientes em um copo Collins cheio de gelo. Decore com rodelas de limão.",
+      "name": "Cuba Libre",
+      "description": "Monte o coquetel diretamente em um copo Collins com gelo. Decore com uma fatia de limão-taiti.",
       "preparationSteps": [
-        "Esprema a quantidade indicada de limão ou lima; use apenas seu suco na bebida.",
-        "Coloque todos os ingredientes em um copo Collins cheio de gelo",
-        "Decore com rodelas de limão."
+        "Esprema a quantidade indicada de limão-siciliano ou limão-taiti e use apenas o suco.",
+        "Coloque os ingredientes diretamente em um copo Collins com gelo.",
+        "Decore com uma fatia de limão-taiti."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Recarregar"
+        "coca_cola": "Completar o copo"
       }
     },
     "daiquiri": {
@@ -1587,18 +1587,18 @@
         "Depois você enche o copo com suco de laranja e cubos de gelo."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "death-in-the-afternoon": {
-      "name": "Morte à tarde",
+      "name": "Death in the Afternoon",
       "description": "Refrigere o copo e ambos os ingredientes. Despeje o absinto, cubra lentamente com champanhe e sirva.",
       "preparationSteps": [
         "Refrigere o copo e ambos os ingredientes.",
         "Despeje o absinto, cubra lentamente com champanhe e sirva."
       ],
       "ingredientAmounts": {
-        "champagne": "Recarregar"
+        "champagne": "Completar o copo"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "Pedras opcionais."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "Um pequeno flutuador"
+        "151_proof_rum": "Uma camada fina na superfície"
       }
     },
     "dragonfly": {
@@ -1661,7 +1661,7 @@
         "Junte o chocolate até derreter. Divida entre uma ou duas canecas e cubra com chantilly."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Para enfeitar"
+        "whipped_cream": "Para decorar"
       }
     },
     "dry-rob-roy": {
@@ -1718,7 +1718,7 @@
         "NOTA: Para uma gemada sem álcool, prepare a gemada como acima, exceto omitir o bourbon e o rum e aumentar o leite para 3 xícaras."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Para enfeitar"
+        "nutmeg": "Para decorar"
       }
     },
     "egg-nog-healthy": {
@@ -1732,7 +1732,7 @@
         "Rende 6 porções."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Para enfeitar"
+        "nutmeg": "Para decorar"
       }
     },
     "egg-nog-classic-cooked": {
@@ -1776,8 +1776,8 @@
         "(Ginger Ale pode substituir água gaseificada, se preferir.)"
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar",
-        "lemon": "Para provar"
+        "soda_water": "Completar o copo",
+        "lemon": "A gosto"
       }
     },
     "english-rose-cocktail": {
@@ -1789,11 +1789,11 @@
         "Cubra com a cereja e sirva."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "Para o aro"
+        "powdered_sugar": "Para a borda do copo"
       }
     },
     "espresso-martini": {
-      "name": "Café Expresso Martini",
+      "name": "Espresso Martini",
       "description": "Prepare um expresso forte e deixe esfriar um pouco. Coloque a vodka, o licor de café, a calda de açúcar e o expresso em uma coqueteleira com gelo. Agite vigorosamente até formar espuma e coe para uma taça de coquetel gelada.",
       "preparationSteps": [
         "Prepare um expresso forte e deixe esfriar um pouco.",
@@ -1826,8 +1826,8 @@
         "Cubra com tônica e adicione o bitters."
       ],
       "ingredientAmounts": {
-        "tonic_water": "Recarregar",
-        "lemon": "Suco fresco a gosto"
+        "tonic_water": "Completar o copo",
+        "lemon": "Suco espremido na hora, a gosto"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "Francês 75",
+      "name": "French 75",
       "description": "Misture o gim, o açúcar e o suco de limão em uma coqueteleira com gelo. Agite vigorosamente e coe para uma taça de champanhe gelada. Complete com champanhe. Mexa delicadamente.",
       "preparationSteps": [
         "Combine gim, açúcar e suco de limão em uma coqueteleira com gelo",
@@ -1968,19 +1968,19 @@
       ]
     },
     "fruit-cooler": {
-      "name": "Refrigerador de frutas",
+      "name": "Coquetel refrescante de frutas",
       "description": "Misture os morangos com o açúcar e deixe descansar durante a noite na geladeira Corte o limão, reserve duas fatias Esprema o restante Misture o suco de limão, os morangos, o suco de maçã e a água com gás Adicione fatias de limão (decoração, na verdade) Em copos, coloque cubos de gelo e uma fatia de maçã Despeje a bebida e sirva.",
       "preparationSteps": [
         "Misture os morangos com o açúcar e deixe descansar durante a noite na geladeira",
         "Corte o limão, reserve duas rodelas",
-        "Suco o resto",
+        "Esprema o restante do limão.",
         "Misture o suco de limão, morangos, suco de maçã e água com gás",
         "Adicione rodelas de limão (decoração, na verdade)",
         "Em copos, coloque cubos de gelo e uma fatia de maçã",
         "Despeje a bebida e sirva."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "fruit-flip-flop": {
@@ -2007,7 +2007,7 @@
         "Use rum jamaicano sempre que possível para um sabor mais autêntico."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "gagliardo": {
@@ -2027,8 +2027,8 @@
         "Agora você tem seu próprio GG."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recarregar",
-        "ice": "Conforme necessário"
+        "ginger_ale": "Completar o copo",
+        "ice": "Quanto baste"
       }
     },
     "gimlet": {
@@ -2049,7 +2049,7 @@
         "Decore com as cascas de laranja e limão."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "gin-daisy": {
@@ -2071,7 +2071,7 @@
         "Cubra com água com gás."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "gin-rickey": {
@@ -2085,8 +2085,8 @@
         "Decore o copo com rodelas de lima e/ou limão."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar",
-        "lime": "Para provar"
+        "soda_water": "Completar o copo",
+        "lime": "A gosto"
       }
     },
     "gin-sling": {
@@ -2127,7 +2127,7 @@
         "Decore com os pedaços de abacaxi e os morangos e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "gin-swizzle": {
@@ -2157,11 +2157,11 @@
         "Encha um copo alto com gelo, despeje o gin, cubra com água tônica e esprema uma rodela de limão e decore com uma rodela de limão."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "gluehwein": {
-      "name": "Colawein",
+      "name": "Glühwein (vinho quente)",
       "description": "Aqueça a água, o açúcar e os temperos até que o açúcar se dissolva e deixe em infusão por 30 minutos. Coe, acrescente o vinho e o suco de limão e aqueça suavemente sem ferver. Sirva quente. Um breve aquecimento não torna o vinho isento de álcool.",
       "preparationSteps": [
         "Aqueça a água, o açúcar e os temperos até que o açúcar se dissolva e deixe em infusão por 30 minutos.",
@@ -2232,7 +2232,7 @@
         "Cubra com café quente e mexa."
       ],
       "ingredientAmounts": {
-        "coffee": "Para provar"
+        "coffee": "A gosto"
       }
     },
     "halloween-punch": {
@@ -2256,9 +2256,9 @@
         "Nomeado em homenagem à referência à Ilha Gilligan (\"O Capitão\" * em * \"Ginger\" é um Capitão Feliz!)"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recarregar",
-        "lime": "Para provar",
-        "ice": "Conforme necessário"
+        "ginger_ale": "Completar o copo",
+        "lime": "A gosto",
+        "ice": "Quanto baste"
       }
     },
     "harvey-wallbanger": {
@@ -2302,7 +2302,7 @@
         "Mexa com uma colher, um canudo ou melhor ainda com um pau de canela e deixe agir."
       ],
       "ingredientAmounts": {
-        "tea": "Para provar"
+        "tea": "A gosto"
       }
     },
     "highland-fling-cocktail": {
@@ -2325,7 +2325,7 @@
         "Para obter melhores resultados, deixe a mistura “amadurecer” por 4-5 semanas."
       ],
       "ingredientAmounts": {
-        "vodka": "1 quinta garrafa"
+        "vodka": "1 garrafa de um quinto de galão americano"
       }
     },
     "honey-bee": {
@@ -2355,7 +2355,7 @@
         "Despeje em canecas e adicione mini marshmallows."
       ],
       "ingredientAmounts": {
-        "marshmallows": "Para enfeitar"
+        "marshmallows": "Para decorar"
       }
     },
     "hot-creamy-bush": {
@@ -2411,7 +2411,7 @@
         "Encha com água gaseificada, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "ipamena": {
@@ -2423,8 +2423,8 @@
         "Coe para um copo, cubra com ginger ale e mexa delicadamente."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recarregar",
-        "ice": "Conforme necessário"
+        "ginger_ale": "Completar o copo",
+        "ice": "Quanto baste"
       }
     },
     "irish-coffee": {
@@ -2461,7 +2461,7 @@
         "Não adicione gelo."
       ],
       "ingredientAmounts": {
-        "guinness_stout": "Recarregar"
+        "guinness_stout": "Completar o copo"
       }
     },
     "irish-spring": {
@@ -2514,8 +2514,8 @@
         "Misture até ficar homogêneo e sirva imediatamente."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário",
-        "milk": "Para provar"
+        "ice": "Quanto baste",
+        "milk": "A gosto"
       }
     },
     "jamaican-coffee": {
@@ -2527,7 +2527,7 @@
         "Polvilhe com uma pitada de café bem moído e beba com canudo."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Para enfeitar"
+        "whipped_cream": "Para decorar"
       }
     },
     "japanese-fizz": {
@@ -2539,7 +2539,7 @@
         "Encha com água gaseificada, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "É tão simples!"
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "john-collins": {
@@ -2600,8 +2600,8 @@
         "Despeje em um copo alto, 2 médios ou 3 pequenos e beba."
       ],
       "ingredientAmounts": {
-        "syrup_chocolate": "Para provar",
-        "syrup_mint": "Para provar"
+        "syrup_chocolate": "A gosto",
+        "syrup_mint": "A gosto"
       }
     },
     "kamikaze": {
@@ -2652,7 +2652,7 @@
         "Cubra com café quente e mexa. Adicione chantilly, se desejar."
       ],
       "ingredientAmounts": {
-        "coffee": "Para provar"
+        "coffee": "A gosto"
       }
     },
     "kir-royale": {
@@ -2669,7 +2669,7 @@
         "misture no copo"
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "kiwi-lemon": {
@@ -2681,7 +2681,7 @@
         "Decore com uma fatia de kiwi."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "kiwi-martini": {
@@ -2708,7 +2708,7 @@
         "Adicione um pouco de suco de cranberry a gosto."
       ],
       "ingredientAmounts": {
-        "juice_cranberry": "Para provar"
+        "juice_cranberry": "A gosto"
       }
     },
     "kurant-tea": {
@@ -2720,8 +2720,8 @@
         "Aproveitar!"
       ],
       "ingredientAmounts": {
-        "tea": "Para provar",
-        "sugar": "Para provar"
+        "tea": "A gosto",
+        "sugar": "A gosto"
       }
     },
     "lady-love-fizz": {
@@ -2733,7 +2733,7 @@
         "Encha com água gaseificada, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2782,9 +2782,9 @@
         "Em vez de uma salada tradicional você pode fazer raita."
       ],
       "ingredientAmounts": {
-        "sugar": "Para provar",
-        "lime": "Para provar",
-        "salt": "Para provar"
+        "sugar": "A gosto",
+        "lime": "A gosto",
+        "salt": "A gosto"
       }
     },
     "lazy-coconut-paloma": {
@@ -2795,7 +2795,7 @@
         "Adicione o licor de coco e o suco de toranja, cubra com água com gás e mexa delicadamente."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "Agite e coe em uma taça de coquetel resfriada com borda de açúcar."
       ],
       "ingredientAmounts": {
-        "sugar": "Para o aro"
+        "sugar": "Para a borda do copo"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "Despeje todos os ingredientes sobre o gelo, mexa e divirta-se!"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "Recarregar"
+        "fresh_lemon_juice": "Completar o copo"
       }
     },
     "lemon-shot": {
@@ -2827,7 +2827,7 @@
         "Sirva com uma rodela de limão polvilhada com açúcar. Sirva apagado."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "Para provar"
+        "151_proof_rum": "A gosto"
       }
     },
     "lemouroudji": {
@@ -2842,7 +2842,7 @@
         "Refrigere e sirva."
       ],
       "ingredientAmounts": {
-        "cayenne_pepper": "Para enfeitar"
+        "cayenne_pepper": "Para decorar"
       }
     },
     "limeade": {
@@ -2857,8 +2857,8 @@
         "Repita até que o limão ou o refrigerante acabem."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar",
-        "lime_peel": "Para enfeitar"
+        "soda_water": "Completar o copo",
+        "lime_peel": "Para decorar"
       }
     },
     "loch-lomond": {
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "Refrigerador de árvore solitária",
+      "name": "Lone Tree Cooler",
       "description": "Dissolva o açúcar em cerca de 60 ml de água com gás em um copo Collins. Adicione gelo, gim e vermute seco e mexa. Cubra com mais água com gás e decore com as cascas de frutas cítricas.",
       "preparationSteps": [
         "Dissolva o açúcar em cerca de 60 ml de água com gás em um copo Collins.",
@@ -2896,7 +2896,7 @@
         "Cubra com mais água com gás e decore com as cascas de frutas cítricas."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "Cubra com cola e mexa delicadamente."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Recarregar"
+        "coca_cola": "Completar o copo"
       }
     },
     "long-vodka": {
@@ -2955,10 +2955,10 @@
         "Cubra com água com gás e divida uniformemente entre os copos."
       ],
       "ingredientAmounts": {
-        "mint": "Para provar",
-        "ice": "Conforme necessário",
-        "soda_water": "Recarregar",
-        "sugar": "Para provar"
+        "mint": "A gosto",
+        "ice": "Quanto baste",
+        "soda_water": "Completar o copo",
+        "sugar": "A gosto"
       }
     },
     "manhattan": {
@@ -2969,7 +2969,7 @@
       ]
     },
     "margarita": {
-      "name": "Margarida",
+      "name": "Margarita",
       "description": "Esfregue a borda do copo com a rodela de limão para que o sal grude. Tenha o cuidado de umedecer apenas a borda externa e polvilhar o sal. O sal deve chegar aos lábios de quem bebe e nunca misturar no coquetel. Agite os outros ingredientes com gelo e despeje cuidadosamente no copo.",
       "preparationSteps": [
         "Esfregue a borda do copo com a rodela de limão para que o sal grude",
@@ -2978,7 +2978,7 @@
         "Agite os outros ingredientes com gelo e despeje cuidadosamente no copo."
       ],
       "ingredientAmounts": {
-        "salt": "Para provar"
+        "salt": "A gosto"
       }
     },
     "martinez-2": {
@@ -3019,8 +3019,8 @@
         "É isso."
       ],
       "ingredientAmounts": {
-        "sugar": "Para provar",
-        "milk": "Para provar"
+        "sugar": "A gosto",
+        "milk": "A gosto"
       }
     },
     "mauresque": {
@@ -3033,7 +3033,7 @@
         "Adicione os cubos de gelo no final, caso contrário a calda e o pastis não se misturam bem."
       ],
       "ingredientAmounts": {
-        "water": "Recarregar"
+        "water": "Completar o copo"
       }
     },
     "melya": {
@@ -3053,8 +3053,8 @@
         "Coloque as duas misturas congeladas em um copo grande. A fonte deixa variáveis ​​as quantidades de ambas as misturas preparadas."
       ],
       "ingredientAmounts": {
-        "pina_colada_mix": "Para provar",
-        "daiquiri_mix": "Para provar"
+        "pina_colada_mix": "A gosto",
+        "daiquiri_mix": "A gosto"
       }
     },
     "michelada": {
@@ -3099,7 +3099,7 @@
         "Despeje em uma caneca refratária e cubra com chantilly."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Para enfeitar"
+        "whipped_cream": "Para decorar"
       }
     },
     "mojito": {
@@ -3113,7 +3113,7 @@
         "Decore e sirva com canudo."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "mojito-extra": {
@@ -3148,7 +3148,7 @@
       ]
     },
     "moscow-mule": {
-      "name": "Mula de Moscou",
+      "name": "Moscow Mule",
       "description": "Encha uma caneca de mula ou um copo de gelo com gelo. Adicione vodka, cerveja de gengibre e suco de limão fresco; mexa delicadamente.",
       "preparationSteps": [
         "Encha uma caneca de mula ou um copo de gelo com gelo.",
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "Vinho Quente",
+      "name": "Vinho quente com especiarias e brandy",
       "description": "Cozinhe 3 xícaras de água com açúcar, cravo, paus de canela e casca de limão em uma panela de aço inoxidável por 10 minutos. Adicione o vinho ao fogo até a “temperatura do café” (NÃO FERVER) e depois adicione o conhaque.",
       "preparationSteps": [
         "Cozinhe 3 xícaras de água com açúcar, cravo, paus de canela e casca de limão em uma panela de aço inoxidável por 10 minutos",
@@ -3180,7 +3180,7 @@
         "Despeje a cerveja de gengibre, mexa delicadamente e decore com pepino."
       ],
       "ingredientAmounts": {
-        "cucumber": "Para enfeitar"
+        "cucumber": "Para decorar"
       }
     },
     "national-aquarium": {
@@ -3191,7 +3191,7 @@
         "Coe sobre gelo fresco em um copo alto, adicione o refrigerante e mexa delicadamente."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Um respingo"
+        "lemon_lime_soda": "Um pouquinho"
       }
     },
     "negroni": {
@@ -3219,8 +3219,8 @@
         "Despeje lentamente o vinho tinto nas costas de uma colher para fazê-lo flutuar por cima. Decore com a cereja."
       ],
       "ingredientAmounts": {
-        "wine_red": "Para provar",
-        "cherry": "Para enfeitar"
+        "wine_red": "A gosto",
+        "cherry": "Para decorar"
       }
     },
     "nuked-hot-chocolate": {
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "Antiquado",
+      "name": "Old Fashioned",
       "description": "Coloque o cubo de açúcar em um copo antigo e sature com bitters, adicione um pouco de água pura. Amasse até dissolver.\r\nEncha o copo com cubos de gelo e adicione o whisky.\r\n\r\nDecore com um toque de laranja e uma cereja de coquetel.",
       "preparationSteps": [
         "Coloque o cubo de açúcar em um copo antigo e sature com bitters, adicione um pouco de água pura",
@@ -3294,7 +3294,7 @@
         "Encha com ginger ale, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recarregar"
+        "ginger_ale": "Completar o copo"
       }
     },
     "orange-push-up": {
@@ -3305,22 +3305,22 @@
         "Despeje em um copo grande."
       ],
       "ingredientAmounts": {
-        "sour_mix": "Um respingo"
+        "sour_mix": "Um pouquinho"
       }
     },
     "orange-rosemary-collins": {
-      "name": "Laranja Alecrim Collins",
+      "name": "Collins de laranja e alecrim",
       "description": "Adicione a bebida destilada no fundo do copo e cubra igualmente com as bebidas da batedeira. Decore com rodelas de laranja dentro do copo e um pouco de alecrim por cima.",
       "preparationSteps": [
-        "Adicione a bebida destilada no fundo do copo e cubra igualmente com as bebidas da batedeira",
+        "Coloque os destilados no copo e complete com as bebidas sem álcool em partes iguais.",
         "Decore com rodelas de laranja dentro do copo e um pouco de alecrim por cima."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Recarregar",
-        "lemon": "Recarregar",
-        "soda_water": "Recarregar",
-        "rosemary": "Para provar",
-        "orange": "Para provar"
+        "juice_orange": "Completar o copo",
+        "lemon": "Completar o copo",
+        "soda_water": "Completar o copo",
+        "rosemary": "A gosto",
+        "orange": "A gosto"
       }
     },
     "orange-scented-hot-chocolate": {
@@ -3345,13 +3345,13 @@
       }
     },
     "orange-whip": {
-      "name": "Chicote Laranja",
+      "name": "Orange Whip",
       "description": "Despeje os ingredientes sobre o gelo e mexa.",
       "preparationSteps": [
         "Despeje os ingredientes sobre o gelo e mexa."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "orangeade": {
@@ -3362,7 +3362,7 @@
         "Complete com água fria com gás e sirva com canudo."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "Decore com meio pedaço de maracujá."
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "Recarregar"
+        "juice_passion_fruit": "Completar o copo"
       }
     },
     "pegu-club": {
@@ -3459,8 +3459,8 @@
         "Decore com abacaxi fresco ou limão."
       ],
       "ingredientAmounts": {
-        "lime": "Para provar",
-        "pepper": "Para provar"
+        "lime": "A gosto",
+        "pepper": "A gosto"
       }
     },
     "pink-gin": {
@@ -3490,7 +3490,7 @@
         "Adicione flores e uma folha verde para um look especial!"
       ],
       "ingredientAmounts": {
-        "blackberries": "Para provar"
+        "blackberries": "A gosto"
       }
     },
     "pink-panty-pulldowns": {
@@ -3509,7 +3509,7 @@
       ]
     },
     "pisco-sour": {
-      "name": "Pisco azedo",
+      "name": "Pisco Sour",
       "description": "Agite o pisco, o suco de limão fresco, a calda de açúcar e uma clara de ovo pasteurizada sem gelo para formar espuma. Adicione gelo, agite até esfriar e coe para um copo gelado. Coloque algumas gotas de bitters aromáticos na espuma.",
       "preparationSteps": [
         "Agite o pisco, o suco de limão fresco, a calda de açúcar e uma clara de ovo pasteurizada sem gelo para formar espuma.",
@@ -3517,11 +3517,11 @@
         "Coloque algumas gotas de bitters aromáticos na espuma."
       ],
       "ingredientAmounts": {
-        "bitters": "Alguns traços"
+        "bitters": "Alguns dashes de bitter"
       }
     },
     "planter-s-punch-178368-178368-178368": {
-      "name": "Soco do plantador",
+      "name": "Planter's Punch",
       "description": "Despeje todos os ingredientes, exceto o bitters, em uma coqueteleira com gelo. Agite bem. Despeje em um copo grande, cheio de gelo. Adicione o bitters de Angostura, \"por cima\" Decore com coquetel de cereja e abacaxi.",
       "preparationSteps": [
         "Despeje todos os ingredientes, exceto o bitters, em uma coqueteleira com gelo",
@@ -3578,7 +3578,7 @@
         "Polvilhe noz-moscada por cima e sirva."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Para enfeitar"
+        "nutmeg": "Para decorar"
       }
     },
     "porto-flip": {
@@ -3597,7 +3597,7 @@
         "Mexa bem e decore com hortelã."
       ],
       "ingredientAmounts": {
-        "mint": "Para provar"
+        "mint": "A gosto"
       }
     },
     "pysch-vitamin-light": {
@@ -3608,7 +3608,7 @@
         "Coe em um copo alto com gelo fresco."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "quaker-s-cocktail": {
@@ -3642,7 +3642,7 @@
         "Encha com refrigerante de limão, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Recarregar"
+        "lemon_lime_soda": "Completar o copo"
       }
     },
     "queen-elizabeth": {
@@ -3685,8 +3685,8 @@
         "Encha com refrigerante de gengibre."
       ],
       "ingredientAmounts": {
-        "lemon": "Para provar",
-        "ginger_ale": "Recarregar"
+        "lemon": "A gosto",
+        "ginger_ale": "Completar o copo"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "Coe em um copo alto e cubra delicadamente com água com gás. Nunca agite o refrigerante."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "raspberry-julep": {
@@ -3726,7 +3726,7 @@
         "Decore e sirva."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "Para provar"
+        "powdered_sugar": "A gosto"
       }
     },
     "rosemary-blue": {
@@ -3739,7 +3739,7 @@
         "3) Misture delicadamente com uma colher de bar."
       ],
       "ingredientAmounts": {
-        "rosemary": "Para provar"
+        "rosemary": "A gosto"
       }
     },
     "royal-fizz": {
@@ -3750,7 +3750,7 @@
         "Preencha com cola e sirva."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Recarregar"
+        "coca_cola": "Completar o copo"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "Encha com água gaseificada, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "Adicione granadina e mexa."
       ],
       "ingredientAmounts": {
-        "grenadine": "Dois respingos"
+        "grenadine": "Dois jatos pequenos"
       }
     },
     "rum-cobbler": {
@@ -3803,7 +3803,7 @@
         "Polvilhe noz-moscada por cima e sirva."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Para enfeitar"
+        "nutmeg": "Para decorar"
       }
     },
     "rum-old-fashioned": {
@@ -3824,7 +3824,7 @@
         "Adicione o ginger ale por último e mexa delicadamente."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "rum-runner": {
@@ -3860,7 +3860,7 @@
         "Coe em um copo alto cheio de gelo fresco e cubra com vinho espumante."
       ],
       "ingredientAmounts": {
-        "prosecco": "Recarregar"
+        "prosecco": "Completar o copo"
       }
     },
     "rusty-nail": {
@@ -3888,8 +3888,8 @@
         "decore com laranja e morango."
       ],
       "ingredientAmounts": {
-        "grenadine": "Para provar",
-        "juice_orange": "Para provar"
+        "grenadine": "A gosto",
+        "juice_orange": "A gosto"
       }
     },
     "sangria": {
@@ -3901,8 +3901,8 @@
         "Sirva em taças de vinho."
       ],
       "ingredientAmounts": {
-        "cloves": "Para provar",
-        "cinnamon": "Para provar"
+        "cloves": "A gosto",
+        "cinnamon": "A gosto"
       }
     },
     "sazerac": {
@@ -3923,7 +3923,7 @@
       ]
     },
     "scotch-sour": {
-      "name": "Escocês azedo",
+      "name": "Scotch Sour",
       "description": "Agite o uísque, o suco de limão e o açúcar de confeiteiro com gelo e coe para um copo de whisky sour. Decore com 1/2 rodela de limão, cubra com a cereja e sirva.",
       "preparationSteps": [
         "Esprema a quantidade indicada de limão ou lima; use apenas seu suco na bebida.",
@@ -3939,7 +3939,7 @@
         "Adicione a vodka, cubra com o suco de laranja e mexa delicadamente."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Para provar"
+        "juice_orange": "A gosto"
       }
     },
     "sea-breeze": {
@@ -3972,8 +3972,8 @@
         "Polvilhe noz-moscada por cima e sirva."
       ],
       "ingredientAmounts": {
-        "milk": "Para provar",
-        "nutmeg": "Para enfeitar"
+        "milk": "A gosto",
+        "nutmeg": "Para decorar"
       }
     },
     "sherry-flip": {
@@ -3984,7 +3984,7 @@
         "Polvilhe noz-moscada por cima e sirva."
       ],
       "ingredientAmounts": {
-        "nutmeg": "Para enfeitar"
+        "nutmeg": "Para decorar"
       }
     },
     "shot-gun": {
@@ -4018,7 +4018,7 @@
         "Sirva imediatamente."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "snowday": {
@@ -4030,7 +4030,7 @@
         "Expresse a casca de laranja sobre a bebida e decore."
       ],
       "ingredientAmounts": {
-        "orange": "Para provar"
+        "orange": "A gosto"
       }
     },
     "sol-y-sombra": {
@@ -4051,9 +4051,9 @@
         "Cubra com suco de laranja, acrescente granadina a gosto e decore com cerejas."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Para provar",
-        "grenadine": "Para provar",
-        "cherry": "Para enfeitar"
+        "juice_orange": "A gosto",
+        "grenadine": "A gosto",
+        "cherry": "Para decorar"
       }
     },
     "spice-75": {
@@ -4066,7 +4066,7 @@
         "Divida entre seis taças, adicione 100 ml de champanhe em cada uma e decore com casca de laranja."
       ],
       "ingredientAmounts": {
-        "orange_spiral": "Para provar"
+        "orange_spiral": "A gosto"
       }
     },
     "spritz": {
@@ -4076,7 +4076,7 @@
         "Coloque em um copo com gelo, decore e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Um respingo"
+        "soda_water": "Um pouquinho"
       }
     },
     "stinger": {
@@ -4112,10 +4112,10 @@
         "Sirva em copos altos com canudo."
       ],
       "ingredientAmounts": {
-        "orange": "Para enfeitar",
-        "lime": "Para enfeitar",
-        "lemon": "Para provar",
-        "fresca": "Recarregar"
+        "orange": "Para decorar",
+        "lime": "Para decorar",
+        "lemon": "A gosto",
+        "fresca": "Completar o copo"
       }
     },
     "tennesee-mud": {
@@ -4126,7 +4126,7 @@
         "Adicione o creme por cima."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Para enfeitar"
+        "whipped_cream": "Para decorar"
       }
     },
     "tequila-fizz": {
@@ -4137,7 +4137,7 @@
         "Encha com ginger ale, mexa e sirva."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recarregar"
+        "ginger_ale": "Completar o copo"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "Adicione gotas de molho Tobasco."
       ],
       "ingredientAmounts": {
-        "tequila": "Recarregar"
+        "tequila": "Completar o copo"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "Doce no início, com uma mordida no final..."
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "Um respingo"
+        "sweet_and_sour": "Um pouquinho"
       }
     },
     "texas-sling": {
@@ -4199,7 +4199,7 @@
         "Isso fará com que o creme flutue sobre o café, em vez de se dispersar imediatamente."
       ],
       "ingredientAmounts": {
-        "whipped_cream": "Para enfeitar"
+        "whipped_cream": "Para decorar"
       }
     },
     "thai-iced-coffee": {
@@ -4212,9 +4212,9 @@
         "Adicione lentamente o creme nas costas de uma colher para criar uma camada superior separada."
       ],
       "ingredientAmounts": {
-        "coffee": "Para provar",
-        "cream": "Para provar",
-        "sugar": "Para provar"
+        "coffee": "A gosto",
+        "cream": "A gosto",
+        "sugar": "A gosto"
       }
     },
     "thai-iced-tea": {
@@ -4227,8 +4227,8 @@
         "Rende 2 porções."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário",
-        "mint": "Para enfeitar"
+        "ice": "Quanto baste",
+        "mint": "Para decorar"
       }
     },
     "the-galah": {
@@ -4238,8 +4238,8 @@
         "Misture as porções alcoólicas e cubra com suco de abacaxi e limão."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Recarregar",
-        "lime": "Recarregar"
+        "juice_pineapple": "Completar o copo",
+        "lime": "Completar o copo"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "Coe para um copo gelado e cubra com Prosecco."
       ],
       "ingredientAmounts": {
-        "prosecco": "Recarregar"
+        "prosecco": "Completar o copo"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "Agite com gelo e coe para um copo."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Um respingo"
+        "juice_pineapple": "Um pouquinho"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "Encha com água gaseificada, mexa novamente e sirva."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "vesper": {
@@ -4433,8 +4433,8 @@
         "Despeje em uma taça grande de vinho branco e polvilhe noz-moscada por cima."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário",
-        "nutmeg": "Para enfeitar"
+        "ice": "Quanto baste",
+        "nutmeg": "Para decorar"
       }
     },
     "vodka-martini": {
@@ -4445,7 +4445,7 @@
       ]
     },
     "whiskey-sour": {
-      "name": "Uísque azedo",
+      "name": "Whiskey Sour",
       "description": "Agite com gelo. Coe para um copo gelado, decore e sirva. Se servido 'Com gelo', coe os ingredientes em um copo antigo cheio de gelo.",
       "preparationSteps": [
         "Esprema a quantidade indicada de limão ou lima; use apenas seu suco na bebida.",
@@ -4477,7 +4477,7 @@
         "Preencha com creme light e sirva."
       ],
       "ingredientAmounts": {
-        "light_cream": "Para provar"
+        "light_cream": "A gosto"
       }
     },
     "white-wine-sangria": {
@@ -4489,7 +4489,7 @@
         "Cubra a gosto com água com gás."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "Cubra com suco de toranja, adicione uma pitada de pimenta de qualidade alimentar e mexa. Esta é a versão simplificada; o original usa tequila preparada com infusão de pimenta."
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "Recarregar"
+        "juice_grapefruit": "Completar o copo"
       }
     },
     "winter-rita": {
@@ -4542,7 +4542,7 @@
         "Misture até ficar homogêneo e despeje em copos. Pare o liquidificador antes de adicionar mais gelo."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "zambeer": {
@@ -4553,7 +4553,7 @@
         "Adicione gelo"
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "ziemes-martini-apfelsaft": {
@@ -4572,7 +4572,7 @@
         "Despeje Chambord, depois vodka e, finalmente, água com gás. Despeje lentamente para reter as camadas."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recarregar"
+        "soda_water": "Completar o copo"
       }
     },
     "zippy-s-revenge": {
@@ -4592,7 +4592,7 @@
         "Mexa delicadamente e decore com uma rodela de limão, se desejar."
       ],
       "ingredientAmounts": {
-        "ice": "Conforme necessário"
+        "ice": "Quanto baste"
       }
     },
     "zoksel": {
@@ -4604,12 +4604,12 @@
         "Mexa delicadamente e decore com a rodela de limão. Não agite os ingredientes carbonatados."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Para provar",
-        "beer": "Para provar",
-        "root_beer": "Para provar",
-        "lemonade": "Recarregar",
-        "7_up": "Para provar",
-        "creme_de_cassis": "Para provar"
+        "coca_cola": "A gosto",
+        "beer": "A gosto",
+        "root_beer": "A gosto",
+        "lemonade": "Completar o copo",
+        "7_up": "A gosto",
+        "creme_de_cassis": "A gosto"
       }
     },
     "zombie": {
@@ -4636,8 +4636,8 @@
         "adicione tudo e despeje o café preto e adicione chantilly por cima."
       ],
       "ingredientAmounts": {
-        "coffee": "Recarregar",
-        "whipped_cream": "Para enfeitar"
+        "coffee": "Completar o copo",
+        "whipped_cream": "Para decorar"
       }
     }
   }

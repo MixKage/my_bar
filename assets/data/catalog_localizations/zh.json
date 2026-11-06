@@ -1,28 +1,28 @@
 {
   "locale": "zh",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "151 度朗姆酒"
     },
     "7_up": {
-      "name": "7 向上"
+      "name": "7-Up"
     },
     "absinthe": {
       "name": "苦艾酒"
     },
     "absolut_citron": {
-      "name": "绝对香橼"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
-      "name": "绝对库兰特"
+      "name": "Absolut Kurant"
     },
     "absolut_peppar": {
-      "name": "绝对胡椒"
+      "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "绝对伏特加"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "倡导者"
@@ -31,7 +31,7 @@
       "name": "龙舌兰糖浆"
     },
     "ale": {
-      "name": "麦芽酒"
+      "name": "艾尔啤酒"
     },
     "allspice": {
       "name": "多香果"
@@ -43,19 +43,19 @@
       "name": "阿玛雷托"
     },
     "amaro_montenegro": {
-      "name": "阿马罗黑山"
+      "name": "Amaro Montenegro"
     },
     "angelica_root": {
       "name": "当归"
     },
     "angostura_bitter": {
-      "name": "安古斯图拉苦酒"
+      "name": "安格仕苦精"
     },
     "anis": {
       "name": "阿尼斯"
     },
     "anisette": {
-      "name": "茴香酒"
+      "name": "茴香甜酒"
     },
     "aperol": {
       "name": "阿佩罗"
@@ -70,13 +70,13 @@
       "name": "苹果白兰地"
     },
     "apple_cider": {
-      "name": "苹果酒"
+      "name": "苹果西打酒"
     },
     "juice_apple": {
       "name": "苹果汁"
     },
     "applejack": {
-      "name": "阿杰"
+      "name": "Applejack"
     },
     "apricot_brandy": {
       "name": "杏子白兰地"
@@ -91,10 +91,10 @@
       "name": "阿涅霍朗姆酒"
     },
     "bacardi_limon": {
-      "name": "百加得柠檬"
+      "name": "Bacardi Limon"
     },
     "baileys_irish_cream": {
-      "name": "百利甜爱尔兰奶油"
+      "name": "百利甜酒"
     },
     "banana": {
       "name": "香蕉"
@@ -115,7 +115,7 @@
       "name": "苦柠檬"
     },
     "bitters": {
-      "name": "苦味酒"
+      "name": "鸡尾酒苦精"
     },
     "black_pepper": {
       "name": "黑胡椒"
@@ -130,7 +130,7 @@
       "name": "黑莓白兰地"
     },
     "blackcurrant_cordial": {
-      "name": "黑加仑甜酒"
+      "name": "黑加仑糖浆"
     },
     "blackstrap_rum": {
       "name": "黑带朗姆酒"
@@ -142,7 +142,7 @@
       "name": "血橙"
     },
     "blue_curacao": {
-      "name": "蓝色库拉索岛"
+      "name": "蓝柑橘利口酒"
     },
     "bourbon": {
       "name": "波旁威士忌"
@@ -160,7 +160,7 @@
       "name": "奶油糖果杜松子酒"
     },
     "cachaca": {
-      "name": "卡查卡"
+      "name": "卡沙萨甘蔗酒"
     },
     "campari": {
       "name": "金巴利"
@@ -184,7 +184,7 @@
       "name": "芹菜盐"
     },
     "chambord_raspberry_liqueur": {
-      "name": "香波覆盆子利口酒"
+      "name": "香博覆盆子利口酒"
     },
     "champagne": {
       "name": "香槟酒"
@@ -196,7 +196,7 @@
       "name": "樱桃白兰地"
     },
     "cherry_heering": {
-      "name": "樱桃希灵"
+      "name": "Cherry Heering"
     },
     "cherry_juice": {
       "name": "樱桃汁"
@@ -217,7 +217,7 @@
       "name": "巧克力糖浆"
     },
     "cider": {
-      "name": "苹果酒"
+      "name": "西打酒"
     },
     "cinnamon": {
       "name": "肉桂"
@@ -280,10 +280,10 @@
       "name": "蔓越莓伏特加"
     },
     "cream": {
-      "name": "奶油"
+      "name": "淡奶油"
     },
     "cream_of_coconut": {
-      "name": "椰子奶油"
+      "name": "甜椰浆"
     },
     "creme_de_banane": {
       "name": "香蕉奶油"
@@ -298,7 +298,7 @@
       "name": "穆尔奶油"
     },
     "crown_royal": {
-      "name": "皇冠皇家"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "黄瓜"
@@ -313,19 +313,19 @@
       "name": "黑朗姆酒"
     },
     "demerara_sugar": {
-      "name": "德梅拉拉糖"
+      "name": "德梅拉拉蔗糖"
     },
     "dr_pepper": {
-      "name": "佩珀博士"
+      "name": "Dr. Pepper"
     },
     "drambuie": {
-      "name": "德拉姆布伊"
+      "name": "Drambuie"
     },
     "vermouth_dry": {
-      "name": "干苦艾酒"
+      "name": "干味美思"
     },
     "dubonnet_rouge": {
-      "name": "杜本内红"
+      "name": "Dubonnet Rouge"
     },
     "egg": {
       "name": "蛋"
@@ -337,34 +337,34 @@
       "name": "蛋黄"
     },
     "elderflower_cordial": {
-      "name": "接骨木花甜酒"
+      "name": "接骨木花糖浆"
     },
     "espresso": {
       "name": "浓缩咖啡"
     },
     "everclear": {
-      "name": "永清"
+      "name": "Everclear"
     },
     "falernum": {
-      "name": "法勒努姆"
+      "name": "Falernum"
     },
     "figs": {
       "name": "无花果"
     },
     "firewater": {
-      "name": "消防水"
+      "name": "Firewater"
     },
     "frangelico": {
-      "name": "弗兰吉利科"
+      "name": "Frangelico"
     },
     "fresca": {
-      "name": "弗雷斯卡"
+      "name": "Fresca"
     },
     "fresh_lemon_juice": {
-      "name": "新鲜柠檬汁"
+      "name": "鲜榨柠檬汁"
     },
     "fresh_lime_juice": {
-      "name": "新鲜酸橙汁"
+      "name": "鲜榨青柠汁"
     },
     "fruit": {
       "name": "水果"
@@ -373,13 +373,13 @@
       "name": "果汁"
     },
     "fruit_punch": {
-      "name": "水果潘趣酒"
+      "name": "水果宾治"
     },
     "galliano": {
       "name": "加利亚诺香草利口酒"
     },
     "gin": {
-      "name": "杜松子酒"
+      "name": "金酒"
     },
     "ginger": {
       "name": "姜"
@@ -400,13 +400,13 @@
       "name": "金朗姆酒"
     },
     "goldschlager": {
-      "name": "戈德施拉格"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "谷物酒精"
     },
     "grand_marnier": {
-      "name": "金万利"
+      "name": "Grand Marnier"
     },
     "grape_juice": {
       "name": "葡萄汁"
@@ -415,7 +415,7 @@
       "name": "葡萄汽水"
     },
     "juice_grapefruit": {
-      "name": "柚子汁"
+      "name": "西柚汁"
     },
     "grapes": {
       "name": "葡萄"
@@ -430,13 +430,13 @@
       "name": "石榴糖浆"
     },
     "guinness_stout": {
-      "name": "吉尼斯黑啤酒"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "对半"
+      "name": "牛奶与奶油混合液"
     },
     "heavy_cream": {
-      "name": "浓奶油"
+      "name": "高脂淡奶油"
     },
     "honey": {
       "name": "蜂蜜"
@@ -448,13 +448,13 @@
       "name": "热巧克力"
     },
     "hot_damn": {
-      "name": "热死了"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "辣酱"
     },
     "hpnotiq": {
-      "name": "赫普诺蒂克"
+      "name": "Hpnotiq"
     },
     "ice": {
       "name": "冰"
@@ -469,22 +469,22 @@
       "name": "艾莱岛单一麦芽苏格兰威士忌"
     },
     "jack_daniels": {
-      "name": "杰克丹尼"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
-      "name": "野格麦斯特"
+      "name": "Jägermeister"
     },
     "jello": {
-      "name": "果冻"
+      "name": "Jello"
     },
     "jim_beam": {
-      "name": "吉姆·宾"
+      "name": "Jim Beam"
     },
     "johnnie_walker": {
-      "name": "尊尼获加"
+      "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "卡鲁瓦"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "猕猴桃"
@@ -493,7 +493,7 @@
       "name": "猕猴桃利口酒"
     },
     "kool_aid": {
-      "name": "酷爱饮料"
+      "name": "Kool-Aid"
     },
     "lager": {
       "name": "拉格啤酒"
@@ -505,13 +505,13 @@
       "name": "柠檬"
     },
     "lemon_lime_soda": {
-      "name": "柠檬酸橙苏打水"
+      "name": "柠檬青柠汽水"
     },
     "lemonade": {
       "name": "柠檬水"
     },
     "light_cream": {
-      "name": "淡奶油"
+      "name": "低脂淡奶油"
     },
     "rum_light": {
       "name": "淡朗姆酒"
@@ -523,7 +523,7 @@
       "name": "利勒白葡萄酒"
     },
     "lime": {
-      "name": "酸橙"
+      "name": "青柠"
     },
     "lime_peel": {
       "name": "酸橙皮"
@@ -532,7 +532,7 @@
       "name": "青柠伏特加"
     },
     "limeade": {
-      "name": "酸橙水"
+      "name": "青柠水"
     },
     "malibu_rum": {
       "name": "马里布朗姆酒"
@@ -571,7 +571,7 @@
       "name": "薄荷糖浆"
     },
     "mountain_dew": {
-      "name": "激浪"
+      "name": "激浪汽水"
     },
     "nutmeg": {
       "name": "肉豆蔻"
@@ -586,16 +586,16 @@
       "name": "橙子"
     },
     "orange_bitter": {
-      "name": "橙子苦味酒"
+      "name": "橙味苦精"
     },
     "orange_curacao": {
-      "name": "橙色库拉索岛"
+      "name": "橙味库拉索利口酒"
     },
     "juice_orange": {
       "name": "橙汁"
     },
     "orange_spiral": {
-      "name": "橙色螺旋"
+      "name": "螺旋橙皮"
     },
     "oreo_cookie": {
       "name": "奥利奥饼干"
@@ -604,7 +604,7 @@
       "name": "杏仁糖浆"
     },
     "ouzo": {
-      "name": "茴香酒"
+      "name": "乌佐酒"
     },
     "papaya": {
       "name": "木瓜"
@@ -616,7 +616,7 @@
       "name": "百香果糖浆"
     },
     "passoa": {
-      "name": "帕索阿"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "桃子苦味酒"
@@ -628,7 +628,7 @@
       "name": "桃花蜜"
     },
     "peach_schnapps": {
-      "name": "桃杜松子酒"
+      "name": "桃子甜酒"
     },
     "peach_vodka": {
       "name": "桃子伏特加"
@@ -643,10 +643,10 @@
       "name": "保乐力加"
     },
     "peychauds_bitter": {
-      "name": "佩乔德苦酒"
+      "name": "佩肖苦精"
     },
     "pina_colada_mix": {
-      "name": "椰林飘香混合液"
+      "name": "椰林飘香预调饮料"
     },
     "pineapple": {
       "name": "菠萝"
@@ -661,7 +661,7 @@
       "name": "粉红柠檬水"
     },
     "pisang_ambon": {
-      "name": "皮桑安汶"
+      "name": "Pisang Ambon"
     },
     "pisco": {
       "name": "皮斯科"
@@ -670,7 +670,7 @@
       "name": "石榴汁"
     },
     "port": {
-      "name": "港口"
+      "name": "波特酒"
     },
     "powdered_sugar": {
       "name": "糖粉"
@@ -700,7 +700,7 @@
       "name": "根汁汽水"
     },
     "rose": {
-      "name": "玫瑰"
+      "name": "桃红葡萄酒"
     },
     "rosemary": {
       "name": "迷迭香"
@@ -712,7 +712,7 @@
       "name": "罗索苦艾酒"
     },
     "ruby_port": {
-      "name": "红宝石波特"
+      "name": "红宝石波特酒"
     },
     "rum": {
       "name": "朗姆酒"
@@ -730,13 +730,13 @@
       "name": "菝葜属"
     },
     "schweppes_russchian": {
-      "name": "俄罗斯史威士语"
+      "name": "Schweppes Russchian"
     },
     "scotch": {
       "name": "苏格兰威士忌"
     },
     "sherbet": {
-      "name": "果子露"
+      "name": "冰沙甜品"
     },
     "sherry": {
       "name": "雪利酒"
@@ -745,16 +745,16 @@
       "name": "玫瑰糖浆"
     },
     "sloe_gin": {
-      "name": "黑刺李杜松子酒"
+      "name": "黑刺李金酒利口酒"
     },
     "soda_water": {
-      "name": "汽水"
+      "name": "苏打水"
     },
     "sour_mix": {
-      "name": "酸味混合物"
+      "name": "柑橘酸甜调酒基底"
     },
     "southern_comfort": {
-      "name": "南方舒适酒店"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "酱油"
@@ -763,10 +763,10 @@
       "name": "五香朗姆酒"
     },
     "sprite": {
-      "name": "雪碧"
+      "name": "Sprite"
     },
     "st_germain": {
-      "name": "圣日耳曼"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "草莓"
@@ -781,7 +781,7 @@
       "name": "糖浆"
     },
     "surge": {
-      "name": "涌"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "酸甜可口"
@@ -802,7 +802,7 @@
       "name": "百里香"
     },
     "tia_maria": {
-      "name": "蒂亚玛丽亚"
+      "name": "Tia Maria"
     },
     "juice_tomato": {
       "name": "番茄汁"
@@ -811,7 +811,7 @@
       "name": "汤力水"
     },
     "triple_sec": {
-      "name": "三秒"
+      "name": "三秒橙味利口酒"
     },
     "vanilla": {
       "name": "香草"
@@ -826,7 +826,7 @@
       "name": "香草糖浆"
     },
     "vermouth": {
-      "name": "苦艾酒"
+      "name": "味美思"
     },
     "vodka": {
       "name": "伏特加酒"
@@ -835,7 +835,7 @@
       "name": "水"
     },
     "whipped_cream": {
-      "name": "鲜奶油"
+      "name": "打发奶油"
     },
     "whisky": {
       "name": "威士忌酒"
@@ -847,7 +847,7 @@
       "name": "白葡萄酒"
     },
     "wild_turkey": {
-      "name": "野生火鸡"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "葡萄酒"
@@ -856,7 +856,7 @@
       "name": "伍斯特郡酱"
     },
     "wormwood": {
-      "name": "蒿"
+      "name": "苦艾草"
     },
     "chartreuse_yellow": {
       "name": "黄黄绿色"
@@ -865,16 +865,16 @@
       "name": "酸奶"
     },
     "yukon_jack": {
-      "name": "育空杰克"
+      "name": "Yukon Jack"
     },
     "zima": {
-      "name": "齐玛"
+      "name": "Zima"
     },
     "peach_puree": {
       "name": "白桃泥"
     },
     "grapefruit_soda": {
-      "name": "柚子苏打水"
+      "name": "西柚汽水"
     },
     "creme_de_violette": {
       "name": "紫罗兰奶油"
@@ -960,7 +960,7 @@
         "注入一滴苏打水。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "淋上苏打水即可享用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "affinity": {
@@ -1042,7 +1042,7 @@
         "用橙片和柠檬皮装饰。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "滤入加有新鲜冰块的高球杯中。"
       ],
       "ingredientAmounts": {
-        "cream": "充值"
+        "cream": "加至满杯"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "这款饮料由蒂莫·海米 (Timo Haimi) 创造，在 1991 年芬兰迪亚伏特加长饮大赛中获得一等奖。"
       ],
       "ingredientAmounts": {
-        "lemonade": "充值"
+        "lemonade": "加至满杯"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "滤入冰镇玻璃杯中，然后在上面倒入普罗塞克葡萄酒。"
       ],
       "ingredientAmounts": {
-        "prosecco": "充值"
+        "prosecco": "加至满杯"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "如果在潘趣酒碗中加冰且苏打水非常冷，效果最佳。"
       ],
       "ingredientAmounts": {
-        "everclear": "1 第五瓶",
-        "vodka": "1 第五瓶"
+        "everclear": "1 瓶（五分之一美制加仑）",
+        "vodka": "1 瓶（五分之一美制加仑）"
       }
     },
     "bramble": {
@@ -1289,7 +1289,7 @@
         "加入新鲜艾草、朗姆酒、苏格兰威士忌和苦精，然后搅拌。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "brooklyn": {
@@ -1324,8 +1324,8 @@
         "搅拌。"
       ],
       "ingredientAmounts": {
-        "coffee": "品尝",
-        "brandy": "品尝"
+        "coffee": "按口味添加",
+        "brandy": "按口味添加"
       }
     },
     "caipirinha": {
@@ -1344,7 +1344,7 @@
         "加入白朗姆酒和碎冰。充分搅拌。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "campari-beer": {
@@ -1397,7 +1397,7 @@
         "加入碳酸水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "chocolate-drink": {
@@ -1410,7 +1410,7 @@
         "不要让它沸腾！盛入咖啡杯中。"
       ],
       "ingredientAmounts": {
-        "water": "根据需要"
+        "water": "按需添加"
       }
     },
     "chocolate-milk": {
@@ -1473,7 +1473,7 @@
         "如果您喜欢利口酒的顺滑口感，可以在成品中添加约 1 茶匙甘油。"
       ],
       "ingredientAmounts": {
-        "caramel_coloring": "品尝"
+        "caramel_coloring": "按口味添加"
       }
     },
     "corn-n-oil": {
@@ -1524,25 +1524,25 @@
         "享受！"
       ],
       "ingredientAmounts": {
-        "lime": "新鲜果汁品尝",
-        "coca_cola": "充值",
-        "ice": "根据需要"
+        "lime": "鲜榨汁按口味添加",
+        "coca_cola": "加至满杯",
+        "ice": "按需添加"
       }
     },
     "cuba-libre": {
       "name": "自由古巴",
-      "description": "将所有原料放入装满冰块的柯林斯玻璃杯中。用酸橙角装饰。",
+      "description": "将所有材料直接加入装满冰块的柯林斯杯，用一角青柠装饰。",
       "preparationSteps": [
-        "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
-        "将所有成分放入装满冰块的柯林斯玻璃杯中",
-        "用酸橙角装饰。"
+        "按所列用量挤出柠檬或青柠汁，只将果汁加入饮品。",
+        "将所有材料直接加入装满冰块的柯林斯杯。",
+        "用一角青柠装饰。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "充值"
+        "coca_cola": "加至满杯"
       }
     },
     "daiquiri": {
-      "name": "代基里酒",
+      "name": "代基里",
       "description": "将所有原料倒入装有冰块的摇酒壶中。摇匀。滤入冰镇鸡尾酒杯。",
       "preparationSteps": [
         "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
@@ -1587,18 +1587,18 @@
         "然后在玻璃杯中倒入橙汁和冰块。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "death-in-the-afternoon": {
-      "name": "下午的死亡",
+      "name": "Death in the Afternoon",
       "description": "冷却玻璃杯和两种原料。倒入苦艾酒，慢慢倒入香槟，即可享用。",
       "preparationSteps": [
         "冷却玻璃杯和两种原料。",
         "倒入苦艾酒，慢慢倒入香槟，即可享用。"
       ],
       "ingredientAmounts": {
-        "champagne": "充值"
+        "champagne": "加至满杯"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "岩石可选。"
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "一个小浮标"
+        "151_proof_rum": "在表面浮一薄层"
       }
     },
     "dragonfly": {
@@ -1776,8 +1776,8 @@
         "（如果愿意，可以用姜汁汽水代替碳酸水。）"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值",
-        "lemon": "品尝"
+        "soda_water": "加至满杯",
+        "lemon": "按口味添加"
       }
     },
     "english-rose-cocktail": {
@@ -1789,11 +1789,11 @@
         "上面放上樱桃即可食用。"
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "对于轮辋"
+        "powdered_sugar": "杯口用"
       }
     },
     "espresso-martini": {
-      "name": "浓缩咖啡马提尼",
+      "name": "浓缩咖啡马天尼",
       "description": "冲泡一杯浓咖啡并短暂冷却。将伏特加、咖啡利口酒、糖浆和浓缩咖啡加入加冰的摇酒壶中。剧烈摇晃直至形成泡沫，然后滤入冰镇的鸡尾酒杯中。",
       "preparationSteps": [
         "冲泡一杯浓咖啡并短暂冷却。",
@@ -1826,8 +1826,8 @@
         "顶上补品并添加苦味剂。"
       ],
       "ingredientAmounts": {
-        "tonic_water": "充值",
-        "lemon": "新鲜果汁品尝"
+        "tonic_water": "加至满杯",
+        "lemon": "鲜榨汁按口味添加"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "法语75",
+      "name": "法式 75",
       "description": "将杜松子酒、糖和柠檬汁放入装满冰块的鸡尾酒调酒器中混合。用力摇晃并滤入冰镇的香槟杯中。加满香槟。轻轻搅拌。",
       "preparationSteps": [
         "将杜松子酒、糖和柠檬汁放入装满冰块的鸡尾酒调酒器中混合",
@@ -1968,19 +1968,19 @@
       ]
     },
     "fruit-cooler": {
-      "name": "水果冷藏柜",
+      "name": "清凉水果鸡尾酒",
       "description": "将草莓与糖拌匀，在冰箱中放置过夜切柠檬，保留两片将其余的榨汁将柠檬汁，草莓，苹果汁和苏打水混合在一起添加柠檬片（实际上是装饰）放入玻璃杯中，放入冰块和一片苹果倒入饮料即可食用。",
       "preparationSteps": [
         "将草莓与糖拌匀，放入冰箱冷藏过夜",
         "切开柠檬，保留两片",
-        "剩下的榨汁",
+        "将剩余的柠檬榨汁。",
         "将柠檬汁、草莓、苹果汁和苏打水混合在一起",
         "添加柠檬片（装饰，真的）",
         "在玻璃杯中放入冰块和一片苹果",
         "倒入饮料，即可享用。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "fruit-flip-flop": {
@@ -2007,7 +2007,7 @@
         "尽可能使用牙买加朗姆酒以获得更正宗的味道。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "gagliardo": {
@@ -2027,8 +2027,8 @@
         "现在你已经有了一个属于你自己的GG了。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "充值",
-        "ice": "根据需要"
+        "ginger_ale": "加至满杯",
+        "ice": "按需添加"
       }
     },
     "gimlet": {
@@ -2049,7 +2049,7 @@
         "用橙子皮和柠檬皮装饰。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "gin-daisy": {
@@ -2062,7 +2062,7 @@
       ]
     },
     "gin-fizz": {
-      "name": "杜松子酒菲兹",
+      "name": "金菲士",
       "description": "除苏打水外，将所有原料与冰块一起摇匀。倒入玻璃杯中。上面加苏打水。",
       "preparationSteps": [
         "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
@@ -2071,7 +2071,7 @@
         "上面加苏打水。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "gin-rickey": {
@@ -2085,8 +2085,8 @@
         "用酸橙和/或柠檬片装饰玻璃杯。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值",
-        "lime": "品尝"
+        "soda_water": "加至满杯",
+        "lime": "按口味添加"
       }
     },
     "gin-sling": {
@@ -2127,7 +2127,7 @@
         "用菠萝块和草莓装饰即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "gin-swizzle": {
@@ -2157,11 +2157,11 @@
         "在高球杯中加入冰块，倒入杜松子酒，倒入汤力水，挤入柠檬角，并用柠檬角装饰。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "gluehwein": {
-      "name": "热酒",
+      "name": "德式热红酒",
       "description": "加热水、糖和香料直至糖溶解，然后浸泡 30 分钟。过滤，加入酒和柠檬汁，轻轻加热，不要沸腾。趁热食用。短暂加热并不能使葡萄酒不含酒精。",
       "preparationSteps": [
         "加热水、糖和香料直至糖溶解，然后浸泡 30 分钟。",
@@ -2232,7 +2232,7 @@
         "倒入热咖啡并搅拌。"
       ],
       "ingredientAmounts": {
-        "coffee": "品尝"
+        "coffee": "按口味添加"
       }
     },
     "halloween-punch": {
@@ -2256,9 +2256,9 @@
         "以吉利根岛命名（《金杰》中的“船长”是一位快乐的船长！）"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "充值",
-        "lime": "品尝",
-        "ice": "根据需要"
+        "ginger_ale": "加至满杯",
+        "lime": "按口味添加",
+        "ice": "按需添加"
       }
     },
     "harvey-wallbanger": {
@@ -2302,7 +2302,7 @@
         "用勺子、吸管或者更好的是肉桂棒搅拌，然后将其留在里面。"
       ],
       "ingredientAmounts": {
-        "tea": "品尝"
+        "tea": "按口味添加"
       }
     },
     "highland-fling-cocktail": {
@@ -2325,7 +2325,7 @@
         "为了获得最佳效果，让混合物“熟化”4-5 周。"
       ],
       "ingredientAmounts": {
-        "vodka": "1 第五瓶"
+        "vodka": "1 瓶（五分之一美制加仑）"
       }
     },
     "honey-bee": {
@@ -2411,7 +2411,7 @@
         "加入碳酸水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "ipamena": {
@@ -2423,8 +2423,8 @@
         "滤入玻璃杯，倒入姜汁汽水，轻轻搅拌。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "充值",
-        "ice": "根据需要"
+        "ginger_ale": "加至满杯",
+        "ice": "按需添加"
       }
     },
     "irish-coffee": {
@@ -2461,7 +2461,7 @@
         "不要加冰。"
       ],
       "ingredientAmounts": {
-        "guinness_stout": "充值"
+        "guinness_stout": "加至满杯"
       }
     },
     "irish-spring": {
@@ -2514,8 +2514,8 @@
         "搅拌至光滑并立即食用。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要",
-        "milk": "品尝"
+        "ice": "按需添加",
+        "milk": "按口味添加"
       }
     },
     "jamaican-coffee": {
@@ -2539,7 +2539,7 @@
         "加入碳酸水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "就这么简单！"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "john-collins": {
@@ -2600,8 +2600,8 @@
         "倒入 1 个高杯、2 个中杯或 3 个小杯，然后喝完。"
       ],
       "ingredientAmounts": {
-        "syrup_chocolate": "品尝",
-        "syrup_mint": "品尝"
+        "syrup_chocolate": "按口味添加",
+        "syrup_mint": "按口味添加"
       }
     },
     "kamikaze": {
@@ -2652,7 +2652,7 @@
         "倒入热咖啡并搅拌。如果需要，可以添加生奶油。"
       ],
       "ingredientAmounts": {
-        "coffee": "品尝"
+        "coffee": "按口味添加"
       }
     },
     "kir-royale": {
@@ -2669,7 +2669,7 @@
         "在玻璃杯中混合"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "kiwi-lemon": {
@@ -2681,7 +2681,7 @@
         "用猕猴桃片装饰。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "kiwi-martini": {
@@ -2708,7 +2708,7 @@
         "加入少许酸果蔓汁调味。"
       ],
       "ingredientAmounts": {
-        "juice_cranberry": "品尝"
+        "juice_cranberry": "按口味添加"
       }
     },
     "kurant-tea": {
@@ -2720,8 +2720,8 @@
         "享受！"
       ],
       "ingredientAmounts": {
-        "tea": "品尝",
-        "sugar": "品尝"
+        "tea": "按口味添加",
+        "sugar": "按口味添加"
       }
     },
     "lady-love-fizz": {
@@ -2733,7 +2733,7 @@
         "加入碳酸水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2782,9 +2782,9 @@
         "您可以制作raita，而不是传统的沙拉。"
       ],
       "ingredientAmounts": {
-        "sugar": "品尝",
-        "lime": "品尝",
-        "salt": "品尝"
+        "sugar": "按口味添加",
+        "lime": "按口味添加",
+        "salt": "按口味添加"
       }
     },
     "lazy-coconut-paloma": {
@@ -2795,7 +2795,7 @@
         "加入椰子利口酒和柚子汁，加入苏打水，轻轻搅拌。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "摇匀并滤入镶有糖的冰镇鸡尾酒杯中。"
       ],
       "ingredientAmounts": {
-        "sugar": "对于轮辋"
+        "sugar": "杯口用"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "将所有原料倒在冰上，搅拌并享用！"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "充值"
+        "fresh_lemon_juice": "加至满杯"
       }
     },
     "lemon-shot": {
@@ -2827,7 +2827,7 @@
         "与撒有糖的柠檬角一起食用。未点燃即可食用。"
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "品尝"
+        "151_proof_rum": "按口味添加"
       }
     },
     "lemouroudji": {
@@ -2857,7 +2857,7 @@
         "重复此操作，直到酸橙或苏打水用完。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值",
+        "soda_water": "加至满杯",
         "lime_peel": "装饰用"
       }
     },
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "孤树冷却器",
+      "name": "Lone Tree Cooler",
       "description": "将糖溶解在柯林斯玻璃杯中约 60 毫升的苏打水中。加入冰块、杜松子酒和干苦艾酒并搅拌。上面加更多的苏打水，并用柑橘皮装饰。",
       "preparationSteps": [
         "将糖溶解在柯林斯玻璃杯中约 60 毫升的苏打水中。",
@@ -2896,7 +2896,7 @@
         "上面加更多的苏打水，并用柑橘皮装饰。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "倒入可乐并轻轻搅拌。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "充值"
+        "coca_cola": "加至满杯"
       }
     },
     "long-vodka": {
@@ -2936,7 +2936,7 @@
       ]
     },
     "mai-tai": {
-      "name": "麦泰",
+      "name": "迈泰",
       "description": "使用琥珀牙买加朗姆酒和基于糖蜜的马提尼克朗姆酒来制作两种朗姆酒。将朗姆酒、柑橘酒、杏仁饼、新鲜酸橙汁和糖浆加冰摇匀。倒入装有冰块的双层玻璃杯中。如果需要，可以用薄荷和酸橙皮装饰。",
       "preparationSteps": [
         "使用琥珀牙买加朗姆酒和基于糖蜜的马提尼克朗姆酒来制作两种朗姆酒。",
@@ -2955,10 +2955,10 @@
         "倒入苏打水，均匀地分装在玻璃杯中。"
       ],
       "ingredientAmounts": {
-        "mint": "品尝",
-        "ice": "根据需要",
-        "soda_water": "充值",
-        "sugar": "品尝"
+        "mint": "按口味添加",
+        "ice": "按需添加",
+        "soda_water": "加至满杯",
+        "sugar": "按口味添加"
       }
     },
     "manhattan": {
@@ -2969,7 +2969,7 @@
       ]
     },
     "margarita": {
-      "name": "玛格丽特",
+      "name": "玛格丽塔",
       "description": "用石灰片擦拭玻璃杯的边缘，使盐粘在玻璃杯上。注意仅润湿外缘并在其上撒盐。盐应该出现在饮用者的嘴唇上，并且不要混入鸡尾酒中。将其他成分与冰一起摇匀，然后小心地倒入玻璃杯中。",
       "preparationSteps": [
         "用石灰片擦拭玻璃杯边缘，使盐粘在玻璃杯上",
@@ -2978,7 +2978,7 @@
         "将其他成分与冰一起摇匀，然后小心地倒入玻璃杯中。"
       ],
       "ingredientAmounts": {
-        "salt": "品尝"
+        "salt": "按口味添加"
       }
     },
     "martinez-2": {
@@ -3019,8 +3019,8 @@
         "就是这样。"
       ],
       "ingredientAmounts": {
-        "sugar": "品尝",
-        "milk": "品尝"
+        "sugar": "按口味添加",
+        "milk": "按口味添加"
       }
     },
     "mauresque": {
@@ -3033,7 +3033,7 @@
         "最后加入冰块，否则糖浆和茴香酒混合不好。"
       ],
       "ingredientAmounts": {
-        "water": "充值"
+        "water": "加至满杯"
       }
     },
     "melya": {
@@ -3053,8 +3053,8 @@
         "将两种冷冻混合物分层放入一个大玻璃杯中。来源使两种准备好的混合物的数量可变。"
       ],
       "ingredientAmounts": {
-        "pina_colada_mix": "品尝",
-        "daiquiri_mix": "品尝"
+        "pina_colada_mix": "按口味添加",
+        "daiquiri_mix": "按口味添加"
       }
     },
     "michelada": {
@@ -3113,7 +3113,7 @@
         "用稻草装饰并食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "mojito-extra": {
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "热红酒",
+      "name": "白兰地香料热红酒",
       "description": "将 3 杯水、糖、丁香、肉桂棒和柠檬皮放入不锈钢锅中煮 10 分钟。将葡萄酒加热至“咖啡温度”（不要煮沸），然后添加白兰地。",
       "preparationSteps": [
         "将 3 杯水、糖、丁香、肉桂棒和柠檬皮放入不锈钢锅中煮 10 分钟",
@@ -3191,11 +3191,11 @@
         "在高脚玻璃杯中滤入新鲜冰块，然后加入苏打水并轻轻搅拌。"
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "溅起的水花"
+        "lemon_lime_soda": "少量"
       }
     },
     "negroni": {
-      "name": "内格罗尼",
+      "name": "尼格罗尼",
       "description": "倒入加冰的玻璃杯中搅拌，装饰即可食用。",
       "preparationSteps": [
         "倒入加冰的玻璃杯中搅拌，装饰即可食用。"
@@ -3219,7 +3219,7 @@
         "慢慢地将红酒倒在勺子背面，使其漂浮在上面。用樱桃装饰。"
       ],
       "ingredientAmounts": {
-        "wine_red": "品尝",
+        "wine_red": "按口味添加",
         "cherry": "装饰用"
       }
     },
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "老式",
+      "name": "古典鸡尾酒",
       "description": "将方糖放入老式玻璃杯中，加入苦味剂，加入少许白开水。搅拌直至溶解。\r\n将玻璃杯装满冰块，然后加入威士忌。\r\n\r\n用橙花和鸡尾酒樱桃装饰。",
       "preparationSteps": [
         "将方糖放入老式玻璃杯中，加入苦味剂，加入少许清水",
@@ -3294,7 +3294,7 @@
         "倒入姜汁汽水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "充值"
+        "ginger_ale": "加至满杯"
       }
     },
     "orange-push-up": {
@@ -3305,22 +3305,22 @@
         "倒入一个大玻璃杯中。"
       ],
       "ingredientAmounts": {
-        "sour_mix": "溅起的水花"
+        "sour_mix": "少量"
       }
     },
     "orange-rosemary-collins": {
-      "name": "橙色迷迭香柯林斯",
+      "name": "橙香迷迭香柯林斯",
       "description": "将烈酒添加到玻璃杯的底部，并与搅拌饮料均匀地添加到顶部。在玻璃杯内装饰橙片，并在上面放一些迷迭香。",
       "preparationSteps": [
-        "将烈酒添加到玻璃杯的底部，并与搅拌饮料均匀地添加到顶部",
+        "将烈酒倒入杯中，再加入等量的各款无酒精调饮。",
         "在玻璃杯内装饰橙片，并在上面放一些迷迭香。"
       ],
       "ingredientAmounts": {
-        "juice_orange": "充值",
-        "lemon": "充值",
-        "soda_water": "充值",
-        "rosemary": "品尝",
-        "orange": "品尝"
+        "juice_orange": "加至满杯",
+        "lemon": "加至满杯",
+        "soda_water": "加至满杯",
+        "rosemary": "按口味添加",
+        "orange": "按口味添加"
       }
     },
     "orange-scented-hot-chocolate": {
@@ -3341,17 +3341,17 @@
         "做 2 份。"
       ],
       "ingredientAmounts": {
-        "orange": "3条2英寸条"
+        "orange": "3 条，每条 2 英寸"
       }
     },
     "orange-whip": {
-      "name": "橙鞭",
+      "name": "Orange Whip",
       "description": "将原料倒在冰上并搅拌。",
       "preparationSteps": [
         "将原料倒在冰上并搅拌。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "orangeade": {
@@ -3362,7 +3362,7 @@
         "加满冷苏打水，用吸管饮用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "用半片百香果装饰。"
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "充值"
+        "juice_passion_fruit": "加至满杯"
       }
     },
     "pegu-club": {
@@ -3459,8 +3459,8 @@
         "用新鲜菠萝或酸橙装饰。"
       ],
       "ingredientAmounts": {
-        "lime": "品尝",
-        "pepper": "品尝"
+        "lime": "按口味添加",
+        "pepper": "按口味添加"
       }
     },
     "pink-gin": {
@@ -3490,7 +3490,7 @@
         "添加花朵和绿叶以获得特别的外观！"
       ],
       "ingredientAmounts": {
-        "blackberries": "品尝"
+        "blackberries": "按口味添加"
       }
     },
     "pink-panty-pulldowns": {
@@ -3517,11 +3517,11 @@
         "在泡沫上滴几滴芳香苦味剂。"
       ],
       "ingredientAmounts": {
-        "bitters": "几个破折号"
+        "bitters": "少量苦精（数次轻甩）"
       }
     },
     "planter-s-punch-178368-178368-178368": {
-      "name": "种植者的拳头",
+      "name": "Planter's Punch",
       "description": "将除苦味剂外的所有原料倒入装满冰块的摇酒壶中摇匀，倒入装满冰块的大玻璃杯中，添加安古斯图拉苦味剂，“放在上面”，用鸡尾酒樱桃和菠萝装饰。",
       "preparationSteps": [
         "将除苦味剂外的所有原料倒入装有冰块的摇酒壶中",
@@ -3597,7 +3597,7 @@
         "搅拌均匀并用薄荷装饰。"
       ],
       "ingredientAmounts": {
-        "mint": "品尝"
+        "mint": "按口味添加"
       }
     },
     "pysch-vitamin-light": {
@@ -3608,7 +3608,7 @@
         "滤入装有新鲜冰块的高脚玻璃杯中。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "quaker-s-cocktail": {
@@ -3642,7 +3642,7 @@
         "倒入柠檬苏打水，搅拌即可食用。"
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "充值"
+        "lemon_lime_soda": "加至满杯"
       }
     },
     "queen-elizabeth": {
@@ -3685,8 +3685,8 @@
         "加满姜汁汽水。"
       ],
       "ingredientAmounts": {
-        "lemon": "品尝",
-        "ginger_ale": "充值"
+        "lemon": "按口味添加",
+        "ginger_ale": "加至满杯"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "滤入高球杯中，轻轻倒入苏打水。切勿摇动苏打水。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "raspberry-julep": {
@@ -3726,7 +3726,7 @@
         "装饰并上菜。"
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "品尝"
+        "powdered_sugar": "按口味添加"
       }
     },
     "rosemary-blue": {
@@ -3739,7 +3739,7 @@
         "3）用吧勺轻轻拌匀。"
       ],
       "ingredientAmounts": {
-        "rosemary": "品尝"
+        "rosemary": "按口味添加"
       }
     },
     "royal-fizz": {
@@ -3750,7 +3750,7 @@
         "装满可乐即可上桌。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "充值"
+        "coca_cola": "加至满杯"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "加入碳酸水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "加入石榴糖浆并搅拌。"
       ],
       "ingredientAmounts": {
-        "grenadine": "两滴水花"
+        "grenadine": "倒两小份"
       }
     },
     "rum-cobbler": {
@@ -3824,7 +3824,7 @@
         "最后加入姜汁汽水并轻轻搅拌。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "rum-runner": {
@@ -3860,7 +3860,7 @@
         "滤入装满新鲜冰块的高脚玻璃杯中，然后倒入起泡酒。"
       ],
       "ingredientAmounts": {
-        "prosecco": "充值"
+        "prosecco": "加至满杯"
       }
     },
     "rusty-nail": {
@@ -3888,8 +3888,8 @@
         "用橙子和草莓装饰。"
       ],
       "ingredientAmounts": {
-        "grenadine": "品尝",
-        "juice_orange": "品尝"
+        "grenadine": "按口味添加",
+        "juice_orange": "按口味添加"
       }
     },
     "sangria": {
@@ -3901,8 +3901,8 @@
         "盛入酒杯中。"
       ],
       "ingredientAmounts": {
-        "cloves": "品尝",
-        "cinnamon": "品尝"
+        "cloves": "按口味添加",
+        "cinnamon": "按口味添加"
       }
     },
     "sazerac": {
@@ -3923,7 +3923,7 @@
       ]
     },
     "scotch-sour": {
-      "name": "苏格兰酸酒",
+      "name": "苏格兰威士忌酸酒",
       "description": "将苏格兰威士忌、酸橙汁和糖粉加冰摇匀，滤入威士忌酸酒杯中。用 1/2 片柠檬装饰，上面放上樱桃，即可食用。",
       "preparationSteps": [
         "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
@@ -3939,7 +3939,7 @@
         "加入伏特加，淋上橙汁，轻轻搅拌。"
       ],
       "ingredientAmounts": {
-        "juice_orange": "品尝"
+        "juice_orange": "按口味添加"
       }
     },
     "sea-breeze": {
@@ -3972,7 +3972,7 @@
         "在上面撒上肉豆蔻即可食用。"
       ],
       "ingredientAmounts": {
-        "milk": "品尝",
+        "milk": "按口味添加",
         "nutmeg": "装饰用"
       }
     },
@@ -4018,7 +4018,7 @@
         "立即上菜。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "snowday": {
@@ -4030,7 +4030,7 @@
         "将橙皮压在饮料上并装饰。"
       ],
       "ingredientAmounts": {
-        "orange": "品尝"
+        "orange": "按口味添加"
       }
     },
     "sol-y-sombra": {
@@ -4051,8 +4051,8 @@
         "淋上橙汁，加入石榴糖浆调味，并用樱桃装饰。"
       ],
       "ingredientAmounts": {
-        "juice_orange": "品尝",
-        "grenadine": "品尝",
+        "juice_orange": "按口味添加",
+        "grenadine": "按口味添加",
         "cherry": "装饰用"
       }
     },
@@ -4066,17 +4066,17 @@
         "分成六个笛形杯，每个笛形杯中加入 100 毫升香槟，并用橙皮装饰。"
       ],
       "ingredientAmounts": {
-        "orange_spiral": "品尝"
+        "orange_spiral": "按口味添加"
       }
     },
     "spritz": {
-      "name": "喷洒",
+      "name": "斯普里茨",
       "description": "倒入玻璃杯中，加冰块，装饰即可食用。",
       "preparationSteps": [
         "倒入玻璃杯中，加冰块，装饰即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "溅起的水花"
+        "soda_water": "少量"
       }
     },
     "stinger": {
@@ -4114,8 +4114,8 @@
       "ingredientAmounts": {
         "orange": "装饰用",
         "lime": "装饰用",
-        "lemon": "品尝",
-        "fresca": "充值"
+        "lemon": "按口味添加",
+        "fresca": "加至满杯"
       }
     },
     "tennesee-mud": {
@@ -4137,7 +4137,7 @@
         "倒入姜汁汽水，搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "充值"
+        "ginger_ale": "加至满杯"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "添加几滴托巴斯科酱。"
       ],
       "ingredientAmounts": {
-        "tequila": "充值"
+        "tequila": "加至满杯"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "一开始是甜甜的，最后却是一口……"
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "溅起的水花"
+        "sweet_and_sour": "少量"
       }
     },
     "texas-sling": {
@@ -4212,9 +4212,9 @@
         "在勺子背面慢慢添加奶油，形成一个单独的顶层。"
       ],
       "ingredientAmounts": {
-        "coffee": "品尝",
-        "cream": "品尝",
-        "sugar": "品尝"
+        "coffee": "按口味添加",
+        "cream": "按口味添加",
+        "sugar": "按口味添加"
       }
     },
     "thai-iced-tea": {
@@ -4227,7 +4227,7 @@
         "做 2 份。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要",
+        "ice": "按需添加",
         "mint": "装饰用"
       }
     },
@@ -4238,8 +4238,8 @@
         "将酒精部分混合在一起，并在上面加入菠萝和酸橙汁。"
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "充值",
-        "lime": "充值"
+        "juice_pineapple": "加至满杯",
+        "lime": "加至满杯"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "滤入冰镇玻璃杯中，然后在上面倒入普罗塞克葡萄酒。"
       ],
       "ingredientAmounts": {
-        "prosecco": "充值"
+        "prosecco": "加至满杯"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "加冰摇匀，滤入小玻璃杯中。"
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "溅起的水花"
+        "juice_pineapple": "少量"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "加入碳酸水，再次搅拌，即可食用。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "vesper": {
@@ -4433,7 +4433,7 @@
         "倒入大白葡萄酒杯中，并在上面撒上肉豆蔻。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要",
+        "ice": "按需添加",
         "nutmeg": "装饰用"
       }
     },
@@ -4445,7 +4445,7 @@
       ]
     },
     "whiskey-sour": {
-      "name": "威士忌酸",
+      "name": "威士忌酸酒",
       "description": "加冰摇匀。滤入冰镇玻璃杯中，装饰即可食用。如果加冰块供应，请将原料滤入装满冰块的老式玻璃杯中。",
       "preparationSteps": [
         "挤压指定数量的柠檬或酸橙；饮料中仅使用其果汁。",
@@ -4477,7 +4477,7 @@
         "填入淡奶油即可食用。"
       ],
       "ingredientAmounts": {
-        "light_cream": "品尝"
+        "light_cream": "按口味添加"
       }
     },
     "white-wine-sangria": {
@@ -4489,7 +4489,7 @@
         "淋上苏打水调味。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "淋上葡萄柚汁，加入少许食品级胡椒粉并搅拌。这是简化版本；最初使用的是准备好的胡椒龙舌兰酒。"
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "充值"
+        "juice_grapefruit": "加至满杯"
       }
     },
     "winter-rita": {
@@ -4542,7 +4542,7 @@
         "搅拌至光滑并倒入玻璃杯中。添加更多冰块之前先停止搅拌机。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "zambeer": {
@@ -4553,7 +4553,7 @@
         "加冰"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "ziemes-martini-apfelsaft": {
@@ -4572,7 +4572,7 @@
         "倒入香波堡，然后倒入伏特加，最后倒入苏打水。慢慢倒入以保留层。"
       ],
       "ingredientAmounts": {
-        "soda_water": "充值"
+        "soda_water": "加至满杯"
       }
     },
     "zippy-s-revenge": {
@@ -4592,7 +4592,7 @@
         "轻轻搅拌，如果需要，可以用柠檬片装饰。"
       ],
       "ingredientAmounts": {
-        "ice": "根据需要"
+        "ice": "按需添加"
       }
     },
     "zoksel": {
@@ -4604,12 +4604,12 @@
         "轻轻搅拌并用柠檬片装饰。不要摇动碳酸成分。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "品尝",
-        "beer": "品尝",
-        "root_beer": "品尝",
-        "lemonade": "充值",
-        "7_up": "品尝",
-        "creme_de_cassis": "品尝"
+        "coca_cola": "按口味添加",
+        "beer": "按口味添加",
+        "root_beer": "按口味添加",
+        "lemonade": "加至满杯",
+        "7_up": "按口味添加",
+        "creme_de_cassis": "按口味添加"
       }
     },
     "zombie": {
@@ -4636,7 +4636,7 @@
         "添加全部并倒入黑咖啡，然后在上面添加生奶油。"
       ],
       "ingredientAmounts": {
-        "coffee": "充值",
+        "coffee": "加至满杯",
         "whipped_cream": "装饰用"
       }
     }

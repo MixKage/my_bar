@@ -629,7 +629,7 @@
     },
     {
       "id": "baileys_irish_cream",
-      "name": "Baileys irish cream",
+      "name": "Baileys Irish Cream",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_dc195213.png",
       "isDecoration": false,
@@ -643,7 +643,7 @@
       "source": "seed_json",
       "sourceId": "baileys_irish_cream",
       "canonicalSlug": "baileys_irish_cream",
-      "displayName": "Baileys irish cream",
+      "displayName": "Baileys Irish Cream",
       "imageUrl": "assets/data/catalog_images/img_dc195213.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Baileys%20irish%20cream.png"
     },
@@ -2089,7 +2089,7 @@
     },
     {
       "id": "demerara_sugar",
-      "name": "demerara Sugar",
+      "name": "Demerara sugar",
       "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_38eb84ff.png",
       "isDecoration": false,
@@ -2103,7 +2103,7 @@
       "source": "seed_json",
       "sourceId": "demerara_sugar",
       "canonicalSlug": "demerara_sugar",
-      "displayName": "demerara Sugar",
+      "displayName": "Demerara sugar",
       "imageUrl": "assets/data/catalog_images/img_38eb84ff.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/demerara%20Sugar.png"
     },
@@ -2529,7 +2529,7 @@
     },
     {
       "id": "gin",
-      "name": "gin",
+      "name": "Gin",
       "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_d1e10591.png",
       "isDecoration": false,
@@ -2543,7 +2543,7 @@
       "source": "seed_json",
       "sourceId": "gin",
       "canonicalSlug": "gin",
-      "displayName": "gin",
+      "displayName": "Gin",
       "imageUrl": "assets/data/catalog_images/img_d1e10591.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/gin.png"
     },
@@ -4669,8 +4669,8 @@
     },
     {
       "id": "rose",
-      "name": "Rose",
-      "category": "Специи, травы и биттеры",
+      "name": "Rosé wine",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_55561ae8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4683,7 +4683,7 @@
       "source": "seed_json",
       "sourceId": "rose",
       "canonicalSlug": "rose",
-      "displayName": "Rose",
+      "displayName": "Rosé wine",
       "imageUrl": "assets/data/catalog_images/img_55561ae8.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Rose.png"
     },
@@ -12812,7 +12812,7 @@
     },
     {
       "id": "gluehwein",
-      "name": "Gluehwein",
+      "name": "Glühwein",
       "image": "assets/data/catalog_images/img_d9485f08.jpg",
       "ingredients": [
         "wine_red",
@@ -19499,7 +19499,7 @@
     },
     {
       "id": "pina-colada",
-      "name": "Pina Colada",
+      "name": "Piña Colada",
       "image": "assets/data/catalog_images/img_b2a28132.jpg",
       "ingredients": [
         "rum_light",

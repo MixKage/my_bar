@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../features/bar/domain/models/catalog_data_source.dart';
+import '../../features/bar/domain/models/ingredient_units.dart';
 import '../../features/bar/domain/models/measurement_system.dart';
 import 'app_language.dart';
 import 'app_translations.dart';
@@ -18,6 +19,14 @@ extension AppLocalizationX on BuildContext {
   );
 
   String tr(String ru, String en) => isRussian ? ru : translateEnglish(en);
+
+  /// Insert already-localized UI labels into a translated sentence. Translate
+  /// the template first so the translator can reorder the numbered labels.
+  String trWithArgs(String ru, String en, List<String> args) =>
+      tr(ru, en).replaceAllMapped(RegExp(r'\{(\d+)\}'), (match) {
+        final index = int.parse(match[1]!);
+        return index < args.length ? args[index] : match[0]!;
+      });
 
   String appLanguageLabel(AppLanguage language) {
     if (language == AppLanguage.system) return tr('Системный', 'System');
@@ -93,6 +102,26 @@ extension AppLocalizationX on BuildContext {
 
   String ingredientUnitLabel(String unit) =>
       _label(_ingredientUnitLabels[unit], unit);
+
+  String measuredIngredientUnitLabel(String unit, String amount) {
+    if (unit.isEmpty) return '';
+    if (unit != 'leaf' || !(isEnglish || isRussian)) {
+      return ingredientUnitLabel(unit);
+    }
+    final range = parseIngredientNumericRange(amount);
+    if (range == null) return ingredientUnitLabel(unit);
+    final count = (range.end ?? range.start).abs();
+    if (!count.isFinite) return ingredientUnitLabel(unit);
+    if (isEnglish) return count == 1 ? 'leaf' : 'leaves';
+    if (count != count.truncateToDouble()) return 'листа';
+    final whole = count.toInt();
+    if (whole % 100 >= 11 && whole % 100 <= 14) return 'листьев';
+    return switch (whole % 10) {
+      1 => 'лист',
+      2 || 3 || 4 => 'листа',
+      _ => 'листьев',
+    };
+  }
 
   String localizeErrorMessage(String source) {
     if (isRussian) return source;

@@ -1,28 +1,28 @@
 {
   "locale": "ja",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "151プルーフラム"
     },
     "7_up": {
-      "name": "7アップ"
+      "name": "7-Up"
     },
     "absinthe": {
       "name": "アブサン"
     },
     "absolut_citron": {
-      "name": "アブソルートシトロン"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
-      "name": "アブソルート・クラント"
+      "name": "Absolut Kurant"
     },
     "absolut_peppar": {
-      "name": "アブソルートペッパー"
+      "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "アブソルート ウォッカ"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "アドフォカート"
@@ -31,7 +31,7 @@
       "name": "アガベシロップ"
     },
     "ale": {
-      "name": "エール"
+      "name": "エールビール"
     },
     "allspice": {
       "name": "オールスパイス"
@@ -43,19 +43,19 @@
       "name": "アマレット"
     },
     "amaro_montenegro": {
-      "name": "アマロ モンテネグロ"
+      "name": "Amaro Montenegro"
     },
     "angelica_root": {
       "name": "アンゼリカの根"
     },
     "angostura_bitter": {
-      "name": "アンゴスチュラ ビターズ"
+      "name": "アンゴスチュラ・ビターズ"
     },
     "anis": {
       "name": "アニス"
     },
     "anisette": {
-      "name": "アニセット"
+      "name": "アニゼット"
     },
     "aperol": {
       "name": "アペロール"
@@ -70,13 +70,13 @@
       "name": "アップルブランデー"
     },
     "apple_cider": {
-      "name": "アップルサイダー"
+      "name": "アップルサイダー（酒）"
     },
     "juice_apple": {
       "name": "リンゴジュース"
     },
     "applejack": {
-      "name": "アップルジャック"
+      "name": "Applejack"
     },
     "apricot_brandy": {
       "name": "アプリコットブランデー"
@@ -91,10 +91,10 @@
       "name": "アネホのラム酒"
     },
     "bacardi_limon": {
-      "name": "バカルディ・リモン"
+      "name": "Bacardi Limon"
     },
     "baileys_irish_cream": {
-      "name": "ベイリーズ アイリッシュ クリーム"
+      "name": "ベイリーズ アイリッシュクリーム"
     },
     "banana": {
       "name": "バナナ"
@@ -115,10 +115,10 @@
       "name": "ビターレモン"
     },
     "bitters": {
-      "name": "ビターズ"
+      "name": "カクテルビターズ"
     },
     "black_pepper": {
-      "name": "黒胡椒"
+      "name": "黒こしょう"
     },
     "black_sambuca": {
       "name": "ブラックサンブーカ"
@@ -130,7 +130,7 @@
       "name": "ブラックベリーブランデー"
     },
     "blackcurrant_cordial": {
-      "name": "カシスコーディアル"
+      "name": "カシスシロップ"
     },
     "blackstrap_rum": {
       "name": "ブラックストラップラム"
@@ -160,7 +160,7 @@
       "name": "バタースコッチシュナップス"
     },
     "cachaca": {
-      "name": "カシャーサ"
+      "name": "カシャッサ"
     },
     "campari": {
       "name": "カンパリ"
@@ -184,7 +184,7 @@
       "name": "セロリソルト"
     },
     "chambord_raspberry_liqueur": {
-      "name": "シャンボール ラズベリー リキュール"
+      "name": "シャンボール・ラズベリーリキュール"
     },
     "champagne": {
       "name": "シャンパン"
@@ -196,7 +196,7 @@
       "name": "チェリーブランデー"
     },
     "cherry_heering": {
-      "name": "チェリーヒーリング"
+      "name": "Cherry Heering"
     },
     "cherry_juice": {
       "name": "チェリージュース"
@@ -217,7 +217,7 @@
       "name": "チョコレートシロップ"
     },
     "cider": {
-      "name": "サイダー"
+      "name": "シードル"
     },
     "cinnamon": {
       "name": "シナモン"
@@ -226,7 +226,7 @@
       "name": "クローブ"
     },
     "coca_cola": {
-      "name": "コカコーラ"
+      "name": "コカ・コーラ"
     },
     "cocoa_powder": {
       "name": "ココアパウダー"
@@ -280,10 +280,10 @@
       "name": "クランベリーウォッカ"
     },
     "cream": {
-      "name": "クリーム"
+      "name": "生クリーム"
     },
     "cream_of_coconut": {
-      "name": "ココナッツのクリーム"
+      "name": "加糖ココナッツクリーム"
     },
     "creme_de_banane": {
       "name": "クレーム・ド・バナーヌ"
@@ -298,7 +298,7 @@
       "name": "クレーム・ド・ミュール"
     },
     "crown_royal": {
-      "name": "クラウンロイヤル"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "キュウリ"
@@ -316,16 +316,16 @@
       "name": "デメララシュガー"
     },
     "dr_pepper": {
-      "name": "ドクターペッパー"
+      "name": "Dr. Pepper"
     },
     "drambuie": {
-      "name": "ドランブイ"
+      "name": "Drambuie"
     },
     "vermouth_dry": {
       "name": "ドライベルモット"
     },
     "dubonnet_rouge": {
-      "name": "デュボネ ルージュ"
+      "name": "Dubonnet Rouge"
     },
     "egg": {
       "name": "卵"
@@ -337,34 +337,34 @@
       "name": "卵黄"
     },
     "elderflower_cordial": {
-      "name": "エルダーフラワー・コーディアル"
+      "name": "エルダーフラワーシロップ"
     },
     "espresso": {
       "name": "エスプレッソ"
     },
     "everclear": {
-      "name": "エバークリア"
+      "name": "Everclear"
     },
     "falernum": {
-      "name": "ファレルヌム"
+      "name": "Falernum"
     },
     "figs": {
       "name": "イチジク"
     },
     "firewater": {
-      "name": "ファイアウォーター"
+      "name": "Firewater"
     },
     "frangelico": {
-      "name": "フランジェリコ"
+      "name": "Frangelico"
     },
     "fresca": {
-      "name": "フレスカ"
+      "name": "Fresca"
     },
     "fresh_lemon_juice": {
-      "name": "フレッシュレモンジュース"
+      "name": "搾りたてのレモン果汁"
     },
     "fresh_lime_juice": {
-      "name": "フレッシュライムジュース"
+      "name": "搾りたてのライム果汁"
     },
     "fruit": {
       "name": "フルーツ"
@@ -373,7 +373,7 @@
       "name": "果汁"
     },
     "fruit_punch": {
-      "name": "フルーツポンチ"
+      "name": "フルーツパンチ"
     },
     "galliano": {
       "name": "バニラリキュールガリアーノ"
@@ -400,13 +400,13 @@
       "name": "ゴールドラム"
     },
     "goldschlager": {
-      "name": "ゴルトシュラーガー"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "穀物アルコール"
     },
     "grand_marnier": {
-      "name": "グランマルニエ"
+      "name": "Grand Marnier"
     },
     "grape_juice": {
       "name": "ぶどうジュース"
@@ -430,13 +430,13 @@
       "name": "グレナディン"
     },
     "guinness_stout": {
-      "name": "ギネススタウト"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "ハーフアンドハーフ"
+      "name": "牛乳と生クリームのミックス"
     },
     "heavy_cream": {
-      "name": "生クリーム"
+      "name": "高脂肪生クリーム"
     },
     "honey": {
       "name": "ハニー"
@@ -448,7 +448,7 @@
       "name": "ホットチョコレート"
     },
     "hot_damn": {
-      "name": "ホットダムン"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "ホットソース"
@@ -469,22 +469,22 @@
       "name": "アイラ産シングルモルトスコッチ"
     },
     "jack_daniels": {
-      "name": "ジャックダニエル"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
-      "name": "イェーガーマイスター"
+      "name": "Jägermeister"
     },
     "jello": {
-      "name": "ゼリー"
+      "name": "Jello"
     },
     "jim_beam": {
-      "name": "ジム・ビーム"
+      "name": "Jim Beam"
     },
     "johnnie_walker": {
-      "name": "ジョニーウォーカー"
+      "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "カルーア"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "キウイ"
@@ -493,10 +493,10 @@
       "name": "キウイリキュール"
     },
     "kool_aid": {
-      "name": "クールエイド"
+      "name": "Kool-Aid"
     },
     "lager": {
-      "name": "ラガー"
+      "name": "ラガービール"
     },
     "lavender": {
       "name": "ラベンダー"
@@ -511,7 +511,7 @@
       "name": "レモネード"
     },
     "light_cream": {
-      "name": "ライトクリーム"
+      "name": "低脂肪生クリーム"
     },
     "rum_light": {
       "name": "ライトラム"
@@ -577,10 +577,10 @@
       "name": "ナツメグ"
     },
     "olive": {
-      "name": "オリーブ"
+      "name": "オリーブの実"
     },
     "olive_brine": {
-      "name": "オリーブブライン"
+      "name": "オリーブの漬け汁"
     },
     "orange": {
       "name": "オレンジ"
@@ -595,13 +595,13 @@
       "name": "オレンジジュース"
     },
     "orange_spiral": {
-      "name": "オレンジスパイラル"
+      "name": "らせん状のオレンジの皮"
     },
     "oreo_cookie": {
       "name": "オレオクッキー"
     },
     "orgeat_syrup": {
-      "name": "オルジェシロップ"
+      "name": "オルジェーシロップ"
     },
     "ouzo": {
       "name": "ウーゾ"
@@ -616,7 +616,7 @@
       "name": "パッションフルーツシロップ"
     },
     "passoa": {
-      "name": "パッソア"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "ピーチビターズ"
@@ -634,7 +634,7 @@
       "name": "ピーチウォッカ"
     },
     "pepper": {
-      "name": "ペッパー"
+      "name": "こしょう"
     },
     "pepsi_cola": {
       "name": "ペプシコーラ"
@@ -643,7 +643,7 @@
       "name": "ペルノ"
     },
     "peychauds_bitter": {
-      "name": "ペイショービターズ"
+      "name": "ペイショーズ・ビターズ"
     },
     "pina_colada_mix": {
       "name": "ピニャコラーダミックス"
@@ -661,7 +661,7 @@
       "name": "ピンクレモネード"
     },
     "pisang_ambon": {
-      "name": "ピサンアンボン"
+      "name": "Pisang Ambon"
     },
     "pisco": {
       "name": "ピスコ"
@@ -670,7 +670,7 @@
       "name": "ザクロジュース"
     },
     "port": {
-      "name": "ポート"
+      "name": "ポートワイン"
     },
     "powdered_sugar": {
       "name": "粉砂糖"
@@ -700,7 +700,7 @@
       "name": "ルートビア"
     },
     "rose": {
-      "name": "薔薇"
+      "name": "ロゼワイン"
     },
     "rosemary": {
       "name": "ローズマリー"
@@ -712,7 +712,7 @@
       "name": "ロッソ・ベルモット"
     },
     "ruby_port": {
-      "name": "ルビーポート"
+      "name": "ルビー・ポートワイン"
     },
     "rum": {
       "name": "ラム酒"
@@ -730,7 +730,7 @@
       "name": "サルサパリラ"
     },
     "schweppes_russchian": {
-      "name": "シュウェップス・ロシアン"
+      "name": "Schweppes Russchian"
     },
     "scotch": {
       "name": "スコッチ"
@@ -748,13 +748,13 @@
       "name": "スロージン"
     },
     "soda_water": {
-      "name": "ソーダ水"
+      "name": "炭酸水"
     },
     "sour_mix": {
       "name": "サワーミックス"
     },
     "southern_comfort": {
-      "name": "サザンコンフォート"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "しょうゆ"
@@ -763,10 +763,10 @@
       "name": "スパイスラム"
     },
     "sprite": {
-      "name": "スプライト"
+      "name": "Sprite"
     },
     "st_germain": {
-      "name": "セント・ジャーメイン"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "イチゴ"
@@ -781,7 +781,7 @@
       "name": "シュガーシロップ"
     },
     "surge": {
-      "name": "うねり"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "甘くて酸っぱい"
@@ -802,7 +802,7 @@
       "name": "タイム"
     },
     "tia_maria": {
-      "name": "ティアマリア"
+      "name": "Tia Maria"
     },
     "juice_tomato": {
       "name": "トマトジュース"
@@ -811,7 +811,7 @@
       "name": "トニックウォーター"
     },
     "triple_sec": {
-      "name": "トリプル秒"
+      "name": "トリプルセック"
     },
     "vanilla": {
       "name": "バニラ"
@@ -847,7 +847,7 @@
       "name": "白ワイン"
     },
     "wild_turkey": {
-      "name": "ワイルドターキー"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "ワイン"
@@ -856,7 +856,7 @@
       "name": "ウスターソース"
     },
     "wormwood": {
-      "name": "よもぎ"
+      "name": "ニガヨモギ"
     },
     "chartreuse_yellow": {
       "name": "イエローシャルトルーズ"
@@ -865,10 +865,10 @@
       "name": "ヨーグルト"
     },
     "yukon_jack": {
-      "name": "ユーコンジャック"
+      "name": "Yukon Jack"
     },
     "zima": {
-      "name": "ジーマ"
+      "name": "Zima"
     },
     "peach_puree": {
       "name": "白桃ピューレ"
@@ -960,7 +960,7 @@
         "ソーダ水を一吹き加えます。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "クラブソーダをトッピングしてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "affinity": {
@@ -1006,7 +1006,7 @@
         "上にナツメグを振りかけてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "nutmeg": "付け合わせ用"
+        "nutmeg": "飾り用"
       }
     },
     "algonquin": {
@@ -1042,7 +1042,7 @@
         "オレンジのスライスとレモンの皮を飾ります。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "新鮮な氷を入れたハイボールグラスに注ぎます。"
       ],
       "ingredientAmounts": {
-        "cream": "補充する"
+        "cream": "グラスを満たす分"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "ティモ・ハイミによって作られたこのドリンクは、1991 年のフィンランディア ウォッカ ロング ドリンク コンペティションで優勝しました。"
       ],
       "ingredientAmounts": {
-        "lemonade": "補充する"
+        "lemonade": "グラスを満たす分"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "冷やしたグラスに濾し、プロセッコを注ぎます。"
       ],
       "ingredientAmounts": {
-        "prosecco": "補充する"
+        "prosecco": "グラスを満たす分"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "パンチボウルに氷を入れ、ソーダが非常に冷えている場合に最適です。"
       ],
       "ingredientAmounts": {
-        "everclear": "5分の1ボトル",
-        "vodka": "5分の1ボトル"
+        "everclear": "1本（米国の5分の1ガロン瓶）",
+        "vodka": "1本（米国の5分の1ガロン瓶）"
       }
     },
     "bramble": {
@@ -1289,7 +1289,7 @@
         "新鮮な料理用よもぎ、ラム酒、スコッチ、ビターズを加えてかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "brooklyn": {
@@ -1324,8 +1324,8 @@
         "かき混ぜる。"
       ],
       "ingredientAmounts": {
-        "coffee": "味わう",
-        "brandy": "味わう"
+        "coffee": "お好みで",
+        "brandy": "お好みで"
       }
     },
     "caipirinha": {
@@ -1344,7 +1344,7 @@
         "ホワイトラムとクラッシュアイスを加えます。十分にかき混ぜてください。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "campari-beer": {
@@ -1397,7 +1397,7 @@
         "炭酸水を注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "chocolate-drink": {
@@ -1410,7 +1410,7 @@
         "沸騰させないでください！コーヒーマグでお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "water": "必要に応じて"
+        "water": "必要な分だけ"
       }
     },
     "chocolate-milk": {
@@ -1473,7 +1473,7 @@
         "リキュールのより滑らかな感触が好みの場合は、完成品に小さじ約 1 杯のグリセリンを追加できます。"
       ],
       "ingredientAmounts": {
-        "caramel_coloring": "味わう"
+        "caramel_coloring": "お好みで"
       }
     },
     "corn-n-oil": {
@@ -1524,21 +1524,21 @@
         "楽しむ！"
       ],
       "ingredientAmounts": {
-        "lime": "フレッシュジュースの味わい",
-        "coca_cola": "補充する",
-        "ice": "必要に応じて"
+        "lime": "搾りたての果汁をお好みで",
+        "coca_cola": "グラスを満たす分",
+        "ice": "必要な分だけ"
       }
     },
     "cuba-libre": {
-      "name": "キューバリブレ",
-      "description": "氷を満たしたコリンズグラスですべての材料を作ります。ライムウェッジを飾ります。",
+      "name": "キューバ・リブレ",
+      "description": "氷を入れたコリンズグラスに材料を直接注ぎ、くし形に切ったライムを飾ります。",
       "preparationSteps": [
-        "指定された量のレモンまたはライムを絞ります。飲み物には果汁のみを使用してください。",
-        "氷を満たしたコリンズグラスですべての材料を作ります",
-        "ライムウェッジを飾ります。"
+        "指定量のレモンまたはライムを搾り、果汁だけを使います。",
+        "氷を入れたコリンズグラスに材料を直接注ぎます。",
+        "くし形に切ったライムを飾ります。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "補充する"
+        "coca_cola": "グラスを満たす分"
       }
     },
     "daiquiri": {
@@ -1587,18 +1587,18 @@
         "その後、グラスにオレンジジュースと氷を入れます。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "death-in-the-afternoon": {
-      "name": "午後の死",
+      "name": "Death in the Afternoon",
       "description": "グラスと両方の材料を冷やします。アブサンを注ぎ、シャンパンをゆっくりと注ぎ、お召し上がりください。",
       "preparationSteps": [
         "グラスと両方の材料を冷やします。",
         "アブサンを注ぎ、シャンパンをゆっくりと注ぎ、お召し上がりください。"
       ],
       "ingredientAmounts": {
-        "champagne": "補充する"
+        "champagne": "グラスを満たす分"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "岩はオプションです。"
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "小さな浮き輪"
+        "151_proof_rum": "表面に薄く重ねる分"
       }
     },
     "dragonfly": {
@@ -1661,7 +1661,7 @@
         "チョコレートが溶けるまでかき混ぜます。マグカップ1～2つに分けてホイップクリームをトッピングします。"
       ],
       "ingredientAmounts": {
-        "whipped_cream": "付け合わせ用"
+        "whipped_cream": "飾り用"
       }
     },
     "dry-rob-roy": {
@@ -1718,7 +1718,7 @@
         "注: ノンアルコールエッグノッグの場合は、バーボンとラム酒を省略し、ミルクを 3 カップに増やすことを除いて、上記と同様にエッグノッグを準備します。"
       ],
       "ingredientAmounts": {
-        "nutmeg": "付け合わせ用"
+        "nutmeg": "飾り用"
       }
     },
     "egg-nog-healthy": {
@@ -1732,7 +1732,7 @@
         "6回分になります。"
       ],
       "ingredientAmounts": {
-        "nutmeg": "付け合わせ用"
+        "nutmeg": "飾り用"
       }
     },
     "egg-nog-classic-cooked": {
@@ -1776,8 +1776,8 @@
         "（お好みで炭酸水の代わりにジンジャーエールを使用しても良いです。）"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する",
-        "lemon": "味わう"
+        "soda_water": "グラスを満たす分",
+        "lemon": "お好みで"
       }
     },
     "english-rose-cocktail": {
@@ -1789,11 +1789,11 @@
         "チェリーをトッピングしてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "リム用"
+        "powdered_sugar": "グラスの縁用"
       }
     },
     "espresso-martini": {
-      "name": "エスプレッソマティーニ",
+      "name": "エスプレッソ・マティーニ",
       "description": "濃いめのエスプレッソを淹れ、少し冷まします。ウォッカ、コーヒーリキュール、シュガーシロップ、エスプレッソを氷の入ったシェーカーに加えます。泡立つまで激しくシェイクし、冷やしたカクテルグラスに注ぎます。",
       "preparationSteps": [
         "濃いめのエスプレッソを淹れ、少し冷まします。",
@@ -1826,8 +1826,8 @@
         "トニックをトッピングし、ビターズを加えます。"
       ],
       "ingredientAmounts": {
-        "tonic_water": "補充する",
-        "lemon": "フレッシュジュースの味わい"
+        "tonic_water": "グラスを満たす分",
+        "lemon": "搾りたての果汁をお好みで"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "フランス語 75",
+      "name": "フレンチ75",
       "description": "氷を満たしたカクテルシェーカーにジン、砂糖、レモン汁を入れて混ぜます。激しくシェイクし、冷えたシャンパングラスに注ぎます。シャンパンで補充してください。軽くかき混ぜます。",
       "preparationSteps": [
         "氷を満たしたカクテルシェーカーにジン、砂糖、レモン汁を入れて混ぜます。",
@@ -1973,14 +1973,14 @@
       "preparationSteps": [
         "イチゴに砂糖をまぜて冷蔵庫で一晩寝かせる",
         "レモンをカットし、スライスを2枚取っておきます",
-        "残りはジュースにする",
+        "残りのレモンを搾ります。",
         "レモン汁、イチゴ、リンゴジュース、ソーダ水を混ぜます。",
         "レモンのスライスを追加します（本当に飾りです）",
         "グラスに氷とリンゴのスライスを入れます",
         "飲み物を注いで、お召し上がりください。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "fruit-flip-flop": {
@@ -2007,7 +2007,7 @@
         "より本格的な味わいを楽しむために、可能な限りジャマイカ産ラム酒を使用してください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "gagliardo": {
@@ -2027,8 +2027,8 @@
         "これであなただけの GG が完成しました。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "補充する",
-        "ice": "必要に応じて"
+        "ginger_ale": "グラスを満たす分",
+        "ice": "必要な分だけ"
       }
     },
     "gimlet": {
@@ -2049,7 +2049,7 @@
         "オレンジとレモンの皮を飾ります。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "gin-daisy": {
@@ -2071,7 +2071,7 @@
         "ソーダ水を注ぎます。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "gin-rickey": {
@@ -2085,8 +2085,8 @@
         "ライムやレモンのスライスをグラスに飾ります。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する",
-        "lime": "味わう"
+        "soda_water": "グラスを満たす分",
+        "lime": "お好みで"
       }
     },
     "gin-sling": {
@@ -2127,7 +2127,7 @@
         "パイナップルの塊とイチゴを飾り、お召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "gin-swizzle": {
@@ -2157,11 +2157,11 @@
         "ハイボールグラスに氷を入れ、ジンを注ぎ、トニックウォーターを注いでレモンを絞り、レモンを飾ります。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "gluehwein": {
-      "name": "グリューヴァイン",
+      "name": "グリューワイン",
       "description": "水、砂糖、スパイスを砂糖が溶けるまで加熱し、30分間注入します。濾し、ワインとレモン汁を加え、沸騰させずに軽く加熱します。温かいままお召し上がりください。短時間加熱してもワインはアルコールフリーにはなりません。",
       "preparationSteps": [
         "水、砂糖、スパイスを砂糖が溶けるまで加熱し、30分間注入します。",
@@ -2232,7 +2232,7 @@
         "熱いコーヒーを注ぎ、かき混ぜます。"
       ],
       "ingredientAmounts": {
-        "coffee": "味わう"
+        "coffee": "お好みで"
       }
     },
     "halloween-punch": {
@@ -2256,9 +2256,9 @@
         "ギリガン島にちなんで名付けられました (「ジンジャー」の「キャプテン」はハッピー スキッパーです!)"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "補充する",
-        "lime": "味わう",
-        "ice": "必要に応じて"
+        "ginger_ale": "グラスを満たす分",
+        "lime": "お好みで",
+        "ice": "必要な分だけ"
       }
     },
     "harvey-wallbanger": {
@@ -2302,7 +2302,7 @@
         "スプーン、ストロー、またはできればシナモンスティックでかき混ぜてそのまま放置します。"
       ],
       "ingredientAmounts": {
-        "tea": "味わう"
+        "tea": "お好みで"
       }
     },
     "highland-fling-cocktail": {
@@ -2325,7 +2325,7 @@
         "最良の結果を得るには、混合物を 4 ～ 5 週間「熟成」させます。"
       ],
       "ingredientAmounts": {
-        "vodka": "5分の1ボトル"
+        "vodka": "1本（米国の5分の1ガロン瓶）"
       }
     },
     "honey-bee": {
@@ -2355,7 +2355,7 @@
         "マグカップに注ぎ、ミニマシュマロを加えます。"
       ],
       "ingredientAmounts": {
-        "marshmallows": "付け合わせ用"
+        "marshmallows": "飾り用"
       }
     },
     "hot-creamy-bush": {
@@ -2411,7 +2411,7 @@
         "炭酸水を注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "ipamena": {
@@ -2423,8 +2423,8 @@
         "濾してグラスに注ぎ、ジンジャーエールを注ぎ、軽くステアします。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "補充する",
-        "ice": "必要に応じて"
+        "ginger_ale": "グラスを満たす分",
+        "ice": "必要な分だけ"
       }
     },
     "irish-coffee": {
@@ -2461,7 +2461,7 @@
         "氷を加えないでください。"
       ],
       "ingredientAmounts": {
-        "guinness_stout": "補充する"
+        "guinness_stout": "グラスを満たす分"
       }
     },
     "irish-spring": {
@@ -2514,8 +2514,8 @@
         "滑らかになるまでブレンドし、すぐにお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて",
-        "milk": "味わう"
+        "ice": "必要な分だけ",
+        "milk": "お好みで"
       }
     },
     "jamaican-coffee": {
@@ -2527,7 +2527,7 @@
         "よく挽いたコーヒーをひとつまみ加え、ストローで飲みます。"
       ],
       "ingredientAmounts": {
-        "whipped_cream": "付け合わせ用"
+        "whipped_cream": "飾り用"
       }
     },
     "japanese-fizz": {
@@ -2539,7 +2539,7 @@
         "炭酸水を注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "それはとても簡単です！"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "john-collins": {
@@ -2600,8 +2600,8 @@
         "背の高いグラスに 1 杯、中くらいのグラスに 2 杯、または小さなグラスに 3 杯注ぎ、飲み干します。"
       ],
       "ingredientAmounts": {
-        "syrup_chocolate": "味わう",
-        "syrup_mint": "味わう"
+        "syrup_chocolate": "お好みで",
+        "syrup_mint": "お好みで"
       }
     },
     "kamikaze": {
@@ -2652,7 +2652,7 @@
         "熱いコーヒーを注ぎ、かき混ぜます。必要に応じてホイップクリームを追加します。"
       ],
       "ingredientAmounts": {
-        "coffee": "味わう"
+        "coffee": "お好みで"
       }
     },
     "kir-royale": {
@@ -2669,7 +2669,7 @@
         "グラスの中で混ぜる"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "kiwi-lemon": {
@@ -2681,7 +2681,7 @@
         "キウイのスライスを飾ります。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "kiwi-martini": {
@@ -2708,7 +2708,7 @@
         "好みでクランベリージュースを少し加える。"
       ],
       "ingredientAmounts": {
-        "juice_cranberry": "味わう"
+        "juice_cranberry": "お好みで"
       }
     },
     "kurant-tea": {
@@ -2720,8 +2720,8 @@
         "楽しむ！"
       ],
       "ingredientAmounts": {
-        "tea": "味わう",
-        "sugar": "味わう"
+        "tea": "お好みで",
+        "sugar": "お好みで"
       }
     },
     "lady-love-fizz": {
@@ -2733,7 +2733,7 @@
         "炭酸水を注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2782,9 +2782,9 @@
         "伝統的なサラダの代わりにライタを作ることもできます。"
       ],
       "ingredientAmounts": {
-        "sugar": "味わう",
-        "lime": "味わう",
-        "salt": "味わう"
+        "sugar": "お好みで",
+        "lime": "お好みで",
+        "salt": "お好みで"
       }
     },
     "lazy-coconut-paloma": {
@@ -2795,7 +2795,7 @@
         "ココナッツリキュールとグレープフルーツジュースを加え、ソーダ水を注ぎ、軽くかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "シェイクして、砂糖を入れた冷やしたカクテルグラスに注ぎます。"
       ],
       "ingredientAmounts": {
-        "sugar": "リム用"
+        "sugar": "グラスの縁用"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "すべての材料を氷の上に注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "補充する"
+        "fresh_lemon_juice": "グラスを満たす分"
       }
     },
     "lemon-shot": {
@@ -2827,7 +2827,7 @@
         "砂糖をまぶしたレモンを添えてお召し上がりください。消灯してお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "味わう"
+        "151_proof_rum": "お好みで"
       }
     },
     "lemouroudji": {
@@ -2842,7 +2842,7 @@
         "冷やしてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "cayenne_pepper": "付け合わせ用"
+        "cayenne_pepper": "飾り用"
       }
     },
     "limeade": {
@@ -2857,8 +2857,8 @@
         "ライムまたはソーダがなくなるまで繰り返します。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する",
-        "lime_peel": "付け合わせ用"
+        "soda_water": "グラスを満たす分",
+        "lime_peel": "飾り用"
       }
     },
     "loch-lomond": {
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "ローンツリークーラー",
+      "name": "Lone Tree Cooler",
       "description": "コリンズグラスに入れた約60mlのソーダ水に砂糖を溶かします。氷、ジン、ドライベルモットを加えてかき混ぜます。さらにソーダ水を注ぎ、柑橘類の皮を飾ります。",
       "preparationSteps": [
         "コリンズグラスに入れた約60mlのソーダ水に砂糖を溶かします。",
@@ -2896,7 +2896,7 @@
         "さらにソーダ水を注ぎ、柑橘類の皮を飾ります。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "コーラを注ぎ、軽くかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "補充する"
+        "coca_cola": "グラスを満たす分"
       }
     },
     "long-vodka": {
@@ -2955,10 +2955,10 @@
         "ソーダ水を注ぎ、グラスに均等に注ぎます。"
       ],
       "ingredientAmounts": {
-        "mint": "味わう",
-        "ice": "必要に応じて",
-        "soda_water": "補充する",
-        "sugar": "味わう"
+        "mint": "お好みで",
+        "ice": "必要な分だけ",
+        "soda_water": "グラスを満たす分",
+        "sugar": "お好みで"
       }
     },
     "manhattan": {
@@ -2978,7 +2978,7 @@
         "他の材料を氷と一緒にシェイクし、慎重にグラスに注ぎます。"
       ],
       "ingredientAmounts": {
-        "salt": "味わう"
+        "salt": "お好みで"
       }
     },
     "martinez-2": {
@@ -3019,8 +3019,8 @@
         "それでおしまい。"
       ],
       "ingredientAmounts": {
-        "sugar": "味わう",
-        "milk": "味わう"
+        "sugar": "お好みで",
+        "milk": "お好みで"
       }
     },
     "mauresque": {
@@ -3033,7 +3033,7 @@
         "最後に氷を加えます。そうしないと、シロップとパスティスがよく混ざりません。"
       ],
       "ingredientAmounts": {
-        "water": "補充する"
+        "water": "グラスを満たす分"
       }
     },
     "melya": {
@@ -3053,8 +3053,8 @@
         "2つの冷凍混合物を大きなグラスに重ねます。ソースにより、準備された両方の混合物の量は可変のままになります。"
       ],
       "ingredientAmounts": {
-        "pina_colada_mix": "味わう",
-        "daiquiri_mix": "味わう"
+        "pina_colada_mix": "お好みで",
+        "daiquiri_mix": "お好みで"
       }
     },
     "michelada": {
@@ -3099,7 +3099,7 @@
         "耐熱マグカップに注ぎ、生クリームを添えます。"
       ],
       "ingredientAmounts": {
-        "whipped_cream": "付け合わせ用"
+        "whipped_cream": "飾り用"
       }
     },
     "mojito": {
@@ -3113,7 +3113,7 @@
         "飾り付けをし、ストローを添えてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "mojito-extra": {
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "ホットワイン",
+      "name": "ブランデー入りホットワイン",
       "description": "ステンレス鍋に3カップの水、砂糖、クローブ、シナモンスティック、レモンの皮を入れて10分間煮ます。ワインを「コーヒー温度」まで加熱し（沸騰させないでください）、ブランデーを加えます。",
       "preparationSteps": [
         "ステンレス鍋に3カップの水、砂糖、クローブ、シナモンスティック、レモンの皮を入れて10分間煮ます。",
@@ -3180,7 +3180,7 @@
         "ジンジャービールを注ぎ、軽くかき混ぜ、キュウリを飾ります。"
       ],
       "ingredientAmounts": {
-        "cucumber": "付け合わせ用"
+        "cucumber": "飾り用"
       }
     },
     "national-aquarium": {
@@ -3191,7 +3191,7 @@
         "背の高いグラスに新しい氷を入れて濾し、ソーダを加えて軽くかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "スプラッシュ"
+        "lemon_lime_soda": "少量"
       }
     },
     "negroni": {
@@ -3219,8 +3219,8 @@
         "赤ワインをスプーンの背にゆっくりと注ぎ、上に浮かべます。チェリーを飾ります。"
       ],
       "ingredientAmounts": {
-        "wine_red": "味わう",
-        "cherry": "付け合わせ用"
+        "wine_red": "お好みで",
+        "cherry": "飾り用"
       }
     },
     "nuked-hot-chocolate": {
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "昔ながらの",
+      "name": "オールドファッションド",
       "description": "オールドファッションドグラスに角砂糖を入れてビターズを染み込ませ、少量の水を加えます。溶けるまで混ぜます。\r\nグラスに氷を入れてウイスキーを注ぎます。\r\n\r\nオレンジツイストとカクテルチェリーを飾ります。",
       "preparationSteps": [
         "オールドファッションドグラスに角砂糖を入れてビターズを染み込ませ、少しの水を加えます",
@@ -3294,7 +3294,7 @@
         "ジンジャーエールを注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "補充する"
+        "ginger_ale": "グラスを満たす分"
       }
     },
     "orange-push-up": {
@@ -3305,22 +3305,22 @@
         "大きめのグラスに注ぎます。"
       ],
       "ingredientAmounts": {
-        "sour_mix": "スプラッシュ"
+        "sour_mix": "少量"
       }
     },
     "orange-rosemary-collins": {
-      "name": "オレンジ色のローズマリー・コリンズ",
+      "name": "オレンジとローズマリーのコリンズ",
       "description": "スピリッツをグラスの底に加え、ミキサードリンクを均等に注ぎます。グラスの中にオレンジのスライスを飾り、上にローズマリーを飾ります。",
       "preparationSteps": [
-        "スピリッツをグラスの底に加え、ミキサードリンクを均等に注ぎます。",
+        "グラスにスピリッツを注ぎ、ノンアルコールの割り材を同量ずつ加えます。",
         "グラスの中にオレンジのスライスを飾り、上にローズマリーを飾ります。"
       ],
       "ingredientAmounts": {
-        "juice_orange": "補充する",
-        "lemon": "補充する",
-        "soda_water": "補充する",
-        "rosemary": "味わう",
-        "orange": "味わう"
+        "juice_orange": "グラスを満たす分",
+        "lemon": "グラスを満たす分",
+        "soda_water": "グラスを満たす分",
+        "rosemary": "お好みで",
+        "orange": "お好みで"
       }
     },
     "orange-scented-hot-chocolate": {
@@ -3341,17 +3341,17 @@
         "2回分になります。"
       ],
       "ingredientAmounts": {
-        "orange": "2 インチのストリップ 3 枚"
+        "orange": "2インチの細切り3本"
       }
     },
     "orange-whip": {
-      "name": "オレンジホイップ",
+      "name": "Orange Whip",
       "description": "材料を氷の上に注ぎ、かき混ぜます。",
       "preparationSteps": [
         "材料を氷の上に注ぎ、かき混ぜます。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "orangeade": {
@@ -3362,7 +3362,7 @@
         "冷たいソーダ水を注ぎ、ストローを添えてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "パッションフルーツ半分を飾ります。"
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "補充する"
+        "juice_passion_fruit": "グラスを満たす分"
       }
     },
     "pegu-club": {
@@ -3459,8 +3459,8 @@
         "新鮮なパイナップルまたはライムを飾ります。"
       ],
       "ingredientAmounts": {
-        "lime": "味わう",
-        "pepper": "味わう"
+        "lime": "お好みで",
+        "pepper": "お好みで"
       }
     },
     "pink-gin": {
@@ -3490,7 +3490,7 @@
         "花と緑の葉を追加すると、特別な外観になります。"
       ],
       "ingredientAmounts": {
-        "blackberries": "味わう"
+        "blackberries": "お好みで"
       }
     },
     "pink-panty-pulldowns": {
@@ -3517,11 +3517,11 @@
         "アロマティックビターズを泡の上に数滴垂らします。"
       ],
       "ingredientAmounts": {
-        "bitters": "いくつかのダッシュ"
+        "bitters": "ビターズを数ダッシュ"
       }
     },
     "planter-s-punch-178368-178368-178368": {
-      "name": "プランターズパンチ",
+      "name": "Planter's Punch",
       "description": "ビターズを除くすべての材料を氷を満たしたシェイカーに注ぎます よくシェイクします 氷を満たした大きなグラスに注ぎます アンゴスチュラ ビターズを「上に」加えます カクテルチェリーとパイナップルを飾ります。",
       "preparationSteps": [
         "ビターズを除くすべての材料を氷を入れたシェイカーに注ぎます",
@@ -3578,7 +3578,7 @@
         "上にナツメグを振りかけてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "nutmeg": "付け合わせ用"
+        "nutmeg": "飾り用"
       }
     },
     "porto-flip": {
@@ -3597,7 +3597,7 @@
         "よくかき混ぜてミントを飾ります。"
       ],
       "ingredientAmounts": {
-        "mint": "味わう"
+        "mint": "お好みで"
       }
     },
     "pysch-vitamin-light": {
@@ -3608,7 +3608,7 @@
         "新鮮な氷を入れた背の高いグラスに注ぎます。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "quaker-s-cocktail": {
@@ -3642,7 +3642,7 @@
         "レモンライムソーダを注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "補充する"
+        "lemon_lime_soda": "グラスを満たす分"
       }
     },
     "queen-elizabeth": {
@@ -3685,8 +3685,8 @@
         "ジンジャーエールでお腹を満たす。"
       ],
       "ingredientAmounts": {
-        "lemon": "味わう",
-        "ginger_ale": "補充する"
+        "lemon": "お好みで",
+        "ginger_ale": "グラスを満たす分"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "ハイボールグラスに濾し、ソーダ水をそっと注ぎます。ソーダは決して振らないでください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "raspberry-julep": {
@@ -3726,7 +3726,7 @@
         "飾り付けてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "味わう"
+        "powdered_sugar": "お好みで"
       }
     },
     "rosemary-blue": {
@@ -3739,7 +3739,7 @@
         "3) バースプーンで軽く混ぜ合わせます。"
       ],
       "ingredientAmounts": {
-        "rosemary": "味わう"
+        "rosemary": "お好みで"
       }
     },
     "royal-fizz": {
@@ -3750,7 +3750,7 @@
         "コーラを入れてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "補充する"
+        "coca_cola": "グラスを満たす分"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "炭酸水を注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "グレナデンを加えてかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "grenadine": "2つの水しぶき"
+        "grenadine": "少量を2回"
       }
     },
     "rum-cobbler": {
@@ -3803,7 +3803,7 @@
         "上にナツメグを振りかけてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "nutmeg": "付け合わせ用"
+        "nutmeg": "飾り用"
       }
     },
     "rum-old-fashioned": {
@@ -3824,7 +3824,7 @@
         "最後にジンジャーエールを加えて軽くかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "rum-runner": {
@@ -3860,7 +3860,7 @@
         "新鮮な氷を満たした背の高いグラスに濾し、スパークリングワインを注ぎます。"
       ],
       "ingredientAmounts": {
-        "prosecco": "補充する"
+        "prosecco": "グラスを満たす分"
       }
     },
     "rusty-nail": {
@@ -3888,8 +3888,8 @@
         "オレンジとイチゴを飾ります。"
       ],
       "ingredientAmounts": {
-        "grenadine": "味わう",
-        "juice_orange": "味わう"
+        "grenadine": "お好みで",
+        "juice_orange": "お好みで"
       }
     },
     "sangria": {
@@ -3901,8 +3901,8 @@
         "ワイングラスでお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "cloves": "味わう",
-        "cinnamon": "味わう"
+        "cloves": "お好みで",
+        "cinnamon": "お好みで"
       }
     },
     "sazerac": {
@@ -3939,7 +3939,7 @@
         "ウォッカを加え、オレンジジュースを加えて軽くかき混ぜます。"
       ],
       "ingredientAmounts": {
-        "juice_orange": "味わう"
+        "juice_orange": "お好みで"
       }
     },
     "sea-breeze": {
@@ -3972,8 +3972,8 @@
         "上にナツメグを振りかけてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "milk": "味わう",
-        "nutmeg": "付け合わせ用"
+        "milk": "お好みで",
+        "nutmeg": "飾り用"
       }
     },
     "sherry-flip": {
@@ -3984,7 +3984,7 @@
         "上にナツメグを振りかけてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "nutmeg": "付け合わせ用"
+        "nutmeg": "飾り用"
       }
     },
     "shot-gun": {
@@ -4018,7 +4018,7 @@
         "すぐにお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "snowday": {
@@ -4030,7 +4030,7 @@
         "オレンジピールをドリンクの上に乗せて飾ります。"
       ],
       "ingredientAmounts": {
-        "orange": "味わう"
+        "orange": "お好みで"
       }
     },
     "sol-y-sombra": {
@@ -4051,9 +4051,9 @@
         "オレンジジュースを注ぎ、グレナデンを加えて味を調え、チェリーを飾ります。"
       ],
       "ingredientAmounts": {
-        "juice_orange": "味わう",
-        "grenadine": "味わう",
-        "cherry": "付け合わせ用"
+        "juice_orange": "お好みで",
+        "grenadine": "お好みで",
+        "cherry": "飾り用"
       }
     },
     "spice-75": {
@@ -4066,7 +4066,7 @@
         "6つのフルートに分け、それぞれに100mlのシャンパンを加え、オレンジピールを飾ります。"
       ],
       "ingredientAmounts": {
-        "orange_spiral": "味わう"
+        "orange_spiral": "お好みで"
       }
     },
     "spritz": {
@@ -4076,7 +4076,7 @@
         "氷を入れたグラスに注ぎ、飾り付けてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "スプラッシュ"
+        "soda_water": "少量"
       }
     },
     "stinger": {
@@ -4112,10 +4112,10 @@
         "背の高いグラスにストローを添えてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "orange": "付け合わせ用",
-        "lime": "付け合わせ用",
-        "lemon": "味わう",
-        "fresca": "補充する"
+        "orange": "飾り用",
+        "lime": "飾り用",
+        "lemon": "お好みで",
+        "fresca": "グラスを満たす分"
       }
     },
     "tennesee-mud": {
@@ -4126,7 +4126,7 @@
         "その上にクリームを加えます。"
       ],
       "ingredientAmounts": {
-        "whipped_cream": "付け合わせ用"
+        "whipped_cream": "飾り用"
       }
     },
     "tequila-fizz": {
@@ -4137,7 +4137,7 @@
         "ジンジャーエールを注ぎ、かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "補充する"
+        "ginger_ale": "グラスを満たす分"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "タバスコソースを数滴加えます。"
       ],
       "ingredientAmounts": {
-        "tequila": "補充する"
+        "tequila": "グラスを満たす分"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "最初は甘くて、最後に一口..."
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "スプラッシュ"
+        "sweet_and_sour": "少量"
       }
     },
     "texas-sling": {
@@ -4199,7 +4199,7 @@
         "こうすることで、クリームがコーヒーの中にすぐに分散するのではなく、コーヒーの上に浮いてきます。"
       ],
       "ingredientAmounts": {
-        "whipped_cream": "付け合わせ用"
+        "whipped_cream": "飾り用"
       }
     },
     "thai-iced-coffee": {
@@ -4212,9 +4212,9 @@
         "スプーンの背にクリームをゆっくりと加えて、別の上層を作ります。"
       ],
       "ingredientAmounts": {
-        "coffee": "味わう",
-        "cream": "味わう",
-        "sugar": "味わう"
+        "coffee": "お好みで",
+        "cream": "お好みで",
+        "sugar": "お好みで"
       }
     },
     "thai-iced-tea": {
@@ -4227,8 +4227,8 @@
         "2回分になります。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて",
-        "mint": "付け合わせ用"
+        "ice": "必要な分だけ",
+        "mint": "飾り用"
       }
     },
     "the-galah": {
@@ -4238,8 +4238,8 @@
         "アルコール部分を混ぜ合わせ、パイナップルとライムのジュースを注ぎます。"
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "補充する",
-        "lime": "補充する"
+        "juice_pineapple": "グラスを満たす分",
+        "lime": "グラスを満たす分"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "冷やしたグラスに濾し、プロセッコを注ぎます。"
       ],
       "ingredientAmounts": {
-        "prosecco": "補充する"
+        "prosecco": "グラスを満たす分"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "氷を入れてシェイクし、濾してショットグラスに注ぎます。"
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "スプラッシュ"
+        "juice_pineapple": "少量"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "炭酸水を注ぎ、再度かき混ぜてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "vesper": {
@@ -4433,8 +4433,8 @@
         "大きめの白ワイングラスに注ぎ、ナツメグをふりかけます。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて",
-        "nutmeg": "付け合わせ用"
+        "ice": "必要な分だけ",
+        "nutmeg": "飾り用"
       }
     },
     "vodka-martini": {
@@ -4445,7 +4445,7 @@
       ]
     },
     "whiskey-sour": {
-      "name": "ウィスキーサワー",
+      "name": "ウイスキーサワー",
       "description": "氷と一緒にシェイクします。冷やしたグラスに濾し、飾り付けてお召し上がりください。 「オン・ザ・ロック」で提供する場合は、氷を満たした昔ながらのグラスに材料を濾します。",
       "preparationSteps": [
         "指定された量のレモンまたはライムを絞ります。飲み物には果汁のみを使用してください。",
@@ -4477,7 +4477,7 @@
         "軽いクリームを詰めてお召し上がりください。"
       ],
       "ingredientAmounts": {
-        "light_cream": "味わう"
+        "light_cream": "お好みで"
       }
     },
     "white-wine-sangria": {
@@ -4489,7 +4489,7 @@
         "ソーダ水で味を調えてください。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "グレープフルーツジュースを注ぎ、食品グレードのコショウを少々加えてかき混ぜます。これは簡略化されたバージョンです。オリジナルでは、調製されたコショウを注入したテキーラを使用します。"
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "補充する"
+        "juice_grapefruit": "グラスを満たす分"
       }
     },
     "winter-rita": {
@@ -4542,7 +4542,7 @@
         "滑らかになるまでブレンドし、グラスに注ぎます。さらに氷を加える前にブレンダーを停止してください。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "zambeer": {
@@ -4553,7 +4553,7 @@
         "氷を加える"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "ziemes-martini-apfelsaft": {
@@ -4572,7 +4572,7 @@
         "シャンボール、次にウォッカ、最後にソーダ水を注ぎます。層を保つためにゆっくりと注ぎます。"
       ],
       "ingredientAmounts": {
-        "soda_water": "補充する"
+        "soda_water": "グラスを満たす分"
       }
     },
     "zippy-s-revenge": {
@@ -4592,7 +4592,7 @@
         "軽くかき混ぜ、必要に応じてレモンスライスを飾ります。"
       ],
       "ingredientAmounts": {
-        "ice": "必要に応じて"
+        "ice": "必要な分だけ"
       }
     },
     "zoksel": {
@@ -4604,12 +4604,12 @@
         "軽くかき混ぜ、レモンスライスを飾ります。炭酸成分を振らないでください。"
       ],
       "ingredientAmounts": {
-        "coca_cola": "味わう",
-        "beer": "味わう",
-        "root_beer": "味わう",
-        "lemonade": "補充する",
-        "7_up": "味わう",
-        "creme_de_cassis": "味わう"
+        "coca_cola": "お好みで",
+        "beer": "お好みで",
+        "root_beer": "お好みで",
+        "lemonade": "グラスを満たす分",
+        "7_up": "お好みで",
+        "creme_de_cassis": "お好みで"
       }
     },
     "zombie": {
@@ -4636,8 +4636,8 @@
         "すべて加えてブラックコーヒーを注ぎ、その上にホイップクリームを加えます。"
       ],
       "ingredientAmounts": {
-        "coffee": "補充する",
-        "whipped_cream": "付け合わせ用"
+        "coffee": "グラスを満たす分",
+        "whipped_cream": "飾り用"
       }
     }
   }

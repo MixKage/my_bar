@@ -103,6 +103,11 @@ ExternalIngredient normalizeTheCocktailDbIngredientRaw(
     'Ингредиенты',
   ]);
 
+  final aliases = <String>{
+    name,
+    _firstNonEmptyString(<Object?>[raw['strIngredient']]),
+    _firstNonEmptyString(<Object?>[raw['strIngredientAlt']]),
+  }.where((alias) => alias.isNotEmpty).toList(growable: false);
   return ExternalIngredient(
     identity: CatalogIdentity(
       source: source,
@@ -112,6 +117,7 @@ ExternalIngredient normalizeTheCocktailDbIngredientRaw(
     ingredient: Ingredient(
       id: mappedKey,
       name: name,
+      aliases: aliases,
       category: category,
       image: image,
       glowColor: _firstNonEmptyString(<Object?>[raw['glowColor']]),
@@ -123,10 +129,7 @@ ExternalIngredient normalizeTheCocktailDbIngredientRaw(
       glowScale: _parseDouble(raw['glowScale'], fallback: 1),
       glowOpacity: _parseDouble(raw['glowOpacity'], fallback: 0.34),
     ),
-    aliases: <String>[
-      if (name.isNotEmpty) name,
-      _firstNonEmptyString(<Object?>[raw['strIngredient']]),
-    ].where((alias) => alias.trim().isNotEmpty).toSet().toList(growable: false),
+    aliases: aliases,
   );
 }
 

@@ -117,9 +117,16 @@ class ExternalIngredient {
               .toList(growable: false)
         : const <String>[];
 
+    final ingredient = _castMap(json['ingredient']);
     return ExternalIngredient(
       identity: CatalogIdentity.fromJson(_castMap(json['identity'])),
-      ingredient: Ingredient.fromJson(_castMap(json['ingredient'])),
+      ingredient: Ingredient.fromJson({
+        ...ingredient,
+        'aliases': [
+          ...aliases,
+          if (ingredient['aliases'] case final List values) ...values,
+        ],
+      }),
       aliases: aliases,
     );
   }
@@ -326,6 +333,7 @@ class IngredientPatch {
       name: name ?? baseline.name,
       category: category ?? baseline.category,
       image: image ?? baseline.image,
+      aliases: baseline.aliases,
       isDecoration: isDecoration ?? baseline.isDecoration,
       isOptional: isOptional ?? baseline.isOptional,
       glowColor: baseline.glowColor,
@@ -496,6 +504,7 @@ class CocktailPatch {
       preparationSteps: preparationSteps ?? baseline.preparationSteps,
       glassType: glassType ?? baseline.glassType,
       tags: tags ?? baseline.tags,
+      aliases: baseline.aliases,
       ingredientSubstitutions:
           ingredientSubstitutions ?? baseline.ingredientSubstitutions,
       ingredientAmounts: ingredientAmounts ?? baseline.ingredientAmounts,

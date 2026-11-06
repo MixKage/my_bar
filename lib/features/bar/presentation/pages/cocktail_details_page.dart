@@ -253,7 +253,8 @@ class _CocktailDetailsPageState extends State<CocktailDetailsPage> {
                             final amount = cocktail.ingredientAmountLabel(
                               ingredientId,
                               measurementSystem: widget.measurementSystem,
-                              unitLabelResolver: context.ingredientUnitLabel,
+                              measuredUnitLabelResolver:
+                                  context.measuredIngredientUnitLabel,
                               servings: _servings,
                             );
                             final isOptional = cocktail.isIngredientOptional(

@@ -1,7 +1,7 @@
 {
   "locale": "ko",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "프루프 럼 151개"
@@ -13,16 +13,16 @@
       "name": "압생트"
     },
     "absolut_citron": {
-      "name": "앱솔루트 시트론"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
-      "name": "앱솔루트 쿠란트"
+      "name": "Absolut Kurant"
     },
     "absolut_peppar": {
-      "name": "앱솔루트 페퍼"
+      "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "앱솔루트 보드카"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "옹호자"
@@ -31,10 +31,10 @@
       "name": "아가베 시럽"
     },
     "ale": {
-      "name": "에일"
+      "name": "에일 맥주"
     },
     "allspice": {
-      "name": "피망"
+      "name": "올스파이스"
     },
     "almond_flavoring": {
       "name": "아몬드 향료"
@@ -43,7 +43,7 @@
       "name": "아마레또"
     },
     "amaro_montenegro": {
-      "name": "아마로 몬테네그로"
+      "name": "Amaro Montenegro"
     },
     "angelica_root": {
       "name": "안젤리카 뿌리"
@@ -70,13 +70,13 @@
       "name": "사과 브랜디"
     },
     "apple_cider": {
-      "name": "사과 사이다"
+      "name": "애플 사이더"
     },
     "juice_apple": {
       "name": "사과 주스"
     },
     "applejack": {
-      "name": "사과 브랜디"
+      "name": "Applejack"
     },
     "apricot_brandy": {
       "name": "살구 브랜디"
@@ -91,7 +91,7 @@
       "name": "아녜호 럼"
     },
     "bacardi_limon": {
-      "name": "바카디 리몬"
+      "name": "Bacardi Limon"
     },
     "baileys_irish_cream": {
       "name": "베일리스 아이리시 크림"
@@ -100,7 +100,7 @@
       "name": "바나나"
     },
     "banana_liqueur": {
-      "name": "바나나 리큐어"
+      "name": "바나나 리큐르"
     },
     "beer": {
       "name": "맥주"
@@ -115,10 +115,10 @@
       "name": "비터 레몬"
     },
     "bitters": {
-      "name": "갈색 맥주"
+      "name": "칵테일 비터스"
     },
     "black_pepper": {
-      "name": "후추"
+      "name": "흑후추"
     },
     "black_sambuca": {
       "name": "블랙 삼부카"
@@ -130,7 +130,7 @@
       "name": "블랙베리 브랜디"
     },
     "blackcurrant_cordial": {
-      "name": "블랙커런트 코디얼"
+      "name": "블랙커런트 시럽"
     },
     "blackstrap_rum": {
       "name": "블랙스트랩 럼"
@@ -160,7 +160,7 @@
       "name": "버터스카치 슈납스"
     },
     "cachaca": {
-      "name": "카샤카"
+      "name": "카샤사"
     },
     "campari": {
       "name": "캄파리"
@@ -184,7 +184,7 @@
       "name": "셀러리 소금"
     },
     "chambord_raspberry_liqueur": {
-      "name": "샹보르 라즈베리 리큐어"
+      "name": "샹보르 라즈베리 리큐르"
     },
     "champagne": {
       "name": "샴페인"
@@ -196,7 +196,7 @@
       "name": "체리 브랜디"
     },
     "cherry_heering": {
-      "name": "체리히어링"
+      "name": "Cherry Heering"
     },
     "cherry_juice": {
       "name": "체리 주스"
@@ -217,7 +217,7 @@
       "name": "초콜릿 시럽"
     },
     "cider": {
-      "name": "사과주"
+      "name": "사과 발효주 (사이더)"
     },
     "cinnamon": {
       "name": "계피"
@@ -256,7 +256,7 @@
       "name": "코냑"
     },
     "cointreau": {
-      "name": "쿠앵트로"
+      "name": "코앵트로"
     },
     "condensed_milk": {
       "name": "연유"
@@ -280,10 +280,10 @@
       "name": "크랜베리 보드카"
     },
     "cream": {
-      "name": "크림"
+      "name": "생크림"
     },
     "cream_of_coconut": {
-      "name": "코코넛 크림"
+      "name": "가당 코코넛 크림"
     },
     "creme_de_banane": {
       "name": "크렘 드 바나나"
@@ -298,7 +298,7 @@
       "name": "크렘 드 뮈르"
     },
     "crown_royal": {
-      "name": "크라운 로얄"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "오이"
@@ -316,16 +316,16 @@
       "name": "데메라라 설탕"
     },
     "dr_pepper": {
-      "name": "닥터페퍼"
+      "name": "Dr. Pepper"
     },
     "drambuie": {
-      "name": "드람뷔에"
+      "name": "Drambuie"
     },
     "vermouth_dry": {
-      "name": "드라이 버몬트"
+      "name": "드라이 베르무트"
     },
     "dubonnet_rouge": {
-      "name": "듀보네 루즈"
+      "name": "Dubonnet Rouge"
     },
     "egg": {
       "name": "계란"
@@ -337,34 +337,34 @@
       "name": "달걀 노른자"
     },
     "elderflower_cordial": {
-      "name": "엘더플라워 코디얼"
+      "name": "엘더플라워 시럽"
     },
     "espresso": {
       "name": "에스프레소 커피"
     },
     "everclear": {
-      "name": "에버클리어"
+      "name": "Everclear"
     },
     "falernum": {
-      "name": "팔레르넘"
+      "name": "Falernum"
     },
     "figs": {
       "name": "무화과"
     },
     "firewater": {
-      "name": "화주"
+      "name": "Firewater"
     },
     "frangelico": {
-      "name": "프란젤리코"
+      "name": "Frangelico"
     },
     "fresca": {
-      "name": "프레스카"
+      "name": "Fresca"
     },
     "fresh_lemon_juice": {
-      "name": "신선한 레몬 주스"
+      "name": "갓 짠 레몬즙"
     },
     "fresh_lime_juice": {
-      "name": "신선한 라임 주스"
+      "name": "갓 짠 라임즙"
     },
     "fruit": {
       "name": "과일"
@@ -400,13 +400,13 @@
       "name": "골드 럼"
     },
     "goldschlager": {
-      "name": "골드슐라거"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "곡물알코올"
     },
     "grand_marnier": {
-      "name": "그랑 마르니에"
+      "name": "Grand Marnier"
     },
     "grape_juice": {
       "name": "포도 주스"
@@ -430,13 +430,13 @@
       "name": "석류 시럽"
     },
     "guinness_stout": {
-      "name": "기네스 스타우트"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "반반"
+      "name": "우유와 생크림 혼합액"
     },
     "heavy_cream": {
-      "name": "헤비크림"
+      "name": "고지방 생크림"
     },
     "honey": {
       "name": "꿀"
@@ -448,13 +448,13 @@
       "name": "뜨거운 초콜릿"
     },
     "hot_damn": {
-      "name": "젠장"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "핫소스"
     },
     "hpnotiq": {
-      "name": "힙노틱"
+      "name": "Hpnotiq"
     },
     "ice": {
       "name": "얼음"
@@ -469,22 +469,22 @@
       "name": "아일레이 싱글몰트 스카치"
     },
     "jack_daniels": {
-      "name": "잭 다니엘스"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
-      "name": "예거마이스터"
+      "name": "Jägermeister"
     },
     "jello": {
-      "name": "젤로"
+      "name": "Jello"
     },
     "jim_beam": {
-      "name": "짐 빔"
+      "name": "Jim Beam"
     },
     "johnnie_walker": {
-      "name": "조니워커"
+      "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "깔루아"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "키위"
@@ -493,10 +493,10 @@
       "name": "키위 리큐어"
     },
     "kool_aid": {
-      "name": "쿨 에이드"
+      "name": "Kool-Aid"
     },
     "lager": {
-      "name": "라거"
+      "name": "라거 맥주"
     },
     "lavender": {
       "name": "라벤더"
@@ -505,13 +505,13 @@
       "name": "레몬"
     },
     "lemon_lime_soda": {
-      "name": "레몬라임소다"
+      "name": "레몬라임 소다"
     },
     "lemonade": {
       "name": "레모네이드"
     },
     "light_cream": {
-      "name": "라이트 크림"
+      "name": "저지방 크림"
     },
     "rum_light": {
       "name": "가벼운 럼"
@@ -565,7 +565,7 @@
       "name": "우유"
     },
     "mint": {
-      "name": "박하"
+      "name": "민트"
     },
     "syrup_mint": {
       "name": "민트 시럽"
@@ -580,10 +580,10 @@
       "name": "올리브"
     },
     "olive_brine": {
-      "name": "올리브 브라인"
+      "name": "올리브 절임물"
     },
     "orange": {
-      "name": "주황색"
+      "name": "오렌지"
     },
     "orange_bitter": {
       "name": "오렌지 비터스"
@@ -595,13 +595,13 @@
       "name": "오렌지 주스"
     },
     "orange_spiral": {
-      "name": "주황색 나선형"
+      "name": "나선형 오렌지 껍질"
     },
     "oreo_cookie": {
       "name": "오레오 쿠키"
     },
     "orgeat_syrup": {
-      "name": "오르제 시럽"
+      "name": "오르자 아몬드 시럽"
     },
     "ouzo": {
       "name": "우조"
@@ -616,7 +616,7 @@
       "name": "패션프루트 시럽"
     },
     "passoa": {
-      "name": "파소아"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "피치 비터스"
@@ -643,10 +643,10 @@
       "name": "페르노"
     },
     "peychauds_bitter": {
-      "name": "페이쇼 비터스"
+      "name": "페이쇼즈 비터스"
     },
     "pina_colada_mix": {
-      "name": "피나콜라다 믹스"
+      "name": "피냐 콜라다 믹스"
     },
     "pineapple": {
       "name": "파인애플"
@@ -661,7 +661,7 @@
       "name": "핑크 레모네이드"
     },
     "pisang_ambon": {
-      "name": "피상 암본"
+      "name": "Pisang Ambon"
     },
     "pisco": {
       "name": "피스코"
@@ -670,7 +670,7 @@
       "name": "석류 주스"
     },
     "port": {
-      "name": "포트"
+      "name": "포트 와인"
     },
     "powdered_sugar": {
       "name": "가루 설탕"
@@ -700,7 +700,7 @@
       "name": "루트비어"
     },
     "rose": {
-      "name": "장미"
+      "name": "로제 와인"
     },
     "rosemary": {
       "name": "로즈마리"
@@ -712,7 +712,7 @@
       "name": "로소 베르무트"
     },
     "ruby_port": {
-      "name": "루비 포트"
+      "name": "루비 포트 와인"
     },
     "rum": {
       "name": "럼"
@@ -730,7 +730,7 @@
       "name": "사르사파릴라"
     },
     "schweppes_russchian": {
-      "name": "Schweppes 러시아어"
+      "name": "Schweppes Russchian"
     },
     "scotch": {
       "name": "스카치"
@@ -748,13 +748,13 @@
       "name": "슬로 진"
     },
     "soda_water": {
-      "name": "소다수"
+      "name": "탄산수"
     },
     "sour_mix": {
       "name": "사워 믹스"
     },
     "southern_comfort": {
-      "name": "서던 컴포트"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "간장"
@@ -763,10 +763,10 @@
       "name": "매콤한 럼"
     },
     "sprite": {
-      "name": "요정"
+      "name": "Sprite"
     },
     "st_germain": {
-      "name": "세인트제르맹"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "딸기"
@@ -781,7 +781,7 @@
       "name": "설탕시럽"
     },
     "surge": {
-      "name": "급등하다"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "달콤하고 신맛"
@@ -802,7 +802,7 @@
       "name": "백리향"
     },
     "tia_maria": {
-      "name": "티아 마리아"
+      "name": "Tia Maria"
     },
     "juice_tomato": {
       "name": "토마토 주스"
@@ -811,7 +811,7 @@
       "name": "토닉 워터"
     },
     "triple_sec": {
-      "name": "트리플 초"
+      "name": "트리플 섹"
     },
     "vanilla": {
       "name": "바닐라"
@@ -826,7 +826,7 @@
       "name": "바닐라 시럽"
     },
     "vermouth": {
-      "name": "버몬트"
+      "name": "베르무트"
     },
     "vodka": {
       "name": "보드카"
@@ -844,10 +844,10 @@
       "name": "화이트 크렘 드 망트"
     },
     "wine_white": {
-      "name": "백포도주"
+      "name": "화이트 와인"
     },
     "wild_turkey": {
-      "name": "야생 칠면조"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "와인"
@@ -856,7 +856,7 @@
       "name": "우스터 소스"
     },
     "wormwood": {
-      "name": "고민"
+      "name": "쓴쑥"
     },
     "chartreuse_yellow": {
       "name": "노란색 샤르트뢰즈"
@@ -865,22 +865,22 @@
       "name": "요구르트"
     },
     "yukon_jack": {
-      "name": "유콘 잭"
+      "name": "Yukon Jack"
     },
     "zima": {
-      "name": "지마"
+      "name": "Zima"
     },
     "peach_puree": {
       "name": "백도 퓨레"
     },
     "grapefruit_soda": {
-      "name": "자몽 소다"
+      "name": "자몽 탄산음료"
     },
     "creme_de_violette": {
       "name": "크렘 드 바이올렛"
     },
     "orange_flower_water": {
-      "name": "오렌지꽃수"
+      "name": "오렌지꽃 워터"
     },
     "cinnamon_syrup": {
       "name": "계피 시럽"
@@ -960,7 +960,7 @@
         "소다수를 분출하여 보충하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "클럽 소다를 얹고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "affinity": {
@@ -1042,7 +1042,7 @@
         "오렌지 슬라이스와 레몬 껍질로 장식합니다."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "신선한 얼음 위에 하이볼 글라스에 걸러냅니다."
       ],
       "ingredientAmounts": {
-        "cream": "충전"
+        "cream": "잔을 채울 만큼"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "티모 하이미(Timo Haimi)가 만든 이 음료는 1991년 핀란디아 보드카 롱 드링크 대회에서 1위를 차지했습니다."
       ],
       "ingredientAmounts": {
-        "lemonade": "충전"
+        "lemonade": "잔을 채울 만큼"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "차가운 유리잔에 따른 후 프로세코를 얹습니다."
       ],
       "ingredientAmounts": {
-        "prosecco": "충전"
+        "prosecco": "잔을 채울 만큼"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "펀치볼에 얼음을 추가하고 탄산음료가 매우 차갑다면 가장 잘 작동합니다."
       ],
       "ingredientAmounts": {
-        "everclear": "1 다섯번째 병",
-        "vodka": "1 다섯번째 병"
+        "everclear": "1병(미국 갤런의 5분의 1)",
+        "vodka": "1병(미국 갤런의 5분의 1)"
       }
     },
     "bramble": {
@@ -1289,7 +1289,7 @@
         "신선한 요리용 쑥, 럼, 스카치 위스키, 비터스를 추가한 다음 저어줍니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "brooklyn": {
@@ -1324,8 +1324,8 @@
         "젓다."
       ],
       "ingredientAmounts": {
-        "coffee": "맛보기",
-        "brandy": "맛보기"
+        "coffee": "기호에 맞게",
+        "brandy": "기호에 맞게"
       }
     },
     "caipirinha": {
@@ -1344,7 +1344,7 @@
         "화이트 럼과 으깬 얼음을 추가합니다. 철저히 저어주세요."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "campari-beer": {
@@ -1397,7 +1397,7 @@
         "탄산수를 채우고 저어준 후 드세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "chocolate-drink": {
@@ -1410,7 +1410,7 @@
         "끓이지 마세요! 커피 머그에 담아주세요."
       ],
       "ingredientAmounts": {
-        "water": "필요에 따라"
+        "water": "필요한 만큼"
       }
     },
     "chocolate-milk": {
@@ -1473,7 +1473,7 @@
         "리큐어의 부드러운 느낌을 좋아한다면 완성된 제품에 글리세린 1티스푼 정도를 추가할 수 있습니다."
       ],
       "ingredientAmounts": {
-        "caramel_coloring": "맛보기"
+        "caramel_coloring": "기호에 맞게"
       }
     },
     "corn-n-oil": {
@@ -1524,21 +1524,21 @@
         "즐기다!"
       ],
       "ingredientAmounts": {
-        "lime": "맛볼 수 있는 신선한 주스",
-        "coca_cola": "충전",
-        "ice": "필요에 따라"
+        "lime": "갓 짠 과즙을 기호에 맞게",
+        "coca_cola": "잔을 채울 만큼",
+        "ice": "필요한 만큼"
       }
     },
     "cuba-libre": {
       "name": "쿠바 리브레",
-      "description": "얼음을 채운 콜린스 잔에 모든 재료를 담으세요. 라임 웨지로 장식합니다.",
+      "description": "얼음을 채운 콜린스 잔에 재료를 바로 넣고 라임 조각으로 장식합니다.",
       "preparationSteps": [
-        "표시된 양의 레몬이나 라임을 짜냅니다. 음료에는 주스만 사용하세요.",
-        "얼음을 채운 콜린스 잔에 모든 재료를 담으세요.",
-        "라임 웨지로 장식합니다."
+        "표시된 양의 레몬이나 라임을 짜서 즙만 사용합니다.",
+        "얼음을 채운 콜린스 잔에 재료를 바로 넣습니다.",
+        "라임 조각으로 장식합니다."
       ],
       "ingredientAmounts": {
-        "coca_cola": "충전"
+        "coca_cola": "잔을 채울 만큼"
       }
     },
     "daiquiri": {
@@ -1587,18 +1587,18 @@
         "그런 다음 잔에 오렌지 주스와 얼음을 채웁니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "death-in-the-afternoon": {
-      "name": "오후의 죽음",
+      "name": "Death in the Afternoon",
       "description": "잔과 두 재료를 모두 식힙니다. 압생트를 붓고 천천히 샴페인을 얹어 서빙합니다.",
       "preparationSteps": [
         "잔과 두 재료를 모두 식힙니다.",
         "압생트를 붓고 천천히 샴페인을 얹어 서빙합니다."
       ],
       "ingredientAmounts": {
-        "champagne": "충전"
+        "champagne": "잔을 채울 만큼"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "바위는 선택사항입니다."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "작은 플로트"
+        "151_proof_rum": "표면에 얇게 띄울 만큼"
       }
     },
     "dragonfly": {
@@ -1776,8 +1776,8 @@
         "(원하시면 탄산수 대신 진저에일을 사용해도 됩니다.)"
       ],
       "ingredientAmounts": {
-        "soda_water": "충전",
-        "lemon": "맛보기"
+        "soda_water": "잔을 채울 만큼",
+        "lemon": "기호에 맞게"
       }
     },
     "english-rose-cocktail": {
@@ -1789,7 +1789,7 @@
         "체리를 얹고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "림용"
+        "powdered_sugar": "잔 가장자리용"
       }
     },
     "espresso-martini": {
@@ -1826,8 +1826,8 @@
         "토닉을 얹고 쓴맛을 첨가합니다."
       ],
       "ingredientAmounts": {
-        "tonic_water": "충전",
-        "lemon": "맛볼 수 있는 신선한 주스"
+        "tonic_water": "잔을 채울 만큼",
+        "lemon": "갓 짠 과즙을 기호에 맞게"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "프랑스어 75",
+      "name": "프렌치 75",
       "description": "얼음을 채운 칵테일 셰이커에 진, 설탕, 레몬즙을 섞습니다. 세게 흔든 후 차가운 샴페인 글래스에 따라냅니다. 샴페인으로 마무리하세요. 부드럽게 저어주세요.",
       "preparationSteps": [
         "얼음을 채운 칵테일 셰이커에 진, 설탕, 레몬즙을 넣고 섞습니다.",
@@ -1968,19 +1968,19 @@
       ]
     },
     "fruit-cooler": {
-      "name": "과일 쿨러",
+      "name": "프루트 쿨러",
       "description": "딸기에 설탕을 버무린 후 냉장고에 하룻밤 넣어두세요 레몬을 자르고 두 조각을 따로 남겨두세요 나머지는 착즙하세요 레몬즙, 딸기, 사과즙, 소다수를 섞으세요 레몬 조각을 추가하세요 (정말로) 유리잔에 얼음 조각을 넣고 사과 조각을 부어서 드세요.",
       "preparationSteps": [
         "딸기에 설탕을 버무린 뒤 냉장고에 하룻밤 넣어두세요",
         "레몬을 자르고 두 조각을 남겨두세요",
-        "나머지는 즙을 내어",
+        "남은 레몬의 즙을 짭니다.",
         "레몬즙, 딸기, 사과즙, 탄산수를 섞으세요.",
         "레몬 조각을 추가하세요(정말 장식적입니다)",
         "유리잔에 얼음을 넣고 사과 한 조각을 넣으세요",
         "음료를 부어서 서빙하세요."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "fruit-flip-flop": {
@@ -2007,7 +2007,7 @@
         "보다 정통적인 맛을 원할 경우 가능하면 자메이카 럼을 사용하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "gagliardo": {
@@ -2027,8 +2027,8 @@
         "이제 당신만의 GG가 생겼습니다."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "충전",
-        "ice": "필요에 따라"
+        "ginger_ale": "잔을 채울 만큼",
+        "ice": "필요한 만큼"
       }
     },
     "gimlet": {
@@ -2049,7 +2049,7 @@
         "오렌지와 레몬 껍질로 장식합니다."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "gin-daisy": {
@@ -2071,7 +2071,7 @@
         "소다수를 부어주세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "gin-rickey": {
@@ -2085,8 +2085,8 @@
         "라임 및/또는 레몬 조각으로 잔을 장식합니다."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전",
-        "lime": "맛보기"
+        "soda_water": "잔을 채울 만큼",
+        "lime": "기호에 맞게"
       }
     },
     "gin-sling": {
@@ -2127,7 +2127,7 @@
         "파인애플 덩어리와 딸기로 장식하고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "gin-swizzle": {
@@ -2157,11 +2157,11 @@
         "하이볼 글라스에 얼음을 채우고 진을 붓고 토닉 워터를 얹은 후 레몬 웨지를 짜내고 레몬 웨지로 장식합니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "gluehwein": {
-      "name": "글루바인",
+      "name": "글뤼바인 (뱅쇼)",
       "description": "물, 설탕, 향신료를 설탕이 녹을 때까지 가열한 후 30분간 우려냅니다. 걸러내고 와인과 레몬즙을 넣고 끓이지 않고 부드럽게 가열합니다. 뜨겁게 서빙하세요. 잠깐 가열한다고 해서 와인이 무알콜이 되는 것은 아닙니다.",
       "preparationSteps": [
         "물, 설탕, 향신료를 설탕이 녹을 때까지 가열한 후 30분간 우려냅니다.",
@@ -2232,7 +2232,7 @@
         "뜨거운 커피를 얹고 저어주세요."
       ],
       "ingredientAmounts": {
-        "coffee": "맛보기"
+        "coffee": "기호에 맞게"
       }
     },
     "halloween-punch": {
@@ -2256,9 +2256,9 @@
         "Gilligan's Island에서 따온 이름입니다(\"Ginger\"의 \"The Captain\"은 Happy Skipper입니다!)."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "충전",
-        "lime": "맛보기",
-        "ice": "필요에 따라"
+        "ginger_ale": "잔을 채울 만큼",
+        "lime": "기호에 맞게",
+        "ice": "필요한 만큼"
       }
     },
     "harvey-wallbanger": {
@@ -2302,7 +2302,7 @@
         "숟가락, 빨대 또는 계피 스틱을 사용하여 저어주고 그대로 둡니다."
       ],
       "ingredientAmounts": {
-        "tea": "맛보기"
+        "tea": "기호에 맞게"
       }
     },
     "highland-fling-cocktail": {
@@ -2325,7 +2325,7 @@
         "최상의 결과를 얻으려면 혼합물을 4~5주 동안 \"숙성\"시키십시오."
       ],
       "ingredientAmounts": {
-        "vodka": "1 다섯번째 병"
+        "vodka": "1병(미국 갤런의 5분의 1)"
       }
     },
     "honey-bee": {
@@ -2411,7 +2411,7 @@
         "탄산수를 채우고 저어준 후 드세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "ipamena": {
@@ -2423,8 +2423,8 @@
         "잔에 따른 후 진저에일을 얹고 가볍게 저어줍니다."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "충전",
-        "ice": "필요에 따라"
+        "ginger_ale": "잔을 채울 만큼",
+        "ice": "필요한 만큼"
       }
     },
     "irish-coffee": {
@@ -2461,7 +2461,7 @@
         "얼음을 추가하지 마십시오."
       ],
       "ingredientAmounts": {
-        "guinness_stout": "충전"
+        "guinness_stout": "잔을 채울 만큼"
       }
     },
     "irish-spring": {
@@ -2514,8 +2514,8 @@
         "부드러워질 때까지 섞은 후 즉시 서빙하세요."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라",
-        "milk": "맛보기"
+        "ice": "필요한 만큼",
+        "milk": "기호에 맞게"
       }
     },
     "jamaican-coffee": {
@@ -2539,7 +2539,7 @@
         "탄산수를 채우고 저어준 후 드세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "그것은 간단합니다!"
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "john-collins": {
@@ -2600,8 +2600,8 @@
         "큰 잔 1개, 중간 잔 2개, 작은 잔 3개를 부어 마십니다."
       ],
       "ingredientAmounts": {
-        "syrup_chocolate": "맛보기",
-        "syrup_mint": "맛보기"
+        "syrup_chocolate": "기호에 맞게",
+        "syrup_mint": "기호에 맞게"
       }
     },
     "kamikaze": {
@@ -2652,7 +2652,7 @@
         "뜨거운 커피를 얹고 저어주세요. 원하는 경우 휘핑 크림을 첨가하십시오."
       ],
       "ingredientAmounts": {
-        "coffee": "맛보기"
+        "coffee": "기호에 맞게"
       }
     },
     "kir-royale": {
@@ -2669,7 +2669,7 @@
         "유리잔에 섞다"
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "kiwi-lemon": {
@@ -2681,7 +2681,7 @@
         "키위 조각으로 장식합니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "kiwi-martini": {
@@ -2708,7 +2708,7 @@
         "맛을 내기 위해 약간의 크랜베리 ​​주스를 첨가하십시오."
       ],
       "ingredientAmounts": {
-        "juice_cranberry": "맛보기"
+        "juice_cranberry": "기호에 맞게"
       }
     },
     "kurant-tea": {
@@ -2720,8 +2720,8 @@
         "즐기다!"
       ],
       "ingredientAmounts": {
-        "tea": "맛보기",
-        "sugar": "맛보기"
+        "tea": "기호에 맞게",
+        "sugar": "기호에 맞게"
       }
     },
     "lady-love-fizz": {
@@ -2733,7 +2733,7 @@
         "탄산수를 채우고 저어준 후 드세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2782,9 +2782,9 @@
         "전통적인 샐러드 대신 라이타를 만들 수 있습니다."
       ],
       "ingredientAmounts": {
-        "sugar": "맛보기",
-        "lime": "맛보기",
-        "salt": "맛보기"
+        "sugar": "기호에 맞게",
+        "lime": "기호에 맞게",
+        "salt": "기호에 맞게"
       }
     },
     "lazy-coconut-paloma": {
@@ -2795,7 +2795,7 @@
         "코코넛 리큐어와 자몽 주스를 넣고 소다수를 부어 가볍게 저어줍니다."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "흔들어서 설탕을 곁들인 차가운 칵테일 글라스에 걸러냅니다."
       ],
       "ingredientAmounts": {
-        "sugar": "림용"
+        "sugar": "잔 가장자리용"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "모든 재료를 얼음 위에 붓고 저어 맛있게 즐겨보세요!"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "충전"
+        "fresh_lemon_juice": "잔을 채울 만큼"
       }
     },
     "lemon-shot": {
@@ -2827,7 +2827,7 @@
         "설탕을 뿌린 레몬 조각과 함께 제공됩니다. 불을 켜지 않고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "맛보기"
+        "151_proof_rum": "기호에 맞게"
       }
     },
     "lemouroudji": {
@@ -2857,7 +2857,7 @@
         "라임이나 소다가 다 떨어질 때까지 반복하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전",
+        "soda_water": "잔을 채울 만큼",
         "lime_peel": "장식용"
       }
     },
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "론트리 쿨러",
+      "name": "Lone Tree Cooler",
       "description": "콜린스 잔에 담긴 소다수 약 60ml에 설탕을 녹입니다. 얼음, 진, 드라이 버몬트를 넣고 저어줍니다. 더 많은 소다수를 채우고 감귤 껍질로 장식합니다.",
       "preparationSteps": [
         "콜린스 잔에 담긴 소다수 약 60ml에 설탕을 녹입니다.",
@@ -2896,7 +2896,7 @@
         "더 많은 소다수를 채우고 감귤 껍질로 장식합니다."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "콜라를 얹고 가볍게 저어줍니다."
       ],
       "ingredientAmounts": {
-        "coca_cola": "충전"
+        "coca_cola": "잔을 채울 만큼"
       }
     },
     "long-vodka": {
@@ -2936,7 +2936,7 @@
       ]
     },
     "mai-tai": {
-      "name": "마이 타이",
+      "name": "마이타이",
       "description": "두 가지 럼 측정에는 호박색 자메이카 럼과 당밀 기반 마르티니크 럼을 사용하십시오. 럼, 오렌지 큐라소, 오르제, 신선한 라임 주스, 설탕 시럽을 얼음과 함께 흔듭니다. 얼음과 함께 더블락 글라스에 붓습니다. 원하는 경우 민트와 라임 껍질로 장식합니다.",
       "preparationSteps": [
         "두 가지 럼 측정에는 호박색 자메이카 럼과 당밀 기반 마르티니크 럼을 사용하십시오.",
@@ -2955,10 +2955,10 @@
         "소다수를 채우고 유리잔에 균등하게 나누어 넣습니다."
       ],
       "ingredientAmounts": {
-        "mint": "맛보기",
-        "ice": "필요에 따라",
-        "soda_water": "충전",
-        "sugar": "맛보기"
+        "mint": "기호에 맞게",
+        "ice": "필요한 만큼",
+        "soda_water": "잔을 채울 만큼",
+        "sugar": "기호에 맞게"
       }
     },
     "manhattan": {
@@ -2969,7 +2969,7 @@
       ]
     },
     "margarita": {
-      "name": "마가리타",
+      "name": "마르가리타",
       "description": "유리잔 가장자리를 라임 조각으로 문질러 소금이 달라붙도록 하세요. 테두리 부분만 살짝 적셔주시고 소금을 뿌려주세요. 소금은 마시는 사람의 입술에 나타나야 하며 절대 칵테일에 섞이지 않아야 합니다. 나머지 재료를 얼음과 함께 흔든 다음 조심스럽게 잔에 붓습니다.",
       "preparationSteps": [
         "유리잔 가장자리를 라임 조각으로 문질러 소금이 달라붙도록 하세요.",
@@ -2978,7 +2978,7 @@
         "나머지 재료를 얼음과 함께 흔든 다음 조심스럽게 잔에 붓습니다."
       ],
       "ingredientAmounts": {
-        "salt": "맛보기"
+        "salt": "기호에 맞게"
       }
     },
     "martinez-2": {
@@ -3019,8 +3019,8 @@
         "그것이 바로 IT입니다."
       ],
       "ingredientAmounts": {
-        "sugar": "맛보기",
-        "milk": "맛보기"
+        "sugar": "기호에 맞게",
+        "milk": "기호에 맞게"
       }
     },
     "mauresque": {
@@ -3033,7 +3033,7 @@
         "마지막에 얼음을 추가하세요. 그렇지 않으면 시럽과 파스티스가 잘 섞이지 않습니다."
       ],
       "ingredientAmounts": {
-        "water": "충전"
+        "water": "잔을 채울 만큼"
       }
     },
     "melya": {
@@ -3053,8 +3053,8 @@
         "두 개의 냉동 혼합물을 큰 유리잔에 층층이 쌓습니다. 소스는 준비된 두 혼합의 수량을 변수로 둡니다."
       ],
       "ingredientAmounts": {
-        "pina_colada_mix": "맛보기",
-        "daiquiri_mix": "맛보기"
+        "pina_colada_mix": "기호에 맞게",
+        "daiquiri_mix": "기호에 맞게"
       }
     },
     "michelada": {
@@ -3113,7 +3113,7 @@
         "짚으로 장식하고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "mojito-extra": {
@@ -3148,7 +3148,7 @@
       ]
     },
     "moscow-mule": {
-      "name": "모스크바 뮬",
+      "name": "모스코 뮬",
       "description": "노새 머그잔이나 락글라스에 얼음을 채웁니다. 보드카, 생강 맥주, 신선한 라임 주스를 추가합니다. 부드럽게 저어주세요.",
       "preparationSteps": [
         "노새 머그잔이나 락글라스에 얼음을 채웁니다.",
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "멀드 와인",
+      "name": "브랜디를 넣은 뱅쇼",
       "description": "물 3컵, 설탕, 정향, 계피 스틱, 레몬 껍질을 스테인리스 냄비에 넣고 10분 동안 끓입니다. \"커피 온도\"(끓이지 마세요)에 와인 열을 추가한 다음 브랜디를 추가합니다.",
       "preparationSteps": [
         "물 3컵, 설탕, 정향, 계피 스틱, 레몬 껍질을 스테인리스 냄비에 넣고 10분 동안 끓입니다.",
@@ -3191,7 +3191,7 @@
         "키가 큰 유리잔에 신선한 얼음을 걸러낸 다음 소다를 넣고 가볍게 저어줍니다."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "물보라"
+        "lemon_lime_soda": "약간"
       }
     },
     "negroni": {
@@ -3219,7 +3219,7 @@
         "레드와인을 숟가락 뒷면에 천천히 부어서 위로 띄워주세요. 체리로 장식하세요."
       ],
       "ingredientAmounts": {
-        "wine_red": "맛보기",
+        "wine_red": "기호에 맞게",
         "cherry": "장식용"
       }
     },
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "구식",
+      "name": "올드 패션드",
       "description": "구식 유리에 각설탕을 넣고 쓴맛으로 포화시킨 후 약간의 물을 추가합니다. 녹을 때까지 섞으세요.\r\n잔에 얼음을 채우고 위스키를 넣으세요.\r\n\r\n오렌지 트위스트와 칵테일 체리로 장식합니다.",
       "preparationSteps": [
         "구식 유리에 각설탕을 넣고 쓴맛으로 포화시킨 후 약간의 물을 추가합니다.",
@@ -3294,7 +3294,7 @@
         "진저에일을 채우고 저어준 뒤 서빙하세요."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "충전"
+        "ginger_ale": "잔을 채울 만큼"
       }
     },
     "orange-push-up": {
@@ -3305,22 +3305,22 @@
         "큰 유리에 붓습니다."
       ],
       "ingredientAmounts": {
-        "sour_mix": "물보라"
+        "sour_mix": "약간"
       }
     },
     "orange-rosemary-collins": {
-      "name": "오렌지 로즈마리 콜린스",
+      "name": "오렌지 로즈메리 콜린스",
       "description": "유리 바닥에 증류주를 추가하고 믹서 음료와 동일하게 상단을 추가합니다. 유리잔 안에 오렌지 조각을 넣고 그 위에 로즈마리를 올려 장식하세요.",
       "preparationSteps": [
-        "잔 바닥에 증류주를 넣고 믹서 음료와 동일하게 윗부분을 채웁니다.",
+        "잔에 증류주를 붓고 무알코올 믹서를 같은 양씩 넣어 채웁니다.",
         "유리잔 안에 오렌지 조각을 넣고 그 위에 로즈마리를 올려 장식하세요."
       ],
       "ingredientAmounts": {
-        "juice_orange": "충전",
-        "lemon": "충전",
-        "soda_water": "충전",
-        "rosemary": "맛보기",
-        "orange": "맛보기"
+        "juice_orange": "잔을 채울 만큼",
+        "lemon": "잔을 채울 만큼",
+        "soda_water": "잔을 채울 만큼",
+        "rosemary": "기호에 맞게",
+        "orange": "기호에 맞게"
       }
     },
     "orange-scented-hot-chocolate": {
@@ -3341,17 +3341,17 @@
         "2인분을 만듭니다."
       ],
       "ingredientAmounts": {
-        "orange": "2인치 스트립 3개"
+        "orange": "2인치 길이로 자른 것 3줄"
       }
     },
     "orange-whip": {
-      "name": "오렌지 휩",
+      "name": "Orange Whip",
       "description": "얼음 위에 재료를 붓고 저어주세요.",
       "preparationSteps": [
         "얼음 위에 재료를 붓고 저어주세요."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "orangeade": {
@@ -3362,7 +3362,7 @@
         "차가운 소다수를 채우고, 빨대와 함께 제공하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "패션프루트 반 조각으로 장식하세요."
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "충전"
+        "juice_passion_fruit": "잔을 채울 만큼"
       }
     },
     "pegu-club": {
@@ -3435,7 +3435,7 @@
       ]
     },
     "pina-colada": {
-      "name": "피나 콜라다",
+      "name": "피냐 콜라다",
       "description": "화이트 럼, 코코넛 크림, 파인애플 주스를 으깬 얼음과 함께 블렌더에 넣습니다. 매끄러워질 때까지 섞은 다음 차가운 큰 유리잔에 붓습니다.",
       "preparationSteps": [
         "화이트 럼, 코코넛 크림, 파인애플 주스를 으깬 얼음과 함께 블렌더에 넣습니다.",
@@ -3459,8 +3459,8 @@
         "신선한 파인애플이나 라임으로 장식합니다."
       ],
       "ingredientAmounts": {
-        "lime": "맛보기",
-        "pepper": "맛보기"
+        "lime": "기호에 맞게",
+        "pepper": "기호에 맞게"
       }
     },
     "pink-gin": {
@@ -3490,7 +3490,7 @@
         "특별한 모습을 위해 꽃과 녹색 잎을 추가하세요!"
       ],
       "ingredientAmounts": {
-        "blackberries": "맛보기"
+        "blackberries": "기호에 맞게"
       }
     },
     "pink-panty-pulldowns": {
@@ -3517,11 +3517,11 @@
         "거품 위에 아로마 비터 몇 방울을 떨어뜨립니다."
       ],
       "ingredientAmounts": {
-        "bitters": "대시 몇 개"
+        "bitters": "비터스 몇 대시"
       }
     },
     "planter-s-punch-178368-178368-178368": {
-      "name": "플랜터스 펀치",
+      "name": "Planter's Punch",
       "description": "비터스를 제외한 모든 재료를 얼음이 채워진 셰이커에 붓습니다. 잘 흔들어 얼음을 채운 큰 유리에 붓습니다. 앙고스투라 비터스를 \"위에\" 추가합니다. 칵테일 체리와 파인애플로 장식합니다.",
       "preparationSteps": [
         "얼음을 채운 셰이커에 비터스를 제외한 모든 재료를 붓습니다.",
@@ -3597,7 +3597,7 @@
         "잘 저어주고 민트로 장식합니다."
       ],
       "ingredientAmounts": {
-        "mint": "맛보기"
+        "mint": "기호에 맞게"
       }
     },
     "pysch-vitamin-light": {
@@ -3608,7 +3608,7 @@
         "신선한 얼음 위에 키가 큰 유리잔에 걸러냅니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "quaker-s-cocktail": {
@@ -3642,7 +3642,7 @@
         "레몬라임 소다를 채우고 저어준 뒤 서빙하세요."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "충전"
+        "lemon_lime_soda": "잔을 채울 만큼"
       }
     },
     "queen-elizabeth": {
@@ -3685,8 +3685,8 @@
         "진저에일을 채워보세요."
       ],
       "ingredientAmounts": {
-        "lemon": "맛보기",
-        "ginger_ale": "충전"
+        "lemon": "기호에 맞게",
+        "ginger_ale": "잔을 채울 만큼"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "하이볼 글라스에 걸러내고 소다수를 살짝 부어줍니다. 탄산음료를 절대 흔들지 마세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "raspberry-julep": {
@@ -3726,7 +3726,7 @@
         "장식하고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "맛보기"
+        "powdered_sugar": "기호에 맞게"
       }
     },
     "rosemary-blue": {
@@ -3739,7 +3739,7 @@
         "3) 바스푼으로 가볍게 섞어주세요."
       ],
       "ingredientAmounts": {
-        "rosemary": "맛보기"
+        "rosemary": "기호에 맞게"
       }
     },
     "royal-fizz": {
@@ -3750,7 +3750,7 @@
         "콜라를 채워서 드세요."
       ],
       "ingredientAmounts": {
-        "coca_cola": "충전"
+        "coca_cola": "잔을 채울 만큼"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "탄산수를 채우고 저어준 후 드세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "그레나딘을 넣고 저어주세요."
       ],
       "ingredientAmounts": {
-        "grenadine": "두 개의 물보라"
+        "grenadine": "조금씩 두 번"
       }
     },
     "rum-cobbler": {
@@ -3824,7 +3824,7 @@
         "마지막에 진저에일을 넣고 가볍게 저어줍니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "rum-runner": {
@@ -3860,7 +3860,7 @@
         "신선한 얼음을 채운 긴 잔에 따른 후 스파클링 와인을 얹습니다."
       ],
       "ingredientAmounts": {
-        "prosecco": "충전"
+        "prosecco": "잔을 채울 만큼"
       }
     },
     "rusty-nail": {
@@ -3888,8 +3888,8 @@
         "오렌지와 딸기로 장식한다."
       ],
       "ingredientAmounts": {
-        "grenadine": "맛보기",
-        "juice_orange": "맛보기"
+        "grenadine": "기호에 맞게",
+        "juice_orange": "기호에 맞게"
       }
     },
     "sangria": {
@@ -3901,8 +3901,8 @@
         "와인잔에 담아 서빙하세요."
       ],
       "ingredientAmounts": {
-        "cloves": "맛보기",
-        "cinnamon": "맛보기"
+        "cloves": "기호에 맞게",
+        "cinnamon": "기호에 맞게"
       }
     },
     "sazerac": {
@@ -3939,7 +3939,7 @@
         "보드카를 추가하고 오렌지 주스를 얹은 후 가볍게 저어줍니다."
       ],
       "ingredientAmounts": {
-        "juice_orange": "맛보기"
+        "juice_orange": "기호에 맞게"
       }
     },
     "sea-breeze": {
@@ -3972,7 +3972,7 @@
         "위에 육두구를 뿌리고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "milk": "맛보기",
+        "milk": "기호에 맞게",
         "nutmeg": "장식용"
       }
     },
@@ -4018,7 +4018,7 @@
         "한 번에 서빙하세요."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "snowday": {
@@ -4030,7 +4030,7 @@
         "음료 위에 오렌지 껍질을 짜서 장식합니다."
       ],
       "ingredientAmounts": {
-        "orange": "맛보기"
+        "orange": "기호에 맞게"
       }
     },
     "sol-y-sombra": {
@@ -4051,8 +4051,8 @@
         "오렌지 주스를 얹고 석류 시럽을 첨가하여 맛을 낸 후 체리로 장식합니다."
       ],
       "ingredientAmounts": {
-        "juice_orange": "맛보기",
-        "grenadine": "맛보기",
+        "juice_orange": "기호에 맞게",
+        "grenadine": "기호에 맞게",
         "cherry": "장식용"
       }
     },
@@ -4066,17 +4066,17 @@
         "6개의 플루트에 나누어 각각 샴페인 100ml를 추가하고 오렌지 껍질로 장식합니다."
       ],
       "ingredientAmounts": {
-        "orange_spiral": "맛보기"
+        "orange_spiral": "기호에 맞게"
       }
     },
     "spritz": {
-      "name": "스프릿츠",
+      "name": "스프리츠",
       "description": "얼음 위에 유리잔을 만들어 장식하고 서빙하세요.",
       "preparationSteps": [
         "얼음 위에 유리잔을 만들어 장식하고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "물보라"
+        "soda_water": "약간"
       }
     },
     "stinger": {
@@ -4114,8 +4114,8 @@
       "ingredientAmounts": {
         "orange": "장식용",
         "lime": "장식용",
-        "lemon": "맛보기",
-        "fresca": "충전"
+        "lemon": "기호에 맞게",
+        "fresca": "잔을 채울 만큼"
       }
     },
     "tennesee-mud": {
@@ -4137,7 +4137,7 @@
         "진저에일을 채우고 저어준 뒤 서빙하세요."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "충전"
+        "ginger_ale": "잔을 채울 만큼"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "토바스코 소스 한 방울을 추가합니다."
       ],
       "ingredientAmounts": {
-        "tequila": "충전"
+        "tequila": "잔을 채울 만큼"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "처음엔 달콤하고 끝에는 BITE..."
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "물보라"
+        "sweet_and_sour": "약간"
       }
     },
     "texas-sling": {
@@ -4212,9 +4212,9 @@
         "숟가락 뒷면에 크림을 천천히 추가하여 별도의 최상층을 만듭니다."
       ],
       "ingredientAmounts": {
-        "coffee": "맛보기",
-        "cream": "맛보기",
-        "sugar": "맛보기"
+        "coffee": "기호에 맞게",
+        "cream": "기호에 맞게",
+        "sugar": "기호에 맞게"
       }
     },
     "thai-iced-tea": {
@@ -4227,7 +4227,7 @@
         "2인분을 만듭니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라",
+        "ice": "필요한 만큼",
         "mint": "장식용"
       }
     },
@@ -4238,8 +4238,8 @@
         "알코올 부분을 함께 섞고 파인애플과 라임 주스를 얹습니다."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "충전",
-        "lime": "충전"
+        "juice_pineapple": "잔을 채울 만큼",
+        "lime": "잔을 채울 만큼"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "차가운 유리잔에 따른 후 프로세코를 얹습니다."
       ],
       "ingredientAmounts": {
-        "prosecco": "충전"
+        "prosecco": "잔을 채울 만큼"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "얼음과 함께 흔들어서 샷 글라스에 따른다."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "물보라"
+        "juice_pineapple": "약간"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "탄산수를 채우고 다시 저어서 드세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "vesper": {
@@ -4433,7 +4433,7 @@
         "큰 화이트 와인 잔에 붓고 그 위에 육두구를 뿌립니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라",
+        "ice": "필요한 만큼",
         "nutmeg": "장식용"
       }
     },
@@ -4477,7 +4477,7 @@
         "가벼운 크림을 채우고 서빙하세요."
       ],
       "ingredientAmounts": {
-        "light_cream": "맛보기"
+        "light_cream": "기호에 맞게"
       }
     },
     "white-wine-sangria": {
@@ -4489,7 +4489,7 @@
         "소다수로 맛을 보시기 바랍니다."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "자몽 주스를 얹고 식용 고추를 조금 추가하고 저어줍니다. 이것은 단순화된 버전입니다. 원본은 준비된 후추를 첨가한 데킬라를 사용합니다."
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "충전"
+        "juice_grapefruit": "잔을 채울 만큼"
       }
     },
     "winter-rita": {
@@ -4542,7 +4542,7 @@
         "부드러워질 때까지 섞은 후 유리잔에 붓습니다. 얼음을 더 추가하기 전에 블렌더를 중지하십시오."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "zambeer": {
@@ -4553,7 +4553,7 @@
         "얼음 추가"
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "ziemes-martini-apfelsaft": {
@@ -4572,7 +4572,7 @@
         "Chambord, 보드카, 마지막으로 소다수를 붓습니다. 층이 유지되도록 천천히 부어주세요."
       ],
       "ingredientAmounts": {
-        "soda_water": "충전"
+        "soda_water": "잔을 채울 만큼"
       }
     },
     "zippy-s-revenge": {
@@ -4592,7 +4592,7 @@
         "부드럽게 저어주고 원하는 경우 레몬 조각으로 장식합니다."
       ],
       "ingredientAmounts": {
-        "ice": "필요에 따라"
+        "ice": "필요한 만큼"
       }
     },
     "zoksel": {
@@ -4604,12 +4604,12 @@
         "부드럽게 저어주고 레몬 조각으로 장식합니다. 탄산성분은 흔들지 마세요."
       ],
       "ingredientAmounts": {
-        "coca_cola": "맛보기",
-        "beer": "맛보기",
-        "root_beer": "맛보기",
-        "lemonade": "충전",
-        "7_up": "맛보기",
-        "creme_de_cassis": "맛보기"
+        "coca_cola": "기호에 맞게",
+        "beer": "기호에 맞게",
+        "root_beer": "기호에 맞게",
+        "lemonade": "잔을 채울 만큼",
+        "7_up": "기호에 맞게",
+        "creme_de_cassis": "기호에 맞게"
       }
     },
     "zombie": {
@@ -4636,7 +4636,7 @@
         "모두 넣고 블랙커피를 붓고 그 위에 휘핑크림을 올려줍니다."
       ],
       "ingredientAmounts": {
-        "coffee": "충전",
+        "coffee": "잔을 채울 만큼",
         "whipped_cream": "장식용"
       }
     }

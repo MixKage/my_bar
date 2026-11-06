@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/search/app_search_query.dart';
+import '../catalog_search.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/widgets/bar_pressable.dart';
 import '../../domain/models/cocktail.dart';
@@ -52,7 +53,7 @@ class _PartyModePageState extends State<PartyModePage> {
   @override
   Widget build(BuildContext context) {
     final query = AppSearchQuery(_query);
-    final filtered =
+    final sorted =
         widget.cocktails
             .where((cocktail) {
               final isReady =
@@ -60,17 +61,7 @@ class _PartyModePageState extends State<PartyModePage> {
                       .missingIngredientIdsByCocktailId[cocktail.id]
                       ?.isEmpty ??
                   true;
-              if (_readyOnly && !isReady) {
-                return false;
-              }
-              return query.matchesAny(<String>[
-                cocktail.name,
-                cocktail.description,
-                ...cocktail.tags,
-                ...cocktail.ingredients.map(
-                  (id) => widget.ingredientsById[id]?.name ?? id,
-                ),
-              ]);
+              return !_readyOnly || isReady;
             })
             .toList(growable: false)
           ..sort((left, right) {
@@ -84,6 +75,11 @@ class _PartyModePageState extends State<PartyModePage> {
             }
             return left.name.toLowerCase().compareTo(right.name.toLowerCase());
           });
+    final filtered = query.rank(
+      sorted,
+      (cocktail) =>
+          cocktailSearchDocument(context, cocktail, widget.ingredientsById),
+    );
     final selectedCocktailCount = _servingsByCocktailId.length;
     final totalServings = _servingsByCocktailId.values.fold<int>(
       0,
@@ -638,9 +634,7 @@ class _PartyPlanSheet extends StatelessWidget {
                         style: const TextStyle(color: Color(0xFFE1E6F8)),
                       ),
                       trailing: Text(
-                        total.label(
-                          unitLabelResolver: context.ingredientUnitLabel,
-                        ),
+                        _totalLabel(context, total),
                         style: const TextStyle(
                           color: Color(0xFF9CB1FF),
                           fontWeight: FontWeight.w700,
@@ -665,6 +659,12 @@ class _PartyPlanSheet extends StatelessWidget {
     );
   }
 
+  String _totalLabel(BuildContext context, PartyIngredientTotal total) =>
+      total.label(
+        unitLabelResolver: (unit) =>
+            context.measuredIngredientUnitLabel(unit, total.amount),
+      );
+
   Future<void> _copyPlan(BuildContext context) async {
     final buffer = StringBuffer()
       ..writeln(context.tr('План вечеринки «Мой Бар»', 'My Bar party plan'))
@@ -677,9 +677,7 @@ class _PartyPlanSheet extends StatelessWidget {
       ..writeln()
       ..writeln(context.tr('Ингредиенты:', 'Ingredients:'));
     for (final total in totals) {
-      buffer.writeln(
-        '• ${total.name}: ${total.label(unitLabelResolver: context.ingredientUnitLabel)}',
-      );
+      buffer.writeln('• ${total.name}: ${_totalLabel(context, total)}');
     }
     await Clipboard.setData(ClipboardData(text: buffer.toString().trim()));
     if (!context.mounted) {

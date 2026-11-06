@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/layout/app_breakpoints.dart';
 import '../../../../core/localization/app_localization.dart';
 import '../../../../core/search/app_search_query.dart';
+import '../catalog_search.dart';
 import '../../../../core/theme/app_motion.dart';
 import '../../../../core/widgets/bar_network_image.dart';
 import '../../../../core/widgets/bar_pressable.dart';
@@ -470,16 +471,11 @@ class _BarMenuPageState extends State<BarMenuPage> {
           .toList(growable: false);
     }
 
-    if (searchQuery.isEmpty) {
-      return filtered;
-    }
-
-    return filtered
-        .where(
-          (cocktail) =>
-              _matchesSearchQuery(cocktail: cocktail, searchQuery: searchQuery),
-        )
-        .toList(growable: false);
+    return searchQuery.rank(
+      filtered,
+      (cocktail) =>
+          cocktailSearchDocument(context, cocktail, widget.ingredientsById),
+    );
   }
 
   List<Cocktail> _applyAvailabilityFilter(
@@ -521,29 +517,6 @@ class _BarMenuPageState extends State<BarMenuPage> {
         CocktailAvailabilityFilter.missingTwo => missingCount == 2,
       };
     }).length;
-  }
-
-  bool _matchesSearchQuery({
-    required Cocktail cocktail,
-    required AppSearchQuery searchQuery,
-  }) {
-    final candidateFields = <String>[
-      cocktail.id,
-      cocktail.name,
-      cocktail.description,
-      context.cocktailGlassTypeLabel(cocktail.glassType),
-      ...cocktail.tags,
-      ...cocktail.tags.map(context.cocktailTagLabel),
-      ...cocktail.ingredients.map((ingredientId) {
-        final ingredientName = widget.ingredientsById[ingredientId]?.name;
-        if (ingredientName == null || ingredientName.isEmpty) {
-          return ingredientId;
-        }
-        return '$ingredientName $ingredientId';
-      }),
-    ];
-
-    return searchQuery.matchesAny(candidateFields);
   }
 
   void _handleSearchChanged(String value) {
@@ -1496,7 +1469,8 @@ class _TabletCocktailInstructionPanel extends StatelessWidget {
                       final amount = selectedCocktail.ingredientAmountLabel(
                         ingredientId,
                         measurementSystem: measurementSystem,
-                        unitLabelResolver: context.ingredientUnitLabel,
+                        measuredUnitLabelResolver:
+                            context.measuredIngredientUnitLabel,
                         servings: servings,
                       );
                       final isOptional = selectedCocktail.isIngredientOptional(
@@ -1958,7 +1932,8 @@ class CocktailList extends StatelessWidget {
                               final amount = cocktail.ingredientAmountLabel(
                                 ingredientId,
                                 measurementSystem: measurementSystem,
-                                unitLabelResolver: context.ingredientUnitLabel,
+                                measuredUnitLabelResolver:
+                                    context.measuredIngredientUnitLabel,
                                 servings: servings,
                               );
                               final isOptional = cocktail.isIngredientOptional(

@@ -1,7 +1,7 @@
 {
   "locale": "fr",
-  "sourceTextSha256": "9a935d185d11950c28a619d9b8fc8f59000a47f851a6ae3a206cce89ef6ba5c8",
-  "sourceTextChecksum": "6248f5ae",
+  "sourceTextSha256": "00e790a4cd8295e1d8b49d0be543be366aa392c9ab6d45ee5f8723bf6680ce83",
+  "sourceTextChecksum": "1b11e58e",
   "ingredients": {
     "151_proof_rum": {
       "name": "Rhum 151 proof"
@@ -13,16 +13,16 @@
       "name": "Absinthe"
     },
     "absolut_citron": {
-      "name": "Citron Absolu"
+      "name": "Absolut Citron"
     },
     "absolut_kurant": {
-      "name": "Kurant absolu"
+      "name": "Absolut Kurant"
     },
     "absolut_peppar": {
-      "name": "Poivre absolu"
+      "name": "Absolut Peppar"
     },
     "absolut_vodka": {
-      "name": "Vodka Absolue"
+      "name": "Absolut Vodka"
     },
     "advocaat": {
       "name": "Avocat"
@@ -31,7 +31,7 @@
       "name": "Sirop d'Agave"
     },
     "ale": {
-      "name": "Ale"
+      "name": "Bière ale"
     },
     "allspice": {
       "name": "Piment de la Jamaïque"
@@ -43,13 +43,13 @@
       "name": "Amaretto"
     },
     "amaro_montenegro": {
-      "name": "Amaro Monténégro"
+      "name": "Amaro Montenegro"
     },
     "angelica_root": {
       "name": "Racine d'angélique"
     },
     "angostura_bitter": {
-      "name": "Amers Angostura"
+      "name": "Bitter Angostura"
     },
     "anis": {
       "name": "Anis"
@@ -76,7 +76,7 @@
       "name": "Jus de pomme"
     },
     "applejack": {
-      "name": "Calvados"
+      "name": "Applejack"
     },
     "apricot_brandy": {
       "name": "Eau-de-vie d'abricot"
@@ -94,7 +94,7 @@
       "name": "Bacardi Limon"
     },
     "baileys_irish_cream": {
-      "name": "Crème irlandaise Baileys"
+      "name": "Baileys Irish Cream"
     },
     "banana": {
       "name": "Banane"
@@ -115,7 +115,7 @@
       "name": "Citron amer"
     },
     "bitters": {
-      "name": "Bitter"
+      "name": "Bitter à cocktail"
     },
     "black_pepper": {
       "name": "Poivre noir"
@@ -196,7 +196,7 @@
       "name": "Eau-de-vie de cerise"
     },
     "cherry_heering": {
-      "name": "Cerise Heering"
+      "name": "Cherry Heering"
     },
     "cherry_juice": {
       "name": "Jus de cerise"
@@ -226,7 +226,7 @@
       "name": "clous de girofle"
     },
     "coca_cola": {
-      "name": "Coca Cola"
+      "name": "Coca-Cola"
     },
     "cocoa_powder": {
       "name": "Poudre de cacao"
@@ -268,7 +268,7 @@
       "name": "Sirop de maïs"
     },
     "corona": {
-      "name": "Couronne"
+      "name": "Corona"
     },
     "cranberries": {
       "name": "Canneberges"
@@ -280,10 +280,10 @@
       "name": "Vodka aux canneberges"
     },
     "cream": {
-      "name": "Crème"
+      "name": "Crème liquide"
     },
     "cream_of_coconut": {
-      "name": "Crème de coco"
+      "name": "Crème de coco sucrée"
     },
     "creme_de_banane": {
       "name": "Crème de Banane"
@@ -298,7 +298,7 @@
       "name": "Crème de Mure"
     },
     "crown_royal": {
-      "name": "Couronne royale"
+      "name": "Crown Royal"
     },
     "cucumber": {
       "name": "Concombre"
@@ -313,10 +313,10 @@
       "name": "Rhum brun"
     },
     "demerara_sugar": {
-      "name": "sucre démérara"
+      "name": "Sucre demerara"
     },
     "dr_pepper": {
-      "name": "Dr Pepper"
+      "name": "Dr. Pepper"
     },
     "drambuie": {
       "name": "Drambuie"
@@ -337,7 +337,7 @@
       "name": "Jaune d'oeuf"
     },
     "elderflower_cordial": {
-      "name": "Cordial de fleurs de sureau"
+      "name": "Sirop de fleur de sureau"
     },
     "espresso": {
       "name": "Espresso"
@@ -346,19 +346,19 @@
       "name": "Everclear"
     },
     "falernum": {
-      "name": "Falerne"
+      "name": "Falernum"
     },
     "figs": {
       "name": "Figues"
     },
     "firewater": {
-      "name": "Eau de feu"
+      "name": "Firewater"
     },
     "frangelico": {
       "name": "Frangelico"
     },
     "fresca": {
-      "name": "Fresque"
+      "name": "Fresca"
     },
     "fresh_lemon_juice": {
       "name": "Jus de citron frais"
@@ -385,10 +385,10 @@
       "name": "Gingembre"
     },
     "ginger_ale": {
-      "name": "Soda au gingembre"
+      "name": "Soda au gingembre (ginger ale)"
     },
     "ginger_beer": {
-      "name": "Bière au gingembre"
+      "name": "Bière de gingembre (ginger beer)"
     },
     "syrup_gingerbread": {
       "name": "Sirop de Gingembre"
@@ -400,13 +400,13 @@
       "name": "Rhum d'or"
     },
     "goldschlager": {
-      "name": "Schlager d'or"
+      "name": "Goldschläger"
     },
     "grain_alcohol": {
       "name": "Alcool de grain"
     },
     "grand_marnier": {
-      "name": "Grand-Marnier"
+      "name": "Grand Marnier"
     },
     "grape_juice": {
       "name": "Jus de raisin"
@@ -430,13 +430,13 @@
       "name": "Grenadine"
     },
     "guinness_stout": {
-      "name": "Guinness grosse"
+      "name": "Guinness stout"
     },
     "half_and_half": {
-      "name": "Moitié-moitié"
+      "name": "Mélange de lait et de crème"
     },
     "heavy_cream": {
-      "name": "Crème épaisse"
+      "name": "Crème entière liquide"
     },
     "honey": {
       "name": "Chéri"
@@ -448,7 +448,7 @@
       "name": "Chocolat chaud"
     },
     "hot_damn": {
-      "name": "Chaud putain"
+      "name": "Hot Damn"
     },
     "hot_sauce": {
       "name": "Sauce piquante"
@@ -469,13 +469,13 @@
       "name": "Scotch single malt d'Islay"
     },
     "jack_daniels": {
-      "name": "Jack Daniels"
+      "name": "Jack Daniel's"
     },
     "jagermeister": {
       "name": "Jägermeister"
     },
     "jello": {
-      "name": "Gelée"
+      "name": "Jello"
     },
     "jim_beam": {
       "name": "Jim Beam"
@@ -484,7 +484,7 @@
       "name": "Johnnie Walker"
     },
     "kahlua": {
-      "name": "Kahlua"
+      "name": "Kahlúa"
     },
     "kiwi": {
       "name": "Kiwi"
@@ -496,7 +496,7 @@
       "name": "Kool-Aid"
     },
     "lager": {
-      "name": "Bière blonde"
+      "name": "Bière lager"
     },
     "lavender": {
       "name": "Lavande"
@@ -505,10 +505,10 @@
       "name": "Citron"
     },
     "lemon_lime_soda": {
-      "name": "Soda citron-lime"
+      "name": "Soda citron-citron vert"
     },
     "lemonade": {
-      "name": "Limonade"
+      "name": "Citronnade"
     },
     "light_cream": {
       "name": "Crème légère"
@@ -532,7 +532,7 @@
       "name": "Vodka au citron vert"
     },
     "limeade": {
-      "name": "Limonade"
+      "name": "Citronnade au citron vert"
     },
     "malibu_rum": {
       "name": "Rhum Malibu"
@@ -571,7 +571,7 @@
       "name": "Sirop de menthe"
     },
     "mountain_dew": {
-      "name": "Whisky"
+      "name": "Mountain Dew"
     },
     "nutmeg": {
       "name": "Noix de muscade"
@@ -586,16 +586,16 @@
       "name": "Orange"
     },
     "orange_bitter": {
-      "name": "Amers à l'orange"
+      "name": "Bitter à l'orange"
     },
     "orange_curacao": {
-      "name": "Curaçao orange"
+      "name": "Curaçao à l'orange"
     },
     "juice_orange": {
-      "name": "du jus d'orange"
+      "name": "Jus d'orange"
     },
     "orange_spiral": {
-      "name": "Spirale orange"
+      "name": "Spirale de zeste d'orange"
     },
     "oreo_cookie": {
       "name": "Biscuit Oréo"
@@ -616,19 +616,19 @@
       "name": "Sirop de fruit de la passion"
     },
     "passoa": {
-      "name": "Passoa"
+      "name": "Passoã"
     },
     "peach_bitters": {
       "name": "Amers à la pêche"
     },
     "peach_brandy": {
-      "name": "Eau-de-vie de pêche"
+      "name": "Brandy à la pêche"
     },
     "peach_nectar": {
       "name": "Nectar de pêche"
     },
     "peach_schnapps": {
-      "name": "Schnaps aux pêches"
+      "name": "Schnaps à la pêche"
     },
     "peach_vodka": {
       "name": "Vodka à la pêche"
@@ -643,10 +643,10 @@
       "name": "Pernod"
     },
     "peychauds_bitter": {
-      "name": "Amers Peychaud"
+      "name": "Bitter Peychaud's"
     },
     "pina_colada_mix": {
-      "name": "Mélange de pina colada"
+      "name": "Préparation pour piña colada"
     },
     "pineapple": {
       "name": "Ananas"
@@ -670,7 +670,7 @@
       "name": "Jus de grenade"
     },
     "port": {
-      "name": "Port"
+      "name": "Porto"
     },
     "powdered_sugar": {
       "name": "Sucre en poudre"
@@ -697,10 +697,10 @@
       "name": "Ricard"
     },
     "root_beer": {
-      "name": "Bière de racine"
+      "name": "Soda aux racines (root beer)"
     },
     "rose": {
-      "name": "Rose"
+      "name": "Vin rosé"
     },
     "rosemary": {
       "name": "Romarin"
@@ -712,7 +712,7 @@
       "name": "Vermouth Rosso"
     },
     "ruby_port": {
-      "name": "Porto Rubis"
+      "name": "Porto ruby"
     },
     "rum": {
       "name": "Rhum"
@@ -730,7 +730,7 @@
       "name": "Salsepareille"
     },
     "schweppes_russchian": {
-      "name": "Schweppes russe"
+      "name": "Schweppes Russchian"
     },
     "scotch": {
       "name": "scotch"
@@ -745,16 +745,16 @@
       "name": "Sirop de roses"
     },
     "sloe_gin": {
-      "name": "Gin à la prunelle"
+      "name": "Gin aux prunelles"
     },
     "soda_water": {
       "name": "Eau gazeuse"
     },
     "sour_mix": {
-      "name": "Mélange aigre"
+      "name": "Préparation aigre-douce aux agrumes"
     },
     "southern_comfort": {
-      "name": "Confort du Sud"
+      "name": "Southern Comfort"
     },
     "soy_sauce": {
       "name": "Sauce de soja"
@@ -763,10 +763,10 @@
       "name": "Rhum épicé"
     },
     "sprite": {
-      "name": "Lutin"
+      "name": "Sprite"
     },
     "st_germain": {
-      "name": "Saint-Germain"
+      "name": "St-Germain"
     },
     "strawberries": {
       "name": "Fraises"
@@ -781,7 +781,7 @@
       "name": "Sirop de sucre"
     },
     "surge": {
-      "name": "Surtension"
+      "name": "Surge"
     },
     "sweet_and_sour": {
       "name": "Aigre-doux"
@@ -811,7 +811,7 @@
       "name": "Eau tonique"
     },
     "triple_sec": {
-      "name": "Triple seconde"
+      "name": "Triple sec"
     },
     "vanilla": {
       "name": "Vanille"
@@ -847,7 +847,7 @@
       "name": "Vin blanc"
     },
     "wild_turkey": {
-      "name": "Dinde sauvage"
+      "name": "Wild Turkey"
     },
     "wine": {
       "name": "Vin"
@@ -856,7 +856,7 @@
       "name": "Sauce Worcestershire"
     },
     "wormwood": {
-      "name": "Armoise"
+      "name": "Absinthe (plante)"
     },
     "chartreuse_yellow": {
       "name": "Chartreuse Jaune"
@@ -865,7 +865,7 @@
       "name": "Yaourt"
     },
     "yukon_jack": {
-      "name": "Jack du Yukon"
+      "name": "Yukon Jack"
     },
     "zima": {
       "name": "Zima"
@@ -960,7 +960,7 @@
         "Complétez avec un peu d’eau gazeuse."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "addison": {
@@ -978,7 +978,7 @@
         "Garnir de club soda et servir."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "affinity": {
@@ -1042,7 +1042,7 @@
         "Garnir de tranche d'orange et de zeste de citron."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "apello": {
@@ -1082,7 +1082,7 @@
         "Filtrer dans un verre highball sur de la glace fraîche."
       ],
       "ingredientAmounts": {
-        "cream": "Recharger"
+        "cream": "Compléter le verre"
       }
     },
     "avalon": {
@@ -1096,7 +1096,7 @@
         "Cette boisson, créée par Timo Haimi, a remporté le premier prix du concours Finlandia Vodka Long Drink en 1991."
       ],
       "ingredientAmounts": {
-        "lemonade": "Recharger"
+        "lemonade": "Compléter le verre"
       }
     },
     "aviation": {
@@ -1158,7 +1158,7 @@
         "Filtrer dans un verre réfrigéré, puis garnir de Prosecco."
       ],
       "ingredientAmounts": {
-        "prosecco": "Recharger"
+        "prosecco": "Compléter le verre"
       }
     },
     "bellini": {
@@ -1260,8 +1260,8 @@
         "Fonctionne mieux si de la glace est ajoutée au bol à punch et que les sodas sont très froids."
       ],
       "ingredientAmounts": {
-        "everclear": "1 cinquième bouteille",
-        "vodka": "1 cinquième bouteille"
+        "everclear": "1 bouteille d'un cinquième de gallon américain",
+        "vodka": "1 bouteille d'un cinquième de gallon américain"
       }
     },
     "bramble": {
@@ -1324,8 +1324,8 @@
         "Remuer."
       ],
       "ingredientAmounts": {
-        "coffee": "A déguster",
-        "brandy": "A déguster"
+        "coffee": "Selon le goût",
+        "brandy": "Selon le goût"
       }
     },
     "caipirinha": {
@@ -1397,7 +1397,7 @@
         "Remplissez d'eau gazeuse, remuez et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "chocolate-drink": {
@@ -1473,7 +1473,7 @@
         "Si vous souhaitez une liqueur plus douce, vous pouvez ajouter environ 1 cuillère à café de glycérine au produit fini."
       ],
       "ingredientAmounts": {
-        "caramel_coloring": "A déguster"
+        "caramel_coloring": "Selon le goût"
       }
     },
     "corn-n-oil": {
@@ -1494,7 +1494,7 @@
       ]
     },
     "cosmopolitan": {
-      "name": "Cosmopolite",
+      "name": "Cosmopolitan",
       "description": "Ajouter tous les ingrédients dans un shaker rempli de glace. Bien agiter et filtrer deux fois dans un grand verre à cocktail. Garnir d'une rondelle de citron vert.",
       "preparationSteps": [
         "Ajouter tous les ingrédients dans un shaker rempli de glace",
@@ -1524,25 +1524,25 @@
         "Apprécier!"
       ],
       "ingredientAmounts": {
-        "lime": "Jus frais au goût",
-        "coca_cola": "Recharger",
+        "lime": "Jus fraîchement pressé, selon le goût",
+        "coca_cola": "Compléter le verre",
         "ice": "Au besoin"
       }
     },
     "cuba-libre": {
       "name": "Cuba Libre",
-      "description": "Préparez tous les ingrédients dans un verre Collins rempli de glace. Garnir d'un quartier de citron vert.",
+      "description": "Préparez le cocktail directement dans un verre Collins rempli de glaçons. Garnissez d'un quartier de citron vert.",
       "preparationSteps": [
-        "Pressez la quantité indiquée de citron ou de citron vert ; utilisez uniquement son jus dans la boisson.",
-        "Préparez tous les ingrédients dans un verre Collins rempli de glace",
-        "Garnir d'un quartier de citron vert."
+        "Pressez la quantité indiquée de citron jaune ou vert et n'utilisez que le jus.",
+        "Versez les ingrédients directement dans un verre Collins rempli de glaçons.",
+        "Garnissez d'un quartier de citron vert."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Recharger"
+        "coca_cola": "Compléter le verre"
       }
     },
     "daiquiri": {
-      "name": "Daïquiri",
+      "name": "Daiquiri",
       "description": "Versez tous les ingrédients dans un shaker avec des glaçons. Bien agiter. Filtrer dans un verre à cocktail réfrigéré.",
       "preparationSteps": [
         "Pressez la quantité indiquée de citron ou de citron vert ; utilisez uniquement son jus dans la boisson.",
@@ -1591,14 +1591,14 @@
       }
     },
     "death-in-the-afternoon": {
-      "name": "Mort l'après-midi",
+      "name": "Death in the Afternoon",
       "description": "Refroidissez le verre et les deux ingrédients. Versez l'absinthe, complétez lentement avec le champagne et servez.",
       "preparationSteps": [
         "Refroidissez le verre et les deux ingrédients.",
         "Versez l'absinthe, complétez lentement avec le champagne et servez."
       ],
       "ingredientAmounts": {
-        "champagne": "Recharger"
+        "champagne": "Compléter le verre"
       }
     },
     "derby": {
@@ -1640,7 +1640,7 @@
         "Roches en option."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "Un petit flotteur"
+        "151_proof_rum": "Une fine couche en surface"
       }
     },
     "dragonfly": {
@@ -1776,8 +1776,8 @@
         "(Le soda au gingembre peut remplacer l'eau gazeuse, si vous préférez.)"
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger",
-        "lemon": "A déguster"
+        "soda_water": "Compléter le verre",
+        "lemon": "Selon le goût"
       }
     },
     "english-rose-cocktail": {
@@ -1789,11 +1789,11 @@
         "Garnir de cerise et servir."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "Pour la jante"
+        "powdered_sugar": "Pour le bord du verre"
       }
     },
     "espresso-martini": {
-      "name": "Expresso Martini",
+      "name": "Espresso Martini",
       "description": "Préparez un expresso fort et laissez-le refroidir brièvement. Ajoutez la vodka, la liqueur de café, le sirop de sucre et l'espresso dans un shaker avec de la glace. Agiter vigoureusement jusqu'à consistance mousseuse et filtrer dans un verre à cocktail réfrigéré.",
       "preparationSteps": [
         "Préparez un expresso fort et laissez-le refroidir brièvement.",
@@ -1826,8 +1826,8 @@
         "Garnir de tonic et ajouter les bitters."
       ],
       "ingredientAmounts": {
-        "tonic_water": "Recharger",
-        "lemon": "Jus frais au goût"
+        "tonic_water": "Compléter le verre",
+        "lemon": "Jus fraîchement pressé, selon le goût"
       }
     },
     "flaming-dr-pepper": {
@@ -1885,7 +1885,7 @@
       ]
     },
     "french-75": {
-      "name": "Français 75",
+      "name": "French 75",
       "description": "Mélangez le gin, le sucre et le jus de citron dans un shaker rempli de glace. Agiter vigoureusement et filtrer dans une coupe à champagne bien fraîche. Complétez avec du Champagne. Remuer doucement.",
       "preparationSteps": [
         "Mélanger le gin, le sucre et le jus de citron dans un shaker rempli de glace",
@@ -1968,12 +1968,12 @@
       ]
     },
     "fruit-cooler": {
-      "name": "Refroidisseur de fruits",
+      "name": "Cocktail frais aux fruits",
       "description": "Mélanger les fraises avec le sucre et laisser reposer une nuit au réfrigérateur Couper le citron, réserver deux tranches Juser le reste Mélanger le jus de citron, les fraises, le jus de pomme et l'eau gazeuse Ajouter des tranches de citron (décor, vraiment) Dans des verres, mettre des glaçons et une tranche de pomme Verser à boire et servir.",
       "preparationSteps": [
         "Mélanger les fraises avec le sucre et laisser reposer toute la nuit au réfrigérateur",
         "Coupez le citron, réservez deux tranches",
-        "Presser le reste",
+        "Pressez le reste du citron.",
         "Mélangez le jus de citron, les fraises, le jus de pomme et l'eau gazeuse",
         "Ajouter des tranches de citron (décor, vraiment)",
         "Dans des verres, mettez des glaçons, et une tranche de pomme",
@@ -2007,7 +2007,7 @@
         "Utilisez du rhum jamaïcain lorsque cela est possible pour un goût plus authentique."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "gagliardo": {
@@ -2027,7 +2027,7 @@
         "Vous avez maintenant votre propre GG."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recharger",
+        "ginger_ale": "Compléter le verre",
         "ice": "Au besoin"
       }
     },
@@ -2049,7 +2049,7 @@
         "Garnir avec les zestes d'orange et de citron."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "gin-daisy": {
@@ -2071,7 +2071,7 @@
         "Garnir d’eau gazeuse."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "gin-rickey": {
@@ -2085,8 +2085,8 @@
         "Décorez le verre avec des tranches de citron vert et/ou de citron."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger",
-        "lime": "A déguster"
+        "soda_water": "Compléter le verre",
+        "lime": "Selon le goût"
       }
     },
     "gin-sling": {
@@ -2127,7 +2127,7 @@
         "Décorez avec les morceaux d'ananas et les fraises et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "gin-swizzle": {
@@ -2161,7 +2161,7 @@
       }
     },
     "gluehwein": {
-      "name": "Vin de colle",
+      "name": "Glühwein (vin chaud)",
       "description": "Faites chauffer l'eau, le sucre et les épices jusqu'à dissolution du sucre, puis laissez infuser 30 minutes. Filtrer, ajouter le vin et le jus de citron et chauffer doucement sans faire bouillir. Servir chaud. Un chauffage bref ne rend pas le vin sans alcool.",
       "preparationSteps": [
         "Faites chauffer l'eau, le sucre et les épices jusqu'à dissolution du sucre, puis laissez infuser 30 minutes.",
@@ -2232,7 +2232,7 @@
         "Garnir de café chaud et remuer."
       ],
       "ingredientAmounts": {
-        "coffee": "A déguster"
+        "coffee": "Selon le goût"
       }
     },
     "halloween-punch": {
@@ -2256,8 +2256,8 @@
         "Nommé d'après la référence à Gilligan's Island (\"Le Capitaine\" *dans* \"Ginger\" est un Happy Skipper !)"
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recharger",
-        "lime": "A déguster",
+        "ginger_ale": "Compléter le verre",
+        "lime": "Selon le goût",
         "ice": "Au besoin"
       }
     },
@@ -2302,7 +2302,7 @@
         "Remuer avec une cuillère, une paille ou, mieux encore, un bâton de cannelle et laisser agir."
       ],
       "ingredientAmounts": {
-        "tea": "A déguster"
+        "tea": "Selon le goût"
       }
     },
     "highland-fling-cocktail": {
@@ -2325,7 +2325,7 @@
         "Pour un résultat optimal, laissez le mélange « mûrir » pendant 4 à 5 semaines."
       ],
       "ingredientAmounts": {
-        "vodka": "1 cinquième bouteille"
+        "vodka": "1 bouteille d'un cinquième de gallon américain"
       }
     },
     "honey-bee": {
@@ -2411,7 +2411,7 @@
         "Remplissez d'eau gazeuse, remuez et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "ipamena": {
@@ -2423,7 +2423,7 @@
         "Filtrer dans un verre, garnir de soda au gingembre et remuer doucement."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recharger",
+        "ginger_ale": "Compléter le verre",
         "ice": "Au besoin"
       }
     },
@@ -2461,7 +2461,7 @@
         "N'ajoutez pas de glace."
       ],
       "ingredientAmounts": {
-        "guinness_stout": "Recharger"
+        "guinness_stout": "Compléter le verre"
       }
     },
     "irish-spring": {
@@ -2515,7 +2515,7 @@
       ],
       "ingredientAmounts": {
         "ice": "Au besoin",
-        "milk": "A déguster"
+        "milk": "Selon le goût"
       }
     },
     "jamaican-coffee": {
@@ -2539,7 +2539,7 @@
         "Remplissez d'eau gazeuse, remuez et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "jello-shots": {
@@ -2579,7 +2579,7 @@
         "C'est aussi simple que ça !"
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "john-collins": {
@@ -2600,8 +2600,8 @@
         "Versez un grand, 2 moyens ou 3 petits verres et buvez."
       ],
       "ingredientAmounts": {
-        "syrup_chocolate": "A déguster",
-        "syrup_mint": "A déguster"
+        "syrup_chocolate": "Selon le goût",
+        "syrup_mint": "Selon le goût"
       }
     },
     "kamikaze": {
@@ -2652,7 +2652,7 @@
         "Garnir de café chaud et remuer. Ajouter de la crème fouettée si désiré."
       ],
       "ingredientAmounts": {
-        "coffee": "A déguster"
+        "coffee": "Selon le goût"
       }
     },
     "kir-royale": {
@@ -2708,7 +2708,7 @@
         "Ajoutez un peu de jus de canneberge au goût."
       ],
       "ingredientAmounts": {
-        "juice_cranberry": "A déguster"
+        "juice_cranberry": "Selon le goût"
       }
     },
     "kurant-tea": {
@@ -2720,8 +2720,8 @@
         "Apprécier!"
       ],
       "ingredientAmounts": {
-        "tea": "A déguster",
-        "sugar": "A déguster"
+        "tea": "Selon le goût",
+        "sugar": "Selon le goût"
       }
     },
     "lady-love-fizz": {
@@ -2733,7 +2733,7 @@
         "Remplissez d'eau gazeuse, remuez et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "lassi-a-south-indian-drink": {
@@ -2782,9 +2782,9 @@
         "Au lieu d’une salade traditionnelle, vous pouvez préparer de la raita."
       ],
       "ingredientAmounts": {
-        "sugar": "A déguster",
-        "lime": "A déguster",
-        "salt": "A déguster"
+        "sugar": "Selon le goût",
+        "lime": "Selon le goût",
+        "salt": "Selon le goût"
       }
     },
     "lazy-coconut-paloma": {
@@ -2795,7 +2795,7 @@
         "Ajoutez la liqueur de noix de coco et le jus de pamplemousse, complétez avec de l'eau gazeuse et remuez doucement."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "lemon-drop": {
@@ -2806,7 +2806,7 @@
         "Secouez et filtrez dans un verre à cocktail réfrigéré bordé de sucre."
       ],
       "ingredientAmounts": {
-        "sugar": "Pour la jante"
+        "sugar": "Pour le bord du verre"
       }
     },
     "lemon-elderflower-spritzer": {
@@ -2816,7 +2816,7 @@
         "Versez tous les ingrédients sur de la glace, remuez et dégustez !"
       ],
       "ingredientAmounts": {
-        "fresh_lemon_juice": "Recharger"
+        "fresh_lemon_juice": "Compléter le verre"
       }
     },
     "lemon-shot": {
@@ -2827,7 +2827,7 @@
         "Servir avec un quartier de citron saupoudré de sucre. Servir éteint."
       ],
       "ingredientAmounts": {
-        "151_proof_rum": "A déguster"
+        "151_proof_rum": "Selon le goût"
       }
     },
     "lemouroudji": {
@@ -2857,7 +2857,7 @@
         "Répétez jusqu’à épuisement des citrons verts ou du soda."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger",
+        "soda_water": "Compléter le verre",
         "lime_peel": "Pour la garniture"
       }
     },
@@ -2888,7 +2888,7 @@
       ]
     },
     "lone-tree-cooler": {
-      "name": "Refroidisseur d'arbre solitaire",
+      "name": "Lone Tree Cooler",
       "description": "Dissoudre le sucre dans environ 60 ml d'eau gazeuse dans un verre Collins. Ajouter la glace, le gin et le vermouth sec et remuer. Complétez avec plus d’eau gazeuse et décorez avec les zestes d’agrumes.",
       "preparationSteps": [
         "Dissoudre le sucre dans environ 60 ml d'eau gazeuse dans un verre Collins.",
@@ -2896,7 +2896,7 @@
         "Complétez avec plus d’eau gazeuse et décorez avec les zestes d’agrumes."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "long-island-tea": {
@@ -2908,7 +2908,7 @@
         "Garnir de cola et remuer doucement."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Recharger"
+        "coca_cola": "Compléter le verre"
       }
     },
     "long-vodka": {
@@ -2955,10 +2955,10 @@
         "Garnir d'eau gazeuse et répartir uniformément dans les verres."
       ],
       "ingredientAmounts": {
-        "mint": "A déguster",
+        "mint": "Selon le goût",
         "ice": "Au besoin",
-        "soda_water": "Recharger",
-        "sugar": "A déguster"
+        "soda_water": "Compléter le verre",
+        "sugar": "Selon le goût"
       }
     },
     "manhattan": {
@@ -2969,7 +2969,7 @@
       ]
     },
     "margarita": {
-      "name": "Marguerite",
+      "name": "Margarita",
       "description": "Frottez le bord du verre avec la tranche de citron vert pour que le sel y adhère. Veillez à humidifier uniquement le bord extérieur et à saupoudrer de sel dessus. Le sel doit se présenter aux lèvres de la personne qui boit et ne jamais se mélanger au cocktail. Secouez les autres ingrédients avec de la glace, puis versez délicatement dans le verre.",
       "preparationSteps": [
         "Frottez le bord du verre avec la tranche de citron vert pour que le sel y adhère",
@@ -2978,7 +2978,7 @@
         "Secouez les autres ingrédients avec de la glace, puis versez délicatement dans le verre."
       ],
       "ingredientAmounts": {
-        "salt": "A déguster"
+        "salt": "Selon le goût"
       }
     },
     "martinez-2": {
@@ -3019,8 +3019,8 @@
         "C'est ça."
       ],
       "ingredientAmounts": {
-        "sugar": "A déguster",
-        "milk": "A déguster"
+        "sugar": "Selon le goût",
+        "milk": "Selon le goût"
       }
     },
     "mauresque": {
@@ -3033,7 +3033,7 @@
         "Ajoutez les glaçons à la fin, sinon le sirop et le pastis ne se mélangent pas bien."
       ],
       "ingredientAmounts": {
-        "water": "Recharger"
+        "water": "Compléter le verre"
       }
     },
     "melya": {
@@ -3053,8 +3053,8 @@
         "Disposez les deux mélanges surgelés dans un grand verre. La source laisse variables les quantités des deux mélanges préparés."
       ],
       "ingredientAmounts": {
-        "pina_colada_mix": "A déguster",
-        "daiquiri_mix": "A déguster"
+        "pina_colada_mix": "Selon le goût",
+        "daiquiri_mix": "Selon le goût"
       }
     },
     "michelada": {
@@ -3103,7 +3103,7 @@
       }
     },
     "mojito": {
-      "name": "Mojitos",
+      "name": "Mojito",
       "description": "Écrasez les feuilles de menthe avec le sucre et le jus de citron vert. Ajoutez un peu d’eau gazeuse et remplissez le verre de glace pilée. Versez le rhum et complétez avec de l'eau gazeuse. Garnir et servir avec de la paille.",
       "preparationSteps": [
         "Pressez la quantité indiquée de citron ou de citron vert ; utilisez uniquement son jus dans la boisson.",
@@ -3113,7 +3113,7 @@
         "Garnir et servir avec de la paille."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "mojito-extra": {
@@ -3148,7 +3148,7 @@
       ]
     },
     "moscow-mule": {
-      "name": "Mule de Moscou",
+      "name": "Moscow Mule",
       "description": "Remplissez une tasse mule ou un verre à whisky avec de la glace. Ajouter la vodka, la bière au gingembre et le jus de citron vert frais; remuez doucement.",
       "preparationSteps": [
         "Remplissez une tasse mule ou un verre à whisky avec de la glace.",
@@ -3164,7 +3164,7 @@
       ]
     },
     "mulled-wine": {
-      "name": "Vin chaud",
+      "name": "Vin chaud épicé au brandy",
       "description": "Laisser mijoter 3 tasses d'eau avec le sucre, les clous de girofle, les bâtons de cannelle et le zeste de citron dans une casserole en acier inoxydable pendant 10 minutes. Ajoutez la chaleur du vin à une « température du café » (NE PAS BOUILLIR), puis ajoutez le cognac.",
       "preparationSteps": [
         "Laisser mijoter 3 tasses d'eau avec le sucre, les clous de girofle, les bâtons de cannelle et le zeste de citron dans une casserole en acier inoxydable pendant 10 minutes.",
@@ -3191,11 +3191,11 @@
         "Filtrez sur de la glace fraîche dans un grand verre, puis ajoutez le soda et remuez doucement."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Une éclaboussure"
+        "lemon_lime_soda": "Un trait"
       }
     },
     "negroni": {
-      "name": "Négroni",
+      "name": "Negroni",
       "description": "Mélanger dans un verre sur de la glace, garnir et servir.",
       "preparationSteps": [
         "Mélanger dans un verre sur de la glace, garnir et servir."
@@ -3219,7 +3219,7 @@
         "Versez lentement le vin rouge sur le dos d'une cuillère pour le faire flotter dessus. Garnir de cerise."
       ],
       "ingredientAmounts": {
-        "wine_red": "A déguster",
+        "wine_red": "Selon le goût",
         "cherry": "Pour la garniture"
       }
     },
@@ -3258,7 +3258,7 @@
       ]
     },
     "old-fashioned": {
-      "name": "À l'ancienne",
+      "name": "Old Fashioned",
       "description": "Placez le morceau de sucre dans un verre old fashioned et saturez-le de bitter, ajoutez un filet d'eau claire. Mélanger jusqu'à dissolution.\r\nRemplissez le verre de glaçons et ajoutez le whisky.\r\n\r\nGarnir d'un zeste d'orange et d'une cerise cocktail.",
       "preparationSteps": [
         "Placer le morceau de sucre dans un verre old fashioned et saturer de bitter, ajouter un filet d'eau claire.",
@@ -3294,7 +3294,7 @@
         "Remplissez de soda au gingembre, remuez et servez."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recharger"
+        "ginger_ale": "Compléter le verre"
       }
     },
     "orange-push-up": {
@@ -3305,22 +3305,22 @@
         "Versez dans un grand verre."
       ],
       "ingredientAmounts": {
-        "sour_mix": "Une éclaboussure"
+        "sour_mix": "Un trait"
       }
     },
     "orange-rosemary-collins": {
       "name": "Collins à l'orange et au romarin",
       "description": "Ajoutez les spiritueux au fond du verre et complétez à parts égales avec les boissons mixées. Garnir de tranches d'orange à l'intérieur du verre ainsi que d'un peu de romarin sur le dessus.",
       "preparationSteps": [
-        "Ajouter les spiritueux au fond du verre et garnir à parts égales avec les boissons mixées.",
+        "Versez les spiritueux dans le verre, puis complétez avec les boissons sans alcool à parts égales.",
         "Garnir de tranches d'orange à l'intérieur du verre ainsi que d'un peu de romarin sur le dessus."
       ],
       "ingredientAmounts": {
-        "juice_orange": "Recharger",
-        "lemon": "Recharger",
-        "soda_water": "Recharger",
-        "rosemary": "A déguster",
-        "orange": "A déguster"
+        "juice_orange": "Compléter le verre",
+        "lemon": "Compléter le verre",
+        "soda_water": "Compléter le verre",
+        "rosemary": "Selon le goût",
+        "orange": "Selon le goût"
       }
     },
     "orange-scented-hot-chocolate": {
@@ -3345,7 +3345,7 @@
       }
     },
     "orange-whip": {
-      "name": "Fouet Orange",
+      "name": "Orange Whip",
       "description": "Versez les ingrédients sur de la glace et remuez.",
       "preparationSteps": [
         "Versez les ingrédients sur de la glace et remuez."
@@ -3362,7 +3362,7 @@
         "Complétez avec de l'eau gazeuse froide et servez avec une paille."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "oreo-mudslide": {
@@ -3414,7 +3414,7 @@
         "Garnir d'un demi-morceau de fruit de la passion."
       ],
       "ingredientAmounts": {
-        "juice_passion_fruit": "Recharger"
+        "juice_passion_fruit": "Compléter le verre"
       }
     },
     "pegu-club": {
@@ -3435,7 +3435,7 @@
       ]
     },
     "pina-colada": {
-      "name": "Pina Colada",
+      "name": "Piña Colada",
       "description": "Mettez le rhum blanc, la crème de coco et le jus d'ananas dans un mixeur avec de la glace pilée. Mélangez jusqu'à consistance lisse, puis versez dans un grand verre réfrigéré.",
       "preparationSteps": [
         "Mettez le rhum blanc, la crème de coco et le jus d'ananas dans un mixeur avec de la glace pilée.",
@@ -3459,8 +3459,8 @@
         "Garnir d'ananas frais ou de citron vert."
       ],
       "ingredientAmounts": {
-        "lime": "A déguster",
-        "pepper": "A déguster"
+        "lime": "Selon le goût",
+        "pepper": "Selon le goût"
       }
     },
     "pink-gin": {
@@ -3490,7 +3490,7 @@
         "Ajoutez des fleurs et une feuille verte pour un look spécial !"
       ],
       "ingredientAmounts": {
-        "blackberries": "A déguster"
+        "blackberries": "Selon le goût"
       }
     },
     "pink-panty-pulldowns": {
@@ -3509,7 +3509,7 @@
       ]
     },
     "pisco-sour": {
-      "name": "Pisco aigre",
+      "name": "Pisco Sour",
       "description": "Secouez le pisco, le jus de citron frais, le sirop de sucre et un blanc d'œuf pasteurisé sans glace pour développer la mousse. Ajoutez de la glace, secouez jusqu'à ce qu'il soit froid et filtrez dans un verre réfrigéré. Déposez quelques gouttes de bitter aromatique sur la mousse.",
       "preparationSteps": [
         "Secouez le pisco, le jus de citron frais, le sirop de sucre et un blanc d'œuf pasteurisé sans glace pour développer la mousse.",
@@ -3517,11 +3517,11 @@
         "Déposez quelques gouttes de bitter aromatique sur la mousse."
       ],
       "ingredientAmounts": {
-        "bitters": "Quelques tirets"
+        "bitters": "Quelques traits de bitter"
       }
     },
     "planter-s-punch-178368-178368-178368": {
-      "name": "Coup de poing du planteur",
+      "name": "Planter's Punch",
       "description": "Verser tous les ingrédients, sauf le bitter, dans un shaker rempli de glace. Bien agiter Verser dans un grand verre rempli de glace Ajouter le bitter Angostura, \"sur le dessus\". Garnir de cerise cocktail et d'ananas.",
       "preparationSteps": [
         "Versez tous les ingrédients, sauf les bitters, dans un shaker rempli de glace",
@@ -3597,7 +3597,7 @@
         "Bien mélanger et garnir de menthe."
       ],
       "ingredientAmounts": {
-        "mint": "A déguster"
+        "mint": "Selon le goût"
       }
     },
     "pysch-vitamin-light": {
@@ -3642,7 +3642,7 @@
         "Remplissez de soda citron-lime, remuez et servez."
       ],
       "ingredientAmounts": {
-        "lemon_lime_soda": "Recharger"
+        "lemon_lime_soda": "Compléter le verre"
       }
     },
     "queen-elizabeth": {
@@ -3685,8 +3685,8 @@
         "Faites le plein de soda au gingembre."
       ],
       "ingredientAmounts": {
-        "lemon": "A déguster",
-        "ginger_ale": "Recharger"
+        "lemon": "Selon le goût",
+        "ginger_ale": "Compléter le verre"
       }
     },
     "ramos-gin-fizz": {
@@ -3698,7 +3698,7 @@
         "Filtrer dans un verre highball et compléter délicatement avec de l'eau gazeuse. Ne secouez jamais le soda."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "raspberry-julep": {
@@ -3726,7 +3726,7 @@
         "Garnir et servir."
       ],
       "ingredientAmounts": {
-        "powdered_sugar": "A déguster"
+        "powdered_sugar": "Selon le goût"
       }
     },
     "rosemary-blue": {
@@ -3739,7 +3739,7 @@
         "3) Pliez délicatement avec une cuillère de bar pour mélanger."
       ],
       "ingredientAmounts": {
-        "rosemary": "A déguster"
+        "rosemary": "Selon le goût"
       }
     },
     "royal-fizz": {
@@ -3750,7 +3750,7 @@
         "Remplissez de cola et servez."
       ],
       "ingredientAmounts": {
-        "coca_cola": "Recharger"
+        "coca_cola": "Compléter le verre"
       }
     },
     "royal-flush": {
@@ -3770,7 +3770,7 @@
         "Remplissez d'eau gazeuse, remuez et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "ruby-tuesday": {
@@ -3781,7 +3781,7 @@
         "Ajouter la grenadine et remuer."
       ],
       "ingredientAmounts": {
-        "grenadine": "Deux éclaboussures"
+        "grenadine": "Deux traits"
       }
     },
     "rum-cobbler": {
@@ -3860,7 +3860,7 @@
         "Filtrer dans un grand verre rempli de glace fraîche, puis garnir de vin mousseux."
       ],
       "ingredientAmounts": {
-        "prosecco": "Recharger"
+        "prosecco": "Compléter le verre"
       }
     },
     "rusty-nail": {
@@ -3888,8 +3888,8 @@
         "garnir d'orange et de fraise."
       ],
       "ingredientAmounts": {
-        "grenadine": "A déguster",
-        "juice_orange": "A déguster"
+        "grenadine": "Selon le goût",
+        "juice_orange": "Selon le goût"
       }
     },
     "sangria": {
@@ -3901,8 +3901,8 @@
         "Servir dans des verres à vin."
       ],
       "ingredientAmounts": {
-        "cloves": "A déguster",
-        "cinnamon": "A déguster"
+        "cloves": "Selon le goût",
+        "cinnamon": "Selon le goût"
       }
     },
     "sazerac": {
@@ -3923,7 +3923,7 @@
       ]
     },
     "scotch-sour": {
-      "name": "Scotch aigre",
+      "name": "Scotch Sour",
       "description": "Secouez le scotch, le jus de citron vert et le sucre en poudre avec de la glace et filtrez dans un verre à whisky aigre. Décorer avec 1/2 tranche de citron, garnir de cerise et servir.",
       "preparationSteps": [
         "Pressez la quantité indiquée de citron ou de citron vert ; utilisez uniquement son jus dans la boisson.",
@@ -3939,7 +3939,7 @@
         "Ajouter la vodka, garnir de jus d'orange et remuer doucement."
       ],
       "ingredientAmounts": {
-        "juice_orange": "A déguster"
+        "juice_orange": "Selon le goût"
       }
     },
     "sea-breeze": {
@@ -3972,7 +3972,7 @@
         "Saupoudrer de muscade et servir."
       ],
       "ingredientAmounts": {
-        "milk": "A déguster",
+        "milk": "Selon le goût",
         "nutmeg": "Pour la garniture"
       }
     },
@@ -4030,7 +4030,7 @@
         "Exprimez le zeste d'orange sur la boisson et décorez."
       ],
       "ingredientAmounts": {
-        "orange": "A déguster"
+        "orange": "Selon le goût"
       }
     },
     "sol-y-sombra": {
@@ -4051,8 +4051,8 @@
         "Garnir de jus d'orange, ajouter de la grenadine au goût et garnir de cerises."
       ],
       "ingredientAmounts": {
-        "juice_orange": "A déguster",
-        "grenadine": "A déguster",
+        "juice_orange": "Selon le goût",
+        "grenadine": "Selon le goût",
         "cherry": "Pour la garniture"
       }
     },
@@ -4066,17 +4066,17 @@
         "Répartissez dans six flûtes, ajoutez 100 ml de champagne dans chacune et décorez d'écorces d'orange."
       ],
       "ingredientAmounts": {
-        "orange_spiral": "A déguster"
+        "orange_spiral": "Selon le goût"
       }
     },
     "spritz": {
-      "name": "Vaporiser",
+      "name": "Spritz",
       "description": "Verser dans un verre sur de la glace, garnir et servir.",
       "preparationSteps": [
         "Verser dans un verre sur de la glace, garnir et servir."
       ],
       "ingredientAmounts": {
-        "soda_water": "Une éclaboussure"
+        "soda_water": "Un trait"
       }
     },
     "stinger": {
@@ -4114,8 +4114,8 @@
       "ingredientAmounts": {
         "orange": "Pour la garniture",
         "lime": "Pour la garniture",
-        "lemon": "A déguster",
-        "fresca": "Recharger"
+        "lemon": "Selon le goût",
+        "fresca": "Compléter le verre"
       }
     },
     "tennesee-mud": {
@@ -4137,7 +4137,7 @@
         "Remplissez de soda au gingembre, remuez et servez."
       ],
       "ingredientAmounts": {
-        "ginger_ale": "Recharger"
+        "ginger_ale": "Compléter le verre"
       }
     },
     "tequila-sour": {
@@ -4165,7 +4165,7 @@
         "Ajoutez des gouttes de sauce Tobasco."
       ],
       "ingredientAmounts": {
-        "tequila": "Recharger"
+        "tequila": "Compléter le verre"
       }
     },
     "texas-rattlesnake": {
@@ -4176,7 +4176,7 @@
         "Doux au début, avec une BOUCHE à la fin..."
       ],
       "ingredientAmounts": {
-        "sweet_and_sour": "Une éclaboussure"
+        "sweet_and_sour": "Un trait"
       }
     },
     "texas-sling": {
@@ -4212,9 +4212,9 @@
         "Ajoutez lentement la crème sur le dos d'une cuillère pour créer une couche supérieure séparée."
       ],
       "ingredientAmounts": {
-        "coffee": "A déguster",
-        "cream": "A déguster",
-        "sugar": "A déguster"
+        "coffee": "Selon le goût",
+        "cream": "Selon le goût",
+        "sugar": "Selon le goût"
       }
     },
     "thai-iced-tea": {
@@ -4238,8 +4238,8 @@
         "Mélangez les portions alcoolisées et complétez avec le jus d'ananas et de citron vert."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Recharger",
-        "lime": "Recharger"
+        "juice_pineapple": "Compléter le verre",
+        "lime": "Compléter le verre"
       }
     },
     "the-jimmy-conway": {
@@ -4276,7 +4276,7 @@
         "Filtrer dans un verre réfrigéré, puis garnir de Prosecco."
       ],
       "ingredientAmounts": {
-        "prosecco": "Recharger"
+        "prosecco": "Compléter le verre"
       }
     },
     "thriller": {
@@ -4339,7 +4339,7 @@
         "Agiter avec de la glace et filtrer dans un verre à shot."
       ],
       "ingredientAmounts": {
-        "juice_pineapple": "Une éclaboussure"
+        "juice_pineapple": "Un trait"
       }
     },
     "tuxedo-cocktail": {
@@ -4384,7 +4384,7 @@
         "Remplissez d'eau gazeuse, remuez à nouveau et servez."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "vesper": {
@@ -4445,7 +4445,7 @@
       ]
     },
     "whiskey-sour": {
-      "name": "Whisky Sour",
+      "name": "Whiskey Sour",
       "description": "Agiter avec de la glace. Filtrer dans un verre réfrigéré, garnir et servir. Si vous le servez « sur glace », filtrez les ingrédients dans un verre à l'ancienne rempli de glace.",
       "preparationSteps": [
         "Pressez la quantité indiquée de citron ou de citron vert ; utilisez uniquement son jus dans la boisson.",
@@ -4477,7 +4477,7 @@
         "Garnir de crème légère et servir."
       ],
       "ingredientAmounts": {
-        "light_cream": "A déguster"
+        "light_cream": "Selon le goût"
       }
     },
     "white-wine-sangria": {
@@ -4489,7 +4489,7 @@
         "Garnir au goût d’eau gazeuse."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "whitecap-margarita": {
@@ -4516,7 +4516,7 @@
         "Garnir de jus de pamplemousse, ajouter une pincée de poivre de qualité alimentaire et remuer. Il s'agit de la version simplifiée ; l'original utilise de la tequila préparée infusée au poivre."
       ],
       "ingredientAmounts": {
-        "juice_grapefruit": "Recharger"
+        "juice_grapefruit": "Compléter le verre"
       }
     },
     "winter-rita": {
@@ -4572,7 +4572,7 @@
         "Versez le Chambord, puis la vodka et enfin l'eau gazeuse. Versez lentement pour retenir les couches."
       ],
       "ingredientAmounts": {
-        "soda_water": "Recharger"
+        "soda_water": "Compléter le verre"
       }
     },
     "zippy-s-revenge": {
@@ -4604,12 +4604,12 @@
         "Remuer délicatement et garnir de la tranche de citron. Ne secouez pas les ingrédients gazeux."
       ],
       "ingredientAmounts": {
-        "coca_cola": "A déguster",
-        "beer": "A déguster",
-        "root_beer": "A déguster",
-        "lemonade": "Recharger",
-        "7_up": "A déguster",
-        "creme_de_cassis": "A déguster"
+        "coca_cola": "Selon le goût",
+        "beer": "Selon le goût",
+        "root_beer": "Selon le goût",
+        "lemonade": "Compléter le verre",
+        "7_up": "Selon le goût",
+        "creme_de_cassis": "Selon le goût"
       }
     },
     "zombie": {
@@ -4636,7 +4636,7 @@
         "ajoutez le tout et versez le café noir et ajoutez la chantilly par dessus."
       ],
       "ingredientAmounts": {
-        "coffee": "Recharger",
+        "coffee": "Compléter le verre",
         "whipped_cream": "Pour la garniture"
       }
     }

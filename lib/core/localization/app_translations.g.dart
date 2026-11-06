@@ -8,8 +8,8 @@ appTranslations = <String, Map<String, String>>{
         "1. Llena el vaso con hielo\n2. Agrega los ingredientes\n3. Adorne y sirva",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. Llena el vaso con hielo\n2. Agrega los ingredientes\n3. Adorne y sirva",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. Abre Ingredientes y toca los productos y bebidas que tienes en casa. Una marca de verificación significa que el ingrediente está disponible.\n\n2. Abre el menú de la barra para ver qué cócteles puedes preparar con tus ingredientes. Utilice el filtro Listo para mostrar solo recetas que puede preparar ahora.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. Marca en «{0}» los ingredientes que tienes en casa. La marca indica que los tienes.\n\n2. Abre «{1}» y elige «{2}» para ver qué cócteles puedes preparar.",
     "About app": "Acerca de la aplicación",
     "Add": "Agregar",
     "Add at least one ingredient first":
@@ -21,16 +21,19 @@ appTranslations = <String, Map<String, String>>{
         "Agregue ingredientes de las recomendaciones a continuación.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "Agregue elementos en \"Ingredientes\" y los cócteles disponibles aparecerán aquí.",
-    "Add missing to shopping · {0}": "Añadir faltantes a compras · {0}",
+    "Add missing to shopping · {0}": "Añadir lo que falta a la lista · {0}",
     "Add preparation steps": "Agregar pasos de preparación",
     "Add substitution": "Agregar sustitución",
     "Add to favorites": "Añadir a favoritos",
     "Add to list": "Añadir a la lista",
-    "Added to shopping · {0}": "Añadido a compras · {0}",
+    "Added to shopping · {0}": "Añadidos a la lista · {0}",
     "Adding…": "Añadiendo…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "Ajusta las cantidades al número de porciones que necesitas. En «{0}», elige los cócteles para obtener una sola lista de ingredientes.",
     "All": "Todo",
     "All added items will be removed.":
-        "Todos los elementos agregados serán eliminados.",
+        "Se quitarán todos los ingredientes de la lista.",
+    "Almost ready to mix": "A un paso del cóctel",
     "Alphabetical": "Alfabético",
     "Amount": "Cantidad",
     "Amounts can only be set for selected ingredients.":
@@ -77,9 +80,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "Elige idioma",
     "Choose your favorite styles — results update after applying.":
         "Elija sus estilos favoritos: los resultados se actualizan después de la aplicación.",
-    "Clear": "Claro",
+    "Clear": "Borrar",
     "Clear selection": "Borrar selección",
-    "Clear shopping list?": "¿Borrar lista de compras?",
+    "Clear shopping list?": "¿Vaciar la lista de compras?",
     "Close": "Cerca",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "El cóctel \"{0}\" contiene una sustitución del ingrediente no seleccionado \"{1}\".",
@@ -110,6 +113,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "Cóctel no encontrado.",
     "Cocktail updated": "Cóctel actualizado",
     "Cocktails": "Cócteles",
+    "Cocktails for a group": "Cócteles para varias personas",
     "Cocktails:": "Cócteles:",
     "Coffee, tea and cocoa": "Café, té y cacao",
     "Collins": "Vaso Collins",
@@ -128,7 +132,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "Descripción",
     "Dessert ingredients": "Ingredientes del postre",
     "Developer website": "Sitio web del desarrollador",
-    "Discover a new favorite": "Descubre un nuevo favorito",
+    "Discover a new favorite": "Descubre nuevos cócteles",
     "Done": "Hecho",
     "Duplicate id \"{0}\" in \"{1}\".": "ID duplicado \"{0}\" en \"{1}\".",
     "Edit": "Editar",
@@ -158,8 +162,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "frutas y bayas",
     "German": "Alemán",
     "Get started": "empezar",
-    "Glass type*": "Tipo de vidrio*",
-    "Glass: {0}": "Vidrio: {0}",
+    "Glass type*": "Tipo de vaso*",
+    "Glass: {0}": "Vaso: {0}",
     "Goblet": "Copa",
     "Hide menu": "Ocultar menú",
     "Hides editing controls": "Oculta controles de edición",
@@ -189,7 +193,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "La raíz JSON debe ser un objeto.",
     "Japanese": "japonés",
     "Juices and nectars": "Jugos y néctares",
-    "Just one more ingredient…": "Sólo un ingrediente más...",
     "Korean": "coreano",
     "Language": "Idioma",
     "Light": "Suaves",
@@ -208,10 +211,9 @@ appTranslations = <String, Map<String, String>>{
     "Medium strength": "Graduación media",
     "Missing 1": "Falta 1",
     "Missing 2": "Faltan 2",
-    "Missing ingredients: {0}": "Ingredientes faltantes: {0}",
-    "Missing: {0}": "Falta: {0}",
+    "Missing ingredients: {0}": "Ingredientes que faltan: {0}",
+    "Missing: {0}": "Faltan: {0}",
     "Missing: {0} and {1} more": "Faltan: {0} y {1} más",
-    "Mix for a crowd": "Mezclar para una multitud",
     "More filters": "Más filtros",
     "More · {0}": "Más · {0}",
     "Mug": "Taza",
@@ -249,7 +251,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "Sólo los ingredientes seleccionados se pueden marcar como opcionales.",
     "Optional": "Opcional",
-    "Owned ingredients only": "Solo ingredientes propios",
+    "Owned ingredients only": "Solo ingredientes que tengo",
     "Party": "Fiesta",
     "Party mode": "Modo fiesta",
     "Party plan": "plan de fiesta",
@@ -263,8 +265,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "Premezclas",
     "Preparation": "Preparación",
     "Preparation steps*": "Pasos de preparación*",
-    "Ready": "Listo",
-    "Ready now": "Listo ahora",
+    "Ready": "Disponibles",
+    "Ready now": "Puedes prepararlo ahora",
     "Ready only": "Solo disponibles",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "Reduce los efectos intensos de la interfaz de usuario (desenfoque, brillo, animaciones) para reducir el calor y el uso de la batería.",
@@ -277,19 +279,17 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "ruso",
     "Sauces and savory additions": "Salsas y complementos salados",
     "Save": "Ahorrar",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "Escale recetas a cualquier número de porciones. En el modo Fiesta, elige cócteles y obtén una lista de ingredientes combinados.",
     "Search cocktails": "Buscar cócteles",
     "Search cocktails…": "Buscar cócteles…",
-    "Search ingredients...": "Buscar ingredientes...",
-    "Search languages": "Idiomas de búsqueda",
+    "Search ingredients...": "Buscar ingredientes…",
+    "Search languages": "Buscar idiomas",
     "Select a cocktail in the left grid to open preparation instructions.":
         "Seleccione un cóctel en la cuadrícula de la izquierda para abrir las instrucciones de preparación.",
     "Select at least one ingredient": "Seleccione al menos un ingrediente",
     "Select bottles and ingredients you already have at home":
         "Selecciona botellas e ingredientes que ya tienes en casa.",
     "Select glass type": "Seleccione tipo de vidrio",
-    "Select ready": "Seleccione listo",
+    "Select ready": "Seleccionar disponibles",
     "Serving calculator": "calculadora de servicio",
     "Servings: {0}": "Porciones: {0}",
     "Settings": "Ajustes",
@@ -305,10 +305,10 @@ appTranslations = <String, Map<String, String>>{
         "Muestra sólo la página \"Menú de la barra\"",
     "Skip": "Saltar",
     "Smart shopping list": "Lista de compras inteligente",
-    "Sodas and non-alcoholic mixers": "Refrescos y batidoras sin alcohol",
+    "Sodas and non-alcoholic mixers": "Refrescos y mezcladores sin alcohol",
     "Spanish": "Español",
-    "Spices, herbs and bitters": "Especias, hierbas y amargos",
-    "Spirits": "Espíritu",
+    "Spices, herbs and bitters": "Especias, hierbas y bitters",
+    "Spirits": "Destilados",
     "Stay": "Permanecer",
     "Strong": "Fuertes",
     "Style and mood": "Estilo y estado de ánimo",
@@ -321,8 +321,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "Jarabes y edulcorantes",
     "System": "Sistema",
     "Tags": "Etiquetas",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "Toca \"Sorpréndeme\" y explora recetas aleatorias con \"Siguiente cóctel\". Guarda tus favoritos. Todas estas funciones son gratuitas y funcionan sin conexión.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "Toca «{0}» para ver una receta al azar y «{1}» para ver otra. Guarda las que te gusten en favoritos. Todo es gratis y funciona sin conexión.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "Los ingredientes que faltan ahora están en Compras en el menú de tu bar.",
     "The substitution list contains an unknown ingredient.":
@@ -338,6 +338,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "Desbloquea {0} cóctel",
     "Unlocks {0} cocktails": "Desbloquea {0} cócteles",
     "Use device language": "Usar el idioma del dispositivo",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "Usa «{0}» y «{1}» para encontrar recetas a las que solo les faltan uno o dos ingredientes. La lista de compras te ayuda a decidir qué comprar.",
     "Version {0}": "Versión {0}",
     "Visitor mode": "Modo visitante",
     "Visitor mode: ingredient selection is disabled":
@@ -351,7 +353,7 @@ appTranslations = <String, Map<String, String>>{
         "Funciona sin conexión con un catálogo integrado estable.",
     "You have unsaved changes. They will be lost.":
         "Tienes cambios sin guardar. Estarán perdidos.",
-    "Your home bar": "Tu barra de casa",
+    "Your home bar": "Tu bar en casa",
     "Your shopping list is empty.": "Tu lista de compras está vacía.",
     "bottle": "botella",
     "can": "lata",
@@ -397,16 +399,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} ingredientes seleccionados. {1} cócteles listos.",
     "{0} serv.": "{0} raciones",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "“Missing 1” y “Missing 2” revelan recetas casi listas. La lista de compras inteligente te ayuda a decidir qué comprar a continuación.",
   },
   'pt': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. Encha o copo com gelo\n2. Adicione ingredientes\n3. Decore e sirva",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. Encha o copo com gelo\n2. Adicione os ingredientes\n3. Decore e sirva",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. Abra Ingredientes e toque nos produtos e bebidas que você tem em casa. Uma marca de seleção significa que o ingrediente está em estoque.\n\n2. Abra o Menu Bar para ver quais coquetéis você pode fazer com seus ingredientes. Use o filtro Pronto para mostrar apenas as receitas que você pode fazer agora.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. Marque em “{0}” os ingredientes que você tem em casa. O sinal de seleção indica que você tem o ingrediente.\n\n2. Abra “{1}” e escolha “{2}” para ver os coquetéis que pode preparar.",
     "About app": "Sobre o aplicativo",
     "Add": "Adicionar",
     "Add at least one ingredient first":
@@ -418,16 +418,19 @@ appTranslations = <String, Map<String, String>>{
         "Adicione os ingredientes das recomendações abaixo.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "Adicione itens em \"Ingredientes\" e os coquetéis disponíveis aparecerão aqui.",
-    "Add missing to shopping · {0}": "Adicionar faltantes às compras · {0}",
+    "Add missing to shopping · {0}": "Adicionar o que falta à lista · {0}",
     "Add preparation steps": "Adicione etapas de preparação",
     "Add substitution": "Adicionar substituição",
     "Add to favorites": "Adicionar aos favoritos",
     "Add to list": "Adicionar à lista",
-    "Added to shopping · {0}": "Adicionado às compras · {0}",
+    "Added to shopping · {0}": "Adicionados à lista · {0}",
     "Adding…": "Adicionando…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "Ajuste as quantidades ao número de porções que você precisa. Em “{0}”, escolha os coquetéis para obter uma lista única de ingredientes.",
     "All": "Todos",
     "All added items will be removed.":
-        "Todos os itens adicionados serão removidos.",
+        "Todos os ingredientes serão removidos da lista.",
+    "Almost ready to mix": "Quase tudo pronto",
     "Alphabetical": "Alfabético",
     "Amount": "Quantia",
     "Amounts can only be set for selected ingredients.":
@@ -474,9 +477,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "Escolha o idioma",
     "Choose your favorite styles — results update after applying.":
         "Escolha seus estilos favoritos – os resultados são atualizados após a aplicação.",
-    "Clear": "Claro",
+    "Clear": "Limpar",
     "Clear selection": "Limpar seleção",
-    "Clear shopping list?": "Limpar lista de compras?",
+    "Clear shopping list?": "Esvaziar a lista de compras?",
     "Close": "Fechar",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "O coquetel \"{0}\" contém uma substituição do ingrediente não selecionado \"{1}\".",
@@ -507,6 +510,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "Coquetel não encontrado.",
     "Cocktail updated": "Coquetel atualizado",
     "Cocktails": "Coquetéis",
+    "Cocktails for a group": "Coquetéis para o grupo",
     "Cocktails:": "Coquetéis:",
     "Coffee, tea and cocoa": "Café, chá e cacau",
     "Collins": "Copo Collins",
@@ -525,7 +529,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "Descrição",
     "Dessert ingredients": "Ingredientes de sobremesa",
     "Developer website": "Site do desenvolvedor",
-    "Discover a new favorite": "Descubra um novo favorito",
+    "Discover a new favorite": "Descubra novos coquetéis",
     "Done": "Feito",
     "Duplicate id \"{0}\" in \"{1}\".": "ID duplicado \"{0}\" em \"{1}\".",
     "Edit": "Editar",
@@ -554,8 +558,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "Frutas e bagas",
     "German": "Alemão",
     "Get started": "Comece",
-    "Glass type*": "Tipo de vidro*",
-    "Glass: {0}": "Vidro: {0}",
+    "Glass type*": "Tipo de copo*",
+    "Glass: {0}": "Copo: {0}",
     "Goblet": "Cálice",
     "Hide menu": "Ocultar menu",
     "Hides editing controls": "Oculta controles de edição",
@@ -584,7 +588,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "A raiz JSON deve ser um objeto.",
     "Japanese": "japonês",
     "Juices and nectars": "Sucos e néctares",
-    "Just one more ingredient…": "Só mais um ingrediente…",
     "Korean": "coreano",
     "Language": "Linguagem",
     "Light": "Leves",
@@ -601,12 +604,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "Taça Martini",
     "Measurement system": "Sistema de medição",
     "Medium strength": "Teor alcoólico médio",
-    "Missing 1": "Faltando 1",
-    "Missing 2": "Faltando 2",
-    "Missing ingredients: {0}": "Ingredientes faltando: {0}",
-    "Missing: {0}": "Faltando: {0}",
-    "Missing: {0} and {1} more": "Faltando: {0} e mais {1}",
-    "Mix for a crowd": "Misture para uma multidão",
+    "Missing 1": "Falta 1",
+    "Missing 2": "Faltam 2",
+    "Missing ingredients: {0}": "Ingredientes que faltam: {0}",
+    "Missing: {0}": "Faltam: {0}",
+    "Missing: {0} and {1} more": "Faltam: {0} e mais {1}",
     "More filters": "Mais filtros",
     "More · {0}": "Mais · {0}",
     "Mug": "Caneca",
@@ -645,7 +647,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "Apenas ingredientes selecionados podem ser marcados como opcionais.",
     "Optional": "Opcional",
-    "Owned ingredients only": "Apenas ingredientes de sua propriedade",
+    "Owned ingredients only": "Só ingredientes que tenho",
     "Party": "Festa",
     "Party mode": "Modo festa",
     "Party plan": "Plano de festa",
@@ -659,8 +661,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "Pré-misturas",
     "Preparation": "Preparação",
     "Preparation steps*": "Etapas de preparação*",
-    "Ready": "Preparar",
-    "Ready now": "Pronto agora",
+    "Ready": "Disponíveis",
+    "Ready now": "Você pode preparar agora",
     "Ready only": "Só disponíveis",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "Reduz efeitos pesados da interface do usuário (desfoque, brilho, animações) para diminuir o calor e o uso da bateria.",
@@ -673,19 +675,17 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "russo",
     "Sauces and savory additions": "Molhos e complementos salgados",
     "Save": "Salvar",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "Dimensione as receitas para qualquer contagem de porções. No modo Festa, escolha coquetéis e obtenha uma lista combinada de ingredientes.",
-    "Search cocktails": "Pesquisar coquetéis",
-    "Search cocktails…": "Pesquisar coquetéis…",
-    "Search ingredients...": "Pesquisar ingredientes...",
-    "Search languages": "Idiomas de pesquisa",
+    "Search cocktails": "Buscar coquetéis",
+    "Search cocktails…": "Buscar coquetéis…",
+    "Search ingredients...": "Buscar ingredientes…",
+    "Search languages": "Buscar idiomas",
     "Select a cocktail in the left grid to open preparation instructions.":
         "Selecione um coquetel na grade esquerda para abrir as instruções de preparo.",
     "Select at least one ingredient": "Selecione pelo menos um ingrediente",
     "Select bottles and ingredients you already have at home":
         "Selecione garrafas e ingredientes que você já tem em casa",
     "Select glass type": "Selecione o tipo de vidro",
-    "Select ready": "Selecione pronto",
+    "Select ready": "Selecionar disponíveis",
     "Serving calculator": "Calculadora de serviço",
     "Servings: {0}": "Porções: {0}",
     "Settings": "Configurações",
@@ -700,10 +700,10 @@ appTranslations = <String, Map<String, String>>{
     "Shows only the \"Bar Menu\" page": "Mostra apenas a página \"Bar Menu\"",
     "Skip": "Pular",
     "Smart shopping list": "Lista de compras inteligente",
-    "Sodas and non-alcoholic mixers": "Refrigerantes e misturadores sem álcool",
+    "Sodas and non-alcoholic mixers": "Refrigerantes e misturas sem álcool",
     "Spanish": "Espanhol",
     "Spices, herbs and bitters": "Especiarias, ervas e bitters",
-    "Spirits": "Espíritos",
+    "Spirits": "Destilados",
     "Stay": "Ficar",
     "Strong": "Fortes",
     "Style and mood": "Estilo e humor",
@@ -716,8 +716,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "Xaropes e adoçantes",
     "System": "Sistema",
     "Tags": "Etiquetas",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "Toque em “Surpreenda-me” e explore receitas aleatórias com “Próximo coquetel”. Salve seus favoritos. Todos esses recursos são gratuitos e funcionam offline.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "Toque em “{0}” para ver uma receita aleatória e em “{1}” para ver outra. Salve as receitas de que gosta nos favoritos. Tudo é grátis e funciona sem internet.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "Os ingredientes que faltam agora estão no Shopping, no menu do seu bar.",
     "The substitution list contains an unknown ingredient.":
@@ -733,6 +733,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "Desbloqueia {0} coquetel",
     "Unlocks {0} cocktails": "Desbloqueia {0} coquetéis",
     "Use device language": "Usar o idioma do dispositivo",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "Use “{0}” e “{1}” para encontrar receitas que precisam de apenas mais um ou dois ingredientes. A lista de compras ajuda você a decidir o que comprar.",
     "Version {0}": "Versão {0}",
     "Visitor mode": "Modo visitante",
     "Visitor mode: ingredient selection is disabled":
@@ -792,16 +794,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} ingredientes selecionados. {1} coquetéis prontos.",
     "{0} serv.": "{0} porç.",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "“Missing 1” e “Missing 2” revelam receitas quase prontas. A lista de compras inteligente ajuda você a decidir o que comprar em seguida.",
   },
   'de': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. Füllen Sie das Glas mit Eis\n2. Zutaten hinzufügen\n3. Garnieren und servieren",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. Füllen Sie das Glas mit Eis\n2. Fügen Sie die Zutaten hinzu\n3. Garnieren und servieren",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. Öffnen Sie „Zutaten“ und tippen Sie auf die Produkte und Getränke, die Sie zu Hause haben. Ein Häkchen bedeutet, dass die Zutat auf Lager ist.\n\n2. Öffnen Sie das Barmenü, um zu sehen, welche Cocktails Sie mit Ihren Zutaten zubereiten können. Verwenden Sie den Filter „Bereit“, um nur Rezepte anzuzeigen, die Sie jetzt zubereiten können.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. Markiere unter „{0}“, was du zu Hause hast. Ein Häkchen zeigt an, dass die Zutat vorhanden ist.\n\n2. Öffne „{1}“ und wähle „{2}“, um zu sehen, welche Cocktails du mixen kannst.",
     "About app": "Über App",
     "Add": "Hinzufügen",
     "Add at least one ingredient first":
@@ -813,16 +813,19 @@ appTranslations = <String, Map<String, String>>{
         "Fügen Sie Zutaten aus den folgenden Empfehlungen hinzu.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "Fügen Sie Artikel unter „Zutaten“ hinzu und die verfügbaren Cocktails werden hier angezeigt.",
-    "Add missing to shopping · {0}": "Vermisst zum Einkauf hinzufügen · {0}",
+    "Add missing to shopping · {0}": "Fehlende auf die Einkaufsliste · {0}",
     "Add preparation steps": "Fügen Sie Vorbereitungsschritte hinzu",
     "Add substitution": "Vertretung hinzufügen",
     "Add to favorites": "Zu Favoriten hinzufügen",
     "Add to list": "Zur Liste hinzufügen",
-    "Added to shopping · {0}": "Zum Einkaufen hinzugefügt · {0}",
+    "Added to shopping · {0}": "Auf der Einkaufsliste · {0}",
     "Adding…": "Hinzufügen…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "Passe die Mengen an die gewünschte Portionszahl an. Wähle im „{0}“ Cocktails aus, um eine gemeinsame Zutatenliste zu erhalten.",
     "All": "Alle",
     "All added items will be removed.":
-        "Alle hinzugefügten Elemente werden entfernt.",
+        "Alle Zutaten werden aus der Liste entfernt.",
+    "Almost ready to mix": "Fast alle Zutaten vorhanden",
     "Alphabetical": "Alphabetisch",
     "Amount": "Menge",
     "Amounts can only be set for selected ingredients.":
@@ -868,9 +871,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "Sprache wählen",
     "Choose your favorite styles — results update after applying.":
         "Wählen Sie Ihre Lieblingsstile – die Ergebnisse werden nach der Bewerbung aktualisiert.",
-    "Clear": "Klar",
-    "Clear selection": "Klare Auswahl",
-    "Clear shopping list?": "Einkaufsliste übersichtlich?",
+    "Clear": "Leeren",
+    "Clear selection": "Auswahl aufheben",
+    "Clear shopping list?": "Einkaufsliste leeren?",
     "Close": "Schließen",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "Cocktail „{0}“ enthält einen Ersatz für die nicht ausgewählte Zutat „{1}“.",
@@ -900,6 +903,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "Cocktail nicht gefunden.",
     "Cocktail updated": "Cocktail aktualisiert",
     "Cocktails": "Cocktails",
+    "Cocktails for a group": "Cocktails für mehrere Personen",
     "Cocktails:": "Cocktails:",
     "Coffee, tea and cocoa": "Kaffee, Tee und Kakao",
     "Collins": "Collins-Glas",
@@ -918,7 +922,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "Beschreibung",
     "Dessert ingredients": "Dessertzutaten",
     "Developer website": "Entwickler-Website",
-    "Discover a new favorite": "Entdecken Sie einen neuen Favoriten",
+    "Discover a new favorite": "Entdecke neue Cocktails",
     "Done": "Erledigt",
     "Duplicate id \"{0}\" in \"{1}\".": "Doppelte ID „{0}“ in „{1}“.",
     "Edit": "Bearbeiten",
@@ -977,7 +981,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "Der JSON-Root muss ein Objekt sein.",
     "Japanese": "japanisch",
     "Juices and nectars": "Säfte und Nektare",
-    "Just one more ingredient…": "Nur noch eine Zutat…",
     "Korean": "Koreanisch",
     "Language": "Sprache",
     "Light": "Leicht",
@@ -994,12 +997,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "Martini-Glas",
     "Measurement system": "Messsystem",
     "Medium strength": "Mittlere Stärke",
-    "Missing 1": "Es fehlt 1",
-    "Missing 2": "Es fehlen 2",
+    "Missing 1": "1 Zutat fehlt",
+    "Missing 2": "2 Zutaten fehlen",
     "Missing ingredients: {0}": "Fehlende Zutaten: {0}",
-    "Missing: {0}": "Fehlt: {0}",
+    "Missing: {0}": "Es fehlen: {0}",
     "Missing: {0} and {1} more": "Es fehlen: {0} und {1} weitere",
-    "Mix for a crowd": "Mix für ein Publikum",
     "More filters": "Weitere Filter",
     "More · {0}": "Mehr · {0}",
     "Mug": "Becher",
@@ -1037,9 +1039,9 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "Nur ausgewählte Zutaten können als optional markiert werden.",
     "Optional": "Optional",
-    "Owned ingredients only": "Nur eigene Zutaten",
+    "Owned ingredients only": "Nur vorhandene Zutaten",
     "Party": "Party",
-    "Party mode": "Partymodus",
+    "Party mode": "Party-Modus",
     "Party plan": "Partyplan",
     "Photo (URL or file path)": "Foto (URL oder Dateipfad)",
     "Pick from device": "Vom Gerät auswählen",
@@ -1051,8 +1053,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "Vormischungen",
     "Preparation": "Vorbereitung",
     "Preparation steps*": "Vorbereitungsschritte*",
-    "Ready": "Bereit",
-    "Ready now": "Jetzt bereit",
+    "Ready": "Verfügbar",
+    "Ready now": "Jetzt mixbar",
     "Ready only": "Nur verfügbare",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "Reduziert starke UI-Effekte (Unschärfe, Leuchten, Animationen), um die Hitze und den Batterieverbrauch zu senken.",
@@ -1065,11 +1067,9 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "Russisch",
     "Sauces and savory additions": "Saucen und herzhafte Beilagen",
     "Save": "Speichern",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "Skalieren Sie Rezepte auf jede Portionsanzahl. Wählen Sie im Party-Modus Cocktails aus und erhalten Sie eine kombinierte Zutatenliste.",
     "Search cocktails": "Cocktails suchen",
     "Search cocktails…": "Cocktails suchen…",
-    "Search ingredients...": "Zutaten suchen...",
+    "Search ingredients...": "Zutaten suchen…",
     "Search languages": "Sprachen suchen",
     "Select a cocktail in the left grid to open preparation instructions.":
         "Wählen Sie im linken Raster einen Cocktail aus, um die Zubereitungsanleitung zu öffnen.",
@@ -1077,7 +1077,7 @@ appTranslations = <String, Map<String, String>>{
     "Select bottles and ingredients you already have at home":
         "Wählen Sie Flaschen und Zutaten aus, die Sie bereits zu Hause haben",
     "Select glass type": "Glasart auswählen",
-    "Select ready": "Wählen Sie „Fertig“.",
+    "Select ready": "Verfügbare auswählen",
     "Serving calculator": "Portionsrechner",
     "Servings: {0}": "Portionen: {0}",
     "Settings": "Einstellungen",
@@ -1094,7 +1094,7 @@ appTranslations = <String, Map<String, String>>{
     "Smart shopping list": "Intelligente Einkaufsliste",
     "Sodas and non-alcoholic mixers": "Limonaden und alkoholfreie Mixer",
     "Spanish": "Spanisch",
-    "Spices, herbs and bitters": "Gewürze, Kräuter und Bitterstoffe",
+    "Spices, herbs and bitters": "Gewürze, Kräuter und Cocktailbitters",
     "Spirits": "Spirituosen",
     "Stay": "Bleiben",
     "Strong": "Kräftig",
@@ -1108,8 +1108,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "Sirupe und Süßstoffe",
     "System": "System",
     "Tags": "Schlagworte",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "Tippen Sie auf „Überrasche mich“ und entdecken Sie zufällige Rezepte mit „Nächster Cocktail“. Speichern Sie Ihre Favoriten. Alle diese Funktionen sind kostenlos und funktionieren offline.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "Tippe auf „{0}“ für ein zufälliges Rezept und auf „{1}“ für ein weiteres. Speichere deine Lieblingsrezepte als Favoriten. Alles ist kostenlos und funktioniert offline.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "Die fehlenden Zutaten finden Sie jetzt unter Einkaufen in Ihrer Barkarte.",
     "The substitution list contains an unknown ingredient.":
@@ -1125,6 +1125,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "Schaltet {0} Cocktail frei",
     "Unlocks {0} cocktails": "Schaltet {0} Cocktails frei",
     "Use device language": "Verwenden Sie die Gerätesprache",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "Mit „{0}“ und „{1}“ findest du Rezepte, für die nur noch eine oder zwei Zutaten fehlen. Die Einkaufsliste hilft dir bei der Planung.",
     "Version {0}": "Version {0}",
     "Visitor mode": "Besuchermodus",
     "Visitor mode: ingredient selection is disabled":
@@ -1138,7 +1140,7 @@ appTranslations = <String, Map<String, String>>{
         "Funktioniert offline mit einem stabilen integrierten Katalog.",
     "You have unsaved changes. They will be lost.":
         "Sie haben nicht gespeicherte Änderungen. Sie werden verloren gehen.",
-    "Your home bar": "Ihre Hausbar",
+    "Your home bar": "Deine Hausbar",
     "Your shopping list is empty.": "Ihre Einkaufsliste ist leer.",
     "bottle": "Flasche",
     "can": "Dose",
@@ -1184,16 +1186,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} Zutaten ausgewählt. {1} Cocktails bereit.",
     "{0} serv.": "{0} Port.",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "„Missing 1“ und „Missing 2“ verraten fast fertige Rezepte. Die intelligente Einkaufsliste hilft Ihnen bei der Entscheidung, was Sie als Nächstes kaufen möchten.",
   },
   'fr': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. Remplissez le verre de glace\n2. Ajouter des ingrédients\n3. Garnir et servir",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. Remplissez le verre de glace\n2. Ajoutez les ingrédients\n3. Garnir et servir",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. Ouvrez Ingrédients et appuyez sur les produits et boissons que vous avez à la maison. Une coche signifie que l'ingrédient est en stock.\n\n2. Ouvrez le menu du bar pour voir quels cocktails vous pouvez préparer avec vos ingrédients. Utilisez le filtre Prêt pour afficher uniquement les recettes que vous pouvez préparer maintenant.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. Dans « {0} », cochez les ingrédients que vous avez chez vous. La coche indique que l’ingrédient est en stock.\n\n2. Ouvrez « {1} » et choisissez « {2} » pour voir quels cocktails vous pouvez préparer.",
     "About app": "À propos de l'application",
     "Add": "Ajouter",
     "Add at least one ingredient first":
@@ -1205,17 +1205,19 @@ appTranslations = <String, Map<String, String>>{
         "Ajoutez les ingrédients des recommandations ci-dessous.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "Ajoutez des éléments dans « Ingrédients » et les cocktails disponibles apparaîtront ici.",
-    "Add missing to shopping · {0}":
-        "Ajouter les articles manquants aux achats · {0}",
+    "Add missing to shopping · {0}": "Ajouter les ingrédients manquants · {0}",
     "Add preparation steps": "Ajouter des étapes de préparation",
     "Add substitution": "Ajouter un remplacement",
     "Add to favorites": "Ajouter aux favoris",
     "Add to list": "Ajouter à la liste",
-    "Added to shopping · {0}": "Ajouté aux achats · {0}",
+    "Added to shopping · {0}": "Ajoutés à la liste de courses · {0}",
     "Adding…": "Ajout…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "Ajustez les quantités au nombre de portions souhaité. Dans « {0} », choisissez vos cocktails pour obtenir une liste d’ingrédients commune.",
     "All": "Tous",
     "All added items will be removed.":
-        "Tous les éléments ajoutés seront supprimés.",
+        "Tous les ingrédients seront retirés de la liste.",
+    "Almost ready to mix": "Il ne manque presque rien",
     "Alphabetical": "Alphabétique",
     "Amount": "Montant",
     "Amounts can only be set for selected ingredients.":
@@ -1263,9 +1265,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "Choisir la langue",
     "Choose your favorite styles — results update after applying.":
         "Choisissez vos styles préférés - les résultats sont mis à jour après l'application.",
-    "Clear": "Clair",
+    "Clear": "Effacer",
     "Clear selection": "Effacer la sélection",
-    "Clear shopping list?": "Effacer la liste de courses ?",
+    "Clear shopping list?": "Vider la liste de courses ?",
     "Close": "Fermer",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "Le cocktail \"{0}\" contient une substitution pour l'ingrédient non sélectionné \"{1}\".",
@@ -1296,6 +1298,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "Cocktail introuvable.",
     "Cocktail updated": "Cocktail mis à jour",
     "Cocktails": "Cocktails",
+    "Cocktails for a group": "Des cocktails pour tout le monde",
     "Cocktails:": "Cocktails :",
     "Coffee, tea and cocoa": "Café, thé et cacao",
     "Collins": "Verre Collins",
@@ -1314,7 +1317,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "Description",
     "Dessert ingredients": "Ingrédients des desserts",
     "Developer website": "Site Web du développeur",
-    "Discover a new favorite": "Découvrez un nouveau favori",
+    "Discover a new favorite": "Découvrez un nouveau cocktail",
     "Done": "Fait",
     "Duplicate id \"{0}\" in \"{1}\".":
         "Identifiant « {0} » en double dans « {1} ».",
@@ -1345,7 +1348,7 @@ appTranslations = <String, Map<String, String>>{
     "German": "Allemand",
     "Get started": "Commencer",
     "Glass type*": "Type de verre*",
-    "Glass: {0}": "Verre : {0}",
+    "Glass: {0}": "Verre : {0}",
     "Goblet": "Coupe",
     "Hide menu": "Masquer le menu",
     "Hides editing controls": "Masque les contrôles d'édition",
@@ -1374,7 +1377,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "La racine JSON doit être un objet.",
     "Japanese": "japonais",
     "Juices and nectars": "Jus et nectars",
-    "Just one more ingredient…": "Juste un ingrédient de plus…",
     "Korean": "coréen",
     "Language": "Langue",
     "Light": "Légers",
@@ -1391,12 +1393,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "Verre à martini",
     "Measurement system": "Système de mesure",
     "Medium strength": "Force moyenne",
-    "Missing 1": "Manquant 1",
-    "Missing 2": "Il en manque 2",
-    "Missing ingredients: {0}": "Ingrédients manquants : {0}",
-    "Missing: {0}": "Manquant : {0}",
-    "Missing: {0} and {1} more": "Manquant : {0} et {1} autres",
-    "Mix for a crowd": "Mixez pour une foule",
+    "Missing 1": "Il manque 1 ingrédient",
+    "Missing 2": "Il manque 2 ingrédients",
+    "Missing ingredients: {0}": "Ingrédients manquants : {0}",
+    "Missing: {0}": "Il manque : {0}",
+    "Missing: {0} and {1} more": "Il manque : {0} et {1} de plus",
     "More filters": "Plus de filtres",
     "More · {0}": "Plus · {0}",
     "Mug": "Tasse",
@@ -1436,7 +1437,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "Seuls les ingrédients sélectionnés peuvent être marqués comme facultatifs.",
     "Optional": "Facultatif",
-    "Owned ingredients only": "Ingrédients détenus uniquement",
+    "Owned ingredients only": "Uniquement les ingrédients en stock",
     "Party": "Faire la fête",
     "Party mode": "Mode fête",
     "Party plan": "Plan de fête",
@@ -1450,8 +1451,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "Prémélanges",
     "Preparation": "Préparation",
     "Preparation steps*": "Étapes de préparation*",
-    "Ready": "Prêt",
-    "Ready now": "Prêt maintenant",
+    "Ready": "Disponibles",
+    "Ready now": "Réalisable maintenant",
     "Ready only": "Disponibles uniquement",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "Réduit les effets importants de l'interface utilisateur (flou, lueur, animations) pour réduire la chaleur et l'utilisation de la batterie.",
@@ -1464,19 +1465,17 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "russe",
     "Sauces and savory additions": "Sauces et ajouts salés",
     "Save": "Sauvegarder",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "Adaptez les recettes à n’importe quel nombre de portions. En mode Fête, choisissez des cocktails et obtenez une liste d'ingrédients combinée.",
-    "Search cocktails": "Rechercher des cocktails",
-    "Search cocktails…": "Rechercher des cocktails…",
-    "Search ingredients...": "Rechercher des ingrédients...",
-    "Search languages": "Langues de recherche",
+    "Search cocktails": "Rechercher un cocktail",
+    "Search cocktails…": "Rechercher un cocktail…",
+    "Search ingredients...": "Rechercher un ingrédient…",
+    "Search languages": "Rechercher une langue",
     "Select a cocktail in the left grid to open preparation instructions.":
         "Sélectionnez un cocktail dans la grille de gauche pour ouvrir les instructions de préparation.",
     "Select at least one ingredient": "Sélectionnez au moins un ingrédient",
     "Select bottles and ingredients you already have at home":
         "Sélectionnez les bouteilles et les ingrédients que vous avez déjà à la maison",
     "Select glass type": "Sélectionnez le type de verre",
-    "Select ready": "Sélectionnez prêt",
+    "Select ready": "Sélectionner les cocktails disponibles",
     "Serving calculator": "Calculateur de service",
     "Servings: {0}": "Portions : {0}",
     "Settings": "Paramètres",
@@ -1492,10 +1491,11 @@ appTranslations = <String, Map<String, String>>{
         "Affiche uniquement la page \"Menu Bar\"",
     "Skip": "Sauter",
     "Smart shopping list": "Liste de courses intelligente",
-    "Sodas and non-alcoholic mixers": "Sodas et mixeurs sans alcool",
+    "Sodas and non-alcoholic mixers":
+        "Sodas et boissons sans alcool à mélanger",
     "Spanish": "Espagnol",
-    "Spices, herbs and bitters": "Épices, herbes et amers",
-    "Spirits": "Esprits",
+    "Spices, herbs and bitters": "Épices, herbes et bitters",
+    "Spirits": "Spiritueux",
     "Stay": "Rester",
     "Strong": "Forts",
     "Style and mood": "Style et humeur",
@@ -1508,8 +1508,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "Sirops et édulcorants",
     "System": "Système",
     "Tags": "Balises",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "Appuyez sur « Surprenez-moi » et explorez des recettes aléatoires avec « Prochain cocktail ». Enregistrez vos favoris. Toutes ces fonctionnalités sont gratuites et fonctionnent hors ligne.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "Touchez « {0} » pour découvrir une recette au hasard, puis « {1} » pour en voir une autre. Enregistrez vos recettes préférées dans les favoris. Tout est gratuit et fonctionne hors connexion.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "Les ingrédients manquants sont désormais dans Shopping dans la carte de votre bar.",
     "The substitution list contains an unknown ingredient.":
@@ -1525,6 +1525,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "Débloque {0} cocktail",
     "Unlocks {0} cocktails": "Débloque {0} cocktails",
     "Use device language": "Utiliser la langue de l'appareil",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "Utilisez « {0} » et « {1} » pour trouver les recettes auxquelles il ne manque qu’un ou deux ingrédients. La liste de courses vous aide à choisir quoi acheter.",
     "Version {0}": "Version {0}",
     "Visitor mode": "Mode visiteur",
     "Visitor mode: ingredient selection is disabled":
@@ -1538,7 +1540,7 @@ appTranslations = <String, Map<String, String>>{
         "Fonctionne hors ligne avec un catalogue intégré stable.",
     "You have unsaved changes. They will be lost.":
         "Vous avez des modifications non enregistrées. Ils seront perdus.",
-    "Your home bar": "Votre bar à domicile",
+    "Your home bar": "Votre bar à la maison",
     "Your shopping list is empty.": "Votre liste de courses est vide.",
     "bottle": "bouteille",
     "can": "canette",
@@ -1584,16 +1586,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} ingrédients sélectionnés. {1} cocktails prêts.",
     "{0} serv.": "{0} portions",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "« Missing 1 » et « Missing 2 » révèlent des recettes presque prêtes. La liste de courses intelligente vous aide à décider quoi acheter ensuite.",
   },
   'it': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. Riempi il bicchiere con ghiaccio\n2. Aggiungi gli ingredienti\n3. Guarnire e servire",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. Riempi il bicchiere con ghiaccio\n2. Aggiungi gli ingredienti\n3. Guarnire e servire",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. Apri Ingredienti e tocca i prodotti e le bevande che hai a casa. Un segno di spunta indica che l'ingrediente è disponibile.\n\n2. Apri il menu Bar per vedere quali cocktail puoi preparare con i tuoi ingredienti. Utilizza il filtro Pronte per mostrare solo le ricette che puoi realizzare adesso.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. In «{0}», seleziona gli ingredienti che hai in casa. Il segno di spunta indica che sono disponibili.\n\n2. Apri «{1}» e scegli «{2}» per vedere quali cocktail puoi preparare.",
     "About app": "Informazioni sull'app",
     "Add": "Aggiungere",
     "Add at least one ingredient first": "Aggiungi prima almeno un ingrediente",
@@ -1604,16 +1604,19 @@ appTranslations = <String, Map<String, String>>{
         "Aggiungi gli ingredienti consigliati di seguito.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "Aggiungi elementi in \"Ingredienti\" e i cocktail disponibili appariranno qui.",
-    "Add missing to shopping · {0}": "Aggiungi mancanti allo shopping · {0}",
+    "Add missing to shopping · {0}": "Aggiungi alla lista ciò che manca · {0}",
     "Add preparation steps": "Aggiungi passaggi di preparazione",
     "Add substitution": "Aggiungi sostituzione",
     "Add to favorites": "Aggiungi ai preferiti",
     "Add to list": "Aggiungi all'elenco",
-    "Added to shopping · {0}": "Aggiunto agli acquisti · {0}",
+    "Added to shopping · {0}": "Aggiunti alla lista della spesa · {0}",
     "Adding…": "Aggiunta…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "Adatta le quantità al numero di porzioni che ti serve. In «{0}», scegli i cocktail per ottenere un’unica lista degli ingredienti.",
     "All": "Tutto",
     "All added items will be removed.":
-        "Tutti gli elementi aggiunti verranno rimossi.",
+        "Tutti gli ingredienti verranno rimossi dalla lista.",
+    "Almost ready to mix": "Manca poco",
     "Alphabetical": "Alfabetico",
     "Amount": "Quantità",
     "Amounts can only be set for selected ingredients.":
@@ -1661,9 +1664,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "Scegli la lingua",
     "Choose your favorite styles — results update after applying.":
         "Scegli i tuoi stili preferiti: i risultati si aggiornano dopo l'applicazione.",
-    "Clear": "Chiaro",
-    "Clear selection": "Cancella selezione",
-    "Clear shopping list?": "Cancella la lista della spesa?",
+    "Clear": "Cancella",
+    "Clear selection": "Deseleziona tutto",
+    "Clear shopping list?": "Svuotare la lista della spesa?",
     "Close": "Vicino",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "Il cocktail \"{0}\" contiene una sostituzione dell'ingrediente non selezionato \"{1}\".",
@@ -1694,6 +1697,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "Cocktail non trovato.",
     "Cocktail updated": "Cocktail aggiornato",
     "Cocktails": "Cocktail",
+    "Cocktails for a group": "Cocktail per più persone",
     "Cocktails:": "Cocktail:",
     "Coffee, tea and cocoa": "Caffè, tè e cacao",
     "Collins": "Bicchiere Collins",
@@ -1712,7 +1716,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "Descrizione",
     "Dessert ingredients": "Ingredienti per dolci",
     "Developer website": "Sito web dello sviluppatore",
-    "Discover a new favorite": "Scopri un nuovo preferito",
+    "Discover a new favorite": "Scopri un nuovo cocktail",
     "Done": "Fatto",
     "Duplicate id \"{0}\" in \"{1}\".": "ID duplicato \"{0}\" in \"{1}\".",
     "Edit": "Modificare",
@@ -1741,8 +1745,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "Frutti e bacche",
     "German": "tedesco",
     "Get started": "Inizia",
-    "Glass type*": "Tipo di vetro*",
-    "Glass: {0}": "Vetro: {0}",
+    "Glass type*": "Tipo di bicchiere*",
+    "Glass: {0}": "Bicchiere: {0}",
     "Goblet": "Calice",
     "Hide menu": "Nascondi menù",
     "Hides editing controls": "Nasconde i controlli di modifica",
@@ -1772,7 +1776,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "La radice JSON deve essere un oggetto.",
     "Japanese": "giapponese",
     "Juices and nectars": "Succhi e nettari",
-    "Just one more ingredient…": "Solo un altro ingrediente…",
     "Korean": "coreano",
     "Language": "Lingua",
     "Light": "Leggeri",
@@ -1789,12 +1792,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "Bicchiere da martini",
     "Measurement system": "Sistema di misurazione",
     "Medium strength": "Gradazione media",
-    "Missing 1": "Mancante 1",
-    "Missing 2": "Mancanti 2",
+    "Missing 1": "Manca 1 ingrediente",
+    "Missing 2": "Mancano 2 ingredienti",
     "Missing ingredients: {0}": "Ingredienti mancanti: {0}",
-    "Missing: {0}": "Mancanti: {0}",
-    "Missing: {0} and {1} more": "Mancanti: {0} e altri {1}",
-    "Mix for a crowd": "Mix per una folla",
+    "Missing: {0}": "Mancano: {0}",
+    "Missing: {0} and {1} more": "Mancano: {0} e altri {1}",
     "More filters": "Più filtri",
     "More · {0}": "Altro · {0}",
     "Mug": "Tazza",
@@ -1833,7 +1835,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "Solo gli ingredienti selezionati possono essere contrassegnati come facoltativi.",
     "Optional": "Opzionale",
-    "Owned ingredients only": "Solo ingredienti di proprietà",
+    "Owned ingredients only": "Solo ingredienti disponibili",
     "Party": "Festa",
     "Party mode": "Modalità festa",
     "Party plan": "Piano della festa",
@@ -1847,8 +1849,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "Premiscele",
     "Preparation": "Preparazione",
     "Preparation steps*": "Passaggi di preparazione*",
-    "Ready": "Pronto",
-    "Ready now": "Pronto adesso",
+    "Ready": "Disponibili",
+    "Ready now": "Puoi prepararlo ora",
     "Ready only": "Solo disponibili",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "Riduce gli effetti pesanti dell'interfaccia utente (sfocatura, luminosità, animazioni) per ridurre il calore e il consumo della batteria.",
@@ -1861,11 +1863,9 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "russo",
     "Sauces and savory additions": "Salse e aggiunte salate",
     "Save": "Salva",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "Adatta le ricette a qualsiasi numero di porzioni. Nella modalità Party, scegli i cocktail e ottieni un elenco combinato di ingredienti.",
     "Search cocktails": "Cerca cocktail",
     "Search cocktails…": "Cerca cocktail…",
-    "Search ingredients...": "Cerca ingredienti...",
+    "Search ingredients...": "Cerca ingredienti…",
     "Search languages": "Cerca lingue",
     "Select a cocktail in the left grid to open preparation instructions.":
         "Seleziona un cocktail nella griglia di sinistra per aprire le istruzioni di preparazione.",
@@ -1873,7 +1873,7 @@ appTranslations = <String, Map<String, String>>{
     "Select bottles and ingredients you already have at home":
         "Seleziona le bottiglie e gli ingredienti che hai già a casa",
     "Select glass type": "Seleziona il tipo di vetro",
-    "Select ready": "Seleziona pronto",
+    "Select ready": "Seleziona i disponibili",
     "Serving calculator": "Calcolatore del servizio",
     "Servings: {0}": "Porzioni: {0}",
     "Settings": "Impostazioni",
@@ -1888,10 +1888,10 @@ appTranslations = <String, Map<String, String>>{
     "Shows only the \"Bar Menu\" page": "Mostra solo la pagina \"Menù Barra\".",
     "Skip": "Saltare",
     "Smart shopping list": "Lista della spesa intelligente",
-    "Sodas and non-alcoholic mixers": "Bibite e miscelatori analcolici",
+    "Sodas and non-alcoholic mixers": "Bibite e mixer analcolici",
     "Spanish": "spagnolo",
-    "Spices, herbs and bitters": "Spezie, erbe e amari",
-    "Spirits": "Spiriti",
+    "Spices, herbs and bitters": "Spezie, erbe e bitter",
+    "Spirits": "Distillati",
     "Stay": "Rimanere",
     "Strong": "Forti",
     "Style and mood": "Stile e umore",
@@ -1904,8 +1904,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "Sciroppi e dolcificanti",
     "System": "Sistema",
     "Tags": "Tag",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "Tocca \"Sorprendimi\" ed esplora ricette casuali con \"Cocktail successivo\". Salva i tuoi preferiti. Tutte queste funzionalità sono gratuite e funzionano offline.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "Tocca «{0}» per una ricetta a caso e «{1}» per vederne un’altra. Salva le ricette che ti piacciono nei preferiti. È tutto gratuito e funziona offline.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "Gli ingredienti mancanti sono ora nella sezione Shopping del menu del tuo bar.",
     "The substitution list contains an unknown ingredient.":
@@ -1921,6 +1921,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "Sblocca {0} cocktail",
     "Unlocks {0} cocktails": "Sblocca {0} cocktail",
     "Use device language": "Utilizza la lingua del dispositivo",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "Usa «{0}» e «{1}» per trovare le ricette a cui mancano solo uno o due ingredienti. La lista della spesa ti aiuta a decidere cosa acquistare.",
     "Version {0}": "Versione {0}",
     "Visitor mode": "Modalità visitatore",
     "Visitor mode: ingredient selection is disabled":
@@ -1980,16 +1982,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} ingredienti selezionati. {1} cocktail pronti.",
     "{0} serv.": "{0} porz.",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "“Missing 1” e “Missing 2” rivelano ricette quasi pronte. La lista della spesa intelligente ti aiuta a decidere cosa acquistare dopo.",
   },
   'tr': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. Bardağı buzla doldurun\n2. Malzemeleri ekleyin\n3. Süsleyin ve servis yapın",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. Bardağı buzla doldurun\n2. Malzemeleri ekleyin\n3. Süsleyin ve servis yapın",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. Malzemeler'i açın ve evinizde bulunan ürün ve içeceklere dokunun. Onay işareti, malzemenin stokta olduğu anlamına gelir.\n\n2. Malzemelerinizle hangi kokteylleri yapabileceğinizi görmek için Bar Menüsünü açın. Yalnızca şimdi hazırlayabileceğiniz tarifleri göstermek için Hazır filtresini kullanın.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. Evinizdeki malzemeleri “{0}” bölümünde işaretleyin. Onay işareti, malzemenin elinizde olduğunu gösterir.\n\n2. “{1}” bölümünü açıp “{2}” seçeneğine dokunarak hazırlayabileceğiniz kokteylleri görün.",
     "About app": "Uygulama hakkında",
     "Add": "Eklemek",
     "Add at least one ingredient first": "Önce en az bir malzeme ekleyin",
@@ -2000,15 +2000,19 @@ appTranslations = <String, Map<String, String>>{
         "Aşağıdaki önerilerden malzemeler ekleyin.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "\"Malzemeler\"e öğe eklediğinizde mevcut kokteyller burada görünecektir.",
-    "Add missing to shopping · {0}": "Alışverişe eksikleri ekle · {0}",
+    "Add missing to shopping · {0}": "Eksikleri alışveriş listesine ekle · {0}",
     "Add preparation steps": "Hazırlık adımları ekleyin",
     "Add substitution": "Değiştirme ekle",
     "Add to favorites": "Favorilere ekle",
     "Add to list": "Listeye ekle",
-    "Added to shopping · {0}": "Alışverişe eklendi · {0}",
+    "Added to shopping · {0}": "Alışveriş listesine eklendi · {0}",
     "Adding…": "Ekleniyor…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "Malzeme miktarlarını istediğiniz porsiyon sayısına göre ayarlayın. Tek bir malzeme listesi oluşturmak için “{0}” bölümünde kokteylleri seçin.",
     "All": "Tüm",
-    "All added items will be removed.": "Eklenen tüm öğeler kaldırılacak.",
+    "All added items will be removed.":
+        "Listedeki tüm malzemeler kaldırılacak.",
+    "Almost ready to mix": "Çok az malzeme eksik",
     "Alphabetical": "Alfabetik",
     "Amount": "Miktar",
     "Amounts can only be set for selected ingredients.":
@@ -2053,7 +2057,7 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "Dil seçin",
     "Choose your favorite styles — results update after applying.":
         "Favori stillerinizi seçin; sonuçlar uygulamadan sonra güncellenir.",
-    "Clear": "Temizlemek",
+    "Clear": "Temizle",
     "Clear selection": "Seçimi temizle",
     "Clear shopping list?": "Alışveriş listesi temizlensin mi?",
     "Close": "Kapalı",
@@ -2085,6 +2089,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "Kokteyl bulunamadı.",
     "Cocktail updated": "Kokteyl güncellendi",
     "Cocktails": "Kokteyller",
+    "Cocktails for a group": "Herkes için kokteyller",
     "Cocktails:": "Kokteyller:",
     "Coffee, tea and cocoa": "Kahve, çay ve kakao",
     "Collins": "Collins bardağı",
@@ -2103,7 +2108,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "Tanım",
     "Dessert ingredients": "Tatlı malzemeleri",
     "Developer website": "Geliştirici web sitesi",
-    "Discover a new favorite": "Yeni bir favori keşfedin",
+    "Discover a new favorite": "Yeni bir kokteyl keşfet",
     "Done": "Tamamlamak",
     "Duplicate id \"{0}\" in \"{1}\".":
         "\"{1}\" içindeki \"{0}\" kimliğini kopyalayın.",
@@ -2132,8 +2137,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "Meyveler ve meyveler",
     "German": "Almanca",
     "Get started": "Başlayın",
-    "Glass type*": "Cam tipi*",
-    "Glass: {0}": "Cam: {0}",
+    "Glass type*": "Bardak türü*",
+    "Glass: {0}": "Bardak: {0}",
     "Goblet": "Kadeh",
     "Hide menu": "Menüyü gizle",
     "Hides editing controls": "Düzenleme kontrollerini gizler",
@@ -2161,7 +2166,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "JSON kökü bir nesne olmalıdır.",
     "Japanese": "Japonca",
     "Juices and nectars": "Meyve suları ve nektarlar",
-    "Just one more ingredient…": "Sadece bir malzeme daha…",
     "Korean": "Korece",
     "Language": "Dil",
     "Light": "Hafif",
@@ -2178,12 +2182,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "Martini kadehi",
     "Measurement system": "Ölçüm sistemi",
     "Medium strength": "Orta sertlikte",
-    "Missing 1": "1 eksik",
-    "Missing 2": "2 eksik",
+    "Missing 1": "1 malzeme eksik",
+    "Missing 2": "2 malzeme eksik",
     "Missing ingredients: {0}": "Eksik malzemeler: {0}",
     "Missing: {0}": "Eksik: {0}",
-    "Missing: {0} and {1} more": "Eksik: {0} ve {1} tane daha",
-    "Mix for a crowd": "Kalabalık için karıştırın",
+    "Missing: {0} and {1} more": "Eksik: {0} ve {1} malzeme daha",
     "More filters": "Daha fazla filtre",
     "More · {0}": "Daha fazla · {0}",
     "Mug": "Kupa",
@@ -2220,7 +2223,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "Yalnızca seçilen içerikler isteğe bağlı olarak işaretlenebilir.",
     "Optional": "İsteğe bağlı",
-    "Owned ingredients only": "Yalnızca sahip olunan malzemeler",
+    "Owned ingredients only": "Yalnızca elimdekiler",
     "Party": "Parti",
     "Party mode": "Parti modu",
     "Party plan": "Parti planı",
@@ -2235,7 +2238,7 @@ appTranslations = <String, Map<String, String>>{
     "Preparation": "Hazırlık",
     "Preparation steps*": "Hazırlık adımları*",
     "Ready": "Hazır",
-    "Ready now": "Şimdi hazır",
+    "Ready now": "Şimdi hazırlanabilir",
     "Ready only": "Yalnızca hazırlanabilenler",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "Isı ve pil kullanımını azaltmak için ağır kullanıcı arayüzü efektlerini (bulanıklık, parlama, animasyonlar) azaltır.",
@@ -2248,19 +2251,17 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "Rusça",
     "Sauces and savory additions": "Soslar ve tuzlu ilaveler",
     "Save": "Kaydetmek",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "Tarifleri herhangi bir porsiyon sayısına göre ölçeklendirin. Parti Modunda kokteylleri seçin ve birleşik bir içerik listesi alın.",
     "Search cocktails": "Kokteyl ara",
     "Search cocktails…": "Kokteyl ara…",
-    "Search ingredients...": "İçerikleri arayın...",
-    "Search languages": "Dilleri ara",
+    "Search ingredients...": "Malzeme ara…",
+    "Search languages": "Dil ara",
     "Select a cocktail in the left grid to open preparation instructions.":
         "Hazırlama talimatlarını açmak için soldaki ızgaradan bir kokteyl seçin.",
     "Select at least one ingredient": "En az bir içerik seçin",
     "Select bottles and ingredients you already have at home":
         "Evde zaten sahip olduğunuz şişeleri ve malzemeleri seçin",
     "Select glass type": "Cam tipini seçin",
-    "Select ready": "Hazır seç",
+    "Select ready": "Hazırlanabilenleri seç",
     "Serving calculator": "Hizmet hesaplayıcısı",
     "Servings: {0}": "Porsiyon: {0}",
     "Settings": "Ayarlar",
@@ -2279,8 +2280,8 @@ appTranslations = <String, Map<String, String>>{
     "Sodas and non-alcoholic mixers":
         "Gazlı içecekler ve alkolsüz karıştırıcılar",
     "Spanish": "İspanyol",
-    "Spices, herbs and bitters": "Baharatlar, otlar ve acı",
-    "Spirits": "Alkollü içkiler",
+    "Spices, herbs and bitters": "Baharatlar, otlar ve kokteyl bitterleri",
+    "Spirits": "Distile içkiler",
     "Stay": "Kalmak",
     "Strong": "Sert",
     "Style and mood": "Stil ve ruh hali",
@@ -2293,8 +2294,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "Şuruplar ve tatlandırıcılar",
     "System": "Sistem",
     "Tags": "Etiketler",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "\"Beni şaşırt\"a dokunun ve \"Sonraki kokteyl\" ile rastgele tarifleri keşfedin. Favorilerinizi kaydedin. Tüm bu özellikler ücretsizdir ve çevrimdışı çalışır.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "Rastgele bir tarif için “{0}”, başka bir tarif için “{1}” düğmesine dokunun. Beğendiğiniz tarifleri favorilere kaydedin. Bu özellikler ücretsizdir ve çevrimdışı çalışır.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "Eksik malzemeler artık bar menünüzdeki Alışveriş'te.",
     "The substitution list contains an unknown ingredient.":
@@ -2310,6 +2311,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "{0} kokteylin kilidini açar",
     "Unlocks {0} cocktails": "{0} kokteylin kilidini açar",
     "Use device language": "Cihaz dilini kullan",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "Sadece bir veya iki malzemesi eksik tarifleri görmek için “{0}” ve “{1}” filtrelerini kullanın. Alışveriş listesi ne alacağınıza karar vermenize yardımcı olur.",
     "Version {0}": "Sürüm {0}",
     "Visitor mode": "Ziyaretçi modu",
     "Visitor mode: ingredient selection is disabled":
@@ -2369,16 +2372,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} içerik seçildi. {1} kokteyl hazır.",
     "{0} serv.": "{0} pors.",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "\"Eksik 1\" ve \"Eksik 2\" neredeyse hazır tarifleri ortaya çıkarıyor. Akıllı alışveriş listesi bir sonraki adımda ne satın alacağınıza karar vermenize yardımcı olur.",
   },
   'zh': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. 将玻璃杯装满冰块\n2.添加配料\n3. 装饰并上桌",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. 将玻璃杯装满冰块\n2.加入配料\n3. 装饰并上桌",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. 打开配料并点击您家里有的产品和饮料。复选标记表示该成分有库存。\n\n2. 打开酒吧菜单查看您可以用您的原料制作哪些鸡尾酒。使用“就绪”过滤器仅显示您现在可以制作的食谱。",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. 在“{0}”中勾选家里已有的配料。打勾表示你已经有这项配料。\n\n2. 打开“{1}”，选择“{2}”查看现在可以制作的鸡尾酒。",
     "About app": "关于应用程序",
     "Add": "添加",
     "Add at least one ingredient first": "首先添加至少一种成分",
@@ -2388,15 +2389,18 @@ appTranslations = <String, Map<String, String>>{
     "Add ingredients from the recommendations below.": "添加以下推荐的成分。",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "在“配料”中添加项目，可用的鸡尾酒将出现在此处。",
-    "Add missing to shopping · {0}": "将缺失添加到购物中 · {0}",
+    "Add missing to shopping · {0}": "将缺少的配料加入清单 · {0}",
     "Add preparation steps": "添加准备步骤",
     "Add substitution": "添加替换",
     "Add to favorites": "添加到收藏夹",
     "Add to list": "添加到列表",
-    "Added to shopping · {0}": "已添加到购物·{0}",
+    "Added to shopping · {0}": "已加入购物清单 · {0}",
     "Adding…": "添加...",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "按所需份数调整配料用量。在“{0}”中选择多款鸡尾酒，即可获得一份合并的配料清单。",
     "All": "全部",
-    "All added items will be removed.": "所有添加的项目都将被删除。",
+    "All added items will be removed.": "清单中的所有配料都将移除。",
+    "Almost ready to mix": "只差一两种配料",
     "Alphabetical": "按字母顺序",
     "Amount": "数量",
     "Amounts can only be set for selected ingredients.": "只能为选定的成分设置数量。",
@@ -2435,9 +2439,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "选择语言",
     "Choose your favorite styles — results update after applying.":
         "选择您最喜欢的款式——申请后结果会更新。",
-    "Clear": "清除",
+    "Clear": "清空",
     "Clear selection": "清除选择",
-    "Clear shopping list?": "清晰的购物清单？",
+    "Clear shopping list?": "清空购物清单？",
     "Close": "关闭",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "鸡尾酒“{0}”包含未选择的成分“{1}”的替代品。",
@@ -2464,6 +2468,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "未找到鸡尾酒。",
     "Cocktail updated": "鸡尾酒已更新",
     "Cocktails": "鸡尾酒",
+    "Cocktails for a group": "为多人调酒",
     "Cocktails:": "鸡尾酒：",
     "Coffee, tea and cocoa": "咖啡、茶和可可",
     "Collins": "柯林斯杯",
@@ -2480,7 +2485,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "描述",
     "Dessert ingredients": "甜品配料",
     "Developer website": "开发者网站",
-    "Discover a new favorite": "发现新的最爱",
+    "Discover a new favorite": "发现新口味",
     "Done": "完毕",
     "Duplicate id \"{0}\" in \"{1}\".": "“{1}”中的 ID“{0}”重复。",
     "Edit": "编辑",
@@ -2507,8 +2512,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "水果和浆果",
     "German": "德语",
     "Get started": "开始使用",
-    "Glass type*": "玻璃类型*",
-    "Glass: {0}": "玻璃：{0}",
+    "Glass type*": "杯型*",
+    "Glass: {0}": "杯型：{0}",
     "Goblet": "高脚杯",
     "Hide menu": "隐藏菜单",
     "Hides editing controls": "隐藏编辑控件",
@@ -2536,7 +2541,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "JSON 根必须是一个对象。",
     "Japanese": "日本人",
     "Juices and nectars": "果汁和花蜜",
-    "Just one more ingredient…": "只是多了一种成分……",
     "Korean": "韩国人",
     "Language": "语言",
     "Light": "低度",
@@ -2553,12 +2557,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "马提尼杯",
     "Measurement system": "测量系统",
     "Medium strength": "中等酒精度",
-    "Missing 1": "失踪 1",
-    "Missing 2": "失踪2",
-    "Missing ingredients: {0}": "缺少成分：{0}",
-    "Missing: {0}": "缺失：{0}",
-    "Missing: {0} and {1} more": "缺少：{0} 件和另外 {1} 件",
-    "Mix for a crowd": "为人群混合",
+    "Missing 1": "缺 1 种配料",
+    "Missing 2": "缺 2 种配料",
+    "Missing ingredients: {0}": "缺少的配料：{0}",
+    "Missing: {0}": "缺少：{0}",
+    "Missing: {0} and {1} more": "缺少：{0}，另有 {1} 种",
     "More filters": "更多过滤器",
     "More · {0}": "更多 · {0}",
     "Mug": "马克杯",
@@ -2590,9 +2593,9 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked as garnish.": "只有选定的成分才能标记为装饰。",
     "Only selected ingredients can be marked optional.": "只有选定的成分才能标记为可选。",
     "Optional": "选修的",
-    "Owned ingredients only": "仅限自有成分",
+    "Owned ingredients only": "仅显示已有配料",
     "Party": "派对",
-    "Party mode": "派对模式",
+    "Party mode": "聚会模式",
     "Party plan": "聚会计划",
     "Photo (URL or file path)": "照片（URL 或文件路径）",
     "Pick from device": "从设备中选择",
@@ -2604,8 +2607,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "预混料",
     "Preparation": "准备",
     "Preparation steps*": "准备步骤*",
-    "Ready": "准备好",
-    "Ready now": "现在准备好了",
+    "Ready": "可制作",
+    "Ready now": "现在就能制作",
     "Ready only": "仅可制作",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "减少繁重的 UI 效果（模糊、发光、动画），以降低热量和电池使用量。",
@@ -2618,18 +2621,16 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "俄语",
     "Sauces and savory additions": "酱汁和咸味添加剂",
     "Save": "节省",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "根据任何份量调整食谱。在派对模式中，选择鸡尾酒并获取组合成分列表。",
     "Search cocktails": "搜索鸡尾酒",
-    "Search cocktails…": "搜索鸡尾酒...",
-    "Search ingredients...": "搜索成分...",
+    "Search cocktails…": "搜索鸡尾酒…",
+    "Search ingredients...": "搜索配料…",
     "Search languages": "搜索语言",
     "Select a cocktail in the left grid to open preparation instructions.":
         "在左侧网格中选择一种鸡尾酒以打开准备说明。",
     "Select at least one ingredient": "选择至少一种成分",
     "Select bottles and ingredients you already have at home": "选择家里已有的瓶子和原料",
     "Select glass type": "选择玻璃类型",
-    "Select ready": "选择准备好",
+    "Select ready": "选择可制作的酒款",
     "Serving calculator": "服务计算器",
     "Servings: {0}": "份量：{0}",
     "Settings": "设置",
@@ -2644,9 +2645,9 @@ appTranslations = <String, Map<String, String>>{
     "Shows only the \"Bar Menu\" page": "仅显示“酒吧菜单”页面",
     "Skip": "跳过",
     "Smart shopping list": "智能购物清单",
-    "Sodas and non-alcoholic mixers": "苏打水和不含酒精的混合器",
+    "Sodas and non-alcoholic mixers": "汽水及无酒精调饮",
     "Spanish": "西班牙语",
-    "Spices, herbs and bitters": "香料、香草和苦味剂",
+    "Spices, herbs and bitters": "香料、香草和苦精",
     "Spirits": "烈酒",
     "Stay": "停留",
     "Strong": "高度",
@@ -2660,8 +2661,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "糖浆和甜味剂",
     "System": "系统",
     "Tags": "标签",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "点击“给我惊喜”并通过“下一个鸡尾酒”探索随机食谱。保存您的最爱。所有这些功能都是免费的并且可以离线使用。",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "点按“{0}”随机查看一个配方，点按“{1}”换一个。喜欢的配方可以收藏。这些功能均免费，也可离线使用。",
     "The missing ingredients are now in Shopping in your bar menu.":
         "缺失的食材现在位于酒吧菜单的“购物”中。",
     "The substitution list contains an unknown ingredient.": "替代品清单包含未知成分。",
@@ -2674,6 +2675,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "解锁{0}鸡尾酒",
     "Unlocks {0} cocktails": "解锁 {0} 种鸡尾酒",
     "Use device language": "使用设备语言",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "用“{0}”和“{1}”筛选只差一两种配料的配方。购物清单可以帮你决定要买哪些配料。",
     "Version {0}": "版本{0}",
     "Visitor mode": "访客模式",
     "Visitor mode: ingredient selection is disabled": "访客模式：禁用成分选择",
@@ -2684,7 +2687,7 @@ appTranslations = <String, Map<String, String>>{
     "Wine glass": "葡萄酒杯",
     "Works offline with a stable built-in catalog.": "使用稳定的内置目录离线工作。",
     "You have unsaved changes. They will be lost.": "您有未保存的更改。他们会迷失的。",
-    "Your home bar": "你家的酒吧",
+    "Your home bar": "你的家庭酒吧",
     "Your shopping list is empty.": "您的购物清单是空的。",
     "bottle": "瓶",
     "can": "罐",
@@ -2730,16 +2733,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "已选择 {0} 种成分。 {1} 鸡尾酒准备好了。",
     "{0} serv.": "{0} 份",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "“Missing 1”和“Missing 2”揭示了即将准备好的食谱。智能购物清单可帮助您决定下一步购买什么。",
   },
   'ja': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. グラスに氷を入れます\n2. 材料を加える\n3. 飾り付けて盛り付ける",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. グラスに氷を入れます\n2.材料を加えます\n3. 飾り付けて盛り付ける",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. 材料を開き、家にある製品や飲み物をタップします。チェックマークは、材料の在庫があることを意味します。\n\n2. バーメニューを開いて、材料を使ってどのカクテルを作ることができるかを確認します。 [準備完了] フィルターを使用すると、今すぐ作成できるレシピのみが表示されます。",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. 「{0}」で家にある材料にチェックを入れます。チェックは材料が手元にある印です。\n\n2. 「{1}」を開き、「{2}」を選ぶと、作れるカクテルが表示されます。",
     "About app": "アプリについて",
     "Add": "追加",
     "Add at least one ingredient first": "最初に少なくとも 1 つの材料を追加します",
@@ -2749,15 +2750,18 @@ appTranslations = <String, Map<String, String>>{
     "Add ingredients from the recommendations below.": "以下の推奨事項から材料を追加します。",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "「材料」に項目を追加すると、利用可能なカクテルがここに表示されます。",
-    "Add missing to shopping · {0}": "不足しているものをショッピングに追加 · {0}",
+    "Add missing to shopping · {0}": "足りない材料を買い物リストに追加 · {0}",
     "Add preparation steps": "準備手順を追加する",
     "Add substitution": "置換の追加",
     "Add to favorites": "お気に入りに追加",
     "Add to list": "リストに追加",
-    "Added to shopping · {0}": "ショッピングに追加されました · {0}",
+    "Added to shopping · {0}": "買い物リストに追加済み · {0}",
     "Adding…": "追加中…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "必要な杯数に合わせて、材料の分量を調整できます。「{0}」でカクテルを選ぶと、必要な材料をまとめて確認できます。",
     "All": "全て",
-    "All added items will be removed.": "追加された項目はすべて削除されます。",
+    "All added items will be removed.": "リスト内の材料がすべて削除されます。",
+    "Almost ready to mix": "あと少しで作れる",
     "Alphabetical": "アルファベット順",
     "Amount": "額",
     "Amounts can only be set for selected ingredients.":
@@ -2800,8 +2804,8 @@ appTranslations = <String, Map<String, String>>{
     "Choose your favorite styles — results update after applying.":
         "お気に入りのスタイルを選択してください。結果は適用後に更新されます。",
     "Clear": "クリア",
-    "Clear selection": "選択をクリア",
-    "Clear shopping list?": "買い物リストをクリアしますか?",
+    "Clear selection": "選択を解除",
+    "Clear shopping list?": "買い物リストを空にしますか？",
     "Close": "近い",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "カクテル \"{0}\" には、選択されていない材料 \"{1}\" の代替品が含まれています。",
@@ -2830,6 +2834,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "カクテルが見つかりません。",
     "Cocktail updated": "カクテルを更新しました",
     "Cocktails": "カクテル",
+    "Cocktails for a group": "人数に合わせて作る",
     "Cocktails:": "カクテル:",
     "Coffee, tea and cocoa": "コーヒー、紅茶、ココア",
     "Collins": "コリンズグラス",
@@ -2847,7 +2852,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "説明",
     "Dessert ingredients": "デザートの材料",
     "Developer website": "開発者のウェブサイト",
-    "Discover a new favorite": "新しいお気に入りを発見",
+    "Discover a new favorite": "新しいカクテルに出会う",
     "Done": "終わり",
     "Duplicate id \"{0}\" in \"{1}\".": "「{1}」の ID「{0}」が重複しています。",
     "Edit": "編集",
@@ -2875,8 +2880,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "フルーツとベリー",
     "German": "ドイツ語",
     "Get started": "始めましょう",
-    "Glass type*": "ガラスの種類*",
-    "Glass: {0}": "ガラス: {0}",
+    "Glass type*": "グラスの種類*",
+    "Glass: {0}": "グラス：{0}",
     "Goblet": "ゴブレット",
     "Hide menu": "メニューを隠す",
     "Hides editing controls": "編集コントロールを非表示にします",
@@ -2904,7 +2909,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "JSON ルートはオブジェクトである必要があります。",
     "Japanese": "日本語",
     "Juices and nectars": "ジュースとネクター",
-    "Just one more ingredient…": "あと材料がひとつだけ…",
     "Korean": "韓国人",
     "Language": "言語",
     "Light": "軽め",
@@ -2921,12 +2925,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "マティーニグラス",
     "Measurement system": "測定システム",
     "Medium strength": "中程度",
-    "Missing 1": "1 がありません",
-    "Missing 2": "不足 2",
-    "Missing ingredients: {0}": "不足している材料: {0}",
-    "Missing: {0}": "欠落しています: {0}",
-    "Missing: {0} and {1} more": "欠落: {0} など {1}",
-    "Mix for a crowd": "大勢でミックスする",
+    "Missing 1": "材料があと1つ",
+    "Missing 2": "材料があと2つ",
+    "Missing ingredients: {0}": "足りない材料：{0}",
+    "Missing: {0}": "不足：{0}",
+    "Missing: {0} and {1} more": "不足：{0}、ほか{1}品",
     "More filters": "その他のフィルター",
     "More · {0}": "その他 · {0}",
     "Mug": "マグカップ",
@@ -2960,7 +2963,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "選択した成分のみをオプションとしてマークできます。",
     "Optional": "オプション",
-    "Owned ingredients only": "所有する食材のみ",
+    "Owned ingredients only": "持っている材料のみ",
     "Party": "パーティー",
     "Party mode": "パーティーモード",
     "Party plan": "パーティープラン",
@@ -2974,8 +2977,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "プレミックス",
     "Preparation": "準備",
     "Preparation steps*": "準備手順*",
-    "Ready": "準備ができて",
-    "Ready now": "準備完了",
+    "Ready": "作れる",
+    "Ready now": "今すぐ作れます",
     "Ready only": "今作れるものだけ",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "激しい UI 効果 (ブラー、グロー、アニメーション) を減らし、熱とバッテリーの使用量を削減します。",
@@ -2988,19 +2991,17 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "ロシア",
     "Sauces and savory additions": "ソースと風味の追加物",
     "Save": "保存",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "レシピを任意の分量に合わせて調整できます。パーティー モードでは、カクテルを選択し、組み合わせた材料リストを取得します。",
     "Search cocktails": "カクテルを検索",
     "Search cocktails…": "カクテルを検索…",
-    "Search ingredients...": "食材を検索...",
-    "Search languages": "検索言語",
+    "Search ingredients...": "材料を検索…",
+    "Search languages": "言語を検索",
     "Select a cocktail in the left grid to open preparation instructions.":
         "左側のグリッドでカクテルを選択して、準備手順を開きます。",
     "Select at least one ingredient": "少なくとも 1 つの材料を選択してください",
     "Select bottles and ingredients you already have at home":
         "すでに家にあるボトルや材料を選択してください",
     "Select glass type": "ガラスの種類を選ぶ",
-    "Select ready": "準備完了を選択してください",
+    "Select ready": "作れるものを選択",
     "Serving calculator": "サービング計算機",
     "Servings: {0}": "分量: {0}",
     "Settings": "設定",
@@ -3014,11 +3015,11 @@ appTranslations = <String, Map<String, String>>{
     "Show menu": "メニューを表示",
     "Shows only the \"Bar Menu\" page": "「バーメニュー」ページのみを表示します",
     "Skip": "スキップ",
-    "Smart shopping list": "賢い買い物リスト",
-    "Sodas and non-alcoholic mixers": "ソーダとノンアルコールミキサー",
+    "Smart shopping list": "スマート買い物リスト",
+    "Sodas and non-alcoholic mixers": "炭酸飲料とノンアルコールの割り材",
     "Spanish": "スペイン語",
-    "Spices, herbs and bitters": "スパイス、ハーブ、ビターズ",
-    "Spirits": "スピリッツ",
+    "Spices, herbs and bitters": "スパイス・ハーブ・ビターズ",
+    "Spirits": "蒸留酒",
     "Stay": "滞在する",
     "Strong": "強め",
     "Style and mood": "スタイルと雰囲気",
@@ -3031,8 +3032,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "シロップと甘味料",
     "System": "システム",
     "Tags": "タグ",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "「サプライズ・ミー」をタップし、「次のカクテル」でランダムなレシピを探索します。お気に入りを保存します。これらの機能はすべて無料で、オフラインでも動作します。",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "「{0}」でランダムにレシピを表示し、「{1}」で別のレシピを見られます。気に入ったレシピはお気に入りに保存できます。すべて無料で、オフラインでも使えます。",
     "The missing ingredients are now in Shopping in your bar menu.":
         "不足している材料がバー メニューの「ショッピング」に表示されるようになりました。",
     "The substitution list contains an unknown ingredient.":
@@ -3046,6 +3047,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "{0} カクテルのロックを解除します",
     "Unlocks {0} cocktails": "{0} 個のカクテルのロックを解除します",
     "Use device language": "デバイス言語を使用する",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "「{0}」や「{1}」で、あと1つか2つの材料で作れるレシピを探せます。買い物リストで、次に買う材料を決めましょう。",
     "Version {0}": "バージョン {0}",
     "Visitor mode": "ビジターモード",
     "Visitor mode: ingredient selection is disabled": "訪問者モード: 材料の選択は無効になります",
@@ -3058,7 +3061,7 @@ appTranslations = <String, Map<String, String>>{
         "安定した組み込みカタログを使用してオフラインで動作します。",
     "You have unsaved changes. They will be lost.":
         "未保存の変更があります。彼らは失われることになるでしょう。",
-    "Your home bar": "あなたのホームバー",
+    "Your home bar": "おうちバー",
     "Your shopping list is empty.": "買い物リストは空です。",
     "bottle": "本",
     "can": "缶",
@@ -3104,16 +3107,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} 個の材料が選択されました。 {1} 個のカクテルができました。",
     "{0} serv.": "{0} 杯分",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "「Missing 1」と「Missing 2」では、ほぼ完成したレシピが表示されます。賢い買い物リストは、次に何を買うかを決めるのに役立ちます。",
   },
   'ko': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. 잔에 얼음을 채워주세요\n2. 재료 추가\n3. 장식하고 서빙하세요",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. 잔에 얼음을 채워주세요\n2. 재료를 추가합니다\n3. 장식하고 서빙하세요",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. 재료를 열고 집에 있는 제품과 음료를 탭하세요. 체크 표시는 해당 재료의 재고가 있음을 의미합니다.\n\n2. 바 메뉴를 열어 재료로 어떤 칵테일을 만들 수 있는지 확인하세요. 지금 만들 수 있는 레시피만 표시하려면 준비 필터를 사용하세요.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. “{0}”에서 집에 있는 재료를 선택하세요. 체크 표시는 재료가 있다는 뜻입니다.\n\n2. “{1}”를 열고 “{2}”를 선택해 만들 수 있는 칵테일을 확인하세요.",
     "About app": "앱 정보",
     "Add": "추가하다",
     "Add at least one ingredient first": "최소한 하나의 재료를 먼저 추가하세요.",
@@ -3124,15 +3125,18 @@ appTranslations = <String, Map<String, String>>{
         "아래 권장 사항에 따라 재료를 추가하세요.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "\"재료\"에 항목을 추가하면 사용 가능한 칵테일이 여기에 표시됩니다.",
-    "Add missing to shopping · {0}": "쇼핑에 누락된 항목 추가 · {0}",
+    "Add missing to shopping · {0}": "부족한 재료를 장보기 목록에 추가 · {0}",
     "Add preparation steps": "준비 단계 추가",
     "Add substitution": "대체 추가",
     "Add to favorites": "즐겨찾기에 추가",
     "Add to list": "목록에 추가",
-    "Added to shopping · {0}": "쇼핑에 추가됨 · {0}",
+    "Added to shopping · {0}": "장보기 목록에 추가됨 · {0}",
     "Adding…": "첨가…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "필요한 잔 수에 맞춰 재료의 양을 조절하세요. “{0}”에서 칵테일을 선택하면 필요한 재료를 한 목록으로 볼 수 있습니다.",
     "All": "모두",
-    "All added items will be removed.": "추가된 모든 항목이 제거됩니다.",
+    "All added items will be removed.": "목록에서 모든 재료가 삭제됩니다.",
+    "Almost ready to mix": "한두 가지 재료만 더",
     "Alphabetical": "알파벳순",
     "Amount": "양",
     "Amounts can only be set for selected ingredients.":
@@ -3173,9 +3177,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "언어를 선택하세요",
     "Choose your favorite styles — results update after applying.":
         "좋아하는 스타일을 선택하세요. 적용 후 결과가 업데이트됩니다.",
-    "Clear": "분명한",
-    "Clear selection": "선택 취소",
-    "Clear shopping list?": "쇼핑 목록을 삭제하시겠습니까?",
+    "Clear": "지우기",
+    "Clear selection": "선택 해제",
+    "Clear shopping list?": "장보기 목록을 비울까요?",
     "Close": "닫다",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "칵테일 \"{0}\"에는 선택되지 않은 재료 \"{1}\"에 대한 대체가 포함되어 있습니다.",
@@ -3204,6 +3208,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "칵테일을 찾을 수 없습니다.",
     "Cocktail updated": "칵테일 업데이트됨",
     "Cocktails": "칵테일",
+    "Cocktails for a group": "여럿을 위한 칵테일",
     "Cocktails:": "칵테일:",
     "Coffee, tea and cocoa": "커피, 차, 코코아",
     "Collins": "콜린스 잔",
@@ -3221,7 +3226,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "설명",
     "Dessert ingredients": "디저트 재료",
     "Developer website": "개발자 웹사이트",
-    "Discover a new favorite": "새로운 즐겨 찾기를 발견하십시오",
+    "Discover a new favorite": "새로운 칵테일 만나기",
     "Done": "완료",
     "Duplicate id \"{0}\" in \"{1}\".": "\"{1}\"에 중복된 ID \"{0}\"이(가) 있습니다.",
     "Edit": "편집하다",
@@ -3249,8 +3254,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "과일과 열매",
     "German": "독일 사람",
     "Get started": "시작하기",
-    "Glass type*": "유리 종류*",
-    "Glass: {0}": "유리: {0}",
+    "Glass type*": "잔 종류*",
+    "Glass: {0}": "잔: {0}",
     "Goblet": "고블릿",
     "Hide menu": "메뉴 숨기기",
     "Hides editing controls": "편집 컨트롤을 숨깁니다.",
@@ -3278,7 +3283,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "JSON 루트는 객체여야 합니다.",
     "Japanese": "일본어",
     "Juices and nectars": "주스와 꿀",
-    "Just one more ingredient…": "재료 하나만 더...",
     "Korean": "한국인",
     "Language": "언어",
     "Light": "낮은 도수",
@@ -3295,12 +3299,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "마티니 잔",
     "Measurement system": "측정 시스템",
     "Medium strength": "중간 도수",
-    "Missing 1": "누락 1",
-    "Missing 2": "누락 2",
-    "Missing ingredients: {0}": "누락된 재료: {0}",
-    "Missing: {0}": "누락됨: {0}",
-    "Missing: {0} and {1} more": "누락됨: {0} 외 {1}개",
-    "Mix for a crowd": "군중을 위해 믹스",
+    "Missing 1": "재료 1개 부족",
+    "Missing 2": "재료 2개 부족",
+    "Missing ingredients: {0}": "부족한 재료: {0}",
+    "Missing: {0}": "부족한 재료: {0}",
+    "Missing: {0} and {1} more": "부족한 재료: {0} 외 {1}개",
     "More filters": "더 많은 필터",
     "More · {0}": "더보기 · {0}",
     "Mug": "머그컵",
@@ -3334,7 +3337,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "선택한 성분만 선택사항으로 표시할 수 있습니다.",
     "Optional": "선택 과목",
-    "Owned ingredients only": "소유한 재료만",
+    "Owned ingredients only": "보유한 재료만",
     "Party": "파티",
     "Party mode": "파티 모드",
     "Party plan": "파티플랜",
@@ -3348,8 +3351,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "프리믹스",
     "Preparation": "준비",
     "Preparation steps*": "준비 단계*",
-    "Ready": "준비가 된",
-    "Ready now": "지금 준비하세요",
+    "Ready": "만들 수 있음",
+    "Ready now": "지금 만들 수 있음",
     "Ready only": "만들 수 있는 것만",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "과도한 UI 효과(흐림, 발광, 애니메이션)를 줄여 발열과 배터리 사용량을 줄입니다.",
@@ -3362,11 +3365,9 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "러시아인",
     "Sauces and savory additions": "소스와 짭짤한 첨가물",
     "Save": "구하다",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "어떤 서빙 횟수에 맞춰 레시피를 확장하세요. 파티 모드에서 칵테일을 선택하고 결합된 재료 목록을 받으세요.",
     "Search cocktails": "칵테일 검색",
     "Search cocktails…": "칵테일 검색…",
-    "Search ingredients...": "성분 검색...",
+    "Search ingredients...": "재료 검색…",
     "Search languages": "언어 검색",
     "Select a cocktail in the left grid to open preparation instructions.":
         "준비 지침을 열려면 왼쪽 그리드에서 칵테일을 선택하세요.",
@@ -3374,7 +3375,7 @@ appTranslations = <String, Map<String, String>>{
     "Select bottles and ingredients you already have at home":
         "집에 이미 가지고 있는 병과 재료를 선택하세요.",
     "Select glass type": "유리 종류 선택",
-    "Select ready": "준비됨 선택",
+    "Select ready": "만들 수 있는 칵테일 선택",
     "Serving calculator": "서빙 계산기",
     "Servings: {0}": "제공량: {0}",
     "Settings": "설정",
@@ -3388,11 +3389,11 @@ appTranslations = <String, Map<String, String>>{
     "Show menu": "메뉴 표시",
     "Shows only the \"Bar Menu\" page": "\"바 메뉴\" 페이지만 표시합니다.",
     "Skip": "건너뛰다",
-    "Smart shopping list": "스마트한 쇼핑 목록",
-    "Sodas and non-alcoholic mixers": "탄산음료 및 무알콜 믹서",
+    "Smart shopping list": "스마트 장보기 목록",
+    "Sodas and non-alcoholic mixers": "탄산음료 및 무알코올 믹서",
     "Spanish": "스페인 사람",
-    "Spices, herbs and bitters": "향신료, 허브 및 쓴맛",
-    "Spirits": "주정",
+    "Spices, herbs and bitters": "향신료, 허브, 비터스",
+    "Spirits": "증류주",
     "Stay": "머무르다",
     "Strong": "높은 도수",
     "Style and mood": "스타일과 분위기",
@@ -3405,8 +3406,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "시럽 및 감미료",
     "System": "체계",
     "Tags": "태그",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "\"놀라워줘\"를 탭하고 \"다음 칵테일\"로 무작위 레시피를 탐색해 보세요. 즐겨찾기를 저장하세요. 이러한 모든 기능은 무료이며 오프라인으로 작동됩니다.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "“{0}”로 무작위 레시피를 보고, “{1}”로 다른 레시피를 확인하세요. 마음에 드는 레시피는 즐겨찾기에 저장하세요. 이 기능은 모두 무료이며 오프라인에서도 사용할 수 있습니다.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "누락된 재료는 이제 바 메뉴의 쇼핑에 있습니다.",
     "The substitution list contains an unknown ingredient.":
@@ -3421,6 +3422,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "{0} 칵테일 잠금 해제",
     "Unlocks {0} cocktails": "{0}개의 칵테일을 잠금 해제합니다",
     "Use device language": "장치 언어 사용",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "“{0}”와 “{1}”로 재료가 한두 가지만 더 있으면 되는 레시피를 찾아보세요. 장보기 목록을 참고해 필요한 재료를 준비하세요.",
     "Version {0}": "버전 {0}",
     "Visitor mode": "방문자 모드",
     "Visitor mode: ingredient selection is disabled": "방문자 모드: 재료 선택이 비활성화됩니다.",
@@ -3433,7 +3436,7 @@ appTranslations = <String, Map<String, String>>{
         "안정적인 내장 카탈로그를 사용하여 오프라인으로 작업합니다.",
     "You have unsaved changes. They will be lost.":
         "저장되지 않은 변경사항이 있습니다. 그들은 길을 잃을 것이다.",
-    "Your home bar": "당신의 홈 바",
+    "Your home bar": "나만의 홈 바",
     "Your shopping list is empty.": "쇼핑 목록이 비어 있습니다.",
     "bottle": "병",
     "can": "캔",
@@ -3479,16 +3482,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0}개의 재료가 선택되었습니다. {1} 칵테일이 준비되었습니다.",
     "{0} serv.": "{0} 잔",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "'Missing 1'과 'Missing 2'에서는 거의 완성된 레시피를 공개합니다. 스마트 쇼핑 목록은 다음에 무엇을 살지 결정하는 데 도움이 됩니다.",
   },
   'hi': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. गिलास को बर्फ से भरें\n2. सामग्री जोड़ें\n3. सजाकर परोसें",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. गिलास को बर्फ से भरें\n2. सामग्री जोड़ें\n3. सजाकर परोसें",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. सामग्री खोलें और आपके घर पर मौजूद उत्पादों और पेय पदार्थों पर टैप करें। चेकमार्क का मतलब है कि सामग्री स्टॉक में है।\n\n2. यह देखने के लिए बार मेनू खोलें कि आप अपनी सामग्री से कौन सा कॉकटेल बना सकते हैं। केवल उन व्यंजनों को दिखाने के लिए रेडी फ़िल्टर का उपयोग करें जिन्हें आप अभी बना सकते हैं।",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "1. “{0}” में घर पर मौजूद सामग्री चुनें। सही का निशान बताता है कि वह सामग्री आपके पास है।\n\n2. “{1}” खोलें और “{2}” चुनें। इससे पता चलेगा कि आप कौन-से कॉकटेल बना सकते हैं।",
     "About app": "ऐप के बारे में",
     "Add": "जोड़ना",
     "Add at least one ingredient first": "पहले कम से कम एक सामग्री जोड़ें",
@@ -3499,15 +3500,18 @@ appTranslations = <String, Map<String, String>>{
         "नीचे दी गई अनुशंसाओं से सामग्री जोड़ें।",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "\"सामग्री\" में आइटम जोड़ें, और उपलब्ध कॉकटेल यहां दिखाई देंगे।",
-    "Add missing to shopping · {0}": "खरीदारी में गुम जोड़ें · {0}",
+    "Add missing to shopping · {0}": "कम सामग्री सूची में जोड़ें · {0}",
     "Add preparation steps": "तैयारी के चरण जोड़ें",
     "Add substitution": "प्रतिस्थापन जोड़ें",
     "Add to favorites": "पसंदीदा में जोड़े",
     "Add to list": "सूची में शामिल",
-    "Added to shopping · {0}": "शॉपिंग में जोड़ा गया · {0}",
+    "Added to shopping · {0}": "खरीदारी की सूची में जोड़ा गया · {0}",
     "Adding…": "जोड़ा जा रहा है...",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "ज़रूरत के हिसाब से सर्विंग की संख्या और सामग्री की मात्रा तय करें। “{0}” में कॉकटेल चुनें और सबकी सामग्री की एक सूची पाएँ।",
     "All": "सभी",
-    "All added items will be removed.": "सभी जोड़े गए आइटम हटा दिए जाएंगे.",
+    "All added items will be removed.": "सूची से सभी सामग्रियाँ हटा दी जाएँगी।",
+    "Almost ready to mix": "बस एक-दो चीज़ें और",
     "Alphabetical": "वर्णमाला",
     "Amount": "मात्रा",
     "Amounts can only be set for selected ingredients.":
@@ -3552,9 +3556,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "भाषा चुनें",
     "Choose your favorite styles — results update after applying.":
         "अपनी पसंदीदा शैलियाँ चुनें - आवेदन करने के बाद परिणाम अपडेट हो जाते हैं।",
-    "Clear": "स्पष्ट",
-    "Clear selection": "स्पष्ट चयन",
-    "Clear shopping list?": "खरीदारी सूची साफ़ करें?",
+    "Clear": "साफ़ करें",
+    "Clear selection": "चयन हटाएँ",
+    "Clear shopping list?": "खरीदारी की सूची खाली करें?",
     "Close": "बंद करना",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "कॉकटेल \"{0}\" में अचयनित घटक \"{1}\" का प्रतिस्थापन शामिल है।",
@@ -3584,6 +3588,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "कॉकटेल नहीं मिला.",
     "Cocktail updated": "कॉकटेल अपडेट किया गया",
     "Cocktails": "कॉकटेल",
+    "Cocktails for a group": "कई लोगों के लिए कॉकटेल",
     "Cocktails:": "कॉकटेल:",
     "Coffee, tea and cocoa": "कॉफ़ी, चाय और कोको",
     "Collins": "कॉलिन्स गिलास",
@@ -3602,7 +3607,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "विवरण",
     "Dessert ingredients": "मिठाई सामग्री",
     "Developer website": "डेवलपर वेबसाइट",
-    "Discover a new favorite": "एक नया पसंदीदा खोजें",
+    "Discover a new favorite": "नया कॉकटेल खोजें",
     "Done": "हो गया",
     "Duplicate id \"{0}\" in \"{1}\".": "\"{1}\" में डुप्लिकेट आईडी \"{0}\"।",
     "Edit": "संपादन करना",
@@ -3630,8 +3635,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "फल और जामुन",
     "German": "जर्मन",
     "Get started": "शुरू हो जाओ",
-    "Glass type*": "कांच का प्रकार*",
-    "Glass: {0}": "ग्लास: {0}",
+    "Glass type*": "गिलास का प्रकार*",
+    "Glass: {0}": "गिलास: {0}",
     "Goblet": "गोब्लेट",
     "Hide menu": "मेनू छिपाएँ",
     "Hides editing controls": "संपादन नियंत्रण छुपाता है",
@@ -3659,7 +3664,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "JSON रूट एक ऑब्जेक्ट होना चाहिए.",
     "Japanese": "जापानी",
     "Juices and nectars": "रस और अमृत",
-    "Just one more ingredient…": "बस एक और सामग्री...",
     "Korean": "कोरियाई",
     "Language": "भाषा",
     "Light": "हल्के",
@@ -3676,12 +3680,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "मार्टिनी गिलास",
     "Measurement system": "माप प्रणाली",
     "Medium strength": "मध्यम अल्कोहल",
-    "Missing 1": "गुम 1",
-    "Missing 2": "गुम 2",
-    "Missing ingredients: {0}": "अनुपलब्ध सामग्री: {0}",
-    "Missing: {0}": "गुम: {0}",
-    "Missing: {0} and {1} more": "अनुपलब्ध: {0} और {1} अधिक",
-    "Mix for a crowd": "भीड़ के लिए मिश्रण करें",
+    "Missing 1": "1 सामग्री कम",
+    "Missing 2": "2 सामग्रियाँ कम",
+    "Missing ingredients: {0}": "कम सामग्री: {0}",
+    "Missing: {0}": "कम: {0}",
+    "Missing: {0} and {1} more": "कम: {0} और {1} अन्य",
     "More filters": "अधिक फ़िल्टर",
     "More · {0}": "और · {0}",
     "Mug": "मग",
@@ -3719,7 +3722,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "केवल चयनित सामग्री को वैकल्पिक के रूप में चिह्नित किया जा सकता है।",
     "Optional": "वैकल्पिक",
-    "Owned ingredients only": "केवल स्वामित्व वाली सामग्री",
+    "Owned ingredients only": "केवल मौजूद सामग्री",
     "Party": "दल",
     "Party mode": "पार्टी मोड",
     "Party plan": "पार्टी योजना",
@@ -3733,8 +3736,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "प्रीमिक्स",
     "Preparation": "तैयारी",
     "Preparation steps*": "तैयारी के चरण*",
-    "Ready": "तैयार",
-    "Ready now": "अब तैयार हूं",
+    "Ready": "बना सकते हैं",
+    "Ready now": "अभी बना सकते हैं",
     "Ready only": "केवल उपलब्ध सामग्री वाले",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "गर्मी और बैटरी उपयोग को कम करने के लिए भारी यूआई प्रभाव (धुंधला, चमक, एनिमेशन) को कम करता है।",
@@ -3747,11 +3750,9 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "रूसी",
     "Sauces and savory additions": "सॉस और स्वादिष्ट सामग्री",
     "Save": "बचाना",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "व्यंजनों को किसी भी परोसने की संख्या के अनुसार मापें। पार्टी मोड में, कॉकटेल चुनें और एक संयुक्त सामग्री सूची प्राप्त करें।",
     "Search cocktails": "कॉकटेल खोजें",
     "Search cocktails…": "कॉकटेल खोजें…",
-    "Search ingredients...": "सामग्री खोजें...",
+    "Search ingredients...": "सामग्री खोजें…",
     "Search languages": "भाषाएँ खोजें",
     "Select a cocktail in the left grid to open preparation instructions.":
         "तैयारी निर्देश खोलने के लिए बाईं ग्रिड में एक कॉकटेल का चयन करें।",
@@ -3759,7 +3760,7 @@ appTranslations = <String, Map<String, String>>{
     "Select bottles and ingredients you already have at home":
         "आपके घर पर पहले से मौजूद बोतलें और सामग्री चुनें",
     "Select glass type": "ग्लास का प्रकार चुनें",
-    "Select ready": "तैयार का चयन करें",
+    "Select ready": "बन सकने वाले चुनें",
     "Serving calculator": "कैलकुलेटर परोसना",
     "Servings: {0}": "सर्विंग्स: {0}",
     "Settings": "सेटिंग्स",
@@ -3774,10 +3775,10 @@ appTranslations = <String, Map<String, String>>{
     "Shows only the \"Bar Menu\" page": "केवल \"बार मेनू\" पृष्ठ दिखाता है",
     "Skip": "छोडना",
     "Smart shopping list": "स्मार्ट खरीदारी सूची",
-    "Sodas and non-alcoholic mixers": "सोडा और गैर-अल्कोहलिक मिक्सर",
+    "Sodas and non-alcoholic mixers": "सोडा और बिना अल्कोहल वाले मिक्सर",
     "Spanish": "स्पैनिश",
-    "Spices, herbs and bitters": "मसाले, जड़ी-बूटियाँ और कड़वे",
-    "Spirits": "आत्माओं",
+    "Spices, herbs and bitters": "मसाले, जड़ी-बूटियाँ और बिटर्स",
+    "Spirits": "आसुत मदिरा",
     "Stay": "रहना",
     "Strong": "तेज़",
     "Style and mood": "शैली और मनोदशा",
@@ -3790,8 +3791,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "सिरप और मिठास",
     "System": "प्रणाली",
     "Tags": "टैग",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "\"मुझे आश्चर्यचकित करें\" पर टैप करें और \"अगला कॉकटेल\" के साथ यादृच्छिक व्यंजनों का पता लगाएं। अपने पसंदीदा सहेजें. ये सभी सुविधाएँ मुफ़्त हैं और ऑफ़लाइन काम करती हैं।",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "कोई भी एक रेसिपी देखने के लिए “{0}” दबाएँ और दूसरी देखने के लिए “{1}” दबाएँ। पसंद की रेसिपी को पसंदीदा में सहेजें। ये सुविधाएँ मुफ़्त हैं और बिना इंटरनेट के काम करती हैं।",
     "The missing ingredients are now in Shopping in your bar menu.":
         "गायब सामग्रियां अब आपके बार मेनू में शॉपिंग में हैं।",
     "The substitution list contains an unknown ingredient.":
@@ -3807,6 +3808,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "{0} कॉकटेल को अनलॉक करता है",
     "Unlocks {0} cocktails": "{0} कॉकटेल को अनलॉक करता है",
     "Use device language": "डिवाइस भाषा का प्रयोग करें",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "ऐसी रेसिपी ढूँढने के लिए “{0}” और “{1}” चुनें जिनमें सिर्फ़ एक या दो सामग्रियाँ कम हैं। खरीदारी की सूची से तय करें कि आगे क्या खरीदना है।",
     "Version {0}": "संस्करण {0}",
     "Visitor mode": "विज़िटर मोड",
     "Visitor mode: ingredient selection is disabled":
@@ -3866,16 +3869,14 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} सामग्री चयनित. {1} कॉकटेल तैयार।",
     "{0} serv.": "{0} सर्विंग",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "\"मिसिंग 1\" और \"मिसिंग 2\" लगभग तैयार व्यंजनों का खुलासा करते हैं। स्मार्ट शॉपिंग सूची आपको यह तय करने में मदद करती है कि आगे क्या खरीदना है।",
   },
   'ar': <String, String>{
     "1. Fill the glass with ice\n2. Add ingredients\n3. Garnish and serve":
         "1. املأ الكوب بالثلج\n2. أضف المكونات\n3. تزين وتقدم",
     "1. Fill the glass with ice\n2. Add the ingredients\n3. Garnish and serve":
         "1. املأ الكوب بالثلج\n2. أضف المكونات\n3. تزين وتقدم",
-    "1. Open Ingredients and tap the products and drinks you have at home. A checkmark means the ingredient is in stock.\n\n2. Open Bar Menu to see which cocktails you can make with your ingredients. Use the Ready filter to show only recipes you can make now.":
-        "1. افتح المكونات واضغط على المنتجات والمشروبات الموجودة لديك في المنزل. علامة الاختيار تعني أن المكون متوفر في المخزون.\n\n2. افتح قائمة البار لمعرفة الكوكتيلات التي يمكنك صنعها باستخدام مكوناتك. استخدم مرشح جاهز لإظهار الوصفات التي يمكنك إعدادها الآن فقط.",
+    "1. Mark the ingredients you have at home in “{0}”. A check mark means you have it.\n\n2. Open “{1}” and select “{2}” to see which cocktails you can make.":
+        "١. حدّد المكوّنات الموجودة في منزلك ضمن «{0}». تشير علامة الصح إلى أن المكوّن متوفر لديك.\n\n٢. افتح «{1}» واختر «{2}» لمعرفة الكوكتيلات التي يمكنك تحضيرها.",
     "About app": "حول التطبيق",
     "Add": "يضيف",
     "Add at least one ingredient first": "أضف مكونًا واحدًا على الأقل أولاً",
@@ -3886,15 +3887,18 @@ appTranslations = <String, Map<String, String>>{
         "أضف المكونات من التوصيات أدناه.",
     "Add items in \"Ingredients\", and available cocktails will appear here.":
         "أضف عناصر في \"المكونات\"، وستظهر الكوكتيلات المتوفرة هنا.",
-    "Add missing to shopping · {0}": "إضافة المفقودات إلى التسوق · {0}",
+    "Add missing to shopping · {0}": "إضافة الناقص إلى قائمة التسوق · {0}",
     "Add preparation steps": "أضف خطوات التحضير",
     "Add substitution": "إضافة الاستبدال",
     "Add to favorites": "أضف إلى المفضلة",
     "Add to list": "أضف إلى القائمة",
-    "Added to shopping · {0}": "تمت الإضافة إلى التسوق · {0}",
+    "Added to shopping · {0}": "تمت الإضافة إلى قائمة التسوق · {0}",
     "Adding…": "جارٍ الإضافة…",
+    "Adjust the ingredient amounts for the servings you need. In “{0}”, choose cocktails to get one combined ingredient list.":
+        "اضبط كميات المكوّنات بحسب عدد الحصص التي تحتاج إليها. اختر الكوكتيلات في «{0}» للحصول على قائمة موحّدة بالمكوّنات.",
     "All": "الجميع",
-    "All added items will be removed.": "ستتم إزالة كافة العناصر المضافة.",
+    "All added items will be removed.": "ستُزال جميع المكوّنات من القائمة.",
+    "Almost ready to mix": "لم يتبقَّ سوى مكوّن أو اثنين",
     "Alphabetical": "أبجديا",
     "Amount": "كمية",
     "Amounts can only be set for selected ingredients.":
@@ -3938,9 +3942,9 @@ appTranslations = <String, Map<String, String>>{
     "Choose language": "اختر اللغة",
     "Choose your favorite styles — results update after applying.":
         "اختر الأنماط المفضلة لديك - يتم تحديث النتائج بعد التقديم.",
-    "Clear": "واضح",
-    "Clear selection": "مسح التحديد",
-    "Clear shopping list?": "مسح قائمة التسوق؟",
+    "Clear": "مسح",
+    "Clear selection": "إلغاء التحديد",
+    "Clear shopping list?": "هل تريد إفراغ قائمة التسوق؟",
     "Close": "يغلق",
     "Cocktail \"{0}\" contains a substitution for unselected ingredient \"{1}\".":
         "يحتوي الكوكتيل \"{0}\" على بديل للمكون غير المحدد \"{1}\".",
@@ -3970,6 +3974,7 @@ appTranslations = <String, Map<String, String>>{
     "Cocktail not found.": "لم يتم العثور على الكوكتيل.",
     "Cocktail updated": "تم تحديث الكوكتيل",
     "Cocktails": "الكوكتيلات",
+    "Cocktails for a group": "كوكتيلات للمجموعة",
     "Cocktails:": "الكوكتيلات:",
     "Coffee, tea and cocoa": "القهوة والشاي والكاكاو",
     "Collins": "كوب كولينز",
@@ -3988,7 +3993,7 @@ appTranslations = <String, Map<String, String>>{
     "Description": "وصف",
     "Dessert ingredients": "مكونات الحلوى",
     "Developer website": "موقع المطور",
-    "Discover a new favorite": "اكتشف مفضلة جديدة",
+    "Discover a new favorite": "اكتشف كوكتيلًا جديدًا",
     "Done": "منتهي",
     "Duplicate id \"{0}\" in \"{1}\".": "معرف مكرر \"{0}\" في \"{1}\".",
     "Edit": "يحرر",
@@ -4017,8 +4022,8 @@ appTranslations = <String, Map<String, String>>{
     "Fruits and berries": "الفواكه والتوت",
     "German": "الألمانية",
     "Get started": "ابدأ",
-    "Glass type*": "نوع الزجاج*",
-    "Glass: {0}": "الزجاج: {0}",
+    "Glass type*": "نوع الكأس*",
+    "Glass: {0}": "الكأس: {0}",
     "Goblet": "كأس",
     "Hide menu": "إخفاء القائمة",
     "Hides editing controls": "إخفاء عناصر التحكم في التحرير",
@@ -4046,7 +4051,6 @@ appTranslations = <String, Map<String, String>>{
     "JSON root must be an object.": "يجب أن يكون جذر JSON كائنًا.",
     "Japanese": "اليابانية",
     "Juices and nectars": "العصائر والنكتار",
-    "Just one more ingredient…": "عنصر واحد فقط …",
     "Korean": "كوري",
     "Language": "لغة",
     "Light": "خفيفة",
@@ -4063,12 +4067,11 @@ appTranslations = <String, Map<String, String>>{
     "Martini glass": "كأس مارتيني",
     "Measurement system": "نظام القياس",
     "Medium strength": "متوسطة القوة",
-    "Missing 1": "مفقود 1",
-    "Missing 2": "مفقود 2",
-    "Missing ingredients: {0}": "المكونات المفقودة: {0}",
-    "Missing: {0}": "مفقود: {0}",
-    "Missing: {0} and {1} more": "مفقود: {0} و{1} أخرى",
-    "Mix for a crowd": "مزيج لحشد من الناس",
+    "Missing 1": "ينقص مكوّن واحد",
+    "Missing 2": "ينقص مكوّنان",
+    "Missing ingredients: {0}": "المكوّنات الناقصة: {0}",
+    "Missing: {0}": "الناقص: {0}",
+    "Missing: {0} and {1} more": "الناقص: {0} و{1} أخرى",
     "More filters": "المزيد من المرشحات",
     "More · {0}": "المزيد · {0}",
     "Mug": "مج",
@@ -4105,7 +4108,7 @@ appTranslations = <String, Map<String, String>>{
     "Only selected ingredients can be marked optional.":
         "يمكن وضع علامة على المكونات المحددة فقط على أنها اختيارية.",
     "Optional": "خياري",
-    "Owned ingredients only": "المكونات المملوكة فقط",
+    "Owned ingredients only": "المكوّنات المتوفرة فقط",
     "Party": "حزب",
     "Party mode": "وضع الحفلة",
     "Party plan": "خطة الحزب",
@@ -4119,8 +4122,8 @@ appTranslations = <String, Map<String, String>>{
     "Premixes": "الخلطات المسبقة",
     "Preparation": "تحضير",
     "Preparation steps*": "خطوات التحضير*",
-    "Ready": "مستعد",
-    "Ready now": "جاهز الآن",
+    "Ready": "قابلة للتحضير",
+    "Ready now": "يمكن تحضيره الآن",
     "Ready only": "القابلة للتحضير فقط",
     "Reduces heavy UI effects (blur, glow, animations) to lower heat and battery usage.":
         "يقلل من تأثيرات واجهة المستخدم الثقيلة (التمويه والتوهج والرسوم المتحركة) لخفض الحرارة واستخدام البطارية.",
@@ -4133,19 +4136,17 @@ appTranslations = <String, Map<String, String>>{
     "Russian": "الروسية",
     "Sauces and savory additions": "الصلصات والإضافات اللذيذة",
     "Save": "يحفظ",
-    "Scale recipes to any serving count. In Party Mode, choose cocktails and get a combined ingredient list.":
-        "وصفات النطاق إلى أي عدد الحصص. في وضع الحفلة، اختر الكوكتيلات واحصل على قائمة المكونات المدمجة.",
-    "Search cocktails": "بحث عن الكوكتيلات",
-    "Search cocktails…": "بحث عن الكوكتيلات...",
-    "Search ingredients...": "مكونات البحث...",
-    "Search languages": "لغات البحث",
+    "Search cocktails": "البحث عن كوكتيل",
+    "Search cocktails…": "البحث عن كوكتيل…",
+    "Search ingredients...": "البحث عن مكوّن…",
+    "Search languages": "البحث عن لغة",
     "Select a cocktail in the left grid to open preparation instructions.":
         "حدد كوكتيلًا في الشبكة اليسرى لفتح تعليمات التحضير.",
     "Select at least one ingredient": "حدد مكونًا واحدًا على الأقل",
     "Select bottles and ingredients you already have at home":
         "حدد الزجاجات والمكونات الموجودة لديك بالفعل في المنزل",
     "Select glass type": "حدد نوع الزجاج",
-    "Select ready": "اختر جاهز",
+    "Select ready": "تحديد القابلة للتحضير",
     "Serving calculator": "حاسبة الخدمة",
     "Servings: {0}": "الحصص: {0}",
     "Settings": "إعدادات",
@@ -4161,9 +4162,9 @@ appTranslations = <String, Map<String, String>>{
     "Skip": "يتخطى",
     "Smart shopping list": "قائمة التسوق الذكية",
     "Sodas and non-alcoholic mixers":
-        "المشروبات الغازية والخلاطات غير الكحولية",
+        "المشروبات الغازية ومكوّنات الخلط غير الكحولية",
     "Spanish": "الأسبانية",
-    "Spices, herbs and bitters": "التوابل والأعشاب والمرارة",
+    "Spices, herbs and bitters": "التوابل والأعشاب والبيترز",
     "Spirits": "المشروبات الروحية",
     "Stay": "يقضي",
     "Strong": "قوية",
@@ -4177,8 +4178,8 @@ appTranslations = <String, Map<String, String>>{
     "Syrups and sweeteners": "الشراب والمحليات",
     "System": "نظام",
     "Tags": "العلامات",
-    "Tap “Surprise me” and explore random recipes with “Next cocktail”. Save your favorites. All these features are free and work offline.":
-        "اضغط على \"فاجئني\" واستكشف الوصفات العشوائية باستخدام \"الكوكتيل التالي\". حفظ المفضلة لديك. كل هذه الميزات مجانية وتعمل دون اتصال بالإنترنت.",
+    "Tap “{0}” for a random recipe and “{1}” to see another. Save the recipes you like to favorites. All these features are free and work offline.":
+        "اضغط على «{0}» لعرض وصفة عشوائية، وعلى «{1}» لعرض وصفة أخرى. احفظ الوصفات التي تعجبك في المفضلة. كل هذه الميزات مجانية وتعمل دون اتصال بالإنترنت.",
     "The missing ingredients are now in Shopping in your bar menu.":
         "المكونات المفقودة موجودة الآن في التسوق في قائمة البار الخاصة بك.",
     "The substitution list contains an unknown ingredient.":
@@ -4194,6 +4195,8 @@ appTranslations = <String, Map<String, String>>{
     "Unlocks {0} cocktail": "يفتح كوكتيل {0}.",
     "Unlocks {0} cocktails": "يفتح {0} كوكتيلات",
     "Use device language": "استخدم لغة الجهاز",
+    "Use “{0}” and “{1}” to find recipes that need just one or two more ingredients. The shopping list helps you decide what to buy next.":
+        "استخدم «{0}» و«{1}» للعثور على وصفات لا ينقصها سوى مكوّن أو مكوّنين. تساعدك قائمة التسوق في تحديد ما تحتاج إلى شرائه.",
     "Version {0}": "الإصدار {0}",
     "Visitor mode": "وضع الزائر",
     "Visitor mode: ingredient selection is disabled":
@@ -4207,7 +4210,7 @@ appTranslations = <String, Map<String, String>>{
         "يعمل دون اتصال بالإنترنت مع كتالوج ثابت ومدمج.",
     "You have unsaved changes. They will be lost.":
         "لديك تغييرات غير محفوظة. سوف يضيعون.",
-    "Your home bar": "شريط منزلك",
+    "Your home bar": "البار المنزلي",
     "Your shopping list is empty.": "قائمة التسوق الخاصة بك فارغة.",
     "bottle": "زجاجة",
     "can": "علبة",
@@ -4253,7 +4256,5 @@ appTranslations = <String, Map<String, String>>{
     "{0} ingredients selected. {1} cocktails ready.":
         "{0} تم تحديد المكونات. {1}كوكتيلات جاهزة.",
     "{0} serv.": "{0} حصة",
-    "“Missing 1” and “Missing 2” reveal nearly-ready recipes. The smart shopping list helps you decide what to buy next.":
-        "يكشف \"مفقود 1\" و\"مفقود 2\" عن وصفات شبه جاهزة. تساعدك قائمة التسوق الذكية على تحديد ما ستشتريه بعد ذلك.",
   },
 };

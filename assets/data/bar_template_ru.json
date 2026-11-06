@@ -32,7 +32,7 @@
   "ingredients": [
     {
       "id": "151_proof_rum",
-      "name": "151 proof rum",
+      "name": "Ром крепостью 151 proof",
       "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5cfa9a0c.png",
       "isDecoration": false,
@@ -46,7 +46,7 @@
       "source": "seed_json",
       "sourceId": "151_proof_rum",
       "canonicalSlug": "151_proof_rum",
-      "displayName": "151 proof rum",
+      "displayName": "Ром крепостью 151 proof",
       "imageUrl": "assets/data/catalog_images/img_5cfa9a0c.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/151%20proof%20rum.png"
     },
@@ -172,7 +172,7 @@
     },
     {
       "id": "advocaat",
-      "name": "Адвокат",
+      "name": "Ликёр «Адвокат»",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_459bad6c.png",
       "isDecoration": false,
@@ -186,7 +186,7 @@
       "source": "seed_json",
       "sourceId": "advocaat",
       "canonicalSlug": "advocaat",
-      "displayName": "Адвокат",
+      "displayName": "Ликёр «Адвокат»",
       "imageUrl": "assets/data/catalog_images/img_459bad6c.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Advocaat.png"
     },
@@ -292,7 +292,7 @@
     },
     {
       "id": "amaro_montenegro",
-      "name": "Амаро Черногория",
+      "name": "Amaro Montenegro",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_eacfb782.png",
       "isDecoration": false,
@@ -306,13 +306,13 @@
       "source": "seed_json",
       "sourceId": "amaro_montenegro",
       "canonicalSlug": "amaro_montenegro",
-      "displayName": "Амаро Черногория",
+      "displayName": "Amaro Montenegro",
       "imageUrl": "assets/data/catalog_images/img_eacfb782.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Amaro%20Montenegro.png"
     },
     {
       "id": "angelica_root",
-      "name": "Корень Анжелики",
+      "name": "Корень дягиля",
       "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_8da2c906.png",
       "isDecoration": false,
@@ -326,13 +326,13 @@
       "source": "seed_json",
       "sourceId": "angelica_root",
       "canonicalSlug": "angelica_root",
-      "displayName": "Корень Анжелики",
+      "displayName": "Корень дягиля",
       "imageUrl": "assets/data/catalog_images/img_8da2c906.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Angelica%20root.png"
     },
     {
       "id": "angostura_bitter",
-      "name": "Ангостура биттер",
+      "name": "Биттер Angostura",
       "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_7ff4d3e7.png",
       "isDecoration": false,
@@ -346,7 +346,7 @@
       "source": "seed_json",
       "sourceId": "angostura_bitter",
       "canonicalSlug": "angostura_bitter",
-      "displayName": "Ангостура биттер",
+      "displayName": "Биттер Angostura",
       "imageUrl": "assets/data/catalog_images/img_7ff4d3e7.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Angostura%20bitters.png"
     },
@@ -372,7 +372,7 @@
     },
     {
       "id": "anisette",
-      "name": "Анисетка",
+      "name": "Анисовый ликёр",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_06a8622e.png",
       "isDecoration": false,
@@ -386,7 +386,7 @@
       "source": "seed_json",
       "sourceId": "anisette",
       "canonicalSlug": "anisette",
-      "displayName": "Анисетка",
+      "displayName": "Анисовый ликёр",
       "imageUrl": "assets/data/catalog_images/img_06a8622e.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Anisette.png"
     },
@@ -592,7 +592,7 @@
     },
     {
       "id": "a_ejo_rum",
-      "name": "Аньехо ром",
+      "name": "Выдержанный ром (añejo)",
       "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_ce1add22.png",
       "isDecoration": false,
@@ -606,7 +606,7 @@
       "source": "seed_json",
       "sourceId": "a_ejo_rum",
       "canonicalSlug": "a_ejo_rum",
-      "displayName": "Аньехо ром",
+      "displayName": "Выдержанный ром (añejo)",
       "imageUrl": "assets/data/catalog_images/img_ce1add22.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/A%C3%B1ejo%20rum.png"
     },
@@ -632,7 +632,7 @@
     },
     {
       "id": "baileys_irish_cream",
-      "name": "Baileys irish cream",
+      "name": "Сливочный ликёр Baileys",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_dc195213.png",
       "isDecoration": false,
@@ -646,7 +646,7 @@
       "source": "seed_json",
       "sourceId": "baileys_irish_cream",
       "canonicalSlug": "baileys_irish_cream",
-      "displayName": "Baileys irish cream",
+      "displayName": "Сливочный ликёр Baileys",
       "imageUrl": "assets/data/catalog_images/img_dc195213.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Baileys%20irish%20cream.png"
     },
@@ -712,7 +712,7 @@
     },
     {
       "id": "benedictine",
-      "name": "Бенедиктинец",
+      "name": "Бенедиктин",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_bdfe20d1.png",
       "isDecoration": false,
@@ -726,7 +726,7 @@
       "source": "seed_json",
       "sourceId": "benedictine",
       "canonicalSlug": "benedictine",
-      "displayName": "Бенедиктинец",
+      "displayName": "Бенедиктин",
       "imageUrl": "assets/data/catalog_images/img_bdfe20d1.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Benedictine.png"
     },
@@ -752,7 +752,7 @@
     },
     {
       "id": "bitter_lemon",
-      "name": "Горький лимон",
+      "name": "Биттер-лемон",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_72509e6d.png",
       "isDecoration": false,
@@ -766,13 +766,13 @@
       "source": "seed_json",
       "sourceId": "bitter_lemon",
       "canonicalSlug": "bitter_lemon",
-      "displayName": "Горький лимон",
+      "displayName": "Биттер-лемон",
       "imageUrl": "assets/data/catalog_images/img_72509e6d.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Bitter%20lemon.png"
     },
     {
       "id": "bitters",
-      "name": "Биттерс",
+      "name": "Биттеры",
       "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_43843ca4.png",
       "isDecoration": false,
@@ -786,7 +786,7 @@
       "source": "seed_json",
       "sourceId": "bitters",
       "canonicalSlug": "bitters",
-      "displayName": "Биттерс",
+      "displayName": "Биттеры",
       "imageUrl": "assets/data/catalog_images/img_43843ca4.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Bitters.png"
     },
@@ -812,7 +812,7 @@
     },
     {
       "id": "black_sambuca",
-      "name": "Black Sambuca",
+      "name": "Чёрная самбука",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_66a1dd51.png",
       "isDecoration": false,
@@ -826,7 +826,7 @@
       "source": "seed_json",
       "sourceId": "black_sambuca",
       "canonicalSlug": "black_sambuca",
-      "displayName": "Black Sambuca",
+      "displayName": "Чёрная самбука",
       "imageUrl": "assets/data/catalog_images/img_66a1dd51.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Black%20Sambuca.png"
     },
@@ -1112,7 +1112,7 @@
     },
     {
       "id": "cantaloupe",
-      "name": "Дыня",
+      "name": "Дыня канталупа",
       "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_ade44f07.png",
       "isDecoration": false,
@@ -1126,7 +1126,7 @@
       "source": "seed_json",
       "sourceId": "cantaloupe",
       "canonicalSlug": "cantaloupe",
-      "displayName": "Дыня",
+      "displayName": "Дыня канталупа",
       "imageUrl": "assets/data/catalog_images/img_ade44f07.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Cantaloupe.png"
     },
@@ -1232,7 +1232,7 @@
     },
     {
       "id": "chambord_raspberry_liqueur",
-      "name": "Малиновый ликер Шамбор",
+      "name": "Малиновый ликёр Chambord",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_f10945a2.png",
       "isDecoration": false,
@@ -1246,7 +1246,7 @@
       "source": "seed_json",
       "sourceId": "chambord_raspberry_liqueur",
       "canonicalSlug": "chambord_raspberry_liqueur",
-      "displayName": "Малиновый ликер Шамбор",
+      "displayName": "Малиновый ликёр Chambord",
       "imageUrl": "assets/data/catalog_images/img_f10945a2.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Chambord%20raspberry%20liqueur.png"
     },
@@ -1792,7 +1792,7 @@
     },
     {
       "id": "corona",
-      "name": "Корона",
+      "name": "Corona",
       "category": "Пиво и сидр",
       "image": "assets/data/catalog_images/img_e43e11f7.png",
       "isDecoration": false,
@@ -1806,7 +1806,7 @@
       "source": "seed_json",
       "sourceId": "corona",
       "canonicalSlug": "corona",
-      "displayName": "Корона",
+      "displayName": "Corona",
       "imageUrl": "assets/data/catalog_images/img_e43e11f7.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Corona.png"
     },
@@ -1872,7 +1872,7 @@
     },
     {
       "id": "cream",
-      "name": "Крем",
+      "name": "Сливки",
       "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_2e9b37a9.png",
       "isDecoration": false,
@@ -1886,13 +1886,13 @@
       "source": "seed_json",
       "sourceId": "cream",
       "canonicalSlug": "cream",
-      "displayName": "Крем",
+      "displayName": "Сливки",
       "imageUrl": "assets/data/catalog_images/img_2e9b37a9.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Cream.png"
     },
     {
       "id": "cream_of_coconut",
-      "name": "Крем из кокоса",
+      "name": "Подслащённые кокосовые сливки",
       "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_d2fd7455.png",
       "isDecoration": false,
@@ -1906,13 +1906,13 @@
       "source": "seed_json",
       "sourceId": "cream_of_coconut",
       "canonicalSlug": "cream_of_coconut",
-      "displayName": "Крем из кокоса",
+      "displayName": "Подслащённые кокосовые сливки",
       "imageUrl": "assets/data/catalog_images/img_d2fd7455.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Cream%20of%20coconut.png"
     },
     {
       "id": "creme_de_banane",
-      "name": "Крем де Банан",
+      "name": "Ликёр Crème de Banane",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_4dae862b.png",
       "isDecoration": false,
@@ -1926,13 +1926,13 @@
       "source": "seed_json",
       "sourceId": "creme_de_banane",
       "canonicalSlug": "creme_de_banane",
-      "displayName": "Крем де Банан",
+      "displayName": "Ликёр Crème de Banane",
       "imageUrl": "assets/data/catalog_images/img_4dae862b.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Creme%20de%20Banane.png"
     },
     {
       "id": "creme_de_cacao",
-      "name": "Крем де Какао",
+      "name": "Ликёр Crème de Cacao",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_63ecd81d.png",
       "isDecoration": false,
@@ -1946,13 +1946,13 @@
       "source": "seed_json",
       "sourceId": "creme_de_cacao",
       "canonicalSlug": "creme_de_cacao",
-      "displayName": "Крем де Какао",
+      "displayName": "Ликёр Crème de Cacao",
       "imageUrl": "assets/data/catalog_images/img_63ecd81d.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Creme%20de%20Cacao.png"
     },
     {
       "id": "creme_de_cassis",
-      "name": "Крем де Кассис",
+      "name": "Черносмородиновый ликёр Crème de Cassis",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c74f9b48.png",
       "isDecoration": false,
@@ -1966,13 +1966,13 @@
       "source": "seed_json",
       "sourceId": "creme_de_cassis",
       "canonicalSlug": "creme_de_cassis",
-      "displayName": "Крем де Кассис",
+      "displayName": "Черносмородиновый ликёр Crème de Cassis",
       "imageUrl": "assets/data/catalog_images/img_c74f9b48.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Creme%20de%20Cassis.png"
     },
     {
       "id": "creme_de_mure",
-      "name": "Крем-де-Мюр",
+      "name": "Ежевичный ликёр Crème de Mûre",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c435dc81.png",
       "isDecoration": false,
@@ -1986,7 +1986,7 @@
       "source": "seed_json",
       "sourceId": "creme_de_mure",
       "canonicalSlug": "creme_de_mure",
-      "displayName": "Крем-де-Мюр",
+      "displayName": "Ежевичный ликёр Crème de Mûre",
       "imageUrl": "assets/data/catalog_images/img_c435dc81.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Creme%20de%20Mure.png"
     },
@@ -2032,7 +2032,7 @@
     },
     {
       "id": "cumin_seed",
-      "name": "Семя тмина",
+      "name": "Семена кумина (зиры)",
       "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_08199bd7.png",
       "isDecoration": false,
@@ -2046,13 +2046,13 @@
       "source": "seed_json",
       "sourceId": "cumin_seed",
       "canonicalSlug": "cumin_seed",
-      "displayName": "Семя тмина",
+      "displayName": "Семена кумина (зиры)",
       "imageUrl": "assets/data/catalog_images/img_08199bd7.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Cumin%20seed.png"
     },
     {
       "id": "daiquiri_mix",
-      "name": "Дайкири микс",
+      "name": "Смесь для дайкири",
       "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_cde240a4.png",
       "isDecoration": false,
@@ -2066,7 +2066,7 @@
       "source": "seed_json",
       "sourceId": "daiquiri_mix",
       "canonicalSlug": "daiquiri_mix",
-      "displayName": "Дайкири микс",
+      "displayName": "Смесь для дайкири",
       "imageUrl": "assets/data/catalog_images/img_cde240a4.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Daiquiri%20mix.png"
     },
@@ -2092,7 +2092,7 @@
     },
     {
       "id": "demerara_sugar",
-      "name": "Демерара сахар",
+      "name": "Тростниковый сахар демерара",
       "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_38eb84ff.png",
       "isDecoration": false,
@@ -2106,7 +2106,7 @@
       "source": "seed_json",
       "sourceId": "demerara_sugar",
       "canonicalSlug": "demerara_sugar",
-      "displayName": "Демерара сахар",
+      "displayName": "Тростниковый сахар демерара",
       "imageUrl": "assets/data/catalog_images/img_38eb84ff.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/demerara%20Sugar.png"
     },
@@ -2252,7 +2252,7 @@
     },
     {
       "id": "elderflower_cordial",
-      "name": "Ликер из бузины",
+      "name": "Сироп из цветков бузины",
       "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_d5171869.png",
       "isDecoration": false,
@@ -2266,7 +2266,7 @@
       "source": "seed_json",
       "sourceId": "elderflower_cordial",
       "canonicalSlug": "elderflower_cordial",
-      "displayName": "Ликер из бузины",
+      "displayName": "Сироп из цветков бузины",
       "imageUrl": "assets/data/catalog_images/img_d5171869.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Elderflower%20cordial.png"
     },
@@ -2512,7 +2512,7 @@
     },
     {
       "id": "galliano",
-      "name": "Ванильный Ликер Galliano",
+      "name": "Ванильный ликёр Galliano",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_0164d74e.png",
       "isDecoration": false,
@@ -2526,7 +2526,7 @@
       "source": "seed_json",
       "sourceId": "galliano",
       "canonicalSlug": "galliano",
-      "displayName": "Ванильный Ликер Galliano",
+      "displayName": "Ванильный ликёр Galliano",
       "imageUrl": "assets/data/catalog_images/img_0164d74e.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Galliano.png"
     },
@@ -2752,7 +2752,7 @@
     },
     {
       "id": "grape_soda",
-      "name": "Виноградная сода",
+      "name": "Виноградная газировка",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_b28c86ce.png",
       "isDecoration": false,
@@ -2766,7 +2766,7 @@
       "source": "seed_json",
       "sourceId": "grape_soda",
       "canonicalSlug": "grape_soda",
-      "displayName": "Виноградная сода",
+      "displayName": "Виноградная газировка",
       "imageUrl": "assets/data/catalog_images/img_b28c86ce.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Grape%20Soda.png"
     },
@@ -2812,7 +2812,7 @@
     },
     {
       "id": "chartreuse_green",
-      "name": "Green Chartreuse",
+      "name": "Зелёный шартрёз",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_19d5884b.png",
       "isDecoration": false,
@@ -2826,13 +2826,13 @@
       "source": "seed_json",
       "sourceId": "chartreuse_green",
       "canonicalSlug": "chartreuse_green",
-      "displayName": "Green Chartreuse",
+      "displayName": "Зелёный шартрёз",
       "imageUrl": "assets/data/catalog_images/img_19d5884b.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Green%20Chartreuse.png"
     },
     {
       "id": "creme_de_menthe_green",
-      "name": "Зеленый крем де Менте",
+      "name": "Зелёный мятный ликёр",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_bd681831.png",
       "isDecoration": false,
@@ -2846,7 +2846,7 @@
       "source": "seed_json",
       "sourceId": "creme_de_menthe_green",
       "canonicalSlug": "creme_de_menthe_green",
-      "displayName": "Зеленый крем де Менте",
+      "displayName": "Зелёный мятный ликёр",
       "imageUrl": "assets/data/catalog_images/img_bd681831.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Green%20Creme%20de%20Menthe.png"
     },
@@ -2892,7 +2892,7 @@
     },
     {
       "id": "half_and_half",
-      "name": "Половина и половина",
+      "name": "Смесь молока и сливок (half-and-half)",
       "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_7afebc72.png",
       "isDecoration": false,
@@ -2906,13 +2906,13 @@
       "source": "seed_json",
       "sourceId": "half_and_half",
       "canonicalSlug": "half_and_half",
-      "displayName": "Половина и половина",
+      "displayName": "Смесь молока и сливок (half-and-half)",
       "imageUrl": "assets/data/catalog_images/img_7afebc72.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Half-and-half.png"
     },
     {
       "id": "heavy_cream",
-      "name": "Тяжелые сливки",
+      "name": "Жирные сливки",
       "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_cb19b0e5.png",
       "isDecoration": false,
@@ -2926,7 +2926,7 @@
       "source": "seed_json",
       "sourceId": "heavy_cream",
       "canonicalSlug": "heavy_cream",
-      "displayName": "Тяжелые сливки",
+      "displayName": "Жирные сливки",
       "imageUrl": "assets/data/catalog_images/img_cb19b0e5.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Heavy%20cream.png"
     },
@@ -2992,7 +2992,7 @@
     },
     {
       "id": "hot_damn",
-      "name": "Горячий черт",
+      "name": "Hot Damn",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_c719ca7f.png",
       "isDecoration": false,
@@ -3006,7 +3006,7 @@
       "source": "seed_json",
       "sourceId": "hot_damn",
       "canonicalSlug": "hot_damn",
-      "displayName": "Горячий черт",
+      "displayName": "Hot Damn",
       "imageUrl": "assets/data/catalog_images/img_c719ca7f.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Hot%20Damn.png"
     },
@@ -3272,7 +3272,7 @@
     },
     {
       "id": "kiwi_liqueur",
-      "name": "Киви ликер",
+      "name": "Ликёр из киви",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_837b0acb.png",
       "isDecoration": false,
@@ -3286,7 +3286,7 @@
       "source": "seed_json",
       "sourceId": "kiwi_liqueur",
       "canonicalSlug": "kiwi_liqueur",
-      "displayName": "Киви ликер",
+      "displayName": "Ликёр из киви",
       "imageUrl": "assets/data/catalog_images/img_837b0acb.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Kiwi%20liqueur.png"
     },
@@ -3372,7 +3372,7 @@
     },
     {
       "id": "lemon_lime_soda",
-      "name": "Лимонно-лаймовая сода",
+      "name": "Лимонно-лаймовая газировка",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_db917522.png",
       "isDecoration": false,
@@ -3386,7 +3386,7 @@
       "source": "seed_json",
       "sourceId": "lemon_lime_soda",
       "canonicalSlug": "lemon_lime_soda",
-      "displayName": "Лимонно-лаймовая сода",
+      "displayName": "Лимонно-лаймовая газировка",
       "imageUrl": "assets/data/catalog_images/img_db917522.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Lemon-lime%20soda.png"
     },
@@ -3412,7 +3412,7 @@
     },
     {
       "id": "light_cream",
-      "name": "Легкий крем",
+      "name": "Нежирные сливки",
       "category": "Молочные и сливочные",
       "image": "assets/data/catalog_images/img_4e9c22e6.png",
       "isDecoration": false,
@@ -3426,7 +3426,7 @@
       "source": "seed_json",
       "sourceId": "light_cream",
       "canonicalSlug": "light_cream",
-      "displayName": "Легкий крем",
+      "displayName": "Нежирные сливки",
       "imageUrl": "assets/data/catalog_images/img_4e9c22e6.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Light%20cream.png"
     },
@@ -3632,7 +3632,7 @@
     },
     {
       "id": "maraschino_cherry",
-      "name": "Мараскино Вишня",
+      "name": "Вишня мараскино",
       "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_7d1f2300.png",
       "isDecoration": false,
@@ -3646,13 +3646,13 @@
       "source": "seed_json",
       "sourceId": "maraschino_cherry",
       "canonicalSlug": "maraschino_cherry",
-      "displayName": "Мараскино Вишня",
+      "displayName": "Вишня мараскино",
       "imageUrl": "assets/data/catalog_images/img_7d1f2300.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Maraschino%20Cherry.png"
     },
     {
       "id": "maraschino_liqueur",
-      "name": "Мараскино ликер",
+      "name": "Ликёр мараскино",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_8d582b26.png",
       "isDecoration": false,
@@ -3666,7 +3666,7 @@
       "source": "seed_json",
       "sourceId": "maraschino_liqueur",
       "canonicalSlug": "maraschino_liqueur",
-      "displayName": "Мараскино ликер",
+      "displayName": "Ликёр мараскино",
       "imageUrl": "assets/data/catalog_images/img_8d582b26.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Maraschino%20Liqueur.png"
     },
@@ -3772,7 +3772,7 @@
     },
     {
       "id": "mint",
-      "name": "Мятный",
+      "name": "Мята",
       "category": "Специи, травы и биттеры",
       "image": "assets/data/catalog_images/img_d49e509f.png",
       "isDecoration": false,
@@ -3786,7 +3786,7 @@
       "source": "seed_json",
       "sourceId": "mint",
       "canonicalSlug": "mint",
-      "displayName": "Мятный",
+      "displayName": "Мята",
       "imageUrl": "assets/data/catalog_images/img_d49e509f.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Mint.png"
     },
@@ -3852,7 +3852,7 @@
     },
     {
       "id": "olive",
-      "name": "Оливковое",
+      "name": "Оливка",
       "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_89222998.png",
       "isDecoration": false,
@@ -3866,7 +3866,7 @@
       "source": "seed_json",
       "sourceId": "olive",
       "canonicalSlug": "olive",
-      "displayName": "Оливковое",
+      "displayName": "Оливка",
       "imageUrl": "assets/data/catalog_images/img_89222998.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Olive.png"
     },
@@ -3892,7 +3892,7 @@
     },
     {
       "id": "orange",
-      "name": "Оранжевый",
+      "name": "Апельсин",
       "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_e10025d9.png",
       "isDecoration": false,
@@ -3906,7 +3906,7 @@
       "source": "seed_json",
       "sourceId": "orange",
       "canonicalSlug": "orange",
-      "displayName": "Оранжевый",
+      "displayName": "Апельсин",
       "imageUrl": "assets/data/catalog_images/img_e10025d9.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Orange.png"
     },
@@ -3972,7 +3972,7 @@
     },
     {
       "id": "orange_spiral",
-      "name": "Оранжевая спираль",
+      "name": "Спираль из апельсиновой цедры",
       "category": "Фрукты и ягоды",
       "image": "assets/data/catalog_images/img_a78f10f9.png",
       "isDecoration": false,
@@ -3986,13 +3986,13 @@
       "source": "seed_json",
       "sourceId": "orange_spiral",
       "canonicalSlug": "orange_spiral",
-      "displayName": "Оранжевая спираль",
+      "displayName": "Спираль из апельсиновой цедры",
       "imageUrl": "assets/data/catalog_images/img_a78f10f9.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Orange%20spiral.png"
     },
     {
       "id": "oreo_cookie",
-      "name": "Oreo cookie",
+      "name": "Печенье Oreo",
       "category": "Десертные ингредиенты",
       "image": "assets/data/catalog_images/img_5e1290df.png",
       "isDecoration": false,
@@ -4006,13 +4006,13 @@
       "source": "seed_json",
       "sourceId": "oreo_cookie",
       "canonicalSlug": "oreo_cookie",
-      "displayName": "Oreo cookie",
+      "displayName": "Печенье Oreo",
       "imageUrl": "assets/data/catalog_images/img_5e1290df.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Oreo%20cookie.png"
     },
     {
       "id": "orgeat_syrup",
-      "name": "Оргеат сироп",
+      "name": "Сироп оржеат",
       "category": "Сиропы и подсластители",
       "image": "assets/data/catalog_images/img_7297e7fb.png",
       "isDecoration": false,
@@ -4026,7 +4026,7 @@
       "source": "seed_json",
       "sourceId": "orgeat_syrup",
       "canonicalSlug": "orgeat_syrup",
-      "displayName": "Оргеат сироп",
+      "displayName": "Сироп оржеат",
       "imageUrl": "assets/data/catalog_images/img_7297e7fb.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Orgeat%20syrup.png"
     },
@@ -4312,7 +4312,7 @@
     },
     {
       "id": "pina_colada_mix",
-      "name": "Пина колада микс",
+      "name": "Смесь для «Пина колады»",
       "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_4db34b43.png",
       "isDecoration": false,
@@ -4326,7 +4326,7 @@
       "source": "seed_json",
       "sourceId": "pina_colada_mix",
       "canonicalSlug": "pina_colada_mix",
-      "displayName": "Пина колада микс",
+      "displayName": "Смесь для «Пина колады»",
       "imageUrl": "assets/data/catalog_images/img_4db34b43.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Pina%20colada%20mix.png"
     },
@@ -4472,7 +4472,7 @@
     },
     {
       "id": "port",
-      "name": "Порт",
+      "name": "Портвейн",
       "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_3851d588.png",
       "isDecoration": false,
@@ -4486,7 +4486,7 @@
       "source": "seed_json",
       "sourceId": "port",
       "canonicalSlug": "port",
-      "displayName": "Порт",
+      "displayName": "Портвейн",
       "imageUrl": "assets/data/catalog_images/img_3851d588.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Port.png"
     },
@@ -4652,7 +4652,7 @@
     },
     {
       "id": "root_beer",
-      "name": "Корневое пиво",
+      "name": "Рутбир",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_a7bcc870.png",
       "isDecoration": false,
@@ -4666,14 +4666,14 @@
       "source": "seed_json",
       "sourceId": "root_beer",
       "canonicalSlug": "root_beer",
-      "displayName": "Корневое пиво",
+      "displayName": "Рутбир",
       "imageUrl": "assets/data/catalog_images/img_a7bcc870.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Root%20beer.png"
     },
     {
       "id": "rose",
-      "name": "Роза",
-      "category": "Специи, травы и биттеры",
+      "name": "Розовое вино",
+      "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_55561ae8.png",
       "isDecoration": false,
       "isOptional": false,
@@ -4686,7 +4686,7 @@
       "source": "seed_json",
       "sourceId": "rose",
       "canonicalSlug": "rose",
-      "displayName": "Роза",
+      "displayName": "Розовое вино",
       "imageUrl": "assets/data/catalog_images/img_55561ae8.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Rose.png"
     },
@@ -4732,7 +4732,7 @@
     },
     {
       "id": "rosso_vermouth",
-      "name": "Россо Вермут",
+      "name": "Красный вермут (rosso)",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_8fd0489c.png",
       "isDecoration": false,
@@ -4746,13 +4746,13 @@
       "source": "seed_json",
       "sourceId": "rosso_vermouth",
       "canonicalSlug": "rosso_vermouth",
-      "displayName": "Россо Вермут",
+      "displayName": "Красный вермут (rosso)",
       "imageUrl": "assets/data/catalog_images/img_8fd0489c.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Rosso%20Vermouth.png"
     },
     {
       "id": "ruby_port",
-      "name": "Рубиновый порт",
+      "name": "Красный портвейн (руби)",
       "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_e38b7545.png",
       "isDecoration": false,
@@ -4766,7 +4766,7 @@
       "source": "seed_json",
       "sourceId": "ruby_port",
       "canonicalSlug": "ruby_port",
-      "displayName": "Рубиновый порт",
+      "displayName": "Красный портвейн (руби)",
       "imageUrl": "assets/data/catalog_images/img_e38b7545.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Ruby%20Port.png"
     },
@@ -4832,7 +4832,7 @@
     },
     {
       "id": "sambuca",
-      "name": "Sambuca",
+      "name": "Самбука",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_41d031c9.png",
       "isDecoration": false,
@@ -4846,7 +4846,7 @@
       "source": "seed_json",
       "sourceId": "sambuca",
       "canonicalSlug": "sambuca",
-      "displayName": "Sambuca",
+      "displayName": "Самбука",
       "imageUrl": "assets/data/catalog_images/img_41d031c9.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Sambuca.png"
     },
@@ -4872,7 +4872,7 @@
     },
     {
       "id": "schweppes_russchian",
-      "name": "Швепс Русский",
+      "name": "Schweppes Russchian",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_dcfd2646.png",
       "isDecoration": false,
@@ -4886,13 +4886,13 @@
       "source": "seed_json",
       "sourceId": "schweppes_russchian",
       "canonicalSlug": "schweppes_russchian",
-      "displayName": "Швепс Русский",
+      "displayName": "Schweppes Russchian",
       "imageUrl": "assets/data/catalog_images/img_dcfd2646.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Schweppes%20Russchian.png"
     },
     {
       "id": "scotch",
-      "name": "Скотч",
+      "name": "Шотландский виски (скотч)",
       "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_c0214b35.png",
       "isDecoration": false,
@@ -4906,7 +4906,7 @@
       "source": "seed_json",
       "sourceId": "scotch",
       "canonicalSlug": "scotch",
-      "displayName": "Скотч",
+      "displayName": "Шотландский виски (скотч)",
       "imageUrl": "assets/data/catalog_images/img_c0214b35.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Scotch.png"
     },
@@ -4932,7 +4932,7 @@
     },
     {
       "id": "sherry",
-      "name": "Шерри",
+      "name": "Херес",
       "category": "Вино и игристое",
       "image": "assets/data/catalog_images/img_0e6fd442.png",
       "isDecoration": false,
@@ -4946,7 +4946,7 @@
       "source": "seed_json",
       "sourceId": "sherry",
       "canonicalSlug": "sherry",
-      "displayName": "Шерри",
+      "displayName": "Херес",
       "imageUrl": "assets/data/catalog_images/img_0e6fd442.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Sherry.png"
     },
@@ -5012,7 +5012,7 @@
     },
     {
       "id": "sour_mix",
-      "name": "Кислый микс",
+      "name": "Кисло-сладкая смесь (sour mix)",
       "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_6d1e59cf.png",
       "isDecoration": false,
@@ -5026,7 +5026,7 @@
       "source": "seed_json",
       "sourceId": "sour_mix",
       "canonicalSlug": "sour_mix",
-      "displayName": "Кислый микс",
+      "displayName": "Кисло-сладкая смесь (sour mix)",
       "imageUrl": "assets/data/catalog_images/img_6d1e59cf.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Sour%20mix.png"
     },
@@ -5212,7 +5212,7 @@
     },
     {
       "id": "surge",
-      "name": "Всплеск",
+      "name": "Surge",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_b6fd0455.png",
       "isDecoration": false,
@@ -5226,13 +5226,13 @@
       "source": "seed_json",
       "sourceId": "surge",
       "canonicalSlug": "surge",
-      "displayName": "Всплеск",
+      "displayName": "Surge",
       "imageUrl": "assets/data/catalog_images/img_b6fd0455.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Surge.png"
     },
     {
       "id": "sweet_and_sour",
-      "name": "Сладкий и кислый",
+      "name": "Кисло-сладкая смесь (sweet and sour)",
       "category": "Готовые смеси",
       "image": "assets/data/catalog_images/img_41dca989.png",
       "isDecoration": false,
@@ -5246,7 +5246,7 @@
       "source": "seed_json",
       "sourceId": "sweet_and_sour",
       "canonicalSlug": "sweet_and_sour",
-      "displayName": "Сладкий и кислый",
+      "displayName": "Кисло-сладкая смесь (sweet and sour)",
       "imageUrl": "assets/data/catalog_images/img_41dca989.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Sweet%20and%20Sour.png"
     },
@@ -5292,7 +5292,7 @@
     },
     {
       "id": "tennessee_whiskey",
-      "name": "Теннесси виски",
+      "name": "Виски из Теннесси",
       "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_a8ccdc84.png",
       "isDecoration": false,
@@ -5306,7 +5306,7 @@
       "source": "seed_json",
       "sourceId": "tennessee_whiskey",
       "canonicalSlug": "tennessee_whiskey",
-      "displayName": "Теннесси виски",
+      "displayName": "Виски из Теннесси",
       "imageUrl": "assets/data/catalog_images/img_a8ccdc84.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Tennessee%20whiskey.png"
     },
@@ -5392,7 +5392,7 @@
     },
     {
       "id": "tonic_water",
-      "name": "Тонизирующая вода",
+      "name": "Тоник",
       "category": "Газировка и безалкогольные миксеры",
       "image": "assets/data/catalog_images/img_f0ec4bda.png",
       "isDecoration": false,
@@ -5406,13 +5406,13 @@
       "source": "seed_json",
       "sourceId": "tonic_water",
       "canonicalSlug": "tonic_water",
-      "displayName": "Тонизирующая вода",
+      "displayName": "Тоник",
       "imageUrl": "assets/data/catalog_images/img_f0ec4bda.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Tonic%20Water.png"
     },
     {
       "id": "triple_sec",
-      "name": "Тройная секунда",
+      "name": "Трипл-сек",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_d060df21.png",
       "isDecoration": false,
@@ -5426,7 +5426,7 @@
       "source": "seed_json",
       "sourceId": "triple_sec",
       "canonicalSlug": "triple_sec",
-      "displayName": "Тройная секунда",
+      "displayName": "Трипл-сек",
       "imageUrl": "assets/data/catalog_images/img_d060df21.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Triple%20sec.png"
     },
@@ -5612,7 +5612,7 @@
     },
     {
       "id": "creme_de_menthe_white",
-      "name": "Белый крем де Менте",
+      "name": "Прозрачный мятный ликёр",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_a4da121f.png",
       "isDecoration": false,
@@ -5626,7 +5626,7 @@
       "source": "seed_json",
       "sourceId": "creme_de_menthe_white",
       "canonicalSlug": "creme_de_menthe_white",
-      "displayName": "Белый крем де Менте",
+      "displayName": "Прозрачный мятный ликёр",
       "imageUrl": "assets/data/catalog_images/img_a4da121f.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/White%20Creme%20de%20Menthe.png"
     },
@@ -5652,7 +5652,7 @@
     },
     {
       "id": "wild_turkey",
-      "name": "Дикая индейка",
+      "name": "Wild Turkey",
       "category": "Крепкий алкоголь",
       "image": "assets/data/catalog_images/img_5fa3e94c.png",
       "isDecoration": false,
@@ -5666,7 +5666,7 @@
       "source": "seed_json",
       "sourceId": "wild_turkey",
       "canonicalSlug": "wild_turkey",
-      "displayName": "Дикая индейка",
+      "displayName": "Wild Turkey",
       "imageUrl": "assets/data/catalog_images/img_5fa3e94c.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Wild%20Turkey.png"
     },
@@ -5732,7 +5732,7 @@
     },
     {
       "id": "chartreuse_yellow",
-      "name": "Yellow Chartreuse",
+      "name": "Жёлтый шартрёз",
       "category": "Ликёры и аперитивы",
       "image": "assets/data/catalog_images/img_08f4ce1e.png",
       "isDecoration": false,
@@ -5746,7 +5746,7 @@
       "source": "seed_json",
       "sourceId": "chartreuse_yellow",
       "canonicalSlug": "chartreuse_yellow",
-      "displayName": "Yellow Chartreuse",
+      "displayName": "Жёлтый шартрёз",
       "imageUrl": "assets/data/catalog_images/img_08f4ce1e.png",
       "remoteImageUrl": "https://www.thecocktaildb.com/images/ingredients/Yellow%20Chartreuse.png"
     },
@@ -6171,7 +6171,7 @@
         "egg_white",
         "mint"
       ],
-      "description": "Смешайте и встряхните все ингредиенты (кроме мяты) со льдом и процедите в старомодный стакан с кубиками льда. Добавьте веточку мяты и подавайте.",
+      "description": "Смешайте и встряхните все ингредиенты (кроме мяты) со льдом и процедите в стакан рокс с кубиками льда. Добавьте веточку мяты и подавайте.",
       "preparationSteps": [
         "Смешайте и встряхните все ингредиенты (кроме мяты) со льдом и процедите в стакан рокс с кубиками льда.",
         "Добавьте веточку мяты и подавайте."
@@ -6406,7 +6406,7 @@
     },
     {
       "id": "affair",
-      "name": "Дело",
+      "name": "Affair",
       "image": "assets/data/catalog_images/img_f60319d7.jpg",
       "ingredients": [
         "strawberry_schnapps",
@@ -6456,7 +6456,7 @@
     },
     {
       "id": "affinity",
-      "name": "Близость",
+      "name": "Affinity",
       "image": "assets/data/catalog_images/img_e2764be5.jpg",
       "ingredients": [
         "scotch",
@@ -6507,7 +6507,7 @@
     },
     {
       "id": "afterglow",
-      "name": "Послесвечение",
+      "name": "Afterglow",
       "image": "assets/data/catalog_images/img_baa542db.jpg",
       "ingredients": [
         "grenadine",
@@ -7272,7 +7272,7 @@
     },
     {
       "id": "baby-eskimo",
-      "name": "Малыш эскимосский",
+      "name": "Baby Eskimo",
       "image": "assets/data/catalog_images/img_348d9ba0.jpg",
       "ingredients": [
         "kahlua",
@@ -7632,7 +7632,7 @@
     },
     {
       "id": "bijou",
-      "name": "Бижутерия",
+      "name": "Бижу",
       "image": "assets/data/catalog_images/img_17dbc062.jpg",
       "ingredients": [
         "orange_bitter",
@@ -8002,7 +8002,7 @@
     },
     {
       "id": "boxcar",
-      "name": "Товарный вагон",
+      "name": "Boxcar",
       "image": "assets/data/catalog_images/img_87dc7b10.jpg",
       "ingredients": [
         "gin",
@@ -8056,7 +8056,7 @@
     },
     {
       "id": "brain-fart",
-      "name": "Мозговой Фарт",
+      "name": "Brain Fart",
       "image": "assets/data/catalog_images/img_4187e0d7.jpg",
       "ingredients": [
         "everclear",
@@ -8372,7 +8372,7 @@
     },
     {
       "id": "bumble-bee",
-      "name": "Шмель пчела",
+      "name": "Шмель",
       "image": "assets/data/catalog_images/img_17e8fcff.jpg",
       "ingredients": [
         "baileys_irish_cream",
@@ -8476,7 +8476,7 @@
         "lime",
         "cachaca"
       ],
-      "description": "Поместите лайм и сахар в старомодный стакан и перемешайте (смешайте два ингредиента с помощью мадлера или деревянной ложки). Наполните стакан льдом и добавьте кашасу.",
+      "description": "Поместите лайм и сахар в стакан рокс и перемешайте (смешайте два ингредиента с помощью мадлера или деревянной ложки). Наполните стакан льдом и добавьте кашасу.",
       "preparationSteps": [
         "Поместите лайм и сахар в стакан рокс и перемешайте (смешайте два ингредиента с помощью мадлера или деревянной ложки).",
         "Наполните стакан льдом и добавьте кашасу."
@@ -9069,7 +9069,7 @@
     },
     {
       "id": "clover-club",
-      "name": "Клевер Клуб",
+      "name": "Кловер клаб",
       "image": "assets/data/catalog_images/img_10902ad6.jpg",
       "ingredients": [
         "gin",
@@ -9240,7 +9240,7 @@
     },
     {
       "id": "corn-n-oil",
-      "name": "Кукуруза и масло",
+      "name": "Corn n Oil",
       "image": "assets/data/catalog_images/img_4d9e98c7.jpg",
       "ingredients": [
         "lime",
@@ -9295,7 +9295,7 @@
     },
     {
       "id": "corpse-reviver",
-      "name": "Оживитель трупов",
+      "name": "Corpse Reviver",
       "image": "assets/data/catalog_images/img_5e85dfe0.jpg",
       "ingredients": [
         "gin",
@@ -9457,7 +9457,7 @@
     },
     {
       "id": "cuba-libra",
-      "name": "Куба Весы",
+      "name": "Cuba Libra",
       "image": "assets/data/catalog_images/img_157a4620.jpg",
       "ingredients": [
         "rum_dark",
@@ -9651,7 +9651,7 @@
     },
     {
       "id": "dark-and-stormy",
-      "name": "Темный и бурный",
+      "name": "Дарк энд Сторми",
       "image": "assets/data/catalog_images/img_3467f5b8.jpg",
       "ingredients": [
         "rum_dark",
@@ -9706,7 +9706,7 @@
         "lime",
         "cachaca"
       ],
-      "description": "Размешайте сахар с дольками лайма в старомодном стакане. Наполните стакан кубиками льда. Перелейте кашасу в стакан. Хорошо перемешайте.",
+      "description": "Размешайте сахар с дольками лайма в стакане рокс. Наполните стакан кубиками льда. Перелейте кашасу в стакан. Хорошо перемешайте.",
       "preparationSteps": [
         "Размешайте сахар с дольками лайма в стакане рокс.",
         "Наполните стакан кубиками льда",
@@ -9749,7 +9749,7 @@
     },
     {
       "id": "darkwood-sling",
-      "name": "Праща Темного леса",
+      "name": "Darkwood Sling",
       "image": "assets/data/catalog_images/img_7be310cd.jpg",
       "ingredients": [
         "cherry_heering",
@@ -9801,7 +9801,7 @@
     },
     {
       "id": "death-in-the-afternoon",
-      "name": "Смерть во второй половине дня",
+      "name": "Смерть после полудня",
       "image": "assets/data/catalog_images/img_c3e09eae.jpg",
       "ingredients": [
         "absinthe",
@@ -10102,7 +10102,7 @@
     },
     {
       "id": "drinking-chocolate",
-      "name": "Пить шоколад",
+      "name": "Питьевой шоколад",
       "image": "assets/data/catalog_images/img_e98e54d5.jpg",
       "ingredients": [
         "heavy_cream",
@@ -10325,7 +10325,7 @@
     },
     {
       "id": "egg-cream",
-      "name": "Яичный крем",
+      "name": "Эгг-крим",
       "image": "assets/data/catalog_images/img_95d9a76a.jpg",
       "ingredients": [
         "syrup_chocolate",
@@ -10453,7 +10453,7 @@
     },
     {
       "id": "egg-nog-healthy",
-      "name": "Эгг-ног – полезно для здоровья",
+      "name": "Эгг-ног (лёгкий вариант)",
       "image": "assets/data/catalog_images/img_5e69f898.jpg",
       "ingredients": [
         "egg",
@@ -10517,7 +10517,7 @@
     },
     {
       "id": "egg-nog-classic-cooked",
-      "name": "Эгг-ног – классическое приготовление",
+      "name": "Классический эгг-ног с нагревом",
       "image": "assets/data/catalog_images/img_edae77aa.jpg",
       "ingredients": [
         "egg",
@@ -10576,7 +10576,7 @@
     },
     {
       "id": "elderflower-caipirinha",
-      "name": "Бузина Кайпиринья",
+      "name": "Кайпиринья с сиропом бузины",
       "image": "assets/data/catalog_images/img_85591ecd.jpg",
       "ingredients": [
         "cachaca",
@@ -11126,7 +11126,7 @@
         "gin",
         "triple_sec"
       ],
-      "description": "В старомодном стакане, почти наполненном кубиками льда, смешайте джин и трипл-сек. Хорошо перемешайте.",
+      "description": "В стакане рокс, почти наполненном кубиками льда, смешайте джин и трипл-сек. Хорошо перемешайте.",
       "preparationSteps": [
         "В стакане рокс, почти наполненном кубиками льда, смешайте джин и трипл-сек.",
         "Хорошо перемешайте."
@@ -11425,7 +11425,7 @@
         "cognac",
         "amaretto"
       ],
-      "description": "Налейте все ингредиенты прямо в старинный стакан, наполненный кубиками льда. Аккуратно перемешайте.",
+      "description": "Налейте все ингредиенты прямо в стакан рокс, наполненный кубиками льда. Аккуратно перемешайте.",
       "preparationSteps": [
         "Налейте все ингредиенты прямо в стакан рокс, наполненный кубиками льда.",
         "Аккуратно перемешайте."
@@ -11742,7 +11742,7 @@
         "mint",
         "sugar"
       ],
-      "description": "Смешайте все ингредиенты с 1 чашкой колотого льда в электрическом блендере. Взбивайте на низкой скорости в течение короткого времени. Перелейте в старинный стакан и подавайте.",
+      "description": "Смешайте все ингредиенты с 1 чашкой колотого льда в электрическом блендере. Взбивайте на низкой скорости в течение короткого времени. Перелейте в стакан рокс и подавайте.",
       "preparationSteps": [
         "Смешайте все ингредиенты с 1 чашкой колотого льда в электрическом блендере.",
         "Взбивайте на низкой скорости в течение короткого времени.",
@@ -11836,7 +11836,7 @@
     },
     {
       "id": "fruit-cooler",
-      "name": "Охладитель фруктов",
+      "name": "Фруктовый кулер",
       "image": "assets/data/catalog_images/img_45762153.jpg",
       "ingredients": [
         "juice_apple",
@@ -11847,15 +11847,15 @@
         "soda_water",
         "ice"
       ],
-      "description": "Перемешайте клубнику с сахаром и оставьте на ночь в холодильнике. Разрежьте лимон, оставьте два ломтика Остальное выжать из сока Смешайте лимонный сок, клубнику, яблочный сок и газированную воду. Добавляем ломтики лимона (действительно, декор) В стаканы положите кубики льда и ломтик яблока. Налейте напиток и подавайте.",
+      "description": "Перемешайте клубнику с сахаром и оставьте на ночь в холодильнике. Отрежьте два ломтика лимона для украшения, из оставшейся части выжмите сок. Смешайте лимонный сок, клубнику, яблочный сок и газированную воду. Добавьте ломтики лимона для украшения. Положите в стаканы лёд и по ломтику яблока. Разлейте напиток и подавайте.",
       "preparationSteps": [
         "Перемешайте клубнику с сахаром и оставьте на ночь в холодильнике.",
-        "Разрежьте лимон, оставьте два ломтика",
-        "Остальное выжать из сока",
+        "Отрежьте два ломтика лимона для украшения.",
+        "Из оставшегося лимона выжмите сок.",
         "Смешайте лимонный сок, клубнику, яблочный сок и газированную воду.",
-        "Добавляем ломтики лимона (действительно, декор)",
-        "В стаканы положите кубики льда и ломтик яблока.",
-        "Налейте напиток и подавайте."
+        "Добавьте ломтики лимона для украшения.",
+        "Положите в стаканы лёд и по ломтику яблока.",
+        "Разлейте напиток и подавайте."
       ],
       "glassType": "Хайболл",
       "tags": [
@@ -11900,7 +11900,7 @@
     },
     {
       "id": "fruit-flip-flop",
-      "name": "Фруктовые шлепанцы",
+      "name": "Fruit Flip-Flop",
       "image": "assets/data/catalog_images/img_c5f9715e.jpg",
       "ingredients": [
         "yoghurt",
@@ -12266,11 +12266,11 @@
         "maraschino_cherry",
         "orange"
       ],
-      "description": "В шейкере, наполовину наполненном кубиками льда, смешайте джин, лимонный сок, сахар и гренадин. Хорошо встряхните Перелейте в стакан «старомодный» и украсьте вишней и долькой апельсина.",
+      "description": "В шейкере, наполовину наполненном кубиками льда, смешайте джин, лимонный сок, сахар и гренадин. Хорошо встряхните Перелейте в стакан рокс и украсьте вишней и долькой апельсина.",
       "preparationSteps": [
         "В шейкере, наполовину наполненном кубиками льда, смешайте джин, лимонный сок, сахар и гренадин.",
         "Хорошо встряхните",
-        "Перелейте в стакан «старомодный» и украсьте вишней и долькой апельсина."
+        "Перелейте в стакан рокс и украсьте вишней и долькой апельсина."
       ],
       "glassType": "Рокс",
       "tags": [
@@ -12433,7 +12433,7 @@
         "water",
         "orange"
       ],
-      "description": "Растворите сахарную пудру в смеси воды и сока лимона. Добавьте джин. Перелейте в старинный стакан поверх кубиков льда и перемешайте. Добавьте кусочек апельсиновой цедры и подавайте.",
+      "description": "Растворите сахарную пудру в смеси воды и сока лимона. Добавьте джин. Перелейте в стакан рокс поверх кубиков льда и перемешайте. Добавьте кусочек апельсиновой цедры и подавайте.",
       "preparationSteps": [
         "Выжмите указанное количество лимона или лайма: в напиток нужен только сок.",
         "Растворить сахарную пудру в смеси воды и сока лимона.",
@@ -12665,13 +12665,13 @@
         "bitters",
         "soda_water"
       ],
-      "description": "В шейкере, наполовину наполненном кубиками льда, смешайте сок лайма, сахар, джин и биттер. Хорошо встряхните. Почти наполните стакан для охлаждения кубиками льда. Перемешивайте, пока стекло не станет матовым. Процедите смесь в шейкере в стакан и добавьте содовую.",
+      "description": "Наполовину наполните шейкер льдом, добавьте сок лайма, сахар, джин и биттер. Хорошо встряхните. Почти доверху наполните стакан кубиками льда и перемешивайте лёд, пока стенки не покроются инеем. Процедите коктейль из шейкера в стакан и долейте содовую.",
       "preparationSteps": [
-        "В шейкере, наполовину наполненном кубиками льда, смешайте сок лайма, сахар, джин и биттер.",
-        "Хорошо встряхните",
-        "Почти наполните стакан кубиками льда",
-        "Перемешивайте, пока стекло не станет матовым.",
-        "Процедите смесь в шейкере в стакан и добавьте содовую."
+        "Наполовину наполните шейкер льдом, добавьте сок лайма, сахар, джин и биттер.",
+        "Хорошо встряхните.",
+        "Почти доверху наполните стакан кубиками льда.",
+        "Перемешивайте лёд, пока стенки стакана не покроются инеем.",
+        "Процедите коктейль из шейкера в стакан и долейте содовую."
       ],
       "glassType": "Хайболл",
       "tags": [
@@ -12721,7 +12721,7 @@
         "powdered_sugar",
         "lemon"
       ],
-      "description": "Смешайте сахарную пудру и воду в старинном стакане. Добавьте джин и один кубик льда. Перемешайте, добавьте кусочек цедры лимона и подавайте.",
+      "description": "Смешайте сахарную пудру и воду в стакане рокс. Добавьте джин и один кубик льда. Перемешайте, добавьте кусочек цедры лимона и подавайте.",
       "preparationSteps": [
         "Смешайте сахарную пудру и воду в стакане рокс.",
         "Добавьте джин и один кубик льда.",
@@ -12815,7 +12815,7 @@
     },
     {
       "id": "gluehwein",
-      "name": "Глювейн",
+      "name": "Глинтвейн (Glühwein)",
       "image": "assets/data/catalog_images/img_d9485f08.jpg",
       "ingredients": [
         "wine_red",
@@ -12926,7 +12926,7 @@
         "scotch",
         "amaretto"
       ],
-      "description": "Налейте все ингредиенты прямо в старинный стакан, наполненный кубиками льда. Аккуратно перемешайте.",
+      "description": "Налейте все ингредиенты прямо в стакан рокс, наполненный кубиками льда. Аккуратно перемешайте.",
       "preparationSteps": [
         "Налейте все ингредиенты прямо в стакан рокс, наполненный кубиками льда.",
         "Аккуратно перемешайте."
@@ -12971,7 +12971,7 @@
         "vodka",
         "amaretto"
       ],
-      "description": "Налейте водку и амаретто в старинный стакан со льдом и подавайте.",
+      "description": "Налейте водку и амаретто в стакан рокс со льдом и подавайте.",
       "preparationSteps": [
         "Налейте водку и амаретто в стакан рокс со льдом и подавайте."
       ],
@@ -13519,7 +13519,7 @@
     },
     {
       "id": "hemingway-special",
-      "name": "Хемингуэй Специальный",
+      "name": "Хемингуэй спешл",
       "image": "assets/data/catalog_images/img_ae15dc2a.jpg",
       "ingredients": [
         "rum",
@@ -13665,7 +13665,7 @@
     },
     {
       "id": "homemade-kahlua",
-      "name": "Homemade Kahlua",
+      "name": "Домашний кофейный ликёр Kahlúa",
       "image": "assets/data/catalog_images/img_632f803c.jpg",
       "ingredients": [
         "sugar",
@@ -13883,7 +13883,7 @@
     },
     {
       "id": "hot-creamy-bush",
-      "name": "Горячий сливочный куст",
+      "name": "Hot Creamy Bush",
       "image": "assets/data/catalog_images/img_8d6340cd.jpg",
       "ingredients": [
         "irish_whiskey",
@@ -14306,7 +14306,7 @@
     },
     {
       "id": "irish-cream",
-      "name": "Ирландский крем",
+      "name": "Ирландский сливочный ликёр",
       "image": "assets/data/catalog_images/img_684fd6d3.jpg",
       "ingredients": [
         "scotch",
@@ -14361,7 +14361,7 @@
     },
     {
       "id": "irish-curdling-cow",
-      "name": "Ирландская свернувшаяся корова",
+      "name": "Irish Curdling Cow",
       "image": "assets/data/catalog_images/img_d8905b2b.jpg",
       "ingredients": [
         "baileys_irish_cream",
@@ -14672,10 +14672,10 @@
         "syrup_sugar",
         "sugar"
       ],
-      "description": "Обмажьте край рюмки сахаром, используя для прилипания сахарный сироп. Добавьте в рюмку малиновый ликер Chambord и аккуратно выложите сверху ирландский крем Baileys. Служить.",
+      "description": "Смочите край рюмки сахарным сиропом и окуните в сахар. Налейте малиновый ликёр Chambord и аккуратно добавьте сверху слой сливочного ликёра Baileys. Подавайте.",
       "preparationSteps": [
-        "Обмажьте край рюмки сахаром, используя для прилипания сахарный сироп.",
-        "Добавьте в рюмку малиновый ликер Chambord и аккуратно выложите сверху ирландский крем Baileys.",
+        "Смочите край рюмки сахарным сиропом и окуните в сахар.",
+        "Налейте малиновый ликёр Chambord и аккуратно добавьте сверху слой сливочного ликёра Baileys.",
         "Подавайте."
       ],
       "glassType": "Шот",
@@ -14873,7 +14873,7 @@
     },
     {
       "id": "jello-shots",
-      "name": "Желе шоты",
+      "name": "Желейные шоты",
       "image": "assets/data/catalog_images/img_47bae812.jpg",
       "ingredients": [
         "vodka",
@@ -14924,7 +14924,7 @@
     },
     {
       "id": "jelly-bean",
-      "name": "Желейные бобы",
+      "name": "Jelly Bean",
       "image": "assets/data/catalog_images/img_79626ee3.jpg",
       "ingredients": [
         "blackberry_brandy",
@@ -15327,7 +15327,7 @@
     },
     {
       "id": "kentucky-colonel",
-      "name": "Кентукки полковник",
+      "name": "Кентуккийский полковник",
       "image": "assets/data/catalog_images/img_06360adb.jpg",
       "ingredients": [
         "bourbon",
@@ -15377,7 +15377,7 @@
     },
     {
       "id": "kill-the-cold-smoothie",
-      "name": "Убей холодного смузи",
+      "name": "Kill the Cold Smoothie",
       "image": "assets/data/catalog_images/img_46156d13.jpg",
       "ingredients": [
         "ginger",
@@ -15919,7 +15919,7 @@
     },
     {
       "id": "lassi-mango",
-      "name": "Ласси – Манго",
+      "name": "Ласси с манго",
       "image": "assets/data/catalog_images/img_72d312d7.jpg",
       "ingredients": [
         "mango",
@@ -15927,10 +15927,10 @@
         "sugar",
         "water"
       ],
-      "description": "Поместите все это в блендер и залейте колотым льдом. Вы также можете использовать другие фрукты, например клубнику и бананы.",
+      "description": "Взбейте ингредиенты в блендере и разлейте по стаканам с колотым льдом. Вместо манго можно использовать, например, клубнику или бананы.",
       "preparationSteps": [
-        "Поместите все это в блендер и залейте колотым льдом.",
-        "Вы также можете использовать другие фрукты, например клубнику и бананы."
+        "Взбейте ингредиенты в блендере и разлейте по стаканам с колотым льдом.",
+        "Вместо манго можно использовать, например, клубнику или бананы."
       ],
       "glassType": "Хайболл",
       "tags": [
@@ -16131,7 +16131,7 @@
     },
     {
       "id": "lazy-coconut-paloma",
-      "name": "Ленивый кокос Палома",
+      "name": "Кокосовая палома (Lazy Coconut Paloma)",
       "image": "assets/data/catalog_images/img_cc816113.jpg",
       "ingredients": [
         "coconut_liqueur",
@@ -16233,7 +16233,7 @@
     },
     {
       "id": "lemon-elderflower-spritzer",
-      "name": "Лимонный спритцер из бузины",
+      "name": "Лимонный спритцер с сиропом бузины",
       "image": "assets/data/catalog_images/img_58c65887.jpg",
       "ingredients": [
         "elderflower_cordial",
@@ -16593,7 +16593,7 @@
     },
     {
       "id": "lone-tree-cooler",
-      "name": "Холодильник «Одинокое дерево»",
+      "name": "Lone Tree Cooler",
       "image": "assets/data/catalog_images/img_b5792b0e.jpg",
       "ingredients": [
         "gin",
@@ -16780,7 +16780,7 @@
         "rum_dark",
         "tia_maria"
       ],
-      "description": "Налейте ром и Тиа Марию в старинный стакан, почти наполненный кубиками льда. Хорошо перемешайте.",
+      "description": "Налейте ром и Тиа Марию в стакан рокс, почти наполненный кубиками льда. Хорошо перемешайте.",
       "preparationSteps": [
         "Налейте ром и Тиа Марию в стакан рокс, почти наполненный кубиками льда.",
         "Хорошо перемешайте."
@@ -17320,7 +17320,7 @@
     },
     {
       "id": "mauresque",
-      "name": "Маврикий",
+      "name": "Мореск",
       "image": "assets/data/catalog_images/img_b1316958.jpg",
       "ingredients": [
         "ricard",
@@ -17883,14 +17883,14 @@
     },
     {
       "id": "monkey-wrench",
-      "name": "Обезьяна ключ",
+      "name": "Monkey Wrench",
       "image": "assets/data/catalog_images/img_486208ab.jpg",
       "ingredients": [
         "rum_light",
         "juice_grapefruit",
         "bitters"
       ],
-      "description": "Налейте все ингредиенты в старинный стакан, почти наполненный кубиками льда. Хорошо перемешайте.",
+      "description": "Налейте все ингредиенты в стакан рокс, почти наполненный кубиками льда. Хорошо перемешайте.",
       "preparationSteps": [
         "Налейте все ингредиенты в стакан рокс, почти наполненный кубиками льда.",
         "Хорошо перемешайте."
@@ -18613,7 +18613,7 @@
     },
     {
       "id": "old-fashioned",
-      "name": "Старомодный",
+      "name": "Олд фэшн",
       "image": "assets/data/catalog_images/img_0808091d.jpg",
       "ingredients": [
         "bourbon",
@@ -18621,10 +18621,10 @@
         "sugar",
         "water"
       ],
-      "description": "Поместите кубик сахара в старинный стакан, пропитайте биттером и добавьте немного простой воды. Перемешать до растворения. Наполните стакан кубиками льда и добавьте виски. Украсьте апельсиновой завитком и коктейльной вишней.",
+      "description": "Положите кубик сахара в стакан рокс, смочите биттером и добавьте немного воды. Разомните сахар до растворения. Наполните стакан льдом, добавьте виски и украсьте апельсиновой цедрой и коктейльной вишней.",
       "preparationSteps": [
-        "Положите кубик сахара в стакан рокс, пропитайте биттером и добавьте немного простой воды.",
-        "Перемешать до растворения",
+        "Положите кубик сахара в стакан рокс, смочите биттером и добавьте немного воды.",
+        "Разомните сахар до растворения.",
         "Наполните стакан кубиками льда и добавьте виски.",
         "Украсьте полоской апельсиновой цедры и коктейльной вишней."
       ],
@@ -18716,7 +18716,7 @@
     },
     {
       "id": "orange-crush",
-      "name": "Оранжевая давка",
+      "name": "Orange Crush",
       "image": "assets/data/catalog_images/img_99aaa57a.jpg",
       "ingredients": [
         "vodka",
@@ -18765,7 +18765,7 @@
     },
     {
       "id": "orange-oasis",
-      "name": "Оранжевый оазис",
+      "name": "Апельсиновый оазис",
       "image": "assets/data/catalog_images/img_6aa29075.jpg",
       "ingredients": [
         "cherry_brandy",
@@ -18815,7 +18815,7 @@
     },
     {
       "id": "orange-push-up",
-      "name": "Оранжевое отжимание",
+      "name": "Orange Push-up",
       "image": "assets/data/catalog_images/img_a58f598f.jpg",
       "ingredients": [
         "spiced_rum",
@@ -18865,7 +18865,7 @@
     },
     {
       "id": "orange-rosemary-collins",
-      "name": "Оранжевый Розмари Коллинз",
+      "name": "Коллинз с апельсином и розмарином",
       "image": "assets/data/catalog_images/img_36e69831.jpg",
       "ingredients": [
         "gin",
@@ -18876,10 +18876,10 @@
         "rosemary",
         "orange"
       ],
-      "description": "Добавьте спиртные напитки на дно стакана и сверху поровну добавьте напитки из миксера. Украсьте ломтиками апельсина внутри стакана и розмарином сверху.",
+      "description": "Налейте алкогольную основу в стакан и долейте безалкогольные компоненты в равных пропорциях. Положите в стакан ломтики апельсина, сверху украсьте розмарином.",
       "preparationSteps": [
-        "Добавьте спиртные напитки на дно стакана и сверху поровну добавьте напитки из миксера.",
-        "Украсьте ломтиками апельсина внутри стакана и розмарином сверху."
+        "Налейте алкогольную основу в стакан и долейте безалкогольные компоненты в равных пропорциях.",
+        "Положите в стакан ломтики апельсина, сверху украсьте розмарином."
       ],
       "glassType": "Хайболл",
       "tags": [
@@ -18952,7 +18952,7 @@
       "ingredientAmounts": {
         "milk": "2",
         "chocolate": "4",
-        "orange": "3 2-inch strips",
+        "orange": "3 полоски цедры по 2 дюйма",
         "espresso": "1/2",
         "nutmeg": "1/8"
       },
@@ -18984,7 +18984,7 @@
     },
     {
       "id": "orange-whip",
-      "name": "Оранжевый кнут",
+      "name": "Orange Whip",
       "image": "assets/data/catalog_images/img_0fa94a10.jpg",
       "ingredients": [
         "juice_orange",
@@ -19036,7 +19036,7 @@
     },
     {
       "id": "orangeade",
-      "name": "Оранжад",
+      "name": "Апельсиновый лимонад",
       "image": "assets/data/catalog_images/img_fa2781b9.jpg",
       "ingredients": [
         "lemon",
@@ -19347,7 +19347,7 @@
     },
     {
       "id": "passion-fruit-martini",
-      "name": "Мартини из маракуйи",
+      "name": "Мартини с маракуйей",
       "image": "assets/data/catalog_images/img_fe043d79.jpg",
       "ingredients": [
         "vodka",
@@ -19553,7 +19553,7 @@
     },
     {
       "id": "pineapple-gingerale-smoothie",
-      "name": "Ананасовый имбирный смузи",
+      "name": "Ананасовый смузи с имбирным элем",
       "image": "assets/data/catalog_images/img_400fa8eb.jpg",
       "ingredients": [
         "ginger",
@@ -19597,7 +19597,7 @@
     },
     {
       "id": "pineapple-paloma",
-      "name": "Ананас Палома",
+      "name": "Ананасовая палома",
       "image": "assets/data/catalog_images/img_e62ea97a.jpg",
       "ingredients": [
         "tequila",
@@ -19803,7 +19803,7 @@
     },
     {
       "id": "pink-panty-pulldowns",
-      "name": "Трусики с розовыми трусиками",
+      "name": "Pink Panty Pulldowns",
       "image": "assets/data/catalog_images/img_18d2ca7e.jpg",
       "ingredients": [
         "sprite",
@@ -20171,15 +20171,15 @@
     },
     {
       "id": "port-and-starboard",
-      "name": "Порт и правый борт",
+      "name": "Port and Starboard",
       "image": "assets/data/catalog_images/img_ca267fe4.jpg",
       "ingredients": [
         "grenadine",
         "creme_de_menthe_green"
       ],
-      "description": "Аккуратно перелейте в стакан для пусс-кафе, чтобы крем де мент плавал на гренадине. Подавайте, не перемешивая.",
+      "description": "В рюмке для слоистых коктейлей аккуратно налейте мятный ликёр поверх гренадина. Подавайте, не перемешивая.",
       "preparationSteps": [
-        "Осторожно перелейте в стакан для пусс-кафе, чтобы крем де мент плавал на гренадине.",
+        "В рюмке для слоистых коктейлей аккуратно налейте мятный ликёр поверх гренадина.",
         "Подавайте, не перемешивая."
       ],
       "glassType": "Рокс",
@@ -20258,7 +20258,7 @@
     },
     {
       "id": "port-wine-flip",
-      "name": "Портвейн Флип",
+      "name": "Флип с портвейном",
       "image": "assets/data/catalog_images/img_e32d26a2.jpg",
       "ingredients": [
         "port",
@@ -20312,7 +20312,7 @@
     },
     {
       "id": "porto-flip",
-      "name": "Порту флип",
+      "name": "Порто флип",
       "image": "assets/data/catalog_images/img_6044444a.jpg",
       "ingredients": [
         "brandy",
@@ -20517,7 +20517,7 @@
     },
     {
       "id": "quarter-deck-cocktail",
-      "name": "Коктейль на четверть палубе",
+      "name": "Quarter Deck",
       "image": "assets/data/catalog_images/img_5757e25d.jpg",
       "ingredients": [
         "rum_light",
@@ -20756,17 +20756,17 @@
     },
     {
       "id": "quick-f-k",
-      "name": "Быстрый трах",
+      "name": "Quick F**K",
       "image": "assets/data/catalog_images/img_5a1a3ff3.jpg",
       "ingredients": [
         "kahlua",
         "midori_melon_liqueur",
         "baileys_irish_cream"
       ],
-      "description": "В рюмку сначала добавьте 1/3 Калуа. Затем 1/3 мидури, а сверху добавить 1/3 ирландского крема Бейлис.",
+      "description": "Налейте в рюмку 1/3 кофейного ликёра Kahlúa, затем 1/3 дынного ликёра Midori и сверху 1/3 сливочного ликёра Baileys.",
       "preparationSteps": [
-        "В рюмку сначала добавьте 1/3 Калуа.",
-        "Затем 1/3 мидури, а сверху добавить 1/3 ирландского крема Бейлис."
+        "Налейте в рюмку 1/3 кофейного ликёра Kahlúa.",
+        "Добавьте 1/3 дынного ликёра Midori и сверху 1/3 сливочного ликёра Baileys."
       ],
       "glassType": "Шот",
       "tags": [
@@ -20804,7 +20804,7 @@
     },
     {
       "id": "radioactive-long-island-iced-tea",
-      "name": "Радиоактивный чай со льдом на Лонг-Айленде",
+      "name": "Радиоактивный лонг-айленд айс-ти",
       "image": "assets/data/catalog_images/img_aa79c7a5.jpg",
       "ingredients": [
         "rum",
@@ -20867,7 +20867,7 @@
     },
     {
       "id": "rail-splitter",
-      "name": "Рельсовый разветвитель",
+      "name": "Rail Splitter",
       "image": "assets/data/catalog_images/img_1e6a5762.jpg",
       "ingredients": [
         "syrup_sugar",
@@ -21029,7 +21029,7 @@
     },
     {
       "id": "red-snapper",
-      "name": "Красный люциан",
+      "name": "Ред снеппер",
       "image": "assets/data/catalog_images/img_73c4308c.jpg",
       "ingredients": [
         "crown_royal",
@@ -21390,7 +21390,7 @@
     },
     {
       "id": "rum-cobbler",
-      "name": "Ромовый сапожник",
+      "name": "Ромовый коблер",
       "image": "assets/data/catalog_images/img_dcb66bc1.jpg",
       "ingredients": [
         "sugar",
@@ -21505,7 +21505,7 @@
     },
     {
       "id": "rum-old-fashioned",
-      "name": "Ром Старомодный",
+      "name": "Ромовый олд фэшн",
       "image": "assets/data/catalog_images/img_1c4cb039.jpg",
       "ingredients": [
         "rum_light",
@@ -21515,7 +21515,7 @@
         "water",
         "lime_peel"
       ],
-      "description": "Смешайте сахарную пудру, воду и биттер в старомодном стакане. Когда сахар растворится, добавьте кубики льда и светлый ром. Добавьте кусочек цедры лайма, полейте сверху ромом крепости 151 и подавайте.",
+      "description": "Смешайте сахарную пудру, воду и биттер в стакане рокс. Когда сахар растворится, добавьте кубики льда и светлый ром. Добавьте кусочек цедры лайма, полейте сверху ромом крепости 151 и подавайте.",
       "preparationSteps": [
         "Смешайте сахарную пудру, воду и биттер в стакане рокс.",
         "Когда сахар растворится, добавьте кубики льда и светлый ром.",
@@ -21619,7 +21619,7 @@
     },
     {
       "id": "rum-runner",
-      "name": "Ромовый бегун",
+      "name": "Рам раннер",
       "image": "assets/data/catalog_images/img_9369c6df.jpg",
       "ingredients": [
         "malibu_rum",
@@ -21737,7 +21737,7 @@
         "lemon",
         "water"
       ],
-      "description": "Растворите сахарную пудру в воде в старинном стакане. Добавьте ром и один кубик льда и перемешайте. Добавьте кусочек цедры лимона и подавайте.",
+      "description": "Растворите сахарную пудру в воде в стакане рокс. Добавьте ром и один кубик льда и перемешайте. Добавьте кусочек цедры лимона и подавайте.",
       "preparationSteps": [
         "Растворите сахарную пудру в воде в стакане рокс.",
         "Добавьте ром и один кубик льда и перемешайте.",
@@ -21791,9 +21791,9 @@
         "syrup_sugar",
         "prosecco"
       ],
-      "description": "Встряхните водку, свежий лимонный сок, крем де кассис и сахарный сироп со льдом. Процедите в высокий бокал со свежим льдом, затем долейте игристым вином.",
+      "description": "Встряхните водку, свежий лимонный сок, черносмородиновый ликёр Crème de Cassis и сахарный сироп со льдом. Процедите в высокий бокал со свежим льдом, затем долейте игристое вино.",
       "preparationSteps": [
-        "Встряхните водку, свежий лимонный сок, крем де кассис и сахарный сироп со льдом.",
+        "Встряхните водку, свежий лимонный сок, черносмородиновый ликёр Crème de Cassis и сахарный сироп со льдом.",
         "Процедите в высокий бокал со свежим льдом, затем долейте игристым вином."
       ],
       "glassType": "Хайболл",
@@ -21845,7 +21845,7 @@
         "drambuie",
         "lemon"
       ],
-      "description": "Налейте скотч и драмбуи в старомодный стакан, почти наполненный кубиками льда. Хорошо перемешайте. Украсьте твистом лимона.",
+      "description": "Налейте скотч и драмбуи в стакан рокс, почти наполненный кубиками льда. Хорошо перемешайте. Украсьте твистом лимона.",
       "preparationSteps": [
         "Налейте скотч и драмбуи в стакан рокс, почти наполненный кубиками льда.",
         "Хорошо перемешайте",
@@ -21946,9 +21946,9 @@
         "grenadine",
         "juice_orange"
       ],
-      "description": "Возьмите высокий стакан, положите в него несколько кубиков льда, залейте водкой и залейте соком, затем «сливками», в конце добавьте гренадин, но очень осторожно сбоку от стакана, чтобы он лег на дно. украсьте апельсином и клубникой.",
+      "description": "Положите в высокий стакан несколько кубиков льда. Налейте водку, апельсиновый сок и банановый ликёр Crème de Banane. Аккуратно влейте гренадин по стенке, чтобы он опустился на дно. Украсьте апельсином и клубникой.",
       "preparationSteps": [
-        "Возьмите высокий стакан, положите в него несколько кубиков льда, залейте водкой и залейте соком, затем «кремом», в конце добавьте гренадин, но очень осторожно сбоку от стакана, чтобы он лег на дно.",
+        "Положите в высокий стакан лёд. Налейте водку, апельсиновый сок и банановый ликёр Crème de Banane. Аккуратно влейте гренадин по стенке, чтобы он опустился на дно.",
         "Украсьте апельсином и клубникой."
       ],
       "glassType": "Хайболл",
@@ -22149,7 +22149,7 @@
     },
     {
       "id": "scotch-sour",
-      "name": "Скотч Сауэр",
+      "name": "Скотч сауэр",
       "image": "assets/data/catalog_images/img_69ef248f.jpg",
       "ingredients": [
         "scotch",
@@ -22352,7 +22352,7 @@
     },
     {
       "id": "sherry-eggnog",
-      "name": "Шерри Эгг-ног",
+      "name": "Эгг-ног с хересом",
       "image": "assets/data/catalog_images/img_fb062e76.jpg",
       "ingredients": [
         "sherry",
@@ -22407,7 +22407,7 @@
     },
     {
       "id": "sherry-flip",
-      "name": "Шерри Флип",
+      "name": "Флип с хересом",
       "image": "assets/data/catalog_images/img_13257651.jpg",
       "ingredients": [
         "sherry",
@@ -22509,7 +22509,7 @@
     },
     {
       "id": "sidecar",
-      "name": "Коляска",
+      "name": "Сайдкар",
       "image": "assets/data/catalog_images/img_5b7f22d9.jpg",
       "ingredients": [
         "cognac",
@@ -22890,9 +22890,9 @@
         "campari",
         "soda_water"
       ],
-      "description": "Разлейте по стаканам со льдом, украсьте и подавайте.",
+      "description": "Соберите коктейль прямо в бокале со льдом. Украсьте и подавайте.",
       "preparationSteps": [
-        "Разлейте по стаканам со льдом, украсьте и подавайте."
+        "Соберите коктейль прямо в бокале со льдом. Украсьте и подавайте."
       ],
       "glassType": "Рокс",
       "tags": [
@@ -22974,7 +22974,7 @@
     },
     {
       "id": "stone-sour",
-      "name": "Каменный кислый",
+      "name": "Стоун сауэр",
       "image": "assets/data/catalog_images/img_7fa82a10.jpg",
       "ingredients": [
         "apricot_brandy",
@@ -23129,7 +23129,7 @@
     },
     {
       "id": "tennesee-mud",
-      "name": "Теннесси Грязь",
+      "name": "Tennesee Mud",
       "image": "assets/data/catalog_images/img_c3cb5819.jpg",
       "ingredients": [
         "coffee",
@@ -24231,7 +24231,7 @@
     },
     {
       "id": "turkeyball",
-      "name": "Индейка",
+      "name": "Turkeyball",
       "image": "assets/data/catalog_images/img_0141f576.jpg",
       "ingredients": [
         "wild_turkey",
@@ -24277,7 +24277,7 @@
     },
     {
       "id": "tuxedo-cocktail",
-      "name": "Смокинг Коктейль",
+      "name": "Таксидо",
       "image": "assets/data/catalog_images/img_b0f32b9e.jpg",
       "ingredients": [
         "vermouth_dry",
@@ -24392,7 +24392,7 @@
         "syrup_sugar",
         "salt"
       ],
-      "description": "Вампиры могут быть сделаны в высоком стакане или в старомодном стакане. Бармены могут сначала «окаймить» стакан кошерной солью, для чего поместите слой кошерной соли на разделочную доску, смочив край стакана соком лайма или водой, а затем поместив перевернутый край стакана на кошерную соль, чтобы соль прилипала к увлажненному краю. Второй шаг — наполнить половину стакана льдом и добавить один или два рюмки, полные высококачественной текилы. Следующий этап – добавление вкусовых элементов. Для этого в стакан выдавливают свежий лайм, добавляют несколько крупинок соли, газировку с цитрусовым вкусом, пока стакан не наполняется на 4/5, а затем добавляют пряную Виуда де Санчес (или апельсиновый сок, сок лайма и пико де галло). Последний шаг — перемешать ингредиенты, чтобы их вкусы правильно смешались.",
+      "description": "Вампиры могут быть сделаны в высоком стакане или в стакане рокс. Бармены могут сначала «окаймить» стакан кошерной солью, для чего поместите слой кошерной соли на разделочную доску, смочив край стакана соком лайма или водой, а затем поместив перевернутый край стакана на кошерную соль, чтобы соль прилипала к увлажненному краю. Второй шаг — наполнить половину стакана льдом и добавить один или два рюмки, полные высококачественной текилы. Следующий этап – добавление вкусовых элементов. Для этого в стакан выдавливают свежий лайм, добавляют несколько крупинок соли, газировку с цитрусовым вкусом, пока стакан не наполняется на 4/5, а затем добавляют пряную Виуда де Санчес (или апельсиновый сок, сок лайма и пико де галло). Последний шаг — перемешать ингредиенты, чтобы их вкусы правильно смешались.",
       "preparationSteps": [
         "Вампирос можно приготовить в высоком стакане или в стакане рокс.",
         "Бармены могут сначала «окаймить» стакан кошерной солью, для чего поместите слой кошерной соли на разделочную доску, смочив край стакана соком лайма или водой, а затем поместив перевернутый край стакана на кошерную соль, чтобы соль прилипала к увлажненному краю.",
@@ -24450,7 +24450,7 @@
         "syrup_maple",
         "lemon"
       ],
-      "description": "Взболтайте все ингредиенты со льдом, процедите в старинный стакан с кубиками льда и подавайте.",
+      "description": "Взболтайте все ингредиенты со льдом, процедите в стакан рокс с кубиками льда и подавайте.",
       "preparationSteps": [
         "Взболтайте все ингредиенты со льдом, процедите в стакан рокс с кубиками льда и подавайте."
       ],
@@ -24496,9 +24496,9 @@
         "creme_de_cassis",
         "soda_water"
       ],
-      "description": "Перемешайте вермут и крем де кассис в стакане хайбол с кубиками льда. Залейте газированной водой, еще раз перемешайте и подавайте.",
+      "description": "Перемешайте вермут и черносмородиновый ликёр Crème de Cassis в хайболе со льдом. Долейте газированную воду, ещё раз перемешайте и подавайте.",
       "preparationSteps": [
-        "Перемешайте вермут и крем де кассис в стакане хайбол с кубиками льда.",
+        "Перемешайте вермут и черносмородиновый ликёр Crème de Cassis в хайболе со льдом.",
         "Залейте газированной водой, еще раз перемешайте и подавайте."
       ],
       "glassType": "Хайболл",
@@ -24536,7 +24536,7 @@
     },
     {
       "id": "vesper",
-      "name": "Вечерня",
+      "name": "Веспер",
       "image": "assets/data/catalog_images/img_adc07114.jpg",
       "ingredients": [
         "gin",
@@ -24592,7 +24592,7 @@
         "powdered_sugar",
         "egg_white"
       ],
-      "description": "Взболтайте все ингредиенты со льдом, процедите в старинный стакан с кубиками льда и подавайте.",
+      "description": "Взболтайте все ингредиенты со льдом, процедите в стакан рокс с кубиками льда и подавайте.",
       "preparationSteps": [
         "Выжмите указанное количество лимона или лайма: в напиток нужен только сок.",
         "Взболтайте все ингредиенты со льдом, процедите в стакан рокс с кубиками льда и подавайте."
@@ -24642,7 +24642,7 @@
         "rum_dark",
         "cherry_brandy"
       ],
-      "description": "Налейте ром и вишневый бренди в старинный стакан, почти наполненный кубиками льда. Хорошо перемешайте.",
+      "description": "Налейте ром и вишневый бренди в стакан рокс, почти наполненный кубиками льда. Хорошо перемешайте.",
       "preparationSteps": [
         "Налейте ром и вишневый бренди в стакан рокс, почти наполненный кубиками льда.",
         "Хорошо перемешайте."
@@ -24887,7 +24887,7 @@
         "powdered_sugar",
         "cherry"
       ],
-      "description": "Встряхнуть со льдом. Перелейте в охлажденный бокал, украсьте и подавайте. Если подается «Со льдом», процедите ингредиенты в старомодный стакан, наполненный льдом.",
+      "description": "Встряхнуть со льдом. Перелейте в охлажденный бокал, украсьте и подавайте. Если подается «Со льдом», процедите ингредиенты в стакан рокс, наполненный льдом.",
       "preparationSteps": [
         "Выжмите указанное количество лимона или лайма: в напиток нужен только сок.",
         "Встряхнуть со льдом",
@@ -25033,7 +25033,7 @@
         "coffee_liqueur",
         "light_cream"
       ],
-      "description": "Налейте водку и кофейный ликер поверх кубиков льда в старомодном стакане. Залейте легким кремом и подавайте.",
+      "description": "Налейте водку и кофейный ликёр в стакан рокс со льдом. Добавьте нежирные сливки и подавайте.",
       "preparationSteps": [
         "Налейте водку и кофейный ликер на кубики льда в стакане рокс.",
         "Залейте нежирными сливками и подавайте."
@@ -25072,7 +25072,7 @@
     },
     {
       "id": "white-wine-sangria",
-      "name": "Белое вино Сангрия",
+      "name": "Сангрия на белом вине",
       "image": "assets/data/catalog_images/img_0352ab0e.jpg",
       "ingredients": [
         "lime",
@@ -25397,7 +25397,7 @@
     },
     {
       "id": "yoghurt-cooler",
-      "name": "Охладитель йогурта",
+      "name": "Йогуртовый кулер",
       "image": "assets/data/catalog_images/img_1870e4f1.jpg",
       "ingredients": [
         "yoghurt",
@@ -25634,7 +25634,7 @@
     },
     {
       "id": "zizi-coin-coin",
-      "name": "Зизи Монета-монета",
+      "name": "Zizi Coin-coin",
       "image": "assets/data/catalog_images/img_a027202b.jpg",
       "ingredients": [
         "cointreau",
@@ -25693,10 +25693,10 @@
         "creme_de_cassis",
         "lemon"
       ],
-      "description": "Охладите все ингредиенты. В исходном рецепте нет фиксированных пропорций. Соедините пиво и безалкогольные напитки в большом бокале, добавляя крем де кассис по вкусу. Осторожно перемешайте и украсьте ломтиком лимона. Не взбалтывайте газированные ингредиенты.",
+      "description": "Охладите все ингредиенты. В исходном рецепте нет фиксированных пропорций. Смешайте пиво и безалкогольные напитки в большом бокале, добавьте черносмородиновый ликёр Crème de Cassis по вкусу. Осторожно перемешайте и украсьте ломтиком лимона. Не взбалтывайте газированные ингредиенты.",
       "preparationSteps": [
         "Охладите все ингредиенты. В исходном рецепте нет фиксированных пропорций.",
-        "Соедините пиво и безалкогольные напитки в большом бокале, добавляя крем де кассис по вкусу.",
+        "Смешайте пиво и безалкогольные напитки в большом бокале, добавьте черносмородиновый ликёр Crème de Cassis по вкусу.",
         "Осторожно перемешайте и украсьте ломтиком лимона. Не взбалтывайте газированные ингредиенты."
       ],
       "glassType": "Рокс",
