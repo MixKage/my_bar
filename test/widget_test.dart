@@ -304,6 +304,63 @@ void main() {
     expect(find.byTooltip('Изменить ингредиент'), findsWidgets);
   });
 
+  testWidgets(
+    'only the visible tab enables tickers and tab state is retained',
+    (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({
+        'bar_ui_app_language': 'ru',
+        'bar_ui_power_saving_mode': false,
+      });
+      final preferences = await SharedPreferences.getInstance();
+      await tester.pumpWidget(
+        await _buildApp(preferences: preferences, catalog: _testCatalog),
+      );
+      await tester.pump();
+
+      final ingredients = find.byType(RawBarPage, skipOffstage: false);
+      final cocktails = find.byType(BarMenuPage, skipOffstage: false);
+      final ingredientsState = tester.state(ingredients);
+      final cocktailsState = tester.state(cocktails);
+      expect(TickerMode.valuesOf(tester.element(ingredients)).enabled, isTrue);
+      expect(TickerMode.valuesOf(tester.element(cocktails)).enabled, isFalse);
+
+      await tester.tap(find.text('Барная карта'));
+      await tester.pump();
+      expect(TickerMode.valuesOf(tester.element(ingredients)).enabled, isFalse);
+      expect(TickerMode.valuesOf(tester.element(cocktails)).enabled, isTrue);
+
+      await tester.tap(find.text('Ингредиенты'));
+      await tester.pump();
+      expect(TickerMode.valuesOf(tester.element(ingredients)).enabled, isTrue);
+      expect(TickerMode.valuesOf(tester.element(cocktails)).enabled, isFalse);
+      expect(tester.state(ingredients), same(ingredientsState));
+      expect(tester.state(cocktails), same(cocktailsState));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('bar-menu-only mode keeps its single page tickers enabled', (
+    WidgetTester tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({
+      'bar_ui_app_language': 'ru',
+      'bar_ui_power_saving_mode': false,
+      'bar_ui_bar_menu_only_mode': true,
+    });
+    final preferences = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      await _buildApp(preferences: preferences, catalog: _testCatalog),
+    );
+    await tester.pump();
+
+    expect(find.byType(RawBarPage, skipOffstage: false), findsNothing);
+    expect(
+      TickerMode.valuesOf(tester.element(find.byType(BarMenuPage))).enabled,
+      isTrue,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('restores selected ingredients from storage', (
     WidgetTester tester,
   ) async {
