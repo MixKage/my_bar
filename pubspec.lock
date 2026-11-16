@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: animated_border_widgets
-      sha256: "8b05b63fa1f96fa3304fe081a8a5ab665e25b0794e457de1a9aa45c8db0da149"
+      sha256: c0e82f43f19edda02f4f229519be27ce9e2a77017c3008bbba8a2dad4cd29ebf
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   ansicolor:
     dependency: transitive
     description:

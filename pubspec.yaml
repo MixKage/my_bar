@@ -2,7 +2,7 @@ name: my_bar
 description: "An application for managing your home bar and quickly selecting cocktails from what you already have at home."
 publish_to: 'none' 
 
-version: 1.2.1+70
+version: 1.2.2+71
 
 environment:
   sdk: ^3.10.8
@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  animated_border_widgets: ^0.2.0
+  animated_border_widgets: ^0.2.1
   google_fonts: ^8.0.2
   flutter_bloc: ^9.1.1
   shared_preferences: ^2.5.4
