@@ -166,7 +166,13 @@ class _BarHomeShellState extends State<BarHomeShell>
           ];
 
     final currentIndex = showOnlyBarMenu ? 0 : _currentTab;
-    final pageStack = IndexedStack(index: currentIndex, children: pages);
+    final pageStack = IndexedStack(
+      index: currentIndex,
+      children: <Widget>[
+        for (var index = 0; index < pages.length; index++)
+          TickerMode(enabled: index == currentIndex, child: pages[index]),
+      ],
+    );
     final bodyContent = useSideNavigation
         ? Row(
             children: <Widget>[
